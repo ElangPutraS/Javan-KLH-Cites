@@ -20,20 +20,20 @@ class CreateUserProfileTable extends Migration
             $table->text('address');
             $table->string('mobile',20);
             $table->string('person_identify',100);
-            $table->integer('created_by');
-            $table->integer('users_id')->unsigned();
-            $table->foreign('users_id')
+            $table->integer('created_by')->nullable();
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
-            $table->integer('city_id')->unsigned();
+            $table->integer('city_id')->unsigned()->nullable();
             $table->foreign('city_id')
                 ->references('id')->on('city')
                 ->onDelete('cascade');
-            $table->integer('user_type_identify_id')->unsigned();
+            $table->integer('user_type_identify_id')->unsigned()->nullable();
             $table->foreign('user_type_identify_id')
                 ->references('id')->on('user_type_identify')
                 ->onDelete('cascade');
-            $table->integer('update_by');
+            $table->integer('update_by')->nullable();
             $table->timestamps();
         });
     }

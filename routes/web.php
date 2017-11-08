@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+//JQUERY
+
+Route::get('/getState/{nation}', 'LocationController@getState');
+Route::get('/getCity/{state}', 'LocationController@getCity');

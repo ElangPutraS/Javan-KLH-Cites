@@ -109,8 +109,11 @@
                             <label for="nation" class="col-md-4 control-label">Nation</label>
 
                             <div class="col-md-6">
-                                <select id="nation" class="form-control" name="nation" required>
+                                <select id="nation" class="form-control" name="nation" onchange="getState(this)" required>
                                     <option value="">--Choose Nation--</option>
+                                    @foreach($nation as $nat)
+                                        <option value="{{$nat->id}}">{{$nat->nation_name}}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('nation'))
@@ -125,7 +128,7 @@
                             <label for="state" class="col-md-4 control-label">State</label>
 
                             <div class="col-md-6">
-                                <select id="state" class="form-control" name="state" required>
+                                <select id="state" class="form-control" name="state" onchange="getCity(this)" required>
                                     <option value="">--Choose State--</option>
                                 </select>
 
@@ -167,11 +170,14 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('identify_type') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">City</label>
+                            <label for="state" class="col-md-4 control-label">Identity Type</label>
 
                             <div class="col-md-6">
                                 <select id="identify_type" class="form-control" name="identify_type" required>
                                     <option value="">--Choose Identity Type--</option>
+                                    @foreach($user_type_identify as $idn)
+                                        <option value="{{$idn->id}}">{{$idn->user_type_identify_name}}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('identify_type'))
@@ -226,11 +232,14 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_nation') ? ' has-error' : '' }}">
-                            <label for="company_nation" class="col-md-4 control-label">Nation</label>
+                            <label for="company_nation" class="col-md-4 control-label">Company Nation</label>
 
                             <div class="col-md-6">
-                                <select id="company_nation" class="form-control" name="company_nation" required>
+                                <select id="company_nation" class="form-control" name="company_nation" onchange="getStateCompany(this)" required>
                                     <option value="">--Choose Company Nation--</option>
+                                    @foreach($nation as $nat)
+                                        <option value="{{$nat->id}}">{{$nat->nation_name}}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('company_nation'))
@@ -245,7 +254,7 @@
                             <label for="company_state" class="col-md-4 control-label">Company State</label>
 
                             <div class="col-md-6">
-                                <select id="company_state" class="form-control" name="company_state" required>
+                                <select id="company_state" class="form-control" name="company_state" onchange="getCityCompany(this)" required>
                                     <option value="">--Choose Company State--</option>
                                 </select>
 
@@ -325,7 +334,6 @@
 </div>
 @endsection
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-<script src="node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
     function initialize() {
         var latlng = new google.maps.LatLng(-6.175392,106.827153);
@@ -359,5 +367,51 @@
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 
+    function getState(a) {
+        var nation=$('#nation').val();
+        $.ajax({
+            type: 'get',
+            url: '/getState/'+nation,
+            success : function (data) {
+                //alert(data);
+                $('#state').html(data);
+            }
+        });
+    }
 
+    function getCity(a) {
+        var city=$('#state').val();
+        $.ajax({
+            type: 'get',
+            url: '/getCity/'+city,
+            success : function (data) {
+                //alert(data);
+                $('#city').html(data);
+            }
+        });
+    }
+
+    function getStateCompany(a) {
+        var nation=$('#company_nation').val();
+        $.ajax({
+            type: 'get',
+            url: '/getState/'+nation,
+            success : function (data) {
+                //alert(data);
+                $('#company_state').html(data);
+            }
+        });
+    }
+
+    function getCityCompany(a) {
+        var city=$('#company_state').val();
+        $.ajax({
+            type: 'get',
+            url: '/getCity/'+city,
+            success : function (data) {
+                //alert(data);
+                $('#company_city').html(data);
+            }
+        });
+    }
 </script>

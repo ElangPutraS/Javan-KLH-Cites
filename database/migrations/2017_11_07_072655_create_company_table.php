@@ -21,17 +21,17 @@ class CreateCompanyTable extends Migration
             $table->string('company_fax', 30);
             $table->string('company_latitude', 30);
             $table->string('company_longitude', 30);
-            $table->integer('company_status');
-            $table->integer('user_profile_id')->unsigned();
+            $table->integer('company_status')->default(0);
+            $table->integer('user_profile_id')->unsigned()->nullable();
             $table->foreign('user_profile_id')
                 ->references('id')->on('user_profile')
                 ->onDelete('cascade');
-            $table->integer('city_id')->unsigned();
+            $table->integer('city_id')->unsigned()->nullable();
             $table->foreign('city_id')
                 ->references('id')->on('city')
                 ->onDelete('cascade');
-            $table->integer('created_by');
-            $table->integer('updated_by');
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

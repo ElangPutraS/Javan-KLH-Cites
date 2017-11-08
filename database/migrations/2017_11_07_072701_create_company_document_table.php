@@ -16,11 +16,11 @@ class CreateCompanyDocumentTable extends Migration
         Schema::create('company_document', function (Blueprint $table) {
             $table->increments('id');
             $table->string('document_name',100);
-            $table->integer('document_type_id')->unsigned();
+            $table->integer('document_type_id')->unsigned()->nullable();
             $table->foreign('document_type_id')
                 ->references('id')->on('document_type')
                 ->onDelete('cascade');
-            $table->integer('company_id')->unsigned();
+            $table->integer('company_id')->unsigned()->nullable();
             $table->foreign('company_id')
                 ->references('id')->on('company')
                 ->onDelete('cascade');
