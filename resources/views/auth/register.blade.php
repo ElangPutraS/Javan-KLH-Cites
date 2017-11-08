@@ -325,6 +325,7 @@
 </div>
 @endsection
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+<script src="node_modules/jquery/dist/jquery.js"></script>
 <script type="text/javascript">
     function initialize() {
         var latlng = new google.maps.LatLng(-6.175392,106.827153);
