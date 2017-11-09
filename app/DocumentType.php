@@ -12,7 +12,7 @@ class DocumentType extends Model
         'document_type_name',
     ];
 
-    public function companyDocument(){
+    public function company(){
         return $this->belongsToMany(Company::class, 'company_document');
     }
 }
