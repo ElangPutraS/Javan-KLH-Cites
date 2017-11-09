@@ -70,8 +70,6 @@ class RegisterController extends Controller
             'company_fax' => 'required',
             'company_latitude' => 'required',
             'company_longitude' => 'required',
-            'document_type' => 'required',
-            'company_file' => 'required|mimes:jpeg,png,pdf,doc,docx',
         ]);
     }
 
@@ -113,9 +111,14 @@ class RegisterController extends Controller
         $company->save();
         $company->userProfile()->associate($user_profile)->save();
 
-        $imageName=time().'.'.$data['company_file']->getClientOriginalExtension();
+        foreach($data['company_file'] as $key=>$val){
+            $imageName=time().'.'.$val->getClientOriginalExtension();
+            $val->move(public_path('/upload/file'), $imageName);
+            DocumentType::find($data['document_type'][$key])->company()->attach($company->id, ['document_name'=>$imageName,]);
+        }
+        /*$imageName=time().'.'.$data['company_file']->getClientOriginalExtension();
         $data['company_file']->move(public_path('/upload/file'), $imageName);
-        DocumentType::find($data['document_type'])->company()->attach($company->id, ['document_name'=>$imageName,]);
+        DocumentType::find($data['document_type'])->company()->attach($company->id, ['document_name'=>$imageName,]);*/
 
         return $user;
     }

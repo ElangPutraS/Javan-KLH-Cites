@@ -348,7 +348,7 @@
                             <label class="col-md-4 control-label"></label>
 
                             <div class="col-md-6">
-                                <input id="company_file" type="file" class="form-control" name="company_file[]" value="{{ old('company_file') }}" required>
+                                <input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" required>
 
                                 @if ($errors->has('company_file'))
                                     <span class="help-block">
@@ -486,8 +486,8 @@
         form+='<div class="col-md-6"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Choose Document Type--</option>';
         form+='<?=$doc_type?>';
         form+='</select></div></div>';
-        form+='<div class="form-group"><label class="col-md-4 control-label"></label><div class="col-md-4"><input id="company_file" type="file" class="form-control" name="company_file[]" value="" required>';
-        form+='</div></div>';
+        form+='<div class="form-group"><label class="col-md-4 control-label"></label><div class="col-md-4"><input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" required>';
+        form+='</div><div class="col-md-2"><button id="hapusForm"></button></div></div>';
         $('#form-dynamic').append(form);
         alert(form);
     }
