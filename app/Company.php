@@ -12,11 +12,11 @@ class Company extends Model
         'company_name', 'company_address', 'company_email', 'company_fax', 'company_latitude', 'company_longitude', 'company_status', 'user_profile_id', 'city_id', 'created_by', 'updated_by',
     ];
 
-    public function user_profile(){
-        return $this->belongsTo(User_Profile::class);
+    public function userProfile(){
+        return $this->belongsTo(UserProfile::class);
     }
 
-    public function company_document(){
-        return $this->hasMany(Company_Document::class);
+    public function companyDocument(){
+        return $this->belongsToMany(DocumentType::class, 'company_document');
     }
 }

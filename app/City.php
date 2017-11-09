@@ -16,7 +16,7 @@ class City extends Model
         return $this->belongsTo(State::class);
     }
 
-    public function user_profile(){
-        return $this->hasMany(User_Profile::class);
+    public function userProfile(){
+        return $this->hasMany(UserProfile::class);
     }
 }

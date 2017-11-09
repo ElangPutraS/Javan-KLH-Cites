@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User_Profile extends Model
+class UserProfile extends Model
 {
     protected $table = "user_profile";
 
@@ -20,8 +20,8 @@ class User_Profile extends Model
         return $this->belongsTo(City::class);
     }
 
-    public function user_type_identify(){
-        return $this->hasMany(User_Type_Identify::class);
+    public function typeIdentify(){
+        return $this->belongsToMany(TypeIdentify::class,'user_type_identify');
     }
 
     public function company(){

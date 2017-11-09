@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Company;
+use App\DocumentType;
 use App\Nation;
+use App\TypeIdentify;
 use App\User;
 use App\Http\Controllers\Controller;
-use App\User_Profile;
-use App\User_Type_Identify;
+use App\UserProfile;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -69,6 +70,8 @@ class RegisterController extends Controller
             'company_fax' => 'required',
             'company_latitude' => 'required',
             'company_longitude' => 'required',
+            'document_type' => 'required',
+            'company_file' => 'required|mimes:jpeg,png,pdf,doc,docx',
         ]);
     }
 
@@ -86,17 +89,17 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        $user_profile= new User_Profile(['place_of_birth' => $data['place_birth'],
+        $user_profile= new UserProfile(['place_of_birth' => $data['place_birth'],
                                         'date_of_birth' => $data['date_birth'],
                                         'address' => $data['address'],
                                         'mobile' => $data['mobile'],
-                                        'user_type_identify_id' => $data['identify_type'],
-                                        'person_identify' => $data['person_identify'],
                                         'city_id' => $data['city'],
-                                        'person_identify' => $data['person_identify'],
                                         ]);
         $user_profile->save();
         $user_profile->user()->associate($user_profile)->save();
+
+        $type=TypeIdentify::find($data['identify_type']);
+        $type->userProfile()->attach($user_profile->id, ['user_type_identify_number'=>$data['person_identify']]);
 
         $company=new Company(['company_name' => $data['company_name'],
                             'company_address' => $data['company_address'],
@@ -108,7 +111,11 @@ class RegisterController extends Controller
                             'created_by' => $user->id,
                             ]);
         $company->save();
-        $company->user_profile()->associate($company)->save();
+        $company->userProfile()->associate($user_profile)->save();
+
+        $imageName=time().'.'.$data['company_file']->getClientOriginalExtension();
+        $data['company_file']->move(public_path('/upload/file'), $imageName);
+        DocumentType::find($data['document_type'])->company()->attach($company->id, ['document_name'=>$imageName,]);
 
         return $user;
     }
@@ -116,8 +123,9 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $nation=Nation::get();
-        $user_type_identify=User_Type_Identify::get();
-        return view('auth.register', compact('nation', 'user_type_identify'));
+        $user_type_identify=TypeIdentify::get();
+        $document_type=DocumentType::get();
+        return view('auth.register', compact('nation', 'user_type_identify', 'document_type'));
     }
 
 }

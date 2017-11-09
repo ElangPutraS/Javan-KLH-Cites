@@ -19,7 +19,6 @@ class CreateUserProfileTable extends Migration
             $table->date('date_of_birth');
             $table->text('address');
             $table->string('mobile',20);
-            $table->string('person_identify',100);
             $table->integer('created_by')->nullable();
             $table->integer('user_id')->unsigned()->nullable();
             $table->foreign('user_id')
@@ -28,10 +27,6 @@ class CreateUserProfileTable extends Migration
             $table->integer('city_id')->unsigned()->nullable();
             $table->foreign('city_id')
                 ->references('id')->on('city')
-                ->onDelete('cascade');
-            $table->integer('user_type_identify_id')->unsigned()->nullable();
-            $table->foreign('user_type_identify_id')
-                ->references('id')->on('user_type_identify')
                 ->onDelete('cascade');
             $table->integer('update_by')->nullable();
             $table->timestamps();

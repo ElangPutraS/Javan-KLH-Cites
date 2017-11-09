@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTypeIdentifyTable extends Migration
+class CreateTypeIdentifyTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateUserTypeIdentifyTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_type_identify', function (Blueprint $table) {
+        Schema::create('type_identify', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_type_identify_name',50);
+            $table->string('type_identify_name',50);
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateUserTypeIdentifyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_type_identify');
+        Schema::dropIfExists('type_identify');
     }
 }

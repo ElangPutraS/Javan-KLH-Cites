@@ -8,7 +8,7 @@
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -176,7 +176,7 @@
                                 <select id="identify_type" class="form-control" name="identify_type" required>
                                     <option value="">--Choose Identity Type--</option>
                                     @foreach($user_type_identify as $idn)
-                                        <option value="{{$idn->id}}">{{$idn->user_type_identify_name}}</option>
+                                        <option value="{{$idn->id}}">{{$idn->type_identify_name}}</option>
                                     @endforeach
                                 </select>
 
@@ -318,6 +318,63 @@
                                 <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude') }}" required>
                             </div>
                         </div>
+                        <br><center>--------------------------- Company Document -----------------------------</center><br>
+
+                        <div class="form-group{{ $errors->has('identify_type') ? ' has-error' : '' }}">
+                            <label for="state" class="col-md-4 control-label">Document Type</label>
+
+                            <div class="col-md-6">
+                                <select id="document_type" class="form-control" name="document_type" required>
+                                    <option value="">--Choose Document Type--</option>
+                                    @foreach($document_type as $dt)
+                                        <option value="{{$dt->id}}">{{$dt->document_type_name}}</option>
+                                    @endforeach
+                                </select>
+
+                                @if ($errors->has('document_type'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('document_type') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('company_file') ? ' has-error' : '' }}">
+                            <label for="company_fax" class="col-md-4 control-label">Company File</label>
+
+                            <div class="col-md-4">
+                                <input id="company_file" type="file" class="form-control" name="company_file" value="{{ old('company_file') }}" required>
+
+                                @if ($errors->has('company_file'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('company_file') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-2">
+                                <button onclick="" class="btn btn-success">
+                                    Tambah
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group{{ $errors->has('company_file') ? ' has-error' : '' }}">
+                            <div class="col-md-2">
+                            </div>
+                            <div class="col-md-4">
+                                <table border="2px">
+                                    <tr>
+                                        <th colspan="2">Daftar File</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="hidden"></td>
+                                        <td>Cek</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -336,6 +393,8 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
 <script type="text/javascript">
     function initialize() {
+        $('#company_latitude').val('-6.175392');
+        $('#company_longitude').val('106.827153');
         var latlng = new google.maps.LatLng(-6.175392,106.827153);
         var map = new google.maps.Map(document.getElementById('map'), {
             center: latlng,
@@ -355,8 +414,6 @@
             infowindow.setContent(iwContent);
             // opening the infowindow in the current map and at the current marker location
             infowindow.open(map, marker);
-            $('#company_latitude').val('-6.175392');
-            $('#company_longitude').val('106.827153');
         });
         google.maps.event.addListener(marker, 'dragend', function(evt){
             //document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
@@ -372,9 +429,14 @@
         $.ajax({
             type: 'get',
             url: '/getState/'+nation,
+            dataType: 'json',
             success : function (data) {
                 //alert(data);
-                $('#state').html(data);
+                var element='<option value="">--Choose State--</option>';
+                for(var i=0; i<data.length; i++){
+                    element+='<option value="'+data[i].id+'">'+data[i].state_name+'</option>';
+                }
+                $('#state').html(element);
             }
         });
     }
@@ -384,9 +446,13 @@
         $.ajax({
             type: 'get',
             url: '/getCity/'+city,
+            dataType: 'json',
             success : function (data) {
-                //alert(data);
-                $('#city').html(data);
+                var element='<option value="">--Choose City--</option>';
+                for(var i=0; i<data.length; i++){
+                    element+='<option value="'+data[i].id+'">'+data[i].city_name+'</option>';
+                }
+                $('#city').html(element);
             }
         });
     }
@@ -396,9 +462,14 @@
         $.ajax({
             type: 'get',
             url: '/getState/'+nation,
+            dataType: 'json',
             success : function (data) {
                 //alert(data);
-                $('#company_state').html(data);
+                var element='<option value="">--Choose Company State--</option>';
+                for(var i=0; i<data.length; i++){
+                    element+='<option value="'+data[i].id+'">'+data[i].state_name+'</option>';
+                }
+                $('#company_state').html(element);
             }
         });
     }
@@ -408,9 +479,13 @@
         $.ajax({
             type: 'get',
             url: '/getCity/'+city,
+            dataType: 'json',
             success : function (data) {
-                //alert(data);
-                $('#company_city').html(data);
+                var element='<option value="">--Choose Company City--</option>';
+                for(var i=0; i<data.length; i++){
+                    element+='<option value="'+data[i].id+'">'+data[i].city_name+'</option>';
+                }
+                $('#company_city').html(element);
             }
         });
     }
