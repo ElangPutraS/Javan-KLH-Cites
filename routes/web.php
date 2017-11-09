@@ -24,5 +24,5 @@ Route::get('/profile', 'UserController@index')->name('profile');
 
 //JQUERY
 
-Route::get('/getState/{nation}', 'LocationController@getState');
-Route::get('/getCity/{state}', 'LocationController@getCity');
+Route::get('/getProvince/{country}', 'LocationController@getProvince');
+Route::get('/getCity/{province}', 'LocationController@getCity');

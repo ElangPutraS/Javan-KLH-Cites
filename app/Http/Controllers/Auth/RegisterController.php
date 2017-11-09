@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Company;
+use App\Country;
 use App\DocumentType;
-use App\Nation;
 use App\TypeIdentify;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -125,10 +125,10 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $nation=Nation::get();
+        $country=Country::get();
         $user_type_identify=TypeIdentify::get();
         $document_type=DocumentType::get();
-        return view('auth.register', compact('nation', 'user_type_identify', 'document_type'));
+        return view('auth.register', compact('country', 'user_type_identify', 'document_type'));
     }
 
 }

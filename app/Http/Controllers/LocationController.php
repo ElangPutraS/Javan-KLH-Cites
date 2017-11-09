@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\City;
-use App\State;
+use App\Province;
 use Illuminate\Http\Request;
 
 class LocationController extends Controller
 {
-    public function getState($nation){
-        $state=State::where('nation_id',$nation)->get();
-        return json_encode($state);
+    public function getProvince($country){
+        $province=Province::where('country_id',$country)->get();
+        return json_encode($province);
     }
 
-    public function getCity($state){
-        $city=City::where('state_id', $state)->get();
+    public function getCity($province){
+        $city=City::where('province_id', $province)->get();
         return json_encode($city);
     }
 }

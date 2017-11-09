@@ -106,13 +106,13 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('nation') ? ' has-error' : '' }}">
-                            <label for="nation" class="col-md-4 control-label">Nation</label>
+                            <label for="nation" class="col-md-4 control-label">Country</label>
 
                             <div class="col-md-6">
                                 <select id="nation" class="form-control" name="nation" onchange="getState(this)" required>
                                     <option value="">--Choose Nation--</option>
-                                    @foreach($nation as $nat)
-                                        <option value="{{$nat->id}}">{{$nat->nation_name}}</option>
+                                    @foreach($country as $nat)
+                                        <option value="{{$nat->id}}">{{$nat->country_name}}</option>
                                     @endforeach
                                 </select>
 
@@ -237,8 +237,8 @@
                             <div class="col-md-6">
                                 <select id="company_nation" class="form-control" name="company_nation" onchange="getStateCompany(this)" required>
                                     <option value="">--Choose Company Nation--</option>
-                                    @foreach($nation as $nat)
-                                        <option value="{{$nat->id}}">{{$nat->nation_name}}</option>
+                                    @foreach($country as $nat)
+                                        <option value="{{$nat->id}}">{{$nat->country_name}}</option>
                                     @endforeach
                                 </select>
 
@@ -415,16 +415,16 @@
     google.maps.event.addDomListener(window, 'load', initialize);
 
     function getState(a) {
-        var nation=$('#nation').val();
+        var country=$('#nation').val();
         $.ajax({
             type: 'get',
-            url: '/getState/'+nation,
+            url: '/getProvince/'+country,
             dataType: 'json',
             success : function (data) {
                 //alert(data);
                 var element='<option value="">--Choose State--</option>';
                 for(var i=0; i<data.length; i++){
-                    element+='<option value="'+data[i].id+'">'+data[i].state_name+'</option>';
+                    element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
                 }
                 $('#state').html(element);
             }
@@ -432,10 +432,10 @@
     }
 
     function getCity(a) {
-        var city=$('#state').val();
+        var province=$('#state').val();
         $.ajax({
             type: 'get',
-            url: '/getCity/'+city,
+            url: '/getCity/'+province,
             dataType: 'json',
             success : function (data) {
                 var element='<option value="">--Choose City--</option>';
@@ -448,16 +448,16 @@
     }
 
     function getStateCompany(a) {
-        var nation=$('#company_nation').val();
+        var country=$('#company_nation').val();
         $.ajax({
             type: 'get',
-            url: '/getState/'+nation,
+            url: '/getProvince/'+country,
             dataType: 'json',
             success : function (data) {
                 //alert(data);
                 var element='<option value="">--Choose Company State--</option>';
                 for(var i=0; i<data.length; i++){
-                    element+='<option value="'+data[i].id+'">'+data[i].state_name+'</option>';
+                    element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
                 }
                 $('#company_state').html(element);
             }
@@ -481,14 +481,19 @@
     }
 
     function tambahForm(a) {
-        var form='<div class="form-group">';
+        var form='<div id="dynamic"><div class="form-group">';
         form+='<label for="state" class="col-md-4 control-label">Document</label>';
         form+='<div class="col-md-6"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Choose Document Type--</option>';
         form+='<?=$doc_type?>';
         form+='</select></div></div>';
-        form+='<div class="form-group"><label class="col-md-4 control-label"></label><div class="col-md-4"><input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" required>';
-        form+='</div><div class="col-md-2"><button id="hapusForm"></button></div></div>';
+        form+='<div class="form-group"><label class="col-md-4 control-label"></label><div class="col-md-5"><input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" required>';
+        form+='</div><div class="col-md-1"><button onclick="hapusForm(this)" class="btn btn-danger">X</button></div></div></div>';
         $('#form-dynamic').append(form);
-        alert(form);
+        //alert(form);
+    }
+
+    function hapusForm(a) {
+        alert('cek');
+        a.closest('#dynamic').remove();
     }
 </script>
