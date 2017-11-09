@@ -24,7 +24,7 @@ class CreateCompanyTable extends Migration
             $table->integer('company_status')->default(0);
             $table->integer('user_profile_id')->unsigned()->nullable();
             $table->foreign('user_profile_id')
-                ->references('id')->on('user_profile')
+                ->references('id')->on('user_profiles')
                 ->onDelete('cascade');
             $table->integer('city_id')->unsigned()->nullable();
             $table->foreign('city_id')
