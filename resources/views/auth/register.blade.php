@@ -319,12 +319,17 @@
                             </div>
                         </div>
                         <br><center>--------------------------- Company Document -----------------------------</center><br>
+                        <center>
+                            <button onclick="tambahForm(this)" class="btn btn-success">
+                                Tambah
+                            </button>
+                        </center><br>
 
                         <div class="form-group{{ $errors->has('identify_type') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">Document Type</label>
+                            <label for="state" class="col-md-4 control-label">Document</label>
 
                             <div class="col-md-6">
-                                <select id="document_type" class="form-control" name="document_type" required>
+                                <select id="document_type" class="form-control" name="document_type[]" required>
                                     <option value="">--Choose Document Type--</option>
                                     @foreach($document_type as $dt)
                                         <option value="{{$dt->id}}">{{$dt->document_type_name}}</option>
@@ -339,11 +344,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('company_file') ? ' has-error' : '' }}">
-                            <label for="company_fax" class="col-md-4 control-label">Company File</label>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label"></label>
 
-                            <div class="col-md-4">
-                                <input id="company_file" type="file" class="form-control" name="company_file" value="{{ old('company_file') }}" required>
+                            <div class="col-md-6">
+                                <input id="company_file" type="file" class="form-control" name="company_file[]" value="{{ old('company_file') }}" required>
 
                                 @if ($errors->has('company_file'))
                                     <span class="help-block">
@@ -351,30 +356,9 @@
                                     </span>
                                 @endif
                             </div>
+                        </div>
 
-                            <div class="col-md-2">
-                                <button onclick="" class="btn btn-success">
-                                    Tambah
-                                </button>
-                            </div>
-                        </div>
-                        <br>
-                        <div class="form-group{{ $errors->has('company_file') ? ' has-error' : '' }}">
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-4">
-                                <table border="2px">
-                                    <tr>
-                                        <th colspan="2">Daftar File</th>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="hidden"></td>
-                                        <td>Cek</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <br>
+                        <div id="form-dynamic"></div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
@@ -390,6 +374,12 @@
     </div>
 </div>
 @endsection
+<?php
+    $doc_type='';
+    foreach ($document_type as $dt){
+        $doc_type.='<option value="'.$dt->id.'">'.$dt->document_type_name.'</option>';
+    }
+?>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
 <script type="text/javascript">
     function initialize() {
@@ -488,5 +478,17 @@
                 $('#company_city').html(element);
             }
         });
+    }
+
+    function tambahForm(a) {
+        var form='<div class="form-group">';
+        form+='<label for="state" class="col-md-4 control-label">Document</label>';
+        form+='<div class="col-md-6"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Choose Document Type--</option>';
+        form+='<?=$doc_type?>';
+        form+='</select></div></div>';
+        form+='<div class="form-group"><label class="col-md-4 control-label"></label><div class="col-md-4"><input id="company_file" type="file" class="form-control" name="company_file[]" value="" required>';
+        form+='</div></div>';
+        $('#form-dynamic').append(form);
+        alert(form);
     }
 </script>
