@@ -28,7 +28,7 @@ class CreateCompanyTable extends Migration
                 ->onDelete('cascade');
             $table->integer('city_id')->unsigned()->nullable();
             $table->foreign('city_id')
-                ->references('id')->on('city')
+                ->references('id')->on('cities')
                 ->onDelete('cascade');
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();

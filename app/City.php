@@ -6,17 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class City extends Model
 {
-    protected $table = "city";
+    protected $table = "cities";
 
     protected $fillable = [
-        'city_name', 'state_id',
+        'city_name',
     ];
 
-    public function state(){
-        return $this->belongsTo(State::class);
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
     }
 
-    public function userProfile(){
-        return $this->hasMany(UserProfile::class);
+    public function users()
+    {
+        return $this->hasManyThrough(User::class, UserProfile::class);
     }
 }
