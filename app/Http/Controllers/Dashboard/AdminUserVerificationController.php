@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Company;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,8 @@ class AdminUserVerificationController extends Controller
      */
     public function index()
     {
-        //
+        $company=Company::get();
+        return view('dashboard.verification.verificationList', compact('company'));
     }
 
     /**

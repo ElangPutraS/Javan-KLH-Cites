@@ -96,7 +96,7 @@ class RegisterController extends Controller
             'city_id'        => $data['city'],
         ]);
         $user_profile->save();
-        $user_profile->user()->associate($user_profile)->save();
+        $user_profile->user()->associate($user)->save();
 
         $type = TypeIdentify::find($data['identify_type']);
         $type->userProfile()->attach($user_profile->id, ['user_type_identify_number' => $data['person_identify']]);
