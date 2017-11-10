@@ -73,38 +73,8 @@
         </div>
     </aside>
 
-    <section class="content">
-        <header class="content__title">
-            <h1>xxx</h1>
-        </header>
+    @yield('content')
 
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">xxx</h2>
-                <small class="card-subtitle">xxx</small>
-            </div>
-
-            <div class="card-block">
-
-            </div>
-        </div>
-
-        <footer class="footer hidden-xs-down">
-            <p>Material Admin Responsive. All rights reserved.</p>
-
-            <ul class="nav footer__nav">
-                <a class="nav-link" href="">Homepage</a>
-
-                <a class="nav-link" href="">Company</a>
-
-                <a class="nav-link" href="">Support</a>
-
-                <a class="nav-link" href="">News</a>
-
-                <a class="nav-link" href="">Contacts</a>
-            </ul>
-        </footer>
-    </section>
 </main>
 
 <!-- Javascript -->
