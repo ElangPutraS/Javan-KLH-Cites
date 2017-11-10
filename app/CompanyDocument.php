@@ -10,7 +10,7 @@ class CompanyDocument extends Pivot
     protected $table = "company_document";
 
     protected $fillable = [
-        'company_document_name', 'company_id', 'document_type_id', 'file_path',
+        'document_name', 'company_id', 'document_type_id', 'file_path',
     ];
 
     public $appends = ['download_url'];

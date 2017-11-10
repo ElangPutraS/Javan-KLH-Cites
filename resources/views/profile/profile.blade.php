@@ -72,6 +72,7 @@
                             </tr>
                             <tr style="border:1px;">
                                 <th style="padding: 2px;">No</th>
+                                <th style="padding: 2px;">Document Type</th>
                                 <th style="padding: 2px;">Document Name</th>
                                 <th style="padding: 2px;">Action</th>
                             </tr>
@@ -79,7 +80,8 @@
                                 <tr>
                                     <th style="padding: 2px;">{{ $loop->iteration }}</th>
                                     <td style="padding: 2px;">{{ $document->document_type_name }}</td>
-                                    <td style="padding: 2px;"><a href="{{ \Illuminate\Support\Facades\Storage::url($document->pivot->download_url) }}" class="btn-success">Download</a></td>
+                                    <td style="padding: 2px;">{{ $document->pivot->document_name }}</td>
+                                    <td style="padding: 2px;"><a href="{{  $document->pivot->download_url }}" class="btn-success">Download</a></td>
                                 </tr>
                             @endforeach
                         </table>
