@@ -22,6 +22,8 @@
                                 <td style="padding: 2px;">:</td>
                                 <td style="padding: 2px;">{{$user->email}}</td>
                             </tr>
+
+                            @if($user->hasRole('Pelaku Usaha'))
                             <tr>
                                 <th style="padding: 2px;">Place and Date Birth</th>
                                 <td style="padding: 2px;">:</td>
@@ -60,8 +62,12 @@
                                 <td style="padding: 2px;">:</td>
                                 <td style="padding: 2px;">{{$company->company_address}}</td>
                             </tr>
+                            @endif
 
                         </table>
+
+                        @if($user->hasRole('Pelaku Usaha'))
+
                         <div id="map" style="width: 100%; height: 300px;"></div>
                         <input id="company_latitude" type="hidden" name="company_latitude" value="{{ old('company_latitude', $company->company_latitude ?? '') }}">
                         <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude', $company->company_longitude ?? '') }}">
@@ -85,6 +91,8 @@
                                 </tr>
                             @endforeach
                         </table>
+                        @endif
+                        
                     </div>
                 </div>
             </div>
