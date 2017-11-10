@@ -36,4 +36,32 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Role::class, 'user_role');
     }
+
+    public function assignRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::where('name', $role)->first();
+        }
+
+        return $this->roles()->attach($role);
+    }
+
+    public function revokeRole($role)
+    {
+        if (is_string($role)) {
+            $role = Role::where('name', $role)->first();
+        }
+
+        return $this->roles()->detach($role);
+    }
+
+    public function hasRole($name)
+    {
+        foreach($this->roles as $role)
+        {
+            if ($role->name === $name) return true;
+        }
+
+        return false;
+    }
 }
