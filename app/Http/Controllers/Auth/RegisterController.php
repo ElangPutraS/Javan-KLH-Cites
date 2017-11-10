@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Company;
 use App\Country;
 use App\DocumentType;
+use App\Roles;
 use App\TypeIdentify;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -116,6 +117,8 @@ class RegisterController extends Controller
             $val->move(public_path('/upload/file'), $imageName);
             DocumentType::find($data['document_type'][$key])->company()->attach($company->id, ['document_name'=>$imageName,]);
         }
+
+        Roles::find('2')->users()->attach($user);
         /*$imageName=time().'.'.$data['company_file']->getClientOriginalExtension();
         $data['company_file']->move(public_path('/upload/file'), $imageName);
         DocumentType::find($data['document_type'])->company()->attach($company->id, ['document_name'=>$imageName,]);*/
