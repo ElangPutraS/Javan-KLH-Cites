@@ -17,10 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 //PROFILE
-Route::get('/profile', 'UserController@index')->name('profile');
+Route::get('/profile', 'UserController@index')->name('profile')->middleware(['auth']);
 
 //JQUERY
 
