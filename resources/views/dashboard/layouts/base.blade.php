@@ -69,12 +69,12 @@
             <ul class="navigation">
                 <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
 
-                @can ('access-pelaku-usaha')
+                @can('access-pelaku-usaha')
                 <!-- Menu Pelaku Usaha -->
                 <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Permohonan Baru</a></li>
                 @endcan
 
-                @can ('access-admin')
+                @can('access-admin')
                 <!-- Menu Admin -->
                 <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi Pelaku Usaha</a></li>
                 @endcan
