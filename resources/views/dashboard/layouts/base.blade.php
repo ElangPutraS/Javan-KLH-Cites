@@ -76,7 +76,8 @@
 
                 @can('access-admin')
                 <!-- Menu Admin -->
-                <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi Pelaku Usaha</a></li>
+                <li><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi Pelaku Usaha</a></li>
+                <li><a href="{{ route('admin.users.index') }}"><i class="zmdi zmdi-home"></i> Kelola Pelaku Usaha</a></li>
                 @endcan
             </ul>
         </div>
