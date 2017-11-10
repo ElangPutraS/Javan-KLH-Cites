@@ -60,12 +60,30 @@
                                 <td style="padding: 2px;">:</td>
                                 <td style="padding: 2px;">{{$company->company_address}}</td>
                             </tr>
+
                         </table>
                         <div id="map" style="width: 100%; height: 300px;"></div>
                         <input id="company_latitude" type="hidden" name="company_latitude" value="{{ old('company_latitude', $company->company_latitude ?? '') }}">
                         <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude', $company->company_longitude ?? '') }}">
+                        <br>
+                        <table>
+                            <tr>
+                                <th style="padding: 2px; color:red;" colspan="3">Document Company</th>
+                            </tr>
+                            <tr style="border:1px;">
+                                <th style="padding: 2px;">No</th>
+                                <th style="padding: 2px;">Document Name</th>
+                                <th style="padding: 2px;">Action</th>
+                            </tr>
+                            @foreach($company->companyDocument as $key => $value)
+                                <tr>
+                                    <th style="padding: 2px;">{{$key+1}}</th>
+                                    <td style="padding: 2px;">{{$value->document_type_name}}</td>
+                                    <td style="padding: 2px;"><a href="{{ \Illuminate\Support\Facades\Storage::url($value->pivot->document_name) }}" class="btn-success" data-id="{{$value->pivot->id}}">Download</a></td>
+                                </tr>
+                            @endforeach
+                        </table>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -103,4 +121,16 @@
         });
     }
     google.maps.event.addDomListener(window, 'load', initialize);
+
+    function getDocument(a) {
+        var id=a.getAttribute('data-id');
+        //alert(id);
+        $.ajax({
+           type:'get',
+           url:'/companyDocument/'+id,
+            success :function (data) {
+
+            }
+        });
+    }
 </script>

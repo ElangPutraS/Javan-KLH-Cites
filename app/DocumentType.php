@@ -13,6 +13,6 @@ class DocumentType extends Model
     ];
 
     public function company(){
-        return $this->belongsToMany(Company::class, 'company_document');
+        return $this->belongsToMany(Company::class, 'company_document')->withPivot('document_name','id');
     }
 }

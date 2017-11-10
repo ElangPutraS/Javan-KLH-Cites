@@ -440,7 +440,7 @@
             success : function (data) {
                 var element='<option value="">--Choose City--</option>';
                 for(var i=0; i<data.length; i++){
-                    element+='<option value="'+data[i].id+'">'+data[i].city_name+'</option>';
+                    element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
                 }
                 $('#city').html(element);
             }
@@ -473,7 +473,7 @@
             success : function (data) {
                 var element='<option value="">--Choose Company City--</option>';
                 for(var i=0; i<data.length; i++){
-                    element+='<option value="'+data[i].id+'">'+data[i].city_name+'</option>';
+                    element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
                 }
                 $('#company_city').html(element);
             }
@@ -493,7 +493,7 @@
     }
 
     function hapusForm(a) {
-        alert('cek');
+        //alert('cek');
         a.closest('#dynamic').remove();
     }
 </script>
