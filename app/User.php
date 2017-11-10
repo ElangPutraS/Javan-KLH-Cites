@@ -40,7 +40,7 @@ class User extends Authenticatable
     public function assignRole($role)
     {
         if (is_string($role)) {
-            $role = Role::where('name', $role)->first();
+            $role = Role::where('role_name', $role)->first();
         }
 
         return $this->roles()->attach($role);
@@ -49,7 +49,7 @@ class User extends Authenticatable
     public function revokeRole($role)
     {
         if (is_string($role)) {
-            $role = Role::where('name', $role)->first();
+            $role = Role::where('role_name', $role)->first();
         }
 
         return $this->roles()->detach($role);
