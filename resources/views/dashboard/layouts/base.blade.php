@@ -34,7 +34,7 @@
         </div>
 
         <div class="header__logo hidden-sm-down">
-            <h1><a href="index.html">{{ config('app.name') }}</a></h1>
+            <h1><a href="{{ route('dashboard.home.index') }}">{{ config('app.name') }}</a></h1>
         </div>
 
         <form class="search">
@@ -50,84 +50,32 @@
         <div class="scrollbar-inner">
             <div class="user">
                 <div class="user__info" data-toggle="dropdown">
-                    <img class="user__img" src="{{ asset('templates/demo/img/profile-pics/8.jpg') }}" alt="">
+                    <img class="user__img" src="{{ asset('template/demo/img/profile-pics/8.jpg') }}" alt="">
                     <div>
-                        <div class="user__name">Malinda Hollaway</div>
-                        <div class="user__email">malinda-h@gmail.com</div>
+                        <div class="user__name">{{ auth()->user()->name }}</div>
+                        <div class="user__email">{{ auth()->user()->email }}</div>
                     </div>
                 </div>
 
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="">View Profile</a>
-                    <a class="dropdown-item" href="">Settings</a>
-                    <a class="dropdown-item" href="">Logout</a>
+                    <a class="dropdown-item" href="{{ route('profile') }}">View Profile</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
                 </div>
             </div>
 
             <ul class="navigation">
-                <li><a href="index.html"><i class="zmdi zmdi-home"></i> Home</a></li>
-
-                <li class="navigation__sub">
-                    <a href=""><i class="zmdi zmdi-view-week"></i> Variants</a>
-
-                    <ul>
-                        <li><a href="hidden-sidebar.html">Hidden Sidebar</a></li>
-                        <li><a href="boxed-layout.html">Boxed Layout</a></li>
-                        <li><a href="hidden-sidebar-boxed-layout.html">Boxed Layout with Hidden Sidebar</a></li>
-                        <li><a href="top-navigation.html">Top Navigation</a></li>
-                    </ul>
-                </li>
-
-                <li><a href="typography.html"><i class="zmdi zmdi-format-underlined"></i> Typography</a></li>
+                <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
 
             </ul>
         </div>
     </aside>
 
-    <aside class="chat">
-        <div class="chat__header">
-            <h2 class="chat__title">Chat <small>Currently 20 contacts online</small></h2>
-
-            <div class="chat__search">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Search...">
-                    <i class="form-group__bar"></i>
-                </div>
-            </div>
-        </div>
-
-        <div class="listview listview--hover chat__buddies scrollbar-inner">
-            <a class="listview__item chat__available">
-                <img src="demo/img/profile-pics/7.jpg" class="listview__img" alt="">
-
-                <div class="listview__content">
-                    <div class="listview__heading">Jeannette Lawson</div>
-                    <p>hey, how are you doing.</p>
-                </div>
-            </a>
-
-        </div>
-
-        <a href="messages.html" class="btn btn--action btn--fixed btn-danger"><i class="zmdi zmdi-plus"></i></a>
-    </aside>
-
     <section class="content">
         <header class="content__title">
             <h1>xxx</h1>
-
-            <div class="actions">
-                <a href="" class="actions__item zmdi zmdi-trending-up"></a>
-                <a href="" class="actions__item zmdi zmdi-check-all"></a>
-
-                <div class="dropdown actions__item">
-                    <i data-toggle="dropdown" class="zmdi zmdi-more-vert"></i>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a href="" class="dropdown-item">Refresh</a>
-                        <a href="" class="dropdown-item">Manage Widgets</a>
-                        <a href="" class="dropdown-item">Settings</a>
-                    </div>
-                </div>
-            </div>
         </header>
 
         <div class="card">
