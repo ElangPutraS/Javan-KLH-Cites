@@ -1,1 +1,1 @@
-<h1>Hello</h1>
+@extends('dashboard.layouts.base')
