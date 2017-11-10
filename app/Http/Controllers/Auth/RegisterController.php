@@ -102,7 +102,7 @@ class RegisterController extends Controller
         $user->userProfile()->save($user_profile);
 
         $type = TypeIdentify::find($data['identify_type']);
-        $user->userProfile()->typeIdentify()->attach($type, ['user_type_identify_number' => $data['person_identify']]);
+        $user_profile->typeIdentify()->attach($type, ['user_type_identify_number' => $data['person_identify']]);
 
         $company = new Company([
             'company_name'      => $data['company_name'],
@@ -114,6 +114,7 @@ class RegisterController extends Controller
             'city_id'           => $data['company_city'],
             'created_by'        => $user->id,
         ]);
+
         $company->save();
         $company->userProfile()->associate($user_profile)->save();
 
