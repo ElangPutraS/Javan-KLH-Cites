@@ -13,6 +13,8 @@ class DatabaseSeeder extends Seeder
     {
          $this->call(RolesSeeder::class);
          $this->call(UsersSeeder::class);
-        $this->call(LaraciproidSeeder::class);
+         $this->call(LaraciproidSeeder::class);
+         $this->call(DocumentTypeSeeder::class);
+         $this->call(TypeIdentifySeeder::class);
     }
 }
