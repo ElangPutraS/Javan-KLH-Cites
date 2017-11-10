@@ -74,7 +74,7 @@
                 @endif
 
                 @if (auth()->user()->hasRole('Administrator'))
-                    <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi</a></li>
+                <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi</a></li>
                 @endif
             </ul>
         </div>
