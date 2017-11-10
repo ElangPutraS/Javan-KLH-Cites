@@ -9,7 +9,7 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">Selamat Datang, {{ auth()->user()->name }}</h2>
-                <small class="card-subtitle">KLH - CITES</small>
+                <small class="card-subtitle">Anda login sebagai: {{ auth()->user()->roles->first()->role_name }}</small>
             </div>
 
             <div class="card-block">

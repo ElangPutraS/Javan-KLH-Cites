@@ -69,13 +69,15 @@
             <ul class="navigation">
                 <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
 
-                @if (auth()->user()->hasRole('Pelaku Usaha'))
-                <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Permohonan</a></li>
-                @endif
+                @can ('access-pelaku-usaha')
+                <!-- Menu Pelaku Usaha -->
+                <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Permohonan Baru</a></li>
+                @endcan
 
-                @if (auth()->user()->hasRole('Administrator'))
-                <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi</a></li>
-                @endif
+                @can ('access-admin')
+                <!-- Menu Admin -->
+                <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi Pelaku Usaha</a></li>
+                @endcan
             </ul>
         </div>
     </aside>
