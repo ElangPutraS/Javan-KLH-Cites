@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Company;
 use App\Country;
 use App\DocumentType;
-use App\Roles;
+use App\Role;
 use App\TypeIdentify;
 use App\User;
 use App\Http\Controllers\Controller;
@@ -54,22 +54,22 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'place_birth' => 'required|string',
-            'date_birth' => 'required',
-            'city' => 'required',
-            'address' => 'required|string',
-            'mobile' => 'required',
-            'identify_type' => 'required',
-            'person_identify' => 'required',
-            'company_name' => 'required|string',
-            'company_email' => 'required|string|email|max:255',
-            'company_city' => 'required',
-            'company_address' => 'required|string',
-            'company_fax' => 'required',
-            'company_latitude' => 'required',
+            'name'              => 'required|string|max:255',
+            'email'             => 'required|string|email|max:255|unique:users',
+            'password'          => 'required|string|min:6|confirmed',
+            'place_birth'       => 'required|string',
+            'date_birth'        => 'required',
+            'city'              => 'required',
+            'address'           => 'required|string',
+            'mobile'            => 'required',
+            'identify_type'     => 'required',
+            'person_identify'   => 'required',
+            'company_name'      => 'required|string',
+            'company_email'     => 'required|string|email|max:255',
+            'company_city'      => 'required',
+            'company_address'   => 'required|string',
+            'company_fax'       => 'required',
+            'company_latitude'  => 'required',
             'company_longitude' => 'required',
         ]);
     }
@@ -83,16 +83,17 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
 
-        $user_profile = new UserProfile(['place_of_birth' => $data['place_birth'],
-            'date_of_birth' => $data['date_birth'],
-            'address' => $data['address'],
-            'mobile' => $data['mobile'],
-            'city_id' => $data['city'],
+        $user_profile = new UserProfile([
+            'place_of_birth' => $data['place_birth'],
+            'date_of_birth'  => $data['date_birth'],
+            'address'        => $data['address'],
+            'mobile'         => $data['mobile'],
+            'city_id'        => $data['city'],
         ]);
         $user_profile->save();
         $user_profile->user()->associate($user_profile)->save();
@@ -100,39 +101,36 @@ class RegisterController extends Controller
         $type = TypeIdentify::find($data['identify_type']);
         $type->userProfile()->attach($user_profile->id, ['user_type_identify_number' => $data['person_identify']]);
 
-        $company = new Company(['company_name' => $data['company_name'],
-            'company_address' => $data['company_address'],
-            'company_email' => $data['company_email'],
-            'company_fax' => $data['company_fax'],
-            'company_latitude' => $data['company_latitude'],
+        $company = new Company([
+            'company_name'      => $data['company_name'],
+            'company_address'   => $data['company_address'],
+            'company_email'     => $data['company_email'],
+            'company_fax'       => $data['company_fax'],
+            'company_latitude'  => $data['company_latitude'],
             'company_longitude' => $data['company_longitude'],
-            'city_id' => $data['company_city'],
-            'created_by' => $user->id,
+            'city_id'           => $data['company_city'],
+            'created_by'        => $user->id,
         ]);
         $company->save();
         $company->userProfile()->associate($user_profile)->save();
 
         foreach ($data['company_file'] as $key => $val) {
-            /*$imageName = time() . '.' . $val->getClientOriginalExtension();
-            $val->move(public_path('/upload/file'), $imageName);
-            DocumentType::find($data['document_type'][$key])->company()->attach($company->id, ['document_name' => $imageName,]);*/
             $path = $val->store('/upload/file');
-            DocumentType::find($data['document_type'][$key])->company()->attach($company->id, ['document_name' => $path,]);
+            DocumentType::find($data['document_type'][$key])->company()->attach($company->id,
+                ['document_name' => $path,]);
         }
 
-        Roles::find('2')->users()->attach($user);
-        /*$imageName=time().'.'.$data['company_file']->getClientOriginalExtension();
-        $data['company_file']->move(public_path('/upload/file'), $imageName);
-        DocumentType::find($data['document_type'])->company()->attach($company->id, ['document_name'=>$imageName,]);*/
+        Role::find('2')->users()->attach($user);
 
         return $user;
     }
 
     public function showRegistrationForm()
     {
-        $country = Country::get();
+        $country            = Country::get();
         $user_type_identify = TypeIdentify::get();
-        $document_type = DocumentType::get();
+        $document_type      = DocumentType::get();
+
         return view('auth.register', compact('country', 'user_type_identify', 'document_type'));
     }
 

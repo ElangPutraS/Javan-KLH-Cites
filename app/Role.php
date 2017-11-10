@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Roles extends Model
+class Role extends Model
 {
     protected $table = "roles";
 
@@ -12,7 +12,8 @@ class Roles extends Model
         'role_name',
     ];
 
-    public function users(){
+    public function users()
+    {
         return $this->belongsToMany(User::class, 'user_role');
     }
 }
