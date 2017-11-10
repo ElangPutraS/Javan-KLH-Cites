@@ -26,3 +26,4 @@ Route::get('/profile', 'UserController@index')->name('profile');
 
 Route::get('/getProvince/{country}', 'LocationController@getProvince');
 Route::get('/getCity/{province}', 'LocationController@getCity');
+Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
