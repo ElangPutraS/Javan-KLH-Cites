@@ -82,6 +82,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        /**
+         * @var User $user
+         */
         $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
@@ -95,11 +98,12 @@ class RegisterController extends Controller
             'mobile'         => $data['mobile'],
             'city_id'        => $data['city'],
         ]);
+
         $user_profile->save();
         $user_profile->user()->associate($user_profile)->save();
 
         $type = TypeIdentify::find($data['identify_type']);
-        $type->userProfile()->attach($user_profile->id, ['user_type_identify_number' => $data['person_identify']]);
+        $user->userProfile()->typeIdentify()->attach($type, ['user_type_identify_number' => $data['person_identify']]);
 
         $company = new Company([
             'company_name'      => $data['company_name'],
@@ -116,11 +120,13 @@ class RegisterController extends Controller
 
         foreach ($data['company_file'] as $key => $val) {
             $path = $val->store('/upload/file');
-            DocumentType::find($data['document_type'][$key])->company()->attach($company->id,
-                ['document_name' => $path,]);
+
+            $document_type = DocumentType::find($data['document_type'][$key]);
+            $company->companyDocument()->attach($document_type, ['document_name' => $path]);
         }
 
-        Role::find('2')->users()->attach($user);
+        $role = Role::find(2);
+        $user->roles()->attach($role);
 
         return $user;
     }
