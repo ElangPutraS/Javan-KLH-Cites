@@ -75,11 +75,11 @@
                                 <th style="padding: 2px;">Document Name</th>
                                 <th style="padding: 2px;">Action</th>
                             </tr>
-                            @foreach($company->companyDocument as $key => $value)
+                            @foreach($company->companyDocuments as $document)
                                 <tr>
-                                    <th style="padding: 2px;">{{$key+1}}</th>
-                                    <td style="padding: 2px;">{{$value->document_type_name}}</td>
-                                    <td style="padding: 2px;"><a href="{{ \Illuminate\Support\Facades\Storage::url($value->pivot->document_name) }}" class="btn-success" data-id="{{$value->pivot->id}}">Download</a></td>
+                                    <th style="padding: 2px;">{{ $loop->iteration }}</th>
+                                    <td style="padding: 2px;">{{ $document->document_type_name }}</td>
+                                    <td style="padding: 2px;"><a href="{{ \Illuminate\Support\Facades\Storage::url($document->pivot->download_url) }}" class="btn-success">Download</a></td>
                                 </tr>
                             @endforeach
                         </table>
@@ -121,16 +121,4 @@
         });
     }
     google.maps.event.addDomListener(window, 'load', initialize);
-
-    function getDocument(a) {
-        var id=a.getAttribute('data-id');
-        //alert(id);
-        $.ajax({
-           type:'get',
-           url:'/companyDocument/'+id,
-            success :function (data) {
-
-            }
-        });
-    }
 </script>

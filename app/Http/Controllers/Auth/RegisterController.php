@@ -117,11 +117,19 @@ class RegisterController extends Controller
         $company->save();
         $company->userProfile()->associate($user_profile)->save();
 
-        foreach ($data['company_file'] as $key => $val) {
-            $path = $val->store('/upload/file');
+        foreach ($data['company_file'] as $key => $file) {
+
+            /**
+             * @var \Illuminate\Http\UploadedFile $file
+             */
+            $file_path = $file->store('/upload/file');
 
             $document_type = DocumentType::find($data['document_type'][$key]);
-            $company->companyDocument()->attach($document_type, ['document_name' => $path]);
+
+            $company->companyDocuments()->attach($document_type, [
+                    'document_name' => $file->getClientOriginalName(),
+                    'file_path'     => $file_path
+                ]);
         }
 
         $role = Role::find(2);
