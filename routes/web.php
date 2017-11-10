@@ -27,3 +27,8 @@ Route::get('/profile', 'UserController@index')->name('profile');
 Route::get('/getProvince/{country}', 'LocationController@getProvince');
 Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
+
+
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admin'])->group(function () {
+    Route::get('/', 'HomeController@index')->name('admin.home.index');
+});
