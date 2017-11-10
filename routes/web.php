@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//PROFILE
+Route::get('/profile', 'UserController@index')->name('profile');
+
+//JQUERY
+
+Route::get('/getProvince/{country}', 'LocationController@getProvince');
+Route::get('/getCity/{province}', 'LocationController@getCity');
