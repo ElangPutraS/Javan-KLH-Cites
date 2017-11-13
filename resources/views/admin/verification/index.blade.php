@@ -42,11 +42,11 @@
                             <td>{{$company->company_name}}</td>
                             <td>
                                 @if($company->company_status == 0)
-                                    Menunggu Verifikasi
+                                    <span class="badge badge-warning">Menunggu Verifikasi</span>
                                 @elseif($company->company_status == 1)
-                                    Verifikasi Disetujui
+                                    <span class="badge badge-success">Verifikasi Disetujui</span>
                                 @else
-                                    Verifikasi Ditolak
+                                    <span class="badge badge-danger">Verifikasi Ditolak</span>
                                 @endif
                             </td>
                             <td><a href="{{route('admin.verification.show', ['id'=> $company->id])}}"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>

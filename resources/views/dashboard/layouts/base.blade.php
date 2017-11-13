@@ -81,8 +81,8 @@
 
                 @can('access-admin')
                 <!-- Menu Admin -->
-                <li><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi Pelaku Usaha</a></li>
-                <li><a href="{{ route('admin.companies.index') }}"><i class="zmdi zmdi-home"></i> Kelola Pelaku Usaha</a></li>
+                <li><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-check-all zmdi-hc-fw"></i> Verifikasi Pelaku Usaha</a></li>
+                <li><a href="{{ route('admin.companies.index') }}"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> Kelola Pelaku Usaha</a></li>
                 @endcan
             </ul>
         </div>

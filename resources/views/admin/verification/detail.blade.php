@@ -6,6 +6,12 @@
             <header class="content__title">
                 <h1>{{$company->userProfile->user->name}}</h1>
                 <small><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> {{$company->company_name}}</small>
+                @if($company->company_status==1)
+                    <small>Status Perusahaan : <span class="badge badge-success">Verifikasi Disetujui</span></small>
+                @elseif($company->company_status==2)
+                    <small>Status Perusahaan : <span class="badge badge-danger">Verifikasi Ditolak</span></small>
+                    <small>Alasan Penolakan  : {{$company->reject_reason}}</small>
+                @endif
             </header>
 
             <div class="card profile">
