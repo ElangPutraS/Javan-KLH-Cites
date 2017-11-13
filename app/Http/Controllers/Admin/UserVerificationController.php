@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AdminUserController extends Controller
+class UserVerificationController extends Controller
 {
     /**
      * Display a listing of the resource.

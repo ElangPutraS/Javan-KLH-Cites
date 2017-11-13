@@ -31,8 +31,7 @@ Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(
     Route::get('/', 'HomeController@index')->name('dashboard.home.index');
 });
 
-Route::namespace('Dashboard')->prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('/', 'HomeController@index')->name('dashboard.home.index');
-    Route::get('verification', 'AdminUserVerificationController@index')->name('admin.verification.index');
-    Route::resource('users', 'AdminUserController');
+Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
+    Route::resource('users', 'UserController', ['as' => 'admin']);
 });
