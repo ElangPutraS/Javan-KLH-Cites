@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Company;
+use App\Country;
+use App\Province;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -28,9 +30,12 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $users = User::orderBy('name', 'asc')->pluck('id', 'name');
+        $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
+        $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
 
-        return view('admin.companies.create', compact('users'));
+        $users = User::orderBy('name', 'asc')->pluck('name', 'id');
+
+        return view('admin.companies.create', compact('users', 'countries', 'provinces'));
     }
 
     /**
@@ -63,7 +68,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        $users = User::orderBy('name', 'asc')->pluck('id', 'name');
+        $users = User::orderBy('name', 'asc')->pluck('name', 'id');
 
         return view('admin.companies.edit', compact('company', 'users'));
     }

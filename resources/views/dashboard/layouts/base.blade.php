@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/animate.css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/select2/dist/css/select2.min.css') }}">
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
@@ -94,6 +95,7 @@
 <script src="{{ asset('template/vendors/bower_components/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/tether/dist/js/tether.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('template/vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/Waves/dist/waves.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>

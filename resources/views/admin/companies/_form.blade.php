@@ -16,10 +16,18 @@
     <label class="control-label">Negara, Kabupaten/Kota, Kecamatan</label>
     <div class="row">
     <div class="col-sm-4">
-        <input type="text" class="form-control" value="{{ old('company_address', array_get($company, 'company_address')) }}">
+        <select name="country_id" class="form-control select2">
+            @foreach($countries as $key => $country)
+            <option value="{{ $key }}">{{ $country }}</option>
+            @endforeach
+        </select>
     </div>
     <div class="col-sm-4">
-        <input type="text" class="form-control" value="{{ old('company_address', array_get($company, 'company_address')) }}">
+        <select name="province_id" class="form-control select2">
+            @foreach($provinces as $key => $province)
+                <option value="{{ $key }}">{{ $province }}</option>
+            @endforeach
+        </select>
     </div>
     <div class="col-sm-4">
         <input type="text" class="form-control" value="{{ old('company_address', array_get($company, 'company_address')) }}">
