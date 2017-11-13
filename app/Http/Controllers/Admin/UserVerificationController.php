@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Company;
+use App\User;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +17,8 @@ class UserVerificationController extends Controller
      */
     public function index()
     {
-        //
+        $companies=Company::paginate(10);
+        return view('admin.verification.index', compact('companies'));
     }
 
     /**
@@ -35,7 +39,7 @@ class UserVerificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -46,7 +50,8 @@ class UserVerificationController extends Controller
      */
     public function show($id)
     {
-        //
+        $company=Company::find($id);
+        return view('admin.verification.detail', compact('company'));
     }
 
     /**
@@ -57,7 +62,7 @@ class UserVerificationController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -69,7 +74,18 @@ class UserVerificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $company=Company::find($id);
+        $company->update([
+            'company_status' => 1
+        ]);
+
+        return redirect()->route('admin.verification.index')->with(
+            'alert',
+            [
+                'alert'   => 'success',
+                'message' => 'Data berhasil dikonfirmasi.',
+            ]
+        );
     }
 
     /**
@@ -82,4 +98,16 @@ class UserVerificationController extends Controller
     {
         //
     }
+
+    public function updateRej(Request $request, $id)
+    {
+        $company=Company::find($id);
+        $company->update([
+            'company_status' => 2,
+            'reject_reason' => $request->alasan,
+        ]);
+
+        return $company;
+    }
+
 }

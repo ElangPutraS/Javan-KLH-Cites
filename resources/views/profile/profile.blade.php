@@ -124,10 +124,7 @@
             infowindow.open(map, marker);
         });
         google.maps.event.addListener(marker, 'dragend', function(evt){
-            //document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
             $('#company_latitude').val(evt.latLng.lat().toFixed(5));
-            $('#company_longitude').val(evt.latLng.lng().toFixed(5));
-            //alert($('#company_latitude').val()+' '+$('#company_longitude').val());
         });
     }
     google.maps.event.addDomListener(window, 'load', initialize);
