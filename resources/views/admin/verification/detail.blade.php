@@ -67,86 +67,88 @@
         </div>
     </section>
 @endsection
-<script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
-<script>
-    function acceptCompany(a) {
-        var id=a.getAttribute('data-id');
-        swal({
-            title: 'Apakah Anda Yakin?',
-            text: 'Akan memverifikasi pendaftaran perusahaan dan pelaku usaha?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes',
-        }).then(function() {
-            location.href='{{url('admin/verification/acc')}}/'+id;
-        });
-    }
-
-    function rejectCompany(a) {
-        var id=a.getAttribute('data-id');
-        swal({
-            title: 'Apakah Anda Yakin?',
-            text: 'Akan menolak verifikasi pendaftaran perusahaan dan pelaku usaha?',
-            type: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes',
-        }).then(function() {
-            //location.href='{{url('admin/verification')}}/'+id+'/2';
+@push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        function acceptCompany(a) {
+            var id=a.getAttribute('data-id');
             swal({
-                title: 'Tuliskan alasan penolakan verifikasi',
-                input: 'text',
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan memverifikasi pendaftaran perusahaan dan pelaku usaha?',
+                type: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Submit',
-                showLoaderOnConfirm: true,
-                allowOutsideClick: false
-            }).then(function (alasan) {
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                location.href='{{url('admin/verification/acc')}}/'+id;
+            });
+        }
+
+        function rejectCompany(a) {
+            var id=a.getAttribute('data-id');
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan menolak verifikasi pendaftaran perusahaan dan pelaku usaha?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                //location.href='{{url('admin/verification')}}/'+id+'/2';
                 swal({
-                    type: 'success',
-                    title: 'Penolakan verifikasi berhasil!`',
-                    html: 'Alasan penolakan: ' + alasan
-                });
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type:'post',
-                    url:'rej/'+id,
-                    data: 'alasan='+alasan,
-                    success : function(cek){
-                        location.href='{{url('admin/verification')}}';
-                    }
+                    title: 'Tuliskan alasan penolakan verifikasi',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Submit',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false
+                }).then(function (alasan) {
+                    swal({
+                        type: 'success',
+                        title: 'Penolakan verifikasi berhasil!`',
+                        html: 'Alasan penolakan: ' + alasan
+                    });
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type:'post',
+                        url:'rej/'+id,
+                        data: 'alasan='+alasan,
+                        success : function(cek){
+                            location.href='{{url('admin/verification')}}';
+                        }
+                    });
                 });
             });
-        });
-    }
-</script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-<script type="text/javascript">
-    function initialize() {
+        }
+    </script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script type="text/javascript">
+        function initialize() {
 
-        var latlng = new google.maps.LatLng($('#company_latitude').val(),$('#company_longitude').val());
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: latlng,
-            zoom: 13
-        });
-        var marker = new google.maps.Marker({
-            map: map,
-            position: latlng,
-            draggable: false,
-            anchorPoint: new google.maps.Point(0, -29)
-        });
-        var infowindow = new google.maps.InfoWindow();
-        google.maps.event.addListener(marker, 'click', function() {
-            var iwContent = '<div id="iw_container">' +
-                '<div class="iw_title"><b>My Company Location</b></div></div>';
-            // including content to the infowindow
-            infowindow.setContent(iwContent);
-            // opening the infowindow in the current map and at the current marker location
-            infowindow.open(map, marker);
-        });
-        google.maps.event.addListener(marker, 'dragend', function(evt){
-            $('#company_latitude').val(evt.latLng.lat().toFixed(5));
-        });
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
-</script>
+            var latlng = new google.maps.LatLng($('#company_latitude').val(),$('#company_longitude').val());
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: latlng,
+                zoom: 13
+            });
+            var marker = new google.maps.Marker({
+                map: map,
+                position: latlng,
+                draggable: false,
+                anchorPoint: new google.maps.Point(0, -29)
+            });
+            var infowindow = new google.maps.InfoWindow();
+            google.maps.event.addListener(marker, 'click', function() {
+                var iwContent = '<div id="iw_container">' +
+                    '<div class="iw_title"><b>My Company Location</b></div></div>';
+                // including content to the infowindow
+                infowindow.setContent(iwContent);
+                // opening the infowindow in the current map and at the current marker location
+                infowindow.open(map, marker);
+            });
+            google.maps.event.addListener(marker, 'dragend', function(evt){
+                $('#company_latitude').val(evt.latLng.lat().toFixed(5));
+            });
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+@endpush
