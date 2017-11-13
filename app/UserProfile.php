@@ -7,7 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class UserProfile extends Model
 {
     protected $fillable = [
-        'name', 'place_of_birth', 'date_of_birth', 'address', 'mobile', 'person_identify', 'users_id', 'city_id', 'user_type_identify_id', 'update_by',
+        'name',
+        'place_of_birth',
+        'date_of_birth',
+        'address',
+        'mobile',
+        'person_identify',
+        'users_id',
+        'city_id',
+        'user_type_identify_id',
+        'update_by',
     ];
 
     public function user()
@@ -22,7 +31,9 @@ class UserProfile extends Model
 
     public function typeIdentify()
     {
-        return $this->belongsToMany(TypeIdentify::class,'user_type_identify');
+        return $this->belongsToMany(TypeIdentify::class, 'user_type_identify')
+            ->withPivot('user_type_identify_number')
+            ->using(UserTypeIdentify::class);
     }
 
     public function company()

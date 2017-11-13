@@ -14,7 +14,6 @@ class CreateUserTypeIdentifyTable extends Migration
     public function up()
     {
         Schema::create('user_type_identify', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('user_profile_id')->unsigned()->nullable();
 
             $table->foreign('user_profile_id')

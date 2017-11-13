@@ -12,7 +12,10 @@ class DocumentType extends Model
         'document_type_name',
     ];
 
-    public function company(){
-        return $this->belongsToMany(Company::class, 'company_document')->withPivot('document_name','id');
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'company_document')
+            ->withPivot('document_name', 'file_path')
+            ->using(CompanyDocument::class);
     }
 }

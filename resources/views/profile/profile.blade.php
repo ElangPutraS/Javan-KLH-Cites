@@ -22,6 +22,8 @@
                                 <td style="padding: 2px;">:</td>
                                 <td style="padding: 2px;">{{$user->email}}</td>
                             </tr>
+
+                            @if($user->hasRole('Pelaku Usaha'))
                             <tr>
                                 <th style="padding: 2px;">Place and Date Birth</th>
                                 <td style="padding: 2px;">:</td>
@@ -60,8 +62,12 @@
                                 <td style="padding: 2px;">:</td>
                                 <td style="padding: 2px;">{{$company->company_address}}</td>
                             </tr>
+                            @endif
 
                         </table>
+
+                        @if($user->hasRole('Pelaku Usaha'))
+
                         <div id="map" style="width: 100%; height: 300px;"></div>
                         <input id="company_latitude" type="hidden" name="company_latitude" value="{{ old('company_latitude', $company->company_latitude ?? '') }}">
                         <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude', $company->company_longitude ?? '') }}">
@@ -72,17 +78,21 @@
                             </tr>
                             <tr style="border:1px;">
                                 <th style="padding: 2px;">No</th>
+                                <th style="padding: 2px;">Document Type</th>
                                 <th style="padding: 2px;">Document Name</th>
                                 <th style="padding: 2px;">Action</th>
                             </tr>
-                            @foreach($company->companyDocument as $key => $value)
+                            @foreach($company->companyDocuments as $document)
                                 <tr>
-                                    <th style="padding: 2px;">{{$key+1}}</th>
-                                    <td style="padding: 2px;">{{$value->document_type_name}}</td>
-                                    <td style="padding: 2px;"><a href="{{ \Illuminate\Support\Facades\Storage::url($value->pivot->document_name) }}" class="btn-success" data-id="{{$value->pivot->id}}">Download</a></td>
+                                    <th style="padding: 2px;">{{ $loop->iteration }}</th>
+                                    <td style="padding: 2px;">{{ $document->document_type_name }}</td>
+                                    <td style="padding: 2px;">{{ $document->pivot->document_name }}</td>
+                                    <td style="padding: 2px;"><a href="{{  $document->pivot->download_url }}" class="btn-success">Download</a></td>
                                 </tr>
                             @endforeach
                         </table>
+                        @endif
+                        
                     </div>
                 </div>
             </div>

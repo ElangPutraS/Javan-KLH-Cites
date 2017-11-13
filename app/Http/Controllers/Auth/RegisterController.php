@@ -82,6 +82,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        /**
+         * @var User $user
+         */
         $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
@@ -95,11 +98,11 @@ class RegisterController extends Controller
             'mobile'         => $data['mobile'],
             'city_id'        => $data['city'],
         ]);
-        $user_profile->save();
-        $user_profile->user()->associate($user)->save();
+
+        $user->userProfile()->save($user_profile);
 
         $type = TypeIdentify::find($data['identify_type']);
-        $type->userProfile()->attach($user_profile->id, ['user_type_identify_number' => $data['person_identify']]);
+        $user_profile->typeIdentify()->attach($type, ['user_type_identify_number' => $data['person_identify']]);
 
         $company = new Company([
             'company_name'      => $data['company_name'],
@@ -111,16 +114,27 @@ class RegisterController extends Controller
             'city_id'           => $data['company_city'],
             'created_by'        => $user->id,
         ]);
+
         $company->save();
         $company->userProfile()->associate($user_profile)->save();
 
-        foreach ($data['company_file'] as $key => $val) {
-            $path = $val->store('/upload/file');
-            DocumentType::find($data['document_type'][$key])->company()->attach($company->id,
-                ['document_name' => $path,]);
+        foreach ($data['company_file'] as $key => $file) {
+
+            /**
+             * @var \Illuminate\Http\UploadedFile $file
+             */
+            $file_path = $file->store('/upload/file');
+
+            $document_type = DocumentType::find($data['document_type'][$key]);
+
+            $company->companyDocuments()->attach($document_type, [
+                    'document_name' => $file->getClientOriginalName(),
+                    'file_path'     => $file_path
+                ]);
         }
 
-        Role::find('2')->users()->attach($user);
+        $role = Role::find(2);
+        $user->roles()->attach($role);
 
         return $user;
     }

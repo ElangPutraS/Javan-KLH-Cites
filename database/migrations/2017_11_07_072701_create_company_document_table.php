@@ -14,8 +14,7 @@ class CreateCompanyDocumentTable extends Migration
     public function up()
     {
         Schema::create('company_document', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('document_name',100);
+            $table->string('document_name')->nullable();
             $table->integer('document_type_id')->unsigned()->nullable();
             $table->foreign('document_type_id')
                 ->references('id')->on('document_type')
@@ -24,7 +23,7 @@ class CreateCompanyDocumentTable extends Migration
             $table->foreign('company_id')
                 ->references('id')->on('company')
                 ->onDelete('cascade');
-            $table->timestamps();
+            $table->string('file_path')->nullable();
         });
     }
 

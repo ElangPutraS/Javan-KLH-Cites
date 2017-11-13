@@ -29,10 +29,9 @@ Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@index')->name('dashboard.home.index');
+});
 
-    Route::prefix('admin')->group(function () {
-
-        Route::get('verification', 'AdminUserVerificationController@index')->name('admin.verification.index');
-        Route::resource('users', 'AdminUserController', ['as' => 'admin']);
-    });
+Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
+    Route::resource('users', 'UserController', ['as' => 'admin']);
 });

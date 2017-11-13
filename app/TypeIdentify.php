@@ -12,7 +12,10 @@ class TypeIdentify extends Model
         'user_type_identify_name',
     ];
 
-    public function userProfile(){
-        return $this->belongsToMany(UserProfile::class,'user_type_identify');
+    public function userProfiles()
+    {
+        return $this->belongsToMany(UserProfile::class, 'user_type_identify')
+            ->withPivot('user_type_identify_number')
+            ->using(UserTypeIdentify::class);
     }
 }
