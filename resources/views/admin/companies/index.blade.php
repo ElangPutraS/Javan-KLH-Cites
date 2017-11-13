@@ -33,7 +33,7 @@
                             <td>{{ $company->updated_at->toFormattedDateString() }}</td>
                             <td>
                                 <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="{{ route('admin.companies.destroy', $company) }}" class="btn btn-sm btn-danger">Hapus</a>
+                                <a href="{{ route('admin.companies.destroy', $company) }}" class="btn btn-sm btn-danger" onclick="return confirm('Anda ingin menghapus data ini?')">Hapus</a>
                             </td>
                         </tr>
                         @empty
