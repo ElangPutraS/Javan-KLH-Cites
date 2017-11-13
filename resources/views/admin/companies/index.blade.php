@@ -8,8 +8,11 @@
 
         <div class="card">
             <div class="card-block">
+
+                <a href="{{ route('admin.companies.create') }}" class="btn btn-primary">Tambah Baru</a>
+
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered table-sm">
                         <thead class="thead-default">
                         <tr>
                             <th width="50px">No</th>
@@ -17,7 +20,7 @@
                             <th>Alamat</th>
                             <th width="150px">Tanggal Dibuat</th>
                             <th width="150px">Tanggal Diperbarui</th>
-                            <th width="200px">Aksi</th>
+                            <th width="150px">Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -29,8 +32,8 @@
                             <td>{{ $company->created_at->toFormattedDateString() }}</td>
                             <td>{{ $company->updated_at->toFormattedDateString() }}</td>
                             <td>
-                                <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-primary">Edit</a>
-                                <a href="{{ route('admin.companies.destroy', $company) }}" class="btn btn-danger">Hapus</a>
+                                <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="{{ route('admin.companies.destroy', $company) }}" class="btn btn-sm btn-danger">Hapus</a>
                             </td>
                         </tr>
                         @empty
