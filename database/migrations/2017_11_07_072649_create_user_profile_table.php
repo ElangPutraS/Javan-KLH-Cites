@@ -24,10 +24,18 @@ class CreateUserProfileTable extends Migration
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+
+
+            $table->integer('country_id')->unsigned()->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+
+            $table->integer('province_id')->unsigned()->nullable();
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
+
             $table->integer('city_id')->unsigned()->nullable();
-            $table->foreign('city_id')
-                ->references('id')->on('cities')
-                ->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+
+
             $table->integer('update_by')->nullable();
             $table->timestamps();
         });

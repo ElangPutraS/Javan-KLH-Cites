@@ -96,6 +96,8 @@ class RegisterController extends Controller
             'date_of_birth'  => $data['date_birth'],
             'address'        => $data['address'],
             'mobile'         => $data['mobile'],
+            'country_id'     => $data['nation'],
+            'province_id'    => $data['province'],
             'city_id'        => $data['city'],
         ]);
 
@@ -111,6 +113,8 @@ class RegisterController extends Controller
             'company_fax'       => $data['company_fax'],
             'company_latitude'  => $data['company_latitude'],
             'company_longitude' => $data['company_longitude'],
+            'nation_id'         => $data['company_nation'],
+            'province_id'       => $data['company_province'],
             'city_id'           => $data['company_city'],
             'created_by'        => $user->id,
         ]);

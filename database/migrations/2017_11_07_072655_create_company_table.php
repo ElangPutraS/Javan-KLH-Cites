@@ -31,10 +31,15 @@ class CreateCompanyTable extends Migration
                 ->references('id')->on('user_profiles')
                 ->onDelete('cascade');
 
+            $table->integer('country_id')->unsigned()->nullable();
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+
+            $table->integer('province_id')->unsigned()->nullable();
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
+
             $table->integer('city_id')->unsigned()->nullable();
-            $table->foreign('city_id')
-                ->references('id')->on('cities')
-                ->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
+
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->timestamps();
