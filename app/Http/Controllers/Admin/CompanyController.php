@@ -48,7 +48,22 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $company = new Company();
+
+        $company->fill($request->only(
+            'company_name',
+            'company_address',
+            'company_email',
+            'company_fax',
+            'company_latitude',
+            'company_longitude',
+            'company_status',
+            'city_id'
+        ));
+
+        $company->save();
+
+        return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil dibuat.');
     }
 
     /**
@@ -88,7 +103,20 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $company->fill($request->only(
+            'company_name',
+            'company_address',
+            'company_email',
+            'company_fax',
+            'company_latitude',
+            'company_longitude',
+            'company_status',
+            'city_id'
+        ));
+
+        $company->save();
+
+        return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil disimpan.');
     }
 
     /**
@@ -101,6 +129,6 @@ class CompanyController extends Controller
     {
         $company->delete();
 
-        return redirect()->route('admin.companies.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('admin.companies.index')->with('success', 'Data berhasil dihapus.');
     }
 }
