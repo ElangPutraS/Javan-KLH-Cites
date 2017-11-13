@@ -9,6 +9,9 @@
 
             <div class="card">
                 <div class="card-block">
+
+                    @include('includes.notifications')
+
                     <form action="{{ route('admin.companies.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                         {!! csrf_field() !!}
 
