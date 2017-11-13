@@ -9,6 +9,8 @@
         <div class="card">
             <div class="card-block">
 
+                @include('includes.notifications')
+
                 <a href="{{ route('admin.companies.create') }}" class="btn btn-primary">Tambah Baru</a>
 
                 <div class="table-responsive">
@@ -33,7 +35,13 @@
                             <td>{{ $company->updated_at->toFormattedDateString() }}</td>
                             <td>
                                 <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-sm btn-primary">Edit</a>
-                                <a href="{{ route('admin.companies.destroy', $company) }}" class="btn btn-sm btn-danger" onclick="return confirm('Anda ingin menghapus data ini?')">Hapus</a>
+                                <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">
+                                    Hapus
+                                    <form action="{{ route('admin.companies.destroy', $company) }}" method="post">
+                                        {!! csrf_field() !!}
+                                        <input type="hidden" name="_method" value="DELETE">
+                                    </form>
+                                </a>
                             </td>
                         </tr>
                         @empty
