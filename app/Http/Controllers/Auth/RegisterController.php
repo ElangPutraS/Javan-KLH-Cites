@@ -118,6 +118,8 @@ class RegisterController extends Controller
         $company->save();
         $company->userProfile()->associate($user_profile)->save();
 
+        $user->company()->save($company);
+
         foreach ($data['company_file'] as $key => $file) {
 
             /**

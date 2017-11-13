@@ -13,7 +13,7 @@ class CreateCompanyTable extends Migration
      */
     public function up()
     {
-        Schema::create('company', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('company_name', 100);
             $table->text('company_address');
@@ -22,10 +22,15 @@ class CreateCompanyTable extends Migration
             $table->string('company_latitude', 30);
             $table->string('company_longitude', 30);
             $table->integer('company_status')->default(0);
+
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->integer('user_profile_id')->unsigned()->nullable();
             $table->foreign('user_profile_id')
                 ->references('id')->on('user_profiles')
                 ->onDelete('cascade');
+
             $table->integer('city_id')->unsigned()->nullable();
             $table->foreign('city_id')
                 ->references('id')->on('cities')
@@ -43,6 +48,6 @@ class CreateCompanyTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('company');
+        Schema::dropIfExists('companies');
     }
 }

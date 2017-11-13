@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    protected $table = "company";
+    protected $table = "companies";
 
     protected $fillable = [
         'company_name',
@@ -25,6 +25,11 @@ class Company extends Model
     public function userProfile()
     {
         return $this->belongsTo(UserProfile::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function companyDocuments()

@@ -37,6 +37,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_role');
     }
 
+    public function company()
+    {
+        return $this->hasOne(Company::class);
+    }
+
     public function assignRole($role)
     {
         if (is_string($role)) {
