@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
          $this->call(LaraciproidSeeder::class);
          $this->call(DocumentTypeSeeder::class);
          $this->call(TypeIdentifySeeder::class);
+         $this->call(UserCompanySeeder::class);
     }
 }
