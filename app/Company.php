@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-    protected $table = "company";
+    protected $table = "companies";
 
     protected $fillable = [
         'company_name',
@@ -18,6 +18,8 @@ class Company extends Model
         'company_status',
         'reject_reason',
         'user_profile_id',
+        'country_id',
+        'province_id',
         'city_id',
         'created_by',
         'updated_by',
@@ -28,10 +30,30 @@ class Company extends Model
         return $this->belongsTo(UserProfile::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function companyDocuments()
     {
         return $this->belongsToMany(DocumentType::class, 'company_document')
             ->withPivot('document_name', 'file_path')
             ->using(CompanyDocument::class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    public function city()
+    {
+        return $this->belongsTo(City::class);
     }
 }

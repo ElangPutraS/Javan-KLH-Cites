@@ -14,6 +14,8 @@ class UserProfile extends Model
         'mobile',
         'person_identify',
         'users_id',
+        'country_id',
+        'province_id',
         'city_id',
         'user_type_identify_id',
         'update_by',
@@ -22,6 +24,16 @@ class UserProfile extends Model
     public function user()
     {
         return $this->belongsTo(User::Class);
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class);
     }
 
     public function city()

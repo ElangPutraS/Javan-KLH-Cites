@@ -21,7 +21,7 @@ class CreateCompanyDocumentTable extends Migration
                 ->onDelete('cascade');
             $table->integer('company_id')->unsigned()->nullable();
             $table->foreign('company_id')
-                ->references('id')->on('company')
+                ->references('id')->on('companies')
                 ->onDelete('cascade');
             $table->string('file_path')->nullable();
         });

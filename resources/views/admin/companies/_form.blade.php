@@ -40,13 +40,6 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Alamat Perusahaan</label>
-    <div class="col-sm-14">
-        <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($company, 'company_address')) }}">
-    </div>
-</div>
-
-<div class="form-group">
     <label class="control-label">Alamat Email</label>
     <div class="col-sm-14">
         <input type="email" name="company_email" class="form-control" value="{{ old('company_email', array_get($company, 'company_email')) }}">

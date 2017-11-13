@@ -61,6 +61,7 @@ class CompanyController extends Controller
             'city_id'
         ));
 
+        $company->user()->associate($request->user());
         $company->save();
 
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil dibuat.');
