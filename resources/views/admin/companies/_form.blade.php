@@ -25,12 +25,16 @@
     <div class="col-sm-4">
         <select name="province_id" class="form-control select2">
             @foreach($provinces as $key => $province)
-                <option value="{{ $key }}">{{ $province }}</option>
+                <option value="{{ $key }}" {{ $key === old('city_id', array_get($company, 'city_id')) ? 'selected' : '' }}>{{ $province }}</option>
             @endforeach
         </select>
     </div>
     <div class="col-sm-4">
-        <input type="text" class="form-control" value="{{ old('company_address', array_get($company, 'company_address')) }}">
+        <select name="province_id" class="form-control select2">
+            @foreach($cities as $key => $city)
+                <option value="{{ $key }}" {{ $key === old('city_id', array_get($company, 'city_id')) ? 'selected' : '' }}>{{ $city }}</option>
+            @endforeach
+        </select>
     </div>
     </div>
 </div>

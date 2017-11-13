@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\City;
 use App\Company;
 use App\Country;
 use App\Province;
@@ -32,10 +33,11 @@ class CompanyController extends Controller
     {
         $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
+        $cities    = City::orderBy('city_name', 'asc')->pluck('city_name', 'id');
 
         $users = User::orderBy('name', 'asc')->pluck('name', 'id');
 
-        return view('admin.companies.create', compact('users', 'countries', 'provinces'));
+        return view('admin.companies.create', compact('users', 'countries', 'provinces', 'cities'));
     }
 
     /**
