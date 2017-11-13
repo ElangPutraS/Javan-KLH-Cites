@@ -33,5 +33,5 @@ Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
-    Route::resource('users', 'UserController', ['as' => 'admin']);
+    Route::resource('companies', 'CompanyController', ['as' => 'admin']);
 });

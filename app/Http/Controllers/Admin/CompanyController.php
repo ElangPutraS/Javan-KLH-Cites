@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UserController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::orderBy('company_name', 'asc')->paginate(10);
+
+        return view('admin.companies.index', compact('companies'));
     }
 
     /**
