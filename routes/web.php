@@ -37,4 +37,5 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('verification/acc/{id}', 'UserVerificationController@update');
     Route::post('verification/rej/{id}', 'UserVerificationController@updateRej');
     Route::resource('users', 'UserController', ['as' => 'admin']);
+    Route::resource('companies', 'CompanyController', ['as' => 'admin']);
 });

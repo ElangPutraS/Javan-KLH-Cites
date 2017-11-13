@@ -11,10 +11,12 @@
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/animate.css/animate.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/select2/dist/css/select2.min.css') }}">
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
+
+    @stack('head.stylesheet')
 </head>
 
 <body data-ma-theme="green">
@@ -80,7 +82,7 @@
                 @can('access-admin')
                 <!-- Menu Admin -->
                 <li><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-home"></i> Verifikasi Pelaku Usaha</a></li>
-                <li><a href="{{ route('admin.users.index') }}"><i class="zmdi zmdi-home"></i> Kelola Pelaku Usaha</a></li>
+                <li><a href="{{ route('admin.companies.index') }}"><i class="zmdi zmdi-home"></i> Kelola Pelaku Usaha</a></li>
                 @endcan
             </ul>
         </div>
@@ -95,11 +97,14 @@
 <script src="{{ asset('template/vendors/bower_components/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/tether/dist/js/tether.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('template/vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/Waves/dist/waves.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>
 
 <!-- App functions and actions -->
 <script src="{{ asset('template/js/app.min.js') }}"></script>
+
+@stack('body.script')
 </body>
 </html>
