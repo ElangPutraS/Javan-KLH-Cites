@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Company;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -27,7 +28,9 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::orderBy('name', 'asc')->pluck('id', 'name');
+
+        return view('admin.companies.create', compact('users'));
     }
 
     /**
@@ -44,10 +47,10 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
         //
     }
@@ -66,11 +69,11 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $company)
     {
         //
     }
@@ -83,6 +86,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
+        $company->delete();
+
         return redirect()->route('admin.companies.index')->with('success', 'Data berhasil dihapus');
     }
 }
