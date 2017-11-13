@@ -1,26 +1,12 @@
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-    <div class="col-sm-10">
-        <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+    <label class="control-label">Nama Perusahaan</label>
+    <div class="col-sm-14">
+        <input type="text" class="form-control" value="{{ old('company_name', array_get($company, 'company_name')) }}">
     </div>
 </div>
 <div class="form-group">
-    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-    <div class="col-sm-10">
-        <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <div class="checkbox">
-            <label>
-                <input type="checkbox"> Remember me
-            </label>
-        </div>
-    </div>
-</div>
-<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-        <button type="submit" class="btn btn-default">Sign in</button>
+    <label class="control-label">Alamat Perusahaan</label>
+    <div class="col-sm-14">
+        <input type="text" class="form-control" value="{{ old('company_address', array_get($company, 'company_address')) }}">
     </div>
 </div>
