@@ -31,4 +31,4 @@
 	ob_end_clean();
 
 	$distribute = '/noUiSlider/distribute';
-	include '_run/index.php';
+	include '_run/index.blade.php';

@@ -13,6 +13,13 @@
             </div>
 
             <div class="card-block">
+                @if(session('alert'))
+                <div class="alert alert-{{session('alert')['alert']}} alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button><a href="#" class="alert-link">{{session('alert')['message']}}</a>.
+                </div>
+                @endif
                 <div class="table-responsive">
                     <table id="data-table" class="table table-bordered">
                         <thead class="thead-default">
@@ -26,25 +33,29 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($company as $key=>$com)
+                        <?php $a=1; ?>
+                        @foreach($companies as $company)
                         <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{Carbon\Carbon::parse($com->created_at)->format('d-m-Y')}}</td>
-                            <td>{{$com->userProfile->user->name}}</td>
-                            <td>{{$com->company_name}}</td>
+                            <td>{{$a++}}</td>
+                            <td>{{Carbon\Carbon::parse($company->created_at)->format('d-m-Y')}}</td>
+                            <td>{{$company->userProfile->user->name}}</td>
+                            <td>{{$company->company_name}}</td>
                             <td>
-                                @if($com->company_status == 0)
+                                @if($company->company_status == 0)
                                     Menunggu Verifikasi
+                                @elseif($company->company_status == 1)
+                                    Verifikasi Disetujui
                                 @else
-                                    Disetujui
+                                    Verifikasi Ditolak
                                 @endif
                             </td>
-                            <td><a href="#"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
+                            <td><a href="{{route('admin.verification.show', ['id'=> $company->id])}}"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
                         </tr>
                         @endforeach
                         </tbody>
                     </table>
                 </div>
+                {{ $companies->links() }}
             </div>
         </div>
 

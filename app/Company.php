@@ -16,6 +16,7 @@ class Company extends Model
         'company_latitude',
         'company_longitude',
         'company_status',
+        'reject_reason',
         'user_profile_id',
         'city_id',
         'created_by',

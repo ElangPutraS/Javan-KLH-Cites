@@ -22,6 +22,7 @@ class CreateCompanyTable extends Migration
             $table->string('company_latitude', 30);
             $table->string('company_longitude', 30);
             $table->integer('company_status')->default(0);
+            $table->text('reject_reason')->nullable();
             $table->integer('user_profile_id')->unsigned()->nullable();
             $table->foreign('user_profile_id')
                 ->references('id')->on('user_profiles')
