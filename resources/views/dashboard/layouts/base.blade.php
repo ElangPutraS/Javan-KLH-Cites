@@ -12,6 +12,8 @@
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
+
+    @stack('head.stylesheet')
 </head>
 
 <body data-ma-theme="green">
@@ -98,5 +100,7 @@
 
 <!-- App functions and actions -->
 <script src="{{ asset('template/js/app.min.js') }}"></script>
+
+@stack('body.script')
 </body>
 </html>

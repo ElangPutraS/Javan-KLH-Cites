@@ -63,7 +63,9 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        dd($company);
+        $users = User::orderBy('name', 'asc')->pluck('id', 'name');
+
+        return view('admin.companies.edit', compact('users'));
     }
 
     /**

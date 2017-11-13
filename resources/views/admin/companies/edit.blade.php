@@ -3,12 +3,12 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Tambah Pelaku Usaha Baru</h1>
+            <h1>Edit Pelaku Usaha</h1>
         </header>
 
         <div class="card">
             <div class="card-block">
-                <form action="{{ route('admin.companies.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                <form action="{{ route('admin.companies.update', $company) }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                     {!! csrf_field() !!}
 
                     @include('admin.companies._form')
