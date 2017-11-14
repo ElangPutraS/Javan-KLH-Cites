@@ -5,6 +5,7 @@
     <label class="control-label">Nama</label>
     <div class="col-sm-14">
         @if(count($company)!=0)
+            <input type="hidden" name="user_id" class="form-control" value="{{ old('user_id', array_get($company->userProfile->user, 'id')) }}">
             <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company->userProfile->user, 'name')) }}">
         @else
             <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company, 'name')) }}">
@@ -16,7 +17,7 @@
     <label class="control-label">Email</label>
     <div class="col-sm-14">
         @if(count($company)!=0)
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company->userProfile->user, 'email')) }}">
+            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company->userProfile->user, 'email')) }}" readonly>
         @else
             <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company, 'email')) }}">
         @endif
@@ -122,6 +123,7 @@
 <div class="form-group">
     <label class="control-label">Nama Perusahaan</label>
     <div class="col-sm-14">
+        <input type="hidden" name="company_id" class="form-control" value="{{ old('company_id', array_get($company, 'id')) }}">
         <input type="text" name="company_name" class="form-control" value="{{ old('company_name', array_get($company, 'company_name')) }}">
     </div>
 </div>

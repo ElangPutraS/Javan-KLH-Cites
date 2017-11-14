@@ -7,6 +7,8 @@ use App\Company;
 use App\Country;
 use App\Province;
 use App\User;
+use App\UserProfile;
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -48,9 +50,45 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $company = new Company();
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
 
-        $company->fill($request->only(
+        $user_profile = new UserProfile([
+            'place_of_birth' => $request->place_birth,
+            'date_of_birth'  => $request->date_birth,
+            'address'        => $request->address,
+            'mobile'         => $request->mobile,
+            'country_id'     => $request->nation,
+            'province_id'    => $request->state,
+            'city_id'        => $request->city,
+        ]);
+
+        $user->userProfile()->save($user_profile);
+
+        $company = new Company([
+            'company_name' => $request->company_name,
+            'company_address' => $request->company_address,
+            'company_email' => $request->company_email,
+            'company_fax' => $request->company_fax,
+            'company_latitude' => $request->company_latitude,
+            'company_longitude' => $request->company_longitude,
+            'company_status' => $request->company_status,
+            'city_id' => $request->company_city_id,
+            'province_id' => $request->company_province_id,
+            'country_id' => $request->company_country_id,
+            'updated_by' => $request->user()->id,
+        ]);
+
+        $company->save();
+        $company->userProfile()->associate($user_profile)->save();
+
+        $role = Role::find(2);
+        $user->roles()->attach($role);
+
+        /*$company->fill($request->only(
             'company_name',
             'company_address',
             'company_email',
@@ -62,7 +100,7 @@ class CompanyController extends Controller
         ));
 
         $company->user()->associate($request->user());
-        $company->save();
+        $company->save();*/
 
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil dibuat.');
     }
@@ -104,7 +142,39 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        $company->fill($request->only(
+        $user        = User::find($request->user_id);
+        $user->update([
+           'name' => $request->name,
+        ]);
+
+        $user->userProfile()->update(
+            [
+                'place_of_birth' => $request->place_birth,
+                'date_of_birth' => $request->date_birth,
+                'mobile'        => $request->mobile,
+                'address'       => $request->address,
+                'city_id'       => $request->city_id,
+                'province_id'   => $request->province_id,
+                'country_id'   => $request->country_id,
+            ]
+        );
+
+        $company = Company::find($request->company_id);
+        $company->update([
+            'company_name' => $request->company_name,
+            'company_address' => $request->company_address,
+            'company_email' => $request->company_email,
+            'company_fax' => $request->company_fax,
+            'company_latitude' => $request->company_latitude,
+            'company_longitude' => $request->company_longitude,
+            'company_status' => $request->company_status,
+            'city_id' => $request->company_city_id,
+            'province_id' => $request->company_province_id,
+            'country_id' => $request->company_country_id,
+            'updated_by' => $request->user()->id,
+        ]);
+
+        /*$company->fill($request->only(
             'company_name',
             'company_address',
             'company_email',
@@ -115,7 +185,7 @@ class CompanyController extends Controller
             'city_id'
         ));
 
-        $company->save();
+        $company->save();*/
 
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil disimpan.');
     }
