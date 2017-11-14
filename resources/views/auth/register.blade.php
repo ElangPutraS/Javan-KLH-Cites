@@ -384,7 +384,7 @@
     <script>
         $(function() {
             $( "#date_birth" ).datepicker({
-                dateFormat: "yy-mm-dd",
+                format: "yyyy-mm-dd",
             });
         });
     </script>
