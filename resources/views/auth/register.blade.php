@@ -383,7 +383,9 @@
 @push('body.script')
     <script>
         $(function() {
-            $( "#date_birth" ).datepicker();
+            $( "#date_birth" ).datepicker({
+                dateFormat: "yy-mm-dd",
+            });
         });
     </script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
