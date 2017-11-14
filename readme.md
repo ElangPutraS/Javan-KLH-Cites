@@ -1,6 +1,6 @@
 ## Clone, Install, Config
 
-1. `git clone`. Switch Branch ke `development`
+1. `git clone`
 2. Buat file `.env` dengan meng-copy file `.env.example`
 3. `composer install`.
 4. Create MySQL database.
