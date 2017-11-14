@@ -33,7 +33,9 @@ class UserCompanySeeder extends Seeder
             'address' => 'Jln. Nata Kusumah II',
             'mobile' => '082240206478',
             'created_by' => $user->id,
-            'city_id' => 3204,
+            'city_id' => '3204',
+            'province_id' => '32',
+            'country_id' => '1',
         ]);
         $user->userProfile()->save($user_profile);
 
@@ -48,6 +50,8 @@ class UserCompanySeeder extends Seeder
             'company_latitude' => '-6.90889',
             'company_longitude' => '107.65177',
             'city_id' => '3204',
+            'province_id' => '32',
+            'country_id' => '1',
             'created_by' => $user->id
         ]);
         $user_profile->company()->save($company);
@@ -69,6 +73,8 @@ class UserCompanySeeder extends Seeder
             'mobile' => '085547845122',
             'created_by' => $user->id,
             'city_id' => '3171',
+            'province_id' => '31',
+            'country_id' => '1',
         ]);
         $user->userProfile()->save($user_profile);
 
@@ -83,6 +89,8 @@ class UserCompanySeeder extends Seeder
             'company_latitude' => '-6.175392',
             'company_longitude' => '106.827153',
             'city_id' => '3171',
+            'province_id' => '31',
+            'country_id' => '1',
             'created_by' => $user->id
         ]);
         $user_profile->company()->save($company);
@@ -104,6 +112,8 @@ class UserCompanySeeder extends Seeder
             'mobile' => '089547845122',
             'created_by' => $user->id,
             'city_id' => '3204',
+            'province_id' => '32',
+            'country_id' => '1',
         ]);
         $user->userProfile()->save($user_profile);
 
@@ -118,6 +128,8 @@ class UserCompanySeeder extends Seeder
             'company_latitude' => '-6.918583',
             'company_longitude' => '107.660007',
             'city_id' => '3204',
+            'province_id' => '32',
+            'country_id' => '1',
             'created_by' => $user->id
         ]);
         $user_profile->company()->save($company);
