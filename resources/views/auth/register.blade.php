@@ -81,7 +81,7 @@
                             <label for="date_birth" class="col-md-4 control-label">Date Birth</label>
 
                             <div class="col-md-6">
-                                <input id="date_birth" type="date" class="form-control" name="date_birth" value="{{ old('date_birth') }}" required>
+                                <input id="date_birth" placeholder="Pilih Tanggal" type="text" class="form-control" name="date_birth" value="{{ old('date_birth') }}" required>
 
                                 @if ($errors->has('date_birth'))
                                     <span class="help-block">
@@ -381,6 +381,11 @@
     }
 ?>
 @push('body.script')
+    <script>
+        $(function() {
+            $( "#date_birth" ).datepicker();
+        });
+    </script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <script type="text/javascript">
         function initialize() {

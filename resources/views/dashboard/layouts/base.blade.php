@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/select2/dist/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.css') }}">
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
@@ -101,6 +102,7 @@
 <script src="{{ asset('template/vendors/bower_components/Waves/dist/waves.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>
+<script src="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.js') }}"></script>
 
 <!-- App functions and actions -->
 <script src="{{ asset('template/js/app.min.js') }}"></script>
