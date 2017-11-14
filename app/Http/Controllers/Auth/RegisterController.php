@@ -60,6 +60,8 @@ class RegisterController extends Controller
             'place_birth'       => 'required|string',
             'date_birth'        => 'required',
             'city'              => 'required',
+            'state'              => 'required',
+            'nation'              => 'required',
             'address'           => 'required|string',
             'mobile'            => 'required',
             'identify_type'     => 'required',
@@ -67,6 +69,8 @@ class RegisterController extends Controller
             'company_name'      => 'required|string',
             'company_email'     => 'required|string|email|max:255',
             'company_city'      => 'required',
+            'company_state'      => 'required',
+            'company_nation'      => 'required',
             'company_address'   => 'required|string',
             'company_fax'       => 'required',
             'company_latitude'  => 'required',
@@ -97,7 +101,7 @@ class RegisterController extends Controller
             'address'        => $data['address'],
             'mobile'         => $data['mobile'],
             'country_id'     => $data['nation'],
-            'province_id'    => $data['province'],
+            'province_id'    => $data['state'],
             'city_id'        => $data['city'],
         ]);
 
@@ -114,15 +118,13 @@ class RegisterController extends Controller
             'company_latitude'  => $data['company_latitude'],
             'company_longitude' => $data['company_longitude'],
             'nation_id'         => $data['company_nation'],
-            'province_id'       => $data['company_province'],
+            'province_id'       => $data['company_state'],
             'city_id'           => $data['company_city'],
             'created_by'        => $user->id,
         ]);
 
         $company->save();
         $company->userProfile()->associate($user_profile)->save();
-
-        $user->company()->save($company);
 
         foreach ($data['company_file'] as $key => $file) {
 
