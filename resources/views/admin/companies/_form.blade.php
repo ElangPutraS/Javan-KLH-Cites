@@ -47,9 +47,9 @@
         </div>
         <div class="col-sm-5">
             @if(count($company)!=0)
-                <input type="text" name="date_birth" class="form-control" value="{{ old('date_birth', array_get($company->userProfile, 'date_of_birth')) }}">
+                <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" name="date_birth" class="form-control" value="{{ old('date_birth', array_get($company->userProfile, 'date_of_birth')) }}">
             @else
-                <input type="date" name="date_birth" class="form-control" value="{{ old('date_birth', array_get($company, 'date_of_birth')) }}">
+                <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" name="date_birth" class="form-control" value="{{ old('date_birth', array_get($company, 'date_of_birth')) }}">
             @endif
         </div>
     </div>
