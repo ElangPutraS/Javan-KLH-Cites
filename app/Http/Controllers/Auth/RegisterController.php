@@ -57,7 +57,7 @@ class RegisterController extends Controller
     {
         $date=date('Y-m-d');
         return Validator::make($data, [
-            'name'              => 'required|regex:/^[\pL\s]+$/u|max:255',
+            'name'              => 'required|string|max:255',
             'email'             => 'required|string|email|max:255|unique:users',
             'password'          => 'required|string|min:6|confirmed',
             'place_birth'       => 'required|string',
