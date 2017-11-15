@@ -59,33 +59,34 @@ class CompanyController extends Controller
         ]);
 
         $user_profile = new UserProfile([
-            'place_of_birth' => $request->place_birth,
-            'date_of_birth'  => $request->date_birth,
-            'address'        => $request->address,
-            'mobile'         => $request->mobile,
-            'country_id'     => $request->nation,
-            'province_id'    => $request->state,
-            'city_id'        => $request->city,
+            'place_of_birth' => $request->get('place_birth'),
+            'date_of_birth'  => $request->get('date_birth'),
+            'address'        => $request->get('address'),
+            'mobile'         => $request->get('mobile'),
+            'country_id'     => $request->get('nation'),
+            'province_id'    => $request->get('state'),
+            'city_id'        => $request->get('city'),
         ]);
 
         $user->userProfile()->save($user_profile);
 
         $company = new Company([
-            'company_name' => $request->company_name,
-            'company_address' => $request->company_address,
-            'company_email' => $request->company_email,
-            'company_fax' => $request->company_fax,
-            'company_latitude' => $request->company_latitude,
-            'company_longitude' => $request->company_longitude,
-            'company_status' => $request->company_status,
-            'city_id' => $request->company_city_id,
-            'province_id' => $request->company_province_id,
-            'country_id' => $request->company_country_id,
+            'company_name' => $request->get('company_name'),
+            'company_address' => $request->get('company_address'),
+            'company_email' => $request->get('company_email'),
+            'company_fax' => $request->get('company_fax'),
+            'company_latitude' => $request->get('company_latitude'),
+            'company_longitude' => $request->get('company_longitude'),
+            'company_status' => $request->get('company_status'),
+            'city_id' => $request->get('company_city_id'),
+            'province_id' => $request->get('company_province_id'),
+            'country_id' => $request->get('company_country_id'),
             'updated_by' => $request->user()->id,
         ]);
 
         $company->save();
         $company->userProfile()->associate($user_profile)->save();
+        $company->user()->associate($user)->save();
 
         $role = Role::find(2);
         $user->roles()->attach($role);
@@ -131,32 +132,32 @@ class CompanyController extends Controller
     public function update(CompanyUpdateRequest $request, Company $company)
     {
         $company->update([
-            'company_name' => $request->company_name,
-            'company_address' => $request->company_address,
-            'company_email' => $request->company_email,
-            'company_fax' => $request->company_fax,
-            'company_latitude' => $request->company_latitude,
-            'company_longitude' => $request->company_longitude,
-            'company_status' => $request->company_status,
-            'city_id' => $request->company_city_id,
-            'province_id' => $request->company_province_id,
-            'country_id' => $request->company_country_id,
+            'company_name' => $request->get('company_name'),
+            'company_address' => $request->get('company_address'),
+            'company_email' => $request->get('company_email'),
+            'company_fax' => $request->get('company_fax'),
+            'company_latitude' => $request->get('company_latitude'),
+            'company_longitude' => $request->get('company_longitude'),
+            'company_status' => $request->get('company_status'),
+            'city_id' => $request->get('company_city_id'),
+            'province_id' => $request->get('company_province_id'),
+            'country_id' => $request->get('company_country_id'),
             'updated_by' => $request->user()->id,
         ]);
-        $user        = User::find($request->user_id);
+        $user        = User::find($request->get('user_id'));
         $user->update([
             'name' => $request->name,
         ]);
 
         $user->userProfile()->update(
             [
-                'place_of_birth' => $request->place_birth,
-                'date_of_birth' => $request->date_birth,
-                'mobile'        => $request->mobile,
-                'address'       => $request->address,
-                'city_id'       => $request->city_id,
-                'province_id'   => $request->province_id,
-                'country_id'   => $request->country_id,
+                'place_of_birth' => $request->get('place_birth'),
+                'date_of_birth' => $request->get('date_birth'),
+                'mobile'        => $request->get('mobile'),
+                'address'       => $request->get('address'),
+                'city_id'       => $request->get('city_id'),
+                'province_id'   => $request->get('province_id'),
+                'country_id'   => $request->get('country_id'),
             ]
         );
 
