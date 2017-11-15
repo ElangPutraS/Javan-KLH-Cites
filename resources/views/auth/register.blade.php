@@ -46,18 +46,27 @@
                                 <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    @if($errors->first('password') != "The password confirmation does not match.")
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" required>
+                                @if ($errors->has('password'))
+                                    @if($errors->first('password') == "The password confirmation does not match.")
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                @endif
                             </div>
                         </div>
 
@@ -112,11 +121,7 @@
                                 <select id="nation" class="form-control" name="nation" onchange="getState(this)" required>
                                     <option value="">--Choose Country--</option>
                                     @foreach($countries as $key => $country)
-                                        @if (\Illuminate\Support\Facades\Input::old('nation') == $key)
-                                            <option value="{{ $key }}" selected>{{ $country }}</option>
-                                        @else
-                                            <option value="{{ $key }}">{{ $country }}</option>
-                                        @endif
+                                        <option value="{{ $key }}" {{ $key == old('nation') ? 'selected' : '' }}>{{ $country }}</option>
                                     @endforeach
                                 </select>
 
@@ -135,11 +140,7 @@
                                 <select id="state" class="form-control" name="state" onchange="getCity(this)" required>
                                     <option value="">--Choose Province--</option>
                                     @foreach($provinces as $key => $province)
-                                        @if (\Illuminate\Support\Facades\Input::old('state') == $key)
-                                            <option value="{{ $key }}" selected>{{ $province }}</option>
-                                        @else
-                                            <option value="{{ $key }}">{{ $province }}</option>
-                                        @endif
+                                        <option value="{{ $key }}" {{ $key == old('state') ? 'selected' : '' }}>{{ $province }}</option>
                                     @endforeach
                                 </select>
 
@@ -158,11 +159,7 @@
                                 <select id="city" class="form-control" name="city" required>
                                     <option value="">--Choose City--</option>
                                     @foreach($cities as $key => $city)
-                                        @if (\Illuminate\Support\Facades\Input::old('city') == $key)
-                                            <option value="{{ $key }}" selected>{{ $city }}</option>
-                                        @else
-                                            <option value="{{ $key }}">{{ $city }}</option>
-                                        @endif
+                                        <option value="{{ $key }}" {{ $key == old('city') ? 'selected' : '' }}>{{ $city }}</option>
                                     @endforeach
                                 </select>
 
@@ -194,11 +191,7 @@
                                 <select id="identify_type" class="form-control" name="identify_type" required>
                                     <option value="">--Choose Identity Type--</option>
                                     @foreach($user_type_identify as $key=>$idn)
-                                        @if (\Illuminate\Support\Facades\Input::old('identify_type') == $key)
-                                            <option value="{{ $key }}" selected>{{ $idn }}</option>
-                                        @else
-                                            <option value="{{ $key }}">{{ $idn }}</option>
-                                        @endif
+                                        <option value="{{ $key }}" {{ $key == old('identify_type') ? 'selected' : '' }}>{{ $idn }}</option>
                                     @endforeach
                                 </select>
 
@@ -260,11 +253,7 @@
                                 <select id="company_nation" class="form-control" name="company_nation" onchange="getStateCompany(this)" required>
                                     <option value="">--Choose Company Country--</option>
                                     @foreach($countries as $key => $country)
-                                        @if (\Illuminate\Support\Facades\Input::old('company_nation') == $key)
-                                            <option value="{{ $key }}" selected>{{ $country }}</option>
-                                        @else
-                                            <option value="{{ $key }}">{{ $country }}</option>
-                                        @endif
+                                        <option value="{{ $key }}" {{ $key == old('company_nation') ? 'selected' : '' }}>{{ $country }}</option>
                                     @endforeach
                                 </select>
 
@@ -283,11 +272,7 @@
                                 <select id="company_state" class="form-control" name="company_state" onchange="getCityCompany(this)" required>
                                     <option value="">--Choose Company Province--</option>
                                     @foreach($provinces as $key => $province)
-                                        @if (\Illuminate\Support\Facades\Input::old('company_state') == $key)
-                                            <option value="{{ $key }}" selected>{{ $province }}</option>
-                                        @else
-                                            <option value="{{ $key }}">{{ $province }}</option>
-                                        @endif
+                                        <option value="{{ $key }}" {{ $key == old('company_state') ? 'selected' : '' }}>{{ $province }}</option>
                                     @endforeach
                                 </select>
 
@@ -306,11 +291,7 @@
                                 <select id="company_city" class="form-control" name="company_city" required>
                                     <option value="">--Choose Company City--</option>
                                     @foreach($cities as $key => $city)
-                                        @if (\Illuminate\Support\Facades\Input::old('company_city') == $key)
-                                            <option value="{{ $key }}" selected>{{ $city }}</option>
-                                        @else
-                                            <option value="{{ $key }}">{{ $city }}</option>
-                                        @endif
+                                        <option value="{{ $key }}" {{ $key == old('company_city') ? 'selected' : '' }}>{{ $city }}</option>
                                     @endforeach
                                 </select>
 
@@ -372,11 +353,7 @@
                                 <select id="document_type" class="form-control" name="document_type[]" required>
                                     <option value="">--Choose Document Type--</option>
                                     @foreach($document_type as $key=>$dt)
-                                        @if (\Illuminate\Support\Facades\Input::old('document_type') == $key)
-                                            <option value="{{ $key }}" selected>{{ $dt }}</option>
-                                        @else
-                                            <option value="{{ $key }}">{{ $dt }}</option>
-                                        @endif
+                                        <option value="{{ $key }}" {{ $key == old('document_type') ? 'selected' : '' }}>{{ $dt }}</option>
                                     @endforeach
                                 </select>
 
