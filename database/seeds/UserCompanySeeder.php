@@ -52,7 +52,8 @@ class UserCompanySeeder extends Seeder
             'city_id' => '3204',
             'province_id' => '32',
             'country_id' => '1',
-            'created_by' => $user->id
+            'created_by' => $user->id,
+            'user_id' => $user->id
         ]);
         $user_profile->company()->save($company);
 
@@ -91,7 +92,8 @@ class UserCompanySeeder extends Seeder
             'city_id' => '3171',
             'province_id' => '31',
             'country_id' => '1',
-            'created_by' => $user->id
+            'created_by' => $user->id,
+            'user_id' => $user->id
         ]);
         $user_profile->company()->save($company);
 
@@ -130,7 +132,8 @@ class UserCompanySeeder extends Seeder
             'city_id' => '3204',
             'province_id' => '32',
             'country_id' => '1',
-            'created_by' => $user->id
+            'created_by' => $user->id,
+            'user_id' => $user->id
         ]);
         $user_profile->company()->save($company);
     }
