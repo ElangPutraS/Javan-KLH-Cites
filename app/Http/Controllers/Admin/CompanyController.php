@@ -90,20 +90,6 @@ class CompanyController extends Controller
         $role = Role::find(2);
         $user->roles()->attach($role);
 
-        /*$company->fill($request->only(
-            'company_name',
-            'company_address',
-            'company_email',
-            'company_fax',
-            'company_latitude',
-            'company_longitude',
-            'company_status',
-            'city_id'
-        ));
-
-        $company->user()->associate($request->user());
-        $company->save();*/
-
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil dibuat.');
     }
 
@@ -174,23 +160,6 @@ class CompanyController extends Controller
             ]
         );
 
-        /*
-
-        $company = Company::find($request->company_id);
-
-
-        $company->fill($request->only(
-            'company_name',
-            'company_address',
-            'company_email',
-            'company_fax',
-            'company_latitude',
-            'company_longitude',
-            'company_status',
-            'city_id'
-        ));
-
-        $company->save();*/
 
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil disimpan.');
     }
@@ -203,7 +172,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        $company->delete();
+        $company->user()->delete();
 
         return redirect()->route('admin.companies.index')->with('success', 'Data berhasil dihapus.');
     }
