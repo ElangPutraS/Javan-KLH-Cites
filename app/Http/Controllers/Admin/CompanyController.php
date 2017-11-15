@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\City;
 use App\Company;
 use App\Country;
+use App\Http\Requests\CompanyStoreRequest;
+use App\Http\Requests\CompanyUpdateRequest;
 use App\Province;
 use App\User;
 use App\UserProfile;
@@ -48,7 +50,7 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyStoreRequest $request)
     {
         $user = User::create([
             'name'     => $request->name,
@@ -140,7 +142,7 @@ class CompanyController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyUpdateRequest $request, Company $company)
     {
         $company->update([
             'company_name' => $request->company_name,
