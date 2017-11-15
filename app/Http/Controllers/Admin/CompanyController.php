@@ -5,8 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\City;
 use App\Company;
 use App\Country;
+use App\Http\Requests\CompanyStoreRequest;
+use App\Http\Requests\CompanyUpdateRequest;
 use App\Province;
 use App\User;
+use App\UserProfile;
+use App\Role;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -46,23 +50,46 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CompanyStoreRequest $request)
     {
-        $company = new Company();
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
 
-        $company->fill($request->only(
-            'company_name',
-            'company_address',
-            'company_email',
-            'company_fax',
-            'company_latitude',
-            'company_longitude',
-            'company_status',
-            'city_id'
-        ));
+        $user_profile = new UserProfile([
+            'place_of_birth' => $request->get('place_birth'),
+            'date_of_birth'  => $request->get('date_birth'),
+            'address'        => $request->get('address'),
+            'mobile'         => $request->get('mobile'),
+            'country_id'     => $request->get('nation'),
+            'province_id'    => $request->get('state'),
+            'city_id'        => $request->get('city'),
+        ]);
 
-        $company->user()->associate($request->user());
+        $user->userProfile()->save($user_profile);
+
+        $company = new Company([
+            'company_name' => $request->get('company_name'),
+            'company_address' => $request->get('company_address'),
+            'company_email' => $request->get('company_email'),
+            'company_fax' => $request->get('company_fax'),
+            'company_latitude' => $request->get('company_latitude'),
+            'company_longitude' => $request->get('company_longitude'),
+            'company_status' => $request->get('company_status'),
+            'city_id' => $request->get('company_city_id'),
+            'province_id' => $request->get('company_province_id'),
+            'country_id' => $request->get('company_country_id'),
+            'updated_by' => $request->user()->id,
+        ]);
+
         $company->save();
+        $company->userProfile()->associate($user_profile)->save();
+        $company->user()->associate($user)->save();
+
+        $role = Role::find(2);
+        $user->roles()->attach($role);
 
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil dibuat.');
     }
@@ -102,20 +129,38 @@ class CompanyController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(CompanyUpdateRequest $request, Company $company)
     {
-        $company->fill($request->only(
-            'company_name',
-            'company_address',
-            'company_email',
-            'company_fax',
-            'company_latitude',
-            'company_longitude',
-            'company_status',
-            'city_id'
-        ));
+        $company->update([
+            'company_name' => $request->get('company_name'),
+            'company_address' => $request->get('company_address'),
+            'company_email' => $request->get('company_email'),
+            'company_fax' => $request->get('company_fax'),
+            'company_latitude' => $request->get('company_latitude'),
+            'company_longitude' => $request->get('company_longitude'),
+            'company_status' => $request->get('company_status'),
+            'city_id' => $request->get('company_city_id'),
+            'province_id' => $request->get('company_province_id'),
+            'country_id' => $request->get('company_country_id'),
+            'updated_by' => $request->user()->id,
+        ]);
+        $user        = User::find($request->get('user_id'));
+        $user->update([
+            'name' => $request->name,
+        ]);
 
-        $company->save();
+        $user->userProfile()->update(
+            [
+                'place_of_birth' => $request->get('place_birth'),
+                'date_of_birth' => $request->get('date_birth'),
+                'mobile'        => $request->get('mobile'),
+                'address'       => $request->get('address'),
+                'city_id'       => $request->get('city_id'),
+                'province_id'   => $request->get('province_id'),
+                'country_id'   => $request->get('country_id'),
+            ]
+        );
+
 
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil disimpan.');
     }
@@ -128,7 +173,7 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        $company->delete();
+        $company->user()->delete();
 
         return redirect()->route('admin.companies.index')->with('success', 'Data berhasil dihapus.');
     }

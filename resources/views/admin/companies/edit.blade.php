@@ -62,5 +62,70 @@
             });
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+        function getState(a) {
+            var country=$('#country_id').val();
+            $.ajax({
+                type: 'get',
+                url: '/getProvince/'+country,
+                dataType: 'json',
+                success : function (data) {
+                    //alert(data);
+                    var element='<option value="">--Pilih Provinsi--</option>';
+                    for(var i=0; i<data.length; i++){
+                        element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
+                    }
+                    $('#province_id').html(element);
+                }
+            });
+        }
+
+        function getCity(a) {
+            var province=$('#province_id').val();
+            $.ajax({
+                type: 'get',
+                url: '/getCity/'+province,
+                dataType: 'json',
+                success : function (data) {
+                    var element='<option value="">--Pilih Kota--</option>';
+                    for(var i=0; i<data.length; i++){
+                        element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
+                    }
+                    $('#city_id').html(element);
+                }
+            });
+        }
+
+        function getStateCompany(a) {
+            var country=$('#company_country_id').val();
+            $.ajax({
+                type: 'get',
+                url: '/getProvince/'+country,
+                dataType: 'json',
+                success : function (data) {
+                    //alert(data);
+                    var element='<option value="">--Pilih Provinsi Perusahaan--</option>';
+                    for(var i=0; i<data.length; i++){
+                        element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
+                    }
+                    $('#company_province_id').html(element);
+                }
+            });
+        }
+
+        function getCityCompany(a) {
+            var city=$('#company_province_id').val();
+            $.ajax({
+                type: 'get',
+                url: '/getCity/'+city,
+                dataType: 'json',
+                success : function (data) {
+                    var element='<option value="">--Pilih Kota Perusahaan--</option>';
+                    for(var i=0; i<data.length; i++){
+                        element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
+                    }
+                    $('#company_city_id').html(element);
+                }
+            });
+        }
     </script>
 @endpush
