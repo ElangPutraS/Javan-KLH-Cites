@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\City;
 use App\Company;
 use App\Country;
 use App\DocumentType;
+use App\Province;
 use App\Role;
 use App\TypeIdentify;
 use App\User;
@@ -53,6 +55,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $date=date('Y-m-d');
         return Validator::make($data, [
             'name'              => 'required|string|max:255',
             'email'             => 'required|string|email|max:255|unique:users',
@@ -63,16 +66,16 @@ class RegisterController extends Controller
             'state'              => 'required',
             'nation'              => 'required',
             'address'           => 'required|string',
-            'mobile'            => 'required',
+            'mobile'            => 'required|numeric',
             'identify_type'     => 'required',
-            'person_identify'   => 'required',
+            'person_identify'   => 'required|numeric',
             'company_name'      => 'required|string',
             'company_email'     => 'required|string|email|max:255',
             'company_city'      => 'required',
             'company_state'      => 'required',
             'company_nation'      => 'required',
             'company_address'   => 'required|string',
-            'company_fax'       => 'required',
+            'company_fax'       => 'required|numeric',
             'company_latitude'  => 'required',
             'company_longitude' => 'required',
         ]);
@@ -151,11 +154,13 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        $country            = Country::get();
-        $user_type_identify = TypeIdentify::get();
-        $document_type      = DocumentType::get();
+        $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
+        $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
+        $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
+        $user_type_identify = TypeIdentify::orderBy('type_identify_name', 'asc')->pluck('type_identify_name', 'id');
+        $document_type      = DocumentType::orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
-        return view('auth.register', compact('country', 'user_type_identify', 'document_type'));
+        return view('auth.register', compact('countries', 'provinces', 'cities', 'user_type_identify', 'document_type'));
     }
 
 }

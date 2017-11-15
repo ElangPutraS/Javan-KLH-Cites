@@ -43,21 +43,30 @@
                             <label for="password" class="col-md-4 control-label">Password</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required>
 
                                 @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                    @if($errors->first('password') != "The password confirmation does not match.")
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" required>
+                                @if ($errors->has('password'))
+                                    @if($errors->first('password') == "The password confirmation does not match.")
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('password') }}</strong>
+                                        </span>
+                                    @endif
+                                @endif
                             </div>
                         </div>
 
@@ -81,7 +90,7 @@
                             <label for="date_birth" class="col-md-4 control-label">Date Birth</label>
 
                             <div class="col-md-6">
-                                <input id="date_birth" placeholder="Pilih Tanggal" type="text" class="form-control" name="date_birth" value="{{ old('date_birth') }}" required>
+                                <input id="date_birth" placeholder="Pilih Tanggal" type="text" class="form-control" name="date_birth" value="{{ old('date_birth') }}" max="{{date('Y-m-d')}}" required>
 
                                 @if ($errors->has('date_birth'))
                                     <span class="help-block">
@@ -110,9 +119,9 @@
 
                             <div class="col-md-6">
                                 <select id="nation" class="form-control" name="nation" onchange="getState(this)" required>
-                                    <option value="">--Choose Nation--</option>
-                                    @foreach($country as $nat)
-                                        <option value="{{$nat->id}}">{{$nat->country_name}}</option>
+                                    <option value="">--Choose Country--</option>
+                                    @foreach($countries as $key => $country)
+                                        <option value="{{ $key }}" {{ $key == old('nation') ? 'selected' : '' }}>{{ $country }}</option>
                                     @endforeach
                                 </select>
 
@@ -125,11 +134,14 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">State</label>
+                            <label for="state" class="col-md-4 control-label">Province</label>
 
                             <div class="col-md-6">
                                 <select id="state" class="form-control" name="state" onchange="getCity(this)" required>
-                                    <option value="">--Choose State--</option>
+                                    <option value="">--Choose Province--</option>
+                                    @foreach($provinces as $key => $province)
+                                        <option value="{{ $key }}" {{ $key == old('state') ? 'selected' : '' }}>{{ $province }}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('state'))
@@ -146,6 +158,9 @@
                             <div class="col-md-6">
                                 <select id="city" class="form-control" name="city" required>
                                     <option value="">--Choose City--</option>
+                                    @foreach($cities as $key => $city)
+                                        <option value="{{ $key }}" {{ $key == old('city') ? 'selected' : '' }}>{{ $city }}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('city'))
@@ -175,8 +190,8 @@
                             <div class="col-md-6">
                                 <select id="identify_type" class="form-control" name="identify_type" required>
                                     <option value="">--Choose Identity Type--</option>
-                                    @foreach($user_type_identify as $idn)
-                                        <option value="{{$idn->id}}">{{$idn->type_identify_name}}</option>
+                                    @foreach($user_type_identify as $key=>$idn)
+                                        <option value="{{ $key }}" {{ $key == old('identify_type') ? 'selected' : '' }}>{{ $idn }}</option>
                                     @endforeach
                                 </select>
 
@@ -232,13 +247,13 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_nation') ? ' has-error' : '' }}">
-                            <label for="company_nation" class="col-md-4 control-label">Company Nation</label>
+                            <label for="company_nation" class="col-md-4 control-label">Company Country</label>
 
                             <div class="col-md-6">
                                 <select id="company_nation" class="form-control" name="company_nation" onchange="getStateCompany(this)" required>
-                                    <option value="">--Choose Company Nation--</option>
-                                    @foreach($country as $nat)
-                                        <option value="{{$nat->id}}">{{$nat->country_name}}</option>
+                                    <option value="">--Choose Company Country--</option>
+                                    @foreach($countries as $key => $country)
+                                        <option value="{{ $key }}" {{ $key == old('company_nation') ? 'selected' : '' }}>{{ $country }}</option>
                                     @endforeach
                                 </select>
 
@@ -251,11 +266,14 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_state') ? ' has-error' : '' }}">
-                            <label for="company_state" class="col-md-4 control-label">Company State</label>
+                            <label for="company_state" class="col-md-4 control-label">Company Province</label>
 
                             <div class="col-md-6">
                                 <select id="company_state" class="form-control" name="company_state" onchange="getCityCompany(this)" required>
-                                    <option value="">--Choose Company State--</option>
+                                    <option value="">--Choose Company Province--</option>
+                                    @foreach($provinces as $key => $province)
+                                        <option value="{{ $key }}" {{ $key == old('company_state') ? 'selected' : '' }}>{{ $province }}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('company_state'))
@@ -272,6 +290,9 @@
                             <div class="col-md-6">
                                 <select id="company_city" class="form-control" name="company_city" required>
                                     <option value="">--Choose Company City--</option>
+                                    @foreach($cities as $key => $city)
+                                        <option value="{{ $key }}" {{ $key == old('company_city') ? 'selected' : '' }}>{{ $city }}</option>
+                                    @endforeach
                                 </select>
 
                                 @if ($errors->has('company_city'))
@@ -331,8 +352,8 @@
                             <div class="col-md-6">
                                 <select id="document_type" class="form-control" name="document_type[]" required>
                                     <option value="">--Choose Document Type--</option>
-                                    @foreach($document_type as $dt)
-                                        <option value="{{$dt->id}}">{{$dt->document_type_name}}</option>
+                                    @foreach($document_type as $key=>$dt)
+                                        <option value="{{ $key }}" {{ $key == old('document_type') ? 'selected' : '' }}>{{ $dt }}</option>
                                     @endforeach
                                 </select>
 
@@ -376,15 +397,18 @@
 @endsection
 <?php
     $doc_type='';
-    foreach ($document_type as $dt){
-        $doc_type.='<option value="'.$dt->id.'">'.$dt->document_type_name.'</option>';
+    foreach ($document_type as $key=>$dt){
+        $doc_type.='<option value="'.$key.'">'.$dt.'</option>';
     }
 ?>
 @push('body.script')
     <script>
         $(function() {
             $( "#date_birth" ).datepicker({
-                dateFormat: "yy-mm-dd",
+                format: "yyyy-mm-dd",
+                todayHighlight: true,
+                autoclose: true,
+                endDate: new Date(),
             });
         });
     </script>
@@ -430,7 +454,7 @@
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
-                    var element='<option value="">--Choose State--</option>';
+                    var element='<option value="">--Choose Province--</option>';
                     for(var i=0; i<data.length; i++){
                         element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
                     }
@@ -463,7 +487,7 @@
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
-                    var element='<option value="">--Choose Company State--</option>';
+                    var element='<option value="">--Choose Company Province-</option>';
                     for(var i=0; i<data.length; i++){
                         element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
                     }
