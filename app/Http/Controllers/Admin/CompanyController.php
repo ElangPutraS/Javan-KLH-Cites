@@ -35,7 +35,7 @@ class CompanyController extends Controller
     {
         $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
-        $cities    = City::orderBy('city_name', 'asc')->pluck('city_name', 'id');
+        $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
 
         $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
 
@@ -126,7 +126,7 @@ class CompanyController extends Controller
     {
         $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
-        $cities    = City::orderBy('city_name', 'asc')->pluck('city_name', 'id');
+        $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
 
         $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
 
@@ -142,9 +142,22 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
+        $company->update([
+            'company_name' => $request->company_name,
+            'company_address' => $request->company_address,
+            'company_email' => $request->company_email,
+            'company_fax' => $request->company_fax,
+            'company_latitude' => $request->company_latitude,
+            'company_longitude' => $request->company_longitude,
+            'company_status' => $request->company_status,
+            'city_id' => $request->company_city_id,
+            'province_id' => $request->company_province_id,
+            'country_id' => $request->company_country_id,
+            'updated_by' => $request->user()->id,
+        ]);
         $user        = User::find($request->user_id);
         $user->update([
-           'name' => $request->name,
+            'name' => $request->name,
         ]);
 
         $user->userProfile()->update(
@@ -159,22 +172,12 @@ class CompanyController extends Controller
             ]
         );
 
-        $company = Company::find($request->company_id);
-        $company->update([
-            'company_name' => $request->company_name,
-            'company_address' => $request->company_address,
-            'company_email' => $request->company_email,
-            'company_fax' => $request->company_fax,
-            'company_latitude' => $request->company_latitude,
-            'company_longitude' => $request->company_longitude,
-            'company_status' => $request->company_status,
-            'city_id' => $request->company_city_id,
-            'province_id' => $request->company_province_id,
-            'country_id' => $request->company_country_id,
-            'updated_by' => $request->user()->id,
-        ]);
+        /*
 
-        /*$company->fill($request->only(
+        $company = Company::find($request->company_id);
+
+
+        $company->fill($request->only(
             'company_name',
             'company_address',
             'company_email',
