@@ -33,7 +33,7 @@ class CompanyController extends Controller
     {
         $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
-        $cities    = City::orderBy('city_name', 'asc')->pluck('city_name', 'id');
+        $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
 
         $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
 
@@ -88,7 +88,7 @@ class CompanyController extends Controller
     {
         $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
-        $cities    = City::orderBy('city_name', 'asc')->pluck('city_name', 'id');
+        $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
 
         $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
 
