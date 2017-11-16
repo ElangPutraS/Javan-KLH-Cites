@@ -63,9 +63,9 @@ class CompanyController extends Controller
             'date_of_birth'  => $request->get('date_birth'),
             'address'        => $request->get('address'),
             'mobile'         => $request->get('mobile'),
-            'country_id'     => $request->get('nation'),
-            'province_id'    => $request->get('state'),
-            'city_id'        => $request->get('city'),
+            'country_id'     => $request->get('country_id'),
+            'province_id'    => $request->get('province_id'),
+            'city_id'        => $request->get('city_id'),
         ]);
 
         $user->userProfile()->save($user_profile);
@@ -158,6 +158,7 @@ class CompanyController extends Controller
                 'city_id'       => $request->get('city_id'),
                 'province_id'   => $request->get('province_id'),
                 'country_id'   => $request->get('country_id'),
+                'updated_by' => $request->user()->id,
             ]
         );
 
