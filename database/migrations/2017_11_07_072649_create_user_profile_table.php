@@ -36,7 +36,7 @@ class CreateUserProfileTable extends Migration
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
 
 
-            $table->integer('update_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }
