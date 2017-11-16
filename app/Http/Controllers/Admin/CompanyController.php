@@ -190,15 +190,14 @@ class CompanyController extends Controller
         );
 
         if($request->old_type_identify != $request->type_identify){
-            $userProfile = $company->userProfile();
+            $userProfile = $company->userProfile;
             $userProfile->typeIdentify()->detach($request->old_type_identify);
 
             $identity=TypeIdentify::find($request->type_identify);
             $userProfile->typeIdentify()->attach($identity, ['user_type_identify_number' => $request->identity_number]);
         }else{
-            $userProfile = $company->userProfile();
-
-            $userProfile->typeIdentify()->attach($request->type_identify, ['user_type_identify_number' => $request->identity_number]);
+            $userProfile = $company->userProfile;
+            $userProfile->typeIdentify()->updateExistingPivot($request->type_identify, ['user_type_identify_number' => $request->identity_number]);
         }
 
 
