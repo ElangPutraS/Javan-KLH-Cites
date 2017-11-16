@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\City;
 use App\Company;
 use App\Country;
+use App\DocumentType;
 use App\Http\Requests\CompanyStoreRequest;
 use App\Http\Requests\CompanyUpdateRequest;
 use App\Province;
+use App\TypeIdentify;
 use App\User;
 use App\UserProfile;
 use App\Role;
@@ -35,13 +37,15 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
-        $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
-        $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
+        $countries        = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
+        $provinces        = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
+        $cities           = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
+        $document_type    = DocumentType::orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+        $identity_type    = TypeIdentify::orderBy('type_identify_name', 'asc')->pluck('type_identify_name', 'id');
 
         $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
 
-        return view('admin.companies.create', compact('users', 'countries', 'provinces', 'cities'));
+        return view('admin.companies.create', compact('users', 'countries', 'provinces', 'cities', 'document_type', 'identity_type'));
     }
 
     /**
@@ -70,6 +74,9 @@ class CompanyController extends Controller
 
         $user->userProfile()->save($user_profile);
 
+        $type = TypeIdentify::find($request->get('type_identify'));
+        $user_profile->typeIdentify()->attach($type, ['user_type_identify_number' =>$request->get('identity_number')]);
+
         $company = new Company([
             'company_name' => $request->get('company_name'),
             'company_address' => $request->get('company_address'),
@@ -90,6 +97,23 @@ class CompanyController extends Controller
 
         $role = Role::find(2);
         $user->roles()->attach($role);
+
+        if($request->company_file!=''){
+            foreach ($request->company_file as $key => $file) {
+
+                /**
+                 * @var \Illuminate\Http\UploadedFile $file
+                 */
+                $file_path = $file->store('/upload/file');
+
+                $document_type = DocumentType::find($request->get('document_type')[$key]);
+
+                $company->companyDocuments()->attach($document_type, [
+                    'document_name' => $file->getClientOriginalName(),
+                    'file_path'     => $file_path
+                ]);
+            }
+        }
 
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil dibuat.');
     }
@@ -116,10 +140,12 @@ class CompanyController extends Controller
         $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
         $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
+        $document_type    = DocumentType::orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+        $identity_type    = TypeIdentify::orderBy('type_identify_name', 'asc')->pluck('type_identify_name', 'id');
 
         $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
 
-        return view('admin.companies.edit', compact('company', 'users', 'countries', 'provinces', 'cities'));
+        return view('admin.companies.edit', compact('company', 'users', 'countries', 'provinces', 'cities', 'document_type', 'identity_type'));
     }
 
     /**
@@ -144,6 +170,7 @@ class CompanyController extends Controller
             'country_id' => $request->get('company_country_id'),
             'updated_by' => $request->user()->id,
         ]);
+
         $user        = User::find($request->get('user_id'));
         $user->update([
             'name' => $request->name,
@@ -161,6 +188,36 @@ class CompanyController extends Controller
                 'updated_by' => $request->user()->id,
             ]
         );
+
+        if($request->old_type_identify != $request->type_identify){
+            $userProfile = $company->userProfile();
+            $userProfile->typeIdentify()->detach($request->old_type_identify);
+
+            $identity=TypeIdentify::find($request->type_identify);
+            $userProfile->typeIdentify()->attach($identity, ['user_type_identify_number' => $request->identity_number]);
+        }else{
+            $userProfile = $company->userProfile();
+
+            $userProfile->typeIdentify()->attach($request->type_identify, ['user_type_identify_number' => $request->identity_number]);
+        }
+
+
+        if($request->company_file!=''){
+            foreach ($request->company_file as $key => $file) {
+
+                /**
+                 * @var \Illuminate\Http\UploadedFile $file
+                 */
+                $file_path = $file->store('/upload/file');
+
+                $document_type = DocumentType::find($request->get('document_type')[$key]);
+
+                $company->companyDocuments()->attach($document_type, [
+                    'document_name' => $file->getClientOriginalName(),
+                    'file_path'     => $file_path
+                ]);
+            }
+        }
 
 
         return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil disimpan.');

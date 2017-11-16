@@ -12,7 +12,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.companies.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{ route('admin.companies.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
                         @include('admin.companies._form', ['company' => null])
@@ -29,6 +29,12 @@
         </div>
     </section>
 @endsection
+<?php
+    $doc_type='';
+    foreach ($document_type as $key=>$dt){
+        $doc_type.='<option value="'.$key.'">'.$dt.'</option>';
+    }
+?>
 @push('body.script')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <script type="text/javascript">
@@ -127,6 +133,20 @@
                     $('#company_city_id').html(element);
                 }
             });
+        }
+        
+        function tambahForm(a) {
+            var form='<div id="dynamic"><div class="form-group"><label class="control-label">Dokumen</label><div class="row">';
+            form +='<div class="col-sm-10"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Choose Document Type--</option>';
+            form +='<?=$doc_type?>';
+            form +='</select></div><div class="col-sm-2"><button onclick="hapusForm(this)" class="btn btn-danger">X</button></div></div></div>';
+            form +='<div class="form-group"><label class="control-label"></label><div class="col-sm-14"><input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" required></div></div></div>';
+            $('#form-dynamic').append(form);
+        }
+
+        function hapusForm(a) {
+            //alert('cek');
+            a.closest('#dynamic').remove();
         }
     </script>
 @endpush

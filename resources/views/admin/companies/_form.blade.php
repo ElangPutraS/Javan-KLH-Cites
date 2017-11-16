@@ -121,6 +121,36 @@
 </div>
 
 <div class="form-group">
+    <label class="control-label">Tipe Identitas</label>
+    @if(count($company)!=0)
+        <input type="hidden" name="old_type_identify" value="{{$company->userProfile->typeIdentify->first()->id}}">
+    @endif
+    <div class="col-sm-14">
+        <select name="type_identify" id="type_identify" class="form-control select2">
+            <option value="">--Pilih Tipe Identitas--</option>
+            @foreach($identity_type as $key => $ident)
+                @if(count($company)!=0)
+                    <option value="{{ $key }}" {{ $key == old('type_identify', array_get($company->userProfile->typeIdentify->first(), 'id')) ? 'selected' : '' }}>{{ $ident }}</option>
+                @else
+                    <option value="{{ $key }}" {{ $key == old('type_identify', array_get($company, 'id')) ? 'selected' : '' }}>{{ $ident }}</option>
+                @endif
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Nomor Identitas</label>
+    <div class="col-sm-14">
+        @if(count($company)!=0)
+            <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($company->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) }}">
+        @else
+            <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($company, 'user_type_identify_number')) }}">
+        @endif
+    </div>
+</div>
+
+<div class="form-group">
     <h3>Data Perusahaan</h3>
 </div>
 <div class="form-group">
@@ -140,30 +170,30 @@
 <div class="form-group">
     <label class="control-label">Negara, Kabupaten/Kota, Kecamatan Perusahaan</label>
     <div class="row">
-    <div class="col-sm-4">
-        <select name="company_country_id" id="company_country_id" class="form-control select2" onchange="getStateCompany(this)">
-            <option value="">--Pilih Negara Perusahaan--</option>
-            @foreach($countries as $key => $country)
-                <option value="{{ $key }}" {{ $key == old('company_country_id', array_get($company, 'country_id')) ? 'selected' : '' }}>{{ $country }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="col-sm-4">
-        <select name="company_province_id" id="company_province_id" class="form-control select2" onchange="getCityCompany(this)">
-            <option value="">--Pilih Provinsi Perusahaan--</option>
-            @foreach($provinces as $key => $province)
-                <option value="{{ $key }}" {{ $key == old('company_province_id', array_get($company, 'province_id')) ? 'selected' : '' }}>{{ $province }}</option>
-            @endforeach
-        </select>
-    </div>
-    <div class="col-sm-4">
-        <select name="company_city_id" id="company_city_id" class="form-control select2">
-            <option value="">--Pilih Kota Perusahaan--</option>
-            @foreach($cities as $key => $city)
-            <option value="{{ $key }}" {{ $key == old('company_city_id', array_get($company, 'city_id')) ? 'selected' : '' }}>{{ $city }}</option>
-            @endforeach
-        </select>
-    </div>
+        <div class="col-sm-4">
+            <select name="company_country_id" id="company_country_id" class="form-control select2" onchange="getStateCompany(this)">
+                <option value="">--Pilih Negara Perusahaan--</option>
+                @foreach($countries as $key => $country)
+                    <option value="{{ $key }}" {{ $key == old('company_country_id', array_get($company, 'country_id')) ? 'selected' : '' }}>{{ $country }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <select name="company_province_id" id="company_province_id" class="form-control select2" onchange="getCityCompany(this)">
+                <option value="">--Pilih Provinsi Perusahaan--</option>
+                @foreach($provinces as $key => $province)
+                    <option value="{{ $key }}" {{ $key == old('company_province_id', array_get($company, 'province_id')) ? 'selected' : '' }}>{{ $province }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-sm-4">
+            <select name="company_city_id" id="company_city_id" class="form-control select2">
+                <option value="">--Pilih Kota Perusahaan--</option>
+                @foreach($cities as $key => $city)
+                <option value="{{ $key }}" {{ $key == old('company_city_id', array_get($company, 'city_id')) ? 'selected' : '' }}>{{ $city }}</option>
+                @endforeach
+            </select>
+        </div>
     </div>
 </div>
 
@@ -202,3 +232,56 @@
         <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude', array_get($company, 'company_longitude')) }}" required>
     </div>
 </div>
+
+<div class="form-group">
+    <h3>Dokumen Perusahaan</h3>
+</div>
+
+@if(count($company)!=0)
+    <?php $a=0; ?>
+    @foreach($company->companyDocuments as $doc)
+        <div id="file_download">
+            <div class="form-group">
+                <label class="control-label"><b>Dokumen {{$a+1}}</b></label>
+                <div class="row">
+                    <div class="col-sm-7">
+                        {{$doc->pivot->document_name}}
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="{{$doc->pivot->download_url}}"><i class="zmdi zmdi-download zmdi-hc-fw"></i> Download</a>
+                    </div>
+                    <div class="col-sm-2">
+                        <button onclick="deleteFile(this)" data-type-id="{{$doc->pivot->document_type_id}}" data-company-id="{{$doc->pivot->company_id}}" class="btn btn-danger">X</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+@endif
+<div class="form-group">
+    <label class="control-label">Dokumen</label>
+    <div class="row">
+        <div class="col-sm-10">
+            <select id="document_type" class="form-control" name="document_type[]" {{$company==null ? 'required' : '' }}>
+                <option value="">--Choose Document Type--</option>
+                @foreach($document_type as $key=>$dt)
+                    <option value="{{ $key }}" {{ $key == old('document_type') ? 'selected' : '' }}>{{ $dt }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-sm-2">
+            <button onclick="tambahForm(this)" class="btn btn-success">Tambah</button>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label"></label>
+    <div class="col-sm-14">
+        <input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" {{$company==null ? 'required' : ''}}>
+    </div>
+</div>
+
+<div id="form-dynamic">
+</div>
+
