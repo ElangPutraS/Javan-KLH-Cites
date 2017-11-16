@@ -12,15 +12,15 @@
 
                     @include('includes.notifications')
 
-                    <a href="{{ route('admin.kelolainformasi.create') }}" class="btn btn-primary">Tambah </a>
+                    <a href="{{ route('admin.news.create') }}" class="btn btn-primary">Tambah Baru</a>
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm">
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No</th>
-                                <th>Kategori</th>
-                                <th>Judul</th>
+                                <th width="150px">Kategori</th>
+                                <th width="150px">Judul</th>
                                 <th width="300px">Isi</th>
                                 <th width="150px">Tanggal Buat</th>
                                 <th width="150px">Tanggal Update</th>
@@ -29,25 +29,26 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($companies as $company)
+                            @forelse($news as $newss)
                             <tr>
-                                <td>{{ (($companies->currentPage() - 1 ) * $companies->perPage() ) + $loop->iteration }}</td>
-                                <td>{{ $company->company_name }}</td>
-                                <td>{{ $company->company_address }}</td>
-                                <td>{{ $company->created_at->toFormattedDateString() }}</td>
-                                <td>{{ $company->updated_at->toFormattedDateString() }}</td>
-                                <td></td>
-                                <td></td>
+                                <td>{{ (($news->currentPage() - 1 ) * $news->perPage() ) + $loop->iteration }}</td>
+                                <td>{{ $newss->kategori }}</td>
+                                <td>{{ $newss->judul }}</td>
+                                <td>{{ $newss->isi }}</td>
+                                <td>{{ $newss->created_at->toFormattedDateString() }}</td>
+                                <td>{{ $newss->updated_at->toFormattedDateString() }}</td>
+                                <td>{{ $newss->user_id }}</td>
                                 <td>
-                                    <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="{{ route('admin.news.edit', $newss) }}" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">
                                         Hapus
-                                        <form action="{{ route('admin.companies.destroy', $company) }}" method="post">
+                                        <form action="{{ route('admin.news.destroy', $newss) }}" method="post">
                                             {!! csrf_field() !!}
                                             <input type="hidden" name="_method" value="DELETE">
                                         </form>
                                     </a>
                                 </td>
+                                
                             </tr>
                             @empty
                             <tr>
@@ -58,7 +59,7 @@
                         </table>
                     </div>
 
-                    {!! $companies->links() !!}
+                    {!! $news->links() !!}
 
                 </div>
             </div>

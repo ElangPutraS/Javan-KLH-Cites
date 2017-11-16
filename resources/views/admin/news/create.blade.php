@@ -12,15 +12,15 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.companies.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{ route('admin.news.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('admin.companies._form', ['company' => null])
+                        @include('admin.news._form', ['company' => null])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
                                 <button type="submit" class="btn btn-primary">Simpan Baru</button>
-                                <a href="{{ route('admin.companies.index') }}" class="btn btn-default">Batal</a>
+                                <a href="{{ route('admin.news.index') }}" class="btn btn-default">Batal</a>
                             </div>
                         </div>
                     </form>
