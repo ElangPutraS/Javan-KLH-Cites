@@ -3,13 +3,13 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Daftar Species</h1>
+            <h1>Daftar Kuota</h1>
         </header>
 
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Daftar Verifikasi Akun</h2>
-                <small class="card-subtitle"></small>
+                <h2 class="card-title">Kuota Species {{$species->species_indonesia_name}}</h2>
+                <small class="card-subtitle">({{$species->species_scientific_name}})</small>
             </div>
 
             <div class="card-block">
@@ -25,36 +25,23 @@
                         <thead class="thead-default">
                         <tr>
                             <th>No</th>
-                            <th>Nama Ilmiah</th>
-                            <th>Nama Indonesia</th>
-                            <th>Nama Umum</th>
-                            <th>Appendiks</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Kuota</th>
+                            <th>Tahun</th>
+                            <th>Jumlah Kuota</th>
+                            <th>Tanggal Dibuat</th>
+                            <th>Tanggal Diperbaharui</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
                         <tbody>
                         <?php $a=1; ?>
                         @if(count($species)>0)
-                            @foreach($species as $spec)
+                            @foreach($quota as $quot)
                                 <tr>
                                     <td>{{$a++}}</td>
-                                    <td>{{$spec->species_scientific_name}}</td>
-                                    <td>{{$spec->species_indonesia_name}}</td>
-                                    <td>{{$spec->species_general_name}}</td>
-                                    <td>
-                                        @if($spec->is_appendix)
-                                            {{$spec->appendixSource->appendix_source_code}}
-                                        @else
-                                            Tidak Memiliki Appendix
-                                        @endif
-                                    </td>
-                                    <td>{{$spec->speciesSex->sex_name}}</td>
-                                    <td>
-                                        <a href=""><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
-                                        <a href=""><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i></a>
-                                    </td>
+                                    <td>{{$quot->year}}</td>
+                                    <td>{{$quot->quota_amount}}</td>
+                                    <td>{{$quot->created_at->toFormattedDateString()}}</td>
+                                    <td>{{$quot->updated_at->toFormattedDateString()}}</td>
                                     <td>
                                         <a href=""><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
                                         <a href=""><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
@@ -69,7 +56,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $species->links() }}
+                {{ $quota->links() }}
             </div>
         </div>
 

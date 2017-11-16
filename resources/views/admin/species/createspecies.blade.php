@@ -4,7 +4,7 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tambah Pelaku Usaha Baru</h1>
+                <h1>Tambah Spesies Baru</h1>
             </header>
 
             <div class="card">
@@ -12,10 +12,10 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.companies.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{ route('admin.species.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('admin.companies._form', ['company' => null])
+                        @include('admin.species._formspecies', ['species' => null])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">

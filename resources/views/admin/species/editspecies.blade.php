@@ -4,7 +4,7 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Edit Pelaku Usaha</h1>
+                <h1>Edit Spesies</h1>
             </header>
 
             <div class="card">
@@ -12,17 +12,17 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.companies.update', $company) }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{ route('admin.species.update', $company) }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                         {{ method_field('PUT') }}
 
                         {!! csrf_field() !!}
 
-                        @include('admin.companies._form', ['company' => $company])
+                        @include('admin.species._formspecies', ['species' => $species])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{ route('admin.companies.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                                <a href="{{ route('admin.species.index') }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
                     </form>

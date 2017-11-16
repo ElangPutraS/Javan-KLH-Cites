@@ -2,14 +2,31 @@
     <h3>Data Akun</h3>
 </div>
 <div class="form-group">
-    <label class="control-label">Nama</label>
+    <label class="control-label">Nama Ilmiah</label>
     <div class="col-sm-14">
-        @if(count($company)!=0)
-            <input type="hidden" name="user_id" class="form-control" value="{{ old('user_id', array_get($company->userProfile->user, 'id')) }}">
-            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company->userProfile->user, 'name')) }}">
-        @else
-            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company, 'name')) }}">
-        @endif
+        <input type="text" name="scientific_name" class="form-control" value="{{ old('scientific_name', array_get($species, 'species_scientific_name')) }}">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Nama Lokal</label>
+    <div class="col-sm-14">
+        <input type="text" name="indonesia_name" class="form-control" value="{{ old('indonesia_name', array_get($species, 'species_indonesia_name')) }}">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Nama Umum</label>
+    <div class="col-sm-14">
+        <input type="text" name=general_name" class="form-control" value="{{ old('general_name', array_get($species, 'species_general_name')) }}">
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Memiliki Appendiks</label>
+    <div class="col-sm-14">
+        <input type="radio" name="notes-color" value="1" autocomplete="off"> Ya
+        <input type="radio" name="notes-color" value="2" autocomplete="off"> Tidak
     </div>
 </div>
 
