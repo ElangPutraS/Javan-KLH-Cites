@@ -48,9 +48,9 @@
         </div>
         <div class="col-sm-5">
             @if(count($company)!=0)
-                <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" name="date_birth" class="form-control" value="{{ old('date_birth', array_get($company->userProfile, 'date_of_birth')) }}">
+                <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" data-max-date="today" name="date_birth" class="form-control" value="{{ old('date_birth', array_get($company->userProfile, 'date_of_birth')) }}">
             @else
-                <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" name="date_birth" class="form-control" value="{{ old('date_birth', array_get($company, 'date_of_birth')) }}">
+                <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" data-max-date="today" name="date_birth" class="form-control" value="{{ old('date_birth', array_get($company, 'date_of_birth')) }}">
             @endif
         </div>
     </div>
@@ -68,7 +68,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Alamat Perusahaan</label>
+    <label class="control-label">Alamat Pelaku Usaha</label>
     <div class="col-sm-14">
         @if(count($company)!=0)
             <input type="text" name="address" class="form-control" value="{{ old('address', array_get($company->userProfile, 'address')) }}">
