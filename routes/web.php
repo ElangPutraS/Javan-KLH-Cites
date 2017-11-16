@@ -35,6 +35,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
     Route::get('verification/{id}', 'UserVerificationController@show')->name('admin.verification.show');
     Route::get('verification/acc/{id}', 'UserVerificationController@update');
+    Route::get('species', 'SpeciesHSController@index')->name('admin.species.index');
+    Route::get('species/{id}/kuota', 'SpeciesHSController@showQuota')->name('admin.species.showquota');
     Route::post('verification/rej/{id}', 'UserVerificationController@updateRej');
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
