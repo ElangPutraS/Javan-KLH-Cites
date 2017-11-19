@@ -14,7 +14,7 @@ class SpeciesQuota extends Model
         'species_id',
     ];
 
-    public function spesies(){
+    public function species(){
         return $this->belongsTo(Species::class);
     }
 }

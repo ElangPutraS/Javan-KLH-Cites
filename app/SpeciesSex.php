@@ -13,7 +13,7 @@ class SpeciesSex extends Model
         'sex_name',
     ];
 
-    public function spesies(){
+    public function species(){
         return $this->hasOne(Species::class);
     }
 }

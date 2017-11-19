@@ -84,7 +84,7 @@ class SpeciesHSController extends Controller
     }
 
     public function showQuota($species_id){
-        $species=Species::find($species_id);
+        $species=Species::findOrFail($species_id);
         $quota=SpeciesQuota::where('species_id',$species_id)->paginate(10);
         return view('admin.species.showquota', compact('species', 'quota'));
     }

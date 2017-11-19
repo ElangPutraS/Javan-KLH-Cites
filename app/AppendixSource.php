@@ -13,7 +13,7 @@ class AppendixSource extends Model
         'description',
     ];
 
-    public function spesies(){
+    public function species(){
         return $this->hasOne(Species::class);
     }
 }
