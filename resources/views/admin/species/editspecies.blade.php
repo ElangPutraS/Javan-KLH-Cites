@@ -12,8 +12,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.species.update', $company) }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
-                        {{ method_field('PUT') }}
+                    <form action="{{route('admin.species.updateSpecies', ['id' => Request::segment(3)])}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
 
                         {!! csrf_field() !!}
 
@@ -32,100 +31,15 @@
     </section>
 @endsection
 @push('body.script')
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <script type="text/javascript">
-        function initialize() {
-            var latlng = new google.maps.LatLng($('#company_latitude').val(),$('#company_longitude').val());
-            var map = new google.maps.Map(document.getElementById('map'), {
-                center: latlng,
-                zoom: 13
-            });
-            var marker = new google.maps.Marker({
-                map: map,
-                position: latlng,
-                draggable: true,
-                anchorPoint: new google.maps.Point(0, -29)
-            });
-            var infowindow = new google.maps.InfoWindow();
-            google.maps.event.addListener(marker, 'click', function() {
-                var iwContent = '<div id="iw_container">' +
-                    '<div class="iw_title"><b>My Company Location</b></div></div>';
-                // including content to the infowindow
-                infowindow.setContent(iwContent);
-                // opening the infowindow in the current map and at the current marker location
-                infowindow.open(map, marker);
-            });
-            google.maps.event.addListener(marker, 'dragend', function(evt){
-                //document.getElementById('current').innerHTML = '<p>Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3) + '</p>';
-                $('#company_latitude').val(evt.latLng.lat().toFixed(5));
-                $('#company_longitude').val(evt.latLng.lng().toFixed(5));
-            });
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-        function getState(a) {
-            var country=$('#country_id').val();
-            $.ajax({
-                type: 'get',
-                url: '/getProvince/'+country,
-                dataType: 'json',
-                success : function (data) {
-                    //alert(data);
-                    var element='<option value="">--Pilih Provinsi--</option>';
-                    for(var i=0; i<data.length; i++){
-                        element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
-                    }
-                    $('#province_id').html(element);
+        $(document).ready(function(){      
+            $('input[name="is_appendix"]').change(function(){
+                if (document.getElementById('is_appendix1').checked) {
+                   document.getElementById('showAppendix').style.display='block';
+                }else if(document.getElementById('is_appendix2').checked){
+                    document.getElementById('showAppendix').style.display='none';
                 }
-            });
-        }
-
-        function getCity(a) {
-            var province=$('#province_id').val();
-            $.ajax({
-                type: 'get',
-                url: '/getCity/'+province,
-                dataType: 'json',
-                success : function (data) {
-                    var element='<option value="">--Pilih Kota--</option>';
-                    for(var i=0; i<data.length; i++){
-                        element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
-                    }
-                    $('#city_id').html(element);
-                }
-            });
-        }
-
-        function getStateCompany(a) {
-            var country=$('#company_country_id').val();
-            $.ajax({
-                type: 'get',
-                url: '/getProvince/'+country,
-                dataType: 'json',
-                success : function (data) {
-                    //alert(data);
-                    var element='<option value="">--Pilih Provinsi Perusahaan--</option>';
-                    for(var i=0; i<data.length; i++){
-                        element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
-                    }
-                    $('#company_province_id').html(element);
-                }
-            });
-        }
-
-        function getCityCompany(a) {
-            var city=$('#company_province_id').val();
-            $.ajax({
-                type: 'get',
-                url: '/getCity/'+city,
-                dataType: 'json',
-                success : function (data) {
-                    var element='<option value="">--Pilih Kota Perusahaan--</option>';
-                    for(var i=0; i<data.length; i++){
-                        element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
-                    }
-                    $('#company_city_id').html(element);
-                }
-            });
-        }
+            }); 
+        });
     </script>
 @endpush
