@@ -144,13 +144,21 @@ foreach ($document_type as $key=>$dt){
         }
 
         function hapusForm(a) {
-            //alert('cek');
             a.closest('#dynamic').remove();
         }
 
         function deleteFile(a) {
-            //alert('cek');
-            a.closest('#file_download').remove();
+            var type_id=a.getAttribute('data-type-id');
+            var company_id=a.getAttribute('data-company-id');
+            var document_name=a.getAttribute('data-document-name');
+            $.ajax({
+                type: 'get',
+                url: '/deleteDoc/'+type_id+'/'+company_id+'/'+document_name,
+                success : function (data) {
+                    a.closest('#file_download').remove();
+                    //alert(data);
+                }
+            });
         }
     </script>
 @endpush
