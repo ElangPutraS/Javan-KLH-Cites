@@ -238,11 +238,10 @@
 </div>
 
 @if(count($company)!=0)
-    <?php $a=0; ?>
-    @foreach($company->companyDocuments as $doc)
+    @foreach($company->companyDocuments as $key => $doc)
         <div id="file_download">
             <div class="form-group">
-                <label class="control-label"><b>Dokumen {{$a+1}}</b></label>
+                <label class="control-label"><b>Dokumen {{$key+1}}</b></label>
                 <div class="row">
                     <div class="col-sm-7">
                         {{$doc->pivot->document_name}}
@@ -251,7 +250,7 @@
                         <a href="{{$doc->pivot->download_url}}"><i class="zmdi zmdi-download zmdi-hc-fw"></i> Download</a>
                     </div>
                     <div class="col-sm-2">
-                        <button onclick="deleteFile(this)" data-type-id="{{$doc->pivot->document_type_id}}" data-company-id="{{$doc->pivot->company_id}}" class="btn btn-danger">X</button>
+                        <button onclick="deleteFile(this)" data-type-id="{{$doc->pivot->document_type_id}}" data-company-id="{{$doc->pivot->company_id}}" data-document-name="{{$doc->pivot->document_name}}" class="btn btn-danger">X</button>
                     </div>
                 </div>
             </div>

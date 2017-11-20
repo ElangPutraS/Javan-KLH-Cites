@@ -25,6 +25,7 @@ Route::get('/profile', 'UserController@index')->name('profile')->middleware(['au
 Route::get('/getProvince/{country}', 'LocationController@getProvince');
 Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
+Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
