@@ -24,8 +24,8 @@
                                 <th width="300px">Isi</th>
                                 <th width="150px">Tanggal Buat</th>
                                 <th width="150px">Tanggal Update</th>
-                                <th width="150px">Dibuat Oleh </th>
-                                <th width="100px">Aksi</th>
+                                <th width="100px">Dibuat Oleh </th>
+                                <th width="150px">Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -37,7 +37,7 @@
                                 <td>{{ $newss->isi }}</td>
                                 <td>{{ $newss->created_at->toFormattedDateString() }}</td>
                                 <td>{{ $newss->updated_at->toFormattedDateString() }}</td>
-                                <td>{{ $newss->user_id }}</td>
+                                <td>{{ $newss->usernames->name }}</td>
                                 <td>
                                     <a href="{{ route('admin.news.edit', $newss) }}" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">

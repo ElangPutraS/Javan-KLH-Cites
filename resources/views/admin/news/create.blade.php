@@ -15,7 +15,7 @@
                     <form action="{{ route('admin.news.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('admin.news._form', ['company' => null])
+                        @include('admin.news._form')
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">

@@ -24,7 +24,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::orderBy('id', 'asc')->paginate(10);
+        $news = News::with('user')->get();
 
         return view('admin.news.index', compact('news'));
     }
@@ -51,48 +51,16 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CompanyStoreRequest $request)
+    public function store()
     {
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => bcrypt($request->password),
+        Post::create([
+        'kategori' => request('kategori'),
+        'judul' => request('judul'),
+        'isi' => request('isi')
+        //'user_id' => 
         ]);
 
-        $user_profile = new UserProfile([
-            'place_of_birth' => $request->get('place_birth'),
-            'date_of_birth'  => $request->get('date_birth'),
-            'address'        => $request->get('address'),
-            'mobile'         => $request->get('mobile'),
-            'country_id'     => $request->get('country_id'),
-            'province_id'    => $request->get('province_id'),
-            'city_id'        => $request->get('city_id'),
-        ]);
-
-        $user->userProfile()->save($user_profile);
-
-        $company = new Company([
-            'company_name' => $request->get('company_name'),
-            'company_address' => $request->get('company_address'),
-            'company_email' => $request->get('company_email'),
-            'company_fax' => $request->get('company_fax'),
-            'company_latitude' => $request->get('company_latitude'),
-            'company_longitude' => $request->get('company_longitude'),
-            'company_status' => $request->get('company_status'),
-            'city_id' => $request->get('company_city_id'),
-            'province_id' => $request->get('company_province_id'),
-            'country_id' => $request->get('company_country_id'),
-            'updated_by' => $request->user()->id,
-        ]);
-
-        $company->save();
-        $company->userProfile()->associate($user_profile)->save();
-        $company->user()->associate($user)->save();
-
-        $role = Role::find(2);
-        $user->roles()->attach($role);
-
-        return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil dibuat.');
+        return redirect()->route('admin.news.index')->with('success', 'Data berhasil dibuat.');
     }
 
     /**

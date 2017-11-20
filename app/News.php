@@ -15,4 +15,9 @@ class News extends Model
         'user_id',
     ];
 
+    public function usernames()
+    {
+    	return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
 }
