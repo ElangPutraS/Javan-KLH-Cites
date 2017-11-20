@@ -34,6 +34,8 @@ class CompanyStoreRequest extends FormRequest
             'country_id'            => 'required',
             'province_id'           => 'required',
             'city_id'               => 'required',
+            'type_identify'         => 'required',
+            'identity_number'       => 'required|numeric',
             'company_name'          => 'required|string',
             'company_address'       => 'required|string',
             'company_country_id'    => 'required',
