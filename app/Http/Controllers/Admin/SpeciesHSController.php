@@ -70,14 +70,8 @@ class SpeciesHSController extends Controller
     public function destroy($id)
     {
     	$species=Species::find($id);
-    	$species_sex_id=$species->species_sex_id;
-    	$appendix_source_id=$species->appendix_source_id;
 
     	$species->delete();
-    	SpeciesSex::find($species_sex_id)->delete();
-    	if($appendix_source_id!= null){
-    		AppendixSource::find($appendix_source_id)->delete();
-    	}
     	SpeciesQuota::where('species_id', $id)->delete();
 
     	return redirect()->route('admin.species.index')->with('success', 'Data berhasil dihapus.');
