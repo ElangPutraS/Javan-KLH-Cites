@@ -13,13 +13,8 @@
             </div>
 
             <div class="card-block">
-                @if(session('alert'))
-                    <div class="alert alert-{{session('alert')['alert']}} alert-dismissible fade show">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button><a href="#" class="alert-link">{{session('alert')['message']}}</a>.
-                    </div>
-                @endif
+                @include('includes.notifications')
+                <a href="{{ route('admin.species.createquota', ['species_id' => Request::segment(3)]) }}" class="btn btn-primary">Tambah Baru</a>
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm">
                         <thead class="thead-default">
@@ -43,8 +38,8 @@
                                     <td>{{$quot->created_at->toFormattedDateString()}}</td>
                                     <td>{{$quot->updated_at->toFormattedDateString()}}</td>
                                     <td>
-                                        <a href=""><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                        <a href=""><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
+                                        <a href="{{route('admin.species.editquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                        <a href="{{route('admin.species.deletequota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -56,7 +51,8 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $quota->links() }}
+                {{ $quota->links() }}<br>
+                <a href="{{ route('admin.species.index') }}" class="btn btn-outline-warning waves-effect">Kembali ke Daftar Species</a>
             </div>
         </div>
 
