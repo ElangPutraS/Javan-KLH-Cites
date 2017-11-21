@@ -11,6 +11,7 @@ use App\Province;
 use App\User;
 use App\UserProfile;
 use App\Role;
+use App\Post;
 use App\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -24,7 +25,7 @@ class NewsController extends Controller
      */
     public function index()
     {
-        $news = News::with('user')->get();
+        $news = News::with('user')->paginate(10);
 
         return view('admin.news.index', compact('news'));
     }
@@ -51,13 +52,13 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        Post::create([
-        'kategori' => request('kategori'),
-        'judul' => request('judul'),
-        'isi' => request('isi')
-        //'user_id' => 
+        $news = News::create([
+        'kategori' => $request->get('kategori'),
+        'judul' => $request->get('judul'),
+        'isi' => $request->get('isi'),
+        'user_id' =>$request->user()->id
         ]);
 
         return redirect()->route('admin.news.index')->with('success', 'Data berhasil dibuat.');

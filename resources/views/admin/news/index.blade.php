@@ -37,7 +37,7 @@
                                 <td>{{ $newss->isi }}</td>
                                 <td>{{ $newss->created_at->toFormattedDateString() }}</td>
                                 <td>{{ $newss->updated_at->toFormattedDateString() }}</td>
-                                <td>{{ $newss->usernames->name }}</td>
+                                <td>{{ $newss->user->name }}</td>
                                 <td>
                                     <a href="{{ route('admin.news.edit', $newss) }}" class="btn btn-sm btn-primary">Edit</a>
                                     <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">
