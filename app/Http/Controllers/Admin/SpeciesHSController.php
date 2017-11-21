@@ -6,6 +6,7 @@ use App\Species;
 use App\SpeciesQuota;
 use App\AppendixSource;
 use App\SpeciesSex;
+use App\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SpeciesQuotaRequest;
@@ -116,11 +117,30 @@ class SpeciesHSController extends Controller
 
     public function destroyQuota($species_id, $id)
     {
-        $quota=SpeciesQuota::find($id);
+        $quota=Species::find($id);
         $quota->delete();
 
         return redirect()->route('admin.species.showquota', ['species_id' => $species_id])->with('success', 'Data berhasil dihapus.');
     }
 
+    public function showCategory(){
+
+        $kategori=Kategori::orderBy('species_kategori_name', 'asc')->paginate(10);
+
+        return view('admin.species.category', compact('kategori'));
+    }
+
+    public function createCategory(){
+        return view('admin.species.createCategory');
+    }
+
+    public function destroyCategory($id)
+    {
+        $kategori=Kategori::find($id);
+        $kategori->delete();
+        SpeciesQuota::where('id', $id)->delete();
+
+        return redirect()->route('admin.species.category')->with('success', 'Data berhasil dihapus.');
+    }
     
 }

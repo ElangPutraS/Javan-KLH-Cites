@@ -51,4 +51,10 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::post('verification/rej/{id}', 'UserVerificationController@updateRej');
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
+
+    Route::get('species/category','SpeciesHSController@showCategory')->name('admin.species.category');
+    Route::get('species/createCategory','SpeciesHSController@createCategory')->name('admin.species.createCategory');
+    Route::get('species/{id}/deleteCategory', 'SpeciesHSController@destroyCategory')->name('admin.species.deleteCategory');
+
+
 });
