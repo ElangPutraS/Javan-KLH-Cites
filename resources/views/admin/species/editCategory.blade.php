@@ -4,7 +4,7 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tambah Kategori Baru</h1>
+                <h1>Edit Species</h1>
             </header>
 
             <div class="card">
@@ -12,15 +12,16 @@
 
                     @include('includes.notifications')
 
-                    <form action="" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{route('admin.species.updateCategory', ['id' => Request::segment(3)])}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+
                         {!! csrf_field() !!}
 
-                        @include('admin.species._formcategory', ['kategori' => null])
+                        @include('admin.species._formcategory', ['kategori' => $kategori])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-primary">Simpan Baru</button>
-                                <a href="{{ route('admin.species.category') }}" class="btn btn-default">Batal</a>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="{{route('admin.species.category')}}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
                     </form>

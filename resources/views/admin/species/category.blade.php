@@ -34,8 +34,8 @@
                                         <td>{{$kat->species_kategori_kode}}</td>
                                         <td>{{$kat->species_kategori_name}}</td>
                                         <td>
-                                            <a href=""><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                            <a href="{{route('admin.species.deleteCategory', ['id' => $kat->id])}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
+                                            <a href="{{route('admin.species.editCategory', ['id' => $kat->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                            <a style="color:#3eacff;" onclick="deleteKategori(this)" data-id="{{$kat->id}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -51,3 +51,21 @@
             </div>
     </section>
 @endsection
+
+@push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        function deleteKategori(a) {
+            var id=a.getAttribute('data-id');
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan menghapus kategori spesies ini?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                location.href=id+"/deleteCategory";
+            });
+        }
+    </script>
+@endpush

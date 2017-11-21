@@ -142,5 +142,31 @@ class SpeciesHSController extends Controller
 
         return redirect()->route('admin.species.category')->with('success', 'Data berhasil dihapus.');
     }
+
+    public function editCategory($id){
+        $kategori = Kategori::find($id);
+        return view('admin.species.editCategory',compact('kategori'));
+    }
+
+    public function updateCategory(Request $request, $id){
+        $kategori=Kategori::find($id);
+        $kategori->update([
+            'species_kategori_kode' => $request->get('kategori_kode'),
+            'species_kategori_name' => $request->get('kategori_nama'),
+            ]);
+
     
+        return redirect()->route('admin.species.editCategory', ['id' => $kategori->id])->with('success', 'Data berhasil diubah.');
+    }
+
+    public function storeCategory(Request $request){
+        $kategori=new Kategori([
+            'species_kategori_kode' => $request->get('kategori_kode'),
+            'species_kategori_name' => $request->get('kategori_nama'),
+            ]);
+        $kategori->save();
+       
+        return redirect()->route('admin.species.editCategory', ['id' => $kategori->id])->with('success', 'Data berhasil ditambah.');
+    }
+
 }

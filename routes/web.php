@@ -52,9 +52,12 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
 
+
     Route::get('species/category','SpeciesHSController@showCategory')->name('admin.species.category');
     Route::get('species/createCategory','SpeciesHSController@createCategory')->name('admin.species.createCategory');
+    Route::post('species/createCategory', 'SpeciesHSController@storeCategory')->name('admin.species.storeCategory');
     Route::get('species/{id}/deleteCategory', 'SpeciesHSController@destroyCategory')->name('admin.species.deleteCategory');
-
+    Route::get('species/{id}/editCategory', 'SpeciesHSController@editCategory')->name('admin.species.editCategory');
+    Route::post('species/{id}/editCategory', 'SpeciesHSController@updateCategory')->name('admin.species.updateCategory');
 
 });

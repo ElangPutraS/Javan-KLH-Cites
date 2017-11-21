@@ -1,21 +1,13 @@
 <div class="form-group">
     <label class="control-label">Kode</label>
     <div class="col-sm-14">
-        <input type="text" name="indonesia_name" class="form-control" value="" required>
+        <input type="text" name="kategori_kode" class="form-control" value="{{ old('kategori_kode', array_get($kategori, 'species_kategori_kode')) }}" required>
     </div>
 </div>
 
 <div class="form-group">
     <label class="control-label">Nama Kategori</label>
     <div class="col-sm-14">
-		<div class="dropdown">
-		  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-		  <span class="caret"></span></button>
-		  <ul class="dropdown-menu">
-		    <li><a href="#">HTML</a></li>
-		    <li><a href="#">CSS</a></li>
-		    <li><a href="#">JavaScript</a></li>
-		  </ul>
-		</div>
+        <input type="text" name="kategori_nama" class="form-control" value="{{ old('kategori_nama', array_get($kategori, 'species_kategori_name')) }}" required>
     </div>
 </div>
