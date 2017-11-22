@@ -2,16 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\City;
-use App\Company;
-use App\Country;
-use App\Http\Requests\CompanyStoreRequest;
-use App\Http\Requests\CompanyUpdateRequest;
+use App\Http\Requests\NewsStoreRequest;
+use App\Http\Requests\NewsUpdateRequest;
 use App\Province;
 use App\User;
-use App\UserProfile;
-use App\Role;
-use App\Post;
 use App\News;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -37,13 +31,8 @@ class NewsController extends Controller
      */
     public function create()
     {
-        $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
-        $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
-        $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
 
-        $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
-
-        return view('admin.news.create', compact('users', 'countries', 'provinces', 'cities'));
+        return view('admin.news.create');
     }
 
     /**
@@ -52,7 +41,7 @@ class NewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(NewsStoreRequest $request)
     {
         $news = News::create([
         'kategori' => $request->get('kategori'),
@@ -80,16 +69,11 @@ class NewsController extends Controller
      *
      * @param Company $company
      * @return \Illuminate\Http\Response
-     */
-    public function edit(Company $company)
+     */ 
+    public function edit(News $news)
     {
-        $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
-        $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
-        $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
 
-        $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
-
-        return view('admin.companies.edit', compact('company', 'users', 'countries', 'provinces', 'cities'));
+        return view('admin.news.edit', compact('news'));
     }
 
     /**
@@ -99,41 +83,16 @@ class NewsController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function update(CompanyUpdateRequest $request, Company $company)
+    public function update(NewsUpdateRequest $request, News $news)
     {
-        $company->update([
-            'company_name' => $request->get('company_name'),
-            'company_address' => $request->get('company_address'),
-            'company_email' => $request->get('company_email'),
-            'company_fax' => $request->get('company_fax'),
-            'company_latitude' => $request->get('company_latitude'),
-            'company_longitude' => $request->get('company_longitude'),
-            'company_status' => $request->get('company_status'),
-            'city_id' => $request->get('company_city_id'),
-            'province_id' => $request->get('company_province_id'),
-            'country_id' => $request->get('company_country_id'),
-            'updated_by' => $request->user()->id,
-        ]);
-        $user        = User::find($request->get('user_id'));
-        $user->update([
-            'name' => $request->name,
+
+        $news->update([
+        	'kategori' => $request->get('kategori'),
+        	'judul' => $request->get('judul'),
+        	'isi' => $request->get('isi'),
         ]);
 
-        $user->userProfile()->update(
-            [
-                'place_of_birth' => $request->get('place_birth'),
-                'date_of_birth' => $request->get('date_birth'),
-                'mobile'        => $request->get('mobile'),
-                'address'       => $request->get('address'),
-                'city_id'       => $request->get('city_id'),
-                'province_id'   => $request->get('province_id'),
-                'country_id'   => $request->get('country_id'),
-                'updated_by' => $request->user()->id,
-            ]
-        );
-
-
-        return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('admin.news.index')->with('success', 'Data berhasil disimpan.');
     }
 
     /**
@@ -142,10 +101,10 @@ class NewsController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(News $news)
     {
-        $company->user()->delete();
+        $news->delete();
 
-        return redirect()->route('admin.companies.index')->with('success', 'Data berhasil dihapus.');
+        return redirect()->route('admin.news.index')->with('success', 'Data berhasil dihapus.');
     }
 }
