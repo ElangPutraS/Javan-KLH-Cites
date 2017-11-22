@@ -3,7 +3,7 @@ stages:
 
 deploy_testing_job:
     only:
-        - develop
+        - master
     tags:
         - cloud
     stage: deploy
