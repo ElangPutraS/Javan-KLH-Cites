@@ -26,7 +26,6 @@
                                 <th>Pelabuhan Ekspor</th>
                                 <th>Pelabuhan Tujuan</th>
                                 <th>Status</th>
-                                <th width="150px">Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -40,10 +39,16 @@
                                 <td>{{ $trade_permit->period }} bulan</td>
                                 <td>{{ $trade_permit->portExpor->port_name }}</td>
                                 <td>{{ $trade_permit->portDest->port_name  }}</td>
-                                <td>{{ $trade_permit->tradeStatus->status_name }}</td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="" class="btn btn-sm btn-danger">Hapus</a>
+                                    @if($trade_permit->tradeStatus->status_code==100)
+                                        <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                    @elseif($trade_permit->tradeStatus->status_code==200)
+                                        <span class="badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                    @elseif($trade_permit->tradeStatus->status_code==300)
+                                        <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                    @else
+                                        <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                    @endif
                                 </td>
                             </tr>
                             @empty

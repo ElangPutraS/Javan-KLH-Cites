@@ -15,9 +15,10 @@
 <div class="form-group">
     <label class="control-label">Nomor Identitas</label>
     <div class="col-sm-14">
-        <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user, 'user_type_identify_name')) }}" readonly>
+        <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) }}" readonly>
     </div>
 </div>
+
 
 <div class="form-group">
     <label class="control-label">Nama Usaha</label>
@@ -34,7 +35,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Alamat Usaha</label>
+    <label class="control-label">Nomor Faksimile</label>
     <div class="col-sm-14">
         <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->userProfile->company, 'company_fax')) }}" readonly>
     </div>
