@@ -12,7 +12,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{route('admin.species.updateSpecies', ['id' => Request::segment(3)])}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{route('admin.species.updateSpecies', ['id' => $species->id])}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
 
                         {!! csrf_field() !!}
 
