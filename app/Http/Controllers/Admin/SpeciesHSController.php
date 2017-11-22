@@ -69,7 +69,7 @@ class SpeciesHSController extends Controller
     	}else{
     		$species->appendixSource()->dissociate()->save();
     	}
-    	return redirect()->route('admin.species.editSpecies', ['id' => $species->id])->with('success', 'Data berhasil ditambah.');
+    	return redirect()->route('admin.species.editSpecies', ['id' => $species->id])->with('success', 'Data berhasil diubah.');
     }
 
     public function destroy($id)
@@ -84,7 +84,7 @@ class SpeciesHSController extends Controller
 
     public function showQuota($species_id){
         $species=Species::findOrFail($species_id);
-        $quota=SpeciesQuota::where('species_id',$species_id)->paginate(10);
+        $quota=SpeciesQuota::where('species_id',$species_id)->orderBy('year','desc')->paginate(10);
         return view('admin.species.showquota', compact('species', 'quota'));
     }
 

@@ -450,7 +450,7 @@
             var country=$('#nation').val();
             $.ajax({
                 type: 'get',
-                url: '/getProvince/'+country,
+                url: window.baseUrl +'/getProvince/'+country,
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
@@ -467,7 +467,7 @@
             var province=$('#state').val();
             $.ajax({
                 type: 'get',
-                url: '/getCity/'+province,
+                url: window.baseUrl +'/getCity/'+province,
                 dataType: 'json',
                 success : function (data) {
                     var element='<option value="">--Choose City--</option>';
@@ -483,7 +483,7 @@
             var country=$('#company_nation').val();
             $.ajax({
                 type: 'get',
-                url: '/getProvince/'+country,
+                url: window.baseUrl +'/getProvince/'+country,
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
@@ -500,7 +500,7 @@
             var city=$('#company_state').val();
             $.ajax({
                 type: 'get',
-                url: '/getCity/'+city,
+                url: window.baseUrl +'/getCity/'+city,
                 dataType: 'json',
                 success : function (data) {
                     var element='<option value="">--Choose Company City--</option>';
