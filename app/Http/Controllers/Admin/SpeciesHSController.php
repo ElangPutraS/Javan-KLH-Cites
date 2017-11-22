@@ -7,6 +7,7 @@ use App\Species;
 use App\SpeciesQuota;
 use App\AppendixSource;
 use App\SpeciesSex;
+use App\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SpeciesQuotaRequest;
@@ -121,11 +122,56 @@ class SpeciesHSController extends Controller
 
     public function destroyQuota($species_id, $id)
     {
-        $quota=SpeciesQuota::find($id);
+        $quota=Species::find($id);
         $quota->delete();
 
         return redirect()->route('admin.species.showquota', ['species_id' => $species_id])->with('success', 'Data berhasil dihapus.');
     }
 
+    public function showCategory(){
+
+        $kategori=Kategori::orderBy('species_kategori_name', 'asc')->paginate(10);
+
+        return view('admin.species.category', compact('kategori'));
+    }
+
+    public function createCategory(){
+        return view('admin.species.createCategory');
+    }
+
+    public function destroyCategory($id)
+    {
+        $kategori=Kategori::find($id);
+        $kategori->delete();
+        SpeciesQuota::where('id', $id)->delete();
+
+        return redirect()->route('admin.species.category')->with('success', 'Data berhasil dihapus.');
+    }
+
+    public function editCategory($id){
+        $kategori = Kategori::find($id);
+        return view('admin.species.editCategory',compact('kategori'));
+    }
+
+    public function updateCategory(Request $request, $id){
+        $kategori=Kategori::find($id);
+        $kategori->update([
+            'species_kategori_kode' => $request->get('kategori_kode'),
+            'species_kategori_name' => $request->get('kategori_nama'),
+            ]);
+
     
+        return redirect()->route('admin.species.editCategory', ['id' => $kategori->id])->with('success', 'Data berhasil diubah.');
+    }
+
+    public function storeCategory(Request $request){
+        $kategori=new Kategori([
+            'species_kategori_kode' => $request->get('kategori_kode'),
+            'species_kategori_name' => $request->get('kategori_nama'),
+            ]);
+        $kategori->save();
+       
+        return redirect()->route('admin.species.editCategory', ['id' => $kategori->id])->with('success', 'Data berhasil ditambah.');
+    }
+
 }
