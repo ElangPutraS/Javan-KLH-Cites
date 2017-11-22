@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocumentTypeTable extends Migration
+class CreatePurposeTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDocumentTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('document_type', function (Blueprint $table) {
+        Schema::create('purpose_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('document_type_name');
-            $table->boolean('is_permit');
+            $table->string('purpose_type_code','10');
+            $table->string('purpose_type_name','100');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateDocumentTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('document_type');
+        Schema::dropIfExists('purpose_type');
     }
 }

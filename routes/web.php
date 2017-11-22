@@ -26,11 +26,16 @@ Route::get('/getProvince/{country}', 'LocationController@getProvince');
 Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
+Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
     Route::get('/', 'HomeController@index')->name('dashboard.home.index');
 });
+
+Route::get('submission', 'SubmissionController@index')->name('user.submission.index');
+Route::get('submission/createDirect', 'SubmissionController@showDirect')->name('user.submission.showDirect');
+Route::post('submission/createDirect', 'SubmissionController@storeDirect')->name('user.submission.storeDirect');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
