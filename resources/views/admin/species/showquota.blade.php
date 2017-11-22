@@ -39,7 +39,7 @@
                                     <td>{{$quot->updated_at->toFormattedDateString()}}</td>
                                     <td>
                                         <a href="{{route('admin.species.editquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                        <a href="{{route('admin.species.deletequota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
+                                        <a style="color:#3eacff;" onclick="deleteQuota(this)" data-id="{{$quot->id}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -58,3 +58,20 @@
 
     </section>
 @endsection
+@push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        function deleteQuota(a) {
+            var id=a.getAttribute('data-id');
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan menghapus quota species ini?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                location.href="delete/"+id;
+            });
+        }
+    </script>
+@endpush
