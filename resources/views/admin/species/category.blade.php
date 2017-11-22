@@ -9,13 +9,12 @@
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title"></h2>
-                <h2>DATA MASTER KATEGORI SPESIES</h2>
-                <a href="{{ route('admin.species.createCategory') }}" class="btn btn-primary">Tambah Baru</a>
+
                 <small class="card-subtitle"></small>
             </div>
 
             <div class="card-block">
-
+                <a href="{{ route('admin.species.createCategory') }}" class="btn btn-primary">Tambah Baru</a>
                 @include('includes.notifications')
                 <div class="table-responsive">
                     <table class="table">
