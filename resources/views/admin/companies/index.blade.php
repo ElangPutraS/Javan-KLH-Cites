@@ -61,3 +61,20 @@
         </div>
     </section>
 @endsection
+@push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        function deleteQuota(a) {
+            var id=a.getAttribute('data-id');
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan menghapus quota species ini?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                location.href="delete/"+id;
+            });
+        }
+    </script>
+@endpush

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDocumentTypeTable extends Migration
+class CreateTradePermitStatusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDocumentTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('document_type', function (Blueprint $table) {
+        Schema::create('trade_permit_status', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('document_type_name');
-            $table->boolean('is_permit');
+            $table->string('status_code','10');
+            $table->string('status_name','100');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateDocumentTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('document_type');
+        Schema::dropIfExists('trade_permit_status');
     }
 }

@@ -28,4 +28,10 @@ class Species extends Model
     public function speciesSex(){
         return $this->belongsTo(SpeciesSex::class);
     }
+
+    public function tradeSpecies()
+    {
+        return $this->belongsToMany(TradePermit::class, 'trade_permit_detail')
+            ->withPivot('total_exported');
+    }
 }

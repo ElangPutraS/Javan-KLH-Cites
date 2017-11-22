@@ -10,6 +10,7 @@ class DocumentType extends Model
 
     protected $fillable = [
         'document_type_name',
+        'is_permit',
     ];
 
     public function companies()
@@ -17,5 +18,12 @@ class DocumentType extends Model
         return $this->belongsToMany(Company::class, 'company_document')
             ->withPivot('document_name', 'file_path')
             ->using(CompanyDocument::class);
+    }
+
+    public function tradePermits()
+    {
+        return $this->belongsToMany(TradePermit::class, 'trade_permit_document')
+            ->withPivot('document_name', 'file_path')
+            ->using(TradePermitDocument::class);
     }
 }
