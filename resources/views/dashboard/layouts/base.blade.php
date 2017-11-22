@@ -17,6 +17,10 @@
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
 
+    <script>
+         window.baseUrl = '{{ url('/') }}';
+    </script>
+
     @stack('head.stylesheet')
 </head>
 
