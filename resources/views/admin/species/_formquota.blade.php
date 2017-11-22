@@ -5,7 +5,7 @@
 <div class="form-group">
     <label class="control-label">Tahun</label>
     <div class="col-sm-14">
-        <input type="text" name="year" class="form-control" value="{{ old('year', array_get($quota, 'year')) }}" required>
+        <input type="text" name="year" class="form-control" value="{{ old('year', array_get($quota, 'year')) }}" maxlength="4" required>
     </div>
 </div>
 
