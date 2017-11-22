@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Categories;
 use App\Species;
 use App\SpeciesQuota;
 use App\AppendixSource;
@@ -22,7 +23,8 @@ class SpeciesHSController extends Controller
     public function create(){
     	$appendix=AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex=SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
-    	return view('admin.species.createspecies', compact('appendix', 'species_sex'));
+    	$categories=Categories::orderBy('species_category_name')->pluck('species_category_name','id');
+    	return view('admin.species.createspecies', compact('appendix', 'species_sex', 'categories'));
     }
 
     public function store(Request $request){
@@ -32,6 +34,7 @@ class SpeciesHSController extends Controller
     		'species_general_name' => $request->get('general_name'),
     		'is_appendix' => $request->get('is_appendix'),
     		'species_sex_id' => $request->get('species_sex_id'),
+    		'species_category_id' => $request->get('species_category_id'),
     		]);
     	$species->save();
     	if($request->get('is_appendix')!=0){
@@ -45,7 +48,8 @@ class SpeciesHSController extends Controller
     	$species=Species::find($id);
     	$appendix=AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex=SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
-    	return view('admin.species.editspecies', compact('species', 'appendix', 'species_sex'));
+        $categories=Categories::orderBy('species_category_name')->pluck('species_category_name','id');
+    	return view('admin.species.editspecies', compact('species', 'appendix', 'species_sex','categories'));
     }
 
     public function update(Request $request, $id){
