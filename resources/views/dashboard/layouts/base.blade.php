@@ -77,7 +77,7 @@
 
                 @can('access-pelaku-usaha')
                 <!-- Menu Pelaku Usaha -->
-                <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
+                <li><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
                 <li><a href="{{ route('user.submission.showDirect') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
                 <li><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
                 @endcan
