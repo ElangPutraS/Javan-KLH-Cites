@@ -117,7 +117,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type:'post',
-                        url:'rej/'+id,
+                        url: window.baseUrl +'/admin/verification/rej/'+id,
                         data: 'alasan='+alasan,
                         success : function(cek){
                             location.href='{{url('admin/verification')}}';
