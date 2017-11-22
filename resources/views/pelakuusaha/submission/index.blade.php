@@ -4,15 +4,13 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Daftar Pengajuan SATLN-LS Pengguna</h1>
+                <h1>Daftar Pengajuan SATSL-LN Pengguna</h1>
             </header>
 
             <div class="card">
                 <div class="card-block">
 
                     @include('includes.notifications')
-
-                    <a href="{{ route('admin.companies.create') }}" class="btn btn-primary">Tambah Baru</a>
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm">
@@ -48,7 +46,7 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="6">Data Kosong</td>
+                                <td colspan="9"><center>Data Kosong</center></td>
                             </tr>
                             @endforelse
                             </tbody>

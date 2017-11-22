@@ -4,13 +4,13 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Form Permohonan SATLN Langsung</h1>
+                <h1>Form Permohonan SATSL-LN Langsung</h1>
             </header>
 
             <div class="card">
                 <div class="card-block">
                     <?php
-                       /* $tahun=date('Y');
+                        /*$tahun=date('Y');
                         $tambah=mktime(0,0,0,date('m')+6,date('d')+0,date('Y')+0);
                         $cek=date('Y', $tambah);
                         if($cek>$tahun){
