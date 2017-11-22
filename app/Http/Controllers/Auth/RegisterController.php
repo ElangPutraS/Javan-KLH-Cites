@@ -158,7 +158,7 @@ class RegisterController extends Controller
         $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
         $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
         $user_type_identify = TypeIdentify::orderBy('type_identify_name', 'asc')->pluck('type_identify_name', 'id');
-        $document_type      = DocumentType::orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+        $document_type      = DocumentType::where('is_permit','0')->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         return view('auth.register', compact('countries', 'provinces', 'cities', 'user_type_identify', 'document_type'));
     }
