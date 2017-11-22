@@ -12,7 +12,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{route('admin.species.updateSpecies', ['id' => Request::segment(3)])}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{route('admin.species.updateSpecies', ['id' => $species->id])}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
 
                         {!! csrf_field() !!}
 
@@ -36,8 +36,10 @@
             $('input[name="is_appendix"]').change(function(){
                 if (document.getElementById('is_appendix1').checked) {
                    document.getElementById('showAppendix').style.display='block';
+                    $("#appendix_source_id").attr('required', '');
                 }else if(document.getElementById('is_appendix2').checked){
                     document.getElementById('showAppendix').style.display='none';
+                    $("#appendix_source_id").removeAttr('required');
                 }
             }); 
         });

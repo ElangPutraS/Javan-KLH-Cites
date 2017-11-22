@@ -25,7 +25,7 @@ class SpeciesQuotaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'quota_amount' => 'required|numeric',
+            'quota_amount' => 'required|numeric|digits_between:0,4',
             'year' => [
                 'required', 'numeric',
                 Rule::unique('species_quota')->ignore($this->segment(5)),

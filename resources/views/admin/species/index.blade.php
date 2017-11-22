@@ -30,37 +30,34 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $a=1; ?>
-                        @if(count($species)>0)
-                            @foreach($species as $spec)
-                                <tr>
-                                    <td>{{$a++}}</td>
-                                    <td>{{$spec->species_scientific_name}}</td>
-                                    <td>{{$spec->species_indonesia_name}}</td>
-                                    <td>{{$spec->species_general_name}}</td>
-                                    <td>
-                                        @if($spec->is_appendix!='')
-                                            {{$spec->appendixSource->appendix_source_code}}
-                                        @else
-                                            Tidak Memiliki Appendix
-                                        @endif
-                                    </td>
-                                    <td>{{$spec->speciesSex->sex_name}}</td>
-                                    <td>
-                                        <a href="{{route('admin.species.showquota',['id'=>$spec->id])}}"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
-                                        <a href="{{ route('admin.species.createquota', ['species_id' => $spec->id]) }}"><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i></a>
-                                    </td>
-                                    <td>
-                                        <a href="{{route('admin.species.editSpecies', ['id' => $spec->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                        <a style="color:#3eacff;" onclick="deleteSpecies(this)" data-id="{{$spec->id}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        @else
+                            @forelse($species as $spec)
                             <tr>
-                                <td colspan="8"><center>Data Kosong</center></td>
+                                <td>{{ (($species->currentPage() - 1 ) * $species->perPage() ) + $loop->iteration }}</td>
+                                <td>{{$spec->species_scientific_name}}</td>
+                                <td>{{$spec->species_indonesia_name}}</td>
+                                <td>{{$spec->species_general_name}}</td>
+                                <td>
+                                    @if($spec->is_appendix!='')
+                                        {{$spec->appendixSource->appendix_source_code}}
+                                    @else
+                                        Tidak Memiliki Appendix
+                                    @endif
+                                </td>
+                                <td>{{$spec->speciesSex->sex_name}}</td>
+                                <td>
+                                    <a href="{{route('admin.species.showquota',['id'=>$spec->id])}}"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
+                                    <a href="{{ route('admin.species.createquota', ['species_id' => $spec->id]) }}"><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i></a>
+                                </td>
+                                <td>
+                                    <a href="{{route('admin.species.editSpecies', ['id' => $spec->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                    <a style="color:#3eacff;" onclick="deleteSpecies(this)" data-id="{{$spec->id}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
+                                </td>
                             </tr>
-                        @endif
+                            @empty
+                            <tr>
+                                <td colspan="8">Data Kosong</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
