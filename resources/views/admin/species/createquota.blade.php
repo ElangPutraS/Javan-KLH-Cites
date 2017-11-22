@@ -30,7 +30,4 @@
     </section>
 @endsection
 @push('body.script')
-    <script type="text/javascript">
-        
-    </script>
 @endpush

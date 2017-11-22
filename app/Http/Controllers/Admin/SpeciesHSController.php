@@ -64,7 +64,7 @@ class SpeciesHSController extends Controller
     	}else{
     		$species->appendixSource()->dissociate()->save();
     	}
-    	return redirect()->route('admin.species.editSpecies', ['id' => $species->id])->with('success', 'Data berhasil ditambah.');
+    	return redirect()->route('admin.species.editSpecies', ['id' => $species->id])->with('success', 'Data berhasil diubah.');
     }
 
     public function destroy($id)
