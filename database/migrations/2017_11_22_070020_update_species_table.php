@@ -14,8 +14,8 @@ class UpdateSpeciesTable extends Migration
     public function up()
     {
         Schema::table('species', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->integer('species_category_id')->unsigned();
+            $table->foreign('species_category_id')->references('id')->on('categories');
         });
     }
 

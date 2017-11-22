@@ -59,10 +59,10 @@
 <div class="form-group">
     <label class="control-label">Kategori Species</label>
     <div class="col-sm-14">
-        <select name="species_category" id="species_category" class="form-control select2" required>
+        <select name="species_category_id" id="species_category_id" class="form-control select2" required>
             <option value="">--Pilih Species Category--</option>
             @foreach($categories as $key => $category_name)
-                <option value="{{ $key }}" {{ $key == old('species_category_name', array_get($categories, 'species_category_name')) ? 'selected' : '' }}>{{ $category_name }}</option>
+                <option value="{{ $key }}" {{ $key == old('species_category_id', array_get($species, 'species_category_id')) ? 'selected' : '' }}>{{ $category_name }}</option>
             @endforeach
         </select>
     </div>
