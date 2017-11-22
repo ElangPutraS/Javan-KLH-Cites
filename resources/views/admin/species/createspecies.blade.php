@@ -12,7 +12,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{route('admin.species.storeSpecies')}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                         {!! csrf_field() !!}
 
                         @include('admin.species._formspecies', ['species' => null])
