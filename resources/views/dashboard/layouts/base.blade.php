@@ -94,7 +94,7 @@
                 <!-- Menu Admin -->
                 <li @if(Request::segment(2)=='verification') class="navigation__active" @endif><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-check-all zmdi-hc-fw"></i> Verifikasi Pelaku Usaha</a></li>
                 <li @if(Request::segment(2)=='companies') class="navigation__active" @endif><a href="{{ route('admin.companies.index') }}"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> Kelola Pelaku Usaha</a></li>
-                <li @if(Request::segment(2)=='categories') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
+                <li @if(Request::segment(2)=='category') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
                 <li @if(Request::segment(2)=='species') class="navigation__active" @endif><a href="{{ route('admin.species.index') }}"><i class="zmdi zmdi-flower-alt zmdi-hc-fw"></i> Kelola Spesies dan HS</a></li>
                 <li @if(Request::segment(2)=='ports') class="navigation__active" @endif><a href="{{ route('admin.ports.index') }}"><i class="zmdi zmdi-directions-boat zmdi-hc-fw"></i> Kelola Pelabuhan</a></li>
                 @endcan
