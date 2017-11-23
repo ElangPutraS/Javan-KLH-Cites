@@ -13,7 +13,7 @@ class RenameCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::rename('Categories','category');
+        Schema::rename('categories','category');
     }
 
     /**
