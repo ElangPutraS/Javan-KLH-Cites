@@ -45,6 +45,8 @@
                                             <input type="hidden" name="_method" value="DELETE">
                                         </form>
                                     </a>
+                                    <!--a class="btn btn-sm btn-primary" href="{{ route('admin.ports.edit', $port) }}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i> Edit</a>
+                                    <a class="btn btn-sm btn-danger delete-data" style="color: #fff" data-id="{{ $port->id }}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> Delete</a-->
                                 </td>
                             </tr>
                             @empty
@@ -63,3 +65,11 @@
         </div>
     </section>
 @endsection
+@push('body.script')
+    <script src="{{ asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            var APP_URL = {!! json_encode(url('/')) !!};
+        });
+    </script>
+@endpush
