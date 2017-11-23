@@ -58,9 +58,9 @@ class NewsController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(News $news)
     {
-        //
+        return view('admin.news.preview', compact('news'));
     }
 
     /**
