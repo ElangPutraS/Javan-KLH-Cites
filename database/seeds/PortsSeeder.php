@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Ports;
+use Faker\Factory as Faker;
 
 class PortsSeeder extends Seeder
 {
@@ -12,29 +12,23 @@ class PortsSeeder extends Seeder
      */
     public function run()
     {
-        Ports::create([
-            'port_code' => 'IDAAS',
-            'port_name' => 'Apalapsili',
-        ]);
+        //
+    	DB::transaction(function () {
+        	DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        	DB::statement('TRUNCATE TABLE ports');
 
-        Ports::create([
-            'port_code' => 'IDABU',
-            'port_name' => 'Atambua',
-        ]);
+            $jsonData = json_decode(File::get(database_path('json/ports.json')), JSON_OBJECT_AS_ARRAY);
+        	$faker = Faker::create();
 
-        Ports::create([
-            'port_code' => 'IDADB',
-            'port_name' => 'Adang Bay',
-        ]);
-
-        Ports::create([
-            'port_code' => 'IDAEG',
-            'port_name' => 'Aekgodang',
-        ]);
-
-        Ports::create([
-            'port_code' => 'IDAGD',
-            'port_name' => 'Anggi',
-        ]);
+        	foreach ($jsonData as $key => $item) {
+        		//DB::table('ports')->insert($item);
+        		DB::table('ports')->insert([
+        			'port_code' => $item['port_code'],
+        			'port_name' => $item['port_name'],
+        			'created_at' => $faker->dateTime(),
+        			'updated_at' => date('Y-m-d h:i:s')
+        		]);
+        	}
+        });
     }
 }
