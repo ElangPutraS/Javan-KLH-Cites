@@ -25,7 +25,7 @@ class SpeciesQuotaRequest extends FormRequest
     public function rules()
     {
         return [
-            'quota_amount' => 'required|numeric|digits_between:0,11',
+            'quota_amount' => 'required|numeric|digits_between:0,9',
             'year' => [
                 'required', 'numeric', 'digits_between:0,4',
                 Rule::unique('species_quota')->where(function ($query) {
