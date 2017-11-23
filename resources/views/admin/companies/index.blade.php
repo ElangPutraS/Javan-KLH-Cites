@@ -67,7 +67,7 @@
         function deleteCompany(a) {
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menghapus quota species ini?',
+                text: 'Akan menghapus data perusahaan ini?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
