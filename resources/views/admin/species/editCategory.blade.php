@@ -4,7 +4,7 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Edit Species</h1>
+                <h1>Edit Kategori</h1>
             </header>
 
             <div class="card">
