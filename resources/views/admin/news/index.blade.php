@@ -37,7 +37,7 @@
                                 <td>{{ $newss->updated_at->toFormattedDateString() }}</td>
                                 <td>{{ $newss->user->name }}</td>
                                 <td>
-                                    <a href="{{ route('admin.news.show', $newss) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
+                                    <a href="{{ route('admin.news.show', $newss) }}" class="btn btn-sm btn-warning"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
                                     <a href="{{ route('admin.news.edit', $newss) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
                                     <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">
                                         <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
