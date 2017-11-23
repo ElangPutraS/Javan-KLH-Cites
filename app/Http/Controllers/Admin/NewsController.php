@@ -44,9 +44,8 @@ class NewsController extends Controller
     public function store(NewsStoreRequest $request)
     {
         $news = News::create([
-        'kategori' => $request->get('kategori'),
-        'judul' => $request->get('judul'),
-        'isi' => $request->get('isi'),
+        'title' => $request->get('title'),
+        'content' => $request->get('content'),
         'user_id' =>$request->user()->id
         ]);
 
@@ -59,9 +58,9 @@ class NewsController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(News $news)
     {
-        //
+        return view('admin.news.preview', compact('news'));
     }
 
     /**
@@ -87,9 +86,8 @@ class NewsController extends Controller
     {
 
         $news->update([
-        	'kategori' => $request->get('kategori'),
-        	'judul' => $request->get('judul'),
-        	'isi' => $request->get('isi'),
+        	'title' => $request->get('title'),
+        	'content' => $request->get('content'),
         ]);
 
         return redirect()->route('admin.news.index')->with('success', 'Data berhasil disimpan.');

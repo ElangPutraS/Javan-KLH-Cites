@@ -24,9 +24,8 @@ class NewsStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'kategori'         => 'required',
-            'judul'            => 'required',
-            'isi'              => 'required',
+            'title'            => 'required',
+            'content'              => 'required',
 
 
         ];

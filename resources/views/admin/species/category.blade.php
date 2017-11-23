@@ -3,7 +3,7 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Daftar Kategori Species</h1>
+            <h1>Daftar Spesies & HS</h1>
         </header>
 
         <div class="card">
@@ -15,9 +15,8 @@
 
             <div class="card-block">
                 <a href="{{ route('admin.species.createCategory') }}" class="btn btn-primary">Tambah Baru</a>
-                <hr>
                 @include('includes.notifications')
-                <div class="table-responsive table-bordered table-sm">
+                <div class="table-responsive">
                     <table class="table">
                         <thead class="thead-default">
                         <tr>
@@ -32,8 +31,8 @@
                                 <tr>
                                     <td>{{$cat->species_category_code}}</td>
                                     <td>{{$cat->species_category_name}}</td>
-                                    <td><a href="{{route('admin.species.editCategory', ['id' => $cat->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                        <a onclick="deleteKategori(this)" data-id="{{$cat->id}}" class="btn btn-sm btn-danger" style="color:white;" ><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a></td>
+                                    <td><a href="{{route('admin.species.editCategory', ['id' => $cat->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                        <a onclick="deleteKategori(this)" data-id="{{$cat->id}}" style="color:#3eacff;"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a></td>
                                 </tr>
                             @empty
                             <tr>

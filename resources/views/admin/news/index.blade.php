@@ -19,7 +19,6 @@
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No</th>
-                                <th width="150px">Kategori</th>
                                 <th width="150px">Judul</th>
                                 <th width="300px">Isi</th>
                                 <th width="150px">Tanggal Buat</th>
@@ -32,16 +31,16 @@
                             @forelse($news as $newss)
                             <tr>
                                 <td>{{ (($news->currentPage() - 1 ) * $news->perPage() ) + $loop->iteration }}</td>
-                                <td>{{ $newss->kategori }}</td>
-                                <td>{{ $newss->judul }}</td>
-                                <td>{{ $newss->isi }}</td>
+                                <td>{{ $newss->title }}</td>
+                                <td>{{ $newss->content }}</td>
                                 <td>{{ $newss->created_at->toFormattedDateString() }}</td>
                                 <td>{{ $newss->updated_at->toFormattedDateString() }}</td>
                                 <td>{{ $newss->user->name }}</td>
                                 <td>
-                                    <a href="{{ route('admin.news.edit', $newss) }}" class="btn btn-sm btn-primary">Edit</a>
+                                    <a href="{{ route('admin.news.show', $newss) }}" class="btn btn-sm btn-warning"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
+                                    <a href="{{ route('admin.news.edit', $newss) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
                                     <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">
-                                        Hapus
+                                        <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                         <form action="{{ route('admin.news.destroy', $newss) }}" method="post">
                                             {!! csrf_field() !!}
                                             <input type="hidden" name="_method" value="DELETE">
