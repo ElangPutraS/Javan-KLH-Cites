@@ -45,8 +45,6 @@
                                             <input type="hidden" name="_method" value="DELETE">
                                         </form>
                                     </a>
-                                    <!--a class="btn btn-sm btn-primary" href="{{ route('admin.ports.edit', $port) }}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i> Edit</a>
-                                    <a class="btn btn-sm btn-danger delete-data" style="color: #fff" data-id="{{ $port->id }}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i> Delete</a-->
                                 </td>
                             </tr>
                             @empty
@@ -66,10 +64,19 @@
     </section>
 @endsection
 @push('body.script')
-    <script src="{{ asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js') }}"></script>
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
-        $(document).ready(function () {
-            var APP_URL = {!! json_encode(url('/')) !!};
-        });
+        function deleteSpecies(a) {
+            var id=a.getAttribute('data-id');
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan menghapus species ini?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                location.href="species/"+id+"/delete";
+            });
+        }
     </script>
 @endpush
