@@ -28,20 +28,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($news as $newss)
+                            @forelse($news as $News)
                             <tr>
                                 <td>{{ (($news->currentPage() - 1 ) * $news->perPage() ) + $loop->iteration }}</td>
-                                <td>{{ $newss->title }}</td>
-                                <td>{{ $newss->content }}</td>
-                                <td>{{ $newss->created_at->toFormattedDateString() }}</td>
-                                <td>{{ $newss->updated_at->toFormattedDateString() }}</td>
-                                <td>{{ $newss->user->name }}</td>
+                                <td>{{ $News->title }}</td>
+                                <td>{{ $News->content }}</td>
+                                <td>{{ $News->created_at->toFormattedDateString() }}</td>
+                                <td>{{ $News->updated_at->toFormattedDateString() }}</td>
+                                <td>{{ $News->user->name }}</td>
                                 <td>
-                                    <a href="{{ route('admin.news.show', $newss) }}" class="btn btn-sm btn-warning"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
-                                    <a href="{{ route('admin.news.edit', $newss) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                    <a href="{{ route('admin.news.show', $News) }}" class="btn btn-sm btn-warning"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
+                                    <a href="{{ route('admin.news.edit', $News) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
                                     <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">
                                         <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
-                                        <form action="{{ route('admin.news.destroy', $newss) }}" method="post">
+                                        <form action="{{ route('admin.news.destroy', $News) }}" method="post">
                                             {!! csrf_field() !!}
                                             <input type="hidden" name="_method" value="DELETE">
                                         </form>
