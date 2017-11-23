@@ -15,7 +15,7 @@ class CategoriesController extends Controller
     }
 
     public function create(){
-        return view('admin.species.createCategory');
+        return view('admin.species.createcategory');
     }
 
     public function store(Request $request){
