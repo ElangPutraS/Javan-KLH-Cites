@@ -45,12 +45,12 @@
                                 </td>
                                 <td>{{$spec->speciesSex->sex_name}}</td>
                                 <td>
-                                    <a href="{{route('admin.species.showquota',['id'=>$spec->id])}}"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
-                                    <a href="{{ route('admin.species.createquota', ['species_id' => $spec->id]) }}"><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i></a>
+                                    <a href="{{route('admin.species.showquota',['id'=>$spec->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
+                                    <a href="{{ route('admin.species.createquota', ['species_id' => $spec->id]) }}" class="btn btn-sm btn-success"><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i></a>
                                 </td>
                                 <td>
-                                    <a href="{{route('admin.species.editSpecies', ['id' => $spec->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                    <a style="color:#3eacff;" onclick="deleteSpecies(this)" data-id="{{$spec->id}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
+                                    <a href="{{route('admin.species.editSpecies', ['id' => $spec->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                    <a onclick="deleteSpecies(this)" data-id="{{$spec->id}}" class="btn btn-sm btn-danger" style="color:white;"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                 </td>
                             </tr>
                             @empty

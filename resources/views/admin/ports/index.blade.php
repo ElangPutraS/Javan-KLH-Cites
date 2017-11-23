@@ -37,9 +37,9 @@
                                 <td>{{ $port->created_at->toFormattedDateString() }}</td>
                                 <td>{{ $port->updated_at->toFormattedDateString() }}</td>
                                 <td>
-                                    <a href="{{ route('admin.ports.edit', $port) }}" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">
-                                        Hapus
+                                    <a href="{{ route('admin.ports.edit', $port) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                    <a href="javascript:void(0);" onclick="deletePort(this)" class="btn btn-sm btn-danger">
+                                        <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                         <form action="{{ route('admin.ports.destroy', $port) }}" method="post">
                                             {!! csrf_field() !!}
                                             <input type="hidden" name="_method" value="DELETE">
@@ -63,3 +63,19 @@
         </div>
     </section>
 @endsection
+@push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        function deletePort(a) {
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan menghapus quota species ini?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                $(a).find('form').submit();
+            });
+        }
+    </script>
+@endpush
