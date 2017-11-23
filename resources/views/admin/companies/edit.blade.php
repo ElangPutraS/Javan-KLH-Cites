@@ -72,7 +72,7 @@ foreach ($document_type as $key=>$dt){
             var country=$('#country_id').val();
             $.ajax({
                 type: 'get',
-                url: '/getProvince/'+country,
+                url:  window.baseUrl +'/getProvince/'+country,
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
@@ -89,7 +89,7 @@ foreach ($document_type as $key=>$dt){
             var province=$('#province_id').val();
             $.ajax({
                 type: 'get',
-                url: '/getCity/'+province,
+                url:  window.baseUrl +'/getCity/'+province,
                 dataType: 'json',
                 success : function (data) {
                     var element='<option value="">--Pilih Kota--</option>';
@@ -105,7 +105,7 @@ foreach ($document_type as $key=>$dt){
             var country=$('#company_country_id').val();
             $.ajax({
                 type: 'get',
-                url: '/getProvince/'+country,
+                url:  window.baseUrl +'/getProvince/'+country,
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
@@ -122,7 +122,7 @@ foreach ($document_type as $key=>$dt){
             var city=$('#company_province_id').val();
             $.ajax({
                 type: 'get',
-                url: '/getCity/'+city,
+                url:  window.baseUrl +'/getCity/'+city,
                 dataType: 'json',
                 success : function (data) {
                     var element='<option value="">--Pilih Kota Perusahaan--</option>';

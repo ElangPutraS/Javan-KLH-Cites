@@ -26,8 +26,8 @@
     <label class="control-label">Memiliki Appendiks ?</label>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="is_appendix">
-            <label class="btn bg-light-blue waves-effect {{ '1' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : '' }}"><input type="radio" id="is_appendix1" name="is_appendix" value="1" autocomplete="off" required></label>Ya &nbsp;&nbsp;&nbsp;
-            <label class="btn bg-red waves-effect {{ '0' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : '' }}"><input type="radio" id="is_appendix2" name="is_appendix" value="0" autocomplete="off" required></label>Tidak
+            <label class="btn bg-light-blue waves-effect {{ '1' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : '' }}"><input type="radio" id="is_appendix1" name="is_appendix" value="1" autocomplete="off" {{ '1' == old('is_appendix', array_get($species, 'is_appendix')) ? 'checked' : '' }} required></label>Ya &nbsp;&nbsp;&nbsp;
+            <label class="btn bg-red waves-effect {{ '0' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : '' }}"><input type="radio" id="is_appendix2" name="is_appendix" value="0" autocomplete="off" {{ '0' == old('is_appendix', array_get($species, 'is_appendix')) ? 'checked' : '' }} required></label>Tidak
         </div>
     </div>
 </div>

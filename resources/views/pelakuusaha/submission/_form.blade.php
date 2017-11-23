@@ -180,7 +180,7 @@
 
                 $.ajax({
                     type:'get',
-                    url:'/getSpecies/'+syarat,
+                    url: window.baseUrl + '/getSpecies/'+syarat,
                     dataType: 'json',
                     success : function(data){
                         var element='';
