@@ -15,9 +15,8 @@ class CreateNewsTable extends Migration
     {
         Schema::create('news', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('kategori');
-            $table->string('judul');
-            $table->text('isi')->nullable();
+            $table->string('title');
+            $table->text('content')->nullable();
 
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
