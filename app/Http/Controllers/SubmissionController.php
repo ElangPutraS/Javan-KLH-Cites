@@ -57,6 +57,11 @@ class SubmissionController extends Controller
         ]);
         $trade_permit->save();
 
+        //susun kode trade permit
+        $trade_permit->update([
+            'trade_permit_code'  => $this->create_kode($trade_permit->id),
+        ]);
+
         //relasi
         $company=Company::find($request->user()->company->id);
         $company->tradePermits()->save($trade_permit);
@@ -92,12 +97,6 @@ class SubmissionController extends Controller
 
         //save spesimen trade permit
         foreach ($request->quantity as $key => $quantity) {
-
-            /**
-             * @var \Illuminate\Http\UploadedFile $file
-             */
-            $file_path = $file->store('/upload/file/trade_document');
-
             $species = Species::find($request->get('species_id')[$key]);
 
             $trade_permit->tradeSpecies()->attach($species, [
@@ -118,5 +117,42 @@ class SubmissionController extends Controller
 
     public function destroy(){
 
+    }
+
+    public function create_kode($id){
+        $kode=$id;
+
+        $bulan=date('m');
+        $month="";
+        switch ($bulan){
+            case 1: $month='I';
+                    break;
+            case 2: $month='II';
+                break;
+            case 3: $month='III';
+                break;
+            case 4: $month='IV';
+                break;
+            case 5: $month='V';
+                break;
+            case 6: $month='VI';
+                break;
+            case 7: $month='VII';
+                break;
+            case 8: $month='VIII';
+                break;
+            case 9: $month='IX';
+                break;
+            case 10: $month='X';
+                break;
+            case 11: $month='XI';
+                break;
+            case 12: $month='XII';
+                break;
+        }
+
+        $kode.='/'.$month.'/SATSL-LN/'.date('Y');
+
+        return $kode;
     }
 }

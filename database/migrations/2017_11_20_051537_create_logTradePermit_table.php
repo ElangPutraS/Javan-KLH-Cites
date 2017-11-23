@@ -14,6 +14,7 @@ class CreateLogTradePermitTable extends Migration
     public function up()
     {
         Schema::create('log_trade_permit', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('trade_permit_id')->unsigned()->nullable();
             $table->foreign('trade_permit_id')
                 ->references('id')->on('trade_permit')

@@ -79,13 +79,7 @@ class UserVerificationController extends Controller
             'company_status' => 1
         ]);
 
-        return redirect()->route('admin.verification.index')->with(
-            'alert',
-            [
-                'alert'   => 'success',
-                'message' => 'Data berhasil dikonfirmasi.',
-            ]
-        );
+        return redirect()->route('admin.verification.index')->with('success', 'Data berhasil diverifikasi.');
     }
 
     /**

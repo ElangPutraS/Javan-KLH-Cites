@@ -13,13 +13,9 @@
             </div>
 
             <div class="card-block">
-                @if(session('alert'))
-                <div class="alert alert-{{session('alert')['alert']}} alert-dismissible fade show">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button><a href="#" class="alert-link">{{session('alert')['message']}}</a>.
-                </div>
-                @endif
+
+                @include('includes.notifications')
+
                 <div class="table-responsive">
                     <table id="data-table" class="table table-bordered">
                         <thead class="thead-default">
