@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLogTradePermitTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateLogTradePermitTable extends Migration
      */
     public function up()
     {
-        Schema::create('log_trade_permit', function (Blueprint $table) {
+        Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('trade_permit_id')->unsigned()->nullable();
-            $table->foreign('trade_permit_id')
-                ->references('id')->on('trade_permit')
-                ->onDelete('cascade');
-            $table->text('log_description');
+            $table->string('species_category_code');
+            $table->string('species_category_name');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateLogTradePermitTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('log_trade_permit');
+        Schema::dropIfExists('categories');
     }
 }
