@@ -30,7 +30,7 @@ class SpeciesQuotaUpdateRequest extends FormRequest
                 'required', 'numeric', 'digits_between:0,4',
                  Rule::unique('species_quota')->where(function ($query) {
                      return $query->where('species_id', $this->route('species_id'));
-                 })->ignore($this->segment(5)),
+                 })->ignore( $this->route('id')),
             ],
         ];
     }
