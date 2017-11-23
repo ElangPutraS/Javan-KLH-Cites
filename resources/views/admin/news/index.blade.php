@@ -19,7 +19,6 @@
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No</th>
-                                <th width="150px">Kategori</th>
                                 <th width="150px">Judul</th>
                                 <th width="300px">Isi</th>
                                 <th width="150px">Tanggal Buat</th>
@@ -32,9 +31,8 @@
                             @forelse($news as $newss)
                             <tr>
                                 <td>{{ (($news->currentPage() - 1 ) * $news->perPage() ) + $loop->iteration }}</td>
-                                <td>{{ $newss->kategori }}</td>
-                                <td>{{ $newss->judul }}</td>
-                                <td>{{ $newss->isi }}</td>
+                                <td>{{ $newss->title }}</td>
+                                <td>{{ $newss->content }}</td>
                                 <td>{{ $newss->created_at->toFormattedDateString() }}</td>
                                 <td>{{ $newss->updated_at->toFormattedDateString() }}</td>
                                 <td>{{ $newss->user->name }}</td>

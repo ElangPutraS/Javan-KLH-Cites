@@ -10,9 +10,8 @@ class News extends Model
     protected $table = "news";
 
     protected $fillable = [
-        'kategori',
-        'judul',
-        'isi',
+        'title',
+        'content',
         'user_id',
     ];
 
