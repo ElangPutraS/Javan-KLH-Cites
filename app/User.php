@@ -69,4 +69,9 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function news()
+    {
+        return $this->hasMany(News::class);
+    }
 }

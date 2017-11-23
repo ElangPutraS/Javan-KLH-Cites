@@ -4,7 +4,7 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tambah Pelaku Usaha</h1>
+                <h1>Tambah Informasi</h1>
             </header>
 
             <div class="card">
@@ -12,15 +12,15 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.companies.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{ route('admin.news.store') }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('admin.companies._form', ['company' => null])
+                        @include('admin.news._form', ['news' => null])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
                                 <button type="submit" class="btn btn-primary">Simpan Baru</button>
-                                <a href="{{ route('admin.companies.index') }}" class="btn btn-default">Batal</a>
+                                <a href="{{ route('admin.news.index') }}" class="btn btn-default">Batal</a>
                             </div>
                         </div>
                     </form>
@@ -29,12 +29,6 @@
         </div>
     </section>
 @endsection
-<?php
-    $doc_type='';
-    foreach ($document_type as $key=>$dt){
-        $doc_type.='<option value="'.$key.'">'.$dt.'</option>';
-    }
-?>
 @push('body.script')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <script type="text/javascript">
@@ -69,84 +63,37 @@
         }
         google.maps.event.addDomListener(window, 'load', initialize);
 
-        function getState(a) {
-            var country=$('#country_id').val();
-            $.ajax({
-                type: 'get',
-                url:  window.baseUrl +'/getProvince/'+country,
-                dataType: 'json',
-                success : function (data) {
-                    //alert(data);
-                    var element='<option value="">--Pilih Provinsi--</option>';
-                    for(var i=0; i<data.length; i++){
-                        element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
-                    }
-                    $('#province_id').html(element);
-                }
-            });
-        }
-
-        function getCity(a) {
-            var province=$('#province_id').val();
-            $.ajax({
-                type: 'get',
-                url:  window.baseUrl +'/getCity/'+province,
-                dataType: 'json',
-                success : function (data) {
-                    var element='<option value="">--Pilih Kota--</option>';
-                    for(var i=0; i<data.length; i++){
-                        element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
-                    }
-                    $('#city_id').html(element);
-                }
-            });
-        }
-
         function getStateCompany(a) {
-            var country=$('#company_country_id').val();
+            var country=$('#company_nation').val();
             $.ajax({
                 type: 'get',
-                url:  window.baseUrl +'/getProvince/'+country,
+                url: '/getProvince/'+country,
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
-                    var element='<option value="">--Pilih Provinsi Perusahaan--</option>';
+                    var element='<option value="">--Choose Company State--</option>';
                     for(var i=0; i<data.length; i++){
                         element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
                     }
-                    $('#company_province_id').html(element);
+                    $('#company_state').html(element);
                 }
             });
         }
 
         function getCityCompany(a) {
-            var city=$('#company_province_id').val();
+            var city=$('#company_state').val();
             $.ajax({
                 type: 'get',
-                url:  window.baseUrl +'/getCity/'+city,
+                url: '/getCity/'+city,
                 dataType: 'json',
                 success : function (data) {
-                    var element='<option value="">--Pilih Kota Perusahaan--</option>';
+                    var element='<option value="">--Choose Company City--</option>';
                     for(var i=0; i<data.length; i++){
                         element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
                     }
-                    $('#company_city_id').html(element);
+                    $('#company_city').html(element);
                 }
             });
-        }
-        
-        function tambahForm(a) {
-            var form='<div id="dynamic"><div class="form-group"><label class="control-label">Dokumen</label><div class="row">';
-            form +='<div class="col-sm-10"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Choose Document Type--</option>';
-            form +='<?=$doc_type?>';
-            form +='</select></div><div class="col-sm-2"><button onclick="hapusForm(this)" class="btn btn-danger">X</button></div></div></div>';
-            form +='<div class="form-group"><label class="control-label"></label><div class="col-sm-14"><input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" required></div></div></div>';
-            $('#form-dynamic').append(form);
-        }
-
-        function hapusForm(a) {
-            //alert('cek');
-            a.closest('#dynamic').remove();
         }
     </script>
 @endpush

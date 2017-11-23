@@ -57,4 +57,5 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
     Route::resource('ports', 'PortController', ['as' => 'admin']);
+   	Route::resource('news', 'NewsController', ['as' => 'admin']);
 });
