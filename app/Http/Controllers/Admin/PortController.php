@@ -44,7 +44,7 @@ class PortController extends \App\Http\Controllers\Controller {
 			'port_name' => $request->get('port_name')
 		]);
 
-		return redirect()->route('admin.ports.edit', $port)->with('success', 'Data berhasil disimpan.');
+		return redirect()->route('admin.ports.edit', $port)->with('success', 'Data berhasil diubah.');
 	}
 
 	public function destroy(Ports $port) {
