@@ -12,8 +12,8 @@ class PortUpdateRequest extends FormRequest {
 
 	public function rules() {
 		return [
-			'port_code' => 'required|string|min:3',
-			'port_name' => 'required|string|min:3'
+			'port_code' => 'required|string|min:3|max:10',
+			'port_name' => 'required|string|min:3|max:100'
 		];
 	}
 }
