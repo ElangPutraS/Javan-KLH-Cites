@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Categories;
+use App\Category;
 use App\Species;
 use App\SpeciesQuota;
 use App\AppendixSource;
 use App\SpeciesSex;
-use App\Kategori;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SpeciesQuotaRequest;
@@ -24,7 +23,7 @@ class SpeciesHSController extends Controller
     public function create(){
     	$appendix=AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex=SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
-    	$categories=Categories::orderBy('species_category_name')->pluck('species_category_name','id');
+    	$categories=Category::orderBy('species_category_name')->pluck('species_category_name','id');
     	return view('admin.species.createspecies', compact('appendix', 'species_sex', 'categories'));
     }
 
@@ -49,7 +48,7 @@ class SpeciesHSController extends Controller
     	$species=Species::find($id);
     	$appendix=AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex=SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
-        $categories=Categories::orderBy('species_category_name')->pluck('species_category_name','id');
+        $categories=Category::orderBy('species_category_name')->pluck('species_category_name','id');
     	return view('admin.species.editspecies', compact('species', 'appendix', 'species_sex','categories'));
     }
 
@@ -126,52 +125,6 @@ class SpeciesHSController extends Controller
         $quota->delete();
 
         return redirect()->route('admin.species.showquota', ['species_id' => $species_id])->with('success', 'Data berhasil dihapus.');
-    }
-
-    public function showCategory(){
-
-        $kategori=Kategori::orderBy('species_kategori_name', 'asc')->paginate(10);
-
-        return view('admin.species.category', compact('kategori'));
-    }
-
-    public function createCategory(){
-        return view('admin.species.createCategory');
-    }
-
-    public function destroyCategory($id)
-    {
-        $kategori=Kategori::find($id);
-        $kategori->delete();
-        SpeciesQuota::where('id', $id)->delete();
-
-        return redirect()->route('admin.species.category')->with('success', 'Data berhasil dihapus.');
-    }
-
-    public function editCategory($id){
-        $kategori = Kategori::find($id);
-        return view('admin.species.editCategory',compact('kategori'));
-    }
-
-    public function updateCategory(Request $request, $id){
-        $kategori=Kategori::find($id);
-        $kategori->update([
-            'species_kategori_kode' => $request->get('kategori_kode'),
-            'species_kategori_name' => $request->get('kategori_nama'),
-            ]);
-
-    
-        return redirect()->route('admin.species.editCategory', ['id' => $kategori->id])->with('success', 'Data berhasil diubah.');
-    }
-
-    public function storeCategory(Request $request){
-        $kategori=new Kategori([
-            'species_kategori_kode' => $request->get('kategori_kode'),
-            'species_kategori_name' => $request->get('kategori_nama'),
-            ]);
-        $kategori->save();
-       
-        return redirect()->route('admin.species.editCategory', ['id' => $kategori->id])->with('success', 'Data berhasil ditambah.');
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Categories;
+use App\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -10,7 +10,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-       $categories =Categories::orderBy('species_category_code','asc')->paginate(10);
+       $categories =Category::orderBy('species_category_code','asc')->paginate(10);
        return view('admin.species.category', compact('categories'));
     }
 
@@ -19,7 +19,7 @@ class CategoriesController extends Controller
     }
 
     public function store(Request $request){
-        $categories=new Categories([
+        $categories=new Category([
             'species_category_code' => $request->get('category_code'),
             'species_category_name' => $request->get('category_name'),
         ]);
@@ -29,12 +29,12 @@ class CategoriesController extends Controller
     }
 
     public function edit($id){
-        $categories=Categories::find($id);
+        $categories=Category::find($id);
         return view('admin.species.editCategory',compact('categories'));
     }
 
     public function update(Request $request, $id){
-        $categories=Categories::find($id);
+        $categories=Category::find($id);
         $categories->update([
             'species_category_code' => $request->get('category_code'),
             'species_category_name' => $request->get('category_name'),
@@ -44,7 +44,7 @@ class CategoriesController extends Controller
 
     public function destroy($id)
     {
-        $categories=Categories::find($id);
+        $categories=Category::find($id);
         $categories->delete();
 
         return redirect()->route('admin.species.category')->with('success', 'Data berhasil dihapus.');
