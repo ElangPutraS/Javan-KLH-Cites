@@ -60,7 +60,7 @@
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href="categories/"+id+"/deleteCategory";
+                location.href="category/"+id+"/deleteCategory";
             });
         }
     </script>
