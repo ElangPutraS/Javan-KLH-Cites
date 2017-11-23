@@ -52,6 +52,6 @@ class PortController extends \App\Http\Controllers\Controller {
 
 		DB::statement('ALTER TABLE ports AUTO_INCREMENT = 1');
 
-		return redirect()->route('admin.ports.index')->with('Data berhasil dihapus.');
+		return redirect()->route('admin.ports.index')->with('success', 'Data berhasil dihapus.');
 	}
 }

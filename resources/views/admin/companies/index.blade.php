@@ -14,6 +14,8 @@
 
                     <a href="{{ route('admin.companies.create') }}" class="btn btn-primary">Tambah Baru</a>
 
+                    <hr>
+
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm">
                             <thead class="thead-default">
@@ -35,9 +37,9 @@
                                 <td>{{ $company->created_at->toFormattedDateString() }}</td>
                                 <td>{{ $company->updated_at->toFormattedDateString() }}</td>
                                 <td>
-                                    <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-sm btn-primary">Edit</a>
-                                    <a href="javascript:void(0);" onclick="confirm('Anda ingin menghapus data ini?') ? $(this).find('form').submit() : false" class="btn btn-sm btn-danger">
-                                        Hapus
+                                    <a href="{{ route('admin.companies.edit', $company) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                    <a href="javascript:void(0);" onclick="deleteCompany(this)" class="btn btn-sm btn-danger">
+                                        <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
                                         <form action="{{ route('admin.companies.destroy', $company) }}" method="post">
                                             {!! csrf_field() !!}
                                             <input type="hidden" name="_method" value="DELETE">
@@ -64,16 +66,15 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
-        function deleteQuota(a) {
-            var id=a.getAttribute('data-id');
+        function deleteCompany(a) {
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menghapus quota species ini?',
+                text: 'Akan menghapus data perusahaan ini?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href="delete/"+id;
+                $(a).find('form').submit();
             });
         }
     </script>
