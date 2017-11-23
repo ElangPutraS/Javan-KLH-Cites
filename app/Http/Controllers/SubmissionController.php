@@ -29,7 +29,7 @@ class SubmissionController extends Controller
         $user=User::find(Auth::id());
 
         $trading_types=TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
-        $purpose_types=PurposeType::orderBy('purpose_type_name', 'asc')->pluck('purpose_type_name', 'id');
+        $purpose_types=PurposeType::pluck('purpose_type_name', 'id');
         $ports=Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
         $document_types=DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
