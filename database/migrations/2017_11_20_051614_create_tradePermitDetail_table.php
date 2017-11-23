@@ -14,7 +14,6 @@ class CreateTradePermitDetailTable extends Migration
     public function up()
     {
         Schema::create('trade_permit_detail', function (Blueprint $table) {
-            $table->increments('id');
             $table->integer('total_exported');
             $table->integer('trade_permit_id')->unsigned()->nullable();
             $table->foreign('trade_permit_id')
@@ -24,7 +23,6 @@ class CreateTradePermitDetailTable extends Migration
             $table->foreign('species_id')
                 ->references('id')->on('species')
                 ->onDelete('cascade');
-            $table->timestamps();
         });
     }
 
