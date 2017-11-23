@@ -214,8 +214,8 @@
                 form+='<div class="form-group" id="formSpecies-'+a.getAttribute('value')+'"><label class="control-label">Jumlah</label>';
                 form+='<p style="font-size: smaller"> Nama Spesimen : '+a.getAttribute('data-indonesia')+' (<i>'+a.getAttribute('data-scientific')+'</i>) | Jenis Kelamin : '+a.getAttribute('data-jk')+'</p>';
                 form+='<div class="col-sm-14">';
-                form+='<input type="hidden" min="0" name="species_id[]" class="form-control" value="{{ old('species_id[]') }}">';
-                form+='<input type="number" min="0" name="quantity[]" class="form-control" value="{{ old('quantity[]') }}" required>';
+                form+='<input type="hidden" name="species_id[]" class="form-control" value="'+a.getAttribute('value')+'">';
+                form+='<input type="number" min="0" name="quantity[]" class="form-control" value="{{ old('quantity[]') ?? '0'}}" required>';
                 form+='</div></div>';
 
                 $('#dynamicForm').append(form);
