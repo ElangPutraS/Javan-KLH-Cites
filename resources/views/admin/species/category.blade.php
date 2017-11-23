@@ -15,6 +15,7 @@
 
             <div class="card-block">
                 <a href="{{ route('admin.species.createCategory') }}" class="btn btn-primary">Tambah Baru</a>
+                <hr>
                 @include('includes.notifications')
                 <div class="table-responsive table-bordered table-sm">
                     <table class="table">
@@ -59,7 +60,7 @@
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href="category/"+id+"/deleteCategory";
+                location.href="categories/"+id+"/deleteCategory";
             });
         }
     </script>
