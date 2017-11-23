@@ -36,6 +36,6 @@ class Species extends Model
             ->withPivot('total_exported');
     }
     public function speciesCategory(){
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Category::class);
     }
 }
