@@ -27,22 +27,18 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @if(count($categories)>0)
-                            @foreach($categories as $cat)
+                            @forelse($categories as $cat)
                                 <tr>
                                     <td>{{$cat->species_category_code}}</td>
                                     <td>{{$cat->species_category_name}}</td>
-                                    <td>
-                                        <a href="{{route('admin.species.editCategory', ['id' => $cat->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                        <a onclick="deleteKategori(this)" data-id="{{$cat->id}}" style="color:#3eacff;"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
-                                    </td>
+                                    <td><a href="{{route('admin.species.editCategory', ['id' => $cat->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                        <a onclick="deleteKategori(this)" data-id="{{$cat->id}}" style="color:#3eacff;"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a></td>
                                 </tr>
-                            @endforeach
-                        @else
+                            @empty
                             <tr>
                                 <td colspan="8"><center>Data Kosong</center></td>
                             </tr>
-                        @endif
+                                @endforelse
                         </tbody>
                     </table>
                 </div>

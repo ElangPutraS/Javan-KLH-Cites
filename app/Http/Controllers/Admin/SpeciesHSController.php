@@ -121,7 +121,7 @@ class SpeciesHSController extends Controller
 
     public function destroyQuota($species_id, $id)
     {
-        $quota=Species::find($id);
+        $quota=SpeciesQuota::find($id);
         $quota->delete();
 
         return redirect()->route('admin.species.showquota', ['species_id' => $species_id])->with('success', 'Data berhasil dihapus.');
