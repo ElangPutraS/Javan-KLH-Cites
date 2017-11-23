@@ -63,5 +63,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('category/{id}/editCategory', 'CategoriesController@edit')->name('admin.species.editCategory');
     Route::post('category/{id}/editCategory', 'CategoriesController@update')->name('admin.species.updateCategory');
     Route::get('category/{id}/deleteCategory', 'CategoriesController@destroy')->name('admin.species.deleteSpecies');
+    
+    Route::resource('ports', 'PortController', ['as' => 'admin']);
 
 });
