@@ -36,6 +36,7 @@ Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(
 Route::get('submission', 'SubmissionController@index')->name('user.submission.index');
 Route::get('submission/createDirect', 'SubmissionController@showDirect')->name('user.submission.showDirect');
 Route::post('submission/createDirect', 'SubmissionController@storeDirect')->name('user.submission.storeDirect');
+Route::match(['get', 'post'], 'submission/gradually/create', 'SubmissionGraduallyController@create')->name('user.submissionGradually.create');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
