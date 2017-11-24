@@ -47,9 +47,7 @@ class CountryController extends Controller
         return redirect()->route('admin.countries.edit', $countries)->with('success', 'Data berhasil ditambah.');
     }
 
-    public function show(Country $country) {
-    echo json_encode($country);
-  }
+ 
 
     public function edit(Country $country) {
         return view('admin.countries.edit', compact('country'));
