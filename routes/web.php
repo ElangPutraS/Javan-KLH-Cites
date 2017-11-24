@@ -65,5 +65,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('category/{id}/deleteCategory', 'CategoriesController@destroy')->name('admin.species.deleteSpecies');
 
     Route::resource('ports', 'PortController', ['as' => 'admin']);
+   	Route::resource('news', 'NewsController', ['as' => 'admin']);
 
 });
