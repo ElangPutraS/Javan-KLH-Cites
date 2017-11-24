@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="/js/redactor/redactor.css" />
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
@@ -20,6 +21,8 @@
     <script>
          window.baseUrl = '{{ url('/') }}';
     </script>
+
+    
 
     @stack('head.stylesheet')
 </head>
@@ -118,10 +121,18 @@
 <script src="{{ asset('template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('js/redactor/redactor.js') }}"></script>
+
+<script type="text/javascript">
+    $(function()
+    {
+        $('#content-form-news').redactor({
+        });
+    });
+</script>
 
 <!-- App functions and actions -->
 <script src="{{ asset('template/js/app.min.js') }}"></script>
-
 @stack('body.script')
 </body>
 </html>
