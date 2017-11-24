@@ -121,11 +121,13 @@
 <script src="{{ asset('template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
-<script src="/js/redactor/redactor.js"></script>
+<script src="{{ asset('js/redactor/redactor.js') }}"></script>
+
 <script type="text/javascript">
     $(function()
     {
-        $('#content').redactor();
+        $('#content-form-news').redactor({
+        });
     });
 </script>
 
