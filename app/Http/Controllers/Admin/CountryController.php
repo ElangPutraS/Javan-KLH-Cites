@@ -66,7 +66,6 @@ class CountryController extends Controller
     public function destroy(Country $country) {
         $country->delete();
 
-        DB::statement('ALTER TABLE countries AUTO_INCREMENT = 1');
 
         return redirect()->route('admin.countries.index')->with('Data berhasil dihapus.');
     }
