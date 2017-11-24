@@ -8,11 +8,17 @@
             </header>
 
             <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Daftar Negara</h2>
+                    <small class="card-subtitle"></small>
+                </div>
                 <div class="card-block">
 
                     @include('includes.notifications')
 
                     <a href="{{ route('admin.countries.create') }}" class="btn btn-primary">Tambah Baru</a>
+
+                    <hr>
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm">

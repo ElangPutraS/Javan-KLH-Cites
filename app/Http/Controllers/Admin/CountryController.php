@@ -44,7 +44,7 @@ class CountryController extends Controller
             'country_name' => $request->get('country_name'),
             ]);
         $countries->save();
-        return redirect()->route('admin.countries.edit', $countries)->with('success', 'Data berhasil ditambah.');
+        return redirect()->route('admin.countries.edit', $countries)->with('success', 'Data berhasil dibuat.');
     }
 
  
@@ -59,7 +59,7 @@ class CountryController extends Controller
             'country_name' => $request->get('country_name')
         ]);
 
-        return redirect()->route('admin.countries.edit', $country)->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('admin.countries.edit', $country)->with('success', 'Data berhasil diubah.');
     }
 
 
