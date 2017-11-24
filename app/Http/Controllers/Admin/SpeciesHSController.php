@@ -9,6 +9,7 @@ use App\AppendixSource;
 use App\SpeciesSex;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SpeciesRequest;
 use App\Http\Requests\SpeciesQuotaRequest;
 use App\Http\Requests\SpeciesQuotaUpdateRequest;
 
@@ -27,7 +28,7 @@ class SpeciesHSController extends Controller
     	return view('admin.species.createspecies', compact('appendix', 'species_sex', 'categories'));
     }
 
-    public function store(Request $request){
+    public function store(SpeciesRequest $request){
     	$species=new Species([
     		'species_scientific_name' => $request->get('scientific_name'),
     		'species_indonesia_name' => $request->get('indonesia_name'),
@@ -52,7 +53,7 @@ class SpeciesHSController extends Controller
     	return view('admin.species.editspecies', compact('species', 'appendix', 'species_sex','categories'));
     }
 
-    public function update(Request $request, $id){
+    public function update(SpeciesRequest $request, $id){
     	$species=Species::find($id);
     	$species->update([
     		'species_scientific_name' => $request->get('scientific_name'),
