@@ -24,7 +24,7 @@ class NewsStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'            => 'required',
+            'title'            => 'required|string|max:191',
             'content'              => 'required',
 
 

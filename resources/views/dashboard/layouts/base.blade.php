@@ -121,6 +121,7 @@
 
 <!-- App functions and actions -->
 <script src="{{ asset('template/js/app.min.js') }}"></script>
+<script src="/js/ckeditor/ckeditor.js"></script>
 
 @stack('body.script')
 </body>
