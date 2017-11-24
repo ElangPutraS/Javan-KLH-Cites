@@ -41,7 +41,7 @@ class SpeciesHSController extends Controller
     		$appendix=AppendixSource::find($request->get('appendix_source_id'));
     		$species->appendixSource()->associate($appendix)->save();
     	}
-    	return redirect()->route('admin.species.editSpecies', ['id' => $species->id])->with('success', 'Data berhasil ditambah.');
+    	return redirect()->route('admin.species.editSpecies', ['id' => $species->id])->with('success', 'Data berhasil dibuat.');
     }
 
     public function edit($id){
@@ -101,7 +101,7 @@ class SpeciesHSController extends Controller
         	]);
         $quota->save();
         $species->speciesQuota()->save($quota);
-        return redirect()->route('admin.species.editquota', ['species_id' => $species_id, 'id' => $quota->id])->with('success', 'Data berhasil ditambah.');
+        return redirect()->route('admin.species.editquota', ['species_id' => $species_id, 'id' => $quota->id])->with('success', 'Data berhasil dibuat.');
     }
 
     public function editQuota($species_id, $id){

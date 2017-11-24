@@ -3,7 +3,7 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Verification List</h1>
+            <h1>Verifikasi Pelaku Usaha</h1>
         </header>
 
         <div class="card">

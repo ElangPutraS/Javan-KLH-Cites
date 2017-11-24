@@ -77,7 +77,7 @@
             </div>
 
             <ul class="navigation">
-                <li @if(Request::segment(1)=='dashboard'||Request::segment(2)=='dashboard') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                <li @if(Request::segment(1)=='dashboard'||Request::segment(2)=='dashboard') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Beranda</a></li>
 
                 @can('access-pelaku-usaha')
                 <!-- Menu Pelaku Usaha -->

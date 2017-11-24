@@ -4,10 +4,14 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Form Permohonan SATSL-LN Langsung</h1>
+                <h1>Permohonan SATSL-LN Pengguna</h1>
             </header>
 
             <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Pengajuan Permohonan SATSL-LN Langsung</h2>
+                    <small class="card-subtitle"></small>
+                </div>
                 <div class="card-block">
                     <?php
                         /*$tahun=date('Y');
