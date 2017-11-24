@@ -3,7 +3,7 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Daftar Spesies & HS</h1>
+            <h1>Kelola Spesies & HS</h1>
         </header>
 
         <div class="card">

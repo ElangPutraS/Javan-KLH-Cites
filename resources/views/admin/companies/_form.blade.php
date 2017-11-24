@@ -1,5 +1,5 @@
 <div class="form-group">
-    <h3>Data Akun</h3>
+    <h5>A. Data Akun</h5>
 </div>
 <div class="form-group">
     <label class="control-label">Nama</label>
@@ -34,7 +34,7 @@
 @endif
 
 <div class="form-group">
-    <h3>Data Pelaku Usaha</h3>
+    <h5>B. Data Pelaku Usaha</h5>
 </div>
 <div class="form-group">
     <label class="control-label">Tempat Lahir, Tanggal Lahir</label>
@@ -151,7 +151,7 @@
 </div>
 
 <div class="form-group">
-    <h3>Data Perusahaan</h3>
+    <h5>C. Data Perusahaan</h5>
 </div>
 <div class="form-group">
     <label class="control-label">Nama Perusahaan</label>
@@ -234,7 +234,7 @@
 </div>
 
 <div class="form-group">
-    <h3>Dokumen Perusahaan</h3>
+    <h5>D. Dokumen Perusahaan</h5>
 </div>
 
 @if(count($company)!=0)

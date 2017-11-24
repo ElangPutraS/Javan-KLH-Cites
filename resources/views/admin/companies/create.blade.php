@@ -4,12 +4,15 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tambah Pelaku Usaha Baru</h1>
+                <h1>Kelola Pelaku Usaha</h1>
             </header>
 
             <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Tambah Data Pelaku Usaha dan Perusahaan</h2>
+                    <small class="card-subtitle"></small>
+                </div>
                 <div class="card-block">
-
                     @include('includes.notifications')
 
                     <form action="{{ route('admin.companies.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">

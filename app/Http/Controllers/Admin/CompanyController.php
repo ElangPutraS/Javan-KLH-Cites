@@ -40,7 +40,7 @@ class CompanyController extends Controller
         $countries        = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $provinces        = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
         $cities           = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
-        $document_type    = DocumentType::orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+        $document_type    = DocumentType::where('is_permit',0)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
         $identity_type    = TypeIdentify::orderBy('type_identify_name', 'asc')->pluck('type_identify_name', 'id');
 
         $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
@@ -140,7 +140,7 @@ class CompanyController extends Controller
         $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $provinces = Province::orderBy('province_name', 'asc')->pluck('province_name', 'id');
         $cities    = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
-        $document_type    = DocumentType::orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+        $document_type    = DocumentType::where('is_permit',0)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
         $identity_type    = TypeIdentify::orderBy('type_identify_name', 'asc')->pluck('type_identify_name', 'id');
 
         $users     = User::orderBy('name', 'asc')->pluck('name', 'id');
@@ -219,7 +219,7 @@ class CompanyController extends Controller
         }
 
 
-        return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil diubah.');
     }
 
     /**

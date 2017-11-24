@@ -1,7 +1,4 @@
 <div class="form-group">
-    <h3>Data Pelabuhan</h3>
-</div>
-<div class="form-group">
     <label class="control-label">Kode</label>
     <div class="col-sm-14">
         @if ($port)

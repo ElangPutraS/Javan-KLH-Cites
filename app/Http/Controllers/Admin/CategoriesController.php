@@ -27,7 +27,7 @@ class CategoriesController extends Controller
         ]);
         $categories->save();
 
-        return redirect()->route('admin.species.editCategory', ['id' => $categories->id])->with('success', 'Data berhasil ditambah.');
+        return redirect()->route('admin.species.editCategory', ['id' => $categories->id])->with('success', 'Data berhasil dibuat.');
     }
 
     public function edit($id){

@@ -1,32 +1,28 @@
 @extends('dashboard.layouts.base')
 
 @section('content')
-	<section class="content">
+    <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Edit Pelabuhan</h1>
+                <h1>Edit Kelola Informasi</h1>
             </header>
 
             <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Ubah Pelabuhan</h2>
-                    <small class="card-subtitle"></small>
-                </div>
                 <div class="card-block">
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.ports.update', $port) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{ route('admin.news.update', $news) }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
                         {{ method_field('PUT') }}
 
                         {!! csrf_field() !!}
 
-                        @include('admin.ports._form', ['port' => $port])
+                        @include('admin.news._form', ['news' => $news , 'disable' =>false])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{ route('admin.ports.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                                <a href="{{ route('admin.news.index') }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
                     </form>
