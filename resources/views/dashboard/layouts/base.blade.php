@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.css') }}">
-    <link rel="stylesheet" href="/js/redactor/redactor.css" />
+    <link rel="stylesheet" href="{{ asset('js/redactor/redactor.css') }}">
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
