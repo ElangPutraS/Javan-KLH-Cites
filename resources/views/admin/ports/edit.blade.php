@@ -8,6 +8,10 @@
             </header>
 
             <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Ubah Pelabuhan</h2>
+                    <small class="card-subtitle"></small>
+                </div>
                 <div class="card-block">
 
                     @include('includes.notifications')

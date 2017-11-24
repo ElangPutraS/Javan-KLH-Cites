@@ -1,8 +1,4 @@
 <div class="form-group">
-    <h3>Form Quota</h3>
-    <small class="card-subtitle">Species {{$species->species_indonesia_name}}</small>
-</div>
-<div class="form-group">
     <label class="control-label">Tahun</label>
     <div class="col-sm-14">
         <input type="text" name="year" class="form-control" value="{{ old('year', array_get($quota, 'year')) }}" maxlength="4" required>

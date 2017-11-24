@@ -1,9 +1,6 @@
-<div class="form-group">
-    <h3>Pengajuan Permohonan Langsung</h3>
-</div>
 
 <div class="form-group">
-    <h5>Informasi Pelaku Usaha</h5>
+    <h5>A. Informasi Pelaku Usaha</h5>
 </div>
 <div class="form-group">
     <label class="control-label">Nama Pelaku Usaha</label>
@@ -42,7 +39,7 @@
 </div>
 
 <div class="form-group">
-    <h5>Informasi Permohonan</h5>
+    <h5>B. Informasi Permohonan</h5>
 </div>
 <div class="form-group">
     <label class="control-label">Jenis Perdagangan</label>
@@ -116,7 +113,7 @@
 </div>
 
 <div class="form-group">
-    <h5>Unggah Dokumen</h5>
+    <h5>C. Unggah Dokumen</h5>
 </div>
 @foreach($document_types as $key => $document_type)
     <div class="form-group">
@@ -129,7 +126,7 @@
 @endforeach
 
 <div class="form-group">
-    <h5>Informasi Spesimen</h5>
+    <h5>D. Informasi Spesimen</h5>
     <p>Silahkan Pilih Spesimen yang dibutuhkan!</p>
 </div>
 <div class="card">
@@ -156,7 +153,7 @@
 </div>
 
 <div class="form-group">
-    <h5>Daftar Spesimen Yang Dipilih</h5>
+    <h5>E. Daftar Spesimen Yang Dipilih</h5>
     <p>Spesimen yang telah dipilih, wajib diisi!</p>
 </div>
 

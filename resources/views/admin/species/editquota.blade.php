@@ -4,10 +4,14 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Edit Quota Spesies</h1>
+                <h1>Kelola Kuota Spesies & HS</h1>
             </header>
 
             <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Ubah Kuota Species {{$species->species_indonesia_name}}</h2>
+                    <small class="card-subtitle">({{$species->species_scientific_name}})</small>
+                </div>
                 <div class="card-block">
 
                     @include('includes.notifications')
