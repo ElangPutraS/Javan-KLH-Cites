@@ -17,7 +17,7 @@
 
                         {!! csrf_field() !!}
 
-                        @include('admin.news._form', ['news' => $news , 'disable' =>false])
+                        @include('admin.news._form', ['news' => $news])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">

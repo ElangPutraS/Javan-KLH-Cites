@@ -8,6 +8,11 @@
             </header>
 
             <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Kelola Informasi</h2>
+                    <small class="card-subtitle"></small>
+                </div>
+
                 <div class="card-block">
 
                     @include('includes.notifications')
@@ -35,7 +40,6 @@
                                 <td>{{ $item->updated_at->toFormattedDateString() }}</td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>
-                                    <a href="{{ route('admin.news.show', $item) }}" class="btn btn-sm btn-warning"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
                                     <a href="{{ route('admin.news.edit', $item) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
                                     <a href="javascript:void(0);" onclick="deleteNews(this)" class="btn btn-sm btn-danger">
                                         <i class="zmdi zmdi-delete zmdi-hc-fw"></i>

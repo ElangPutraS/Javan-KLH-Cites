@@ -128,7 +128,9 @@
     $(function()
     {
         $('#content-form-news').redactor({
+            
         });
+
     });
 </script>
 
