@@ -34,6 +34,7 @@ Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(
 });
 
 Route::get('submission', 'SubmissionController@index')->name('user.submission.index');
+Route::get('submission/{id}/detail', 'SubmissionController@detail')->name('user.submission.detail');
 Route::get('submission/createDirect', 'SubmissionController@showDirect')->name('user.submission.showDirect');
 Route::post('submission/createDirect', 'SubmissionController@storeDirect')->name('user.submission.storeDirect');
 
