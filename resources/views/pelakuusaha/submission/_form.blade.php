@@ -215,6 +215,16 @@
                     }
                 });
             });
+
+            $('#form-submission').submit(function(ev) {
+                if(jumlahSpesimen==0){
+                    alert('Silahkan pilih spesimen terlebih dahulu!');
+                    ev.preventDefault();
+                }else{
+                    this.submit();
+                    //$('#form-submission').submit();
+                }
+            });
         });
 
         function test(a) {
@@ -241,11 +251,7 @@
         }
 
         function cekSpesimen(a){
-            if(jumlahSpesimen==0){
-                alert('Silahkan pillih spesimen terlebih dahulu!');
-            }else{
-                $('form-submission').submit();
-            }
+
         }
     </script>
 @endpush
