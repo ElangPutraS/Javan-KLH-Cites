@@ -25,7 +25,7 @@ class NewsStoreRequest extends FormRequest
     {
         return [
             'title'            => 'required|string|max:191',
-            'content'              => 'required',
+            'content'              => 'required|string|max:1000',
 
 
         ];
