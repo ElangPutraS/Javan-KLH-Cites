@@ -712,5 +712,3618 @@
     "species_indonesia_name": "-",
     "species_general_name": "-",
     "species_category_id": 24
+  },
+  {
+    "species_scientific_name": "Callosciurus notatus",
+    "species_indonesia_name": "Plantain Squirrel",
+    "species_general_name": "Bajing Kelapa",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Callosciurus prevostii",
+    "species_indonesia_name": "Prevost's Squirrel",
+    "species_general_name": "Bajing Mandiwoi",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Dactylopsila trivirgata",
+    "species_indonesia_name": "Common Striped Possum",
+    "species_general_name": "Kempelon Ladi",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Echymipera kalubu",
+    "species_indonesia_name": "Spiny Echymipera",
+    "species_general_name": "Kalubu Usut",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Paradoxurus hermaphroditus",
+    "species_indonesia_name": "Common Palm Civet",
+    "species_general_name": "Musang Luwak",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Petaurus breviceps",
+    "species_indonesia_name": "Sugar Glider",
+    "species_general_name": "Wupih Sirsik",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Rusa timorensis",
+    "species_indonesia_name": "Javan Deer",
+    "species_general_name": "Rusa Timor",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Sus scrofa vittatus",
+    "species_indonesia_name": "Wild Boar",
+    "species_general_name": "Babi Celeng",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Viverra tangalunga",
+    "species_indonesia_name": "Malayan Civet",
+    "species_general_name": "Tenggalung Malaya",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Viverricula indica (Viverricula malacensis)",
+    "species_indonesia_name": "Small Indian Civet",
+    "species_general_name": "Musang Rase",
+    "species_category_id": 1
+  },
+  {
+    "species_scientific_name": "Acanthopis laevis",
+    "species_indonesia_name": "Papuan Adder",
+    "species_general_name": "Ular Adder Papua",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Acrochordus arafurae",
+    "species_indonesia_name": "Arafura File Snake",
+    "species_general_name": "Ular Karung Papua",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Acrochordus granulatus",
+    "species_indonesia_name": "Asiatic File Snake",
+    "species_general_name": "Ular Kadut Belang",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Acrochordus javanicus",
+    "species_indonesia_name": "Javan Wart Snake",
+    "species_general_name": "Ular Karung Jawa",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Ahaetulla prasina",
+    "species_indonesia_name": "Oriental Whip Snake",
+    "species_general_name": "Ular Pucuk",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Boiga cynodon",
+    "species_indonesia_name": "Dog-toothed Cat Snake",
+    "species_general_name": "Ular Bajing",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Boiga dendrophila",
+    "species_indonesia_name": "Banded Mangrove Cat Snake",
+    "species_general_name": "Ular Cincin Mas",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Boiga drapiezii",
+    "species_indonesia_name": "White-spotted Cat Snake/",
+    "species_general_name": "Ular Boiga Bintik Putih",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Boiga irregularis",
+    "species_indonesia_name": "Brown Cat Snake/",
+    "species_general_name": "Ular Boiga Coklat",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Boiga multomaculata",
+    "species_indonesia_name": "Marble Cat Snake/",
+    "species_general_name": "Ular Boiga Batik",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Boiga nigriceps",
+    "species_indonesia_name": "Red Cat Snake/",
+    "species_general_name": "Ular Boiga Merah",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Bungarus candidus",
+    "species_indonesia_name": "Malayan Krait/",
+    "species_general_name": "Ular Weling",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Bungarus fasciatus",
+    "species_indonesia_name": "Banded Krait/",
+    "species_general_name": "Ular Welang",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Calloselasma rhodostoma (Angkistrodon rhodostoma)",
+    "species_indonesia_name": "Malayan Pitviper/",
+    "species_general_name": "Ular Tanah",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Cerberus schneiderii (Cerberus rynchops)",
+    "species_indonesia_name": "Dog-Faced Water Snake/",
+    "species_general_name": "Ular Tambak",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Chrysopelea paradisi",
+    "species_indonesia_name": "Northern Bronze Back/",
+    "species_general_name": "Ular Pagar Kecil",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Coelognathus flavolineatus",
+    "species_indonesia_name": "Yellow-lined rat snake",
+    "species_general_name": "Ular Kopi",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Coelognathus radiatus (Elaphe radiata)",
+    "species_indonesia_name": "Radiated Rat snake",
+    "species_general_name": "Ular Trawang",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Cryptophis nigrostriatus (Rhinoplocephalus nigrostriatus)",
+    "species_indonesia_name": "Papuan Black-striped Snake/",
+    "species_general_name": "Ular Garis Hitam Irian",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Cylindrophis rufus",
+    "species_indonesia_name": "Two-headed Snake/",
+    "species_general_name": "Ular Kepala Dua",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Dendrelaphis calligaster",
+    "species_indonesia_name": "Northern Bronze Back/",
+    "species_general_name": "Ular Pagar Kecil",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Dendrelaphis formosus",
+    "species_indonesia_name": "Elegant Bronze Back/",
+    "species_general_name": "Ular Paku",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Dendrelaphis pictus",
+    "species_indonesia_name": "Common Bronze Back/",
+    "species_general_name": "Ular Tampar",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Dendrelaphis punctulatus",
+    "species_indonesia_name": "New Guinea Bronze Back/",
+    "species_general_name": "Ular Pagar Irian",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Demansia atra",
+    "species_indonesia_name": "Papuan Whipsnakes",
+    "species_general_name": "Ular Cambuk Hitam",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Demansia olivacea",
+    "species_indonesia_name": "Olive Whipsnake/",
+    "species_general_name": "Ular Cambuk",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Enhydris enhydris",
+    "species_indonesia_name": "Rainbow Water Snake/",
+    "species_general_name": "Ular Macan Air",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Enhydris plumbea",
+    "species_indonesia_name": "Yellow-bellied Water Snake/",
+    "species_general_name": "Ular Lumpur",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Furina tristis",
+    "species_indonesia_name": "Brown-headed Snake/",
+    "species_general_name": "Ular Kepala Coklat",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Gonyosoma janseni",
+    "species_indonesia_name": "Black Janseni's Racer/",
+    "species_general_name": "Ular Bungka Sulawesi",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Gonyosoma oxycephalum",
+    "species_indonesia_name": "Red-tailed Green Racer/",
+    "species_general_name": "Ular Bungka Hijau",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Homalopsis buccata",
+    "species_indonesia_name": "Banded Swamp Snake/",
+    "species_general_name": "Ular Kadut Belang",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Laticauda colubrina",
+    "species_indonesia_name": "Sea Krait/",
+    "species_general_name": "Ular Welang Laut",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Lycodon capucinus",
+    "species_indonesia_name": "Common House Snake/",
+    "species_general_name": "Ular Totok Merah",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Macrophistodon rhodomelas",
+    "species_indonesia_name": "Blue-necked Keelback/",
+    "species_general_name": "Ular Picung Leher Biru",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Micropechis ikaheka",
+    "species_indonesia_name": "New Guinea Coral Snake/",
+    "species_general_name": "Ular Koral Irian",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Oligodon purpurascens",
+    "species_indonesia_name": "Brown Kukri Snake/",
+    "species_general_name": "Ular Kukri",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Oligodon octilineatus",
+    "species_indonesia_name": "Striped Kukri Snake/",
+    "species_general_name": "Ular Kukri",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Orthriophis taeniurus (Elaphe taeniura)",
+    "species_indonesia_name": "Taeniura Racer/",
+    "species_general_name": "Ular Tikus Goa",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Oxyuranus scutellatus",
+    "species_indonesia_name": "Papuan Taipan/",
+    "species_general_name": "Ular Taipan Papua",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Pseudechis rossignolii  (Pseudechis australis)",
+    "species_indonesia_name": "King Brown Snake/",
+    "species_general_name": "Ular Mulga",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Pseudechis papuanus",
+    "species_indonesia_name": "Papuan Black Snake/",
+    "species_general_name": "Ular Hitam Papua",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Pseudonaja textilis",
+    "species_indonesia_name": "Common Brown Snake/",
+    "species_general_name": "Ular Coklat Irian",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Ptyas carinata",
+    "species_indonesia_name": "Keeled Rat Snake/",
+    "species_general_name": "Ular Banteng",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Ptyas korros",
+    "species_indonesia_name": "Indochinese Rat Snake/",
+    "species_general_name": "Ular Koros",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Rhabdophis subminiata",
+    "species_indonesia_name": "Red-necked Keel Back/",
+    "species_general_name": "Ular Picung",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Stegonotus cucullatus",
+    "species_indonesia_name": "Murray Frog Snake/",
+    "species_general_name": "Ular Katak Murray",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Trimeresurus albolabris (Cryptelytrops albolabris)",
+    "species_indonesia_name": "White-Lipped Pitviper/",
+    "species_general_name": "Ular Trunobamban",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Trimeresurus borneensis",
+    "species_indonesia_name": "Borneo Pitviper/",
+    "species_general_name": "Ular Punai Kalimantan",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Trimeresurus insularis(Cryptoletrops insularis)",
+    "species_indonesia_name": "Easter White-Lipped Pitviper/",
+    "species_general_name": "Ular Viper Timur",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Trimeresurus hageni(Parias hageni)",
+    "species_indonesia_name": "Hagen's Pitviper/",
+    "species_general_name": "Ular Viper Hagen",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Trimeresurus popeorum(Popeia popeiorum)",
+    "species_indonesia_name": "Pope's Pitviper/",
+    "species_general_name": "Ular Viper Pope",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Trimeresurus puniceus",
+    "species_indonesia_name": "Flat-nosed Pitviper/",
+    "species_general_name": "Ular Bandotan",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Trimeresurus sumatranus(Parias sumatranus)",
+    "species_indonesia_name": "Sumatran Pitviper/",
+    "species_general_name": "Ular Viper Sumatera",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Trimeresurus purpureomaculatus",
+    "species_indonesia_name": "Mangrove Pitviper",
+    "species_general_name": "Ular Viper Mangrove",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Tropidolaemus wagleri",
+    "species_indonesia_name": "Wagler's Pitviper/",
+    "species_general_name": "Ular Kapak Wagler",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Tropidolaemus subannulatus",
+    "species_indonesia_name": "Bornean Killed Green Pit Viper",
+    "species_general_name": "Ular Kapak Hijau Borneo",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Xenochrophis melanzostus",
+    "species_indonesia_name": "Andaman Keelback",
+    "species_general_name": "Ular Bandotan Air",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Xenochrophis trianguligerus (Natrix trianguligera)",
+    "species_indonesia_name": "Triangle Keelback/",
+    "species_general_name": "Ular Cikopo Merah",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Xenochrophis vittatus(Natrix vittata)",
+    "species_indonesia_name": "Striped Keelback/",
+    "species_general_name": "Ular Kisik",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Xenodermus javanicus",
+    "species_indonesia_name": "-",
+    "species_general_name": "Ular Naga",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Xenopeltis unicolor",
+    "species_indonesia_name": "Sunbeam Snake/",
+    "species_general_name": "Ular Pelangi",
+    "species_category_id": 2
+  },
+  {
+    "species_scientific_name": "Chelodina parkeri",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kura Leher Panjang Parker",
+    "species_category_id": 4
+  },
+  {
+    "species_scientific_name": "Chelodina reimanni",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kura Leher Panjang Reiman",
+    "species_category_id": 4
+  },
+  {
+    "species_scientific_name": "Elseya branderhorsti",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kura kura papua penembak",
+    "species_category_id": 4
+  },
+  {
+    "species_scientific_name": "Emydura  subglobosa",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kura kura dada merah",
+    "species_category_id": 4
+  },
+  {
+    "species_scientific_name": "Macrochelodina rugosa",
+    "species_indonesia_name": "Kura kura leher panjang rugosa",
+    "species_general_name": "Chelodina siebenrocki",
+    "species_category_id": 4
+  },
+  {
+    "species_scientific_name": "Dasia olivacea",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal zaitun",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Emoia caeruleocauda",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal ekor biru",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Bellatorias frerei",
+    "species_indonesia_name": "Major Skink",
+    "species_general_name": "Kadal lurik",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Eutropis multifasciata",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal kebun",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Eutropis rudis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal hutan",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Eutropis rugifera",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal tegalan",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Lamprolepis smaragdina",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal hijau",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Lialis burtonis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal pensil lurik",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Lialis jicari",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal pensil",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Sphenomorphus mulleri",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Sphenomorphus sanctus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Sphenomorphus variegatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Takydromus sexlineatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal ekor panjang",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Tiliqua scincoides",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal Panana",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Tribolonotus gracilis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal duri mata merah",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Tribolonotus novaeguineae",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal duri mata merah",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Tropidophorus baconi",
+    "species_indonesia_name": "-",
+    "species_general_name": "Kadal salak",
+    "species_category_id": 6
+  },
+  {
+    "species_scientific_name": "Acanthosaura armata",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon tanduk sumatra",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Aphaniotis acutirostris",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon pinokio kecil",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Aphaniotis fusca",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon pinokio coklat",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Bronchocela cristatella",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon sisik kecil",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Bronchocela  jubata",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon hijau",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Calotes versicolor",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon DKI",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Draco fimbriatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "Hap-hap abu abu",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Draco beccari/ lineatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "Hap-hap lurik",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Draco melanopogon",
+    "species_indonesia_name": "-",
+    "species_general_name": "Hap-hap jenggot hitam",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Draco obscurus",
+    "species_indonesia_name": "-",
+    "species_general_name": "Hap-hap batik",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Draco volans",
+    "species_indonesia_name": "-",
+    "species_general_name": "Hap-hap jawa",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Gonocephalus kuhlii",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon tanduk kecil",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Gonocephalus borneensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon tanduk kalimantan",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Gonocephalus chamaeleontinus",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon tanduk besar",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Gonocephalus grandis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon tanduk besar",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Gonocephalus liogaster",
+    "species_indonesia_name": "-",
+    "species_general_name": "Bunglon tanduk perut putih",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Hypsilurus binotatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Hypsilurus godeffroyi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Lophognathus temporalis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Pseudocolates tympanistriga",
+    "species_indonesia_name": "-",
+    "species_general_name": "Soa soa layar Halmahera",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Hydrosaurus weberi",
+    "species_indonesia_name": "",
+    "species_general_name": "",
+    "species_category_id": 7
+  },
+  {
+    "species_scientific_name": "Aeluroscalabotes felinus",
+    "species_indonesia_name": "Cat Gecko/",
+    "species_general_name": "Cicak mata kucing",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Hemidactylus (Cosymbotus) platyurus/",
+    "species_indonesia_name": "Flat-tailed house gecko",
+    "species_general_name": "Cicak rumah ekor pipih",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Cyrtodactylus consobrinus",
+    "species_indonesia_name": "Peters' Bow-fingered Gecko/",
+    "species_general_name": "",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Cyrtodactylus jellesmae",
+    "species_indonesia_name": "Sulawesi Bow-fingered Gecko/",
+    "species_general_name": "",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Cyrtodactylus louisiadensis",
+    "species_indonesia_name": "Ring-tailed Gecko",
+    "species_general_name": "Cicak ekor gelang",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Cyrtodactylus marmoratus",
+    "species_indonesia_name": "Marbled Bow-fingered Gecko�",
+    "species_general_name": "Cicak jari lengkung marmer",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Nactus  pelagicus",
+    "species_indonesia_name": "Pelagic Gecko",
+    "species_general_name": "",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Gehyra baliola",
+    "species_indonesia_name": "Short-tailed Dtella",
+    "species_general_name": "",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Gehyra marginata",
+    "species_indonesia_name": "Ternate Dtella",
+    "species_general_name": "Tokek Ternate",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Gehyra mutilata",
+    "species_indonesia_name": "Common Four-clawed Gecko/",
+    "species_general_name": "Cicak berkuku empat",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Gehyra vorax",
+    "species_indonesia_name": "Voracious four-clawed gecko/",
+    "species_general_name": "Tokek lecet berkuku empat",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Gekko gecko",
+    "species_indonesia_name": "Tokay gecko/",
+    "species_general_name": "Tokek rumah",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Gekko monarchus",
+    "species_indonesia_name": "Spotted House Geckko/",
+    "species_general_name": "Tokek totol",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Gekko smithii",
+    "species_indonesia_name": "Smith's (Green-eyed) Gecko/",
+    "species_general_name": "Tokek mata hijau",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Gekko vittatus",
+    "species_indonesia_name": "Lined Gecko/",
+    "species_general_name": "Tokek garis putih",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Hemidactylus frenatus",
+    "species_indonesia_name": "South Asian House Gecko/",
+    "species_general_name": "Cicak rumah Asia",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Hemiphylodactylus typus",
+    "species_indonesia_name": "Common Dwarf Gecko",
+    "species_general_name": "Cicak Rumah Kecil",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Ptychozoon kuhli",
+    "species_indonesia_name": "Gliding gecko/",
+    "species_general_name": "Cicak terbang",
+    "species_category_id": 8
+  },
+  {
+    "species_scientific_name": "Phrynoidis aspera (Bufo asper)",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Puru Besar",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Ingerophrynus celebensis (Bufo celebensis)",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Puru Sulawesi",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Duttaphrynus melanostictus(Bufo melanostictus)",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Buduk",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Ingerophrynus  parvus(Bufo parvus)",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Puru Kerdil",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Fejervarya cancrivora",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Sawah",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Fejervarya limnocharis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Tegalan",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Chalcorna chalconota",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Kongkang Kolam",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Hylarana erythraea",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Kongkang Gading",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Amnirana nicobariensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Kongkang Jangkrik",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Kaloula baleata",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Belentuk Coklat",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Kaloula pulchra",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Belentuk Merah",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Leptobrachium hasseltii",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Serasah Jawa",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Leptobrachium ingeri",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Serasah Kalimantan",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Leptophryne borbonica",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Jam Pasir",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Limnonectes kuhlii",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Bangkong Tuli",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Litoria caerulea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Litoria infrafrenata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Litoria nasuta",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Litoria rubella",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Lymnodynastes",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Megophrys montana",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak tanduk gunung",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Megophrys nasuta",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Bertanduk",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Microhyla achatina",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Percil Jawa",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Occidozyga sumatrana",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Bancet Rawa",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Occidozyga  lima",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Bancet Hijau",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Philautus aurifasciatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Pohon Emas",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Polypedates colletti",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Pohon Jam Pasir",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Polypedates leucomystax",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Pohon Bergaris",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Polypedates macrotis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Polypedates otilophus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Polypedates pseudotilophus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Pseudobufo subasper",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Puru Sungai",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Rhacophorus margaritifer (Rhacophorus javanus)",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Pohon Jawa",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Rhacophorus pardalis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Pohon Merah",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Rhacophorus  reindwardtii",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Pohon Hijau Jawa",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Rhacophorus  borneensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Pohon Hijau Kalimantan",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Rhacophorus norhayatii",
+    "species_indonesia_name": "-",
+    "species_general_name": "Katak Pohon Hijau Sumatra",
+    "species_category_id": 25
+  },
+  {
+    "species_scientific_name": "Acridotheres javanicus/",
+    "species_indonesia_name": "White-vented Myna/",
+    "species_general_name": "Kerak kerbau",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Acridotheres tristis /",
+    "species_indonesia_name": "Common Myna/",
+    "species_general_name": "Kerak ungu",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Aplonis metallica/",
+    "species_indonesia_name": "Metallic Starling/",
+    "species_general_name": "Perling ungu",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Aplonis minor /",
+    "species_indonesia_name": "Short-tailed Starling /",
+    "species_general_name": "Perling Kecil",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Aplonis  panayensis/",
+    "species_indonesia_name": "Asian Glossy Starling/",
+    "species_general_name": "Perling Kumbang",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Chalcophaps indica /",
+    "species_indonesia_name": "Common Emerald Dove/",
+    "species_general_name": "Delimukan zamrud",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Chalcophaps stephani/",
+    "species_indonesia_name": "Stephan's Emerald Dove/",
+    "species_general_name": "Delimukan Timur",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Chloropsis cochinchinensis /",
+    "species_indonesia_name": "Blue-winged Leafbird/",
+    "species_general_name": "Cica daun sayap-biru",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Chloropsis cyanopogon/",
+    "species_indonesia_name": "Lesser  Green Leafbird/",
+    "species_general_name": "Cica daun kecil",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Chloropsis sonnerati /",
+    "species_indonesia_name": "Green Leafbird/",
+    "species_general_name": "Cica daun besar",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Copsychus malabaricus  /",
+    "species_indonesia_name": "White-rumped Shama/",
+    "species_general_name": "Kucica Hutan",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Copsychus saularis  /",
+    "species_indonesia_name": "Oriental Magpie-Robin/",
+    "species_general_name": "Kucica Kampung",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Criniger bres/",
+    "species_indonesia_name": "Grey-cheeked Bulbul",
+    "species_general_name": "Empuloh Janggut",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Culicicapa helianthea/",
+    "species_indonesia_name": "Citrine Canary-Flycatcher",
+    "species_general_name": "Sikatan Matari",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Dendrocygna arcuata/",
+    "species_indonesia_name": "Wandering Whistling Duck/",
+    "species_general_name": "Belibis Kembang",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ducula bicolor/",
+    "species_indonesia_name": "Pied Imperial Pigeon/",
+    "species_general_name": "Pergam Laut",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ducula pinon/",
+    "species_indonesia_name": "Pinon Imperial Pigeon",
+    "species_general_name": "Pergam Pinon",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ducula rufigaster/",
+    "species_indonesia_name": "Purple-tailed Imperial Pigeon/",
+    "species_general_name": "Pergam ekor ungu",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ducula zoeae/",
+    "species_indonesia_name": "Zoe Imperial Pigeon/",
+    "species_general_name": "Pergam zoe",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Erythrura prasina /",
+    "species_indonesia_name": "Pin-Tailed Parrot-Finn/",
+    "species_general_name": "Bondol Hijau Binglis",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Eudynamys melanorhyncha /",
+    "species_indonesia_name": "Asian Koel",
+    "species_general_name": "Tuwur Sulawesi",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Gallus gallus /",
+    "species_indonesia_name": "Red Junglefowl/",
+    "species_general_name": "Ayam hutan merah",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Geopelia striata/",
+    "species_indonesia_name": "Zebra Dove/",
+    "species_general_name": "Perkutut Jawa",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Irena puella /",
+    "species_indonesia_name": "Asian Fairy Bluebird/",
+    "species_general_name": "Kecembang gadung",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Lonchura castaneothorax/",
+    "species_indonesia_name": "Chestnut -Breasted Munia/",
+    "species_general_name": "Bondol Dada Coklat",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Lonchura leucosticta/",
+    "species_indonesia_name": "White -Spotted Munia/",
+    "species_general_name": "Bondol Tutul",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Lonchura maja /",
+    "species_indonesia_name": "White-Headed Munia/",
+    "species_general_name": "Bondol Haji",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Lonchura malacca /",
+    "species_indonesia_name": "Black-Headed Munia/",
+    "species_general_name": "Bondol rawa",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Lonchura punctulata /",
+    "species_indonesia_name": "Scaly-Breasted Munia/",
+    "species_general_name": "Bondol Peking",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Lonchura spectabilis/",
+    "species_indonesia_name": "Hooded Munia/",
+    "species_general_name": "Bondol Buba",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Lonchura teerinki/",
+    "species_indonesia_name": "Black-Breasted Munia/",
+    "species_general_name": "Bondol Dada Hitam",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Macropygia ruficeps /",
+    "species_indonesia_name": "Little Cuckoo Dove/",
+    "species_general_name": "Uncal kouran",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Mino dumontii/",
+    "species_indonesia_name": "Yellow-Faced Myna/",
+    "species_general_name": "Mino Muka Kuning",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Mirafra javanica/",
+    "species_indonesia_name": "Horsfield's Bush Lark/",
+    "species_general_name": "Branjangan Jawa",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Niltava banyumas /Cyornis banyumas",
+    "species_indonesia_name": "Hill Blue Flycatcher/",
+    "species_general_name": "Sikatan Cacing",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Oriolus chinensis /",
+    "species_indonesia_name": "Black -Naped Oriole/",
+    "species_general_name": "Kepudang Kuduk Hitam",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Oriolus szalayi /",
+    "species_indonesia_name": "Brown Oriole",
+    "species_general_name": "Kepudang Coklat",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Otidiphaps nobilis/",
+    "species_indonesia_name": "Pheasant Pigeon/",
+    "species_general_name": "Delimukan Dewata",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Passer montanus /",
+    "species_indonesia_name": "Eurasian Tree Sparrow/",
+    "species_general_name": "Burung Gereja Erasia",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Pellorneum capistratum /",
+    "species_indonesia_name": "Black Capped Babler/",
+    "species_general_name": "Pelanduk Topi Hitam",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Platylophus galericulatus /",
+    "species_indonesia_name": "Crested Jay/",
+    "species_general_name": "Tangkar Ongklet",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ploceus manyar /",
+    "species_indonesia_name": "Streaked Weaver",
+    "species_general_name": "Manyar Jambul",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ptilinopus auratiifrons/",
+    "species_indonesia_name": "Orange -Fronted Fruit Dove/",
+    "species_general_name": "Walik Dahi-Jingga",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ptilinopus coronulatus/",
+    "species_indonesia_name": "Coroneted Fruit Dove/",
+    "species_general_name": "Walik Lunggung",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ptilinopus iozonus/",
+    "species_indonesia_name": "Orange -Bellied Fruit Dove/",
+    "species_general_name": "Walik Perut Jingga",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ptilinopus perlatus/",
+    "species_indonesia_name": "Pink-Spotted Fruit Dove/",
+    "species_general_name": "Walik  Mutiara",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ptilinopus pulchellus/",
+    "species_indonesia_name": "Beautiful Fruit Dove/",
+    "species_general_name": "Walik Elok",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ptilinopus superbus/",
+    "species_indonesia_name": "Superb Fruit Dove/",
+    "species_general_name": "Walik Raja",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Ptilinopus ornatus/",
+    "species_indonesia_name": "Ornate Fruit Dove/",
+    "species_general_name": "Walik Buma",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Pycnonotus atriceps",
+    "species_indonesia_name": "Black-Headed Bulbul",
+    "species_general_name": "Cucak Kuricang",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Pycnonotus aurigaster /",
+    "species_indonesia_name": "Sooty-Headed Bulbul/",
+    "species_general_name": "Cucak Kutilang",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Pycnonotus goiavier /",
+    "species_indonesia_name": "Yellow-Vented Bulbul/",
+    "species_general_name": "Merbah Cerukcuk",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Pycnonotus melanicterus /",
+    "species_indonesia_name": "Black-Headed Bulbul/",
+    "species_general_name": "Cucak kuning/Kutilang Mas",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Saxicola caprata/",
+    "species_indonesia_name": "Pied Bush Chat/",
+    "species_general_name": "Decu Belang",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Saxicola gutturalis /",
+    "species_indonesia_name": "White-bellied Bush Chat",
+    "species_general_name": "Decu Timor",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Scissirostrum dubium/",
+    "species_indonesia_name": "Grosbeak Starling/",
+    "species_general_name": "Jalak Tunggir-Merah",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Streptocitta albicollis /",
+    "species_indonesia_name": "White-necked Myna",
+    "species_general_name": "Blibong Pendeta",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Streptopelia chinensis/",
+    "species_indonesia_name": "Spotted Dove/",
+    "species_general_name": "Tekukur Biasa",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Treron curvirostra",
+    "species_indonesia_name": "Thick-billed Green Pigeon/",
+    "species_general_name": "Punai Lengguak",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Treron vernans /",
+    "species_indonesia_name": "Pink-Necked Green Pigeon/",
+    "species_general_name": "Punai Gading",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Turnix suscitator /",
+    "species_indonesia_name": "Barred Button Quail/",
+    "species_general_name": "Gemak Loreng",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Zosterops atrifrons",
+    "species_indonesia_name": "Black-crowned White-eye",
+    "species_general_name": "Kaca mata  dahi-hitam",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Zosterops chloris /",
+    "species_indonesia_name": "Lemon-bellied White-eye",
+    "species_general_name": "Kacamata laut",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Zosterops palpebrosa /",
+    "species_indonesia_name": "Oriental White-eye",
+    "species_general_name": "Kacamata biasa",
+    "species_category_id": 9
+  },
+  {
+    "species_scientific_name": "Selenocosmia arndsti",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 26
+  },
+  {
+    "species_scientific_name": "Selenocosmia dichromata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 26
+  },
+  {
+    "species_scientific_name": "Selenocosmia javanensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 26
+  },
+  {
+    "species_scientific_name": "Scolopendra subspinipes",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 27
+  },
+  {
+    "species_scientific_name": "Chrysochroa bimanensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Chrysochroa buqueti",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Chrysochroa fulminans",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Chrysochroa purpureiventris",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Chrysodema smaragdula",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Cyphogastra bruyni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Cyphogastra gloriosa",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Cyphogastra ignicauda",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Cyphogastra javanica",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Cyphogastra farinosa",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Cyphogastra nigripennis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 28
+  },
+  {
+    "species_scientific_name": "Abatocera leonina",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Batocera hercules",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Batocera laena",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Batocera numitor",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Batocera parryi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Batocera rubus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Batocera wallacei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Gerania bosci",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Gnathonyx piceipennis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Hoplocerambyx severus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Macrotoma pascoei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Nemophas rosenbergi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Nothopeus hemipterus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Pachyteria javana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Palimna annulata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Protemnemus detzneri",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Protemnemus trituberculatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Rosalia laeta",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Rosenbergia lislei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Rosenbergia vetusta",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Rosenbergia weiskei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Sphingnotus insignis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Temesisternus isabellae",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 29
+  },
+  {
+    "species_scientific_name": "Eupholus cuvieri",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 30
+  },
+  {
+    "species_scientific_name": "Eupholus magnificus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 30
+  },
+  {
+    "species_scientific_name": "Eupholus rabbei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 30
+  },
+  {
+    "species_scientific_name": "Eupholus schoenherri",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 30
+  },
+  {
+    "species_scientific_name": "Eupholus shaminadei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 30
+  },
+  {
+    "species_scientific_name": "Aegus acuminatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Aegus parallelus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Aegus platyodon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Cyclommatus imperator",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Cyclommatus lunifer",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Cyclommatus metallifer",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Cyclommatus pulchellus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Cyclommatus weinreichi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus alcides",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus arfakensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus arfakianus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus intermedius",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus meeki",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus mirabilis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus parryi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus taurus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Dorcus titanus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Hexarthrius mandibularis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Hexarthrius parryi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Hexarthrius rhinoceros",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Lamprima aldophinae",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Odontolabis bellicosa",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Odontolabis celebensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Odontolabis lacordairei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Odontolabis licorti",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Odontolabis ludekingi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Odontolabis micros",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Odontolabis sarasinorum",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Odontolabis stevensi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus myrmecoleon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus astacoides",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus bison",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus bruijni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus buddha",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus doesburgi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus fabricei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus giraffa",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus lateralis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus mohnikei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus occipitalis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus tragulus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Prosopocoilus zebra",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 31
+  },
+  {
+    "species_scientific_name": "Agestrata orichalcea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Clerota budda",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Dicheros bicornis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Glycosia tricolor",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Ischiopsopha bifasciata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Ischiopsopha messagieri",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Lomaptera albertisi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Lomaptera batchiana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Lomaptera doriae",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Lomaptera eximia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Lomaptera lubens",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Lomaptera macrophylla",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Morokia bennigseni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Mycteristes rhinophyllus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Plectrone tristis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Poecilopharis whitei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 32
+  },
+  {
+    "species_scientific_name": "Heliocopris bucephalus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 33
+  },
+  {
+    "species_scientific_name": "Heliocopris tyrannus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 33
+  },
+  {
+    "species_scientific_name": "Beckius beccarii",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Blabephorus pinguis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Chalcocrates borchmanni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Chalcocrates bretoni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Chalcosoma atlas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Chalcosoma caucasus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Dipelicus cantori",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Dipelicus triangularis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Hatanus tarsalis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Papuana woodlarkiana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Trichogompus bicinus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Xylotrupes gideon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 34
+  },
+  {
+    "species_scientific_name": "Fruhstorferia javanus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 35
+  },
+  {
+    "species_scientific_name": "Penthicodes atomaris",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 36
+  },
+  {
+    "species_scientific_name": "Polydictya illuminata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 36
+  },
+  {
+    "species_scientific_name": "Scamandra tamborana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 36
+  },
+  {
+    "species_scientific_name": "Catacanthus incarnatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 37
+  },
+  {
+    "species_scientific_name": "Episteme bisma",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 38
+  },
+  {
+    "species_scientific_name": "Milionia fulgida",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 39
+  },
+  {
+    "species_scientific_name": "Milionia rawakensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 39
+  },
+  {
+    "species_scientific_name": "Choaspes illuensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 40
+  },
+  {
+    "species_scientific_name": "Arhopala araxes",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Arhopala hercules",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Arhopala pseudocentaurus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Arhopala thamryas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Artipe dohertyi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Bindahara phocides",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Danis danis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Danis phroso",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Deudorix epijarbas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Deudorix epirus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Eliotia jalindra",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Heliophorus epicles",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops apollo",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops arronica",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops chrysargyrus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops dicomas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops elgeneri",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops narcissus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops polycletus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops pythias",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Hypochrysops theon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Iraota rochana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Tajuria cippus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Tajuria discalis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 41
+  },
+  {
+    "species_scientific_name": "Cocytia durvillei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 42
+  },
+  {
+    "species_scientific_name": "Danaus plexippus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Euploea configurata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Euploea dentiplaga",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Euploea eupator",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Euploea latifasciata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Euploea westwoodii",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Euploea magou",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Euploea phaenareta",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Euploea sylvester",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Idea blanchardii",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Idea durvillei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Idea idea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Idea stolli",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Idea tambusisiana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Ideopsis hewitsonii",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Ideopsis vitrea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Parantica menadensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Tirumala choaspes",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 43
+  },
+  {
+    "species_scientific_name": "Amathusia phidippus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Amathuxidia plateni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Zeuxidia luxerii",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Elymnias agondas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Elymnias casiphone",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Elymnias hewittsoni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Elymnias hicetas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Elymnias hypermnestra",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Elymnias nesaea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Melanitis amabilis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris artemis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris bioculatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris catops",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris chionides",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris dimona",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris hyperbolus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris myops",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris onolaus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Taenaris scylla",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 44
+  },
+  {
+    "species_scientific_name": "Acraea andromacha",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 45
+  },
+  {
+    "species_scientific_name": "Acraea moluccana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 45
+  },
+  {
+    "species_scientific_name": "Cethosia biblis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 45
+  },
+  {
+    "species_scientific_name": "Cethosia hypsea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 45
+  },
+  {
+    "species_scientific_name": "Cethosia penthesilea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 45
+  },
+  {
+    "species_scientific_name": "Cethosia tambora",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 45
+  },
+  {
+    "species_scientific_name": "Vindula dejone",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 45
+  },
+  {
+    "species_scientific_name": "Vindula erota",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 45
+  },
+  {
+    "species_scientific_name": "Apaturina erminea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 46
+  },
+  {
+    "species_scientific_name": "Euripus nyctelius",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 46
+  },
+  {
+    "species_scientific_name": "Euripus robustus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 46
+  },
+  {
+    "species_scientific_name": "Helcyra celebensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 46
+  },
+  {
+    "species_scientific_name": "Hestina divona",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 46
+  },
+  {
+    "species_scientific_name": "Charaxes affinis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes bernardus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes elwesi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes latona",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes mars",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes nitebis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes ocellatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes solon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes (Polyura) alphius",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes (Polyura) cognata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes (Polyura) galaxia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Charaxes (Polyura) schreiberi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Prothoe australis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 47
+  },
+  {
+    "species_scientific_name": "Dichorragia nesimachus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 48
+  },
+  {
+    "species_scientific_name": "Doleschallia bisaltide",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 49
+  },
+  {
+    "species_scientific_name": "Doleschallia hexopthalmos",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Hypolimnas bolina",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Hypolimnas deois",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Hypolimnas diomea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Hypolimnas sumbawana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Kallima paralekta",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Rhinopalpa polynice",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Vanessa buana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Vanessa dejaani",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Yoma sabina",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Dophla evelina",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Euthalia adonia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Euthalia amanda",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Euthalia anosia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Euthalia atalanta",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Euthaliopsis aetion",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Lexias aeetes",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Lexias aegle",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Lexias aeropus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Moduza libnytis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Moduza lycone",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Moduza lymire",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Parthenos sylvia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 50
+  },
+  {
+    "species_scientific_name": "Sumalia hollandii",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Atrophaneura dixoni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Atrophaneura kuehni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Atrophaneura luchti",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Atrophaneura nox",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Chilasa veiovis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium agamemnon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium androcles",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium antiphates",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium aristeus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium codrus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium deucalion",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium dorcus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium encelades",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium eurypylus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium macfarlanei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium milon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium rhesus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium sarpedon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium stresemanni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium wallacei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Graphium weiskei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Lamproptera meges",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Pachliopta aristolochiae",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Pachliopta polydorus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio aegeus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio albinus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio alphenor",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio ambrax",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio ascalaphus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio blumei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio deiphobus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio demoleus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio demolion",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio euchenor",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio fuscus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio gambrisius",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio gigon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio helenus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio laglaizei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio lorquinianus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio memnon",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio paris",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio peranthus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio polytes",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio sataspes",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Papilio ulysses",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 51
+  },
+  {
+    "species_scientific_name": "Appias ada",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Appias celestina",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Appias ithome",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Appias nero",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Appias zarinda",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Cepora celebensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Cepora fora",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Cepora temena",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias albertisi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias angiensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias arabuana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias arfakensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias argentata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias aruna",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias bakeri",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias battana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias belisama",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias benasu",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias biaka",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias bothwelli",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias caroli",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias castaneus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias denigrata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias discus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias dixeyi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias dohertyi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias elongatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias ennia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias enniana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias euphernia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias fascelis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias fruhstorferi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias gabia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias geraldina",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias hapalina",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias heroni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias imitator",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias jordani",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias kenricki",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias kuehni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias ladas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias ligata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias mavroneria",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias melusina",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias microsticha",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias mysis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias nigropunctata",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias oraia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias ornytion",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias periboea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias pratti",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias rosenbergi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias sagessa",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias sambawana",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias talboti",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias toxopei",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias wallastoni",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias zebra",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Delias zebuda",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Elodina egnatia",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Hebomoia glaucippe",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Hebomoia leucippe",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Ixias paluensis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Ixias reinwardti",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Pareronia chinki",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Pareronia jobaea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Pareronia tritaea",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Saletara cycinna",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 52
+  },
+  {
+    "species_scientific_name": "Actias groenendaeli",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 53
+  },
+  {
+    "species_scientific_name": "Actias maenas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 53
+  },
+  {
+    "species_scientific_name": "Antheraea frithi",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 53
+  },
+  {
+    "species_scientific_name": "Attacus atlas",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 53
+  },
+  {
+    "species_scientific_name": "Attacus inopinatus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 53
+  },
+  {
+    "species_scientific_name": "Coscinucera hercules",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 53
+  },
+  {
+    "species_scientific_name": "Loepa cynopis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 53
+  },
+  {
+    "species_scientific_name": "Samia insularis",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 53
+  },
+  {
+    "species_scientific_name": "Alcides agathyrsus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 54
+  },
+  {
+    "species_scientific_name": "Nyctalemon menoetrus",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 54
+  },
+  {
+    "species_scientific_name": "Pharmacia biceps",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 55
+  },
+  {
+    "species_scientific_name": "Eurycantha horrida",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 56
+  },
+  {
+    "species_scientific_name": "Eurycnema versirubra",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 56
+  },
+  {
+    "species_scientific_name": "Extatosoma tiaratum",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 56
+  },
+  {
+    "species_scientific_name": "Phyllium celebicum",
+    "species_indonesia_name": "-",
+    "species_general_name": "-",
+    "species_category_id": 57
+  },
+  {
+    "species_scientific_name": "Scleropages jardini",
+    "species_indonesia_name": "-",
+    "species_general_name": "Ikan Arwana Irian/Ikan Kaloso",
+    "species_category_id": 23
   }
+
 ]
