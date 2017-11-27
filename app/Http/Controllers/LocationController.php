@@ -29,6 +29,7 @@ class LocationController extends Controller
         $species=Species::where('is_appendix',$is_appendix)->orderBy('species_scientific_name','asc')
             ->with('appendixSource')
             ->with('speciesSex')
+            ->with('speciesQuota')  
             ->get();
 
         return json_encode($species);

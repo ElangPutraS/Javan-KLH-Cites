@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/redactor/redactor.css') }}">
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
@@ -20,6 +21,8 @@
     <script>
          window.baseUrl = '{{ url('/') }}';
     </script>
+
+    
 
     @stack('head.stylesheet')
 </head>
@@ -77,7 +80,7 @@
             </div>
 
             <ul class="navigation">
-                <li @if(Request::segment(1)=='dashboard'||Request::segment(2)=='dashboard') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Home</a></li>
+                <li @if(Request::segment(1)=='dashboard'||Request::segment(2)=='dashboard') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Beranda</a></li>
 
                 @can('access-pelaku-usaha')
                 <!-- Menu Pelaku Usaha -->
@@ -98,6 +101,7 @@
                 <li @if(Request::segment(2)=='species') class="navigation__active" @endif><a href="{{ route('admin.species.index') }}"><i class="zmdi zmdi-flower-alt zmdi-hc-fw"></i> Kelola Spesies dan HS</a></li>
                 <li @if(Request::segment(2)=='ports') class="navigation__active" @endif><a href="{{ route('admin.ports.index') }}"><i class="zmdi zmdi-directions-boat zmdi-hc-fw"></i> Kelola Pelabuhan</a></li>
                 <li @if(Request::segment(2)=='news') class="navigation__active" @endif><a href="{{ route('admin.news.index') }}"><i class="zmdi zmdi-tv-list zmdi-hc-fw"></i> Kelola Informasi</a></li>
+                 <li @if(Request::segment(2)=='countries') class="navigation__active" @endif><a href="{{ route('admin.countries.index') }}"><i class="zmdi zmdi-local-airport zmdi-hc-fw"></i> Kelola Negara </a></li>
                 @endcan
             </ul>
         </div>
@@ -118,10 +122,20 @@
 <script src="{{ asset('template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('js/redactor/redactor.js') }}"></script>
+
+<script type="text/javascript">
+    $(function()
+    {
+        $('#content-form-news').redactor({
+            
+        });
+
+    });
+</script>
 
 <!-- App functions and actions -->
 <script src="{{ asset('template/js/app.min.js') }}"></script>
-
 @stack('body.script')
 </body>
 </html>

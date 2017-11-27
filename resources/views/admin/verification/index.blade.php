@@ -3,7 +3,7 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Verification List</h1>
+            <h1>Verifikasi Pelaku Usaha</h1>
         </header>
 
         <div class="card">
@@ -45,7 +45,7 @@
                                     <span class="badge badge-danger">Verifikasi Ditolak</span>
                                 @endif
                             </td>
-                            <td><a href="{{route('admin.verification.show', ['id'=> $company->id])}}"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
+                            <td><a href="{{route('admin.verification.show', ['id'=> $company->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
                         </tr>
                         @endforeach
                         </tbody>

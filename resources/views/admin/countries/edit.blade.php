@@ -4,27 +4,25 @@
 	<section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tambah Pelabuhan Baru</h1>
+                <h1>Edit Negara</h1>
             </header>
 
             <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Tambah Pelabuhan</h2>
-                    <small class="card-subtitle"></small>
-                </div>
                 <div class="card-block">
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.ports.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{ route('admin.countries.update', $country) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        {{ method_field('PUT') }}
+
                         {!! csrf_field() !!}
 
-                        @include('admin.ports._form')
+                        @include('admin.countries._form', ['country' => $country])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-primary">Simpan Baru</button>
-                                <a href="{{ route('admin.ports.index') }}" class="btn btn-default">Batal</a>
+                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <a href="{{ route('admin.countries.index') }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
                     </form>

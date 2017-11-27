@@ -4,10 +4,14 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Edit Species</h1>
+                <h1>Kelola Kategori Spesies</h1>
             </header>
 
             <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Ubah Kategori Spesies</h2>
+                    <small class="card-subtitle"></small>
+                </div>
                 <div class="card-block">
 
                     @include('includes.notifications')

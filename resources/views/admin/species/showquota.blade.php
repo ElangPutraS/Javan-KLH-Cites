@@ -3,12 +3,12 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Daftar Kuota</h1>
+            <h1>Kelola Kuota Spesies & HS</h1>
         </header>
 
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Kuota Species {{$species->species_indonesia_name}}</h2>
+                <h2 class="card-title">Daftar Kuota Species {{$species->species_indonesia_name}}</h2>
                 <small class="card-subtitle">({{$species->species_scientific_name}})</small>
             </div>
 
@@ -38,8 +38,8 @@
                                     <td>{{$quot->created_at->toFormattedDateString()}}</td>
                                     <td>{{$quot->updated_at->toFormattedDateString()}}</td>
                                     <td>
-                                        <a href="{{route('admin.species.editquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                        <a style="color:#3eacff;" onclick="deleteQuota(this)" data-id="{{$quot->id}}"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
+                                        <a href="{{route('admin.species.editquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                        <a style="color:white;" onclick="deleteQuota(this)" data-id="{{$quot->id}}" class="btn btn-sm btn-danger"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -65,7 +65,7 @@
             var id=a.getAttribute('data-id');
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menghapus quota species ini?',
+                text: 'Akan menghapus kuota species ini?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',

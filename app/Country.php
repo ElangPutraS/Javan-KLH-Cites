@@ -9,6 +9,7 @@ class Country extends Model
     protected $table = "countries";
 
     protected $fillable = [
+    	'country_code',
         'country_name',
     ];
 
@@ -16,4 +17,6 @@ class Country extends Model
     {
         return $this->hasMany(Province::class);
     }
+
 }
+

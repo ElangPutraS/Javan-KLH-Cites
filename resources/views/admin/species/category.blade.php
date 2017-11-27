@@ -3,20 +3,22 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Daftar Spesies & HS</h1>
+            <h1>Kelola Kategori Spesies</h1>
         </header>
 
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title"></h2>
-
+                <h2 class="card-title">Daftar Kategori Spesies</h2>
                 <small class="card-subtitle"></small>
             </div>
 
             <div class="card-block">
-                <a href="{{ route('admin.species.createCategory') }}" class="btn btn-primary">Tambah Baru</a>
+
                 @include('includes.notifications')
-                <div class="table-responsive">
+
+                <a href="{{ route('admin.species.createCategory') }}" class="btn btn-primary">Tambah Baru</a>
+                <hr>
+                <div class="table-responsive table-bordered table-sm">
                     <table class="table">
                         <thead class="thead-default">
                         <tr>
