@@ -6,9 +6,7 @@
 
 <div class="form-group">
     <label class="control-label"><h4>Isi</h4></label>
-    <textarea name="content" class="form-control" value="{{ old('content', array_get($news, 'content')) }}"" {{ $disable === true ? 'readonly' : '' }}>{{ old('content', array_get($news, 'content')) }}</textarea>
+    <textarea name="content" id="content-form-news" value="{{ old('content', array_get($news, 'content')) }}"" {{ $disable === true ? 'readonly' : '' }}>{{ old('content', array_get($news, 'content')) }}</textarea>
 </div>
-
-
 
 
