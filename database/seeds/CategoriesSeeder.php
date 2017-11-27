@@ -12,53 +12,13 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        Category::create([
-            'species_category_code' => 'k1',
-            'species_category_name' => 'Mamalia',
-        ]);
+        $jsonData = json_decode(File::get(database_path('json/categories.json')), JSON_OBJECT_AS_ARRAY);
+        foreach ($jsonData as $key => $item) {
 
-        Category::create([
-            'species_category_code' => 'k2',
-            'species_category_name' => 'Reptilia',
-        ]);
-
-        Category::create([
-            'species_category_code' => 'k3',
-            'species_category_name' => 'Ular/Snakes',
-        ]);
-
-        Category::create([
-            'species_category_code' => 'k4',
-            'species_category_name' => 'Biawak/Monitors',
-        ]);
-
-        Category::create([
-            'species_category_code' => 'k5',
-            'species_category_name' => 'Kura - kura/Turtles',
-        ]);
-
-        Category::create([
-            'species_category_code' => 'k6',
-            'species_category_name' => 'Buaya/Crocodiles',
-        ]);
-
-        Category::create([
-            'species_category_code' => 'k7',
-            'species_category_name' => 'Burung/Aves',
-        ]);
-
-        Category::create([
-            'species_category_code' => 'k8',
-            'species_category_name' => 'Cicak/Gecko',
-        ]);
-        Category::create([
-            'species_category_code' => 'k9',
-            'species_category_name' => 'Amphibia',
-        ]);
-
-        Category::create([
-            'species_category_code' => 'k10',
-            'species_category_name' => 'Arthropoda:Arachnida',
-        ]);
+            Category::create([
+                'species_category_code' => $item['species_category_code'],
+                'species_category_name' => $item['species_category_name']
+            ]);
+        }
     }
 }

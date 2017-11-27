@@ -1,0 +1,230 @@
+[
+  {
+    "species_category_code": "CT001",
+    "species_category_name": "MAMALIA"
+  },
+  {
+    "species_category_code": "CT002",
+    "species_category_name": "REPTILIA:ULAR / SNAKES"
+  },
+  {
+    "species_category_code": "CT003",
+    "species_category_name": "REPTILIA:BIAWAK / MONITORS"
+  },
+  {
+    "species_category_code": "CT004",
+    "species_category_name": "REPTILIA:KURA-KURA / TURTLES"
+  },
+  {
+    "species_category_code": "CT005",
+    "species_category_name": "REPTILIA:BUAYA / CROCODILES"
+  },
+  {
+    "species_category_code": "CT006",
+    "species_category_name": "REPTILIA : KADAL / SKINK-LIZARDS"
+  },
+  {
+    "species_category_code": "CT007",
+    "species_category_name": "REPTILIA : LONDOK / AGAMIDS"
+  },
+  {
+    "species_category_code": "CT008",
+    "species_category_name": "REPTILIA : CICAK / TOKEK / GECKO"
+  },
+  {
+    "species_category_code": "CT009",
+    "species_category_name": "BURUNG / AVES"
+  },
+  {
+    "species_category_code": "CT010",
+    "species_category_name": "ANTHOZOA : SCLERACTINIAN-ACROPORIDAE"
+  },
+  {
+    "species_category_code": "CT011",
+    "species_category_name": "ANTHOZOA : SCLERACTINIAN-FUNGIIDAE"
+  },
+  {
+    "species_category_code": "CT012",
+    "species_category_name": "ANTHOZOA : SCLERACTINIAN-OCULINIDAE"
+  },
+  {
+    "species_category_code": "CT013",
+    "species_category_name": "ANTHOZOA  :  SCLERACTINIAN-MUSSIDAE"
+  },
+  {
+    "species_category_code": "CT014",
+    "species_category_name": "ANTHOZOA : SCLERACTINIAN-MERULINIDAE"
+  },
+  {
+    "species_category_code": "CT015",
+    "species_category_name": "ANTHOZOA : SCLERACTINIAN-PECTINIDAE"
+  },
+  {
+    "species_category_code": "CT016",
+    "species_category_name": "ANTHOZOA : SCLERACTINIAN-CARYOPHYLLIIDAE"
+  },
+  {
+    "species_category_code": "CT017",
+    "species_category_name": "ANTHOZOA  : SCLERACTINIAN-DENDROPHYLLIDAE"
+  },
+  {
+    "species_category_code": "CT018",
+    "species_category_name": "ANTHOZOA  : SCLERACTINIAN-PORITIDAE"
+  },
+  {
+    "species_category_code": "CT019",
+    "species_category_name": "ANTHOZOA  : SCLERACTINIAN-FAVIIDAE"
+  },
+  {
+    "species_category_code": "CT020",
+    "species_category_name": "ANTHOZOA : SCLERACTINIAN-TRACHYPHYLLIIDAE"
+  },
+  {
+    "species_category_code": "CT021",
+    "species_category_name": "ANTHOZOA : NON SCLERACTINIAN CORAL"
+  },
+  {
+    "species_category_code": "CT022",
+    "species_category_name": "ANTHOZOA  : UNIDENTIFIED SCLERACTINIAN"
+  },
+  {
+    "species_category_code": "CT023",
+    "species_category_name": "FISH (ACTINOPTERYGII)"
+  },
+  {
+    "species_category_code": "CT024",
+    "species_category_name": "TUMBUHAN"
+  },
+  {
+    "species_category_code": "CT025",
+    "species_category_name": "AMPHIBIA"
+  },
+  {
+    "species_category_code": "CT026",
+    "species_category_name": "ARTHROPODA: ARACHNIDA"
+  },
+  {
+    "species_category_code": "CT027",
+    "species_category_name": "ARTHROPODA: CHILOPODA-Scolopendridae"
+  },
+  {
+    "species_category_code": "CT028",
+    "species_category_name": "ARTHROPODA: INSECTA - COLEOPTERA - Buprestidae"
+  },
+  {
+    "species_category_code": "CT029",
+    "species_category_name": "ARTHROPODA: INSECTA - COLEOPTERA - Cerambycidae"
+  },
+  {
+    "species_category_code": "CT030",
+    "species_category_name": "ARTHROPODA: INSECTA - COLEOPTERA - Curculionidae"
+  },
+  {
+    "species_category_code": "CT031",
+    "species_category_name": "ARTHROPODA: INSECTA - COLEOPTERA - Lucanidae"
+  },
+  {
+    "species_category_code": "CT032",
+    "species_category_name": "ARTHROPODA: INSECTA - COLEOPTERA - Scarabaeidae - Cetoniinae"
+  },
+  {
+    "species_category_code": "CT033",
+    "species_category_name": "ARTHROPODA: INSECTA - COLEOPTERA - Scarabaeidae - Scarabaeinae"
+  },
+  {
+    "species_category_code": "CT034",
+    "species_category_name": "ARTHROPODA: INSECTA - COLEOPTERA - Scarabaeidae - Dynastinae"
+  },
+  {
+    "species_category_code": "CT035",
+    "species_category_name": "ARTHROPODA: INSECTA - COLEOPTERA - Scarabaeidae - Rutelinae"
+  },
+  {
+    "species_category_code": "CT036",
+    "species_category_name": "ARTHROPODA: INSECTA - HEMIPTERA - Fulgoridae"
+  },
+  {
+    "species_category_code": "CT037",
+    "species_category_name": "ARTHROPODA: INSECTA - HEMIPTERA - Pentatomidae"
+  },
+  {
+    "species_category_code": "CT038",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Agaristidae"
+  },
+  {
+    "species_category_code": "CT039",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Geometridae"
+  },
+  {
+    "species_category_code": "CT040",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Hesperiidae"
+  },
+  {
+    "species_category_code": "CT041",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Lycaenidae"
+  },
+  {
+    "species_category_code": "CT042",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Noctuidae"
+  },
+  {
+    "species_category_code": "CT043",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Nymphalidae: Danainae"
+  },
+  {
+    "species_category_code": "CT044",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Nymphalidae: Satyrinae"
+  },
+  {
+    "species_category_code": "CT045",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Nymphalidae: Heliconiinae"
+  },
+  {
+    "species_category_code": "CT046",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Nymphalidae: Apaturinae"
+  },
+  {
+    "species_category_code": "CT047",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Nymphalidae: Charaxinae"
+  },
+  {
+    "species_category_code": "CT048",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Nymphalidae: Pseudergolinae"
+  },
+  {
+    "species_category_code": "CT049",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Nymphalidae: Nymphalinae"
+  },
+  {
+    "species_category_code": "CT050",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Nymphalidae: Limenitidinae"
+  },
+  {
+    "species_category_code": "CT051",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Papilionidae"
+  },
+  {
+    "species_category_code": "CT052",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Pieridae"
+  },
+  {
+    "species_category_code": "CT053",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Saturniidae"
+  },
+  {
+    "species_category_code": "CT054",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Uraniidae"
+  },
+  {
+    "species_category_code": "CT055",
+    "species_category_name": "ARTHROPODA: INSECTA - LEPIDOPTERA - Zygaenidae"
+  },
+  {
+    "species_category_code": "CT056",
+    "species_category_name": "ARTHROPODA: INSECTA - PHASMATODEA - Phasmatidae"
+  },
+  {
+    "species_category_code": "CT057",
+    "species_category_name": "ARTHROPODA: INSECTA - PHASMATODEA - Phyllidae"
+  }
+]
