@@ -236,6 +236,7 @@
                 $('#dynamicForm').append(form);
             }else{
                 $('#formSpecies-'+a.getAttribute('value')).remove();
+                jumlahSpesimen=jumlahSpesimen-1;
             }
         }
 
