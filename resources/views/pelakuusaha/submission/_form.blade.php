@@ -201,9 +201,10 @@
 
                             var quota='0';
                             var date=new Date();
-                            for(var a=0; i<data[i]['species_quota'].length; a++){
-                                if(data[i]['species_quota'][a].year==date.getFullYear()){
-                                    quota=data[i]['species_quota'][a].quota_ammount;
+
+                            for(var a=0; a<data[i].species_quota.length; a++){
+                                if(data[i].species_quota[a].year == date.getFullYear()){
+                                    quota=data[i].species_quota[a].quota_amount;
                                 }
                             }
 
