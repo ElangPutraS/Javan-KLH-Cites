@@ -25,6 +25,20 @@ class SubmissionController extends Controller
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
 
+    public function detail($id)
+    {
+        $user=User::find(Auth::id());
+
+        $trading_types=TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
+        $purpose_types=PurposeType::pluck('purpose_type_name', 'id');
+        $ports=Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
+        $document_types=DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+
+        $trade_permit=TradePermit::find($id);
+
+        return view('pelakuusaha.submission.detail', compact('user', 'trade_permit'));
+    }
+
     public function showDirect(){
         $user=User::find(Auth::id());
 

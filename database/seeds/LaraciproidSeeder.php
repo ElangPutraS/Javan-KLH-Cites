@@ -12,7 +12,7 @@ class LaraciproidSeeder extends Seeder
      */
     public function run()
     {
-        Country::create(['country_name' => 'Indonesia']);
+        Country::create(['country_name' => 'Indonesia', 'country_code' => 'ID']);
 
         $jsonProvinces = File::get(database_path('json/provinces.json'));
         $dataProvinces = json_decode($jsonProvinces);
