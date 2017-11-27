@@ -201,9 +201,10 @@
 
                             var quota='0';
                             var date=new Date();
-                            for(var a=0; i<data[i]['species_quota'].length; a++){
-                                if(data[i]['species_quota'][a].year==date.getFullYear()){
-                                    quota=data[i]['species_quota'][a].quota_ammount;
+
+                            for(var a=0; a<data[i].species_quota.length; a++){
+                                if(data[i].species_quota[a].year == date.getFullYear()){
+                                    quota=data[i].species_quota[a].quota_amount;
                                 }
                             }
 
@@ -213,6 +214,16 @@
                         }
                     }
                 });
+            });
+
+            $('#form-submission').submit(function(ev) {
+                if(jumlahSpesimen==0){
+                    alert('Silahkan pilih spesimen terlebih dahulu!');
+                    ev.preventDefault();
+                }else{
+                    this.submit();
+                    //$('#form-submission').submit();
+                }
             });
         });
 
@@ -235,15 +246,12 @@
                 $('#dynamicForm').append(form);
             }else{
                 $('#formSpecies-'+a.getAttribute('value')).remove();
+                jumlahSpesimen=jumlahSpesimen-1;
             }
         }
 
         function cekSpesimen(a){
-            if(jumlahSpesimen==0){
-                alert('Silahkan pillih spesimen terlebih dahulu!');
-            }else{
-                $('form-submission').submit();
-            }
+
         }
     </script>
 @endpush
