@@ -1,9 +1,6 @@
-<div class="form-group">
-    <h3>Pengajuan Permohonan Bertahap</h3>
-</div>
 
 <div class="form-group">
-    <h5>Informasi Pelaku Usaha</h5>
+    <h5>A. Informasi Pelaku Usaha</h5>
 </div>
 <div class="form-group">
     <label class="control-label">Nama Pelaku Usaha</label>
@@ -35,24 +32,22 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Nomor Faksimili</label>
+    <label class="control-label">Nomor Faksimile</label>
     <div class="col-sm-14">
         <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->userProfile->company, 'company_fax')) }}" readonly>
     </div>
 </div>
 
 <div class="form-group">
-    <h5>Informasi Permohonan</h5>
+    <h5>B. Informasi Permohonan</h5>
 </div>
 <div class="form-group">
     <label class="control-label">Jenis Perdagangan</label>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="trading_type_id">
-            @forelse($trading_types as $key => $trading_type)
-                <label class="btn bg-light-blue waves-effect {{ $key != old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ?: 'active' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
-            @empty
-
-            @endforelse
+            @foreach($trading_types as $key=>$trading_type)
+                <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
+            @endforeach
         </div>
     </div>
 </div>
@@ -61,12 +56,10 @@
     <label class="control-label">Jenis Kegiatan</label>
     <div class="col-sm-14">
         <select name="purpose_type_id" id="purpose_type_id" class="form-control select2" required>
-            <option>--Pilih Jenis Kegiatan--</option>
-            @forelse($purpose_types as $key => $purpose_type)
+            <option value="">--Pilih Jenis Kegiatan--</option>
+            @foreach($purpose_types as $key => $purpose_type)
                 <option value="{{ $key }}" {{ $key == old('purpose_type_id', array_get($trade_permit, 'purpose_type_id')) ? 'selected' : '' }}>{{ $purpose_type }}</option>
-            @empty
-                <option>Tidak ada jenis kegiatan</option>
-            @endforelse
+            @endforeach
         </select>
     </div>
 </div>
@@ -74,26 +67,11 @@
 <div class="form-group">
     <label class="control-label">Masa Berlaku</label>
     <div class="col-sm-14">
-        <label class="custom-control custom-radio period-komersil">
-            <input type="radio" name="period" value="1" class="custom-control-input"{{ old('period', array_get($trade_permit, 'period')) ? ' checked' : '' }}>
-            <span class="custom-control-indicator period-komersil"></span>
-            <span class="custom-control-description">1 Bulan</span>
-        </label>
-        <label class="custom-control custom-radio period-komersil">
-            <input type="radio" name="period" value="2" class="custom-control-input"{{ old('period', array_get($trade_permit, 'period')) ? ' checked' : '' }}>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">2 Bulan</span>
-        </label>
-        <label class="custom-control custom-radio period-komersil">
-            <input type="radio" name="period" value="3" class="custom-control-input"{{ old('period', array_get($trade_permit, 'period')) ? ' checked' : '' }} checked>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">3 Bulan</span>
-        </label>
-        <!--label class="custom-control custom-radio period-non-komersil">
-            <input type="radio" name="period" value="6" class="custom-control-input"{{ old('period', array_get($trade_permit, 'period')) ? ' checked' : '' }}>
-            <span class="custom-control-indicator"></span>
-            <span class="custom-control-description">6 Bulan</span>
-        </label-->
+        <div class="btn-group btn-group--colors" data-toggle="buttons">
+                <label class="btn bg-red waves-effect"><input type="radio" id="period1" name="period" value="1" autocomplete="off" required></label> 1 Bulan &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-red waves-effect"><input type="radio" id="period2" name="period" value="2" autocomplete="off" required></label> 2 Bulan &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-red waves-effect active"><input type="radio" id="period3" name="period" value="3" autocomplete="off" required></label> 3 Bulan &nbsp;&nbsp;&nbsp;
+        </div>
     </div>
 </div>
 
@@ -139,7 +117,7 @@
 </div>
 
 <div class="form-group">
-    <h5>Unggah Dokumen</h5>
+    <h5>C. Unggah Dokumen</h5>
 </div>
 @foreach($document_types as $key => $document_type)
     <div class="form-group">
@@ -152,7 +130,7 @@
 @endforeach
 
 <div class="form-group">
-    <h5>Informasi Spesimen</h5>
+    <h5>D. Informasi Spesimen</h5>
     <p>Silahkan Pilih Spesimen yang dibutuhkan!</p>
 </div>
 <div class="card">
@@ -179,7 +157,7 @@
 </div>
 
 <div class="form-group">
-    <h5>Daftar Spesimen Yang Dipilih</h5>
+    <h5>E. Daftar Spesimen Yang Dipilih</h5>
     <p>Spesimen yang telah dipilih, wajib diisi!</p>
 </div>
 
@@ -190,6 +168,7 @@
 
 @push('body.script')
     <script type="text/javascript">
+        var jumlahSpesimen=0;
         $(document).ready(function(){
             $('input[name="appendix_type"]').change(function(){
                 var syarat='';
@@ -210,9 +189,10 @@
                         console.log(data);
                         $('#dynamicForm').html('');
                         table.rows().remove().draw();
+                        var no=0;
 
                         for(var i=0; i<data.length; i++){
-                            var no=i+1;
+                            no=no+1;
                             var scientific_name=data[i].species_scientific_name;
                             var indonesia_name=data[i].species_scientific_name;
                             var general_name=data[i].species_general_name;
@@ -222,47 +202,61 @@
                             }else{
                                 appendix_source='Tidak Memiliki Appendix';
                             }
+
+                            var quota='0';
+                            var date=new Date();
+
+                            for(var a=0; a<data[i].species_quota.length; a++){
+                                if(data[i].species_quota[a].year == date.getFullYear()){
+                                    quota=data[i].species_quota[a].quota_amount;
+                                }
+                            }
+
                             var species_sex=data[i]['species_sex'].sex_name;
-                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-jk="'+species_sex+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input"><span class="custom-control-indicator"></span></label>';
+                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-jk="'+species_sex+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input"><span class="custom-control-indicator"></span></label>';
                             table.row.add([no, scientific_name, indonesia_name, general_name, appendix_source, species_sex, aksi]).draw();
                         }
                     }
                 });
+            });
+
+            $('#form-submission').submit(function(ev) {
+                if(jumlahSpesimen==0){
+                    alert('Silahkan pilih spesimen terlebih dahulu!');
+                    ev.preventDefault();
+                }else{
+                    this.submit();
+                    //$('#form-submission').submit();
+                }
             });
         });
 
         function test(a) {
             var form='';
             if(a.checked){
+                var min=1;
+                /*if(a.getAttribute('data-quota')==0){
+                    min=0;
+                }*/
                 form+='<div class="form-group" id="formSpecies-'+a.getAttribute('value')+'"><label class="control-label">Jumlah</label>';
                 form+='<p style="font-size: smaller"> Nama Spesimen : '+a.getAttribute('data-indonesia')+' (<i>'+a.getAttribute('data-scientific')+'</i>) | Jenis Kelamin : '+a.getAttribute('data-jk')+'</p>';
                 form+='<div class="col-sm-14">';
-                form+='<input type="hidden" min="0" name="species_id[]" class="form-control" value="{{ old('species_id[]') }}">';
-                form+='<input type="number" min="0" name="quantity[]" class="form-control" value="{{ old('quantity[]') }}" required>';
+
+                form+='<input type="hidden" name="species_id[]" class="form-control" value="'+a.getAttribute('value')+'">';
+                form+='<input type="number" min="'+min+'" max="'+a.getAttribute('data-quota')+'" name="quantity[]" class="form-control" value="{{ old('quantity[]') ?? '0'}}" required>';
                 form+='</div></div>';
 
+                jumlahSpesimen=jumlahSpesimen+1;
                 $('#dynamicForm').append(form);
             }else{
                 $('#formSpecies-'+a.getAttribute('value')).remove();
+                jumlahSpesimen=jumlahSpesimen-1;
             }
         }
 
-        /*$('.period-komersil').find('input').prop('disabled', true);
-        $('.period-non-komersil').find('input').prop('disabled', true);
+        function cekSpesimen(a){
 
-        $('#purpose_type_id').change(function () {
-            $(this).find('option:selected').each(function () {
-                if ($(this).val() < 7) {
-                    $('.period-komersil').find('input').prop('disabled', true);
-                    $('.period-non-komersil').find('input').prop('disabled', false);
-                    $('.period-non-komersil').find('input').prop('checked', true);
-                } else {
-                    $('.period-non-komersil').find('input').prop('disabled', true);
-                    $('.period-komersil').find('input').prop('disabled', false);
-                    $('.period-komersil:nth-child(3)').find('input').prop('checked', true);
-                }
-            });
-        });*/
+        }
     </script>
 @endpush
 
