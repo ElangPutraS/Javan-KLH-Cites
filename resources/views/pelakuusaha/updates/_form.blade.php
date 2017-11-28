@@ -4,12 +4,11 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Permohonan SATSL-LN Pengguna</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Pengajuan Permohonan SATSL-LN Langsung</h2>
+                    <h2 class="card-title">Pembaharuan Permohonan SATSL-LN</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
@@ -162,7 +161,8 @@
                         @endforeach
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <a href="{{ route('user.submission.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                                <a href="" class="btn btn-default">Simpan Baru</a>
+                                <a href="{{ route('user.update.index') }}" class="btn btn-primary">Batal</a>
                             </div>
                         </div>
                     </form>

@@ -48,9 +48,17 @@
                 data: 'no='+no,
 
                 success : function (data) {
+                    if (data==0){
+                        swal(
+                            "Error",
+                            "Nomor SATS-LN tidak ditemukan",
+                            "error"
+                        )
+                    }else{
                     location.href="updateSubmission/"+data;
-                    //alert(data);
+                    }
                 }
+
             });
         }
     </script>
