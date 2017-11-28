@@ -202,7 +202,7 @@
                             var quota='0';
                             var date=new Date();
                             var disabled='disabled';
-                            var notif='<font color="red">Kuota belum ditentukan oleh admin!</font>';
+                            var notif='<font color="red">Kuota 0, kuota belum ditentukan oleh admin!</font>';
 
                             for(var a=0; a<data[i].species_quota.length; a++){
                                 if(data[i].species_quota[a].year == date.getFullYear()){

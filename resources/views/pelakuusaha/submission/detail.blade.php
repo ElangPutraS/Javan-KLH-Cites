@@ -121,7 +121,7 @@
                                         {{$document->pivot->document_name}}
                                     </div>
                                     <div class="col-sm-4">
-                                        <a href="{{$document->pivot->download_url}}">[ <i class="zmdi zmdi-download zmdi-hc-fw"></i> donwload ]</a>
+                                        <a href="{{$document->pivot->download_url}}">[ <i class="zmdi zmdi-download zmdi-hc-fw"></i> download ]</a>
                                     </div>
                                 </div>
                             </div>
