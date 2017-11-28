@@ -28,7 +28,7 @@
                     ?>
                     @include('includes.notifications')
                     
-                    <form action="{{route('user.submission.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{route('user.submission.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
 
                         {!! csrf_field() !!}
 
