@@ -124,6 +124,9 @@
         </div>
     </div>
 @endforeach
+<div id="formDoc">
+
+</div>
 
 <div class="form-group">
     <h5>D. Informasi Spesimen</h5>
@@ -231,6 +234,28 @@
                 }else{
                     this.submit();
                     //$('#form-submission').submit();
+                }
+            });
+
+            $('input[name="trading_type_id"]').change(function(){
+                if (document.getElementById('trading_type_id4').checked) {
+                    $.ajax({
+                        type:'get',
+                        url: window.baseUrl + '/getDocumentType',
+                        dataType: 'json',
+                        success : function(data){
+                            console.log(data);
+
+                            var form='<div class="form-group"><label class="control-label">'+data['document_type_name']+'</label>';
+                            form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data['id']+'" required>';
+                            form+='<input id="document_'+data['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
+                            form+='</div></div>';
+
+                            $('#formDoc').html(form);
+                        }
+                    });
+                }else {
+                    $('#formDoc').html('');
                 }
             });
         });
