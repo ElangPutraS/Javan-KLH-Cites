@@ -13,7 +13,7 @@ use App\Species;
 
 class SubmissionGraduallyController extends Controller {
 
-	public function create(Request $request) {
+	public function create() {
 		$user = User::find(Auth::id());
 		$trading_types = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
 		$purpose_types = PurposeType::orderBy('purpose_type_name', 'asc')->pluck('purpose_type_name', 'id');
@@ -21,8 +21,12 @@ class SubmissionGraduallyController extends Controller {
 		$document_types = DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 		$species = Species::get();
 
-		if ($request && $request->isMethod('post')) {
-        	//isi trade permit
+		return view('pelakuusaha.submission-gradually.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'species'));
+	}
+
+
+	public function store(Request $request) {
+    		//isi trade permit
 			$trade_permit = new TradePermit([
 				'trade_permit_code'  => 'cek',
 				'consignee'         => $request->get('consignee'),
@@ -42,12 +46,12 @@ class SubmissionGraduallyController extends Controller {
 			$company->tradePermits()->save($trade_permit);
 
         	//relasi status
-			$status=TradePermitStatus::find(1);
+			$status = TradePermitStatus::find(1);
 			$trade_permit->tradeStatus()->associate($status);
 			$trade_permit->save();
 
         	//nambahin log
-			$log=LogTradePermit::create([
+			$log = LogTradePermit::create([
 				'log_description' => $status->status_name,
 			]);
 			$trade_permit->logTrade()->save($log);
@@ -78,8 +82,5 @@ class SubmissionGraduallyController extends Controller {
 	        }
 
 			return redirect()->route('user.submission.index')->with('success', 'Data berhasil dibuat.');
-		}
-
-		return view('pelakuusaha.submission-gradually.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'species'));
-	}
+    }
 }

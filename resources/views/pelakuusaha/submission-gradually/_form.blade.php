@@ -89,11 +89,11 @@
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">3 Bulan</span>
         </label>
-        <label class="custom-control custom-radio period-non-komersil">
+        <!--label class="custom-control custom-radio period-non-komersil">
             <input type="radio" name="period" value="6" class="custom-control-input"{{ old('period', array_get($trade_permit, 'period')) ? ' checked' : '' }}>
             <span class="custom-control-indicator"></span>
             <span class="custom-control-description">6 Bulan</span>
-        </label>
+        </label-->
     </div>
 </div>
 
@@ -247,7 +247,7 @@
             }
         }
 
-        $('.period-komersil').find('input').prop('disabled', true);
+        /*$('.period-komersil').find('input').prop('disabled', true);
         $('.period-non-komersil').find('input').prop('disabled', true);
 
         $('#purpose_type_id').change(function () {
@@ -262,7 +262,7 @@
                     $('.period-komersil:nth-child(3)').find('input').prop('checked', true);
                 }
             });
-        });
+        });*/
     </script>
 @endpush
 

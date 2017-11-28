@@ -24,7 +24,7 @@
                     ?>
                     @include('includes.notifications')
 
-                    <form action="{{ route('user.submissionGradually.create') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{ route('user.submissionGradually.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
                         @include('pelakuusaha.submission-gradually._form', ['trade_permit' => null])
