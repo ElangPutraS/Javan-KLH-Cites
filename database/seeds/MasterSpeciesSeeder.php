@@ -14,13 +14,13 @@ class MasterSpeciesSeeder extends Seeder
     public function run()
     {
         AppendixSource::create([
-            'appendix_source_code' => 'Test 1',
-            'description' => 'Description test 1',
+            'appendix_source_code' => 'Appendix I',
+            'description' => 'Description Appendix I',
         ]);
 
         AppendixSource::create([
-            'appendix_source_code' => 'Test 2',
-            'description' => 'Description test 2',
+            'appendix_source_code' => 'Appendix II',
+            'description' => 'Description Appendix II',
         ]);
 
         SpeciesSex::create([

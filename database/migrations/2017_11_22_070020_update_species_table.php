@@ -14,7 +14,7 @@ class UpdateSpeciesTable extends Migration
     public function up()
     {
         Schema::table('species', function (Blueprint $table) {
-            $table->integer('species_category_id')->unsigned();
+            $table->integer('species_category_id')->unsigned()->nullable();
             $table->foreign('species_category_id')->references('id')->on('categories');
         });
     }
@@ -26,6 +26,9 @@ class UpdateSpeciesTable extends Migration
      */
     public function down()
     {
+        Schema::table('species', function (Blueprint $table) {
+            $table->dropForeign('species_species_category_id_foreign');
 
+        });
     }
 }
