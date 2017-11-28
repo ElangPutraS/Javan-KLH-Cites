@@ -2,14 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\User;
-use Auth;
-use App\TradingType;
-use App\PurposeType;
-use App\Ports;
+use App\Company;
 use App\DocumentType;
+use App\LogTradePermit;
+use App\Ports;
+use App\PurposeType;
 use App\Species;
+use App\TradePermit;
+use App\TradePermitStatus;
+use App\TradingType;
+use App\User;
+use App\UserProfile;
+use Auth;
+use Illuminate\Http\Request;
+use function Sodium\add;
 
 class SubmissionGraduallyController extends Controller {
 
