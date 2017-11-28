@@ -19,9 +19,8 @@ class SubmissionGraduallyController extends Controller {
 		$purpose_types = PurposeType::orderBy('purpose_type_name', 'asc')->pluck('purpose_type_name', 'id');
 		$ports = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
 		$document_types = DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
-		$species = Species::get();
 
-		return view('pelakuusaha.submission-gradually.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'species'));
+		return view('pelakuusaha.submission-gradually.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
 	}
 
 
@@ -42,11 +41,11 @@ class SubmissionGraduallyController extends Controller {
 			$trade_permit->save();
 
 			//relasi
-			$company=Company::find($request->user()->company->id);
+			$company = $request->user()->company;
 			$company->tradePermits()->save($trade_permit);
 
         	//relasi status
-			$status = TradePermitStatus::find(1);
+			$status = TradePermitStatus::where('status_code', 100)->first();
 			$trade_permit->tradeStatus()->associate($status);
 			$trade_permit->save();
 

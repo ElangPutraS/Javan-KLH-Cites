@@ -24,7 +24,7 @@
                     ?>
                     @include('includes.notifications')
 
-                    <form action="{{route('user.submission.storeDirect')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{route('user.submission.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
                         @include('pelakuusaha.submission._form', ['trade_permit' => null])
