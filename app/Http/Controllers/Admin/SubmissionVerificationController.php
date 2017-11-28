@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\TradePermit;
 use App\TradePermitStatus;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -26,18 +27,17 @@ class SubmissionVerificationController extends Controller
         return view ('admin.verificationSub.detail', compact('trade_permit','user'));
     }
 
-    public function update($id){
+    public function update(Request $request, $id){
         $trade_permit=TradePermit::find($id);
 
-        $valid_start=date('Y-m-d');
-        $tambah=mktime(0,0,0,date('m')+$trade_permit->period,date('d')+0,date('Y')+0);
-        $valid_until=date('Y-m-d', $tambah);
+        $valid_start=Carbon::now()->format('Y-m-d');
+        $valid_until=Carbon::now()->addMonth($trade_permit->period)->format('Y-m-d');
 
 
         $trade_permit->update([
             'valid_start' => $valid_start,
             'valid_until' => $valid_until,
-            'updated_by' => Auth::user()->id
+            'updated_by' => $request->user()->id
         ]);
 
         $status=TradePermitStatus::where('status_code','200')->first();
@@ -46,11 +46,11 @@ class SubmissionVerificationController extends Controller
         return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverivikasi.');
     }
 
-    public function updateRej($id){
+    public function updateRej(Request $request, $id){
         $trade_permit=TradePermit::find($id);
 
         $trade_permit->update([
-            'updated_by' => Auth::user()->id
+            'updated_by' => $request->user()->id
         ]);
 
         $status=TradePermitStatus::where('status_code','300')->first();
