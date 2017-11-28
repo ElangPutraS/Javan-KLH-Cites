@@ -44,6 +44,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
     Route::get('verification/{id}', 'UserVerificationController@show')->name('admin.verification.show');
     Route::get('verification/acc/{id}', 'UserVerificationController@update');
+    Route::post('verification/rej/{id}', 'UserVerificationController@updateRej');
+
     Route::get('species', 'SpeciesHSController@index')->name('admin.species.index');
     Route::get('species/create', 'SpeciesHSController@create')->name('admin.species.createSpecies');
     Route::post('species/create', 'SpeciesHSController@store')->name('admin.species.storeSpecies');
@@ -56,7 +58,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('species/{species_id}/edit/{id}', 'SpeciesHSController@editQuota')->name('admin.species.editquota');
     Route::post('species/{species_id}/edit/{id}', 'SpeciesHSController@updateQuota')->name('admin.species.updatequota');
     Route::get('species/{species_id}/delete/{id}', 'SpeciesHSController@destroyQuota')->name('admin.species.deletequota');
-    Route::post('verification/rej/{id}', 'UserVerificationController@updateRej');
+
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
 
@@ -66,6 +68,12 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('category/{id}/editCategory', 'CategoriesController@edit')->name('admin.species.editCategory');
     Route::post('category/{id}/editCategory', 'CategoriesController@update')->name('admin.species.updateCategory');
     Route::get('category/{id}/deleteCategory', 'CategoriesController@destroy')->name('admin.species.deleteSpecies');
+
+    Route::get('verificationSub', 'SubmissionVerificationController@index')->name('admin.verificationSub.index');
+    Route::get('verificationSub/{id}/detail', 'SubmissionVerificationController@show')->name('admin.verificationSub.show');
+    Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
+    Route::get('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
+
 
     Route::resource('ports', 'PortController', ['as' => 'admin']);
    	Route::resource('news', 'NewsController', ['as' => 'admin']);
