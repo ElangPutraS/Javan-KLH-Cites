@@ -45,8 +45,6 @@ class PortController extends \App\Http\Controllers\Controller {
 	public function destroy(Ports $port) {
 		$port->delete();
 
-		//DB::statement('ALTER TABLE ports AUTO_INCREMENT = 1');
-
 		return redirect()->route('admin.ports.index')->with('success', 'Data berhasil dihapus.');
 	}
 }

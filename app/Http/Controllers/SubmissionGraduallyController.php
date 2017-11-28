@@ -13,8 +13,8 @@ use App\Species;
 
 class SubmissionGraduallyController extends Controller {
 
-	public function create() {
-		$user = User::find(Auth::id());
+	public function create(Request $request) {
+		$user = $request->user();
 		$trading_types = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
 		$purpose_types = PurposeType::orderBy('purpose_type_name', 'asc')->pluck('purpose_type_name', 'id');
 		$ports = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
