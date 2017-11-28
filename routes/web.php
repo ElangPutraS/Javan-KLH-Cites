@@ -27,6 +27,7 @@ Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
 Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
+Route::post('/getSubmission/', 'UpdateController@getSubmission');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
@@ -70,3 +71,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('countries', 'CountryController', ['as' => 'admin']);
 
 });
+
+Route::get('update','UpdateController@index')->name('user.update.index');
+Route::get('updateSubmission/{id}','UpdateController@edit')->name('user.update.edit');

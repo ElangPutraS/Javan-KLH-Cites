@@ -91,8 +91,8 @@
                         <li @if(Request::segment(2)=='createStage') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
                     </ul>
                 </li>
+                    <li @if(Request::segment(2)=='update') class="navigation__active" @endif><a href="{{ route('user.update.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATSL-LN </a></li>
                 @endcan
-
                 @can('access-admin')
                 <!-- Menu Admin -->
                 <li @if(Request::segment(2)=='verification') class="navigation__active" @endif><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-check-all zmdi-hc-fw"></i> Verifikasi Pelaku Usaha</a></li>
