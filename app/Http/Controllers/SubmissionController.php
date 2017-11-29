@@ -19,10 +19,17 @@ use function Sodium\add;
 
 class SubmissionController extends Controller
 {
-    public function index(){
-        $trade_permits=TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
+    public function index() {
+        $trade_permits = TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
+    }
+
+    public function printSatsln($id) {
+
+
+        //$pdf = PDF::loadView('pdf.satsln');
+        return view('pdf.satsln');
     }
 
     public function detail($id)
@@ -48,10 +55,6 @@ class SubmissionController extends Controller
         $document_types=DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
-    }
-
-    public function showStage(){
-
     }
 
     public function store(Request $request){
@@ -118,18 +121,6 @@ class SubmissionController extends Controller
         }
 
         return redirect()->route('user.submission.index')->with('success', 'Data berhasil dibuat.');
-    }
-
-    public function edit(){
-
-    }
-
-    public function update(){
-
-    }
-
-    public function destroy(){
-
     }
 
     public function create_kode($id){
