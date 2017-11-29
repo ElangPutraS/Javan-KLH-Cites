@@ -49,11 +49,6 @@ class CityController extends Controller
         $cities->save();
         return redirect()->route('admin.cities.edit', $cities)->with('success', 'Data berhasil dibuat.');
     }
-
-    public function show(Cities $city) {
-      echo json_encode($city);
-    }
-
  
 
     public function edit(City $city) {
