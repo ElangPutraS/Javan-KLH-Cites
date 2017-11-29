@@ -43,7 +43,7 @@ class SubmissionVerificationController extends Controller
         $status=TradePermitStatus::where('status_code','200')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
-        return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverivikasi.');
+        return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }
 
     public function updateRej(Request $request, $id){

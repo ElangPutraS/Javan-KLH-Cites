@@ -27,6 +27,7 @@ Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
 Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
+Route::get('/getDocumentType', 'LocationController@getDocumentReEkspor');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
@@ -79,5 +80,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('ports', 'PortController', ['as' => 'admin']);
    	Route::resource('news', 'NewsController', ['as' => 'admin']);
     Route::resource('countries', 'CountryController', ['as' => 'admin']);
+    Route::resource('provinces', 'ProvinceController', ['as' => 'admin']);
+
 
 });

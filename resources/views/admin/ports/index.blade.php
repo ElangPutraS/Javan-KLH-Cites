@@ -73,7 +73,7 @@
         function deletePort(a) {
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menghapus data pelabuhan ini?',
+                text: 'Akan menghapus quota species ini?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
