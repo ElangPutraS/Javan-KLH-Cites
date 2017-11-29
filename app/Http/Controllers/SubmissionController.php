@@ -11,50 +11,53 @@ use App\Species;
 use App\TradePermit;
 use App\TradePermitStatus;
 use App\TradingType;
-use App\User;
-use App\UserProfile;
-use Auth;
 use Illuminate\Http\Request;
-use function Sodium\add;
 
 class SubmissionController extends Controller
 {
-    public function index(){
-        $trade_permits=TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
+    public function index() {
+        $trade_permits = TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
 
-    public function detail($id)
+
+    public function printSatsln($id) {
+
+
+        //$pdf = PDF::loadView('pdf.satsln');
+        return view('pdf.satsln');
+    }
+
+    public function detail(Request $request, $id)
     {
-        $user=User::find(Auth::id());
+        $user           = $request->user();
 
-        $trading_types=TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
-        $purpose_types=PurposeType::pluck('purpose_type_name', 'id');
-        $ports=Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
-        $document_types=DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
-        $trade_permit=TradePermit::find($id);
+        $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
+        $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
+        $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
+        $document_types = DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+
+        $trade_permit=TradePermit::findOrFail($id);
 
         return view('pelakuusaha.submission.detail', compact('user', 'trade_permit'));
     }
 
-    public function create(){
-        $user=User::find(Auth::id());
+    public function create(Request $request){
 
-        $trading_types=TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
-        $purpose_types=PurposeType::pluck('purpose_type_name', 'id');
-        $ports=Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
-        $document_types=DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+        $user           = $request->user();
+
+        $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
+        $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
+        $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
+        $document_types = DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
     }
 
-    public function showStage(){
-
-    }
-
     public function store(Request $request){
+
         //isi trade permit
         $trade_permit = new TradePermit([
             'trade_permit_code'  => 'cek',
@@ -99,7 +102,7 @@ class SubmissionController extends Controller
                  */
                 $file_path = $file->store('/upload/file/trade_document');
 
-                $document_type = DocumentType::find($request->get('document_type_id')[$key]);
+                $document_type = DocumentType::findOrFail($request->get('document_type_id')[$key]);
 
                 $trade_permit->documentTypes()->attach($document_type, [
                     'document_name' => $file->getClientOriginalName(),
@@ -110,7 +113,7 @@ class SubmissionController extends Controller
 
         //save spesimen trade permit
         foreach ($request->quantity as $key => $quantity) {
-            $species = Species::find($request->get('species_id')[$key]);
+            $species = Species::findOrFail($request->get('species_id')[$key]);
 
             $trade_permit->tradeSpecies()->attach($species, [
                 'total_exported' => $quantity
@@ -120,51 +123,40 @@ class SubmissionController extends Controller
         return redirect()->route('user.submission.index')->with('success', 'Data berhasil dibuat.');
     }
 
-    public function edit(){
-
-    }
-
-    public function update(){
-
-    }
-
-    public function destroy(){
-
-    }
-
     public function create_kode($id){
-        $kode=$id;
+        $kode = $id;
 
-        $bulan=date('m');
-        $month="";
+        $bulan = date('m');
+        $month = "";
         switch ($bulan){
             case 1: $month='I';
                     break;
             case 2: $month='II';
-                break;
+                    break;
             case 3: $month='III';
-                break;
+                    break;
             case 4: $month='IV';
-                break;
+                    break;
             case 5: $month='V';
-                break;
+                    break;
             case 6: $month='VI';
-                break;
+                    break;
             case 7: $month='VII';
-                break;
+                    break;
             case 8: $month='VIII';
-                break;
+                    break;
             case 9: $month='IX';
-                break;
+                    break;
             case 10: $month='X';
-                break;
+                    break;
             case 11: $month='XI';
-                break;
+                    break;
             case 12: $month='XII';
-                break;
+                    break;
         }
 
-        $kode.='/'.$month.'/SATSL-LN/'.date('Y');
+        $kode .= '/'.$month.'/SATSL-LN/'.date('Y');
+
 
         return $kode;
     }
