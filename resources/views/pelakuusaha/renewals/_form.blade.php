@@ -1,20 +1,3 @@
-@extends('dashboard.layouts.base')
-
-@section('content')
-    <section class="content">
-        <div class="content__inner">
-            <header class="content__title">
-            </header>
-
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Pembaharuan Permohonan SATSL-LN</h2>
-                    <small class="card-subtitle"></small>
-                </div>
-                <div class="card-block">
-
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
-                        {!! csrf_field() !!}
 
                         <div class="form-group">
                             <h5>A. Informasi Pelaku Usaha</h5>
@@ -142,7 +125,7 @@
 
                         <div class="form-group">
                             <h5>D. Daftar Spesimen</h5>
-                            <p>Spesimen yang telah dipilih, wajib diisi!</p>
+                            <p>Spesimen yang telah dipilih</p>
                         </div>
                         @foreach($trade_permit->tradeSpecies as $species)
                             <div class="form-group">
@@ -159,15 +142,3 @@
                                 </div>
                             </div>
                         @endforeach
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-14">
-                                <a href="" class="btn btn-default">Simpan Baru</a>
-                                <a href="{{ route('user.update.index') }}" class="btn btn-primary">Batal</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-@endsection

@@ -10,7 +10,7 @@ use App\PurposeType;
 use App\TradingType;
 use App\User;
 use Auth;
-class UpdateController extends Controller
+class RenewalController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,9 @@ class UpdateController extends Controller
      */
     public function index()
     {
-        return view('pelakuusaha.updates.index');
+        $trade_permits=TradePermit::where('trade_permit_status_id','>=',8)->paginate(10);
+
+        return view('pelakuusaha.renewals.index', compact('trade_permits'));
     }
 
     /**
@@ -60,16 +62,16 @@ class UpdateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $user=User::find(Auth::id());
+        $user=User::find($request->user()->id);
 
         $trading_types=TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types=PurposeType::pluck('purpose_type_name', 'id');
         $ports=Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
         $document_types=DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
         $trade_permit=TradePermit::find($id);
-        return view('pelakuusaha.updates._form', compact('user', 'trade_permit','trading_types','purpose_types','ports'));
+        return view('pelakuusaha.renewals.edit', compact('user', 'trade_permit','trading_types','purpose_types','ports'));
 
     }
 

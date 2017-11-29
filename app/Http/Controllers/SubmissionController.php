@@ -12,10 +12,8 @@ use App\TradePermit;
 use App\TradePermitStatus;
 use App\TradingType;
 use App\User;
-use App\UserProfile;
 use Auth;
 use Illuminate\Http\Request;
-use function Sodium\add;
 
 class SubmissionController extends Controller
 {
@@ -24,7 +22,6 @@ class SubmissionController extends Controller
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
-
     public function detail($id)
     {
         $user=User::find(Auth::id());
@@ -38,7 +35,6 @@ class SubmissionController extends Controller
 
         return view('pelakuusaha.submission.detail', compact('user', 'trade_permit'));
     }
-
     public function showDirect(){
         $user=User::find(Auth::id());
 
@@ -50,11 +46,9 @@ class SubmissionController extends Controller
         $species=Species::get();
         return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'species'));
     }
-
     public function showStage(){
 
     }
-
     public function storeDirect(Request $request){
         //isi trade permit
         $trade_permit = new TradePermit([
@@ -164,7 +158,6 @@ class SubmissionController extends Controller
             case 12: $month='XII';
                 break;
         }
-
         $kode.='/'.$month.'/SATSL-LN/'.date('Y');
 
         return $kode;

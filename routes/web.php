@@ -38,6 +38,8 @@ Route::get('submission', 'SubmissionController@index')->name('user.submission.in
 Route::get('submission/{id}/detail', 'SubmissionController@detail')->name('user.submission.detail');
 Route::get('submission/createDirect', 'SubmissionController@showDirect')->name('user.submission.showDirect');
 Route::post('submission/createDirect', 'SubmissionController@storeDirect')->name('user.submission.storeDirect');
+Route::get('renewal','RenewalController@index')->name('user.renewal.index');
+Route::get('renewalSubmission/{id}','RenewalController@edit')->name('user.renewal.edit');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
@@ -72,5 +74,3 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
 
 });
 
-Route::get('update','UpdateController@index')->name('user.update.index');
-Route::get('updateSubmission/{id}','UpdateController@edit')->name('user.update.edit');
