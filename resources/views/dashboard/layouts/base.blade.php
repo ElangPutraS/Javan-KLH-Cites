@@ -107,6 +107,7 @@
                 <li @if(Request::segment(2)=='countries') class="navigation__active" @endif><a href="{{ route('admin.countries.index') }}"><i class="zmdi zmdi-local-airport zmdi-hc-fw"></i> Kelola Negara </a></li>
                 <li @if(Request::segment(2)=='provinces') class="navigation__active" @endif><a href="{{ route('admin.provinces.index') }}"><i class="zmdi zmdi-local-parking zmdi-hc-fw"></i> Kelola Provinsi </a></li>
                 <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
+                <li @if(Request::segment(2)=='pnbp') class="navigation__active" @endif><a href="{{ route('admin.pnbp.index') }}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Kelola PNBP</a></li>
                 @endcan
             </ul>
         </div>
@@ -127,7 +128,9 @@
 <script src="{{ asset('template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('template/vendors/bower_components/jquery-mask-plugin/dist/jquery.mask.min.js') }}"></script>
 <script src="{{ asset('js/redactor/redactor.js') }}"></script>
+
 
 
 

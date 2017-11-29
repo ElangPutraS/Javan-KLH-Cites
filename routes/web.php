@@ -75,11 +75,13 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
     Route::get('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
+    Route::get('pnbp','PnbpController@index')->name('admin.pnbp.index');
+    Route::get('pnbp/{id}/edit','PnbpController@edit')->name('admin.pnbp.edit');
+    Route::post('pnbp/{id}/edit','PnbpController@update')->name('admin.pnbp.update');
 
     Route::resource('ports', 'PortController', ['as' => 'admin']);
    	Route::resource('news', 'NewsController', ['as' => 'admin']);
     Route::resource('countries', 'CountryController', ['as' => 'admin']);
     Route::resource('provinces', 'ProvinceController', ['as' => 'admin']);
-
 
 });

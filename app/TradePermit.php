@@ -67,4 +67,8 @@ class TradePermit extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function pnbp(){
+        return $this->hasOne(Pnbp::class);
+    }
+
 }
