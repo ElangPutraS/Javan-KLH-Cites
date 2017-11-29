@@ -23,15 +23,15 @@ class PnbpController extends Controller
 
     public function edit($id)
     {
-        $trade_permit   =   TradePermit::find($id);
-        $user           =   User::find($trade_permit->company->user_id);
+        $trade_permit   =   TradePermit::findOrFail($id);
+        $user           =   User::findOrFail($trade_permit->company->user_id);
 
         return view('admin.pnbp.edit', compact('trade_permit', 'user'));
     }
 
     public function update(PnbpUpdateRequest $request, $id)
     {
-        $trade_permit = TradePermit::find($id);
+        $trade_permit = TradePermit::findOrFail($id);
 
         if($trade_permit->pnbp === null){
             $pnbp=new Pnbp([
