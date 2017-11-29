@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\DocumentType;
 use App\Province;
 use App\Species;
 use Illuminate\Http\Request;
@@ -33,5 +34,11 @@ class LocationController extends Controller
             ->get();
 
         return json_encode($species);
+    }
+
+    public function getDocumentReEkspor(){
+        $document_type=DocumentType::where('is_permit', 3)->first();
+
+        return json_encode($document_type);
     }
 }

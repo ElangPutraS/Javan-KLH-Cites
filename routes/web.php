@@ -27,7 +27,7 @@ Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
 Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
-Route::post('/getSubmission/', 'UpdateController@getSubmission');
+Route::get('/getDocumentType', 'LocationController@getDocumentReEkspor');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
