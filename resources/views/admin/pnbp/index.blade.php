@@ -27,8 +27,6 @@
                                 <th>Perusahaan</th>
                                 <th width="150px">Masa Berlaku</th>
                                 <th>Jenis Permohonan</th>
-                                <th>Pelabuhan Ekspor</th>
-                                <th>Pelabuhan Tujuan</th>
                                 <th>Status</th>
                                 <th>Nominal PNBP</th>
                                 <th>Aksi</th>
@@ -49,8 +47,6 @@
                                         Permohonan Langsung
                                     @endif
                                 </td>
-                                <td>{{ $trade_permit->portExpor->port_name }}</td>
-                                <td>{{ $trade_permit->portDest->port_name  }}</td>
                                 <td>
                                     @if($trade_permit->tradeStatus->status_code==100)
                                         <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
@@ -66,7 +62,7 @@
                                     @if(count($trade_permit->pnbp)<=0)
                                         Rp 0
                                     @else
-                                        Rp number_format($trade_permit->pnbp->pnbp_amount,2,',','.');
+                                        Rp {{number_format($trade_permit->pnbp->pnbp_amount,2,',','.')}}
                                     @endif
                                 </td>
                                 <td><a href="{{route('admin.pnbp.edit', ['id' => $trade_permit->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></td>

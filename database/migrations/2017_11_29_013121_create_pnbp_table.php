@@ -16,7 +16,7 @@ class CreatePnbpTable extends Migration
         Schema::create('pnbp', function (Blueprint $table) {
             $table->increments('id');
             $table->string('pnbp_code', 20);
-            $table->integer('pnbp_amount');
+            $table->bigInteger('pnbp_amount');
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
             $table->integer('trade_permit_id')->unsigned()->nullable();

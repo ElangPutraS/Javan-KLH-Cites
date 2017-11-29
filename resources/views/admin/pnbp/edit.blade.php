@@ -24,19 +24,20 @@
                 </div>
 
                 <div class="card-block">
+                    @include('includes.notifications')
 
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
+                    <form action="{{route('admin.pnbp.update', ['id'=> $trade_permit->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
                         {!! csrf_field() !!}
                         <div class="form-group">
                             <h5>Tentukan Nominal PNBP</h5>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Nama Pelaku Usaha</label>
+                            <label class="control-label">Nominal PNBP</label>
                             <div class="col-sm-14">
                                 @if(count($trade_permit->pnbp)>0)
-                                    <input type="number" min="0" name="name" class="form-control" value="{{ old('name', array_get($trade_permit->pnbp, 'pnbp_amount')) }}" required>
+                                    <input type="number" min="1" name="pnbp_amount" value="{{ old('name', array_get($trade_permit->pnbp, 'pnbp_amount')) }}" class="form-control" required>
                                 @else
-                                    <input type="number" min="0" name="name" class="form-control" value="0" required>
+                                    <input type="number" min="1" name="pnbp_amount" value="0" class="form-control" required>
                                 @endif
                             </div>
                         </div>
