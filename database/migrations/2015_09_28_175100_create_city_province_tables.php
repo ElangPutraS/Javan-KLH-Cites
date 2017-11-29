@@ -20,7 +20,7 @@ class CreateCityProvinceTables extends Migration
             $table->integer('id', 1, 1);
             $table->integer('province_id')->unsigned()->index();
             $table->foreign('province_id')->references('id')->on('provinces');
-            $table->string('city_code')->unsigned();
+            $table->string('city_code');
             $table->string('city_name', 50)->index();
             $table->string('city_name_full', 100)->index();
             $table->timestamps();
