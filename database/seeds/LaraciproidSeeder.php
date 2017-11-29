@@ -22,7 +22,6 @@ class LaraciproidSeeder extends Seeder
             $d = collect($d)->toArray();
             $p = new Province();
             $p->fill($d);
-            $p->country_id = 1;
             $p->save();
         }
 
