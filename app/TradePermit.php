@@ -45,10 +45,6 @@ class TradePermit extends Model
         return $this->belongsTo(TradePermitStatus::class, 'trade_permit_status_id');
     }
 
-    public function logTrade(){
-        return $this->hasMany(LogTradePermit::class);
-    }
-
     public function tradeSpecies()
     {
         return $this->belongsToMany(Species::class, 'trade_permit_detail')
