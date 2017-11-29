@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bed2b9d9d9062dcbfebb7ab61e0c8a98",
+    "content-hash": "24ef7521351b7c41e2fe9e204b7b4621",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -744,61 +744,6 @@
                 "storage"
             ],
             "time": "2017-08-06T17:41:04+00:00"
-        },
-        {
-            "name": "matriphe/laraciproid",
-            "version": "1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/matriphe/laraciproid.git",
-                "reference": "8874afce2ee7981dbcc928ddab77cba35affa253"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/matriphe/laraciproid/zipball/8874afce2ee7981dbcc928ddab77cba35affa253",
-                "reference": "8874afce2ee7981dbcc928ddab77cba35affa253",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "illuminate/database": "5.*",
-                "illuminate/support": "5.*"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Matriphe\\Laraciproid\\ServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Matriphe\\Laraciproid\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Muhammad Zamroni",
-                    "email": "halo@matriphe.com"
-                }
-            ],
-            "description": "Indonesia city and province data migration and seeder for Laravel.",
-            "keywords": [
-                "city",
-                "data",
-                "id",
-                "ina",
-                "indonesia",
-                "laravel",
-                "province",
-                "seeder"
-            ],
-            "time": "2017-09-07T05:25:22+00:00"
         },
         {
             "name": "monolog/monolog",

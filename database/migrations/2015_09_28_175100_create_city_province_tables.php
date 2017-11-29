@@ -21,7 +21,7 @@ class CreateCityProvinceTables extends Migration
             $table->integer('province_id')->unsigned()->index();
             $table->string('city_name', 50)->index();
             $table->string('city_name_full', 100)->index();
-            $table->enum('city_type', ['kabupaten', 'kota'])->nullable();
+            // $table->enum('city_type', ['kabupaten', 'kota'])->nullable();
             $table->decimal('city_lat', 10, 6)->nullable()->index();
             $table->decimal('city_lon', 11, 6)->nullable()->index();
 
