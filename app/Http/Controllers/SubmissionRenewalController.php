@@ -10,7 +10,7 @@ use App\PurposeType;
 use App\TradingType;
 use App\User;
 use Auth;
-class RenewalController extends Controller
+class SubmissionRenewalController extends Controller
 {
     /**
      * Display a listing of the resource.

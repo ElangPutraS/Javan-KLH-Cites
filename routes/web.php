@@ -40,8 +40,8 @@ Route::get('submission/create', 'SubmissionController@create')->name('user.submi
 Route::post('submission/store', 'SubmissionController@store')->name('user.submission.store');
 Route::get('submission/gradually/create', 'SubmissionGraduallyController@create')->name('user.submissionGradually.create');
 Route::post('submission/gradually/create', 'SubmissionGraduallyController@store')->name('user.submissionGradually.store');
-Route::get('renewal','RenewalController@index')->name('user.renewal.index');
-Route::get('renewalSubmission/{id}','RenewalController@edit')->name('user.renewal.edit');
+Route::get('renewal','SubmissionRenewalController@index')->name('user.renewal.index');
+Route::get('renewalSubmission/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit');
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
