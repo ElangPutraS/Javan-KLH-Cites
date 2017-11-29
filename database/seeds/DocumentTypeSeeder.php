@@ -51,5 +51,9 @@ class DocumentTypeSeeder extends Seeder
             'document_type_name' => 'Dokumen Izin Impor',
             'is_permit' => 3,
         ]);
+        DocumentType::create([
+            'document_type_name' => 'Dokumen Re-Upload',
+            'is_permit' => 2,
+        ]);
     }
 }

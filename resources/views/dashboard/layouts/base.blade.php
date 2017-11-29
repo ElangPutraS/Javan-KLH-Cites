@@ -84,7 +84,6 @@
 
             <ul class="navigation">
                 <li @if(Request::segment(1)=='dashboard'||Request::segment(2)=='dashboard') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Beranda</a></li>
-
                 @can('access-pelaku-usaha')
                 <!-- Menu Pelaku Usaha -->
                 <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATSL-LN</a>
@@ -94,8 +93,8 @@
                         <li @if(Request::is('submission/gradually/create')) class="navigation__active" @endif><a href="{{ route('user.submissionGradually.create') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
                     </ul>
                 </li>
+                    <li @if(Request::segment(1)=='renewal') class="navigation__active" @endif><a href="{{ route('user.renewal.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATSL-LN </a></li>
                 @endcan
-
                 @can('access-admin')
                 <!-- Menu Admin -->
                 <li @if(Request::segment(2)=='verification') class="navigation__active" @endif><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-check-all zmdi-hc-fw"></i> Verifikasi Pelaku Usaha</a></li>
