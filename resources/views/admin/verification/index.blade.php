@@ -29,10 +29,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $a=1; ?>
                         @foreach($companies as $company)
                         <tr>
-                            <td>{{$a++}}</td>
+                            <td>{{ (($companies->currentPage() - 1 ) * $companies->perPage() ) + $loop->iteration }}</td>
                             <td>{{Carbon\Carbon::parse($company->created_at)->format('d-m-Y')}}</td>
                             <td>{{$company->userProfile->user->name}}</td>
                             <td>{{$company->company_name}}</td>

@@ -233,7 +233,6 @@
                     ev.preventDefault();
                 }else{
                     this.submit();
-                    //$('#form-submission').submit();
                 }
             });
 
