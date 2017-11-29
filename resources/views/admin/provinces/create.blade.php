@@ -4,7 +4,7 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Edit Kelola Informasi</h1>
+                <h1>Tambah Provinsi</h1>
             </header>
 
             <div class="card">
@@ -12,17 +12,15 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.news.update', $news) }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
-                        {{ method_field('PUT') }}
-
+                    <form action="{{ route('admin.provinces.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('admin.news._form', ['news' => $news , 'disable' =>false])
+                        @include('admin.provinces._form', ['province'=> null])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{ route('admin.news.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                                <button type="submit" class="btn btn-primary">Simpan Baru</button>
+                                <a href="{{ route('admin.provinces.index') }}" class="btn btn-default">Batal</a>
                             </div>
                         </div>
                     </form>
@@ -31,3 +29,4 @@
         </div>
     </section>
 @endsection
+
