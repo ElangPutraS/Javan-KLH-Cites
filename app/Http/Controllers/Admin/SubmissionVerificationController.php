@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\LogTradePermit;
 use App\TradePermit;
 use App\TradePermitStatus;
 use App\User;
@@ -20,15 +21,15 @@ class SubmissionVerificationController extends Controller
     }
 
     public function show($id){
-        $trade_permit = TradePermit::find($id);
+        $trade_permit = TradePermit::findOrFail($id);
 
-        $user=User::find($trade_permit->company->user_id);
+        $user=User::findOrFail($trade_permit->company->user_id);
 
         return view ('admin.verificationSub.detail', compact('trade_permit','user'));
     }
 
     public function update(Request $request, $id){
-        $trade_permit=TradePermit::find($id);
+        $trade_permit=TradePermit::findOrFail($id);
 
         $valid_start=Carbon::now()->format('Y-m-d');
         $valid_until=Carbon::now()->addMonth($trade_permit->period)->format('Y-m-d');
@@ -43,11 +44,17 @@ class SubmissionVerificationController extends Controller
         $status=TradePermitStatus::where('status_code','200')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
+        //nambahin log
+        $log=LogTradePermit::create([
+            'log_description' => 'Verifikasi Permohonan Diterima',
+        ]);
+        $trade_permit->logTrade()->save($log);
+
         return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }
 
     public function updateRej(Request $request, $id){
-        $trade_permit=TradePermit::find($id);
+        $trade_permit=TradePermit::findOrFail($id);
 
         $trade_permit->update([
             'updated_by' => $request->user()->id
@@ -55,6 +62,12 @@ class SubmissionVerificationController extends Controller
 
         $status=TradePermitStatus::where('status_code','300')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
+
+        //nambahin log
+        $log=LogTradePermit::create([
+            'log_description' => 'Verifikasi Permohonan Ditolak',
+        ]);
+        $trade_permit->logTrade()->save($log);
 
         return redirect()->route('admin.verificationSub.index')->with('success', 'Verifikasi Permohonan berhasil ditolak.');
     }
