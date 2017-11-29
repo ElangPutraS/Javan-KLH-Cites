@@ -11,8 +11,4 @@ class LogTradePermit extends Model
     protected $fillable = [
         'log_description',
     ];
-
-    public function tradePermit(){
-        return $this->belongsTo(TradePermit::class);
-    }
 }

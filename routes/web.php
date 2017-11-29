@@ -36,6 +36,7 @@ Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(
 
 Route::get('submission', 'SubmissionController@index')->name('user.submission.index');
 Route::get('submission/{id}/detail', 'SubmissionController@detail')->name('user.submission.detail');
+Route::get('submission/{id}/print-satsln', 'SubmissionController@printSatsln')->name('user.submission.printSatsln');
 Route::get('submission/create', 'SubmissionController@create')->name('user.submission.create');
 Route::post('submission/store', 'SubmissionController@store')->name('user.submission.store');
 Route::get('submission/gradually/create', 'SubmissionGraduallyController@create')->name('user.submissionGradually.create');

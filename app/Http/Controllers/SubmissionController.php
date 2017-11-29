@@ -15,10 +15,17 @@ use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
-    public function index(){
+    public function index() {
         $trade_permits = TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
+    }
+
+    public function printSatsln($id) {
+
+
+        //$pdf = PDF::loadView('pdf.satsln');
+        return view('pdf.satsln');
     }
 
     public function detail(Request $request, $id)
