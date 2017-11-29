@@ -22,9 +22,9 @@ class SubmissionController extends Controller
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
-    public function detail($id)
+    public function detail(Request $request,$id)
     {
-        $user=User::find(Auth::id());
+        $user=$request->user();
 
         $trading_types=TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types=PurposeType::pluck('purpose_type_name', 'id');
@@ -36,10 +36,9 @@ class SubmissionController extends Controller
         return view('pelakuusaha.submission.detail', compact('user', 'trade_permit'));
     }
 
+    public function create(Request $request){
 
-    public function create(){
-
-        $user=User::find(Auth::id());
+        $user=$request->user();
 
         $trading_types=TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types=PurposeType::pluck('purpose_type_name', 'id');
@@ -47,9 +46,6 @@ class SubmissionController extends Controller
         $document_types=DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
-    }
-    public function showStage(){
-
     }
 
     public function store(Request $request){
@@ -117,18 +113,6 @@ class SubmissionController extends Controller
         }
 
         return redirect()->route('user.submission.index')->with('success', 'Data berhasil dibuat.');
-    }
-
-    public function edit(){
-
-    }
-
-    public function update(){
-
-    }
-
-    public function destroy(){
-
     }
 
     public function create_kode($id){
