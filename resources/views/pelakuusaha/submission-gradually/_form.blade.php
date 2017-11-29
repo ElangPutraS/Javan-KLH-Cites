@@ -241,24 +241,28 @@
                 }
             });
 
-            $('#trading_type_id4').change(function () {
-                $.ajax({
-                    type:'get',
-                    url: window.baseUrl + '/getDocumentType',
-                    dataType: 'json',
-                    success : function(data){
-                        if (data) {
-                            var form='<div class="form-group"><label class="control-label">'+data['document_type_name']+'</label>';
-                            form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data['id']+'" required>';
-                            form+='<input id="document_'+data['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
-                            form+='</div></div>';
+            $('input[name="trading_type_id"]').change(function () {
+                if ($(this).val() == 4) {
+                    $.ajax({
+                        type:'get',
+                        url: window.baseUrl + '/getDocumentType',
+                        dataType: 'json',
+                        success : function(data){
+                            if (data) {
+                                var form='<div class="form-group"><label class="control-label">'+data['document_type_name']+'</label>';
+                                form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data['id']+'" required>';
+                                form+='<input id="document_'+data['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
+                                form+='</div></div>';
 
-                            $('#formDoc').html(form);
-                        } else {
-                            $('#formDoc').empty();
+                                $('#formDoc').html(form);
+                            } else {
+                                $('#formDoc').empty();
+                            }
                         }
-                    }
-                });
+                    });
+                } else {
+                    $('#formDoc').empty();
+                }
             });
         });
 
