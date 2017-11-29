@@ -103,7 +103,8 @@
                 <li @if(Request::segment(2)=='species') class="navigation__active" @endif><a href="{{ route('admin.species.index') }}"><i class="zmdi zmdi-flower-alt zmdi-hc-fw"></i> Kelola Spesies dan HS</a></li>
                 <li @if(Request::segment(2)=='ports') class="navigation__active" @endif><a href="{{ route('admin.ports.index') }}"><i class="zmdi zmdi-directions-boat zmdi-hc-fw"></i> Kelola Pelabuhan</a></li>
                 <li @if(Request::segment(2)=='news') class="navigation__active" @endif><a href="{{ route('admin.news.index') }}"><i class="zmdi zmdi-tv-list zmdi-hc-fw"></i> Kelola Informasi</a></li>
-                <li @if(Request::segment(2)=='countries') class="navigation__active" @endif><a href="{{ route('admin.countries.index') }}"><i class="zmdi zmdi-local-airport zmdi-hc-fw"></i> Kelola Negara </a></li>
+                 <li @if(Request::segment(2)=='countries') class="navigation__active" @endif><a href="{{ route('admin.countries.index') }}"><i class="zmdi zmdi-local-airport zmdi-hc-fw"></i> Kelola Negara </a></li>
+                <li @if(Request::segment(2)=='cities') class="navigation__active" @endif><a href="{{ route('admin.cities.index') }}"><i class="zmdi zmdi-directions-railway zmdi-hc-fw"></i> Kelola Kabupaten/Kota </a></li>
                 <li @if(Request::segment(2)=='provinces') class="navigation__active" @endif><a href="{{ route('admin.provinces.index') }}"><i class="zmdi zmdi-local-parking zmdi-hc-fw"></i> Kelola Provinsi </a></li>
                 <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
                 <li @if(Request::segment(2)=='pnbp') class="navigation__active" @endif><a href="{{ route('admin.pnbp.index') }}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Kelola PNBP</a></li>
