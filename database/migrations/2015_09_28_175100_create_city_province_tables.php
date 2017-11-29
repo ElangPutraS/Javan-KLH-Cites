@@ -16,15 +16,6 @@ class CreateCityProvinceTables extends Migration
      */
     public function up()
     {
-        Schema::create($this->tablename_city, function (Blueprint $table) {
-            $table->integer('id', 1, 1);
-            $table->integer('province_id')->unsigned()->index();
-            $table->foreign('province_id')->references('id')->on('provinces');
-            $table->string('city_code');
-            $table->string('city_name', 50)->index();
-            $table->string('city_name_full', 100)->index();
-            $table->timestamps();
-        });
         Schema::create($this->tablename_province, function (Blueprint $table) {
             $table->integer('id', 1, 1);
             $table->integer('country_id')->unsigned();
@@ -32,6 +23,16 @@ class CreateCityProvinceTables extends Migration
             $table->string('province_code', 4);
             $table->string('province_name', 50);
 
+            $table->timestamps();
+        });
+        
+        Schema::create($this->tablename_city, function (Blueprint $table) {
+            $table->integer('id', 1, 1);
+            $table->integer('province_id')->unsigned()->index();
+            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->string('city_code');
+            $table->string('city_name', 50)->index();
+            $table->string('city_name_full', 100)->index();
             $table->timestamps();
         });
     }
