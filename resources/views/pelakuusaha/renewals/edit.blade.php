@@ -13,7 +13,6 @@
                     @include('includes.notifications')
 
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        {{ method_field('PUT') }}
 
                         {!! csrf_field() !!}
 

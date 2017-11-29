@@ -67,7 +67,7 @@
                         <div class="form-group">
                             <label class="control-label">Masa Berlaku (Bulan)</label>
                             <div class="col-sm-14">
-                                <input type="number" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit, 'period')) }}">
+                                <input id="period" type="number" name="period" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit, 'period')) }}">
                             </div>
                         </div>
 
@@ -98,7 +98,7 @@
                         <div class="form-group">
                             <label class="control-label">Penerima</label>
                             <div class="col-sm-14">
-                                <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}">
+                                <input id="consignee" type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}">
                             </div>
                         </div>
 
@@ -116,10 +116,10 @@
                             <h5>C. Dokumen Unggahan</h5>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Re-upload SATLN</label>
+                            <label class="control-label">Re-upload SATS-LN</label>
                             <div class="col-sm-14">
-                                <input type="hidden" class="form-control" name="document_type_id[]" value="{{$key}}" required>
-                                <input id="document_{{$key}}" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" {{$trade_permit==null ? 'required' : ''}}>
+                                <input type="hidden" class="form-control" name="document_type_id" value="9" required>
+                                <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
                             </div>
                         </div>
 

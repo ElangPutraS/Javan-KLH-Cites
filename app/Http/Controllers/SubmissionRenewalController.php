@@ -43,12 +43,26 @@ class SubmissionRenewalController extends Controller
             'consignee'=>$request->get('cogsinee'),
             'appendix_type'=>$request->get('appendix_type'),
             'period'=>$request->get('period'),
+            'consignee'=>$request->get('consignee'),
             'port_exportation'=>$request->get('port_exportation'),
             'port_destination'=>$request->get('port_destination'),
             'trading_type_id'=>$request->get('trading_type_id'),
             'purpose_type_id' =>$request->get('purpose_type_id')
         ]);
-        return redirect()->route('pelakuusaha.renewals.edit', ['id' => $trade_permit->id])->with('success', 'Data berhasil diubah.');
+
+        if($request->document_trade_permit!=''){
+
+                $file_path =$request->document_trade_permit->store('/upload/file/trade_document');
+
+                $document_type = DocumentType::find($request->get('document_type_id'));
+
+                $trade_permit->documentTypes()->attach($document_type, [
+                    'document_name' => $request->document_trade_permit->getClientOriginalName(),
+                    'file_path'     => $file_path
+                ]);
+
+        }
+        return redirect()->route('user.renewal.edit', ['id' => $trade_permit->id])->with('success', 'Data berhasil diubah.');
     }
 
     public function getSubmission(Request $request){
