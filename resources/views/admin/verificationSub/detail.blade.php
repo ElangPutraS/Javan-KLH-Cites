@@ -10,7 +10,17 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Pengajuan Permohonan SATSL-LN Langsung</h2>
-                    <small class="card-subtitle"></small>
+                    <small class="card-subtitle">Status Permohonan :
+                        @if($trade_permit->tradeStatus->status_code==100)
+                            <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
+                        @elseif($trade_permit->tradeStatus->status_code==200)
+                            <span class="badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
+                        @elseif($trade_permit->tradeStatus->status_code==300)
+                            <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
+                        @else
+                            <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
+                        @endif
+                    </small>
                 </div>
                 <div class="card-block">
 
@@ -151,7 +161,14 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <a href="{{ route('user.submission.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                                @if($trade_permit->tradeStatus->status_code == '100')
+                                    <center>
+                                        <button type="button" onclick="acceptTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-success waves-effect">Terima</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="button" onclick="rejectTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-danger waves-effect">Tolak</button>
+                                    </center>
+                                @endif
+                                <br><br>
+                                <a href="{{ route('admin.verificationSub.index') }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
                     </form>
@@ -160,3 +177,33 @@
         </div>
     </section>
 @endsection
+@push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        function acceptTradePermit(a) {
+            var id=a.getAttribute('data-id');
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan memverifikasi permohonan SATSL-LN?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                location.href='{{url('admin/verificationSub/acc')}}/'+id;
+            });
+        }
+
+        function rejectTradePermit(a) {
+            var id=a.getAttribute('data-id');
+            swal({
+                title: 'Apakah Anda Yakin?',
+                text: 'Akan menolak verifikasi permohonan SATSL-LN?',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+            }).then(function() {
+                location.href='{{url('admin/verificationSub/rej')}}/'+id;
+            });
+        }
+    </script>
+@endpush

@@ -4,17 +4,13 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Permohonan SATSL-LN Pengguna</h1>
+                <h1>Form Permohonan SATLN Bertahap</h1>
             </header>
 
             <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">Pengajuan Permohonan SATSL-LN Langsung</h2>
-                    <small class="card-subtitle"></small>
-                </div>
                 <div class="card-block">
                     <?php
-                        /*$tahun=date('Y');
+                       /* $tahun=date('Y');
                         $tambah=mktime(0,0,0,date('m')+6,date('d')+0,date('Y')+0);
                         $cek=date('Y', $tambah);
                         if($cek>$tahun){
@@ -27,17 +23,16 @@
                         }*/
                     ?>
                     @include('includes.notifications')
-                    
-                    <form action="{{route('user.submission.store')}}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
 
+                    <form action="{{ route('user.submissionGradually.store') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('pelakuusaha.submission._form', ['trade_permit' => null])
+                        @include('pelakuusaha.submission-gradually._form', ['trade_permit' => null])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
                                 <button type="submit" class="btn btn-primary" <?php //if($cek>$tahun){echo 'disabled title="tidak diizinkan melakukan permohonan langsung"';}?>>Simpan Baru</button>
-                                <a href="{{ route('user.submission.index') }}" class="btn btn-default">Batal</a>
+                                <a href="{{ route('admin.companies.index') }}" class="btn btn-default">Batal</a>
                             </div>
                         </div>
                     </form>

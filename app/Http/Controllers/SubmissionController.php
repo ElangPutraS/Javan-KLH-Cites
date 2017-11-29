@@ -35,7 +35,10 @@ class SubmissionController extends Controller
 
         return view('pelakuusaha.submission.detail', compact('user', 'trade_permit'));
     }
-    public function showDirect(){
+
+
+    public function create(){
+
         $user=User::find(Auth::id());
 
         $trading_types=TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
@@ -43,13 +46,14 @@ class SubmissionController extends Controller
         $ports=Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
         $document_types=DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
-        $species=Species::get();
-        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'species'));
+        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
     }
     public function showStage(){
 
     }
-    public function storeDirect(Request $request){
+
+    public function store(Request $request){
+
         //isi trade permit
         $trade_permit = new TradePermit([
             'trade_permit_code'  => 'cek',
@@ -71,11 +75,11 @@ class SubmissionController extends Controller
         ]);
 
         //relasi
-        $company=Company::find($request->user()->company->id);
+        $company=$request->user()->company;
         $company->tradePermits()->save($trade_permit);
 
         //relasi status
-        $status=TradePermitStatus::find(1);
+        $status=TradePermitStatus::where('status_code', 100)->first();
         $trade_permit->tradeStatus()->associate($status);
         $trade_permit->save();
 

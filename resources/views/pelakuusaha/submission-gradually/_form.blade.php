@@ -12,7 +12,7 @@
 <div class="form-group">
     <label class="control-label">Nomor Identitas</label>
     <div class="col-sm-14">
-        <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) ?? '' }}" readonly>
+        <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) }}" readonly>
     </div>
 </div>
 
@@ -46,7 +46,7 @@
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="trading_type_id">
             @foreach($trading_types as $key=>$trading_type)
-                <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" {{$key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'checked' : ''}} required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
             @endforeach
         </div>
     </div>
@@ -67,7 +67,11 @@
 <div class="form-group">
     <label class="control-label">Masa Berlaku</label>
     <div class="col-sm-14">
-        6 Bulan
+        <div class="btn-group btn-group--colors" data-toggle="buttons">
+                <label class="btn bg-red waves-effect"><input type="radio" id="period1" name="period" value="1" autocomplete="off" required></label> 1 Bulan &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-red waves-effect"><input type="radio" id="period2" name="period" value="2" autocomplete="off" required></label> 2 Bulan &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-red waves-effect active"><input type="radio" id="period3" name="period" value="3" autocomplete="off" required></label> 3 Bulan &nbsp;&nbsp;&nbsp;
+        </div>
     </div>
 </div>
 
@@ -201,23 +205,15 @@
 
                             var quota='0';
                             var date=new Date();
-                            var disabled='disabled';
-                            var notif='<font color="red">Kuota 0, kuota belum ditentukan oleh admin!</font>';
 
                             for(var a=0; a<data[i].species_quota.length; a++){
                                 if(data[i].species_quota[a].year == date.getFullYear()){
                                     quota=data[i].species_quota[a].quota_amount;
-                                    if(data[i].species_quota[a].quota_amount==0){
-                                        notif='<font color="red">Kuota tahun '+data[i].species_quota[a].year+' adalah '+data[i].species_quota[a].quota_amount+'</font>';
-                                    }else{
-                                        disabled='';
-                                        notif='';
-                                    }
                                 }
                             }
 
                             var species_sex=data[i]['species_sex'].sex_name;
-                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-jk="'+species_sex+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input" '+disabled+'><span class="custom-control-indicator"></span>'+notif+'</label>';
+                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-jk="'+species_sex+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input"><span class="custom-control-indicator"></span></label>';
                             table.row.add([no, scientific_name, indonesia_name, general_name, appendix_source, species_sex, aksi]).draw();
                         }
                     }
