@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\DocumentType;
 use App\Province;
 use App\Species;
 use Illuminate\Http\Request;
@@ -29,8 +30,15 @@ class LocationController extends Controller
         $species=Species::where('is_appendix',$is_appendix)->orderBy('species_scientific_name','asc')
             ->with('appendixSource')
             ->with('speciesSex')
+            ->with('speciesQuota')  
             ->get();
 
         return json_encode($species);
+    }
+
+    public function getDocumentReEkspor(){
+        $document_type=DocumentType::where('is_permit', 3)->first();
+
+        return json_encode($document_type);
     }
 }

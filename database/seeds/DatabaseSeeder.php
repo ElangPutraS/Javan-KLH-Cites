@@ -23,5 +23,7 @@ class DatabaseSeeder extends Seeder
          $this->call(TradePermitStatusSeeder::class);
          $this->call(TradingTypeSeeder::class);
          $this->call(CitiesSeeder::class);
+         $this->call(CategoriesSeeder::class);
+         $this->call(SpeciesSeeder::class);
     }
 }

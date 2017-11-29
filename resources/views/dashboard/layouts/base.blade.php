@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/redactor/redactor.css') }}">
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
@@ -20,6 +21,11 @@
     <script>
          window.baseUrl = '{{ url('/') }}';
     </script>
+
+    <!-- Demo -->
+    <link rel="stylesheet" href="{{ asset('template/demo/css/demo.css') }}">
+
+    
 
     @stack('head.stylesheet')
 </head>
@@ -84,8 +90,8 @@
                 <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATSL-LN</a>
                     <ul>
                         <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
-                        <li @if(Request::segment(2)=='createDirect') class="navigation__active" @endif><a href="{{ route('user.submission.showDirect') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
-                        <li @if(Request::segment(2)=='createStage') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
+                        <li @if(Request::segment(2)=='create') class="navigation__active" @endif><a href="{{ route('user.submission.create') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
+                        <li @if(Request::is('submission/gradually/create')) class="navigation__active" @endif><a href="{{ route('user.submissionGradually.create') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
                     </ul>
                 </li>
                 @endcan
@@ -103,6 +109,8 @@
 
 
                  <li @if(Request::segment(2)=='cities') class="navigation__active" @endif><a href="{{ route('admin.cities.index') }}"><i class="zmdi zmdi-directions-railway zmdi-hc-fw"></i> Kelola Kabupaten/Kota </a></li>
+                <li @if(Request::segment(2)=='countries') class="navigation__active" @endif><a href="{{ route('admin.countries.index') }}"><i class="zmdi zmdi-local-airport zmdi-hc-fw"></i> Kelola Negara </a></li>
+                <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
                 @endcan
             </ul>
         </div>
@@ -123,10 +131,25 @@
 <script src="{{ asset('template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
+<script src="{{ asset('js/redactor/redactor.js') }}"></script>
+
+
+
+<script type="text/javascript">
+    $(function()
+    {
+        $('#content-form-news').redactor({
+        });
+
+    });
+
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 <!-- App functions and actions -->
 <script src="{{ asset('template/js/app.min.js') }}"></script>
-
 @stack('body.script')
 </body>
 </html>
