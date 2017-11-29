@@ -1,0 +1,3607 @@
+[
+  {
+    "quota_amount": 225,
+    "year": 2017,
+    "species_id": 1
+  },
+  {
+    "quota_amount": 135,
+    "year": 2017,
+    "species_id": 2
+  },
+  {
+    "quota_amount": 1080,
+    "year": 2017,
+    "species_id": 3
+  },
+  {
+    "quota_amount": 585,
+    "year": 2017,
+    "species_id": 4
+  },
+  {
+    "quota_amount": 135,
+    "year": 2017,
+    "species_id": 5
+  },
+  {
+    "quota_amount": 315,
+    "year": 2017,
+    "species_id": 6
+  },
+  {
+    "quota_amount": 135,
+    "year": 2017,
+    "species_id": 7
+  },
+  {
+    "quota_amount": 270,
+    "year": 2017,
+    "species_id": 8
+  },
+  {
+    "quota_amount": 27,
+    "year": 2017,
+    "species_id": 9
+  },
+  {
+    "quota_amount": 27,
+    "year": 2017,
+    "species_id": 10
+  },
+  {
+    "quota_amount": 27,
+    "year": 2017,
+    "species_id": 11
+  },
+  {
+    "quota_amount": 90,
+    "year": 2017,
+    "species_id": 12
+  },
+  {
+    "quota_amount": 180,
+    "year": 2017,
+    "species_id": 13
+  },
+  {
+    "quota_amount": 270,
+    "year": 2017,
+    "species_id": 14
+  },
+  {
+    "quota_amount": 131715,
+    "year": 2017,
+    "species_id": 15
+  },
+  {
+    "quota_amount": 135,
+    "year": 2017,
+    "species_id": 16
+  },
+  {
+    "quota_amount": 90,
+    "year": 2017,
+    "species_id": 17
+  },
+  {
+    "quota_amount": 89955,
+    "year": 2017,
+    "species_id": 18
+  },
+  {
+    "quota_amount": 12420,
+    "year": 2017,
+    "species_id": 19
+  },
+  {
+    "quota_amount": 38970,
+    "year": 2017,
+    "species_id": 20
+  },
+  {
+    "quota_amount": 2340,
+    "year": 2017,
+    "species_id": 21
+  },
+  {
+    "quota_amount": 162000,
+    "year": 2017,
+    "species_id": 22
+  },
+  {
+    "quota_amount": 405,
+    "year": 2017,
+    "species_id": 23
+  },
+  {
+    "quota_amount": 900,
+    "year": 2017,
+    "species_id": 24
+  },
+  {
+    "quota_amount": 450,
+    "year": 2017,
+    "species_id": 25
+  },
+  {
+    "quota_amount": 810,
+    "year": 2017,
+    "species_id": 26
+  },
+  {
+    "quota_amount": 270,
+    "year": 2017,
+    "species_id": 27
+  },
+  {
+    "quota_amount": 4278375,
+    "year": 2017,
+    "species_id": 28
+  },
+  {
+    "quota_amount": 25200,
+    "year": 2017,
+    "species_id": 29
+  },
+  {
+    "quota_amount": 18000,
+    "year": 2017,
+    "species_id": 30
+  },
+  {
+    "quota_amount": 128025,
+    "year": 2017,
+    "species_id": 31
+  },
+  {
+    "quota_amount": 4500,
+    "year": 2017,
+    "species_id": 32
+  },
+  {
+    "quota_amount": 225,
+    "year": 2017,
+    "species_id": 33
+  },
+  {
+    "quota_amount": 135,
+    "year": 2017,
+    "species_id": 34
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 35
+  },
+  {
+    "quota_amount": 180,
+    "year": 2017,
+    "species_id": 36
+  },
+  {
+    "quota_amount": 810,
+    "year": 2017,
+    "species_id": 37
+  },
+  {
+    "quota_amount": 90,
+    "year": 2017,
+    "species_id": 38
+  },
+  {
+    "quota_amount": 54,
+    "year": 2017,
+    "species_id": 39
+  },
+  {
+    "quota_amount": 315,
+    "year": 2017,
+    "species_id": 40
+  },
+  {
+    "quota_amount": 60075,
+    "year": 2017,
+    "species_id": 41
+  },
+  {
+    "quota_amount": 0,
+    "year": 2017,
+    "species_id": 42
+  },
+  {
+    "quota_amount": 22000,
+    "year": 2017,
+    "species_id": 43
+  },
+  {
+    "quota_amount": 7500,
+    "year": 2017,
+    "species_id": 44
+  },
+  {
+    "quota_amount": 0,
+    "year": 2017,
+    "species_id": 45
+  },
+  {
+    "quota_amount": 0,
+    "year": 2017,
+    "species_id": 46
+  },
+  {
+    "quota_amount": 0,
+    "year": 2017,
+    "species_id": 47
+  },
+  {
+    "quota_amount": 0,
+    "year": 2017,
+    "species_id": 48
+  },
+  {
+    "quota_amount": 0,
+    "year": 2017,
+    "species_id": 49
+  },
+  {
+    "quota_amount": 0,
+    "year": 2017,
+    "species_id": 50
+  },
+  {
+    "quota_amount": 0,
+    "year": 2017,
+    "species_id": 51
+  },
+  {
+    "quota_amount": 3000,
+    "year": 2017,
+    "species_id": 52
+  },
+  {
+    "quota_amount": 3000,
+    "year": 2017,
+    "species_id": 53
+  },
+  {
+    "quota_amount": 2000,
+    "year": 2017,
+    "species_id": 54
+  },
+  {
+    "quota_amount": 20000,
+    "year": 2017,
+    "species_id": 55
+  },
+  {
+    "quota_amount": 4000,
+    "year": 2017,
+    "species_id": 56
+  },
+  {
+    "quota_amount": 1500,
+    "year": 2017,
+    "species_id": 57
+  },
+  {
+    "quota_amount": 34000,
+    "year": 2017,
+    "species_id": 58
+  },
+  {
+    "quota_amount": 8000,
+    "year": 2017,
+    "species_id": 59
+  },
+  {
+    "quota_amount": 5600,
+    "year": 2017,
+    "species_id": 60
+  },
+  {
+    "quota_amount": 8000,
+    "year": 2017,
+    "species_id": 61
+  },
+  {
+    "quota_amount": 3500,
+    "year": 2017,
+    "species_id": 62
+  },
+  {
+    "quota_amount": 2700,
+    "year": 2017,
+    "species_id": 63
+  },
+  {
+    "quota_amount": 12000,
+    "year": 2017,
+    "species_id": 64
+  },
+  {
+    "quota_amount": 11500,
+    "year": 2017,
+    "species_id": 65
+  },
+  {
+    "quota_amount": 7000,
+    "year": 2017,
+    "species_id": 66
+  },
+  {
+    "quota_amount": 4000,
+    "year": 2017,
+    "species_id": 67
+  },
+  {
+    "quota_amount": 4500,
+    "year": 2017,
+    "species_id": 68
+  },
+  {
+    "quota_amount": 1000,
+    "year": 2017,
+    "species_id": 69
+  },
+  {
+    "quota_amount": 5000,
+    "year": 2017,
+    "species_id": 70
+  },
+  {
+    "quota_amount": 2500,
+    "year": 2017,
+    "species_id": 71
+  },
+  {
+    "quota_amount": 1500,
+    "year": 2017,
+    "species_id": 72
+  },
+  {
+    "quota_amount": 1000,
+    "year": 2017,
+    "species_id": 73
+  },
+  {
+    "quota_amount": 1500,
+    "year": 2017,
+    "species_id": 74
+  },
+  {
+    "quota_amount": 12000,
+    "year": 2017,
+    "species_id": 75
+  },
+  {
+    "quota_amount": 1000,
+    "year": 2017,
+    "species_id": 76
+  },
+  {
+    "quota_amount": 2500,
+    "year": 2017,
+    "species_id": 77
+  },
+  {
+    "quota_amount": 21000,
+    "year": 2017,
+    "species_id": 78
+  },
+  {
+    "quota_amount": 19000,
+    "year": 2017,
+    "species_id": 79
+  },
+  {
+    "quota_amount": 3000,
+    "year": 2017,
+    "species_id": 80
+  },
+  {
+    "quota_amount": 12000,
+    "year": 2017,
+    "species_id": 81
+  },
+  {
+    "quota_amount": 22000,
+    "year": 2017,
+    "species_id": 82
+  },
+  {
+    "quota_amount": 11000,
+    "year": 2017,
+    "species_id": 83
+  },
+  {
+    "quota_amount": 19000,
+    "year": 2017,
+    "species_id": 84
+  },
+  {
+    "quota_amount": 12000,
+    "year": 2017,
+    "species_id": 85
+  },
+  {
+    "quota_amount": 15000,
+    "year": 2017,
+    "species_id": 86
+  },
+  {
+    "quota_amount": 15000,
+    "year": 2017,
+    "species_id": 87
+  },
+  {
+    "quota_amount": 12000,
+    "year": 2017,
+    "species_id": 88
+  },
+  {
+    "quota_amount": 35500,
+    "year": 2017,
+    "species_id": 89
+  },
+  {
+    "quota_amount": 40000,
+    "year": 2017,
+    "species_id": 90
+  },
+  {
+    "quota_amount": 43000,
+    "year": 2017,
+    "species_id": 91
+  },
+  {
+    "quota_amount": 42000,
+    "year": 2017,
+    "species_id": 92
+  },
+  {
+    "quota_amount": 1050,
+    "year": 2017,
+    "species_id": 93
+  },
+  {
+    "quota_amount": 20000,
+    "year": 2017,
+    "species_id": 94
+  },
+  {
+    "quota_amount": 7000,
+    "year": 2017,
+    "species_id": 95
+  },
+  {
+    "quota_amount": 13500,
+    "year": 2017,
+    "species_id": 96
+  },
+  {
+    "quota_amount": 2900,
+    "year": 2017,
+    "species_id": 97
+  },
+  {
+    "quota_amount": 10000,
+    "year": 2017,
+    "species_id": 98
+  },
+  {
+    "quota_amount": 6500,
+    "year": 2017,
+    "species_id": 99
+  },
+  {
+    "quota_amount": 7500,
+    "year": 2017,
+    "species_id": 100
+  },
+  {
+    "quota_amount": 500,
+    "year": 2017,
+    "species_id": 101
+  },
+  {
+    "quota_amount": 500,
+    "year": 2017,
+    "species_id": 102
+  },
+  {
+    "quota_amount": 500,
+    "year": 2017,
+    "species_id": 103
+  },
+  {
+    "quota_amount": 40000,
+    "year": 2017,
+    "species_id": 104
+  },
+  {
+    "quota_amount": 10000,
+    "year": 2017,
+    "species_id": 105
+  },
+  {
+    "quota_amount": 2500,
+    "year": 2017,
+    "species_id": 106
+  },
+  {
+    "quota_amount": 8500,
+    "year": 2017,
+    "species_id": 107
+  },
+  {
+    "quota_amount": 2000,
+    "year": 2017,
+    "species_id": 108
+  },
+  {
+    "quota_amount": 1500,
+    "year": 2017,
+    "species_id": 109
+  },
+  {
+    "quota_amount": 900000,
+    "year": 2017,
+    "species_id": 110
+  },
+  {
+    "quota_amount": 450000,
+    "year": 2017,
+    "species_id": 111
+  },
+  {
+    "quota_amount": 47000,
+    "year": 2017,
+    "species_id": 112
+  },
+  {
+    "quota_amount": 5000,
+    "year": 2017,
+    "species_id": 113
+  },
+  {
+    "quota_amount": 515800,
+    "year": 2017,
+    "species_id": 114
+  },
+  {
+    "quota_amount": 178500,
+    "year": 2017,
+    "species_id": 115
+  },
+  {
+    "quota_amount": 5000,
+    "year": 2017,
+    "species_id": 116
+  },
+  {
+    "quota_amount": 1000,
+    "year": 2017,
+    "species_id": 117
+  },
+  {
+    "quota_amount": 262800,
+    "year": 2017,
+    "species_id": 118
+  },
+  {
+    "quota_amount": 7203,
+    "year": 2017,
+    "species_id": 119
+  },
+  {
+    "quota_amount": 1078,
+    "year": 2017,
+    "species_id": 120
+  },
+  {
+    "quota_amount": 54,
+    "year": 2017,
+    "species_id": 121
+  },
+  {
+    "quota_amount": 36,
+    "year": 2017,
+    "species_id": 122
+  },
+  {
+    "quota_amount": 27,
+    "year": 2017,
+    "species_id": 123
+  },
+  {
+    "quota_amount": 225,
+    "year": 2017,
+    "species_id": 124
+  },
+  {
+    "quota_amount": 225,
+    "year": 2017,
+    "species_id": 125
+  },
+  {
+    "quota_amount": 71540,
+    "year": 2017,
+    "species_id": 126
+  },
+  {
+    "quota_amount": 900,
+    "year": 2017,
+    "species_id": 127
+  },
+  {
+    "quota_amount": 27,
+    "year": 2017,
+    "species_id": 128
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 129
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 130
+  },
+  {
+    "quota_amount": 686,
+    "year": 2017,
+    "species_id": 131
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 132
+  },
+  {
+    "quota_amount": 124558,
+    "year": 2017,
+    "species_id": 133
+  },
+  {
+    "quota_amount": 4998,
+    "year": 2017,
+    "species_id": 134
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 135
+  },
+  {
+    "quota_amount": 3626,
+    "year": 2017,
+    "species_id": 136
+  },
+  {
+    "quota_amount": 245,
+    "year": 2017,
+    "species_id": 137
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 138
+  },
+  {
+    "quota_amount": 343,
+    "year": 2017,
+    "species_id": 139
+  },
+  {
+    "quota_amount": 3332,
+    "year": 2017,
+    "species_id": 140
+  },
+  {
+    "quota_amount": 245,
+    "year": 2017,
+    "species_id": 141
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 142
+  },
+  {
+    "quota_amount": 1372,
+    "year": 2017,
+    "species_id": 143
+  },
+  {
+    "quota_amount": 72520,
+    "year": 2017,
+    "species_id": 144
+  },
+  {
+    "quota_amount": 1715,
+    "year": 2017,
+    "species_id": 145
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 146
+  },
+  {
+    "quota_amount": 137298,
+    "year": 2017,
+    "species_id": 147
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 148
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 149
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 150
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 151
+  },
+  {
+    "quota_amount": 539,
+    "year": 2017,
+    "species_id": 152
+  },
+  {
+    "quota_amount": 588,
+    "year": 2017,
+    "species_id": 153
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 154
+  },
+  {
+    "quota_amount": 90,
+    "year": 2017,
+    "species_id": 155
+  },
+  {
+    "quota_amount": 3626,
+    "year": 2017,
+    "species_id": 156
+  },
+  {
+    "quota_amount": 90,
+    "year": 2017,
+    "species_id": 157
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 158
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 159
+  },
+  {
+    "quota_amount": 2156,
+    "year": 2017,
+    "species_id": 160
+  },
+  {
+    "quota_amount": 115395,
+    "year": 2017,
+    "species_id": 161
+  },
+  {
+    "quota_amount": 1568,
+    "year": 2017,
+    "species_id": 162
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 163
+  },
+  {
+    "quota_amount": 225,
+    "year": 2017,
+    "species_id": 164
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 165
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 166
+  },
+  {
+    "quota_amount": 90,
+    "year": 2017,
+    "species_id": 167
+  },
+  {
+    "quota_amount": 675,
+    "year": 2017,
+    "species_id": 168
+  },
+  {
+    "quota_amount": 245,
+    "year": 2017,
+    "species_id": 169
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 170
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 171
+  },
+  {
+    "quota_amount": 245,
+    "year": 2017,
+    "species_id": 172
+  },
+  {
+    "quota_amount": 765,
+    "year": 2017,
+    "species_id": 173
+  },
+  {
+    "quota_amount": 1960,
+    "year": 2017,
+    "species_id": 174
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 175
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 176
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 177
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 178
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 179
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 180
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 181
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 182
+  },
+  {
+    "quota_amount": 1764,
+    "year": 2017,
+    "species_id": 183
+  },
+  {
+    "quota_amount": 90,
+    "year": 2017,
+    "species_id": 184
+  },
+  {
+    "quota_amount": 1078,
+    "year": 2017,
+    "species_id": 185
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 186
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 187
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 188
+  },
+  {
+    "quota_amount": 1470,
+    "year": 2017,
+    "species_id": 189
+  },
+  {
+    "quota_amount": 98,
+    "year": 2017,
+    "species_id": 190
+  },
+  {
+    "quota_amount": 3528,
+    "year": 2017,
+    "species_id": 191
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 192
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 193
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 194
+  },
+  {
+    "quota_amount": 588,
+    "year": 2017,
+    "species_id": 195
+  },
+  {
+    "quota_amount": 1470,
+    "year": 2017,
+    "species_id": 196
+  },
+  {
+    "quota_amount": 2940,
+    "year": 2017,
+    "species_id": 197
+  },
+  {
+    "quota_amount": 1274,
+    "year": 2017,
+    "species_id": 198
+  },
+  {
+    "quota_amount": 1470,
+    "year": 2017,
+    "species_id": 199
+  },
+  {
+    "quota_amount": 4116,
+    "year": 2017,
+    "species_id": 200
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 201
+  },
+  {
+    "quota_amount": 588,
+    "year": 2017,
+    "species_id": 202
+  },
+  {
+    "quota_amount": 2058,
+    "year": 2017,
+    "species_id": 203
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 204
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 205
+  },
+  {
+    "quota_amount": 1470,
+    "year": 2017,
+    "species_id": 206
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 207
+  },
+  {
+    "quota_amount": 49,
+    "year": 2017,
+    "species_id": 208
+  },
+  {
+    "quota_amount": 26950,
+    "year": 2017,
+    "species_id": 209
+  },
+  {
+    "quota_amount": 3430,
+    "year": 2017,
+    "species_id": 210
+  },
+  {
+    "quota_amount": 2450,
+    "year": 2017,
+    "species_id": 211
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 212
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 213
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 214
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 215
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 216
+  },
+  {
+    "quota_amount": 1960,
+    "year": 2017,
+    "species_id": 217
+  },
+  {
+    "quota_amount": 4900,
+    "year": 2017,
+    "species_id": 218
+  },
+  {
+    "quota_amount": 2940,
+    "year": 2017,
+    "species_id": 219
+  },
+  {
+    "quota_amount": 1470,
+    "year": 2017,
+    "species_id": 220
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 221
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 222
+  },
+  {
+    "quota_amount": 343,
+    "year": 2017,
+    "species_id": 223
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 224
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 225
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 226
+  },
+  {
+    "quota_amount": 3136,
+    "year": 2017,
+    "species_id": 227
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 228
+  },
+  {
+    "quota_amount": 1176,
+    "year": 2017,
+    "species_id": 229
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 230
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 231
+  },
+  {
+    "quota_amount": 1470,
+    "year": 2017,
+    "species_id": 232
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 233
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 234
+  },
+  {
+    "quota_amount": 2695,
+    "year": 2017,
+    "species_id": 235
+  },
+  {
+    "quota_amount": 27930,
+    "year": 2017,
+    "species_id": 236
+  },
+  {
+    "quota_amount": 5145,
+    "year": 2017,
+    "species_id": 237
+  },
+  {
+    "quota_amount": 588,
+    "year": 2017,
+    "species_id": 238
+  },
+  {
+    "quota_amount": 2450,
+    "year": 2017,
+    "species_id": 239
+  },
+  {
+    "quota_amount": 882,
+    "year": 2017,
+    "species_id": 240
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 241
+  },
+  {
+    "quota_amount": 4900,
+    "year": 2017,
+    "species_id": 242
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 243
+  },
+  {
+    "quota_amount": 32340,
+    "year": 2017,
+    "species_id": 244
+  },
+  {
+    "quota_amount": 6860,
+    "year": 2017,
+    "species_id": 245
+  },
+  {
+    "quota_amount": 25970,
+    "year": 2017,
+    "species_id": 246
+  },
+  {
+    "quota_amount": 1274,
+    "year": 2017,
+    "species_id": 247
+  },
+  {
+    "quota_amount": 1617,
+    "year": 2017,
+    "species_id": 248
+  },
+  {
+    "quota_amount": 16660,
+    "year": 2017,
+    "species_id": 249
+  },
+  {
+    "quota_amount": 41160,
+    "year": 2017,
+    "species_id": 250
+  },
+  {
+    "quota_amount": 4900,
+    "year": 2017,
+    "species_id": 251
+  },
+  {
+    "quota_amount": 14580,
+    "year": 2017,
+    "species_id": 252
+  },
+  {
+    "quota_amount": 1800,
+    "year": 2017,
+    "species_id": 253
+  },
+  {
+    "quota_amount": 360,
+    "year": 2017,
+    "species_id": 254
+  },
+  {
+    "quota_amount": 12330,
+    "year": 2017,
+    "species_id": 255
+  },
+  {
+    "quota_amount": 720,
+    "year": 2017,
+    "species_id": 256
+  },
+  {
+    "quota_amount": 78498000,
+    "year": 2017,
+    "species_id": 257
+  },
+  {
+    "quota_amount": 3920,
+    "year": 2017,
+    "species_id": 258
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 259
+  },
+  {
+    "quota_amount": 1470,
+    "year": 2017,
+    "species_id": 260
+  },
+  {
+    "quota_amount": 1666,
+    "year": 2017,
+    "species_id": 261
+  },
+  {
+    "quota_amount": 1764,
+    "year": 2017,
+    "species_id": 262
+  },
+  {
+    "quota_amount": 1960,
+    "year": 2017,
+    "species_id": 263
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 264
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 265
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 266
+  },
+  {
+    "quota_amount": 588,
+    "year": 2017,
+    "species_id": 267
+  },
+  {
+    "quota_amount": 58800,
+    "year": 2017,
+    "species_id": 268
+  },
+  {
+    "quota_amount": 44100,
+    "year": 2017,
+    "species_id": 269
+  },
+  {
+    "quota_amount": 1960,
+    "year": 2017,
+    "species_id": 270
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 271
+  },
+  {
+    "quota_amount": 343,
+    "year": 2017,
+    "species_id": 272
+  },
+  {
+    "quota_amount": 1470,
+    "year": 2017,
+    "species_id": 273
+  },
+  {
+    "quota_amount": 3430,
+    "year": 2017,
+    "species_id": 274
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 275
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 276
+  },
+  {
+    "quota_amount": 4410,
+    "year": 2017,
+    "species_id": 277
+  },
+  {
+    "quota_amount": 343,
+    "year": 2017,
+    "species_id": 278
+  },
+  {
+    "quota_amount": 735,
+    "year": 2017,
+    "species_id": 279
+  },
+  {
+    "quota_amount": 9065,
+    "year": 2017,
+    "species_id": 280
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 281
+  },
+  {
+    "quota_amount": 98,
+    "year": 2017,
+    "species_id": 282
+  },
+  {
+    "quota_amount": 686,
+    "year": 2017,
+    "species_id": 283
+  },
+  {
+    "quota_amount": 4018,
+    "year": 2017,
+    "species_id": 284
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 285
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 286
+  },
+  {
+    "quota_amount": 2842,
+    "year": 2017,
+    "species_id": 287
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 288
+  },
+  {
+    "quota_amount": 45,
+    "year": 2017,
+    "species_id": 289
+  },
+  {
+    "quota_amount": 2254,
+    "year": 2017,
+    "species_id": 290
+  },
+  {
+    "quota_amount": 539,
+    "year": 2017,
+    "species_id": 291
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 292
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 293
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 294
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 295
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 296
+  },
+  {
+    "quota_amount": 1176,
+    "year": 2017,
+    "species_id": 297
+  },
+  {
+    "quota_amount": 60,
+    "year": 2017,
+    "species_id": 298
+  },
+  {
+    "quota_amount": 105,
+    "year": 2017,
+    "species_id": 299
+  },
+  {
+    "quota_amount": 2352,
+    "year": 2017,
+    "species_id": 300
+  },
+  {
+    "quota_amount": 220,
+    "year": 2017,
+    "species_id": 301
+  },
+  {
+    "quota_amount": 75,
+    "year": 2017,
+    "species_id": 302
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 303
+  },
+  {
+    "quota_amount": 75,
+    "year": 2017,
+    "species_id": 304
+  },
+  {
+    "quota_amount": 30,
+    "year": 2017,
+    "species_id": 305
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 306
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 307
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 308
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 309
+  },
+  {
+    "quota_amount": 20,
+    "year": 2017,
+    "species_id": 310
+  },
+  {
+    "quota_amount": 40,
+    "year": 2017,
+    "species_id": 311
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 312
+  },
+  {
+    "quota_amount": 75,
+    "year": 2017,
+    "species_id": 313
+  },
+  {
+    "quota_amount": 20,
+    "year": 2017,
+    "species_id": 314
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 315
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 316
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 317
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 318
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 319
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 320
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 321
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 322
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 323
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 324
+  },
+  {
+    "quota_amount": 85,
+    "year": 2017,
+    "species_id": 325
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 326
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 327
+  },
+  {
+    "quota_amount": 500,
+    "year": 2017,
+    "species_id": 328
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 329
+  },
+  {
+    "quota_amount": 30,
+    "year": 2017,
+    "species_id": 330
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 331
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 332
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 333
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 334
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 335
+  },
+  {
+    "quota_amount": 20,
+    "year": 2017,
+    "species_id": 336
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 337
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 338
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 339
+  },
+  {
+    "quota_amount": 11858,
+    "year": 2017,
+    "species_id": 340
+  },
+  {
+    "quota_amount": 539,
+    "year": 2017,
+    "species_id": 341
+  },
+  {
+    "quota_amount": 245,
+    "year": 2017,
+    "species_id": 342
+  },
+  {
+    "quota_amount": 441,
+    "year": 2017,
+    "species_id": 343
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 344
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 345
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 346
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 347
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 348
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 349
+  },
+  {
+    "quota_amount": 1176,
+    "year": 2017,
+    "species_id": 350
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 351
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 352
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 353
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 354
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 355
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 356
+  },
+  {
+    "quota_amount": 2940000,
+    "year": 2017,
+    "species_id": 357
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 358
+  },
+  {
+    "quota_amount": 6615,
+    "year": 2017,
+    "species_id": 359
+  },
+  {
+    "quota_amount": 20,
+    "year": 2017,
+    "species_id": 360
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 361
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 362
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 363
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 364
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 365
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 366
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 367
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 368
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 369
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 370
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 371
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 372
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 373
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 374
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 375
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 376
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 377
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 378
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 379
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 380
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 381
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 382
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 383
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 384
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 385
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 386
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 387
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 388
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 389
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 390
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 391
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 392
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 393
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 394
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 395
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 396
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 397
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 398
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 399
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 400
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 401
+  },
+  {
+    "quota_amount": 500,
+    "year": 2017,
+    "species_id": 402
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 403
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 404
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 405
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 406
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 407
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 408
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 409
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 410
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 411
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 412
+  },
+  {
+    "quota_amount": 1176,
+    "year": 2017,
+    "species_id": 413
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 414
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 415
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 416
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 417
+  },
+  {
+    "quota_amount": 245,
+    "year": 2017,
+    "species_id": 418
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 419
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 420
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 421
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 422
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 423
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 424
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 425
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 426
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 427
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 428
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 429
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 430
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 431
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 432
+  },
+  {
+    "quota_amount": 637,
+    "year": 2017,
+    "species_id": 433
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 434
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 435
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 436
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 437
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 438
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 439
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 440
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 441
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 442
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 443
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 444
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 445
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 446
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 447
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 448
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 449
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 450
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 451
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 452
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 453
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 454
+  },
+  {
+    "quota_amount": 75,
+    "year": 2017,
+    "species_id": 455
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 456
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 457
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 458
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 459
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 460
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 461
+  },
+  {
+    "quota_amount": 882,
+    "year": 2017,
+    "species_id": 462
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 463
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 464
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 465
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 466
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 467
+  },
+  {
+    "quota_amount": 539,
+    "year": 2017,
+    "species_id": 468
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 469
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 470
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 471
+  },
+  {
+    "quota_amount": 539,
+    "year": 2017,
+    "species_id": 472
+  },
+  {
+    "quota_amount": 588,
+    "year": 2017,
+    "species_id": 473
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 474
+  },
+  {
+    "quota_amount": 343,
+    "year": 2017,
+    "species_id": 475
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 476
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 477
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 478
+  },
+  {
+    "quota_amount": 15,
+    "year": 2017,
+    "species_id": 479
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 480
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 481
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 482
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 483
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 484
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 485
+  },
+  {
+    "quota_amount": 15,
+    "year": 2017,
+    "species_id": 486
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 487
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 488
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 489
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 490
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 491
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 492
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 493
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 494
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 495
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 496
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 497
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 498
+  },
+  {
+    "quota_amount": 115,
+    "year": 2017,
+    "species_id": 499
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 500
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 501
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 502
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 503
+  },
+  {
+    "quota_amount": 15,
+    "year": 2017,
+    "species_id": 504
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 505
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 506
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 507
+  },
+  {
+    "quota_amount": 75,
+    "year": 2017,
+    "species_id": 508
+  },
+  {
+    "quota_amount": 15,
+    "year": 2017,
+    "species_id": 509
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 510
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 511
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 512
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 513
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 514
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 515
+  },
+  {
+    "quota_amount": 15,
+    "year": 2017,
+    "species_id": 516
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 517
+  },
+  {
+    "quota_amount": 3185,
+    "year": 2017,
+    "species_id": 518
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 519
+  },
+  {
+    "quota_amount": 15,
+    "year": 2017,
+    "species_id": 520
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 521
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 522
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 523
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 524
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 525
+  },
+  {
+    "quota_amount": 125,
+    "year": 2017,
+    "species_id": 526
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 527
+  },
+  {
+    "quota_amount": 125,
+    "year": 2017,
+    "species_id": 528
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 529
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 530
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 531
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 532
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 533
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 534
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 535
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 536
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 537
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 538
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 539
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 540
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 541
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 542
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 543
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 544
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 545
+  },
+  {
+    "quota_amount": 1225,
+    "year": 2017,
+    "species_id": 546
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 547
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 548
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 549
+  },
+  {
+    "quota_amount": 5,
+    "year": 2017,
+    "species_id": 550
+  },
+  {
+    "quota_amount": 5,
+    "year": 2017,
+    "species_id": 551
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 552
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 553
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 554
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 555
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 556
+  },
+  {
+    "quota_amount": 5,
+    "year": 2017,
+    "species_id": 557
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 558
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 559
+  },
+  {
+    "quota_amount": 5,
+    "year": 2017,
+    "species_id": 560
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 561
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 562
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 563
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 564
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 565
+  },
+  {
+    "quota_amount": 5,
+    "year": 2017,
+    "species_id": 566
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 567
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 568
+  },
+  {
+    "quota_amount": 1715,
+    "year": 2017,
+    "species_id": 569
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 570
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 571
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 572
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 573
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 574
+  },
+  {
+    "quota_amount": 15,
+    "year": 2017,
+    "species_id": 575
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 576
+  },
+  {
+    "quota_amount": 125,
+    "year": 2017,
+    "species_id": 577
+  },
+  {
+    "quota_amount": 15,
+    "year": 2017,
+    "species_id": 578
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 579
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 580
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 581
+  },
+  {
+    "quota_amount": 20,
+    "year": 2017,
+    "species_id": 582
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 583
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 584
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 585
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 586
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 587
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 588
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 589
+  },
+  {
+    "quota_amount": 115,
+    "year": 2017,
+    "species_id": 590
+  },
+  {
+    "quota_amount": 20,
+    "year": 2017,
+    "species_id": 591
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 592
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 593
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 594
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 595
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 596
+  },
+  {
+    "quota_amount": 9457,
+    "year": 2017,
+    "species_id": 597
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 598
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 599
+  },
+  {
+    "quota_amount": 8526,
+    "year": 2017,
+    "species_id": 600
+  },
+  {
+    "quota_amount": 8477,
+    "year": 2017,
+    "species_id": 601
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 602
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 603
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 604
+  },
+  {
+    "quota_amount": 882,
+    "year": 2017,
+    "species_id": 605
+  },
+  {
+    "quota_amount": 735,
+    "year": 2017,
+    "species_id": 606
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 607
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 608
+  },
+  {
+    "quota_amount": 7987,
+    "year": 2017,
+    "species_id": 609
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 610
+  },
+  {
+    "quota_amount": 833,
+    "year": 2017,
+    "species_id": 611
+  },
+  {
+    "quota_amount": 1176,
+    "year": 2017,
+    "species_id": 612
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 613
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 614
+  },
+  {
+    "quota_amount": 637,
+    "year": 2017,
+    "species_id": 615
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 616
+  },
+  {
+    "quota_amount": 784,
+    "year": 2017,
+    "species_id": 617
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 618
+  },
+  {
+    "quota_amount": 1176,
+    "year": 2017,
+    "species_id": 619
+  },
+  {
+    "quota_amount": 1029,
+    "year": 2017,
+    "species_id": 620
+  },
+  {
+    "quota_amount": 735,
+    "year": 2017,
+    "species_id": 621
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 622
+  },
+  {
+    "quota_amount": 245,
+    "year": 2017,
+    "species_id": 623
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 624
+  },
+  {
+    "quota_amount": 980,
+    "year": 2017,
+    "species_id": 625
+  },
+  {
+    "quota_amount": 9555,
+    "year": 2017,
+    "species_id": 626
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 627
+  },
+  {
+    "quota_amount": 245,
+    "year": 2017,
+    "species_id": 628
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 629
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 630
+  },
+  {
+    "quota_amount": 490,
+    "year": 2017,
+    "species_id": 631
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 632
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 633
+  },
+  {
+    "quota_amount": 10535,
+    "year": 2017,
+    "species_id": 634
+  },
+  {
+    "quota_amount": 125,
+    "year": 2017,
+    "species_id": 635
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 636
+  },
+  {
+    "quota_amount": 637,
+    "year": 2017,
+    "species_id": 637
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 638
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 639
+  },
+  {
+    "quota_amount": 75,
+    "year": 2017,
+    "species_id": 640
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 641
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 642
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 643
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 644
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 645
+  },
+  {
+    "quota_amount": 588,
+    "year": 2017,
+    "species_id": 646
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 647
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 648
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 649
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 650
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 651
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 652
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 653
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 654
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 655
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 656
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 657
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 658
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 659
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 660
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 661
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 662
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 663
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 664
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 665
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 666
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 667
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 668
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 669
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 670
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 671
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 672
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 673
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 674
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 675
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 676
+  },
+  {
+    "quota_amount": 5,
+    "year": 2017,
+    "species_id": 677
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 678
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 679
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 680
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 681
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 682
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 683
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 684
+  },
+  {
+    "quota_amount": 392,
+    "year": 2017,
+    "species_id": 685
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 686
+  },
+  {
+    "quota_amount": 120,
+    "year": 2017,
+    "species_id": 687
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 688
+  },
+  {
+    "quota_amount": 170,
+    "year": 2017,
+    "species_id": 689
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 690
+  },
+  {
+    "quota_amount": 2058,
+    "year": 2017,
+    "species_id": 691
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 692
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 693
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 694
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 695
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 696
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 697
+  },
+  {
+    "quota_amount": 441,
+    "year": 2017,
+    "species_id": 698
+  },
+  {
+    "quota_amount": 150,
+    "year": 2017,
+    "species_id": 699
+  },
+  {
+    "quota_amount": 125,
+    "year": 2017,
+    "species_id": 700
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 701
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 702
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 703
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 704
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 705
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 706
+  },
+  {
+    "quota_amount": 147,
+    "year": 2017,
+    "species_id": 707
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 708
+  },
+  {
+    "quota_amount": 196,
+    "year": 2017,
+    "species_id": 709
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 710
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 711
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 712
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 713
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 714
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 715
+  },
+  {
+    "quota_amount": 10,
+    "year": 2017,
+    "species_id": 716
+  },
+  {
+    "quota_amount": 294,
+    "year": 2017,
+    "species_id": 717
+  },
+  {
+    "quota_amount": 50,
+    "year": 2017,
+    "species_id": 718
+  },
+  {
+    "quota_amount": 100,
+    "year": 2017,
+    "species_id": 719
+  },
+  {
+    "quota_amount": 25,
+    "year": 2017,
+    "species_id": 720
+  },
+  {
+    "quota_amount": 269500,
+    "year": 2017,
+    "species_id": 721
+  }
+]

@@ -15,15 +15,24 @@ use Illuminate\Http\Request;
 
 class SubmissionController extends Controller
 {
-    public function index(){
+    public function index() {
         $trade_permits = TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
 
+
+    public function printSatsln($id) {
+
+
+        //$pdf = PDF::loadView('pdf.satsln');
+        return view('pdf.satsln');
+    }
+
     public function detail(Request $request, $id)
     {
         $user           = $request->user();
+
 
         $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
@@ -36,6 +45,7 @@ class SubmissionController extends Controller
     }
 
     public function create(Request $request){
+
         $user           = $request->user();
 
         $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
@@ -47,6 +57,7 @@ class SubmissionController extends Controller
     }
 
     public function store(Request $request){
+
         //isi trade permit
         $trade_permit = new TradePermit([
             'trade_permit_code'  => 'cek',
@@ -145,6 +156,7 @@ class SubmissionController extends Controller
         }
 
         $kode .= '/'.$month.'/SATSL-LN/'.date('Y');
+
 
         return $kode;
     }

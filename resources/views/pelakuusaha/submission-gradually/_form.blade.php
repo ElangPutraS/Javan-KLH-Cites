@@ -45,7 +45,7 @@
     <label class="control-label">Jenis Perdagangan</label>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="trading_type_id">
-            @foreach($trading_types as $key=>$trading_type)
+            @foreach($trading_types as $key => $trading_type)
                 <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" {{$key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'checked' : ''}} required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
             @endforeach
         </div>
@@ -128,6 +128,9 @@
         </div>
     </div>
 @endforeach
+<div id="formDoc">
+
+</div>
 
 <div class="form-group">
     <h5>D. Informasi Spesimen</h5>
@@ -237,6 +240,26 @@
                     //$('#form-submission').submit();
                 }
             });
+
+            $('#trading_type_id4').change(function () {
+                $.ajax({
+                    type:'get',
+                    url: window.baseUrl + '/getDocumentType',
+                    dataType: 'json',
+                    success : function(data){
+                        if (data) {
+                            var form='<div class="form-group"><label class="control-label">'+data['document_type_name']+'</label>';
+                            form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data['id']+'" required>';
+                            form+='<input id="document_'+data['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
+                            form+='</div></div>';
+
+                            $('#formDoc').html(form);
+                        } else {
+                            $('#formDoc').empty();
+                        }
+                    }
+                });
+            });
         });
 
         function test(a) {
@@ -267,5 +290,3 @@
         }
     </script>
 @endpush
-
-
