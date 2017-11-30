@@ -45,7 +45,7 @@ class TypeIdentifyController extends Controller
 
     public function edit($id){
         $type_identify=TypeIdentify::find($id);
-        return view('admin.typeidentify.edit',compact('type_identify'));
+        return view('admin.typeIdentify.edit',compact('type_identify'));
     }
 
     public function update(TypeIdentifyUpdateRequest $request, $id){
