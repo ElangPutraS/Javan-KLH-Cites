@@ -28,11 +28,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $a=1; ?>
                         @if(count($species)>0)
                             @foreach($quota as $quot)
                                 <tr>
-                                    <td>{{$a++}}</td>
+                                    <td>{{ (($quota->currentPage() - 1 ) * $quota->perPage() ) + $loop->iteration }}</td>
                                     <td>{{$quot->year}}</td>
                                     <td>{{$quot->quota_amount}}</td>
                                     <td>{{$quot->created_at->toFormattedDateString()}}</td>

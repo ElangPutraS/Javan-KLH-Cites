@@ -48,8 +48,12 @@ class DocumentTypeSeeder extends Seeder
         ]);
 
         DocumentType::create([
-            'document_type_name' => 'NPWP',
-            'is_permit' => 1,
+            'document_type_name' => 'Dokumen Izin Impor',
+            'is_permit' => 3,
+        ]);
+        DocumentType::create([
+            'document_type_name' => 'Dokumen Re-Upload',
+            'is_permit' => 2,
         ]);
     }
 }

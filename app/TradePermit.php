@@ -24,6 +24,7 @@ class TradePermit extends Model
         'trade_permit_status_id',
         'created_by',
         'updated_by',
+        'valid_renewal',
     ];
 
     public function documentTypes()
@@ -45,10 +46,6 @@ class TradePermit extends Model
         return $this->belongsTo(TradePermitStatus::class, 'trade_permit_status_id');
     }
 
-    public function logTrade(){
-        return $this->hasMany(LogTradePermit::class);
-    }
-
     public function tradeSpecies()
     {
         return $this->belongsToMany(Species::class, 'trade_permit_detail')
@@ -65,6 +62,14 @@ class TradePermit extends Model
 
     public function company(){
         return $this->belongsTo(Company::class);
+    }
+
+    public function pnbp(){
+        return $this->hasOne(Pnbp::class);
+    }
+
+    public function logTrade() {
+        return $this->hasMany(LogTradePermit::class, 'trade_permit_id', 'id');
     }
 
 }

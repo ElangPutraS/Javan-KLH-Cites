@@ -20,8 +20,6 @@
 
                     <a href="{{ route('admin.companies.create') }}" class="btn btn-primary">Tambah Baru</a>
 
-                    <hr>
-
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm">
                             <thead class="thead-default">

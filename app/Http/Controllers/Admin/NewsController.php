@@ -90,7 +90,7 @@ class NewsController extends Controller
         	'content' => $request->get('content'),
         ]);
 
-        return redirect()->route('admin.news.index')->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('admin.news.index')->with('success', 'Data berhasil diubah.');
     }
 
     /**

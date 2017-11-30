@@ -12,7 +12,7 @@
 <div class="form-group">
     <label class="control-label">Nomor Identitas</label>
     <div class="col-sm-14">
-        <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) }}" readonly>
+        <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) ?? '' }}" readonly>
     </div>
 </div>
 
@@ -46,7 +46,7 @@
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="trading_type_id">
             @foreach($trading_types as $key=>$trading_type)
-                <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" {{$key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'checked' : ''}} required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
             @endforeach
         </div>
     </div>
@@ -124,6 +124,9 @@
         </div>
     </div>
 @endforeach
+<div id="formDoc">
+
+</div>
 
 <div class="form-group">
     <h5>D. Informasi Spesimen</h5>
@@ -201,18 +204,58 @@
 
                             var quota='0';
                             var date=new Date();
-                            for(var a=0; i<data[i]['species_quota'].length; a++){
-                                if(data[i]['species_quota'][a].year==date.getFullYear()){
-                                    quota=data[i]['species_quota'][a].quota_ammount;
+                            var disabled='disabled';
+                            var notif='<font color="red">Kuota 0, kuota belum ditentukan oleh admin!</font>';
+
+                            for(var a=0; a<data[i].species_quota.length; a++){
+                                if(data[i].species_quota[a].year == date.getFullYear()){
+                                    quota=data[i].species_quota[a].quota_amount;
+                                    if(data[i].species_quota[a].quota_amount==0){
+                                        notif='<font color="red">Kuota tahun '+data[i].species_quota[a].year+' adalah '+data[i].species_quota[a].quota_amount+'</font>';
+                                    }else{
+                                        disabled='';
+                                        notif='';
+                                    }
                                 }
                             }
 
                             var species_sex=data[i]['species_sex'].sex_name;
-                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-jk="'+species_sex+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input"><span class="custom-control-indicator"></span></label>';
+                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-jk="'+species_sex+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input" '+disabled+'><span class="custom-control-indicator"></span>'+notif+'</label>';
                             table.row.add([no, scientific_name, indonesia_name, general_name, appendix_source, species_sex, aksi]).draw();
                         }
                     }
                 });
+            });
+
+            $('#form-submission').submit(function(ev) {
+                if(jumlahSpesimen==0){
+                    alert('Silahkan pilih spesimen terlebih dahulu!');
+                    ev.preventDefault();
+                }else{
+                    this.submit();
+                }
+            });
+
+            $('input[name="trading_type_id"]').change(function(){
+                if (document.getElementById('trading_type_id4').checked) {
+                    $.ajax({
+                        type:'get',
+                        url: window.baseUrl + '/getDocumentType',
+                        dataType: 'json',
+                        success : function(data){
+                            console.log(data);
+
+                            var form='<div class="form-group"><label class="control-label">'+data['document_type_name']+'</label>';
+                            form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data['id']+'" required>';
+                            form+='<input id="document_'+data['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
+                            form+='</div></div>';
+
+                            $('#formDoc').html(form);
+                        }
+                    });
+                }else {
+                    $('#formDoc').html('');
+                }
             });
         });
 
@@ -235,15 +278,12 @@
                 $('#dynamicForm').append(form);
             }else{
                 $('#formSpecies-'+a.getAttribute('value')).remove();
+                jumlahSpesimen=jumlahSpesimen-1;
             }
         }
 
         function cekSpesimen(a){
-            if(jumlahSpesimen==0){
-                alert('Silahkan pillih spesimen terlebih dahulu!');
-            }else{
-                $('form-submission').submit();
-            }
+
         }
     </script>
 @endpush

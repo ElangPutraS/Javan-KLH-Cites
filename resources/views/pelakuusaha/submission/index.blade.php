@@ -34,10 +34,9 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $a=1;?>
                             @forelse($trade_permits as $trade_permit)
                             <tr>
-                                <td><?=$a++?></td>
+                                <td>{{ (($trade_permits->currentPage() - 1 ) * $trade_permits->perPage() ) + $loop->iteration }}</td>
                                 <td>{{ $trade_permit->trade_permit_code }}</td>
                                 <td>{{ Carbon\Carbon::parse($trade_permit->date_submission)->format('d-m-Y') }}</td>
                                 <td>{{ $trade_permit->consignee }}</td>

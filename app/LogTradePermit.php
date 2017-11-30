@@ -12,7 +12,9 @@ class LogTradePermit extends Model
         'log_description',
     ];
 
-    public function tradePermit(){
-        return $this->belongsTo(TradePermit::class);
+
+    public function tradePermit() {
+    	return $this->belongsTo(TradePermit::class, 'trade_permit_id', 'id');
+
     }
 }
