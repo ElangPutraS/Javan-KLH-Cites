@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PnbpUpdateRequest;
+use App\LogTradePermit;
 use App\Pnbp;
 use App\TradePermit;
 use App\User;
@@ -32,6 +33,7 @@ class PnbpController extends Controller
     public function update(PnbpUpdateRequest $request, $id)
     {
         $trade_permit = TradePermit::findOrFail($id);
+        $desc='';
 
         if($trade_permit->pnbp === null){
             $pnbp=new Pnbp([
@@ -43,13 +45,21 @@ class PnbpController extends Controller
             $pnbp->save();
             $pnbp->pnbp_code = $this->getCode($pnbp->id);
             $trade_permit->pnbp()->save($pnbp);
+            $desc='Menentukan nominal PNBP';
         }else{
             $trade_permit->pnbp()->update([
                 'pnbp_amount'   => $request->get('pnbp_amount'),
                 'created_by'    => $request->user()->id,
                 'updated_by'    => $request->user()->id,
             ]);
+            $desc='Update nominal PNBP';
         }
+
+        //nambahin log
+        $log=LogTradePermit::create([
+            'log_description' => $desc,
+        ]);
+        $trade_permit->logTrade()->save($log);
 
         return redirect()->route('admin.pnbp.index')->with('success', 'Data berhasil diubah.');
     }
