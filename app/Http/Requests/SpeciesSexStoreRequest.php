@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PurposeTypeUpdateRequest extends FormRequest
+class SpeciesSexStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class PurposeTypeUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'purpose_type_code'     => 'required|string|max:10|unique:purpose_type',
-            'purpose_type_name'     => 'required|string|max:50',
+            'sex_code'     => 'required|string|max:10|species_sex',
+            'sex_name'     => 'required|string|max:50',
   ];
     }
 }
