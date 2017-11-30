@@ -90,6 +90,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('cities', 'CityController', ['as' => 'admin']);
     Route::resource('provinces', 'ProvinceController', ['as' => 'admin']);
     Route::resource('purposeType', 'PurposeTypeController', ['as' => 'admin']);
+    Route::resource('typeIdentify', 'TypeIdentifyController', ['as' => 'admin']);
+
 
 });
 
