@@ -24,7 +24,7 @@ class SpeciesSexStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'sex_code'     => 'required|string|max:10|species_sex',
+            'sex_code'     => 'required|string|max:10|unique:species_sex',
             'sex_name'     => 'required|string|max:50',
   ];
     }
