@@ -9,7 +9,10 @@ class City extends Model
     protected $table = "cities";
 
     protected $fillable = [
+        'city_code',
         'city_name',
+        'city_name_full',
+        'province_id',
     ];
 
     public function province()
