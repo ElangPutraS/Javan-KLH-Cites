@@ -73,7 +73,7 @@ class CityController extends Controller
         $city->delete();
 
 
-        return redirect()->route('admin.cities.index')->with('Data berhasil dihapus.');
+        return redirect()->route('admin.cities.index')->with('success','Data berhasil dihapus.');
     }
 
    
