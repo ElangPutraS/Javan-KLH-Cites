@@ -44,11 +44,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Perdagangan</label>
                             <div class="col-sm-14">
-                                <div class="btn-group btn-group--colors" data-toggle="buttons" id="trading_type_id">
-                                    @foreach($trading_types as $key=>$trading_type)
-                                        <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
-                                    @endforeach
-                                </div>
+                                <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly>
                             </div>
                         </div>
 
@@ -105,10 +101,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Appendix</label>
                             <div class="col-sm-14">
-                                <div class="btn-group btn-group--colors" data-toggle="buttons" id="appendix_type">
-                                    <label class="btn bg-green waves-effect {{ 'EA' == old('appendix_type', array_get($trade_permit, 'appendix_type')) ? 'active' : '' }}"><input type="radio" id="appendix_type1" name="appendix_type" value="EA" autocomplete="off" required></label> SATS-LN Site (EA) &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label class="btn bg-green waves-effect {{ 'EB' == old('appendix_type', array_get($trade_permit, 'appendix_type')) ? 'active' : '' }}"><input type="radio" id="appendix_type2" name="appendix_type" value="EB" autocomplete="off" required></label> SATS-LN Non Site (EB)
-                                </div>
+                                <input type="text" name="appendix_type" class="form-control" value="<?php if($trade_permit->appendix_type=='EA'){echo 'SATS-LN Site (EA)';}else{ echo 'SATS-LN Non Site (EB)';}?>" readonly>
                             </div>
                         </div>
 

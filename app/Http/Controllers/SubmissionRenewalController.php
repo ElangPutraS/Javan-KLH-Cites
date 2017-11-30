@@ -8,8 +8,7 @@ use App\DocumentType;
 use App\Ports;
 use App\PurposeType;
 use App\TradingType;
-use App\User;
-use Auth;
+use Carbon\Carbon;
 class SubmissionRenewalController extends Controller
 {
     /**
@@ -39,14 +38,18 @@ class SubmissionRenewalController extends Controller
     public function update(Request $request, $id)
     {
         $trade_permit=TradePermit::findOrFail($id);
+
+        $valid_start=$trade_permit->valid_until;
+        $valid_until=Carbon::parse($valid_start)->addMonth($request->get('period'))->format('Y-m-d');
+
         $trade_permit->update([
-            'consignee'=>$request->get('cogsinee'),
-            'appendix_type'=>$request->get('appendix_type'),
             'period'=>$request->get('period'),
             'consignee'=>$request->get('consignee'),
             'port_exportation'=>$request->get('port_exportation'),
             'port_destination'=>$request->get('port_destination'),
-            'trading_type_id'=>$request->get('trading_type_id'),
+            'valid_start'=>$valid_start,
+            'valid_until'=>$valid_until,
+            'valid_renewal'=>$trade_permit->valid_renewal+1,
             'purpose_type_id' =>$request->get('purpose_type_id')
         ]);
 
