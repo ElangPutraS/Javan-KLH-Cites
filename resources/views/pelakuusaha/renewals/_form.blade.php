@@ -12,7 +12,7 @@
                         <div class="form-group">
                             <label class="control-label">Nomor Identitas</label>
                             <div class="col-sm-14">
-                                <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) }}" readonly>
+                                <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user -> userProfile -> typeIdentify -> first() -> pivot, 'user_type_identify_number')) }}" readonly>
                             </div>
                         </div>
 
@@ -20,21 +20,21 @@
                         <div class="form-group">
                             <label class="control-label">Nama Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) }}" readonly>
+                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user -> userProfile -> company, 'company_name')) }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Alamat Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) }}" readonly>
+                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user -> userProfile -> company, 'company_address')) }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Nomor Faksimile</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->userProfile->company, 'company_fax')) }}" readonly>
+                                <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user -> userProfile -> company, 'company_fax')) }}" readonly>
                             </div>
                         </div>
 
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Perdagangan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly>
+                                <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit -> tradingType, 'trading_type_name')) }}" readonly>
                             </div>
                         </div>
 
@@ -101,7 +101,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Appendix</label>
                             <div class="col-sm-14">
-                                <input type="text" name="appendix_type" class="form-control" value="@if($trade_permit->appendix_type=='EA') {{'SATS-LN Site (EA)'}} @else {{'SATS-LN Non Site (EB)'}} @endif"readonly>
+                                <input type="text" name="appendix_type" class="form-control" value="@if($trade_permit -> appendix_type=='EA') {{'SATS-LN Site (EA)'}} @else {{'SATS-LN Non Site (EB)'}} @endif"readonly>
                             </div>
                         </div>
 
@@ -124,13 +124,13 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-4">
-                                        <b>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</b>
+                                        <b>{{$species->species_indonesia_name}} (<i>{{$species -> species_scientific_name}}</i>)</b>
                                     </div>
                                     <div class="col-sm-4">
-                                        Jenis Kelamin ({{$species->speciesSex->sex_name}})
+                                        Jenis Kelamin ({{$species -> speciesSex -> sex_name}})
                                     </div>
                                     <div class="col-sm-4">
-                                        Jumlah {{$species->pivot->total_exported}}
+                                        Jumlah {{$species -> pivot -> total_exported}}
                                     </div>
                                 </div>
                             </div>
