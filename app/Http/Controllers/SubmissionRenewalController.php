@@ -68,7 +68,7 @@ class SubmissionRenewalController extends Controller
                 ]);
 
         }
-        $status = TradePermitStatus::where('status_code', 600)->first();
+        $status = TradePermitStatus::where('status_code', 100)->first();
         $trade_permit->tradeStatus()->associate($status);
         $trade_permit->save();
 

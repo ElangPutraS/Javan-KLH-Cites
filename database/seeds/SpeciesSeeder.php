@@ -26,6 +26,7 @@ class SpeciesSeeder extends Seeder
                 'is_appendix' => '1',
                 'appendix_source_id' => '2',
                 'species_sex_id' => $faker->numberBetween(1,2),
+                'nominal' => '100000',
                 'species_category_id' => $item['species_category_id']
             ]);
         }
@@ -40,6 +41,7 @@ class SpeciesSeeder extends Seeder
                 'species_general_name' => $item['species_general_name'],
                 'is_appendix' => '0',
                 'species_sex_id' => $faker->numberBetween(1,2),
+                'nominal' => '100000',
                 'species_category_id' => $item['species_category_id']
             ]);
         }

@@ -16,6 +16,7 @@ class UpdateSpeciesTable extends Migration
         Schema::table('species', function (Blueprint $table) {
             $table->integer('species_category_id')->unsigned()->nullable();
             $table->foreign('species_category_id')->references('id')->on('categories');
+            $table->integer('nominal')->unsigned()->nullable();
         });
     }
 
