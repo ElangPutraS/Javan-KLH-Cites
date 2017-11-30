@@ -26,6 +26,7 @@
                             <th>Appendiks</th>
                             <th>Jenis Kelamin</th>
                             <th>Kategori</th>
+                            <th>Nominal</th>
                             <th>Kuota</th>
                             <th>Aksi</th>
                         </tr>
@@ -46,6 +47,7 @@
                                 </td>
                                 <td>{{$spec->speciesSex->sex_name}}</td>
                                 <td>{{$spec->speciesCategory->species_category_name}}</td>
+                                <td>{{$spec->nominal}}</td>
                                 <td>
                                     <a href="{{route('admin.species.showquota',['id'=>$spec->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
                                     <a href="{{ route('admin.species.createquota', ['species_id' => $spec->id]) }}" class="btn btn-sm btn-success"><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i></a>
