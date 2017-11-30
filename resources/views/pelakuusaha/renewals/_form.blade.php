@@ -101,7 +101,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Appendix</label>
                             <div class="col-sm-14">
-                                <input type="text" name="appendix_type" class="form-control" value="<?php if($trade_permit->appendix_type=='EA'){echo 'SATS-LN Site (EA)';}else{ echo 'SATS-LN Non Site (EB)';}?>" readonly>
+                                <input type="text" name="appendix_type" class="form-control" value="@if($trade_permit->appendix_type=='EA') {{'SATS-LN Site (EA)'}} @else {{'SATS-LN Non Site (EB)'}} @endif"readonly>
                             </div>
                         </div>
 

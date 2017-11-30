@@ -9,6 +9,9 @@ use App\Ports;
 use App\PurposeType;
 use App\TradingType;
 use Carbon\Carbon;
+use App\TradePermitStatus;
+use App\LogTradePermit;
+
 class SubmissionRenewalController extends Controller
 {
     /**
@@ -65,6 +68,18 @@ class SubmissionRenewalController extends Controller
                 ]);
 
         }
+        $status=TradePermitStatus::where('status_code', 600)->first();
+        $trade_permit->tradeStatus()->associate($status);
+        $trade_permit->save();
+
+
+        $log=LogTradePermit::create([
+            'log_description' => $status->status_name,
+        ]);
+        $trade_permit->logTrade()->save($log);
+
+
+
         return redirect()->route('user.renewal.edit', ['id' => $trade_permit->id])->with('success', 'Data berhasil diubah.');
     }
 

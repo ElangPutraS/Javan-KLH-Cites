@@ -87,7 +87,6 @@ class SubmissionController extends Controller
         $trade_permit->tradeStatus()->associate($status);
         $trade_permit->save();
 
-        //nambahin log
         $log=LogTradePermit::create([
             'log_description' => $status->status_name,
         ]);

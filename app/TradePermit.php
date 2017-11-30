@@ -67,5 +67,8 @@ class TradePermit extends Model
     public function pnbp(){
         return $this->hasOne(Pnbp::class);
     }
+    public function logTrade(){
+        return $this->hasMany(LogTradePermit::class);
+    }
 
 }

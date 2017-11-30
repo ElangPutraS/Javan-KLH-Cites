@@ -54,7 +54,7 @@
                                             <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
                                         @endif
                                     </td>
-                                    <td><a href="{{route('user.renewal.edit', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info <?php if($trade_permit->valid_renewal >=2){echo 'disabled';}?>" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></td>
+                                    <td><a href="{{route('user.renewal.edit', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info @if($trade_permit->valid_renewal >=2){{'disabled'}} @endif" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></td>
                                 </tr>
                             @empty
                                 <tr>
