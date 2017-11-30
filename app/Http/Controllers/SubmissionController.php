@@ -12,6 +12,7 @@ use App\TradePermit;
 use App\TradePermitStatus;
 use App\TradingType;
 use Illuminate\Http\Request;
+use PDF;
 
 class SubmissionController extends Controller
 {
@@ -25,8 +26,10 @@ class SubmissionController extends Controller
     public function printSatsln($id) {
 
 
-        //$pdf = PDF::loadView('pdf.satsln');
-        return view('pdf.satsln');
+        $pdf = PDF::loadView('pdf.satsln');
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream();
+        //return view('pdf.satsln');
     }
 
     public function detail(Request $request, $id)

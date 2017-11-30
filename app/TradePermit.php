@@ -71,4 +71,8 @@ class TradePermit extends Model
         return $this->hasMany(LogTradePermit::class);
     }
 
+    public function logTrade() {
+        return $this->hasMany(LogTradePermit::class, 'trade_permit_id', 'id');
+    }
+
 }

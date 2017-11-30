@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>SATS-LN</title>
+</head>
+<body>
+
 <table>
 	<tr>
 		<td rowspan="2">CONVENTION ON INTERNATIONAL TRADE IN ENDANGERED SPECIES OF WILD FAUNA AND FLORA
@@ -328,3 +336,6 @@
 		</td>
 	</tr>
 </table>
+
+</body>
+</html>

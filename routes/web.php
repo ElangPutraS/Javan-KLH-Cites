@@ -87,6 +87,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('ports', 'PortController', ['as' => 'admin']);
    	Route::resource('news', 'NewsController', ['as' => 'admin']);
     Route::resource('countries', 'CountryController', ['as' => 'admin']);
+    Route::resource('cities', 'CityController', ['as' => 'admin']);
     Route::resource('provinces', 'ProvinceController', ['as' => 'admin']);
 
 });
