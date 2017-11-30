@@ -27,6 +27,7 @@ class CityUpdateRequest extends FormRequest
             'city_code'                 => 'required|string|max:3',
             'city_name'                 => 'required|string|max:255',
             'city_name_full'            => 'required|string|max:255',
+            'province_id'               => 'required',
         ];
   
     }
