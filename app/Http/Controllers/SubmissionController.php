@@ -17,9 +17,9 @@ use PDF;
 class SubmissionController extends Controller
 {
     public function index() {
-        $trade_permits = TradePermit::orderBy('trade_permit_code' , 'asc')->paginate(10);
+        $trade_permits = TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
 
-        return view('pelakuusaha.submission.index' , compact('trade_permits'));
+        return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
 
 
@@ -27,36 +27,36 @@ class SubmissionController extends Controller
 
 
         $pdf = PDF::loadView('pdf.satsln');
-        $pdf->setPaper('letter' , 'portrait');
+        $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
         //return view('pdf.satsln');
     }
 
-    public function detail(Request $request , $id)
+    public function detail(Request $request, $id)
     {
         $user           = $request->user();
 
 
-        $trading_types  = TradingType::orderBy('trading_type_name' , 'asc')->pluck('trading_type_name' , 'id');
-        $purpose_types  = PurposeType::pluck('purpose_type_name' , 'id');
-        $ports          = Ports::orderBy('port_name' , 'asc')->pluck('port_name' , 'id');
-        $document_types = DocumentType::where('is_permit' , 1)->orderBy('document_type_name' , 'asc')->pluck('document_type_name' , 'id');
+        $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
+        $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
+        $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
+        $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         $trade_permit=TradePermit::findOrFail($id);
 
-        return view('pelakuusaha.submission.detail' , compact('user' , 'trade_permit'));
+        return view('pelakuusaha.submission.detail', compact('user', 'trade_permit'));
     }
 
     public function create(Request $request){
 
         $user           = $request->user();
 
-        $trading_types  = TradingType::orderBy('trading_type_name' , 'asc')->pluck('trading_type_name' , 'id');
-        $purpose_types  = PurposeType::pluck('purpose_type_name' , 'id');
-        $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name' , 'id');
-        $document_types = DocumentType::where('is_permit',1)->orderBy('document_type_name' , 'asc')->pluck('document_type_name' , 'id');
+        $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
+        $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
+        $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
+        $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
-        return view('pelakuusaha.submission.create' , compact('user', 'trading_types' , 'purpose_types' , 'ports' , 'document_types'));
+        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
     }
 
     public function store(Request $request){
@@ -78,7 +78,7 @@ class SubmissionController extends Controller
 
         //susun kode trade permit
         $trade_permit->update([
-            'trade_permit_code'=>$this->create_kode($trade_permit->id),
+            'trade_permit_code' => $this->create_kode($trade_permit->id),
         ]);
 
         //relasi
@@ -122,7 +122,7 @@ class SubmissionController extends Controller
             ]);
         }
 
-        return redirect()->route('user.submission.index')->with('success' , 'Data berhasil dibuat.');
+        return redirect()->route('user.submission.index')->with('success', 'Data berhasil dibuat.');
     }
 
     public function create_kode($id){

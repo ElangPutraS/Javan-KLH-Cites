@@ -47,14 +47,14 @@
                                         @if($trade_permit->tradeStatus->status_code == 100)
                                             <span class = "badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
                                         @elseif($trade_permit->tradeStatus->status_code == 200)
-                                            <span class = "badge badge-success">{{ $trade_permit -> tradeStatus -> status_name }}</span>
+                                            <span class = "badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
                                         @elseif($trade_permit->tradeStatus->status_code == 300)
                                             <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
                                         @else
                                             <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
                                         @endif
                                     </td>
-                                    <td><a href="{{route('user.renewal.edit', ['id'=>$trade_permit->id])}}" class="btn btn-sm btn-info @if($trade_permit->valid_renewal>=2){{'disabled'}} @endif" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></td>
+                                    <td><a href="{{route('user.renewal.edit', ['id' => $trade_permit->id])}}" class="btn btn-sm btn-info @if($trade_permit->valid_renewal >= 2){{'disabled'}} @endif" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></td>
                                 </tr>
                             @empty
                                 <tr>

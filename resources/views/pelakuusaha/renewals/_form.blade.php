@@ -5,14 +5,14 @@
                         <div class="form-group">
                             <label class="control-label">Nama Pelaku Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="name" class="form-control" value="{{ old('name' , array_get($user , 'name')) }}" readonly>
+                                <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user , 'name')) }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Nomor Identitas</label>
                             <div class="col-sm-14">
-                                <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number' , array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) }}" readonly>
+                                <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) }}" readonly>
                             </div>
                         </div>
 
@@ -20,21 +20,21 @@
                         <div class="form-group">
                             <label class="control-label">Nama Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number' , array_get($user -> userProfile -> company, 'company_name')) }}" readonly>
+                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Alamat Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address' , array_get($user->userProfile->company, 'company_address')) }}" readonly>
+                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Nomor Faksimile</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax' , array_get($user->userProfile->company, 'company_fax')) }}" readonly>
+                                <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->userProfile->company, 'company_fax')) }}" readonly>
                             </div>
                         </div>
 
@@ -44,7 +44,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Perdagangan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id' , array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly>
+                                <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly>
                             </div>
                         </div>
 
@@ -53,8 +53,8 @@
                             <div class="col-sm-14">
                                 <select name="purpose_type_id" id="purpose_type_id" class="form-control select2" required>
                                     <option value="">--Pilih Jenis Kegiatan--</option>
-                                    @foreach($purpose_types as $key=>$purpose_type)
-                                        <option value="{{ $key }}" {{ $key == old('purpose_type_id', array_get($trade_permit , 'purpose_type_id')) ? 'selected' : '' }}>{{ $purpose_type }}</option>
+                                    @foreach($purpose_types as $key => $purpose_type)
+                                        <option value="{{ $key }}" {{ $key == old('purpose_type_id', array_get($trade_permit, 'purpose_type_id')) ? 'selected' : '' }}>{{ $purpose_type }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -73,7 +73,7 @@
                                 <select name="port_exportation" id="port_exportation" class="form-control select2" required>
                                     <option value="">--Pilih Pelabuhan Ekspor--</option>
                                     @foreach($ports as $key => $port)
-                                        <option value="{{ $key }}" {{ $key == old('port_exportation' , array_get($trade_permit , 'port_exportation')) ? 'selected' : '' }}>{{ $port }}</option>
+                                        <option value="{{ $key }}" {{ $key == old('port_exportation', array_get($trade_permit, 'port_exportation')) ? 'selected' : '' }}>{{ $port }}</option>
                                     @endforeach
                                 </select>
                             </div>
