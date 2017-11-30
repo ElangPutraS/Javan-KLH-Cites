@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PurposeTypeStoreRequest;
-use App\Http\Requests\ProvinceUpdateRequest;
+use App\Http\Requests\PurposeTypeUpdateRequest;
 use App\PurposeType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -38,33 +38,37 @@ class PurposeTypeController extends Controller
 
 
       public function store(PurposeTypeStoreRequest $request){
-        $purposetypes= PurposeType::create([
+        $purposetype= PurposeType::create([
             'purpose_type_code' => $request->get('purpose_type_code'),
             'purpose_type_name' => $request->get('purpose_type_name')
             ]);
-        $purposetypes->save();
-        return redirect()->route('admin.purposeType.create', $purposetypes)->with('success', 'Data berhasil dibuat.');
+        $purposetype->save();
+        return redirect()->route('admin.purposeType.create', $purposetype)->with('success', 'Data berhasil dibuat.');
     }
 
  
 
-    public function edit(PurposeType $purposetype) {
+    public function edit($id) {
+
+        $purposetype = PurposeType::find($id);
 
         return view('admin.purposeType.edit', compact('purposetype'));
     }
 
-    public function update(ProvinceUpdateRequest $request, Province $province) {
-        $province->update([
-            'country_id'     => $request->get('country_id'),
-            'province_code' => $request->get('province_code'),
-            'province_name' => $request->get('province_name')
+
+    public function update(PurposeTypeUpdateRequest $request, $id) {
+        $purposetype=PurposeType::find($id);
+        $purposetype->update([
+            'purpose_type_code' => $request->get('purpose_type_code'),
+            'purpose_type_name' => $request->get('purpose_type_name')
         ]);
 
-        return redirect()->route('admin.provinces.edit', $province)->with('success', 'Data berhasil diubah.');
+        return redirect()->route('admin.purposeType.edit', ['id' => $purposetype->id])->with('success', 'Data berhasil diubah.');
     }
 
 
-    public function destroy(PurposeType $purposetype) {
+    public function destroy($id) {
+        $purposetype=PurposeType::find($id);
         $purposetype->delete();
 
 
