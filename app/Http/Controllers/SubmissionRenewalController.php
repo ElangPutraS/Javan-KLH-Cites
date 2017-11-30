@@ -53,7 +53,8 @@ class SubmissionRenewalController extends Controller
             'valid_start' => $valid_start,
             'valid_until' => $valid_until,
             'valid_renewal' => $trade_permit->valid_renewal+1,
-            'purpose_type_id' => $request->get('purpose_type_id')
+            'purpose_type_id' => $request->get('purpose_type_id'),
+            'permit_type' => '2'
         ]);
 
         if($request->document_trade_permit != ''){
