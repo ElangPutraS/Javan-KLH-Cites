@@ -109,6 +109,7 @@
                 <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
                 <li @if(Request::segment(2)=='pnbp') class="navigation__active" @endif><a href="{{ route('admin.pnbp.index') }}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Kelola PNBP</a></li>
                 <li @if(Request::segment(2)=='purposeType') class="navigation__active" @endif><a href="{{ route('admin.purposeType.index') }}"><i class="zmdi zmdi-local-convenience-store zmdi-hc-fw"></i> Kelola Purpose Type </a></li>
+                <li @if(Request::segment(2)=='typeIdentify') class="navigation__active" @endif><a href="{{ route('admin.typeIdentify.index') }}"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i> Kelola Tipe Identitas </a></li>
                 @endcan
             </ul>
         </div>
