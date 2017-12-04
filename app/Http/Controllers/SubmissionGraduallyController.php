@@ -13,6 +13,7 @@ use App\TradePermitStatus;
 use App\TradingType;
 use Illuminate\Http\Request;
 use PDF;
+use Validator;
 
 class SubmissionGraduallyController extends Controller {
 
@@ -63,13 +64,21 @@ class SubmissionGraduallyController extends Controller {
         ]);
         $trade_permit->logTrade()->save($log);
 
+        /*$validator = Validator::make($request->all(), [
+            'document_trade_permit.*' => 'required|max:8000'
+        ], [
+            'document_trade_permit.*.required' => 'File diperlukan',
+            'document_trade_permit.*.max' => 'Maksimum file yang bisa di unggah adalah 10 MB'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('submission/gradually/create', $request)->withErrors($validator)->withInput();
+        }*/
+
         //save document trade permit
-        if($request->document_trade_permit){
+        if($request->document_trade_permit) {
             foreach ($request->document_trade_permit as $key => $file) {
 
-                /**
-                 * @var \Illuminate\Http\UploadedFile $file
-                 */
                 $file_path = $file->store('/upload/file/trade_document');
 
                 $document_type = DocumentType::findOrFail($request->get('document_type_id')[$key]);
@@ -128,5 +137,15 @@ class SubmissionGraduallyController extends Controller {
         $kode.='/'.$month.'/SATS-LN/'.date('Y');
 
         return $kode;
+    }
+
+    public function printSatsln(Request $request, $id) {
+        $user = $request->user();
+        $trade_permit = TradePermit::findOrFail($id);
+
+        $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream();
+        //return view('pdf.satsln');
     }
 }

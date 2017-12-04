@@ -91,7 +91,7 @@
     <label class="control-label">Pelabuhan Tujuan</label>
     <div class="col-sm-14">
         <select name="port_destination" id="port_destination" class="form-control select2" required>
-            <option value="">--Pilih Pelabuhan Ekspor--</option>
+            <option value="">--Pilih Pelabuhan Tujuan--</option>
             @foreach($ports as $key => $port)
                 <option value="{{ $key }}" {{ $key == old('port_destination', array_get($trade_permit, 'port_destination')) ? 'selected' : '' }}>{{ $port }}</option>
             @endforeach
@@ -124,7 +124,7 @@
         <label class="control-label">{{$document_type}}</label>
         <div class="col-sm-14">
             <input type="hidden" class="form-control" name="document_type_id[]" value="{{$key}}" required>
-            <input id="document_{{$key}}" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" {{$trade_permit==null ? 'required' : ''}}>
+            <input id="document_{{$key}}" type="file" class="form-control" name="document_trade_permit[{{ $key }}]">
         </div>
     </div>
 @endforeach
@@ -170,6 +170,9 @@
 
 
 @push('body.script')
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/additional-methods.min.js"></script>
+
     <script type="text/javascript">
         var jumlahSpesimen=0;
         $(document).ready(function(){
@@ -237,32 +240,20 @@
                     ev.preventDefault();
                 }else{
                     this.submit();
-                    //$('#form-submission').submit();
                 }
             });
 
-            $('input[name="trading_type_id"]').change(function () {
-                if ($(this).val() == 4) {
-                    $.ajax({
-                        type:'get',
-                        url: window.baseUrl + '/getDocumentType',
-                        dataType: 'json',
-                        success : function(data){
-                            if (data) {
-                                var form='<div class="form-group"><label class="control-label">'+data['document_type_name']+'</label>';
-                                form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data['id']+'" required>';
-                                form+='<input id="document_'+data['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
-                                form+='</div></div>';
+            $('#form-submission').validate({
+                errorElement: 'div',
+                errorClass: 'form-group has-error',
+                validClass: 'form-group has-success'
+            });
 
-                                $('#formDoc').html(form);
-                            } else {
-                                $('#formDoc').empty();
-                            }
-                        }
-                    });
-                } else {
-                    $('#formDoc').empty();
-                }
+            $('[name^=document_trade_permit]').each(function () {
+                $(this).rules('add', {
+                    required: true,
+                    filesize: 300000
+                });
             });
         });
 

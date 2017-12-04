@@ -23,15 +23,6 @@ class SubmissionController extends Controller
     }
 
 
-    public function printSatsln($id) {
-
-
-        $pdf = PDF::loadView('pdf.satsln');
-        $pdf->setPaper('letter', 'portrait');
-        return $pdf->stream();
-        //return view('pdf.satsln');
-    }
-
     public function detail(Request $request, $id)
     {
         $user           = $request->user();
