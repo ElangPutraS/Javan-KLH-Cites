@@ -18,7 +18,7 @@
 <body>
 
 <table border="1" cellspacing="0" style="margin: 10px;" width="80%">
-	<tr>
+	<!--tr>
 		<td height="10">
 			<div style="float: left; height: 64px;"><img src="<?= asset('images/CITES_logo_high_resolution.jpg') ?>" height="64"></div>
 			<div style="float: right; height: 64px; width: 128px; text-align: center; font-size: 10px">CONVENTION ON INTERNATIONAL TRADE IN ENDANGERED SPECIES OF WILD FAUNA AND FLORA</div>
@@ -27,6 +27,15 @@
 		<td>KEMENTERIAN LINGKUNGAN HIDUP DAN KEHUTANAN DIREKTORAT JENDERAL KONSERVASI SUMBER DAYA ALAM DAN EKOSISTEM<hr>MINISTRY OF ENVIRONMENT AND FORESTRY DIRECTORATE GENERAL OF ECOSYSTEM AND NATURAL RESOURCES CONSERVATION
 </td>
 		<td style="text-align: center;"><img src="<?= asset('images/logo-garuda_acehdesain_grey.jpg') ?>" height="64px"></td>
+	</tr-->
+
+	<tr>
+		<td colspan="2" style="text-align: center;">
+			CONVENTION ON INTERNATIONAL TRADE IN ENDANGERED SPECIES OF WILD FAUNA AND FLORA
+		</td>
+		<td colspan="2" style="text-align: center;">
+			KEMENTERIAN LINGKUNGAN HIDUP DAN KEHUTANAN DIREKTORAT JENDERAL KONSERVASI SUMBER DAYA ALAM DAN EKOSISTEM<hr>MINISTRY OF ENVIRONMENT AND FORESTRY DIRECTORATE GENERAL OF ECOSYSTEM AND NATURAL RESOURCES CONSERVATION
+		</td>
 	</tr>
 
 	<tr>
@@ -35,7 +44,7 @@
 				<tr>
 					<td>Alamat<hr><i>Address</i></td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td>Manggala Wanabhakti, Blok-VII Lt. 7 Jl. Gatot Subroto Jakarta 10270 Telp. (62-21) 5720227, 5704501-04 Ext. 769, Fax. (62-21) 5720227, 5734818 <i>e-mail: subdittp.ditkkh@gmail.com</i></td>
 				</tr>
 			</table>
 		</td>
@@ -48,8 +57,8 @@
 					<td width="10">I.</td>
 					<td>Surat Angkut Tumbuhan dan Satwa Liar<hr><i>Permitt</i></td>
 					<td>No. :</td>
-					<td width="200">&nbsp;</td>
-					<td>
+					<td width="400"><?= $trade_permit->trade_permit_code ?></td>
+					<!--td>
 						<table>
 							<tr>
 								<td>
@@ -66,7 +75,8 @@
 								</td>
 							</tr>
 						</table>
-					</td>
+					</td-->
+					<td><?= $trade_permit->tradingType->trading_type_name ?></td>
 				</tr>
 			</table>
 		</td>
@@ -79,7 +89,7 @@
 					<td width="10">II.</td>
 					<td>Diberikan Kepada (nama, alamat, negara)<hr><i>Permitee (name. address, country)</i></td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td><?= $user->company->company_name.' - '.$user->company->company_address ?></td>
 				</tr>
 			</table>
 		</td>
@@ -92,7 +102,7 @@
 					<td width="10">III.</td>
 					<td>Dikirim Kepada (nama, alamat, negara)<hr><i>Permitee (name. address, country)</i></td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td><?= $trade_permit->consignee ?></td>
 				</tr>
 			</table>
 		</td>
@@ -105,7 +115,7 @@
 					<td width="10">IV.</td>
 					<td>Berlaku sampai dengan<hr><i>Valid until</i></td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td><?= $trade_permit->valid_until ? $trade_permit->valid_until : null ?></td>
 				</tr>
 			</table>
 		</td>
@@ -116,7 +126,7 @@
 					<td width="10">V.</td>
 					<td>Pelabuhan Tujuan<hr><i>Place Port of destination</i></td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td><?= $trade_permit->portDest->port_name ?></td>
 				</tr>
 			</table>
 		</td>
@@ -129,7 +139,7 @@
 					<td width="10">VI.</td>
 					<td>Pelabuhan Pemberangkatan<hr><i>Port exportation</i></td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td><?= $trade_permit->portExpor->port_name ?></td>
 				</tr>
 			</table>
 		</td>
@@ -140,7 +150,7 @@
 					<td width="10">VII.</td>
 					<td>Maksud transaksi<hr><i>Purpose of transaction</i></td>
 					<td>:</td>
-					<td>&nbsp;</td>
+					<td><?= $trade_permit->purposeType->purpose_type_name ?></td>
 				</tr>
 			</table>
 		</td>
@@ -169,14 +179,15 @@
 					<td>Jumlah yang telah dikirim/kuota (Tahun)<hr>Total exported/Quota (Year)</td>
 				</tr>
 
-				<?php for ($i = 1; $i < 12; $i++) { ?>
+				<?php $i = 1; ?>
+				<?php foreach($trade_permit->tradeSpecies as $key => $value) { ?>
 				<tr>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
+					<td><?= $i++ ?></td>
+					<td><?= $value->species_scientific_name ?></td>
+					<td><?= $value->speciesQuota[0]->quota_amount ?></td>
+					<td><?= $value->speciesSex->sex_name ?></td>
+					<td><?= $value->appendixSource->appendix_source_code ?></td>
+					<td><?= $value->pivot->total_exported.'/* ('.$value->year.')' ?></td>
 				</tr>
 				<?php } ?>
 			</table>
@@ -204,7 +215,7 @@
 			<table width="100%">
 				<tr>
 					<td>X.</td>
-					<td>Sertifikat ini diterbitkan oleh<hr><i>This permitt is issued by</i><br>Tempat/<i>Place</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal/<i>Date</i></td>
+					<td>Sertifikat ini diterbitkan oleh<hr><i>This permitt is issued by</i><br>Tempat/<i>Place</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal/<i>Date</i>: <?= date('d/m/Y', strtotime($trade_permit->date_submission)) ?></td>
 				</tr>
 			</table>
 		</td>
