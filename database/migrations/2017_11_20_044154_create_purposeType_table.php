@@ -15,7 +15,7 @@ class CreatePurposeTypeTable extends Migration
     {
         Schema::create('purpose_type', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('purpose_type_code','10');
+            $table->string('purpose_type_code','10')->unique();
             $table->string('purpose_type_name','100');
             $table->timestamps();
         });

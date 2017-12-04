@@ -4,13 +4,13 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Permohonan SATSL-LN Pengguna</h1>
+                <h1>Permohonan SATS-LN Pengguna</h1>
             </header>
 
             <div class="card">
 
                 <div class="card-header">
-                    <h2 class="card-title">Daftar Permohonan SATSL-LN Pengguna</h2>
+                    <h2 class="card-title">Daftar Permohonan SATS-LN Pengguna</h2>
                     <small class="card-subtitle"></small>
                 </div>
 

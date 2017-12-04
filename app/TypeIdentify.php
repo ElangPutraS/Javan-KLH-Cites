@@ -9,7 +9,7 @@ class TypeIdentify extends Model
     protected $table = "type_identify";
 
     protected $fillable = [
-        'user_type_identify_name',
+        'type_identify_name',
     ];
 
     public function userProfiles()

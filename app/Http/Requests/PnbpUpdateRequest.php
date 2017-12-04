@@ -24,7 +24,7 @@ class PnbpUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'pnbp_amount' => 'required|numeric|digits_between:0,13',
+            'pnbp_amount' => 'required|numeric|digits_between:0,16',
         ];
     }
 }
