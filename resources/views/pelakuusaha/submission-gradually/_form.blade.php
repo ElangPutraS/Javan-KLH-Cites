@@ -91,7 +91,7 @@
     <label class="control-label">Pelabuhan Tujuan</label>
     <div class="col-sm-14">
         <select name="port_destination" id="port_destination" class="form-control select2" required>
-            <option value="">--Pilih Pelabuhan Ekspor--</option>
+            <option value="">--Pilih Pelabuhan Tujuan--</option>
             @foreach($ports as $key => $port)
                 <option value="{{ $key }}" {{ $key == old('port_destination', array_get($trade_permit, 'port_destination')) ? 'selected' : '' }}>{{ $port }}</option>
             @endforeach
