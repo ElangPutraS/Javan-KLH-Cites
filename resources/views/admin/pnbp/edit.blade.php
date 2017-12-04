@@ -26,7 +26,7 @@
                 <div class="card-block">
                     @include('includes.notifications')
 
-                    <form action="{{route('admin.pnbp.update', ['id'=> $trade_permit->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
+                    <form action="{{route('admin.pnbp.update', ['id'=> $trade_permit->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-pnbp">
                         {!! csrf_field() !!}
                         <div class="form-group">
                             <h5>Tentukan Nominal PNBP</h5>
@@ -35,9 +35,9 @@
                             <label class="control-label">Nominal PNBP</label>
                             <div class="col-sm-14">
                                 @if(count($trade_permit->pnbp)>0)
-                                    <input type="number" min="1" name="pnbp_amount" value="{{ old('name', array_get($trade_permit->pnbp, 'pnbp_amount')) }}" class="form-control" required>
+                                    <input type="number" min="1" id="pnbp_amount" name="pnbp_amount" value="{{ old('name', array_get($trade_permit->pnbp, 'pnbp_amount')) }}" class="form-control" required>
                                 @else
-                                    <input type="number" min="1" name="pnbp_amount" value="0" class="form-control" required>
+                                    <input type="number" min="1" id="pnbp_amount" name="pnbp_amount" value="0" class="form-control" required>
                                 @endif
                             </div>
                         </div>
@@ -55,7 +55,7 @@
             <div class="card">
                 <div class="card-block">
 
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
+                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
                         
                         <div class="form-group">
@@ -158,22 +158,33 @@
                             <h5>D. Daftar Spesimen</h5>
                             <p>Spesimen yang telah dipilih, wajib diisi!</p>
                         </div>
-                        @foreach($trade_permit->tradeSpecies as $species)
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <b>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</b>
-                                    </div> 
-                                    <div class="col-sm-4">
-                                        Jenis Kelamin ({{$species->speciesSex->sex_name}})
-                                    </div>
-                                    <div class="col-sm-4">
-                                        Jumlah {{$species->pivot->total_exported}}
-                                    </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table id="data-table" class="table table-bordered">
+                                        <thead class="thead-default">
+                                        <tr>S
+                                            <th>No</th>
+                                            <th>Nama Species</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Jumlah Ekspor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $no=1;?>
+                                        @foreach($trade_permit->tradeSpecies as $species)
+                                            <tr>
+                                                <td><?=$no++?></td>
+                                                <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
+                                                <td>{{$species->speciesSex->sex_name}}</td>
+                                                <td>{{$species->pivot->total_exported}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        @endforeach
-
+                        </div>
                     </form>
                 </div>
             </div>
@@ -181,32 +192,47 @@
     </section>
 @endsection
 @push('body.script')
+    <!-- Data Table -->
+    <script src="{{ asset('template/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+
+    <!-- Sweet Alert -->
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
-        function acceptTradePermit(a) {
-            var id=a.getAttribute('data-id');
-            swal({
-                title: 'Apakah Anda Yakin?',
-                text: 'Akan memverifikasi permohonan SATSL-LN?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-            }).then(function() {
-                location.href='{{url('admin/verificationSub/acc')}}/'+id;
+        $(document).ready(function(){
+            $('#form-pnbp').submit(function(ev) {
+                var pnbp_amount=$('#pnbp_amount').val();
+                swal({
+                    title: 'Apakah Anda Yakin?',
+                    text: 'Nominal PNBP yang akan di submit sebesar '+toRp(pnbp_amount)+'?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                }).then(function(result) {
+                    if(result.value){
+                        this.submit();
+                    }else if (result.dismiss === 'cancel'){
+                        ev.preventDefault();
+                    }
+                });
             });
-        }
+        });
 
-        function rejectTradePermit(a) {
-            var id=a.getAttribute('data-id');
-            swal({
-                title: 'Apakah Anda Yakin?',
-                text: 'Akan menolak verifikasi permohonan SATSL-LN?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-            }).then(function() {
-                location.href='{{url('admin/verificationSub/rej')}}/'+id;
-            });
+
+
+        function toRp(angka){
+            var rev     = parseInt(angka, 10).toString().split('').reverse().join('');
+            var rev2    = '';
+            for(var i = 0; i < rev.length; i++){
+                rev2  += rev[i];
+                if((i + 1) % 3 === 0 && i !== (rev.length - 1)){
+                    rev2 += '.';
+                }
+            }
+            return 'Rp. ' + rev2.split('').reverse().join('') + ',00';
         }
     </script>
 @endpush
