@@ -139,14 +139,13 @@
 
                         <div class="form-group">
                             <h5>D. Daftar Spesimen</h5>
-                            <p>Spesimen yang telah dipilih, wajib diisi!</p>
                         </div>
                         <div class="card">
                             <div class="card-block">
                                 <div class="table-responsive">
                                     <table id="data-table" class="table table-bordered">
                                         <thead class="thead-default">
-                                        <tr>S
+                                        <tr>
                                             <th>No</th>
                                             <th>Nama Species</th>
                                             <th>Jenis Kelamin</th>
