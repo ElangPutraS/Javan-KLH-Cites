@@ -185,44 +185,4 @@
     <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('template/vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
     <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
-<<<<<<< HEAD:resources/views/admin/pnbp/edit.blade.php
-
-    <!-- Sweet Alert -->
-    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
-    <script>
-        $(document).ready(function(){
-            $('#form-pnbp').submit(function(ev) {
-                var pnbp_amount=$('#pnbp_amount').val();
-                swal({
-                    title: 'Apakah Anda Yakin?',
-                    text: 'Nominal PNBP yang akan di submit sebesar '+toRp(pnbp_amount)+'?',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes',
-                }).then(function(result) {
-                    if(result.value){
-                        this.submit();
-                    }else if (result.dismiss === 'cancel'){
-                        ev.preventDefault();
-                    }
-                });
-            });
-        });
-
-
-
-        function toRp(angka){
-            var rev     = parseInt(angka, 10).toString().split('').reverse().join('');
-            var rev2    = '';
-            for(var i = 0; i < rev.length; i++){
-                rev2  += rev[i];
-                if((i + 1) % 3 === 0 && i !== (rev.length - 1)){
-                    rev2 += '.';
-                }
-            }
-            return 'Rp. ' + rev2.split('').reverse().join('') + ',00';
-        }
-    </script>
-=======
->>>>>>> master:resources/views/pelakuusaha/invoice/detail.blade.php
 @endpush
