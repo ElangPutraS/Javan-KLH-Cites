@@ -26,7 +26,7 @@
                             <th>Appendiks</th>
                             <th>Jenis Kelamin</th>
                             <th>Kategori</th>
-                            <th>Nominal</th>
+                            <th>Kuota Tahun Ini</th>
                             <th>Kuota</th>
                             <th>Aksi</th>
                         </tr>
@@ -35,7 +35,7 @@
                             @forelse($species as $spec)
                             <tr>
                                 <td>{{ (($species->currentPage() - 1 ) * $species->perPage() ) + $loop->iteration }}</td>
-                                <td>{{$spec->species_scientific_name}}</td>
+                                <td><i>{{$spec->species_scientific_name}}</i></td>
                                 <td>{{$spec->species_indonesia_name}}</td>
                                 <td>{{$spec->species_general_name}}</td>
                                 <td>
@@ -47,7 +47,15 @@
                                 </td>
                                 <td>{{$spec->speciesSex->sex_name}}</td>
                                 <td>{{$spec->speciesCategory->species_category_name}}</td>
-                                <td>Rp. {{ number_format($spec->nominal, 0) }},-</td>
+                                <td>
+                                    @foreach($spec->speciesQuota as $kuota)
+                                        @if($kuota->year == date('Y'))
+                                            {{ $kuota->quota_amount }}
+                                        @else
+                                            Kuota belum ditentukan
+                                        @endif
+                                    @endforeach
+                                </td>
                                 <td>
                                     <a href="{{route('admin.species.showquota',['id'=>$spec->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
                                     <a href="{{ route('admin.species.createquota', ['species_id' => $spec->id]) }}" class="btn btn-sm btn-success"><i class="zmdi zmdi-plus-square zmdi-hc-fw"></i></a>

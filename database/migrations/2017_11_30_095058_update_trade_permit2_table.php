@@ -15,7 +15,7 @@ class UpdateTradePermit2Table extends Migration
     {
         Schema::table('trade_permit', function (Blueprint $table) {
             $table->integer('valid_renewal')->unsigned()->nullable();
-            $table->integer('permit_type')->unsigned()->nullable()->default(1);
+            $table->integer('permit_type')->default(1);
         });
     }
 
