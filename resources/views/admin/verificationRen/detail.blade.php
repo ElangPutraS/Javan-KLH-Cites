@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Pembaharuan Permohonan SATSL-LN Pengguna</h1>
+                <h1>Permohonan Pembaharuan SATSL-LN Pengguna</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Pembaharuan Permohonan SATSL-LN Langsung</h2>
+                    <h2 class="card-title">Permohonan Pembaharuan SATSL-LN</h2>
                     <small class="card-subtitle">Status Permohonan :
                         @if($trade_permit->tradeStatus->status_code==100)
                             <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
@@ -202,12 +202,12 @@
             var id=a.getAttribute('data-id');
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan memverifikasi permohonan SATSL-LN?',
+                text: 'Akan memverifikasi permohonan pembaharuan SATSL-LN?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href='{{url('admin/verificationSub/acc')}}/'+id;
+                location.href='{{url('admin/verificationRen/acc')}}/'+id;
             });
         }
 
@@ -215,12 +215,12 @@
             var id=a.getAttribute('data-id');
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menolak verifikasi permohonan SATSL-LN?',
+                text: 'Akan menolak verifikasi permohonan pembaharuan SATSL-LN?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href='{{url('admin/verificationSub/rej')}}/'+id;
+                location.href='{{url('admin/verificationRen/rej')}}/'+id;
             });
         }
     </script>

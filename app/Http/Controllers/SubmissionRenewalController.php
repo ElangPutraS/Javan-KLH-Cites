@@ -85,7 +85,7 @@ class SubmissionRenewalController extends Controller
 
 
 
-        return redirect()->route('user.renewal.edit', ['id' => $trade_permit->id])->with('success', 'Data berhasil diubah.');
+        return redirect()->route('user.renewal.index', ['id' => $trade_permit->id])->with('success', 'Data pembaharuan permohonan berhasil diajukan.');
     }
 
     public function getSubmission(Request $request){

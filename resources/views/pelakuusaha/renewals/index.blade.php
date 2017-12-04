@@ -38,7 +38,7 @@
                                 <tr>
                                     <td><?=$a++?></td>
                                     <td>{{ $trade_permit->trade_permit_code }}</td>
-                                    <td>{{ Carbon\Carbon::parse($trade_permit->date_submission)->format('d-m-Y') }}</td>
+                                    <td>{{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y') }} sd. {{ Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}</td>
                                     <td>{{ $trade_permit->consignee }}</td>
                                     <td>{{ $trade_permit->period }} bulan</td>
                                     <td>{{ $trade_permit->portExpor->port_name }}</td>
@@ -54,7 +54,13 @@
                                             <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
                                         @endif
                                     </td>
-                                    <td><a href="{{route('user.renewal.edit', ['id' => $trade_permit->id])}}" class="btn btn-sm btn-info @if($trade_permit->valid_renewal >= 2){{'disabled'}} @endif" ><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a></td>
+                                    <td>
+                                        @if($trade_permit->valid_renewal >= 2)
+                                            <button class="btn btn-sm btn-info" title="Maksimal 2 kali melakukan pembaharuan" disabled><i class="zmdi zmdi-edit zmdi-hc-fw"></i></button>
+                                        @else
+                                            <a href="{{route('user.renewal.edit', ['id' => $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                        @endif
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

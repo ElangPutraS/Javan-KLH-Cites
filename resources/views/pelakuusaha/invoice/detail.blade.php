@@ -12,7 +12,7 @@
                     <h2 class="card-title">Tagihan SATSL-LN</h2>
                     <small class="card-subtitle">No. {{ $trade_permit->trade_permit_code }}</small>
                 </div>
-                
+
                 <div class="card-block">
 
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -114,44 +114,19 @@
                         @endforeach
 
                         <div class="form-group">
-<<<<<<< HEAD:resources/views/admin/pnbp/edit.blade.php
-                            <h5>D. Daftar Spesimen</h5>
-                            <p>Spesimen yang telah dipilih, wajib diisi!</p>
-=======
                             <h5>D. Daftar Tagihan Spesimen</h5>
                             <p></p>
->>>>>>> master:resources/views/pelakuusaha/invoice/detail.blade.php
                         </div>
                         <div class="card">
                             <div class="card-block">
                                 <div class="table-responsive">
-<<<<<<< HEAD:resources/views/admin/pnbp/edit.blade.php
-                                    <table id="data-table" class="table table-bordered">
-                                        <thead class="thead-default">
-                                        <tr>S
-=======
                                     <table class="table table-striped mb-0">
                                         <thead class="thead-default">
                                         <tr>
->>>>>>> master:resources/views/pelakuusaha/invoice/detail.blade.php
                                             <th>No</th>
                                             <th>Nama Species</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Jumlah Ekspor</th>
-<<<<<<< HEAD:resources/views/admin/pnbp/edit.blade.php
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php $no=1;?>
-                                        @foreach($trade_permit->tradeSpecies as $species)
-                                            <tr>
-                                                <td><?=$no++?></td>
-                                                <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
-                                                <td>{{$species->speciesSex->sex_name}}</td>
-                                                <td>{{$species->pivot->total_exported}}</td>
-                                            </tr>
-                                        @endforeach
-=======
                                             <th>Jumlah Pembayaran</th>
                                         </tr>
                                         </thead>
@@ -185,15 +160,11 @@
                                                 <td colspan="4" align="right"><b>Total Tagihan</b></td>
                                                 <td><b>Rp. {{ number_format($total,2,',','.') }}</b></td>
                                             </tr>
->>>>>>> master:resources/views/pelakuusaha/invoice/detail.blade.php
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD:resources/views/admin/pnbp/edit.blade.php
-=======
-
 
 
                         <div class="form-group">
@@ -201,7 +172,6 @@
                                 <a href="{{ route('user.invoice.index') }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
->>>>>>> master:resources/views/pelakuusaha/invoice/detail.blade.php
                     </form>
                 </div>
             </div>
