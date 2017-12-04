@@ -24,7 +24,7 @@ class PurposeTypeStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'purpose_type_code'     => 'required|string|max:1',
+            'purpose_type_code'     => 'required|string|max:10|unique:purpose_type',
             'purpose_type_name'     => 'required|string|max:50',
   ];
     }

@@ -29,7 +29,8 @@ class UpdateSpeciesTable extends Migration
     {
         Schema::table('species', function (Blueprint $table) {
             $table->dropForeign('species_species_category_id_foreign');
-
+            $table->dropcolumn('species_category_id');
+            $table->dropcolumn('nominal');
         });
     }
 }
