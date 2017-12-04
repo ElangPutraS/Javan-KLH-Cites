@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Permohonan Pembaharuan SATSL-LN Pengguna</h1>
+                <h1>Permohonan Pembaharuan SATS-LN Pengguna</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Permohonan Pembaharuan SATSL-LN</h2>
+                    <h2 class="card-title">Permohonan Pembaharuan SATS-LN</h2>
                     <small class="card-subtitle">Status Permohonan :
                         @if($trade_permit->tradeStatus->status_code==100)
                             <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>

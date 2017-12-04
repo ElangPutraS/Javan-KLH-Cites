@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tagihan SATSL-LN</h1>
+                <h1>Tagihan SATS-LN</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Tagihan SATSL-LN</h2>
+                    <h2 class="card-title">Tagihan SATS-LN</h2>
                     <small class="card-subtitle">No. {{ $trade_permit->trade_permit_code }}</small>
                 </div>
 
