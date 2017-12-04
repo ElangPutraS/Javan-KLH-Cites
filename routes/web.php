@@ -39,11 +39,16 @@ Route::get('submission/{id}/detail', 'SubmissionController@detail')->name('user.
 Route::get('submission/{id}/print-satsln', 'SubmissionController@printSatsln')->name('user.submission.printSatsln');
 Route::get('submission/create', 'SubmissionController@create')->name('user.submission.create');
 Route::post('submission/store', 'SubmissionController@store')->name('user.submission.store');
+
 Route::get('submission/gradually/create', 'SubmissionGraduallyController@create')->name('user.submissionGradually.create');
 Route::post('submission/gradually/create', 'SubmissionGraduallyController@store')->name('user.submissionGradually.store');
+
 Route::get('renewal','SubmissionRenewalController@index')->name('user.renewal.index');
 Route::get('renewalSubmission/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit');
 Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->name('user.renewal.update');
+
+Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index');
+Route::get('invoice/{id}/detail', 'InvoiceController@show')->name('user.invoice.detail');
 
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
@@ -81,8 +86,10 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
     Route::get('pnbp','PnbpController@index')->name('admin.pnbp.index');
-    Route::get('pnbp/{id}/edit','PnbpController@edit')->name('admin.pnbp.edit');
-    Route::post('pnbp/{id}/edit','PnbpController@update')->name('admin.pnbp.update');
+    Route::get('pnbp/{id}/show','PnbpController@show')->name('admin.pnbp.create');
+    Route::post('pnbp/{id}/store','PnbpController@store')->name('admin.pnbp.store');
+    Route::get('pnbp/{id}/payment','PnbpController@showPayment')->name('admin.pnbp.payment');
+    Route::post('pnbp/{id}/storePayment','PnbpController@storePayment')->name('admin.pnbp.storePayment');
 
     Route::resource('ports', 'PortController', ['as' => 'admin']);
    	Route::resource('news', 'NewsController', ['as' => 'admin']);

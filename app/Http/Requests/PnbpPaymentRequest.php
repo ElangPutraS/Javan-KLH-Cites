@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PnbpUpdateRequest extends FormRequest
+class PnbpPaymentRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class PnbpUpdateRequest extends FormRequest
     {
         return [
             'pnbp_amount' => 'required|numeric|digits_between:0,16',
+            'transaction_number' => 'numeric|digits_between:0,30',
         ];
     }
 }

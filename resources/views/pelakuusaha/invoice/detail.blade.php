@@ -4,55 +4,14 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Kelola Penerimaan Negara Bukan Pajak (PNBP)</h1>
+                <h1>Tagihan SATSL-LN</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah PNBP Permohonan SATLS-LN</h2>
-                    <small class="card-subtitle">Status Permohonan :
-                        @if($trade_permit->tradeStatus->status_code==100)
-                            <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
-                        @elseif($trade_permit->tradeStatus->status_code==200)
-                            <span class="badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
-                        @elseif($trade_permit->tradeStatus->status_code==300)
-                            <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
-                        @else
-                            <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
-                        @endif
-                    </small>
+                    <h2 class="card-title">Tagihan SATSL-LN</h2>
+                    <small class="card-subtitle">No. {{ $trade_permit->trade_permit_code }}</small>
                 </div>
-
-                <div class="card-block">
-                    @include('includes.notifications')
-
-                    <form action="{{route('admin.pnbp.update', ['id'=> $trade_permit->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
-                        {!! csrf_field() !!}
-                        <div class="form-group">
-                            <h5>Tentukan Nominal PNBP</h5>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Nominal PNBP</label>
-                            <div class="col-sm-14">
-                                @if(count($trade_permit->pnbp)>0)
-                                    <input type="number" min="1" name="pnbp_amount" value="{{ old('name', array_get($trade_permit->pnbp, 'pnbp_amount')) }}" class="form-control" required>
-                                @else
-                                    <input type="number" min="1" name="pnbp_amount" value="0" class="form-control" required>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-success waves-effect">Simpan</button>
-                                <a href="{{ route('admin.pnbp.index') }}" class="btn btn-default">Kembali ke Daftar</a>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-
-            <div class="card">
                 <div class="card-block">
 
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
@@ -76,16 +35,15 @@
                         </div>
 
                         <div class="form-group">
-                            <h5>B. Informasi Permohonan</h5>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label">Kode Permohonan</label>
+                            <label class="control-label">Alamat Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="trade_permit_code" class="form-control" value="{{ old('trade_permit_code', array_get($trade_permit, 'trade_permit_code')) }}" readonly>
+                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) }}" readonly>
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <h5>B. Informasi Permohonan</h5>
+                        </div>
                         <div class="form-group">
                             <label class="control-label">Jenis Perdagangan</label>
                             <div class="col-sm-14">
@@ -155,25 +113,65 @@
                         @endforeach
 
                         <div class="form-group">
-                            <h5>D. Daftar Spesimen</h5>
-                            <p>Spesimen yang telah dipilih, wajib diisi!</p>
+                            <h5>D. Daftar Tagihan Spesimen</h5>
+                            <p></p>
                         </div>
-                        @foreach($trade_permit->tradeSpecies as $species)
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <b>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</b>
-                                    </div> 
-                                    <div class="col-sm-4">
-                                        Jenis Kelamin ({{$species->speciesSex->sex_name}})
-                                    </div>
-                                    <div class="col-sm-4">
-                                        Jumlah {{$species->pivot->total_exported}}
-                                    </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table table-striped mb-0">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Species</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Jumlah Ekspor</th>
+                                            <th>Jumlah Pembayaran</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php 
+                                            $no=1;
+                                            $total=0;
+                                        ?>
+                                        @foreach($trade_permit->tradeSpecies as $species)
+                                            @if($trade_permit->permit_type == 1)
+                                                <tr>
+                                                    <td><?=$no++?></td>
+                                                    <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
+                                                    <td>{{$species->speciesSex->sex_name}}</td>
+                                                    <td>{{$species->pivot->total_exported}}</td>
+                                                    <td>Rp. {{ number_format($species->pivot->total_exported * $species->nominal,2,',','.') }}</td>
+                                                </tr>
+                                                <?php $total=$total+($species->pivot->total_exported * $species->nominal)?>
+                                            @endif
+                                        @endforeach
+                                            <?php $total=$total+100000?>
+                                            <tr>
+                                                <td><?=$no++?></td>
+                                                <td>Blanko</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>Rp. {{ number_format(100000,2,',','.') }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td colspan="4" align="right"><b>Total Tagihan</b></td>
+                                                <td><b>Rp. {{ number_format($total,2,',','.') }}</b></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
 
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-14">
+                                <a href="{{ route('user.invoice.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -181,32 +179,10 @@
     </section>
 @endsection
 @push('body.script')
-    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
-    <script>
-        function acceptTradePermit(a) {
-            var id=a.getAttribute('data-id');
-            swal({
-                title: 'Apakah Anda Yakin?',
-                text: 'Akan memverifikasi permohonan SATSL-LN?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-            }).then(function() {
-                location.href='{{url('admin/verificationSub/acc')}}/'+id;
-            });
-        }
-
-        function rejectTradePermit(a) {
-            var id=a.getAttribute('data-id');
-            swal({
-                title: 'Apakah Anda Yakin?',
-                text: 'Akan menolak verifikasi permohonan SATSL-LN?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-            }).then(function() {
-                location.href='{{url('admin/verificationSub/rej')}}/'+id;
-            });
-        }
-    </script>
+    <!-- Data Table -->
+    <script src="{{ asset('template/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
 @endpush
