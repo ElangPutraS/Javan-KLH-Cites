@@ -91,6 +91,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('provinces', 'ProvinceController', ['as' => 'admin']);
     Route::resource('purposeType', 'PurposeTypeController', ['as' => 'admin']);
     Route::resource('typeIdentify', 'TypeIdentifyController', ['as' => 'admin']);
+    Route::resource('speciesSex', 'SpeciesSexController', ['as' => 'admin']);
 
 
 });
