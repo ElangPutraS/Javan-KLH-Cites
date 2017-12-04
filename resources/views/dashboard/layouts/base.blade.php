@@ -110,7 +110,12 @@
 
                     <li @if(Request::segment(2)=='species') class="navigation__active" @endif><a href="{{ route('admin.species.index') }}"><i class="zmdi zmdi-flower-alt zmdi-hc-fw"></i> Kelola Spesies dan HS</a></li>
 
-                    <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
+                    <li class="navigation__sub @if(Request::segment(2)=='verificationSub' || Request::segment(2)=='verificationRen') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Verifikasi SATSL-LN</a>
+                        <ul>
+                        <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
+                        <li @if(Request::segment(2)=='verificationRen') class="navigation__active" @endif><a href="{{ route('admin.verificationRen.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Pembaharuan</a></li>
+                        </ul>
+                    </li>
 
                     <li @if(Request::segment(2)=='pnbp') class="navigation__active" @endif><a href="{{ route('admin.pnbp.index') }}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Kelola PNBP</a></li>
 
