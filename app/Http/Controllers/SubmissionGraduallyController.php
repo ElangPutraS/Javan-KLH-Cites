@@ -129,4 +129,11 @@ class SubmissionGraduallyController extends Controller {
 
         return $kode;
     }
+
+    public function printSatsln($id) {
+        $pdf = PDF::loadView('pdf.satsln');
+        $pdf->setPaper('legal', 'portrait');
+        return $pdf->stream();
+        //return view('pdf.satsln');
+    }
 }
