@@ -73,9 +73,13 @@ class SubmissionRenewalController extends Controller
         $trade_permit->tradeStatus()->associate($status);
         $trade_permit->save();
 
+        $trade_permit->pnbp->update([
+                'payment_status' => 0,
+            ]);
+
 
         $log = LogTradePermit::create([
-            'log_description' => $status->status_name,
+            'log_description' => $status->status_name.' ( Pembaharuan Permohonan )',
         ]);
         $trade_permit->logTrade()->save($log);
 
