@@ -25,6 +25,7 @@ class TradePermit extends Model
         'created_by',
         'updated_by',
         'valid_renewal',
+        'permit_type',
     ];
 
     public function documentTypes()
