@@ -36,6 +36,7 @@ class SpeciesHSController extends Controller
     		'is_appendix' => $request->get('is_appendix'),
     		'species_sex_id' => $request->get('species_sex_id'),
     		'species_category_id' => $request->get('species_category_id'),
+    		'nominal' => $request->get('nominal'),
     		]);
     	$species->save();
     	if($request->get('is_appendix')!=0){
@@ -62,6 +63,7 @@ class SpeciesHSController extends Controller
     		'is_appendix' => $request->get('is_appendix'),
     		'species_sex_id' => $request->get('species_sex_id'),
             'species_category_id' => $request->get('species_category_id'),
+            'nominal' => $request->get('nominal')
     		]);
 
     	if($request->get('is_appendix')!=0){

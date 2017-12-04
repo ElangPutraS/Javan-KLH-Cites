@@ -116,22 +116,34 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <h5>D. Daftar Spesimen</h5>
-                            <p>Spesimen yang telah dipilih</p>
-                        </div>
-                        @foreach($trade_permit->tradeSpecies as $species)
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <b>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</b>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <div class="form-group">
+                                        <h5>D. Daftar Spesimen</h5>
+                                        <p>Spesimen yang telah dipilih</p>
                                     </div>
-                                    <div class="col-sm-4">
-                                        Jenis Kelamin ({{$species->speciesSex->sex_name}})
-                                    </div>
-                                    <div class="col-sm-4">
-                                        Jumlah {{$species->pivot->total_exported}}
-                                    </div>
+                                    <table id="data-table" class="table table-bordered">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Species</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Jumlah Ekspor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $no=1;?>
+                                        @foreach($trade_permit->tradeSpecies as $species)
+                                            <tr>
+                                                <td><?=$no++?></td>
+                                                <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
+                                                <td>{{$species->speciesSex->sex_name}}</td>
+                                                <td>{{$species->pivot->total_exported}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>

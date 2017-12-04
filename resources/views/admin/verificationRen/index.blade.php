@@ -4,13 +4,13 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Permohonan SATS-LN Pengguna</h1>
+                <h1>Permohonan Pembaharuan SATS-LN Pengguna</h1>
             </header>
 
             <div class="card">
 
                 <div class="card-header">
-                    <h2 class="card-title">Daftar Permohonan SATS-LN Pengguna</h2>
+                    <h2 class="card-title">Daftar Permohonan Pembaharuan SATS-LN Pengguna</h2>
                     <small class="card-subtitle"></small>
                 </div>
 
@@ -54,7 +54,7 @@
                                         <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
                                     @endif
                                 </td>
-                                <td><a href="{{route('admin.verificationSub.show', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
+                                <td><a href="{{route('admin.verificationRen.show', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
                             </tr>
                             @empty
                             <tr>

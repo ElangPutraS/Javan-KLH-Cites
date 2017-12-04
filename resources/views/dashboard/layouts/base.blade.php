@@ -87,16 +87,16 @@
 
                 @can('access-pelaku-usaha')
                 <!-- Menu Pelaku Usaha -->
-                    <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATSL-LN</a>
+                    <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATS-LN</a>
                         <ul>
                             <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
                             <li @if(Request::segment(2)=='create') class="navigation__active" @endif><a href="{{ route('user.submission.create') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
                             <li @if(Request::is('submission/gradually/create')) class="navigation__active" @endif><a href="{{ route('user.submissionGradually.create') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
                         </ul>
                     </li>
-                    <li @if(Request::segment(1)=='renewal') class="navigation__active" @endif><a href="{{ route('user.renewal.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATSL-LN </a></li>
+                    <li @if(Request::segment(1)=='renewal') class="navigation__active" @endif><a href="{{ route('user.renewal.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATS-LN </a></li>
                     
-                    <li @if(Request::segment(1)=='invoice') class="navigation__active" @endif><a href="{{ route('user.invoice.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Tagihan SATSL-LN </a></li>
+                    <li @if(Request::segment(1)=='invoice') class="navigation__active" @endif><a href="{{ route('user.invoice.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Tagihan SATS-LN </a></li>
                 @endcan
 
                 @can('access-admin')
@@ -110,7 +110,12 @@
 
                     <li @if(Request::segment(2)=='species') class="navigation__active" @endif><a href="{{ route('admin.species.index') }}"><i class="zmdi zmdi-flower-alt zmdi-hc-fw"></i> Kelola Spesies dan HS</a></li>
 
-                    <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
+                    <li class="navigation__sub @if(Request::segment(2)=='verificationSub' || Request::segment(2)=='verificationRen') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Verifikasi SATS-LN</a>
+                        <ul>
+                        <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
+                        <li @if(Request::segment(2)=='verificationRen') class="navigation__active" @endif><a href="{{ route('admin.verificationRen.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Pembaharuan</a></li>
+                        </ul>
+                    </li>
 
                     <li @if(Request::segment(2)=='pnbp') class="navigation__active" @endif><a href="{{ route('admin.pnbp.index') }}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Kelola PNBP</a></li>
 

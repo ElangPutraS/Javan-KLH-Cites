@@ -67,3 +67,10 @@
         </select>
     </div>
 </div>
+
+<div class="form-group">
+    <label class="control-label">Nominal</label>
+    <div class="col-sm-14">
+        <input id="nominal" name="nominal" type="text" class="form-control input-mask" data-mask="000.000.000,00" placeholder="eg: 000.000,00" maxlength="9" value="{{ old('nominal', array_get($species, 'nominal')) }}>
+    </div>
+</div>

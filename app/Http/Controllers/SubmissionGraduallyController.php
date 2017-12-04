@@ -125,7 +125,7 @@ class SubmissionGraduallyController extends Controller {
                 break;
         }
 
-        $kode.='/'.$month.'/SATSL-LN/'.date('Y');
+        $kode.='/'.$month.'/SATS-LN/'.date('Y');
 
         return $kode;
     }

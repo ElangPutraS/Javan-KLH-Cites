@@ -10,7 +10,7 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h2 class="card-title">Daftar PNBP Permohonan SATLS-LN</h2>
+                    <h2 class="card-title">Daftar PNBP Permohonan SATS-LN</h2>
                     <small class="card-subtitle"></small>
                 </div>
 

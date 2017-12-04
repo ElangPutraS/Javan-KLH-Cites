@@ -16,6 +16,7 @@ class Species extends Model
         'appendix_source_id',
         'species_sex_id',
         'species_category_id',
+        'nominal',
     ];
 
     public function speciesQuota(){
