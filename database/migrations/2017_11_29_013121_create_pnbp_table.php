@@ -19,6 +19,7 @@ class CreatePnbpTable extends Migration
             $table->bigInteger('pnbp_amount');
             $table->integer('created_by')->unsigned()->nullable();
             $table->integer('updated_by')->unsigned()->nullable();
+            $table->integer('payment_status')->default(0);
             $table->integer('trade_permit_id')->unsigned()->nullable();
             $table->foreign('trade_permit_id')
                 ->references('id')->on('trade_permit')

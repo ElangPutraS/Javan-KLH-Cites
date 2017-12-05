@@ -10,6 +10,7 @@ class Pnbp extends Model
 
     protected $fillable = [
         'pnbp_code',
+        'payment_status',
         'pnbp_amount',
         'created_by',
         'updated_by',
@@ -18,5 +19,10 @@ class Pnbp extends Model
 
     public function tradePermit(){
         return $this->belongsTo(TradePermit::class);
+    }
+
+    public function history()
+    {
+        return $this->hasMany(HistoryPayment::class);
     }
 }

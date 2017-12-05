@@ -16,6 +16,7 @@ class Species extends Model
         'appendix_source_id',
         'species_sex_id',
         'species_category_id',
+        'nominal',
     ];
 
     public function speciesQuota(){
@@ -35,6 +36,7 @@ class Species extends Model
         return $this->belongsToMany(TradePermit::class, 'trade_permit_detail')
             ->withPivot('total_exported');
     }
+
     public function speciesCategory(){
         return $this->belongsTo(Category::class);
     }

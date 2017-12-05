@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Kelola Purpose Type</h1>
+                <h1>Kelola Jenis Kegiatan</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Daftar Purpose Type</h2>
+                    <h2 class="card-title">Daftar Jenis Kegiatan</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
@@ -23,8 +23,8 @@
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No</th>
-                                <th>Kode Purpose Type</th>
-                                <th>Nama Purpose Type</th>
+                                <th>Kode Jenis Kegiatan</th>
+                                <th>Nama Jenis Kegiatan</th>
                                 <th width="150px">Tanggal Dibuat</th>
                                 <th width="150px">Tanggal Diperbarui</th>
                                 <th width="150px">Aksi</th>
@@ -71,7 +71,7 @@
         function deletePurposeType(a) {
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menghapus data Purpose Type ini?',
+                text: 'Akan menghapus data Jenis Kegiatan ini?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',

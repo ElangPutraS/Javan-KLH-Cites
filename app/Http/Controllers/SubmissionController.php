@@ -23,15 +23,6 @@ class SubmissionController extends Controller
     }
 
 
-    public function printSatsln($id) {
-
-
-        $pdf = PDF::loadView('pdf.satsln');
-        $pdf->setPaper('letter', 'portrait');
-        return $pdf->stream();
-        //return view('pdf.satsln');
-    }
-
     public function detail(Request $request, $id)
     {
         $user           = $request->user();
@@ -40,7 +31,7 @@ class SubmissionController extends Controller
         $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
         $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
-        $document_types = DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+        $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         $trade_permit=TradePermit::findOrFail($id);
 
@@ -54,7 +45,7 @@ class SubmissionController extends Controller
         $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
         $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
-        $document_types = DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
+        $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
     }
@@ -78,26 +69,25 @@ class SubmissionController extends Controller
 
         //susun kode trade permit
         $trade_permit->update([
-            'trade_permit_code'  => $this->create_kode($trade_permit->id),
+            'trade_permit_code' => $this->create_kode($trade_permit->id),
         ]);
 
         //relasi
-        $company=$request->user()->company;
+        $company = $request->user()->company;
         $company->tradePermits()->save($trade_permit);
 
         //relasi status
-        $status=TradePermitStatus::where('status_code', 100)->first();
+        $status = TradePermitStatus::where('status_code', 100)->first();
         $trade_permit->tradeStatus()->associate($status);
         $trade_permit->save();
 
-        //nambahin log
         $log=LogTradePermit::create([
-            'log_description' => $status->status_name,
+            'log_description'=>$status->status_name,
         ]);
         $trade_permit->logTrade()->save($log);
 
         //save document trade permit
-        if($request->document_trade_permit!=''){
+        if($request->document_trade_permit != ''){
             foreach ($request->document_trade_permit as $key => $file) {
 
                 /**
@@ -132,33 +122,33 @@ class SubmissionController extends Controller
         $bulan = date('m');
         $month = "";
         switch ($bulan){
-            case 1: $month='I';
+            case 1: $month = 'I';
                     break;
-            case 2: $month='II';
+            case 2: $month = 'II';
                     break;
-            case 3: $month='III';
+            case 3: $month = 'III';
                     break;
-            case 4: $month='IV';
+            case 4: $month = 'IV';
                     break;
-            case 5: $month='V';
+            case 5: $month = 'V';
                     break;
-            case 6: $month='VI';
+            case 6: $month = 'VI';
                     break;
-            case 7: $month='VII';
+            case 7: $month = 'VII';
                     break;
-            case 8: $month='VIII';
+            case 8: $month = 'VIII';
                     break;
-            case 9: $month='IX';
+            case 9: $month = 'IX';
                     break;
-            case 10: $month='X';
+            case 10: $month = 'X';
                     break;
-            case 11: $month='XI';
+            case 11: $month = 'XI';
                     break;
-            case 12: $month='XII';
+            case 12: $month = 'XII';
                     break;
         }
 
-        $kode .= '/'.$month.'/SATSL-LN/'.date('Y');
+        $kode .= '/'.$month.'/SATS-LN/'.date('Y');
 
 
         return $kode;

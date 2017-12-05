@@ -5,7 +5,7 @@
                         <div class="form-group">
                             <label class="control-label">Nama Pelaku Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}" readonly>
+                                <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user , 'name')) }}" readonly>
                             </div>
                         </div>
 
@@ -44,11 +44,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Perdagangan</label>
                             <div class="col-sm-14">
-                                <div class="btn-group btn-group--colors" data-toggle="buttons" id="trading_type_id">
-                                    @foreach($trading_types as $key=>$trading_type)
-                                        <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
-                                    @endforeach
-                                </div>
+                                <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly>
                             </div>
                         </div>
 
@@ -67,7 +63,7 @@
                         <div class="form-group">
                             <label class="control-label">Masa Berlaku (Bulan)</label>
                             <div class="col-sm-14">
-                                <input id="period" type="number" name="period" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit, 'period')) }}">
+                                <input id="period" type="number" name="period" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit , 'period')) }}">
                             </div>
                         </div>
 
@@ -105,10 +101,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Appendix</label>
                             <div class="col-sm-14">
-                                <div class="btn-group btn-group--colors" data-toggle="buttons" id="appendix_type">
-                                    <label class="btn bg-green waves-effect {{ 'EA' == old('appendix_type', array_get($trade_permit, 'appendix_type')) ? 'active' : '' }}"><input type="radio" id="appendix_type1" name="appendix_type" value="EA" autocomplete="off" required></label> SATS-LN Site (EA) &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label class="btn bg-green waves-effect {{ 'EB' == old('appendix_type', array_get($trade_permit, 'appendix_type')) ? 'active' : '' }}"><input type="radio" id="appendix_type2" name="appendix_type" value="EB" autocomplete="off" required></label> SATS-LN Non Site (EB)
-                                </div>
+                                <input type="text" name="appendix_type" class="form-control" value="@if($trade_permit->appendix_type == 'EA') {{'SATS-LN Site (EA)'}} @else {{'SATS-LN Non Site (EB)'}} @endif"readonly>
                             </div>
                         </div>
 
@@ -123,22 +116,34 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <h5>D. Daftar Spesimen</h5>
-                            <p>Spesimen yang telah dipilih</p>
-                        </div>
-                        @foreach($trade_permit->tradeSpecies as $species)
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <b>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</b>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <div class="form-group">
+                                        <h5>D. Daftar Spesimen</h5>
+                                        <p>Spesimen yang telah dipilih</p>
                                     </div>
-                                    <div class="col-sm-4">
-                                        Jenis Kelamin ({{$species->speciesSex->sex_name}})
-                                    </div>
-                                    <div class="col-sm-4">
-                                        Jumlah {{$species->pivot->total_exported}}
-                                    </div>
+                                    <table id="data-table" class="table table-bordered">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Species</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Jumlah Ekspor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $no=1;?>
+                                        @foreach($trade_permit->tradeSpecies as $species)
+                                            <tr>
+                                                <td><?=$no++?></td>
+                                                <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
+                                                <td>{{$species->speciesSex->sex_name}}</td>
+                                                <td>{{$species->pivot->total_exported}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>

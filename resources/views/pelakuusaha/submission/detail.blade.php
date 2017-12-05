@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Permohonan SATSL-LN Pengguna</h1>
+                <h1>Permohonan SATS-LN Pengguna</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Pengajuan Permohonan SATSL-LN Langsung</h2>
+                    <h2 class="card-title">Pengajuan Permohonan SATS-LN Langsung</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
@@ -131,21 +131,33 @@
                             <h5>D. Daftar Spesimen</h5>
                             <p>Spesimen yang telah dipilih, wajib diisi!</p>
                         </div>
-                        @foreach($trade_permit->tradeSpecies as $species)
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <b>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</b>
-                                    </div> 
-                                    <div class="col-sm-4">
-                                        Jenis Kelamin ({{$species->speciesSex->sex_name}})
-                                    </div>
-                                    <div class="col-sm-4">
-                                        Jumlah {{$species->pivot->total_exported}}
-                                    </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table id="data-table" class="table table-bordered">
+                                        <thead class="thead-default">
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Species</th>
+                                            <th>Jenis Kelamin</th>
+                                            <th>Jumlah Ekspor</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php $no=1;?>
+                                        @foreach($trade_permit->tradeSpecies as $species)
+                                            <tr>
+                                                <td><?=$no++?></td>
+                                                <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
+                                                <td>{{$species->speciesSex->sex_name}}</td>
+                                                <td>{{$species->pivot->total_exported}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
 
 
 
@@ -160,3 +172,11 @@
         </div>
     </section>
 @endsection
+@push('body.script')
+    <!-- Data Table -->
+    <script src="{{ asset('template/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
+    <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+@endpush
