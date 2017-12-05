@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\DocumentType;
+use App\Http\Requests\SubmissionGraduallyRequest;
 use App\LogTradePermit;
 use App\Ports;
 use App\PurposeType;
@@ -28,7 +29,7 @@ class SubmissionGraduallyController extends Controller {
 	}
 
 
-	public function store(Request $request) {
+	public function store(SubmissionGraduallyRequest $request) {
     	//isi trade permit
         $trade_permit = new TradePermit([
             'trade_permit_code'  => 'cek',
