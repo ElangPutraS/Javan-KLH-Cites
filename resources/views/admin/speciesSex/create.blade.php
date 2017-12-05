@@ -4,7 +4,7 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tambah Jenis Kelamin Species</h1>
+                <h1>Tambah Jenis Kelamin Spesies</h1>
             </header>
 
             <div class="card">

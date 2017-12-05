@@ -46,7 +46,7 @@ class ProvinceController extends Controller
             'province_name' => $request->get('province_name')
             ]);
         $provinces->save();
-        return redirect()->route('admin.provinces.create', $provinces)->with('success', 'Data berhasil dibuat.');
+        return redirect()->route('admin.provinces.edit', $provinces)->with('success', 'Data berhasil dibuat.');
     }
 
  

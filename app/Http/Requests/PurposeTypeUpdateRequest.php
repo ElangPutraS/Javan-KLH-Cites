@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class PurposeTypeUpdateRequest extends FormRequest
 {
@@ -24,7 +26,11 @@ class PurposeTypeUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'purpose_type_code'     => 'required|string|max:10|unique:purpose_type',
+            'purpose_type_code'     => [
+                'required', 'string', 'max:10',
+                 Rule::unique('purpose_type')->ignore($this->route('purposeType')),
+            ],
+
             'purpose_type_name'     => 'required|string|max:50',
   ];
     }
