@@ -125,7 +125,7 @@
         <label class="control-label">{{$document_type}}</label>
         <div class="col-sm-14">
             <input type="hidden" class="form-control" name="document_type_id[]" value="{{$key}}" required>
-            <input id="document_{{$key}}" type="file" class="form-control" name="document_trade_permit[{{ $key }}]">
+            <input id="document_{{$key}}" type="file" class="form-control" name="document_trade_permit[]">
         </div>
     </div>
 @endforeach

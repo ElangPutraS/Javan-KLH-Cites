@@ -20,7 +20,7 @@
 
                         {!! csrf_field() !!}
 
-                        @include('admin.companies._form', ['company' => $company])
+                        @include('profile._form', ['company' => $company])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
