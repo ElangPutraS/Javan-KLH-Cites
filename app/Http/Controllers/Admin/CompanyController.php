@@ -219,7 +219,7 @@ class CompanyController extends Controller
         }
 
 
-        return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('admin.companies.edit', $company)->with('success', 'Data berhasil diubah.');
     }
 
     /**
