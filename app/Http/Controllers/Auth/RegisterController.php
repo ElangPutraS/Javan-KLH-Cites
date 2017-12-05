@@ -120,7 +120,7 @@ class RegisterController extends Controller
             'company_fax'       => $data['company_fax'],
             'company_latitude'  => $data['company_latitude'],
             'company_longitude' => $data['company_longitude'],
-            'nation_id'         => $data['company_nation'],
+            'country_id'         => $data['company_nation'],
             'province_id'       => $data['company_state'],
             'city_id'           => $data['company_city'],
             'created_by'        => $user->id,
