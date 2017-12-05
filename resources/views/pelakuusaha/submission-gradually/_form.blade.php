@@ -68,9 +68,9 @@
     <label class="control-label">Masa Berlaku</label>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons">
-                <label class="btn bg-red waves-effect"><input type="radio" id="period1" name="period" value="1" autocomplete="off" required></label> 1 Bulan &nbsp;&nbsp;&nbsp;
-                <label class="btn bg-red waves-effect"><input type="radio" id="period2" name="period" value="2" autocomplete="off" required></label> 2 Bulan &nbsp;&nbsp;&nbsp;
-                <label class="btn bg-red waves-effect"><input type="radio" id="period3" name="period" value="3" autocomplete="off" required></label> 3 Bulan &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-red waves-effect {{ '1' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period1" name="period" value="1" autocomplete="off" {{ '1' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }} required></label> 1 Bulan &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-red waves-effect {{ '2' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period2" name="period" value="2" autocomplete="off" {{ '2' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }} required></label> 2 Bulan &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-red waves-effect {{ '3' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period3" name="period" value="3" autocomplete="off" {{ '3' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }} required></label> 3 Bulan &nbsp;&nbsp;&nbsp;
         </div>
     </div>
 </div>
@@ -110,8 +110,8 @@
     <label class="control-label">Jenis Appendix</label>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="appendix_type">
-            <label class="btn bg-green waves-effect {{ 'EA' == old('appendix_type', array_get($trade_permit, 'appendix_type')) ? 'active' : '' }}"><input type="radio" id="appendix_type1" name="appendix_type" value="EA" autocomplete="off" required></label> SATS-LN Site (EA) &nbsp;&nbsp;&nbsp;&nbsp;
-            <label class="btn bg-green waves-effect {{ 'EB' == old('appendix_type', array_get($trade_permit, 'appendix_type')) ? 'active' : '' }}"><input type="radio" id="appendix_type2" name="appendix_type" value="EB" autocomplete="off" required></label> SATS-LN Non Site (EB)
+            <label class="btn bg-green waves-effect"><input type="radio" id="appendix_type1" name="appendix_type" value="EA" autocomplete="off" required></label> SATS-LN Site (EA) &nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="btn bg-green waves-effect"><input type="radio" id="appendix_type2" name="appendix_type" value="EB" autocomplete="off" required></label> SATS-LN Non Site (EB)
         </div>
     </div>
 </div>
