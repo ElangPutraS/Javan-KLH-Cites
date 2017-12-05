@@ -118,6 +118,7 @@
 
 <div class="form-group">
     <h5>C. Unggah Dokumen</h5>
+    <small class="card-subtitle" style="color:red;">Maksimal Ukuran File 8 MB</small>
 </div>
 @foreach($document_types as $key => $document_type)
     <div class="form-group">
@@ -243,17 +244,26 @@
                 }
             });
 
-            $('#form-submission').validate({
-                errorElement: 'div',
-                errorClass: 'form-group has-error',
-                validClass: 'form-group has-success'
-            });
+            $('input[name="trading_type_id"]').change(function(){
+                if (document.getElementById('trading_type_id4').checked) {
+                    $.ajax({
+                        type:'get',
+                        url: window.baseUrl + '/getDocumentType',
+                        dataType: 'json',
+                        success : function(data){
+                            console.log(data);
 
-            $('[name^=document_trade_permit]').each(function () {
-                $(this).rules('add', {
-                    required: true,
-                    filesize: 300000
-                });
+                            var form='<div class="form-group"><label class="control-label">'+data['document_type_name']+'</label>';
+                            form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data['id']+'" required>';
+                            form+='<input id="document_'+data['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
+                            form+='</div></div>';
+
+                            $('#formDoc').html(form);
+                        }
+                    });
+                }else {
+                    $('#formDoc').html('');
+                }
             });
         });
 

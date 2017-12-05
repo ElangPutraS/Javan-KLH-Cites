@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\DocumentType;
+use App\Http\Requests\SubmissionDirectRequest;
 use App\LogTradePermit;
 use App\Ports;
 use App\PurposeType;
@@ -50,8 +51,7 @@ class SubmissionController extends Controller
         return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
     }
 
-    public function store(Request $request){
-
+    public function store(SubmissionDirectRequest $request){
         //isi trade permit
         $trade_permit = new TradePermit([
             'trade_permit_code'  => 'cek',

@@ -114,6 +114,7 @@
 
 <div class="form-group">
     <h5>C. Unggah Dokumen</h5>
+    <small class="card-subtitle" style="color:red;">Maksimal Ukuran File 8 MB</small>
 </div>
 @foreach($document_types as $key => $document_type)
     <div class="form-group">
