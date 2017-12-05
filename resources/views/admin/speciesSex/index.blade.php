@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Kelola Jenis Kelamin Species</h1>
+                <h1>Kelola Jenis Kelamin Spesies</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Daftar Jenis Kelamin Species</h2>
+                    <h2 class="card-title">Daftar Jenis Kelamin Spesies</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
@@ -23,8 +23,8 @@
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No</th>
-                                <th>Kode Jenis Kelamin Species</th>
-                                <th>Nama Jenis Kelamin Species</th>
+                                <th>Kode Jenis Kelamin Spesies</th>
+                                <th>Nama Jenis Kelamin Spesies</th>
                                 <th width="150px">Tanggal Dibuat</th>
                                 <th width="150px">Tanggal Diperbarui</th>
                                 <th width="150px">Aksi</th>
@@ -71,7 +71,7 @@
         function deleteSpeciesSex(a) {
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menghapus data Jenis Kelamin Species ini?',
+                text: 'Akan menghapus data Jenis Kelamin Spesies ini?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',

@@ -43,7 +43,7 @@ class PurposeTypeController extends Controller
             'purpose_type_name' => $request->get('purpose_type_name')
             ]);
         $purposetype->save();
-        return redirect()->route('admin.purposeType.create', $purposetype)->with('success', 'Data berhasil dibuat.');
+        return redirect()->route('admin.purposeType.edit', $purposetype)->with('success', 'Data berhasil dibuat.');
     }
 
  
