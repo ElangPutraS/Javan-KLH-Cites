@@ -74,8 +74,8 @@
                 </div>
 
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('profile') }}">View Profile</a>
-                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                    <a class="dropdown-item" href="{{ route('profile') }}"> <i class="zmdi zmdi-account zmdi-hc-fw"></i> View Profile</a>
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="zmdi zmdi-square-right zmdi-hc-fw"></i> Logout</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         {{ csrf_field() }}
                     </form>

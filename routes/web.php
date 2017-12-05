@@ -19,6 +19,8 @@ Auth::routes();
 
 //PROFILE
 Route::get('/profile', 'UserController@index')->name('profile')->middleware(['auth']);
+Route::get('/profile/edit', 'UserController@edit')->name('profile.edit')->middleware(['auth']);
+Route::post('/profile/{id}/edit', 'UserController@update')->name('profile.update')->middleware(['auth']);
 
 //JQUERY
 
