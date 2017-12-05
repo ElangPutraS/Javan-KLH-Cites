@@ -43,7 +43,7 @@ class SpeciesSexController extends Controller
             'sex_name' => $request->get('sex_name')
             ]);
         $speciessex->save();
-        return redirect()->route('admin.speciesSex.create', $speciessex)->with('success', 'Data berhasil dibuat.');
+        return redirect()->route('admin.speciesSex.edit', $speciessex)->with('success', 'Data berhasil dibuat.');
     }
 
  
