@@ -49,7 +49,7 @@ class NewsController extends Controller
         'user_id' =>$request->user()->id
         ]);
 
-        return redirect()->route('admin.news.edit')->with('success', 'Data berhasil dibuat.');
+        return redirect()->route('admin.news.index')->with('success', 'Data berhasil dibuat.');
     }
 
     /**
