@@ -56,7 +56,11 @@
                                 </td>
                                 <td>
                                     <a href="{{route('user.submission.detail', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a>
+                                    @if ($trade_permit->tradeStatus->status_code >= '600')
                                     <a href="{{route('user.submissionGradually.printSatsln', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
+                                    @else
+                                    
+                                    @endif
                                 </td>
                             </tr>
                             @empty

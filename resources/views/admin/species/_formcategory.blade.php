@@ -2,7 +2,7 @@
     <label class="control-label">Kode</label>
     <div class="col-sm-14">
 
-        <input type="text" name="category_code" class="form-control" value="{{ old('category_code', array_get($categories, 'species_category_code')) }}" required>
+        <input type="text" name="species_category_code" class="form-control" value="{{ old('species_category_code', array_get($categories, 'species_category_code')) }}" required>
 
 
 

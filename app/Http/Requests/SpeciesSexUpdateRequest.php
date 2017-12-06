@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SpeciesSexUpdateRequest extends FormRequest
 {
@@ -24,7 +25,10 @@ class SpeciesSexUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'sex_code'     => 'required|string|max:10|unique:species_sex',
+            'sex_code'     => [
+                'required', 'string', 'max:10',
+                 Rule::unique('species_sex')->ignore($this->route('speciesSex')),
+            ],
             'sex_name'     => 'required|string|max:50',
   ];
     }

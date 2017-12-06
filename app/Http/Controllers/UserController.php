@@ -102,7 +102,7 @@ class UserController extends Controller
         }
 
 
-        return redirect()->route('profile.edit')->with('success', 'Data berhasil disimpan.');
+        return redirect()->route('profile.edit')->with('success', 'Data berhasil diubah.');
     }
 
     public function deleteDocument($type_id, $company_id, $document_name){

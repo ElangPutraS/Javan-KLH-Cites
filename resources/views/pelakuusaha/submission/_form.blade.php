@@ -106,14 +106,15 @@
     <label class="control-label">Jenis Appendix</label>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="appendix_type">
-            <label class="btn bg-green waves-effect {{ 'EA' == old('appendix_type', array_get($trade_permit, 'appendix_type')) ? 'active' : '' }}"><input type="radio" id="appendix_type1" name="appendix_type" value="EA" autocomplete="off" required></label> SATS-LN Site (EA) &nbsp;&nbsp;&nbsp;&nbsp;
-            <label class="btn bg-green waves-effect {{ 'EB' == old('appendix_type', array_get($trade_permit, 'appendix_type')) ? 'active' : '' }}"><input type="radio" id="appendix_type2" name="appendix_type" value="EB" autocomplete="off" required></label> SATS-LN Non Site (EB)
+            <label class="btn bg-green waves-effect"><input type="radio" id="appendix_type1" name="appendix_type" value="EA" autocomplete="off" required></label> SATS-LN Site (EA) &nbsp;&nbsp;&nbsp;&nbsp;
+            <label class="btn bg-green waves-effect"><input type="radio" id="appendix_type2" name="appendix_type" value="EB" autocomplete="off" required></label> SATS-LN Non Site (EB)
         </div>
     </div>
 </div>
 
 <div class="form-group">
     <h5>C. Unggah Dokumen</h5>
+    <small class="card-subtitle" style="color:red;">Maksimal Ukuran File 8 MB</small>
 </div>
 @foreach($document_types as $key => $document_type)
     <div class="form-group">

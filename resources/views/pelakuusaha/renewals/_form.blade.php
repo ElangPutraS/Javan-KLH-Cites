@@ -63,7 +63,7 @@
                         <div class="form-group">
                             <label class="control-label">Masa Berlaku (Bulan)</label>
                             <div class="col-sm-14">
-                                <input id="period" type="number" name="period" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit , 'period')) }}">
+                                <input id="period" type="number" name="period" min="1" max="6" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit , 'period')) }}">
                             </div>
                         </div>
 

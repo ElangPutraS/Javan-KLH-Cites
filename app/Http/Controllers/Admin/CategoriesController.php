@@ -17,12 +17,12 @@ class CategoriesController extends Controller
     }
 
     public function create(){
-        return view('admin.species.createCategory');
+        return view('admin.species.createcategory');
     }
 
     public function store(CategoryStoreRequest $request){
         $categories=new Category([
-            'species_category_code' => $request->get('category_code'),
+            'species_category_code' => $request->get('species_category_code'),
             'species_category_name' => $request->get('category_name'),
         ]);
         $categories->save();
@@ -38,7 +38,7 @@ class CategoriesController extends Controller
     public function update(CategoryUpdateRequest $request, $id){
         $categories=Category::find($id);
         $categories->update([
-            'species_category_code' => $request->get('category_code'),
+            'species_category_code' => $request->get('species_category_code'),
             'species_category_name' => $request->get('category_name'),
         ]);
         return redirect()->route('admin.species.editCategory', ['id' => $categories->id])->with('success', 'Data berhasil diubah.');
