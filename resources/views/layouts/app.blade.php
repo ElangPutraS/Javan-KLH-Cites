@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <style type="text/css">
         .container {
-            min-width: 380px;
+            min-width: 480px;
         }
 
         .news-date {
@@ -37,7 +37,7 @@
             padding: 0;
         }
 
-        @media screen and (min-width: 380px) {
+        @media screen and (min-width: 480px) {
             #welcome-image {
                 margin-bottom: 20px;
                 height: 280px;
@@ -73,9 +73,10 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="{{ asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') }}" style="top: 0; position: absolute; width: 51px;">
-                        <span style="top: 7px; position: absolute; margin-top: 0; margin-left: 56px; font-size: 16px; font-weight: bold;">KEMENTERIAN LINGKUNGAN HIDUP</span>
-                        <span style="top: 22px; position: absolute; margin-top: 0; margin-left: 56px; font-size: 14px;">REPUBLIK INDONESIA</span>
+                        <img src="{{ asset('images/CITES_logo_high_resolution.png') }}" style="top: 5px; position: absolute; width: 71px;">
+                        <img src="{{ asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') }}" style="top: 0; position: absolute; width: 51px; margin-left: 81px;">
+                        <span style="top: 7px; position: absolute; margin-top: 0; margin-left: 140px; font-size: 16px; font-weight: bold;">KEMENTERIAN LINGKUNGAN HIDUP</span>
+                        <span style="top: 22px; position: absolute; margin-top: 0; margin-left: 140px; font-size: 14px;">REPUBLIK INDONESIA</span>
                     </a>
                 </div>
 
@@ -128,6 +129,8 @@
         <footer class="footer">
           <div class="container">
             <div class="col-sm-4">
+                <img src="{{ asset('images/CITES_logo_high_resolution.png') }}" style="width: 71px;">
+                &nbsp;&nbsp;&nbsp;
                 <img src="{{ asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') }}" style="width: 51px;">
                 <br>
                 <span style="font-size: 16px; font-weight: bold;">KEMENTERIAN LINGKUNGAN HIDUP</span>
