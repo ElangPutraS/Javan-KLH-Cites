@@ -28,7 +28,8 @@ class Species extends Model
     }
 
     public function speciesSex(){
-        return $this->belongsTo(SpeciesSex::class);
+        return $this->belongsTo(SpeciesSex::class)
+            ->withTrashed();
     }
 
     public function tradeSpecies()
@@ -38,6 +39,7 @@ class Species extends Model
     }
 
     public function speciesCategory(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)
+            ->withTrashed();
     }
 }

@@ -45,7 +45,8 @@ class UserProfile extends Model
     {
         return $this->belongsToMany(TypeIdentify::class, 'user_type_identify')
             ->withPivot('user_type_identify_number')
-            ->using(UserTypeIdentify::class);
+            ->using(UserTypeIdentify::class)
+            ->withTrashed();
     }
 
     public function company()

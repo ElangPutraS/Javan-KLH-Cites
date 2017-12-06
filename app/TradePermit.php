@@ -40,7 +40,8 @@ class TradePermit extends Model
     }
 
     public function purposeType(){
-        return $this->belongsTo(PurposeType::class);
+        return $this->belongsTo(PurposeType::class)
+            ->withTrashed();
     }
 
     public function tradeStatus(){
