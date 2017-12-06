@@ -51,7 +51,8 @@ class TradePermit extends Model
     public function tradeSpecies()
     {
         return $this->belongsToMany(Species::class, 'trade_permit_detail')
-            ->withPivot('total_exported');
+            ->withPivot('total_exported')
+            ->withTrashed();
     }
 
     public function portExpor(){

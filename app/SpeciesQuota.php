@@ -15,6 +15,7 @@ class SpeciesQuota extends Model
     ];
 
     public function species(){
-        return $this->belongsTo(Species::class);
+        return $this->belongsTo(Species::class)
+            ->withTrashed();
     }
 }

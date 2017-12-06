@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Species extends Model
 {
     protected $table = "species";
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'species_scientific_name',
@@ -35,7 +40,8 @@ class Species extends Model
     public function tradeSpecies()
     {
         return $this->belongsToMany(TradePermit::class, 'trade_permit_detail')
-            ->withPivot('total_exported');
+            ->withPivot('total_exported')
+            ->withTrashed();
     }
 
     public function speciesCategory(){

@@ -28,17 +28,20 @@ class UserProfile extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class)
+            ->withTrashed();
     }
 
     public function province()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Province::class)
+            ->withTrashed();
     }
 
     public function city()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class)
+            ->withTrashed();
     }
 
     public function typeIdentify()
