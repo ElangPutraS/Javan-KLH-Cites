@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserProfile extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'name',
         'place_of_birth',
@@ -50,6 +52,8 @@ class UserProfile extends Model
 
     public function company()
     {
-        return $this->hasOne(Company::class)->withDefault();
+        return $this->hasOne(Company::class)
+            ->withDefault()
+            ->withTrashed();
     }
 }
