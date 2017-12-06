@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class City extends Model
 {
     protected $table = "cities";
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'city_code',
@@ -17,11 +22,13 @@ class City extends Model
 
     public function province()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Province::class)
+            ->withTrashed();
     }
 
     public function users()
     {
-        return $this->hasManyThrough(User::class, UserProfile::class);
+        return $this->hasManyThrough(User::class, UserProfile::class)
+            ->withTrashed();
     }
 }

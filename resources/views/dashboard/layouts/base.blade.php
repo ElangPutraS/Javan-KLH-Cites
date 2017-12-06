@@ -122,7 +122,7 @@
                     <li @if(Request::segment(2)=='news') class="navigation__active" @endif><a href="{{ route('admin.news.index') }}"><i class="zmdi zmdi-tv-list zmdi-hc-fw"></i> Kelola Informasi</a></li>
 
                     <li class="navigation__sub
-                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category')
+                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category' || Request::segment(2)=='speciesSex')
                             navigation__sub--active navigation__sub--toggled
                         @endif"><a href=""><i class="zmdi zmdi-labels zmdi-hc-fw"></i>Kelola Data Master</a>
                         <ul>
