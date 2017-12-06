@@ -22,8 +22,8 @@ class SubmissionVerificationController extends Controller
 
     public function show($id){
         $trade_permit = TradePermit::findOrFail($id);
-
-        $user=User::findOrFail($trade_permit->company->user_id);
+       // dd($trade_permit);
+        $user=User::withTrashed()->findOrFail($trade_permit->company->user_id);
 
         return view ('admin.verificationSub.detail', compact('trade_permit','user'));
     }

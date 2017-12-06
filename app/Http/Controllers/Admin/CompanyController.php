@@ -231,6 +231,8 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->user()->delete();
+        $company->userProfile()->delete();
+        $company->delete();
 
         return redirect()->route('admin.companies.index')->with('success', 'Data berhasil dihapus.');
     }
