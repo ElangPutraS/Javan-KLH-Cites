@@ -36,20 +36,8 @@ class UserRoleController extends Controller
 
     public function update(Request $request,$id)
     {
-        if($request->old_role_name != $request->role_name){
-            $user = User::findOrFail($id);
-            $user->roles()->detach($request->old_role_name);
-
-            $role = Role::find($request->role_name);
-            $user->roles()->attach($role);
-        }else{
-            $user = User::findOrFail($id);
-            $user->roles()->updateExistingPivot($request->role_name);
-        }
-
-        if($request->has('role_name')) {
-            $user->assets()->sync($request->assets);
-        }
+        $user = User::findOrFail($id);
+        $user->roles()->sync($request->role_name);
 
         return redirect()->route('superadmin.editUser', $user)->with('success', 'Data berhasil diubah.');
     }
