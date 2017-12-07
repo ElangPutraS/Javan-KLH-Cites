@@ -8,6 +8,7 @@
     	<link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
 		<link href="{{ asset('inspinia/css/animate.css') }}" rel="stylesheet">
 		<link href="{{ asset('inspinia/css/style.css') }}" rel="stylesheet">
+		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 		<style type="text/css">
 			.container {
 				min-width: 600px;
@@ -233,5 +234,7 @@
 		<!-- Custom and plugin javascript -->
 		<script src="{{ asset('inspinia/js/inspinia.js') }}"></script>
 		<script src="{{ asset('inspinia/js/pace.min.js') }}"></script>
+		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    	@stack('body.script')
 	</body>
 </html>

@@ -19,10 +19,7 @@
             <img alt="image" class="img-responsive" src="{{ asset('images/twilight-forest-wallpaperr.jpg') }}">
           </div>
           <div class="item">
-            <img alt="image" class="img-responsive" src="{{ asset('images/twilight-forest-wallpaperr.jpg') }}">
-          </div>
-          <div class="item ">
-            <img alt="image" class="img-responsive" src="{{ asset('images/twilight-forest-wallpaperr.jpg') }}">
+            <img alt="image" class="img-responsive" src="{{ asset('images/Forest-Wallpaperss.jpg') }}">
           </div>
         </div>
         <a data-slide="prev" href="#carousel1" class="left carousel-control">
