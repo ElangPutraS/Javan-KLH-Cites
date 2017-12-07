@@ -16,7 +16,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{route('admin.species.updatequota', ['species_id' => $species->id, 'id' => $quota->id]) }}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{route('admin.species.updatequota', ['species_id' => $species->id, 'id' => $quota->id]) }}" method="post" class="form-horizontal">
                         {!! csrf_field() !!}
 
                         @include('admin.species._formquota', ['species' => $species, 'quota' => $quota])
@@ -33,5 +33,3 @@
         </div>
     </section>
 @endsection
-@push('body.script')
-@endpush

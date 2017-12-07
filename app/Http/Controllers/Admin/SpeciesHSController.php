@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\HistoryQuota;
 use App\Species;
 use App\SpeciesQuota;
 use App\AppendixSource;
@@ -115,11 +116,27 @@ class SpeciesHSController extends Controller
 
     public function updateQuota(SpeciesQuotaUpdateRequest $request, $species_id, $id){
         $quota=SpeciesQuota::find($id);
+
         $quota->update([
             'year' => $request->year,
             'quota_amount' => $request->quota_amount,
             ]);
-        return redirect()->route('admin.species.editquota', ['species_id' => $species_id, 'id' => $id])->with('success', 'Data berhasil diubah.');
+
+        $note='';
+        if($request->segment(4) == 'plus'){
+            $note='Penambahan kuota sebanyak '.+$request->get('quota_plus');
+        }else if($request->segment(4) == 'minus'){
+            $note='Pengurangan kuota sebanyak '.+$request->get('quota_min');
+        }
+
+        HistoryQuota::create([
+            'notes'             => $note,
+            'total_quota'       => $quota->quota_amount,
+            'species_quota_id'  => $quota->id,
+            'created_by'        => $request->user()->id,
+        ]);
+
+        return redirect()->route('admin.species.showquota', ['species_id' => $species_id, 'id' => $id])->with('success', 'Data berhasil diubah.');
     }
 
     public function destroyQuota($species_id, $id)
