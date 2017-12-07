@@ -67,7 +67,13 @@ class AddLogTradePermitTable extends Migration
             $table->dropColumn('valid_until');
             $table->dropColumn('valid_renewal');
             $table->dropColumn('permit_type');
-            $table->dropForeign(['company_id', 'port_exportation', 'port_destination', 'trading_type_id', 'purpose_type_id', 'trade_permit_status_id', 'created_by']);
+            $table->dropForeign(['company_id']);
+            $table->dropForeign(['port_exportation']);
+            $table->dropForeign(['port_destination']);
+            $table->dropForeign(['trading_type_id']);
+            $table->dropForeign(['purpose_type_id']);
+            $table->dropForeign(['trade_permit_status_id']);
+            $table->dropForeign(['created_by']);
             $table->dropColumn(['company_id', 'port_exportation', 'port_destination', 'trading_type_id', 'purpose_type_id', 'trade_permit_status_id', 'created_by']);
         });
     }
