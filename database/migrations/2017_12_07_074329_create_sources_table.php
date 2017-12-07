@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDeletePort extends Migration
+class CreateSourcesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddDeletePort extends Migration
      */
     public function up()
     {
-        Schema::table('ports', function (Blueprint $table){
-            $table->softDeletes();
+        Schema::create('sources', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('source_code', '10');
+            $table->text('source_description');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +28,6 @@ class AddDeletePort extends Migration
      */
     public function down()
     {
-        Schema::table('ports', function (Blueprint $table){
-            $table->dropSoftDeletes();
-        });
+        Schema::dropIfExists('sources');
     }
 }

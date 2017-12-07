@@ -26,7 +26,7 @@ class AddDeleteUserProfile extends Migration
     public function down()
     {
         Schema::table('user_profiles', function (Blueprint $table){
-            $table->softDeletes();
+            $table->dropSoftDeletes();
         });
     }
 }
