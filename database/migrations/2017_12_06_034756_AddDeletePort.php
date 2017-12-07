@@ -26,7 +26,7 @@ class AddDeletePort extends Migration
     public function down()
     {
         Schema::table('ports', function (Blueprint $table){
-            $table->softDeletes();
+            $table->dropSoftDeletes();
         });
     }
 }
