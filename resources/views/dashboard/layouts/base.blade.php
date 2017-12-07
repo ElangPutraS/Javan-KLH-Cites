@@ -108,6 +108,8 @@
                         </ul>
                     </li>
 
+                    {{--<li @if(Request::segment(2)=='branch') class="navigation__active" @endif><a href=""><i class="zmdi zmdi-shield-check zmdi-hc-fw"></i> Cabang Pengelola Perizinan</a></li>--}}
+
                     <li @if(Request::segment(2)=='species') class="navigation__active" @endif><a href="{{ route('admin.species.index') }}"><i class="zmdi zmdi-flower-alt zmdi-hc-fw"></i> Kelola Spesies dan HS</a></li>
 
                     <li class="navigation__sub @if(Request::segment(2)=='verificationSub' || Request::segment(2)=='verificationRen') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Verifikasi SATS-LN</a>
