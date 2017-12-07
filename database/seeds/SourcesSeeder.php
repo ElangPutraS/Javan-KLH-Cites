@@ -53,7 +53,7 @@ class SourcesSeeder extends Seeder
         ]);
 
         Source::create([
-            'source_code' => 'W',
+            'source_code' => 'O',
             'source_description' => 'Spesimen sebelum Konvensi.',
         ]);
     }
