@@ -80,6 +80,22 @@ class SubmissionRenewalController extends Controller
 
         $log = LogTradePermit::create([
             'log_description' => $status->status_name.' ( Pembaharuan Permohonan )',
+            'trade_permit_code'         => $trade_permit->trade_permit_code,
+            'valid_start'               => $trade_permit->valid_start,
+            'valid_until'               => $trade_permit->valid_until,
+            'consignee'                 => $trade_permit->consignee,
+            'appendix_type'             => $trade_permit->appendix_type,
+            'date_submission'           => $trade_permit->date_submission,
+            'period'                    => $trade_permit->period,
+            'port_exportation'          => $trade_permit->port_exportation,
+            'port_destination'          => $trade_permit->port_destination,
+            'trading_type_id'           => $trade_permit->trading_type_id,
+            'purpose_type_id'           => $trade_permit->purpose_type_id,
+            'company_id'                => $trade_permit->company_id,
+            'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
+            'valid_renewal'             => $trade_permit->valid_renewal,
+            'permit_type'               => $trade_permit->permit_type,
+            'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
 
