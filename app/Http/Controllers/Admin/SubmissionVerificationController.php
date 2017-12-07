@@ -29,10 +29,10 @@ class SubmissionVerificationController extends Controller
     }
 
     public function update(Request $request, $id){
-        $trade_permit=TradePermit::findOrFail($id);
+        $trade_permit = TradePermit::findOrFail($id);
 
-        $valid_start=Carbon::now()->format('Y-m-d');
-        $valid_until=Carbon::now()->addMonth($trade_permit->period)->format('Y-m-d');
+        $valid_start = Carbon::now()->format('Y-m-d');
+        $valid_until = Carbon::now()->addMonth($trade_permit->period)->format('Y-m-d');
 
 
         $trade_permit->update([
@@ -41,12 +41,26 @@ class SubmissionVerificationController extends Controller
             'updated_by' => $request->user()->id
         ]);
 
-        $status=TradePermitStatus::where('status_code','200')->first();
+        $status = TradePermitStatus::where('status_code','200')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
         //nambahin log
         $log=LogTradePermit::create([
-            'log_description' => 'Verifikasi Permohonan Diterima',
+            'log_description'           => 'Verifikasi Permohonan Diterima',
+            'trade_permit_code'         => $trade_permit->trade_permit_code,
+            'valid_start'               => $trade_permit->valid_start,
+            'valid_until'               => $trade_permit->valid_until,
+            'consignee'                 => $trade_permit->consignee,
+            'appendix_type'             => $trade_permit->appendix_type,
+            'date_submission'           => $trade_permit->date_submission,
+            'period'                    => $trade_permit->period,
+            'port_exportation'          => $trade_permit->port_exportation,
+            'port_destination'          => $trade_permit->port_destination,
+            'trading_type_id'           => $trade_permit->trading_type_id,
+            'purpose_type_id'           => $trade_permit->purpose_type_id,
+            'company_id'                => $trade_permit->company_id,
+            'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
+            'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -54,18 +68,30 @@ class SubmissionVerificationController extends Controller
     }
 
     public function updateRej(Request $request, $id){
-        $trade_permit=TradePermit::findOrFail($id);
+        $trade_permit = TradePermit::findOrFail($id);
 
         $trade_permit->update([
             'updated_by' => $request->user()->id
         ]);
 
-        $status=TradePermitStatus::where('status_code','300')->first();
+        $status = TradePermitStatus::where('status_code','300')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
         //nambahin log
         $log=LogTradePermit::create([
             'log_description' => 'Verifikasi Permohonan Ditolak',
+            'trade_permit_code'         => $trade_permit->trade_permit_code,
+            'consignee'                 => $trade_permit->consignee,
+            'appendix_type'             => $trade_permit->appendix_type,
+            'date_submission'           => $trade_permit->date_submission,
+            'period'                    => $trade_permit->period,
+            'port_exportation'          => $trade_permit->port_exportation,
+            'port_destination'          => $trade_permit->port_destination,
+            'trading_type_id'           => $trade_permit->trading_type_id,
+            'purpose_type_id'           => $trade_permit->purpose_type_id,
+            'company_id'                => $trade_permit->company_id,
+            'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
+            'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -91,18 +117,34 @@ class SubmissionVerificationController extends Controller
     }
 
     public function updateRen(Request $request, $id){
-        $trade_permit=TradePermit::findOrFail($id);
+        $trade_permit = TradePermit::findOrFail($id);
 
         $trade_permit->update([
             'updated_by' => $request->user()->id
         ]);
 
-        $status=TradePermitStatus::where('status_code','200')->first();
+        $status = TradePermitStatus::where('status_code','200')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
         //nambahin log
         $log=LogTradePermit::create([
-            'log_description' => 'Verifikasi Permohonan Pembaharuan Diterima',
+            'log_description'           => 'Verifikasi Permohonan Pembaharuan Diterima',
+            'trade_permit_code'         => $trade_permit->trade_permit_code,
+            'valid_start'               => $trade_permit->valid_start,
+            'valid_until'               => $trade_permit->valid_until,
+            'consignee'                 => $trade_permit->consignee,
+            'appendix_type'             => $trade_permit->appendix_type,
+            'date_submission'           => $trade_permit->date_submission,
+            'period'                    => $trade_permit->period,
+            'port_exportation'          => $trade_permit->port_exportation,
+            'port_destination'          => $trade_permit->port_destination,
+            'trading_type_id'           => $trade_permit->trading_type_id,
+            'purpose_type_id'           => $trade_permit->purpose_type_id,
+            'company_id'                => $trade_permit->company_id,
+            'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
+            'valid_renewal'             => $trade_permit->valid_renewal,
+            'permit_type'               => $trade_permit->permit_type,
+            'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -110,18 +152,32 @@ class SubmissionVerificationController extends Controller
     }
 
     public function updateRejectRen(Request $request, $id){
-        $trade_permit=TradePermit::findOrFail($id);
+        $trade_permit = TradePermit::findOrFail($id);
 
         $trade_permit->update([
             'updated_by' => $request->user()->id
         ]);
 
-        $status=TradePermitStatus::where('status_code','300')->first();
+        $status = TradePermitStatus::where('status_code','300')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
         //nambahin log
         $log=LogTradePermit::create([
-            'log_description' => 'Verifikasi Permohonan Pembaharuan Ditolak',
+            'log_description'           => 'Verifikasi Permohonan Pembaharuan Ditolak',
+            'trade_permit_code'         => $trade_permit->trade_permit_code,
+            'consignee'                 => $trade_permit->consignee,
+            'appendix_type'             => $trade_permit->appendix_type,
+            'date_submission'           => $trade_permit->date_submission,
+            'period'                    => $trade_permit->period,
+            'port_exportation'          => $trade_permit->port_exportation,
+            'port_destination'          => $trade_permit->port_destination,
+            'trading_type_id'           => $trade_permit->trading_type_id,
+            'purpose_type_id'           => $trade_permit->purpose_type_id,
+            'company_id'                => $trade_permit->company_id,
+            'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
+            'valid_renewal'             => $trade_permit->valid_renewal,
+            'permit_type'               => $trade_permit->permit_type,
+            'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
 
