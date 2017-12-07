@@ -141,23 +141,6 @@
 
             @can('access-super-admin')
                 <!-- Menu Super Admin -->
-                    <li class="navigation__sub @if(Request::segment(2)=='companies' || Request::segment(2)=='verification') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Pelaku Usaha</a>
-                        <ul>
-                            <li @if(Request::segment(2)=='companies') class="navigation__active" @endif><a href="{{ route('admin.companies.index') }}"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> Kelola Pelaku Usaha</a></li>
-                            <li @if(Request::segment(2)=='verification') class="navigation__active" @endif><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-check-all zmdi-hc-fw"></i> Verifikasi Pelaku Usaha</a></li>
-                        </ul>
-                    </li>
-                    <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
-                    <li class="navigation__sub @if(Request::segment(2)=='verificationSub' || Request::segment(2)=='verificationRen') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Verifikasi SATS-LN</a>
-                        <ul>
-                            <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
-                            <li @if(Request::segment(2)=='verificationRen') class="navigation__active" @endif><a href="{{ route('admin.verificationRen.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Pembaharuan</a></li>
-                        </ul>
-                    </li>
-                    <li @if(Request::segment(1)=='renewal') class="navigation__active" @endif><a href="{{ route('user.renewal.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATS-LN </a></li>
-
-                    <li @if(Request::segment(1)=='invoice') class="navigation__active" @endif><a href="{{ route('user.invoice.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Tagihan SATS-LN </a></li>
-                    <li @if(Request::segment(2)=='pnbp') class="navigation__active" @endif><a href="{{ route('admin.pnbp.index') }}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Kelola PNBP</a></li>
                     <li class="navigation__sub
                         @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category')
                             navigation__sub--active navigation__sub--toggled
@@ -173,6 +156,8 @@
                             <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Species</a></li>
                         </ul>
                     </li>
+                    <li @if(Request::segment(2)=='admin') class="navigation__active" @endif><a href="{{ route('superadmin.index') }}"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Kelola User</a></li>
+
                 @endcan
             </ul>
         </div>
