@@ -30,22 +30,22 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($user as $us)
+                            @forelse($users as $user)
                                 <tr>
-                                    <td>{{ (($user->currentPage() - 1 ) * $user->perPage() ) + $loop->iteration }}</td>
-                                    <td>{{ $us->name }}</td>
-                                    <td>{{ $us->email }}</td>
-                                    <td>{{ $us->roles->first()->role_name}}</td>
-                                    @if($us->deleted_at === NULL )
+                                    <td>{{ (($users->currentPage() - 1 ) * $users->perPage() ) + $loop->iteration }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->roles->first()->role_name}}</td>
+                                    @if($user->deleted_at === NULL )
                                         <td>Aktif</td>
                                         <td>
-                                            <a href="{{route('superadmin.editUser',['id'=>$us->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
-                                            <a onclick="deleteUser(this)" data-id="{{$us->id}}" class="btn btn-sm btn-danger" style="color:white;"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
+                                            <a href="{{route('superadmin.editUser',['id'=>$user->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                            <a onclick="deleteUser(this)" data-id="{{$user->id}}" class="btn btn-sm btn-danger" style="color:white;"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                         </td>
                                     @else
                                         <td>Non-Aktif</td>
                                         <td>
-                                            <a onclick="restoreUser(this)" data-id="{{$us->id}}" class="btn btn-sm btn-warning" style="color:white;"><i class="zmdi zmdi-time-restore-setting zmdi-hc-fw"></i></a>
+                                            <a onclick="restoreUser(this)" data-id="{{$user->id}}" class="btn btn-sm btn-warning" style="color:white;"><i class="zmdi zmdi-time-restore-setting zmdi-hc-fw"></i></a>
                                         </td>
                                     @endif
 
@@ -58,7 +58,7 @@
                             </tbody>
                         </table>
                     </div>
-                    {!! $user->links() !!}
+                    {!! $users->links() !!}
                 </div>
             </div>
         </div>

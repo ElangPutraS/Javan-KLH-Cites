@@ -10,8 +10,8 @@ use App\Http\Controllers\Controller;
 class UserRoleController extends Controller
 {
     public function index(Request $request ){
-        $user = User::withTrashed()->orderBy('name','asc')->paginate(10);
-        return view('superadmin.index', compact('user'));
+        $users = User::withTrashed()->orderBy('name','asc')->paginate(10);
+        return view('superadmin.index', compact('users'));
     }
     public function destroy($id)
     {
@@ -46,6 +46,11 @@ class UserRoleController extends Controller
             $user = User::findOrFail($id);
             $user->roles()->updateExistingPivot($request->role_name);
         }
+
+        if($request->has('role_name')) {
+            $user->assets()->sync($request->assets);
+        }
+
         return redirect()->route('superadmin.editUser', $user)->with('success', 'Data berhasil diubah.');
     }
 }
