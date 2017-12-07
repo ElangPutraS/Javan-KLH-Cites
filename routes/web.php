@@ -14,7 +14,7 @@
 Route::get('/', function () {
     $news = \App\News::orderBy('created_at', 'desc')->limit(3)->get();
 
-    return view('welcome', compact('news'));
+    return view('welcome2', compact('news'));
 });
 
 Auth::routes();
