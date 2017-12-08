@@ -113,6 +113,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('user/{id}/restore','UserRoleController@restore')->name('superadmin.restoreUser');
     Route::get('user/{id}/edit','UserRoleController@edit')->name('superadmin.editUser');
     Route::post('user/{id}/edit','UserRoleController@update')->name('superadmin.updateUser');
+    Route::get('user/create','UserRoleController@create')->name('superadmin.createUser');
+    Route::post('user/create','UserRoleController@store')->name('superadmin.storeUser');
 
 
 
