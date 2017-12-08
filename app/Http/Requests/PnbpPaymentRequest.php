@@ -25,7 +25,7 @@ class PnbpPaymentRequest extends FormRequest
     {
         return [
             'pnbp_amount' => 'required|numeric|digits_between:0,16',
-            'transaction_number' => 'numeric|digits_between:0,30',
+            'transaction_number' => 'string|digits_between:0,30',
         ];
     }
 }
