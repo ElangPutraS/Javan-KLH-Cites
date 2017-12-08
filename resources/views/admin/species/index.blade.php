@@ -15,6 +15,7 @@
             <div class="card-block">
                 @include('includes.notifications')
                 <a href="{{ route('admin.species.createSpecies') }}" class="btn btn-primary">Tambah Baru</a>
+                <hr>
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm">
                         <thead class="thead-default">
