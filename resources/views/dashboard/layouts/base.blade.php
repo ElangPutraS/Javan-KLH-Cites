@@ -126,7 +126,7 @@
                     <li @if(Request::segment(2)=='news') class="navigation__active" @endif><a href="{{ route('admin.news.index') }}"><i class="zmdi zmdi-tv-list zmdi-hc-fw"></i> Kelola Informasi</a></li>
 
                     <li class="navigation__sub
-                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category' || Request::segment(2)=='speciesSex')
+                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category' || Request::segment(2)=='speciesSex'|| Request::segment(2)=='appendix' || Request::segment(2)=='source' || Request::segment(2)=='unit')
                             navigation__sub--active navigation__sub--toggled
                         @endif"><a href=""><i class="zmdi zmdi-labels zmdi-hc-fw"></i>Kelola Data Master</a>
                         <ul>
@@ -138,6 +138,9 @@
                             <li @if(Request::segment(2)=='typeIdentify') class="navigation__active" @endif><a href="{{ route('admin.typeIdentify.index') }}"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i> Kelola Tipe Identitas </a></li>
                             <li @if(Request::segment(2)=='category') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
                             <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Species</a></li>
+                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Appendiks</a></li>
+                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Sumber Appendiks</a></li>
+                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Satuan Species</a></li>
                         </ul>
                     </li>
 
@@ -146,7 +149,7 @@
             @can('access-super-admin')
                 <!-- Menu Super Admin -->
                     <li class="navigation__sub
-                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category')
+                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category' || Request::segment(2)=='speciesSex' || Request::segment(2)=='appendix' || Request::segment(2)=='source' || Request::segment(2)=='unit')
                             navigation__sub--active navigation__sub--toggled
                         @endif"><a href=""><i class="zmdi zmdi-labels zmdi-hc-fw"></i>Kelola Data Master</a>
                         <ul>
@@ -158,6 +161,9 @@
                             <li @if(Request::segment(2)=='typeIdentify') class="navigation__active" @endif><a href="{{ route('admin.typeIdentify.index') }}"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i> Kelola Tipe Identitas </a></li>
                             <li @if(Request::segment(2)=='category') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
                             <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Species</a></li>
+                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Appendiks</a></li>
+                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Sumber Appendiks</a></li>
+                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Satuan Species</a></li>
                         </ul>
                     </li>
                     <li @if(Request::segment(2)=='admin') class="navigation__active" @endif><a href="{{ route('superadmin.index') }}"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Kelola User</a></li>
