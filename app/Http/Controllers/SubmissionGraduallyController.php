@@ -25,7 +25,9 @@ class SubmissionGraduallyController extends Controller {
         $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
         $document_types = DocumentType::where('is_permit',1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
-        return view('pelakuusaha.submission-gradually.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
+        $jumlah_tradePermit = TradePermit::where([['company_id', $request->user()->company->id], ['date_submission', date('Y-m-d')]])->count();
+
+        return view('pelakuusaha.submission-gradually.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'jumlah_tradePermit'));
 	}
 
 

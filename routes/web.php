@@ -69,7 +69,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('species/{species_id}/kuota', 'SpeciesHSController@showQuota')->name('admin.species.showquota');
     Route::get('species/{species_id}/create', 'SpeciesHSController@createQuota')->name('admin.species.createquota');
     Route::post('species/{species_id}/create', 'SpeciesHSController@storeQuota')->name('admin.species.storequota');
-    Route::get('species/{species_id}/edit/{id}', 'SpeciesHSController@editQuota')->name('admin.species.editquota');
+    Route::get('species/{species_id}/plus/{id}', 'SpeciesHSController@editQuota')->name('admin.species.plusquota');
+    Route::get('species/{species_id}/minus/{id}', 'SpeciesHSController@editQuota')->name('admin.species.minusquota');
     Route::post('species/{species_id}/edit/{id}', 'SpeciesHSController@updateQuota')->name('admin.species.updatequota');
     Route::get('species/{species_id}/delete/{id}', 'SpeciesHSController@destroyQuota')->name('admin.species.deletequota');
 
@@ -86,7 +87,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('verificationSub', 'SubmissionVerificationController@index')->name('admin.verificationSub.index');
     Route::get('verificationSub/{id}/detail', 'SubmissionVerificationController@show')->name('admin.verificationSub.show');
     Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
-    Route::get('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
+    Route::post('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
     Route::get('verificationRen', 'SubmissionVerificationController@indexRen')->name('admin.verificationRen.index');
     Route::get('verificationRen/{id}/detail', 'SubmissionVerificationController@showRen')->name('admin.verificationRen.show');
