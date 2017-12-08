@@ -115,7 +115,11 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('user/{id}/edit','UserRoleController@edit')->name('superadmin.editUser');
     Route::post('user/{id}/edit','UserRoleController@update')->name('superadmin.updateUser');
 
+    Route::get('appendix','AppendixSourceController@index')->name('admin.appendix.index');
 
+    Route::get('source','SourceController@index')->name('admin.source.index');
+
+    Route::get('unit','UnitController@index')->name('admin.unit.index');
 
 });
 

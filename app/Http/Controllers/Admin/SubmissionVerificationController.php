@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\HistoryQuota;
 use App\LogTradePermit;
 use App\SpeciesQuota;
 use App\TradePermit;
@@ -180,23 +181,6 @@ class SubmissionVerificationController extends Controller
             'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
-
-        //Kurangi Kuota dan Buat History Quota
-        foreach ($trade_permit->tradeSpecies as $species){
-            $quota_species=SpeciesQuota::where([['species_id', '=', $species->id], ['year', '=', date('Y')]])->first();
-            $kuota_akhir = $quota_species->quota_amount - $species->pivot->total_exported;
-
-            $quota_species->update([
-                'quota_amount' => $kuota_akhir
-            ]);
-
-            HistoryQuota::create([
-                'notes'             => 'Penerbitan Surat Izin, Kuota Species dikurangi total ekspor sejumlah '.$species->pivot->total_exported,
-                'total_quota'       => $kuota_akhir,
-                'species_quota_id'  => $quota_species->id,
-                'created_by'        => $request->user()->id,
-            ]);
-        }
 
         return redirect()->route('admin.verificationRen.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }

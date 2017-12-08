@@ -122,7 +122,7 @@ class SpeciesHSController extends Controller
         	]);
         $quota->save();
         $species->speciesQuota()->save($quota);
-        return redirect()->route('admin.species.editquota', ['species_id' => $species_id, 'id' => $quota->id])->with('success', 'Data berhasil dibuat.');
+        return redirect()->route('admin.species.index', ['species_id' => $species_id, 'id' => $quota->id])->with('success', 'Data berhasil dibuat.');
     }
 
     public function editQuota($species_id, $id){
