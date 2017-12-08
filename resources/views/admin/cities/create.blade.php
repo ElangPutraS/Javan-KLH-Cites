@@ -4,10 +4,15 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tambah Kabupaten/Kota</h1>
+                <h1>Kelola Kabupaten/Kota</h1>
             </header>
 
             <div class="card">
+                 <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Tambah Kabupaten/Kota</h2>
+                    <small class="card-subtitle"></small>
+                </div>
                 <div class="card-block">
 
                     @include('includes.notifications')
@@ -30,7 +35,6 @@
     </section>
 @endsection
 
-?>
 @push('body.script')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <script type="text/javascript">
