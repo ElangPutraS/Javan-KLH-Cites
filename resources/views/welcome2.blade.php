@@ -39,14 +39,13 @@
           </div>
           @forelse($news as $key => $value)
           <div class="panel-body">
-            <div class="news-date">
-              {{ date('d', strtotime($value->created_at)) }}
-              <hr>
-              {{ date('M', strtotime($value->created_at)) }}
-            </div>
-            <h3 class="news-title">{{ $value->title }}</h3>
+            <h3 class="news-title">
+              {{ $value->title }}
+              <br>
+              <small>by {{ $value->user->name }} at {{ date('l, d F Y', strtotime($value->created_at)) }}</small>
+            </h3>
             <p>{{ limit_text($value->content, 50) }}</p>
-            <p><a>read more ></a></p>
+            <p><a href="{{ url('news', $value->id) }}"><small>Read more...</small></a></p>
           </div>
           @empty
           <div class="panel-body">
