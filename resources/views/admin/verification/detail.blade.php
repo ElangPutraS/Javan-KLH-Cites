@@ -98,7 +98,6 @@
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                //location.href='{{url('admin/verification')}}/'+id+'/2';
                 swal({
                     title: 'Tuliskan alasan penolakan verifikasi',
                     input: 'text',
