@@ -123,9 +123,9 @@ class SpeciesHSController extends Controller
             ]);
 
         $note='';
-        if($request->segment(4) == 'plus'){
+        if($request->get('quota_plus') != ''){
             $note='Penambahan kuota sebanyak '.+$request->get('quota_plus');
-        }else if($request->segment(4) == 'minus'){
+        }else if($request->get('quota_min') != ''){
             $note='Pengurangan kuota sebanyak '.+$request->get('quota_min');
         }
 

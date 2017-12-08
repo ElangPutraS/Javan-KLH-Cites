@@ -87,7 +87,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('verificationSub', 'SubmissionVerificationController@index')->name('admin.verificationSub.index');
     Route::get('verificationSub/{id}/detail', 'SubmissionVerificationController@show')->name('admin.verificationSub.show');
     Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
-    Route::get('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
+    Route::post('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
     Route::get('verificationRen', 'SubmissionVerificationController@indexRen')->name('admin.verificationRen.index');
     Route::get('verificationRen/{id}/detail', 'SubmissionVerificationController@showRen')->name('admin.verificationRen.show');
