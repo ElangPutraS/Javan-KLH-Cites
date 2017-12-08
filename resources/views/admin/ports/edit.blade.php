@@ -4,12 +4,12 @@
 	<section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Edit Pelabuhan</h1>
+                <h1>Kelola Pelabuhan</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah Pelabuhan</h2>
+                    <h2 class="card-title">Ubah Data Pelabuhan</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
