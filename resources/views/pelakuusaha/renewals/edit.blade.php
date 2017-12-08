@@ -36,4 +36,25 @@
     <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('template/vendors/bower_components/jszip/dist/jszip.min.js') }}"></script>
     <script src="{{ asset('template/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('input[name="is_renewal"]').change(function(){
+                if (document.getElementById('is_renewal1').checked) {
+                    document.getElementById('showPeriod').style.display='block';
+                    //$("#period").attr('required', '');
+                    $("#port_exportation").attr('disabled','');
+                    $("#port_destination").attr('disabled','');
+                    $("#purpose_type_id").attr('disabled','');
+                    $("#consignee").attr('readonly','');
+                }else if(document.getElementById('is_renewal2').checked){
+                    document.getElementById('showPeriod').style.display='none';
+                    //$("#period").removeAttr('required');
+                    $("#port_exportation").removeAttr('disabled','');
+                    $("#port_destination").removeAttr('disabled','');
+                    $("#purpose_type_id").removeAttr('disabled','');
+                    $("#consignee").removeAttr('readonly','');
+                }
+            });
+        });
+    </script>
 @endpush
