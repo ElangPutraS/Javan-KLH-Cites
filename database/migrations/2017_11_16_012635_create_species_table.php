@@ -15,9 +15,9 @@ class CreateSpeciesTable extends Migration
     {
         Schema::create('species', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('species_scientific_name', '100');
-            $table->string('species_indonesia_name', '100');
-            $table->string('species_general_name', '100');
+            $table->string('species_scientific_name', '200');
+            $table->string('species_indonesia_name', '200');
+            $table->string('species_general_name', '200');
             $table->boolean('is_appendix');
             $table->integer('appendix_source_id')->unsigned()->nullable();
             $table->foreign('appendix_source_id')

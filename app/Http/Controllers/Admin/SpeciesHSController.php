@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\HistoryQuota;
+use App\Source;
 use App\Species;
 use App\SpeciesQuota;
 use App\AppendixSource;
 use App\SpeciesSex;
+use App\Unit;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SpeciesRequest;
@@ -16,27 +19,35 @@ use App\Http\Requests\SpeciesQuotaUpdateRequest;
 class SpeciesHSController extends Controller
 {
     public function index(){
-        $species=Species::orderBy('species_scientific_name', 'asc')->paginate(10);
+        $species = Species::orderBy('species_scientific_name', 'asc')->paginate(10);
 
         return view('admin.species.index', compact('species'));
     }
 
     public function create(){
-    	$appendix=AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
-    	$species_sex=SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
-    	$categories=Category::orderBy('species_category_name')->pluck('species_category_name','id');
-    	return view('admin.species.createspecies', compact('appendix', 'species_sex', 'categories'));
+    	$appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
+    	$species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
+    	$categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
+        $sources = Source::orderBy('source_code', 'asc')->pluck('source_code', 'id');
+        $units = Unit::orderBy('unit_description', 'asc')->pluck('unit_description', 'id');
+    	return view('admin.species.createspecies', compact('appendix', 'species_sex', 'categories','sources','units'));
     }
 
     public function store(SpeciesRequest $request){
-    	$species=new Species([
+
+        $nominal = str_replace('.', '', $request->get('nominal'));
+    	$species = new Species([
     		'species_scientific_name' => $request->get('scientific_name'),
     		'species_indonesia_name' => $request->get('indonesia_name'),
     		'species_general_name' => $request->get('general_name'),
     		'is_appendix' => $request->get('is_appendix'),
     		'species_sex_id' => $request->get('species_sex_id'),
     		'species_category_id' => $request->get('species_category_id'),
-    		'nominal' => $request->get('nominal'),
+    		'nominal' => $nominal,
+    		'hs_code' => $request->get('hs_code'),
+    		'sp_code' => $request->get('sp_code'),
+    		'unit_id' => $request->get('unit_id'),
+    		'source_id' => $request->get('source_id')
     		]);
     	$species->save();
     	if($request->get('is_appendix')!=0){
@@ -47,15 +58,18 @@ class SpeciesHSController extends Controller
     }
 
     public function edit($id){
-    	$species=Species::find($id);
-    	$appendix=AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
-    	$species_sex=SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
-        $categories=Category::orderBy('species_category_name')->pluck('species_category_name','id');
-    	return view('admin.species.editspecies', compact('species', 'appendix', 'species_sex','categories'));
+    	$species = Species::find($id);
+    	$appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
+    	$species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
+        $categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
+        $sources = Source::orderBy('source_code', 'asc')->pluck('source_code', 'id');
+        $units = Unit::orderBy('unit_description', 'asc')->pluck('unit_description', 'id');
+    	return view('admin.species.editspecies', compact('species', 'appendix', 'species_sex','categories','sources','units'));
     }
 
     public function update(SpeciesRequest $request, $id){
-    	$species=Species::find($id);
+    	$species = Species::find($id);
+        $nominal = str_replace('.', '', $request->get('nominal'));
     	$species->update([
     		'species_scientific_name' => $request->get('scientific_name'),
     		'species_indonesia_name' => $request->get('indonesia_name'),
@@ -63,7 +77,11 @@ class SpeciesHSController extends Controller
     		'is_appendix' => $request->get('is_appendix'),
     		'species_sex_id' => $request->get('species_sex_id'),
             'species_category_id' => $request->get('species_category_id'),
-            'nominal' => $request->get('nominal')
+            'nominal' => $nominal,
+            'hs_code' => $request->get('hs_code'),
+    		'sp_code' => $request->get('sp_code'),
+    		'unit_id' => $request->get('unit_id'),
+    		'source_id' => $request->get('source_id')
     		]);
 
     	if($request->get('is_appendix')!=0){
@@ -115,11 +133,27 @@ class SpeciesHSController extends Controller
 
     public function updateQuota(SpeciesQuotaUpdateRequest $request, $species_id, $id){
         $quota=SpeciesQuota::find($id);
+
         $quota->update([
             'year' => $request->year,
             'quota_amount' => $request->quota_amount,
             ]);
-        return redirect()->route('admin.species.editquota', ['species_id' => $species_id, 'id' => $id])->with('success', 'Data berhasil diubah.');
+
+        $note='';
+        if($request->get('quota_plus') != ''){
+            $note='Penambahan kuota sebanyak '.+$request->get('quota_plus');
+        }else if($request->get('quota_min') != ''){
+            $note='Pengurangan kuota sebanyak '.+$request->get('quota_min');
+        }
+
+        HistoryQuota::create([
+            'notes'             => $note,
+            'total_quota'       => $quota->quota_amount,
+            'species_quota_id'  => $quota->id,
+            'created_by'        => $request->user()->id,
+        ]);
+
+        return redirect()->route('admin.species.showquota', ['species_id' => $species_id, 'id' => $id])->with('success', 'Data berhasil diubah.');
     }
 
     public function destroyQuota($species_id, $id)

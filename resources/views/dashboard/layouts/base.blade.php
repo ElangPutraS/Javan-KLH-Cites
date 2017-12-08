@@ -86,17 +86,19 @@
                 <li @if(Request::segment(1)=='dashboard'||Request::segment(2)=='dashboard') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Beranda</a></li>
 
                 @can('access-pelaku-usaha')
-                <!-- Menu Pelaku Usaha -->
-                    <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATS-LN</a>
-                        <ul>
-                            <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
-                            <li @if(Request::segment(2)=='create') class="navigation__active" @endif><a href="{{ route('user.submission.create') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
-                            <li @if(Request::is('submission/gradually/create')) class="navigation__active" @endif><a href="{{ route('user.submissionGradually.create') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
-                        </ul>
-                    </li>
-                    <li @if(Request::segment(1)=='renewal') class="navigation__active" @endif><a href="{{ route('user.renewal.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATS-LN </a></li>
-                    
-                    <li @if(Request::segment(1)=='invoice') class="navigation__active" @endif><a href="{{ route('user.invoice.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Tagihan SATS-LN </a></li>
+                    @if(auth()->user()->company->company_status >0)
+                        <!-- Menu Pelaku Usaha -->
+                        <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATS-LN</a>
+                            <ul>
+                                <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
+                                <li @if(Request::segment(2)=='create') class="navigation__active" @endif><a href="{{ route('user.submission.create') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
+                                <li @if(Request::is('submission/gradually/create')) class="navigation__active" @endif><a href="{{ route('user.submissionGradually.create') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
+                            </ul>
+                        </li>
+                        <li @if(Request::segment(1)=='renewal') class="navigation__active" @endif><a href="{{ route('user.renewal.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATS-LN </a></li>
+
+                        <li @if(Request::segment(1)=='invoice') class="navigation__active" @endif><a href="{{ route('user.invoice.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Tagihan SATS-LN </a></li>
+                    @endif
                 @endcan
 
                 @can('access-admin')

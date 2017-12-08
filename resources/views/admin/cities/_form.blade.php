@@ -1,8 +1,4 @@
 <div class="form-group">
-    <h3>Data Kabupaten/Kota</h3>
-</div>
-
-<div class="form-group">
     <label class="control-label">Kode Kabupaten/kota</label>
     <div class="col-sm-14">
             <input type="text" name="city_code" class="form-control" value="{{ old('city_code', array_get($city, 'city_code')) }}">

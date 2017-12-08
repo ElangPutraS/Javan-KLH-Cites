@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\LogTradePermit;
+use App\SpeciesQuota;
 use App\TradePermit;
 use App\TradePermitStatus;
 use App\User;
@@ -31,40 +32,73 @@ class SubmissionVerificationController extends Controller
     public function update(Request $request, $id){
         $trade_permit = TradePermit::findOrFail($id);
 
-        $valid_start = Carbon::now()->format('Y-m-d');
-        $valid_until = Carbon::now()->addMonth($trade_permit->period)->format('Y-m-d');
+        //Cek Cukup atau Engganya Kuota
+        $cek='';
+        foreach ($trade_permit->tradeSpecies as $species){
+            $quota_species=SpeciesQuota::where([['species_id', '=', $species->id], ['year', '=', date('Y')]])->first();
+            $kuota_akhir = $quota_species->quota_amount - $species->pivot->total_exported;
+
+            if($kuota_akhir<0){
+                $cek="Kuota Tidak mencukupi";
+            }
+        }
+
+        if($cek == ''){
+            $valid_start = Carbon::now()->format('Y-m-d');
+            $valid_until = Carbon::now()->addMonth($trade_permit->period)->format('Y-m-d');
 
 
-        $trade_permit->update([
-            'valid_start' => $valid_start,
-            'valid_until' => $valid_until,
-            'updated_by' => $request->user()->id
-        ]);
+            $trade_permit->update([
+                'valid_start' => $valid_start,
+                'valid_until' => $valid_until,
+                'updated_by' => $request->user()->id
+            ]);
 
-        $status = TradePermitStatus::where('status_code','200')->first();
-        $trade_permit->tradeStatus()->associate($status)->save();
+            $status = TradePermitStatus::where('status_code','200')->first();
+            $trade_permit->tradeStatus()->associate($status)->save();
 
-        //nambahin log
-        $log=LogTradePermit::create([
-            'log_description'           => 'Verifikasi Permohonan Diterima',
-            'trade_permit_code'         => $trade_permit->trade_permit_code,
-            'valid_start'               => $trade_permit->valid_start,
-            'valid_until'               => $trade_permit->valid_until,
-            'consignee'                 => $trade_permit->consignee,
-            'appendix_type'             => $trade_permit->appendix_type,
-            'date_submission'           => $trade_permit->date_submission,
-            'period'                    => $trade_permit->period,
-            'port_exportation'          => $trade_permit->port_exportation,
-            'port_destination'          => $trade_permit->port_destination,
-            'trading_type_id'           => $trade_permit->trading_type_id,
-            'purpose_type_id'           => $trade_permit->purpose_type_id,
-            'company_id'                => $trade_permit->company_id,
-            'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
-            'created_by'                => $request->user()->id,
-        ]);
-        $trade_permit->logTrade()->save($log);
+            //nambahin log
+            $log=LogTradePermit::create([
+                'log_description'           => 'Verifikasi Permohonan Diterima',
+                'trade_permit_code'         => $trade_permit->trade_permit_code,
+                'valid_start'               => $trade_permit->valid_start,
+                'valid_until'               => $trade_permit->valid_until,
+                'consignee'                 => $trade_permit->consignee,
+                'appendix_type'             => $trade_permit->appendix_type,
+                'date_submission'           => $trade_permit->date_submission,
+                'period'                    => $trade_permit->period,
+                'port_exportation'          => $trade_permit->port_exportation,
+                'port_destination'          => $trade_permit->port_destination,
+                'trading_type_id'           => $trade_permit->trading_type_id,
+                'purpose_type_id'           => $trade_permit->purpose_type_id,
+                'company_id'                => $trade_permit->company_id,
+                'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
+                'created_by'                => $request->user()->id,
+            ]);
+            $trade_permit->logTrade()->save($log);
 
-        return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverifikasi.');
+            //Kurangi Kuota dan Buat History Quota
+            foreach ($trade_permit->tradeSpecies as $species){
+                $quota_species=SpeciesQuota::where([['species_id', '=', $species->id], ['year', '=', date('Y')]])->first();
+                $kuota_akhir = $quota_species->quota_amount - $species->pivot->total_exported;
+
+                $quota_species->update([
+                    'quota_amount' => $kuota_akhir
+                ]);
+
+                HistoryQuota::create([
+                    'notes'             => 'Penerbitan Surat Izin, Kuota Species dikurangi total ekspor sejumlah '.$species->pivot->total_exported,
+                    'total_quota'       => $kuota_akhir,
+                    'species_quota_id'  => $quota_species->id,
+                    'created_by'        => $request->user()->id,
+                ]);
+            }
+
+            return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverifikasi.');
+        }else{
+            return redirect()->route('admin.verificationSub.show', ['id' => $id])->with('warning', 'Permohonan gagal diverifikasi, kuota species yang dipilih tidak mencukupi.');
+        }
+
     }
 
     public function updateRej(Request $request, $id){
@@ -76,6 +110,8 @@ class SubmissionVerificationController extends Controller
 
         $status = TradePermitStatus::where('status_code','300')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
+
+        //Ini buat get alasannya : $request->get('alasan')
 
         //nambahin log
         $log=LogTradePermit::create([
@@ -94,10 +130,7 @@ class SubmissionVerificationController extends Controller
             'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
-
-        return redirect()->route('admin.verificationSub.index')->with('success', 'Verifikasi Permohonan berhasil ditolak.');
     }
-
 
     //Verifikasi Renewal
 
@@ -147,6 +180,23 @@ class SubmissionVerificationController extends Controller
             'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
+
+        //Kurangi Kuota dan Buat History Quota
+        foreach ($trade_permit->tradeSpecies as $species){
+            $quota_species=SpeciesQuota::where([['species_id', '=', $species->id], ['year', '=', date('Y')]])->first();
+            $kuota_akhir = $quota_species->quota_amount - $species->pivot->total_exported;
+
+            $quota_species->update([
+                'quota_amount' => $kuota_akhir
+            ]);
+
+            HistoryQuota::create([
+                'notes'             => 'Penerbitan Surat Izin, Kuota Species dikurangi total ekspor sejumlah '.$species->pivot->total_exported,
+                'total_quota'       => $kuota_akhir,
+                'species_quota_id'  => $quota_species->id,
+                'created_by'        => $request->user()->id,
+            ]);
+        }
 
         return redirect()->route('admin.verificationRen.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }

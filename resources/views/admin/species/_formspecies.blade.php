@@ -1,6 +1,21 @@
 <div class="form-group">
     <h3>Form Species</h3>
 </div>
+
+<div class="form-group">
+    <label class="control-label">HS Code</label>
+    <div class="col-sm-14">
+        <input type="text" name="hs_code" class="form-control" value="{{ old('hs_code', array_get($species, 'hs_code')) }}" required>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label">SP Code</label>
+    <div class="col-sm-14">
+        <input type="text" name="sp_code" class="form-control" value="{{ old('sp_code', array_get($species, 'sp_code')) }}" required>
+    </div>
+</div>
+
 <div class="form-group">
     <label class="control-label">Nama Ilmiah</label>
     <div class="col-sm-14">
@@ -36,9 +51,22 @@
     <label class="control-label">Appendix</label>
     <div class="col-sm-14">
         <select name="appendix_source_id" id="appendix_source_id" class="form-control select2">
-            <option value="">--Pilih Appendix Source--</option>
+            <option value="">--Pilih Appendix--</option>
             @foreach($appendix as $key => $append)
                 <option value="{{ $key }}" {{ $key == old('appendix_source_id', array_get($species, 'appendix_source_id')) ? 'selected' : '' }}>{{ $append }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+
+<div class="form-group" id="showSourceAppendix" style="display:{{'1' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : 'none' }};">
+    <label class="control-label">Sumber Appendix</label>
+    <div class="col-sm-14">
+        <select name="source_id" id="source_id" class="form-control select2">
+            <option value="">--Pilih Appendix Source--</option>
+            @foreach($sources as $key => $source)
+                <option value="{{ $key }}" {{ $key == old('source_id', array_get($species, 'source_id')) ? 'selected' : '' }}>{{ $source }}</option>
             @endforeach
         </select>
     </div>
@@ -69,8 +97,22 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Nominal</label>
+    <label class="control-label">Satuan</label>
     <div class="col-sm-14">
-        <input id="nominal" name="nominal" type="text" class="form-control input-mask" data-mask="000.000.000,00" placeholder="eg: 000.000,00" maxlength="9" value="{{ old('nominal', array_get($species, 'nominal')) }}>
+        <select name="unit_id" id="unit_id" class="form-control select2" required>
+            <option value="">--Pilih Unit--</option>
+            @foreach($units as $key => $unit_description)
+                <option value="{{ $key }}" {{ $key == old('unit_id', array_get($species, 'unit_id')) ? 'selected' : '' }}>{{ $unit_description }}</option>
+            @endforeach
+        </select>
     </div>
 </div>
+
+
+<div class="form-group">
+    <label class="control-label">Nominal</label>
+    <div class="col-sm-14">
+        <input id="nominal" name="nominal" type="text" class="form-control input-mask" data-mask="000.000.000" placeholder="eg: 000.000,00" maxlength="9" value="{{ old('nominal', array_get($species, 'nominal')) }}>
+    </div>
+</div>
+

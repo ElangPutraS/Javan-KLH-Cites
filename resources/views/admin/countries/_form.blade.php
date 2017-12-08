@@ -1,8 +1,4 @@
 <div class="form-group">
-    <h3>Data Negara</h3>
-</div>
-
-<div class="form-group">
     <label class="control-label">Kode Negara</label>
     <div class="col-sm-14">
             <input type="text" name="country_code" class="form-control" value="{{ old('country_code', array_get($country, 'country_code')) }}">

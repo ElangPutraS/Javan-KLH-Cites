@@ -9,7 +9,6 @@ use App\Pnbp;
 use App\TradePermit;
 use App\TradePermitStatus;
 use App\HistoryPayment;
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -130,6 +129,7 @@ class PnbpController extends Controller
             $notes='Pembayaran Pembaharuan Permohonan Blanko';
         }
 
+        //History Payment
         $history = new HistoryPayment([
             'notes' => $notes,
             'total_payment' => $request->get('pnbp_amount'),

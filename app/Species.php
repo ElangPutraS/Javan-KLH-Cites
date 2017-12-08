@@ -22,6 +22,10 @@ class Species extends Model
         'species_sex_id',
         'species_category_id',
         'nominal',
+        'hs_code',
+        'sp_code',
+        'unit_id',
+        'source_id',
     ];
 
     public function speciesQuota(){

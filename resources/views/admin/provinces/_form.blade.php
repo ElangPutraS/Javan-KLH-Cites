@@ -1,8 +1,4 @@
 <div class="form-group">
-    <h3>Data Provinsi</h3>
-</div>
-
-<div class="form-group">
     <label class="control-label">Pilih negara</label>
         <div class="col-sm-4">
             <select name="country_id" id="country_id" class="form-control select2" onchange="getState(this)">

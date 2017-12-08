@@ -17,7 +17,8 @@ use PDF;
 
 class SubmissionController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $trade_permits = TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
@@ -39,8 +40,8 @@ class SubmissionController extends Controller
         return view('pelakuusaha.submission.detail', compact('user', 'trade_permit'));
     }
 
-    public function create(Request $request){
-
+    public function create(Request $request)
+    {
         $user           = $request->user();
 
         $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
@@ -48,10 +49,13 @@ class SubmissionController extends Controller
         $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
         $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
-        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types'));
+        $jumlah_tradePermit = TradePermit::where([['company_id', $request->user()->company->id], ['date_submission', date('Y-m-d')]])->count();
+
+        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'jumlah_tradePermit'));
     }
 
-    public function store(SubmissionDirectRequest $request){
+    public function store(SubmissionDirectRequest $request)
+    {
         //isi trade permit
         $trade_permit = new TradePermit([
             'trade_permit_code'  => 'cek',
@@ -128,7 +132,8 @@ class SubmissionController extends Controller
         return redirect()->route('user.submission.index')->with('success', 'Data berhasil dibuat.');
     }
 
-    public function create_kode($id){
+    public function create_kode($id)
+    {
         $kode = $id;
 
         $bulan = date('m');

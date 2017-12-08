@@ -37,7 +37,8 @@
                                     <td>{{$quot->created_at->toFormattedDateString()}}</td>
                                     <td>{{$quot->updated_at->toFormattedDateString()}}</td>
                                     <td>
-                                        <a href="{{route('admin.species.editquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                        <a href="{{route('admin.species.plusquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-plus zmdi-hc-fw"></i></a>
+                                        <a href="{{route('admin.species.minusquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}" class="btn btn-sm btn-warning"><i class="zmdi zmdi-minus zmdi-hc-fw"></i></a>
                                         <a style="color:white;" onclick="deleteQuota(this)" data-id="{{$quot->id}}" class="btn btn-sm btn-danger"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                     </td>
                                 </tr>
