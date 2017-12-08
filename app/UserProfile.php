@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserProfile extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'name',
         'place_of_birth',
@@ -28,28 +30,34 @@ class UserProfile extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class)
+            ->withTrashed();
     }
 
     public function province()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Province::class)
+            ->withTrashed();
     }
 
     public function city()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class)
+            ->withTrashed();
     }
 
     public function typeIdentify()
     {
         return $this->belongsToMany(TypeIdentify::class, 'user_type_identify')
             ->withPivot('user_type_identify_number')
-            ->using(UserTypeIdentify::class);
+            ->using(UserTypeIdentify::class)
+            ->withTrashed();
     }
 
     public function company()
     {
-        return $this->hasOne(Company::class)->withDefault();
+        return $this->hasOne(Company::class)
+            ->withDefault()
+            ->withTrashed();
     }
 }

@@ -14,7 +14,7 @@
 Route::get('/', function () {
     $news = \App\News::orderBy('created_at', 'desc')->limit(3)->get();
 
-    return view('welcome', compact('news'));
+    return view('welcome2', compact('news'));
 });
 
 Auth::routes();
@@ -107,6 +107,13 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('purposeType', 'PurposeTypeController', ['as' => 'admin']);
     Route::resource('typeIdentify', 'TypeIdentifyController', ['as' => 'admin']);
     Route::resource('speciesSex', 'SpeciesSexController', ['as' => 'admin']);
+
+    Route::get('user','UserRoleController@index')->name('superadmin.index');
+    Route::get('user/{id}/delete','UserRoleController@destroy')->name('superadmin.deleteUser');
+    Route::get('user/{id}/restore','UserRoleController@restore')->name('superadmin.restoreUser');
+    Route::get('user/{id}/edit','UserRoleController@edit')->name('superadmin.editUser');
+    Route::post('user/{id}/edit','UserRoleController@update')->name('superadmin.updateUser');
+
 
 
 });

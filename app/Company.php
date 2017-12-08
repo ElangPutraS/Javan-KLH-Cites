@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
     protected $table = "companies";
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'company_name',
@@ -27,12 +32,14 @@ class Company extends Model
 
     public function userProfile()
     {
-        return $this->belongsTo(UserProfile::class);
+        return $this->belongsTo(UserProfile::class)
+            ->withTrashed();
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)
+            ->withTrashed();
     }
 
     public function companyDocuments()
@@ -44,17 +51,20 @@ class Company extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class)
+            ->withTrashed();
     }
 
     public function province()
     {
-        return $this->belongsTo(Province::class);
+        return $this->belongsTo(Province::class)
+            ->withTrashed();
     }
 
     public function city()
     {
-        return $this->belongsTo(City::class);
+        return $this->belongsTo(City::class)
+            ->withTrashed();
     }
 
     public function tradePermits(){

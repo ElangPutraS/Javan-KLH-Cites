@@ -3,10 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Species extends Model
 {
     protected $table = "species";
+
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'species_scientific_name',
@@ -17,6 +22,10 @@ class Species extends Model
         'species_sex_id',
         'species_category_id',
         'nominal',
+        'hs_code',
+        'sp_code',
+        'unit_id',
+        'source_id',
     ];
 
     public function speciesQuota(){
@@ -28,16 +37,19 @@ class Species extends Model
     }
 
     public function speciesSex(){
-        return $this->belongsTo(SpeciesSex::class);
+        return $this->belongsTo(SpeciesSex::class)
+            ->withTrashed();
     }
 
     public function tradeSpecies()
     {
         return $this->belongsToMany(TradePermit::class, 'trade_permit_detail')
-            ->withPivot('total_exported');
+            ->withPivot('total_exported')
+            ->withTrashed();
     }
 
     public function speciesCategory(){
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class)
+            ->withTrashed();
     }
 }

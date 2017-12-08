@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class TradePermit extends Model
 {
     protected $table = "trade_permit";
@@ -40,7 +41,8 @@ class TradePermit extends Model
     }
 
     public function purposeType(){
-        return $this->belongsTo(PurposeType::class);
+        return $this->belongsTo(PurposeType::class)
+            ->withTrashed();
     }
 
     public function tradeStatus(){
@@ -50,19 +52,23 @@ class TradePermit extends Model
     public function tradeSpecies()
     {
         return $this->belongsToMany(Species::class, 'trade_permit_detail')
-            ->withPivot('total_exported');
+            ->withPivot('total_exported')
+            ->withTrashed();
     }
 
     public function portExpor(){
-        return $this->belongsTo(Ports::class, 'port_exportation', 'id');
+        return $this->belongsTo(Ports::class, 'port_exportation', 'id')
+            ->withTrashed();
     }
 
     public function portDest(){
-        return $this->belongsTo(Ports::class, 'port_destination', 'id');
+        return $this->belongsTo(Ports::class, 'port_destination', 'id')
+            ->withTrashed();
     }
 
     public function company(){
-        return $this->belongsTo(Company::class);
+        return $this->belongsTo(Company::class)
+            ->withTrashed();
     }
 
     public function pnbp(){

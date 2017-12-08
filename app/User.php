@@ -4,11 +4,14 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
 
+    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
@@ -29,7 +32,8 @@ class User extends Authenticatable
 
     public function userProfile()
     {
-        return $this->hasOne(UserProfile::class)->withDefault();
+        return $this->hasOne(UserProfile::class)->withDefault()
+            ->withTrashed();
     }
 
     public function roles()
@@ -39,7 +43,8 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $this->hasOne(Company::class);
+        return $this->hasOne(Company::class)
+            ->withTrashed();
     }
 
     public function assignRole($role)

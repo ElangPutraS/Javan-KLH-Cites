@@ -82,7 +82,19 @@ class SubmissionController extends Controller
         $trade_permit->save();
 
         $log=LogTradePermit::create([
-            'log_description'=>$status->status_name,
+            'log_description'           => $status->status_name,
+            'trade_permit_code'         => $trade_permit->trade_permit_code,
+            'consignee'                 => $request->get('consignee'),
+            'appendix_type'             => $request->get('appendix_type'),
+            'date_submission'           => date('Y-m-d'),
+            'period'                    => 6,
+            'port_exportation'          => $request->get('port_exportation'),
+            'port_destination'          => $request->get('port_destination'),
+            'trading_type_id'           => $request->get('trading_type_id'),
+            'purpose_type_id'           => $request->get('purpose_type_id'),
+            'company_id'                => $trade_permit->company_id,
+            'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
+            'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
 
