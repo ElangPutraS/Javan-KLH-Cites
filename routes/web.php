@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome2', compact('news'));
 });
 
+Route::get('/news/{id}', function ($id) {
+    $news = \App\News::findOrFail($id);
+    $newsNext = \App\News::where('created_at', '>', $news->created_at)->orderBy('created_at', 'asc')->first();
+    $newsPrev = \App\News::where('created_at', '<', $news->created_at)->orderBy('created_at', 'desc')->first();
+
+    return view('news-view', compact('news', 'newsNext', 'newsPrev'));
+});
+
 Auth::routes();
 
 //PROFILE
