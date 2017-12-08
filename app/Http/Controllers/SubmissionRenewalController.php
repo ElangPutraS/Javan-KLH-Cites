@@ -45,17 +45,28 @@ class SubmissionRenewalController extends Controller
         $valid_start = $trade_permit->valid_until;
         $valid_until = Carbon::parse($valid_start)->addMonth($request->get('period'))->format('Y-m-d');
 
-        $trade_permit->update([
-            'period' => $request->get('period'),
-            'consignee' => $request->get('consignee'),
-            'port_exportation' => $request->get('port_exportation'),
-            'port_destination' => $request->get('port_destination'),
-            'valid_start' => $valid_start,
-            'valid_until' => $valid_until,
-            'valid_renewal' => $trade_permit->valid_renewal+1,
-            'purpose_type_id' => $request->get('purpose_type_id'),
-            'permit_type' => '2'
-        ]);
+        if ($request->is_renewal == 1)
+        {
+            $valid_start = $trade_permit->valid_until;
+            $valid_until = Carbon::parse($valid_start)->addMonth($request->get('period'))->format('Y-m-d');
+            $trade_permit->update([
+                'period' => $request->get('period'),
+                'valid_start' => $valid_start,
+                'valid_until' => $valid_until,
+                'valid_renewal' => $trade_permit->valid_renewal+1,
+            ]);
+        }else
+        {
+            $trade_permit->update([
+                'consignee' => $request->get('consignee'),
+                'port_exportation' => $request->get('port_exportation'),
+                'port_destination' => $request->get('port_destination'),
+                'valid_renewal' => $trade_permit->valid_renewal+1,
+                'purpose_type_id' => $request->get('purpose_type_id'),
+                'permit_type' => '2'
+            ]);
+        }
+
 
         if($request->document_trade_permit != ''){
 
