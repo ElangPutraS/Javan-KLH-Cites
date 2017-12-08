@@ -12,4 +12,9 @@ class Source extends Model
         'source_code',
         'source_description',
     ];
+
+    public function sourceSpecies(){
+        return $this->hasMany(Source::class);
+    }
+
 }

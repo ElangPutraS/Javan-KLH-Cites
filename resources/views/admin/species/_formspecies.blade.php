@@ -50,7 +50,7 @@
 <div class="form-group" id="showAppendix" style="display:{{'1' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : 'none' }};">
     <label class="control-label">Appendix</label>
     <div class="col-sm-14">
-        <select name="appendix_source_id" id="appendix_source_id" class="form-control select2">
+        <select name="appendix_source_id" id="appendix_source_id" class="form-control select2"  @if($species!==NULL) @if($species->is_appendix===1) required @endif @endif>
             <option value="">--Pilih Appendix--</option>
             @foreach($appendix as $key => $append)
                 <option value="{{ $key }}" {{ $key == old('appendix_source_id', array_get($species, 'appendix_source_id')) ? 'selected' : '' }}>{{ $append }}</option>
@@ -63,7 +63,7 @@
 <div class="form-group" id="showSourceAppendix" style="display:{{'1' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : 'none' }};">
     <label class="control-label">Sumber Appendix</label>
     <div class="col-sm-14">
-        <select name="source_id" id="source_id" class="form-control select2">
+        <select name="source_id" id="source_id" class="form-control select2" @if($species!==NULL) @if($species->is_appendix===1) required @endif @endif>
             <option value="">--Pilih Appendix Source--</option>
             @foreach($sources as $key => $source)
                 <option value="{{ $key }}" {{ $key == old('source_id', array_get($species, 'source_id')) ? 'selected' : '' }}>{{ $source }}</option>
@@ -112,7 +112,7 @@
 <div class="form-group">
     <label class="control-label">Nominal</label>
     <div class="col-sm-14">
-        <input id="nominal" name="nominal" type="text" class="form-control input-mask" data-mask="000.000.000" placeholder="eg: 000.000,00" maxlength="9" value="{{ old('nominal', array_get($species, 'nominal')) }}>
+        <input id="nominal" name="nominal" type="text" class="form-control input-mask" data-mask="000.000.000" placeholder="eg: 000.000,00" maxlength="9" value="{{ old('nominal', array_get($species, 'nominal')) }}">
     </div>
 </div>
 

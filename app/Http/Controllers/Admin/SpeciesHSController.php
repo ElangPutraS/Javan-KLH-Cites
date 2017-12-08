@@ -27,7 +27,7 @@ class SpeciesHSController extends Controller
     	$appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
     	$categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
-        $sources = Source::orderBy('source_code', 'asc')->pluck('source_code', 'id');
+        $sources = Source::orderBy('source_description', 'asc')->pluck('source_description', 'id');
         $units = Unit::orderBy('unit_description', 'asc')->pluck('unit_description', 'id');
     	return view('admin.species.createspecies', compact('appendix', 'species_sex', 'categories','sources','units'));
     }
@@ -145,6 +145,20 @@ class SpeciesHSController extends Controller
         $quota->delete();
 
         return redirect()->route('admin.species.showquota', ['species_id' => $species_id])->with('success', 'Data berhasil dihapus.');
+    }
+    public function detail(Request $request, $id)
+    {
+        $user           = $request->user();
+
+        $species=Species::findOrFail($id);
+        $appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
+        $species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
+        $categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
+        $sources = Source::orderBy('source_code', 'asc')->pluck('source_code', 'id');
+        $units = Unit::orderBy('unit_description', 'asc')->pluck('unit_description', 'id');
+        return view('admin.species.detail', compact('species', 'appendix', 'species_sex','categories','sources','units','user'));
+
+
     }
 
 }

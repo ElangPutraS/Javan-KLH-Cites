@@ -72,6 +72,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('species/{species_id}/edit/{id}', 'SpeciesHSController@editQuota')->name('admin.species.editquota');
     Route::post('species/{species_id}/edit/{id}', 'SpeciesHSController@updateQuota')->name('admin.species.updatequota');
     Route::get('species/{species_id}/delete/{id}', 'SpeciesHSController@destroyQuota')->name('admin.species.deletequota');
+    Route::get('species/{id}/detail', 'SpeciesHSController@detail')->name('admin.species.detail');
 
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
