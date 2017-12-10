@@ -7,6 +7,8 @@ use App\User;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\VerificationCompany;
+use App\Notifications\VerificationCompanyReject;
 
 class UserVerificationController extends Controller
 {
@@ -79,6 +81,11 @@ class UserVerificationController extends Controller
             'company_status' => 1
         ]);
 
+
+        $company->user->notify(new VerificationCompany());
+
+
+
         return redirect()->route('admin.verification.index')->with('success', 'Data berhasil diverifikasi.');
     }
 
@@ -100,6 +107,10 @@ class UserVerificationController extends Controller
             'company_status' => 2,
             'reject_reason' => $request->alasan,
         ]);
+
+        $alasan = $request->alasan;
+
+        $company->user->notify(new VerificationCompanyReject($alasan));
 
         return $company;
     }
