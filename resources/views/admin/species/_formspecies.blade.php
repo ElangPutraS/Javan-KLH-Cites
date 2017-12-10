@@ -1,8 +1,4 @@
 <div class="form-group">
-    <h3>Form Species</h3>
-</div>
-
-<div class="form-group">
     <label class="control-label">HS Code</label>
     <div class="col-sm-14">
         <input type="text" name="hs_code" class="form-control" value="{{ old('hs_code', array_get($species, 'hs_code')) }}" required>

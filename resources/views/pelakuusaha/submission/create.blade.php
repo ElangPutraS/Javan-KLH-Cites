@@ -22,7 +22,7 @@
                                 echo '
                                     <div class="alert alert-danger" role="alert">
                                         <h4 class="alert-heading">Tidak Diizinkan Mengajukan Permohonan</h4>
-                                        <p>Waktu pengajuan tidak sesuai, silahkan mengajukan permohonan pada awal tahun atau mengajukan permohonan bertingkat.</p>
+                                        <p>Waktu pengajuan tidak sesuai, silahkan mengajukan permohonan pada awal tahun atau mengajukan permohonan bertahap.</p>
                                     </div>
                                 ';
                             }
