@@ -137,17 +137,17 @@
                             <li @if(Request::segment(2)=='purposeType') class="navigation__active" @endif><a href="{{ route('admin.purposeType.index') }}"><i class="zmdi zmdi-local-convenience-store zmdi-hc-fw"></i> Kelola Jenis Kegiatan</a></li>
                             <li @if(Request::segment(2)=='typeIdentify') class="navigation__active" @endif><a href="{{ route('admin.typeIdentify.index') }}"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i> Kelola Tipe Identitas </a></li>
                             <li @if(Request::segment(2)=='category') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
-                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Species</a></li>
-                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Appendiks</a></li>
-                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Sumber Appendiks</a></li>
-                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Satuan Species</a></li>
+                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Spesies</a></li>
+                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-layers zmdi-hc-fw"></i> Appendiks</a></li>
+                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-fire zmdi-hc-fw"></i> Sumber Appendiks</a></li>
+                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-collection-item zmdi-hc-fw"></i> Satuan Spesies</a></li>
                         </ul>
                     </li>
 
-                    <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Laporan</a>
+                    <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-book zmdi-hc-fw"></i>Laporan</a>
                         <ul>
-                        <li @if(Request::segment(2)=='reportPnbp') class="navigation__active" @endif><a href="{{ route('admin.report.pnbp') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Laporan PNBP</a></li>
-                        <li @if(Request::segment(2)=='reportSatsln') class="navigation__active" @endif><a href="{{ route('admin.report.satsln') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Laporan PNBP</a></li>
+                        <li @if(Request::segment(2)=='reportPnbp') class="navigation__active" @endif><a href="{{ route('admin.report.pnbp') }}"><i class="zmdi zmdi-chart zmdi-hc-fw"></i> Laporan PNBP</a></li>
+                        <li @if(Request::segment(2)=='reportSatsln') class="navigation__active" @endif><a href="{{ route('admin.report.satsln') }}"><i class="zmdi zmdi-chart zmdi-hc-fw"></i> Laporan PNBP</a></li>
                         </ul>
                     </li>
 
@@ -167,10 +167,10 @@
                             <li @if(Request::segment(2)=='purposeType') class="navigation__active" @endif><a href="{{ route('admin.purposeType.index') }}"><i class="zmdi zmdi-local-convenience-store zmdi-hc-fw"></i> Kelola Jenis Kegiatan</a></li>
                             <li @if(Request::segment(2)=='typeIdentify') class="navigation__active" @endif><a href="{{ route('admin.typeIdentify.index') }}"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i> Kelola Tipe Identitas </a></li>
                             <li @if(Request::segment(2)=='category') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
-                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Species</a></li>
-                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Appendiks</a></li>
-                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Sumber Appendiks</a></li>
-                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Satuan Species</a></li>
+                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Spesies</a></li>
+                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-layers zmdi-hc-fw"></i> Appendiks</a></li>
+                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-fire zmdi-hc-fw"></i> Sumber Appendiks</a></li>
+                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-collection-item zmdi-hc-fw"></i> Satuan Spesies</a></li>
                         </ul>
                     </li>
                     <li @if(Request::segment(2)=='admin') class="navigation__active" @endif><a href="{{ route('superadmin.index') }}"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Kelola User</a></li>
