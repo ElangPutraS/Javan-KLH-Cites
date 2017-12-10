@@ -148,13 +148,13 @@
                                 <td>
                                     @if($trade_permit->permit_type == '1')
                                         @if($trade_permit->period < 6)
-                                            Permohonan SATS-LN Bertingkat
+                                            Permohonan SATS-LN Bertahap
                                         @else
                                             Permohonan SATS-LN Langsung
                                         @endif
                                     @elseif($trade_permit->permit_type == '2')
                                         @if($trade_permit->period < 6)
-                                            Pembaharuan Permohonan SATS-LN Bertingkat
+                                            Pembaharuan Permohonan SATS-LN Bertahap
                                         @else
                                             Pembaharuan Permohonan SATS-LN Langsung
                                         @endif
