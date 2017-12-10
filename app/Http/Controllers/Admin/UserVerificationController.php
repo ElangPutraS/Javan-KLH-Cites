@@ -84,6 +84,8 @@ class UserVerificationController extends Controller
 
         $company->user->notify(new VerificationCompany());
 
+
+
         return redirect()->route('admin.verification.index')->with('success', 'Data berhasil diverifikasi.');
     }
 
