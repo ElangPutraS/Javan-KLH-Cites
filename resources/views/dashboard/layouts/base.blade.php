@@ -144,9 +144,10 @@
                         </ul>
                     </li>
 
-                    <li class="navigation__sub @if(Request::segment(2)=='verificationSub' || Request::segment(2)=='verificationRen') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Laporan</a>
+                    <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Laporan</a>
                         <ul>
                         <li @if(Request::segment(2)=='reportPnbp') class="navigation__active" @endif><a href="{{ route('admin.report.pnbp') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Laporan PNBP</a></li>
+                        <li @if(Request::segment(2)=='reportSatsln') class="navigation__active" @endif><a href="{{ route('admin.report.satsln') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Laporan PNBP</a></li>
                         </ul>
                     </li>
 
