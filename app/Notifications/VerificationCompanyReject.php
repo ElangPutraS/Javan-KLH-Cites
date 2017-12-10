@@ -43,7 +43,6 @@ class VerificationCompanyReject extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from('admin@example.com', 'Admin')
                     ->subject('Verifikasi Pelaku Usaha')
                     ->line('Status pembuatan akun ditolak dengan alasan : ')
                     ->line($this->data)

@@ -43,7 +43,6 @@ class SubmissionVerificationReject extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from('admin@example.com', 'Admin')
                     ->subject('Verifikasi Pembaharuan')
                     ->line('Status pembaharuan ditolak dengan alasan : ')
                     ->line($this->data)

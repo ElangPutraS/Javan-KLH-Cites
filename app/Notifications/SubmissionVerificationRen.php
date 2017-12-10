@@ -41,7 +41,6 @@ class SubmissionVerification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from('admin@example.com', 'Admin')
                     ->subject('Verifikasi Pembaharuan')
                     ->line('Status pembaharuan  telah diterima.')
                     ->line('Terima kasih telah melakukan pembaharuan, silahkan untuk segera melakukan pembayaran.');

@@ -41,7 +41,6 @@ class VerificationPayment extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->from('admin@example.com', 'Admin')
                     ->subject('Verifikasi Pembayaran')
                     ->line('Status pembayaran telah diterima.')
                     ->line('Terima kasih telah melakukan pembayaran, surat permohonan sudah dapat di download.');
