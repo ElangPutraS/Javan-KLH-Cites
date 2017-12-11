@@ -140,8 +140,8 @@
                     <td align="center"><?= $key + 1 ?></td>
                     <td><?= $value->species_scientific_name ?></td>
                     <td align="center"><?= $value->pivot->total_exported ?></td>
-                    <td align="right"></td>
-                    <td align="right"></td>
+                    <td align="right"><?= number_format($value->nominal) ?></td>
+                    <td align="right"><?= number_format(($value->nominal * $value->pivot->total_exported)) ?></td>
                 </tr>
                 <?php
                 $total_exported[] = $value->pivot->total_exported;
@@ -162,7 +162,7 @@
         <br>
         <p>An. Direktur Jenderal PHKA<br><br>Pejabat Penagih<br><br><br><br>..........................<br>NIP</p>
         <br><br><br><br>
-        <ul>
+        <ul id="tembusan">
             Tembusan:
             <li>Direktur Jenderal</li>
             <li>Sekretaris Jenderal Kementerian Perhutanan</li>

@@ -130,4 +130,8 @@ class ReportController extends Controller
         $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
     }
+
+    public function sendInsw($tradePermitId) {
+        
+    }
 }
