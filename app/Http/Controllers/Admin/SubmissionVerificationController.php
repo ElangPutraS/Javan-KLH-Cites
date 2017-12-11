@@ -244,6 +244,9 @@ class SubmissionVerificationController extends Controller
             'valid_renewal' => $trade_permit->valid_renewal+1,
         ]);
 
+        $alasan = $request->get('alasan');
+        $trade_permit->company->user->notify(new SubmissionVerificationRejectRen($alasan));
+
         return $trade_permit;
     }
 
