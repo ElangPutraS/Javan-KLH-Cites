@@ -177,9 +177,14 @@
                                         <button type="button" onclick="acceptTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-success waves-effect">Terima</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="button" onclick="rejectTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-danger waves-effect">Tolak</button>
                                     </center>
+                                @elseif($trade_permit->tradeStatus->status_code == '300')
+                                    <center>
+                                        <button type="button" onclick="acceptTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-success waves-effect">Terima</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button type="button" onclick="rejectTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-danger waves-effect">Tolak</button>
+                                    </center>
                                 @endif
                                 <br><br>
-                                <a href="{{ route('admin.verificationSub.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                                <a href="{{ route('admin.verificationRen.index') }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
                     </form>
@@ -215,12 +220,37 @@
             var id=a.getAttribute('data-id');
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menolak verifikasi permohonan pembaharuan SATSL-LN?',
+                text: 'Akan menolak verifikasi permohonan SATSL-LN?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href='{{url('admin/verificationRen/rej')}}/'+id;
+                swal({
+                    title: 'Tuliskan alasan penolakan verifikasi',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Submit',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false
+                }).then(function (alasan) {
+                    swal({
+                        type: 'success',
+                        title: 'Penolakan verifikasi berhasil!`',
+                        html: 'Alasan penolakan: ' + alasan
+                    });
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type:'post',
+                        url: window.baseUrl +'/admin/verification/rej/'+id,
+                        data: 'alasan='+alasan,
+                        success : function(cek){
+                            location.href='{{url('admin/verificationRen')}}';
+
+                        }
+                    });
+                });
             });
         }
     </script>

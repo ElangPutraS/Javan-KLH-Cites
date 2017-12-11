@@ -10,6 +10,9 @@
 		<link href="{{ asset('inspinia/css/style.css') }}" rel="stylesheet">
 		<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/klh-style.css') }}">
+		<script>
+            window.baseUrl = '{{ url('/') }}';
+		</script>
 	</head>
 	<body class="top-navigation">
 		<div id="wrapper" class="container">
@@ -110,7 +113,7 @@
 			</div>
 		</div>
 		<!-- Mainly scripts -->
-		<script type="text/javascript" src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>
+		<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
     	<script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
 		<script src="{{ asset('inspinia/js/jquery.metisMenu.js') }}"></script>
 		<script src="{{ asset('inspinia/js/jquery.slimscroll.min.js') }}"></script>

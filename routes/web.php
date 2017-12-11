@@ -31,6 +31,7 @@ Auth::routes();
 Route::get('/profile', 'UserController@index')->name('profile')->middleware(['auth']);
 Route::get('/profile/edit', 'UserController@edit')->name('profile.edit')->middleware(['auth']);
 Route::post('/profile/{id}/edit', 'UserController@update')->name('profile.update')->middleware(['auth']);
+Route::post('/profile/{id}/editAdmin', 'UserController@updateAdmin')->name('profile.update.admin')->middleware(['auth']);
 
 //JQUERY
 
@@ -46,23 +47,23 @@ Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(
     Route::get('/', 'HomeController@index')->name('dashboard.home.index');
 });
 
-Route::get('submission', 'SubmissionController@index')->name('user.submission.index');
-Route::get('submission/{id}/detail', 'SubmissionController@detail')->name('user.submission.detail');
-Route::get('submission/create', 'SubmissionController@create')->name('user.submission.create');
-Route::post('submission/store', 'SubmissionController@store')->name('user.submission.store');
+Route::get('submission', 'SubmissionController@index')->name('user.submission.index')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::get('submission/{id}/detail', 'SubmissionController@detail')->name('user.submission.detail')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::get('submission/create', 'SubmissionController@create')->name('user.submission.create')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::post('submission/store', 'SubmissionController@store')->name('user.submission.store')->middleware(['auth', 'can:access-pelaku-usaha']);
 
-Route::get('submission/gradually/create', 'SubmissionGraduallyController@create')->name('user.submissionGradually.create');
-Route::post('submission/gradually/create', 'SubmissionGraduallyController@store')->name('user.submissionGradually.store');
-Route::get('submission/gradually/{id}/print-satsln', 'SubmissionGraduallyController@printSatsln')->name('user.submissionGradually.printSatsln');
-Route::get('renewal','SubmissionRenewalController@index')->name('user.renewal.index');
-Route::get('renewalSubmission/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit');
-Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->name('user.renewal.update');
+Route::get('submission/gradually/create', 'SubmissionGraduallyController@create')->name('user.submissionGradually.create')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::post('submission/gradually/create', 'SubmissionGraduallyController@store')->name('user.submissionGradually.store')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::get('submission/gradually/{id}/print-satsln', 'SubmissionGraduallyController@printSatsln')->name('user.submissionGradually.printSatsln')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::get('renewal','SubmissionRenewalController@index')->name('user.renewal.index')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::get('renewalSubmission/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->name('user.renewal.update')->middleware(['auth', 'can:access-pelaku-usaha']);
 
-Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index');
-Route::get('invoice/{id}/detail', 'InvoiceController@show')->name('user.invoice.detail');
+Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::get('invoice/{id}/detail', 'InvoiceController@show')->name('user.invoice.detail')->middleware(['auth', 'can:access-pelaku-usaha']);
 
 
-Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admin,access-super-admin'])->group(function () {
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
     Route::get('verification/{id}', 'UserVerificationController@show')->name('admin.verification.show');
     Route::get('verification/acc/{id}', 'UserVerificationController@update');
@@ -81,12 +82,13 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('species/{species_id}/minus/{id}', 'SpeciesHSController@editQuota')->name('admin.species.minusquota');
     Route::post('species/{species_id}/edit/{id}', 'SpeciesHSController@updateQuota')->name('admin.species.updatequota');
     Route::get('species/{species_id}/delete/{id}', 'SpeciesHSController@destroyQuota')->name('admin.species.deletequota');
+    Route::get('species/{id}/detail', 'SpeciesHSController@detail')->name('admin.species.detail');
 
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
 
-    Route::get('category','CategoriesController@index')->name('admin.species.category');
-    Route::get('category/createCategory','CategoriesController@create')->name('admin.species.createCategory');
+    Route::get('category', 'CategoriesController@index')->name('admin.species.category');
+    Route::get('category/createCategory', 'CategoriesController@create')->name('admin.species.createCategory');
     Route::post('category/createCategory', 'CategoriesController@store')->name('admin.species.storeCategory');
     Route::get('category/{id}/editCategory', 'CategoriesController@edit')->name('admin.species.editCategory');
     Route::post('category/{id}/editCategory', 'CategoriesController@update')->name('admin.species.updateCategory');
@@ -97,19 +99,22 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
     Route::post('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
+
     Route::get('verificationRen', 'SubmissionVerificationController@indexRen')->name('admin.verificationRen.index');
     Route::get('verificationRen/{id}/detail', 'SubmissionVerificationController@showRen')->name('admin.verificationRen.show');
     Route::get('verificationRen/acc/{id}', 'SubmissionVerificationController@updateRen');
-    Route::get('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejectRen');
+    Route::post('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejectRen');
 
-    Route::get('pnbp','PnbpController@index')->name('admin.pnbp.index');
-    Route::get('pnbp/{id}/show','PnbpController@show')->name('admin.pnbp.create');
-    Route::post('pnbp/{id}/store','PnbpController@store')->name('admin.pnbp.store');
-    Route::get('pnbp/{id}/payment','PnbpController@showPayment')->name('admin.pnbp.payment');
-    Route::post('pnbp/{id}/storePayment','PnbpController@storePayment')->name('admin.pnbp.storePayment');
+    Route::post('verification/rej/{id}', 'SubmissionVerificationController@updateRejection');
+
+    Route::get('pnbp', 'PnbpController@index')->name('admin.pnbp.index');
+    Route::get('pnbp/{id}/show', 'PnbpController@show')->name('admin.pnbp.create');
+    Route::post('pnbp/{id}/store', 'PnbpController@store')->name('admin.pnbp.store');
+    Route::get('pnbp/{id}/payment', 'PnbpController@showPayment')->name('admin.pnbp.payment');
+    Route::post('pnbp/{id}/storePayment', 'PnbpController@storePayment')->name('admin.pnbp.storePayment');
 
     Route::resource('ports', 'PortController', ['as' => 'admin']);
-   	Route::resource('news', 'NewsController', ['as' => 'admin']);
+    Route::resource('news', 'NewsController', ['as' => 'admin']);
     Route::resource('countries', 'CountryController', ['as' => 'admin']);
     Route::resource('cities', 'CityController', ['as' => 'admin']);
     Route::resource('provinces', 'ProvinceController', ['as' => 'admin']);
@@ -117,11 +122,14 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::resource('typeIdentify', 'TypeIdentifyController', ['as' => 'admin']);
     Route::resource('speciesSex', 'SpeciesSexController', ['as' => 'admin']);
 
-    Route::get('user', 'UserRoleController@index')->name('superadmin.index');
-    Route::get('user/{id}/delete', 'UserRoleController@destroy')->name('superadmin.deleteUser');
-    Route::get('user/{id}/restore', 'UserRoleController@restore')->name('superadmin.restoreUser');
-    Route::get('user/{id}/edit', 'UserRoleController@edit')->name('superadmin.editUser');
-    Route::post('user/{id}/edit', 'UserRoleController@update')->name('superadmin.updateUser');
+
+    Route::get('user','UserRoleController@index')->name('superadmin.index');
+    Route::get('user/{id}/delete','UserRoleController@destroy')->name('superadmin.deleteUser');
+    Route::get('user/{id}/restore','UserRoleController@restore')->name('superadmin.restoreUser');
+    Route::get('user/{id}/edit','UserRoleController@edit')->name('superadmin.editUser');
+    Route::post('user/{id}/edit','UserRoleController@update')->name('superadmin.updateUser');
+    Route::get('user/create','UserRoleController@create')->name('superadmin.createUser');
+    Route::post('user/create','UserRoleController@store')->name('superadmin.storeUser');
 
     Route::get('appendix', 'AppendixSourceController@index')->name('admin.appendix.index');
 
@@ -129,8 +137,11 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
 
     Route::get('unit', 'UnitController@index')->name('admin.unit.index');
 
-    Route::get('unit','UnitController@index')->name('admin.unit.index');
-    Route::get('reportPnpb', 'ReportController@reportPnbp')->name('admin.report.pnbp');
-
+    Route::get('reportPnbp', 'ReportController@reportPnbp')->name('admin.report.pnbp');
+    Route::get('printReportPnbp/{m?}/{y?}', 'ReportController@printReportPnbp')->name('admin.report.printReportPnbp');
+    Route::get('reportSatsln', 'ReportController@reportSatsln')->name('admin.report.satsln');
+    Route::get('printReportSatsln/{m?}/{y?}', 'ReportController@printReportSatsln')->name('admin.report.printReportSatsln');
+    Route::get('printReportDetailSatsln/{id}', 'ReportController@printReportDetailSatsln')->name('admin.report.printReportDetailSatsln');
+    Route::get('portal-insw', 'ReportController@portalInsw')->name('admin.report.portalInsw');
+    Route::get('send-insw/{tradePermitId}', 'ReportController@sendInsw')->name('admin.report.sendInsw');
 });
-

@@ -40,7 +40,9 @@ class UserController extends Controller
 
     public function update(ProfileUpdateRequest $request, $id)
     {
-        $company = Company::findOrFail($id);
+        $user = User::findOrFail($id);
+        $company = $user->company();
+
         $company->update([
             'company_name' => $request->get('company_name'),
             'company_address' => $request->get('company_address'),
@@ -54,9 +56,9 @@ class UserController extends Controller
             'updated_by' => $request->user()->id,
         ]);
 
-        $user        = User::find($request->get('user_id'));
         $user->update([
             'name' => $request->get('name'),
+            'email' => $request->get('email'),
         ]);
 
         $user->userProfile()->update(
@@ -72,14 +74,13 @@ class UserController extends Controller
             ]
         );
 
+        $userProfile = $user->userProfile;
         if($request->old_type_identify != $request->type_identify){
-            $userProfile = $company->userProfile;
             $userProfile->typeIdentify()->detach($request->old_type_identify);
 
             $identity=TypeIdentify::find($request->type_identify);
             $userProfile->typeIdentify()->attach($identity, ['user_type_identify_number' => $request->identity_number]);
         }else{
-            $userProfile = $company->userProfile;
             $userProfile->typeIdentify()->updateExistingPivot($request->type_identify, ['user_type_identify_number' => $request->identity_number]);
         }
 
@@ -101,6 +102,19 @@ class UserController extends Controller
             }
         }
 
+
+        return redirect()->route('profile.edit')->with('success', 'Data berhasil diubah.');
+    }
+
+    public function updateAdmin(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $company = $user->company();
+
+        $user->update([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+        ]);
 
         return redirect()->route('profile.edit')->with('success', 'Data berhasil diubah.');
     }

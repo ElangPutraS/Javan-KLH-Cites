@@ -27,6 +27,7 @@ class TradePermit extends Model
         'updated_by',
         'valid_renewal',
         'permit_type',
+        'reject_reason',
     ];
 
     public function documentTypes()
