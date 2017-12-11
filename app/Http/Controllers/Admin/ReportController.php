@@ -9,6 +9,7 @@ use App\HistoryPayment;
 use App\LogTradePermit;
 use App\TradePermit;
 use DB;
+use Spatie\ArrayToXml\ArrayToXml;
 
 class ReportController extends Controller
 {
@@ -37,7 +38,8 @@ class ReportController extends Controller
         return view('admin.report.pnbp', compact('payments', 'trade_permits', 'tahun'));
     }
 
-    public function printReportPnbp($m = 'all', $y = 'all') {
+    public function printReportPnbp($m = 'all', $y = 'all')
+    {
         $year = $y;
         $month = $m;
 
@@ -64,7 +66,8 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
-    public function printReportDetailSatsln($id) {
+    public function printReportDetailSatsln($id)
+    {
         $tradePermit = TradePermit::with(['tradeSpecies'])->where('id', '=', $id)->first();
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
@@ -101,7 +104,8 @@ class ReportController extends Controller
         return view('admin.report.satsln', compact('trade_permits', 'tahun'));
     }
 
-    public function printReportSatsln($m = 'all', $y = 'all') {
+    public function printReportSatsln($m = 'all', $y = 'all')
+    {
         $year = $y;
         $month = $m;
 
@@ -131,7 +135,8 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
-    public function portalInsw() {
+    public function portalInsw()
+    {
         $tradePermit = TradePermit::whereHas('tradeStatus', function ($q) {
             $q->where('status_code', '600');
             $q->orWhere('status_code', '700');
@@ -140,10 +145,137 @@ class ReportController extends Controller
         return view('admin.report.portal-insw', compact('tradePermit'));
     }
 
-    public function sendInsw($tradePermitId) {
+    public function sendInsw($tradePermitId)
+    {
         $tradePermit = TradePermit::findOrFail($tradePermitId);
 
         //return response()->xml($tradePermit);
-        print_r($tradePermit->toArray());
+
+        $send = [
+            'header' => [
+                'noPengajuan' => 'qwerty',
+                'tglPengajuan' => 'qwerty',
+                'jnsPengajuan' => 'qwerty',
+                'kdPengajuan' => 'qwerty',
+                'jnsPerijinan' => 'qwerty',
+                'statusPerijinan' => 'qwerty',
+                'noPerijinan' => 'qwerty',
+                'tglPerijinan' => 'qwerty',
+                'tglAwalPerijinan' => 'qwerty',
+                'tglAkhirPerijinan' => 'qwerty',
+                'kdInstansi' => 'qwerty',
+                'kdKantor' => 'qwerty',
+                'kdDirektorat' => 'qwerty',
+                'remarks' => 'qwerty',
+                'narahubung' => [
+                    'nama' => 'qwerty',
+                    'jabatan' => 'qwerty',
+                    'identitas' => ''
+                ],
+                'kota' => ''
+            ],
+            'trader' => [
+                'tipe' => 'qwerty',
+                'jnsID' => 'qwerty',
+                'npwp' => 'qwerty',
+                'nama' => 'qwerty',
+                'alamat' => 'qwerty',
+                'kdpos' => 'qwerty',
+                'kota' => 'qwerty',
+                'propinsi' => 'qwerty',
+                'negara' => 'qwerty',
+                'telp' => 'qwerty',
+                'fax' => 'qwerty',
+                'email' => 'qwerty',
+                'narahubung' => [
+                    'nama' => 'qwerty',
+                    'jabatan' => 'qwerty',
+                    'alamat' => 'qwerty',
+                    'identitas' => 'qwerty',
+                    'telp' => 'qwerty',
+                    'email' => ''
+                ]
+            ],
+            'sla' => [
+                'kodeStatus' => 'qwerty',
+                'wkStatus' => 'qwerty',
+                'uraianStatus' => 'qwerty',
+                'standardSLA' => 'qwerty',
+                'idPetugas' => 'qwerty',
+                'nmPetugas' => ''
+            ],
+            'referensi' => [
+                'jnsDok' => 'qwerty',
+                'noDok' => 'qwerty',
+                'tglDok' => 'qwerty',
+                'kdDok' => 'qwerty',
+                'penerbit' => 'qwerty',
+                'negpenerbit' => ''
+            ],
+            'transportasi' => [
+                'moda' => [
+                    'jnsmoda' => 'qwerty',
+                    'angkutno' => 'qwerty',
+                    'angkutnama' => 'qwerty',
+                    'tgltiba' => ''
+                ],
+                'lokasi' => [
+                    'negmuat' => [
+                        'kdNegara' => ''
+                    ],
+                    'negbkr' => 'qwerty',
+                    'negTrans' => [
+                        'kdNegara' => ''
+                    ],
+                    'plbmuat' => 'qwerty',
+                    'plbbkr' => [
+                        'kdPelabuhan' => ''
+                    ],
+                    'plbtrans' => [
+                        'kdPelabuhan' => ''
+                    ],
+                    'tmptimbun' => ''
+                ],
+                'tmpinstalasi' => [
+                    'nama' => 'qwerty',
+                    'alamat' => ''
+                ],
+                'tujuan' => [
+                    'tujmasuk' => 'qwerty',
+                    'drhtuju' => 'qwerty',
+                    'negtuju' => ''
+                ],
+                'container' => [
+                    'nocont' => 'qwerty',
+                    'segel' => ''
+                ]
+            ],
+            'komoditas' => [
+                'serial' => 'qwerty',
+                'noHS' => 'qwerty',
+                'deskripsiHS' => 'qwerty',
+                'uraianBarang' => 'qwerty',
+                'nmLatin' => 'qwerty',
+                'sediaan' => 'qwerty',
+                'periode' => 'qwerty',
+                'flagperubahan' => 'qwerty',
+                'jmlSatuan' => 'qwerty',
+                'jnsSatuan' => 'qwerty',
+                'nobatch' => 'qwerty',
+                'noCAS' => 'qwerty',
+                'negTujuan' => [
+                    'kdNegara' => ''
+                ],
+                'pelAsal' => [
+                    'kdPelabuhan' => ''
+                ],
+                'pelBkr' => [
+                    'kdPelabuhan' => ''
+                ],
+                'netto' => ''
+            ]
+        ];
+
+        return $result = ArrayToXml::convert($send, 'persetujuan');
     }
 }

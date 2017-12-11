@@ -43,7 +43,7 @@
             </div>
         </div-->
 
-        @if (auth()->user()->roles->first()->id != 1)
+        @if (auth()->user()->roles->first()->id == 2)
 
         <div class="card">
             <!--div class="card-block">
