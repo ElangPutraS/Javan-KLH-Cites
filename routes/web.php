@@ -46,20 +46,20 @@ Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(
     Route::get('/', 'HomeController@index')->name('dashboard.home.index');
 });
 
-Route::get('submission', 'SubmissionController@index')->name('user.submission.index');
-Route::get('submission/{id}/detail', 'SubmissionController@detail')->name('user.submission.detail');
-Route::get('submission/create', 'SubmissionController@create')->name('user.submission.create');
-Route::post('submission/store', 'SubmissionController@store')->name('user.submission.store');
+Route::get('submission', 'SubmissionController@index')->name('user.submission.index')->middleware(['auth']);
+Route::get('submission/{id}/detail', 'SubmissionController@detail')->name('user.submission.detail')->middleware(['auth']);
+Route::get('submission/create', 'SubmissionController@create')->name('user.submission.create')->middleware(['auth']);
+Route::post('submission/store', 'SubmissionController@store')->name('user.submission.store')->middleware(['auth']);
 
-Route::get('submission/gradually/create', 'SubmissionGraduallyController@create')->name('user.submissionGradually.create');
-Route::post('submission/gradually/create', 'SubmissionGraduallyController@store')->name('user.submissionGradually.store');
-Route::get('submission/gradually/{id}/print-satsln', 'SubmissionGraduallyController@printSatsln')->name('user.submissionGradually.printSatsln');
-Route::get('renewal','SubmissionRenewalController@index')->name('user.renewal.index');
-Route::get('renewalSubmission/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit');
-Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->name('user.renewal.update');
+Route::get('submission/gradually/create', 'SubmissionGraduallyController@create')->name('user.submissionGradually.create')->middleware(['auth']);
+Route::post('submission/gradually/create', 'SubmissionGraduallyController@store')->name('user.submissionGradually.store')->middleware(['auth']);
+Route::get('submission/gradually/{id}/print-satsln', 'SubmissionGraduallyController@printSatsln')->name('user.submissionGradually.printSatsln')->middleware(['auth']);
+Route::get('renewal','SubmissionRenewalController@index')->name('user.renewal.index')->middleware(['auth']);
+Route::get('renewalSubmission/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit')->middleware(['auth']);
+Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->name('user.renewal.update')->middleware(['auth']);
 
-Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index');
-Route::get('invoice/{id}/detail', 'InvoiceController@show')->name('user.invoice.detail');
+Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index')->middleware(['auth']);
+Route::get('invoice/{id}/detail', 'InvoiceController@show')->name('user.invoice.detail')->middleware(['auth']);
 
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function () {
