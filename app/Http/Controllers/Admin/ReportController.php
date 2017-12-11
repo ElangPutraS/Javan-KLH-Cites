@@ -131,7 +131,19 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
+    public function portalInsw() {
+        $tradePermit = TradePermit::whereHas('tradeStatus', function ($q) {
+            $q->where('status_code', '600');
+            $q->orWhere('status_code', '700');
+        })->orderBy('updated_at', 'desc')->get();
+
+        return view('admin.report.portal-insw', compact('tradePermit'));
+    }
+
     public function sendInsw($tradePermitId) {
-        
+        $tradePermit = TradePermit::findOrFail($tradePermitId);
+
+        //return response()->xml($tradePermit);
+        print_r($tradePermit->toArray());
     }
 }
