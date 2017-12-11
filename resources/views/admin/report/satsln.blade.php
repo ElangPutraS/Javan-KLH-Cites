@@ -167,7 +167,9 @@
                                     </tr>
                                     <tr>
                                         <td colspan="9">
+                                            @if ($trade_permit->id)
                                             <a class="btn btn-success" href="{{ route('admin.report.printReportSatsln', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}" target="_blank"><i class="fa fa-print"></i> Cetak</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @empty
