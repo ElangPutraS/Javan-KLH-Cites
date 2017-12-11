@@ -82,6 +82,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admi
     Route::get('species/{species_id}/minus/{id}', 'SpeciesHSController@editQuota')->name('admin.species.minusquota');
     Route::post('species/{species_id}/edit/{id}', 'SpeciesHSController@updateQuota')->name('admin.species.updatequota');
     Route::get('species/{species_id}/delete/{id}', 'SpeciesHSController@destroyQuota')->name('admin.species.deletequota');
+    Route::get('species/{id}/detail', 'SpeciesHSController@detail')->name('admin.species.detail');
 
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
@@ -118,11 +119,14 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admi
     Route::resource('typeIdentify', 'TypeIdentifyController', ['as' => 'admin']);
     Route::resource('speciesSex', 'SpeciesSexController', ['as' => 'admin']);
 
-    Route::get('user', 'UserRoleController@index')->name('superadmin.index');
-    Route::get('user/{id}/delete', 'UserRoleController@destroy')->name('superadmin.deleteUser');
-    Route::get('user/{id}/restore', 'UserRoleController@restore')->name('superadmin.restoreUser');
-    Route::get('user/{id}/edit', 'UserRoleController@edit')->name('superadmin.editUser');
-    Route::post('user/{id}/edit', 'UserRoleController@update')->name('superadmin.updateUser');
+
+    Route::get('user','UserRoleController@index')->name('superadmin.index');
+    Route::get('user/{id}/delete','UserRoleController@destroy')->name('superadmin.deleteUser');
+    Route::get('user/{id}/restore','UserRoleController@restore')->name('superadmin.restoreUser');
+    Route::get('user/{id}/edit','UserRoleController@edit')->name('superadmin.editUser');
+    Route::post('user/{id}/edit','UserRoleController@update')->name('superadmin.updateUser');
+    Route::get('user/create','UserRoleController@create')->name('superadmin.createUser');
+    Route::post('user/create','UserRoleController@store')->name('superadmin.storeUser');
 
     Route::get('appendix', 'AppendixSourceController@index')->name('admin.appendix.index');
 

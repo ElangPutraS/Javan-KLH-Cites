@@ -103,12 +103,8 @@
 
             @can('access-admin')
                 <!-- Menu Admin -->
-                    <li class="navigation__sub @if(Request::segment(2)=='companies' || Request::segment(2)=='verification') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Pelaku Usaha</a>
-                        <ul>
-                            <li @if(Request::segment(2)=='companies') class="navigation__active" @endif><a href="{{ route('admin.companies.index') }}"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i> Kelola Pelaku Usaha</a></li>
-                            <li @if(Request::segment(2)=='verification') class="navigation__active" @endif><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-check-all zmdi-hc-fw"></i> Verifikasi Pelaku Usaha</a></li>
-                        </ul>
-                    </li>
+
+                    <li @if(Request::segment(2)=='verification') class="navigation__active" @endif><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-check-all zmdi-hc-fw"></i> Verifikasi Pelaku Usaha</a></li>
 
                     {{--<li @if(Request::segment(2)=='branch') class="navigation__active" @endif><a href=""><i class="zmdi zmdi-shield-check zmdi-hc-fw"></i> Cabang Pengelola Perizinan</a></li>--}}
 

@@ -30,6 +30,7 @@
                             <th>Kuota Tahun Ini</th>
                             <th>Kuota</th>
                             <th>Aksi</th>
+                            <th>Detail</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -65,6 +66,7 @@
                                     <a href="{{route('admin.species.editSpecies', ['id' => $spec->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
                                     <a onclick="deleteSpecies(this)" data-id="{{$spec->id}}" class="btn btn-sm btn-danger" style="color:white;"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                 </td>
+                                <td><a href="{{route('admin.species.detail', ['id'=> $spec->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
                             </tr>
                             @empty
                             <tr>

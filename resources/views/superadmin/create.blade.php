@@ -9,24 +9,21 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah Data Pelaku Usaha dan Perusahaan</h2>
+                    <h2 class="card-title">Tambah Data Pelaku Usaha dan Perusahaan</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
-
                     @include('includes.notifications')
 
-                    <form action="{{ route('superadmin.updateUser', ['id' => $company->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        {{ method_field('PUT') }}
-
+                    <form action="{{ route('superadmin.storeUser') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('superadmin._form', ['company' => $company])
+                        @include('superadmin._form', ['company' => null])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{ route('superadmin.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                                <button type="submit" class="btn btn-primary">Simpan Baru</button>
+                                <a href="{{ route('superadmin.index') }}" class="btn btn-default">Batal</a>
                             </div>
                         </div>
                     </form>
@@ -36,16 +33,18 @@
     </section>
 @endsection
 <?php
-$doc_type='';
-foreach ($document_type as $key=>$dt){
-    $doc_type.='<option value="'.$key.'">'.$dt.'</option>';
-}
+    $doc_type='';
+    foreach ($document_type as $key=>$dt){
+        $doc_type.='<option value="'.$key.'">'.$dt.'</option>';
+    }
 ?>
 @push('body.script')
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
     <script type="text/javascript">
         function initialize() {
-            var latlng = new google.maps.LatLng($('#company_latitude').val(),$('#company_longitude').val());
+            $('#company_latitude').val('-6.175392');
+            $('#company_longitude').val('106.827153');
+            var latlng = new google.maps.LatLng(-6.175392,106.827153);
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: latlng,
                 zoom: 13
@@ -72,6 +71,7 @@ foreach ($document_type as $key=>$dt){
             });
         }
         google.maps.event.addDomListener(window, 'load', initialize);
+
         function getState(a) {
             var country=$('#country_id').val();
             $.ajax({
@@ -137,7 +137,7 @@ foreach ($document_type as $key=>$dt){
                 }
             });
         }
-
+        
         function tambahForm(a) {
             var form='<div id="dynamic"><div class="form-group"><label class="control-label">Dokumen</label><div class="row">';
             form +='<div class="col-sm-10"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Choose Document Type--</option>';
@@ -148,21 +148,8 @@ foreach ($document_type as $key=>$dt){
         }
 
         function hapusForm(a) {
+            //alert('cek');
             a.closest('#dynamic').remove();
-        }
-
-        function deleteFile(a) {
-            var type_id=a.getAttribute('data-type-id');
-            var company_id=a.getAttribute('data-company-id');
-            var document_name=a.getAttribute('data-document-name');
-            $.ajax({
-                type: 'get',
-                url: '/deleteDoc/'+type_id+'/'+company_id+'/'+document_name,
-                success : function (data) {
-                    a.closest('#file_download').remove();
-                    //alert(data);
-                }
-            });
         }
     </script>
 @endpush
