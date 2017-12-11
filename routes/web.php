@@ -86,8 +86,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admi
     Route::resource('users', 'UserController', ['as' => 'admin']);
     Route::resource('companies', 'CompanyController', ['as' => 'admin']);
 
-    Route::get('category','CategoriesController@index')->name('admin.species.category');
-    Route::get('category/createCategory','CategoriesController@create')->name('admin.species.createCategory');
+    Route::get('category', 'CategoriesController@index')->name('admin.species.category');
+    Route::get('category/createCategory', 'CategoriesController@create')->name('admin.species.createCategory');
     Route::post('category/createCategory', 'CategoriesController@store')->name('admin.species.storeCategory');
     Route::get('category/{id}/editCategory', 'CategoriesController@edit')->name('admin.species.editCategory');
     Route::post('category/{id}/editCategory', 'CategoriesController@update')->name('admin.species.updateCategory');
@@ -103,14 +103,14 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admi
     Route::get('verificationRen/acc/{id}', 'SubmissionVerificationController@updateRen');
     Route::get('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejectRen');
 
-    Route::get('pnbp','PnbpController@index')->name('admin.pnbp.index');
-    Route::get('pnbp/{id}/show','PnbpController@show')->name('admin.pnbp.create');
-    Route::post('pnbp/{id}/store','PnbpController@store')->name('admin.pnbp.store');
-    Route::get('pnbp/{id}/payment','PnbpController@showPayment')->name('admin.pnbp.payment');
-    Route::post('pnbp/{id}/storePayment','PnbpController@storePayment')->name('admin.pnbp.storePayment');
+    Route::get('pnbp', 'PnbpController@index')->name('admin.pnbp.index');
+    Route::get('pnbp/{id}/show', 'PnbpController@show')->name('admin.pnbp.create');
+    Route::post('pnbp/{id}/store', 'PnbpController@store')->name('admin.pnbp.store');
+    Route::get('pnbp/{id}/payment', 'PnbpController@showPayment')->name('admin.pnbp.payment');
+    Route::post('pnbp/{id}/storePayment', 'PnbpController@storePayment')->name('admin.pnbp.storePayment');
 
     Route::resource('ports', 'PortController', ['as' => 'admin']);
-   	Route::resource('news', 'NewsController', ['as' => 'admin']);
+    Route::resource('news', 'NewsController', ['as' => 'admin']);
     Route::resource('countries', 'CountryController', ['as' => 'admin']);
     Route::resource('cities', 'CityController', ['as' => 'admin']);
     Route::resource('provinces', 'ProvinceController', ['as' => 'admin']);
@@ -130,11 +130,9 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admi
 
     Route::get('unit', 'UnitController@index')->name('admin.unit.index');
 
-    Route::get('unit','UnitController@index')->name('admin.unit.index');
-
-    Route::get('reportPnpb', 'ReportController@reportPnbp')->name('admin.report.pnbp');
-
+    Route::get('reportPnbp', 'ReportController@reportPnbp')->name('admin.report.pnbp');
+    Route::get('printReportPnbp/{m?}/{y?}', 'ReportController@printReportPnbp')->name('admin.report.printReportPnbp');
     Route::get('reportSatsln', 'ReportController@reportSatsln')->name('admin.report.satsln');
-
+    Route::get('printReportSatsln/{m?}/{y?}', 'ReportController@printReportSatsln')->name('admin.report.printReportSatsln');
+    Route::get('printReportDetailSatsln/{id}', 'ReportController@printReportDetailSatsln')->name('admin.report.printReportDetailSatsln');
 });
-

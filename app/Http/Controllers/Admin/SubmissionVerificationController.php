@@ -12,6 +12,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\SubmissionVerification;
+use App\Notifications\SubmissionVerificationRen;
+use App\Notifications\SubmissionVerificationReject;
+use App\Notifications\SubmissionVerificationRejectRen;
 
 class SubmissionVerificationController extends Controller
 {
@@ -95,6 +99,8 @@ class SubmissionVerificationController extends Controller
                 ]);
             }
 
+            $trade_permit->company->user->notify(new SubmissionVerification());
+
             return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverifikasi.');
         }else{
             return redirect()->route('admin.verificationSub.show', ['id' => $id])->with('warning', 'Permohonan gagal diverifikasi, kuota species yang dipilih tidak mencukupi.');
@@ -131,6 +137,9 @@ class SubmissionVerificationController extends Controller
             'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
+
+        $alasan = $request->get('alasan');
+        $trade_permit->company->user->notify(new SubmissionVerificationReject($alasan));
     }
 
     //Verifikasi Renewal
@@ -182,6 +191,8 @@ class SubmissionVerificationController extends Controller
         ]);
         $trade_permit->logTrade()->save($log);
 
+        $trade_permit->company->user->notify(new SubmissionVerificationRen());
+
         return redirect()->route('admin.verificationRen.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }
 
@@ -214,6 +225,9 @@ class SubmissionVerificationController extends Controller
             'created_by'                => $request->user()->id,
         ]);
         $trade_permit->logTrade()->save($log);
+
+        $alasan = $request->get('alasan');
+        $trade_permit->company->user->notify(new SubmissionVerificationRejectRen($alasan));
 
         return redirect()->route('admin.verificationSub.index')->with('success', 'Verifikasi permohonan pembaharuan berhasil ditolak.');
     }
