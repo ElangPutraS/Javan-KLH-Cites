@@ -3,12 +3,12 @@
 @section('content')
     <?php
     function limit_text($text, $limit) {
-      if (str_word_count($text, 0) > $limit) {
-          $words = str_word_count($text, 2);
-          $pos = array_keys($words);
-          $text = substr($text, 0, $pos[$limit]) . '...';
-      }
-      return $text;
+        if (str_word_count($text, 0) > $limit) {
+            $words = str_word_count($text, 2);
+            $pos = array_keys($words);
+            $text = substr($text, 0, $pos[$limit]) . '...';
+        }
+        return $text;
     }
     ?>
 
@@ -16,17 +16,17 @@
       <div class="carousel slide" id="carousel1">
         <div class="carousel-inner">
           <div class="item active">
-            <img alt="image" class="img-responsive" src="{{ asset('images/twilight-forest-wallpaperr.jpg') }}">
+            <img alt="image" class="img-responsive" src="{{ asset('images/twilight-forest-wallpaperrr.jpg') }}">
           </div>
           <div class="item">
-            <img alt="image" class="img-responsive" src="{{ asset('images/Forest-Wallpaperss.jpg') }}">
+            <img alt="image" class="img-responsive" src="{{ asset('images/Forest-Wallpapersss.jpg') }}">
           </div>
         </div>
         <a data-slide="prev" href="#carousel1" class="left carousel-control">
-        <span class="icon-prev"></span>
+          <span class="icon-prev"></span>
         </a>
         <a data-slide="next" href="#carousel1" class="right carousel-control">
-        <span class="icon-next"></span>
+          <span class="icon-next"></span>
         </a>
       </div>
     </div>
@@ -38,20 +38,19 @@
             <h3 class="panel-title"><i class="fa fa-list"></i> Informasi Terbaru</h3>
           </div>
           @forelse($news as $key => $value)
-          <div class="panel-body">
-            <div class="news-date">
-              {{ date('d', strtotime($value->created_at)) }}
-              <hr>
-              {{ date('M', strtotime($value->created_at)) }}
+            <div class="panel-body">
+              <h3 class="news-title">
+                {{ $value->title }}
+                <br>
+                <small>by {{ $value->user->name }} at {{ date('l, d F Y', strtotime($value->created_at)) }}</small>
+              </h3>
+              <p>{{ limit_text($value->content, 50) }}</p>
+              <p><a href="{{ url('news', $value->id) }}"><small>Read more...</small></a></p>
             </div>
-            <h3 class="news-title">{{ $value->title }}</h3>
-            <p>{{ limit_text($value->content, 50) }}</p>
-            <p><a>read more ></a></p>
-          </div>
           @empty
-          <div class="panel-body">
-            Tidak ada informasi terbaru.
-          </div>
+            <div class="panel-body">
+              Tidak ada informasi terbaru.
+            </div>
           @endforelse
         </div>
       </div>

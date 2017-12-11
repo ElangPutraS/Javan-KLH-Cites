@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Category;
+use App\HistoryQuota;
 use App\Source;
 use App\Species;
 use App\SpeciesQuota;
@@ -121,7 +122,7 @@ class SpeciesHSController extends Controller
         	]);
         $quota->save();
         $species->speciesQuota()->save($quota);
-        return redirect()->route('admin.species.editquota', ['species_id' => $species_id, 'id' => $quota->id])->with('success', 'Data berhasil dibuat.');
+        return redirect()->route('admin.species.index', ['species_id' => $species_id, 'id' => $quota->id])->with('success', 'Data berhasil dibuat.');
     }
 
     public function editQuota($species_id, $id){
@@ -132,11 +133,27 @@ class SpeciesHSController extends Controller
 
     public function updateQuota(SpeciesQuotaUpdateRequest $request, $species_id, $id){
         $quota=SpeciesQuota::find($id);
+
         $quota->update([
             'year' => $request->year,
             'quota_amount' => $request->quota_amount,
             ]);
-        return redirect()->route('admin.species.editquota', ['species_id' => $species_id, 'id' => $id])->with('success', 'Data berhasil diubah.');
+
+        $note='';
+        if($request->get('quota_plus') != ''){
+            $note='Penambahan kuota sebanyak '.+$request->get('quota_plus');
+        }else if($request->get('quota_min') != ''){
+            $note='Pengurangan kuota sebanyak '.+$request->get('quota_min');
+        }
+
+        HistoryQuota::create([
+            'notes'             => $note,
+            'total_quota'       => $quota->quota_amount,
+            'species_quota_id'  => $quota->id,
+            'created_by'        => $request->user()->id,
+        ]);
+
+        return redirect()->route('admin.species.showquota', ['species_id' => $species_id, 'id' => $id])->with('success', 'Data berhasil diubah.');
     }
 
     public function destroyQuota($species_id, $id)

@@ -67,7 +67,7 @@ class CountryController extends Controller
         $country->delete();
 
 
-        return redirect()->route('admin.countries.index')->with('Data berhasil dihapus.');
+        return redirect()->route('admin.countries.index')->with('success','Data berhasil dihapus.');
     }
 
    

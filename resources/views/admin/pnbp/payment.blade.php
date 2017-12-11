@@ -109,7 +109,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Nomor Transaksi</label>
                                     <div class="col-sm-14">
-                                        <input type="number" name="transaction_number" class="form-control" value="{{ old("transaction_number") }}" required>
+                                        <input type="text" name="transaction_number" class="form-control" value="{{ old("transaction_number") }}" required>
                                     </div>
                                 </div>
                             @endif
@@ -172,7 +172,7 @@
             var select = $('#payment_method').val();
             var form='';
             if(select == 'transfer'){
-                form += '<div class="form-group"><label class="control-label">Nomor Transaksi</label><div class="col-sm-14"><input type="number" name="transaction_number" class="form-control" value="{{ old("transaction_number") }}" required></div></div>';
+                form += '<div class="form-group"><label class="control-label">Nomor Transaksi</label><div class="col-sm-14"><input type="text" name="transaction_number" class="form-control" value="{{ old("transaction_number") }}" required></div></div>';
             }
             $('#formNumber').html(form);
         }

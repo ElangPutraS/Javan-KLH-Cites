@@ -9,9 +9,9 @@ use App\Pnbp;
 use App\TradePermit;
 use App\TradePermitStatus;
 use App\HistoryPayment;
-use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Notifications\VerificationPayment;
 
 class PnbpController extends Controller
 {
@@ -130,6 +130,7 @@ class PnbpController extends Controller
             $notes='Pembayaran Pembaharuan Permohonan Blanko';
         }
 
+        //History Payment
         $history = new HistoryPayment([
             'notes' => $notes,
             'total_payment' => $request->get('pnbp_amount'),
@@ -139,6 +140,8 @@ class PnbpController extends Controller
         $history->save();
 
         $pnbp->history()->save($history);
+
+        $trade_permit->company->user->notify(new VerificationPayment());
 
         return redirect()->route('admin.pnbp.index')->with('success', 'Pembayaran dengan kode PNBP : '.$pnbp->pnbp_code.' berhasil dibayarkan.');
 

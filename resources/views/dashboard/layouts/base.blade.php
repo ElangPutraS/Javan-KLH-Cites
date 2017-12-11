@@ -19,13 +19,13 @@
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
 
     <script>
-         window.baseUrl = '{{ url('/') }}';
+        window.baseUrl = '{{ url('/') }}';
     </script>
 
     <!-- Demo -->
     <link rel="stylesheet" href="{{ asset('template/demo/css/demo.css') }}">
 
-    
+
 
     @stack('head.stylesheet')
 </head>
@@ -85,21 +85,23 @@
             <ul class="navigation">
                 <li @if(Request::segment(1)=='dashboard'||Request::segment(2)=='dashboard') class="navigation__active" @endif><a href="{{ route('dashboard.home.index') }}"><i class="zmdi zmdi-home"></i> Beranda</a></li>
 
-                @can('access-pelaku-usaha')
-                <!-- Menu Pelaku Usaha -->
-                    <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATS-LN</a>
-                        <ul>
-                            <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
-                            <li @if(Request::segment(2)=='create') class="navigation__active" @endif><a href="{{ route('user.submission.create') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
-                            <li @if(Request::is('submission/gradually/create')) class="navigation__active" @endif><a href="{{ route('user.submissionGradually.create') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
-                        </ul>
-                    </li>
-                    <li @if(Request::segment(1)=='renewal') class="navigation__active" @endif><a href="{{ route('user.renewal.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATS-LN </a></li>
-                    
-                    <li @if(Request::segment(1)=='invoice') class="navigation__active" @endif><a href="{{ route('user.invoice.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Tagihan SATS-LN </a></li>
-                @endcan
+            @can('access-pelaku-usaha')
+                @if(auth()->user()->company->company_status >0)
+                    <!-- Menu Pelaku Usaha -->
+                        <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATS-LN</a>
+                            <ul>
+                                <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
+                                <li @if(Request::segment(2)=='create') class="navigation__active" @endif><a href="{{ route('user.submission.create') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
+                                <li @if(Request::is('submission/gradually/create')) class="navigation__active" @endif><a href="{{ route('user.submissionGradually.create') }}"><i class="zmdi zmdi-assignment zmdi-hc-fw"></i> Permohonan Bertahap</a></li>
+                            </ul>
+                        </li>
+                        <li @if(Request::segment(1)=='renewal') class="navigation__active" @endif><a href="{{ route('user.renewal.index') }}"><i class="zmdi zmdi-refresh-alt zmdi-hc-fw"></i> Pembaharuan SATS-LN </a></li>
 
-                @can('access-admin')
+                        <li @if(Request::segment(1)=='invoice') class="navigation__active" @endif><a href="{{ route('user.invoice.index') }}"><i class="zmdi zmdi-money zmdi-hc-fw"></i> Tagihan SATS-LN </a></li>
+                @endif
+            @endcan
+
+            @can('access-admin')
                 <!-- Menu Admin -->
 
                     <li @if(Request::segment(2)=='verification') class="navigation__active" @endif><a href="{{ route('admin.verification.index') }}"><i class="zmdi zmdi-check-all zmdi-hc-fw"></i> Verifikasi Pelaku Usaha</a></li>
@@ -110,8 +112,8 @@
 
                     <li class="navigation__sub @if(Request::segment(2)=='verificationSub' || Request::segment(2)=='verificationRen') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Verifikasi SATS-LN</a>
                         <ul>
-                        <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
-                        <li @if(Request::segment(2)=='verificationRen') class="navigation__active" @endif><a href="{{ route('admin.verificationRen.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Pembaharuan</a></li>
+                            <li @if(Request::segment(2)=='verificationSub') class="navigation__active" @endif><a href="{{ route('admin.verificationSub.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Permohonan</a></li>
+                            <li @if(Request::segment(2)=='verificationRen') class="navigation__active" @endif><a href="{{ route('admin.verificationRen.index') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Verifikasi Pembaharuan</a></li>
                         </ul>
                     </li>
 
@@ -120,7 +122,7 @@
                     <li @if(Request::segment(2)=='news') class="navigation__active" @endif><a href="{{ route('admin.news.index') }}"><i class="zmdi zmdi-tv-list zmdi-hc-fw"></i> Kelola Informasi</a></li>
 
                     <li class="navigation__sub
-                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category' || Request::segment(2)=='speciesSex')
+                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category' || Request::segment(2)=='speciesSex'|| Request::segment(2)=='appendix' || Request::segment(2)=='source' || Request::segment(2)=='unit')
                             navigation__sub--active navigation__sub--toggled
                         @endif"><a href=""><i class="zmdi zmdi-labels zmdi-hc-fw"></i>Kelola Data Master</a>
                         <ul>
@@ -132,15 +134,27 @@
                             <li @if(Request::segment(2)=='typeIdentify') class="navigation__active" @endif><a href="{{ route('admin.typeIdentify.index') }}"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i> Kelola Tipe Identitas </a></li>
                             <li @if(Request::segment(2)=='category') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
                             <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Species</a></li>
+                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Appendiks</a></li>
+                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Sumber  Appendiks</a></li>
+                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Satuan Species</a></li>
                         </ul>
                     </li>
 
+                    <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-book zmdi-hc-fw"></i>Laporan</a>
+                        <ul>
+                            <li @if(request()->segment(2) =='reportPnbp') class="navigation__active" @endif><a href="{{ route('admin.report.pnbp') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Laporan PNBP</a></li>
+                            <li @if(request()->segment(2) == 'reportSatsln') class="navigation__active" @endif><a href="{{ route('admin.report.satsln') }}"><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Laporan SATS-LN</a></li>
+                        </ul>
+                    </li>
+
+                    <li @if(Request::segment(2)=='news') class="navigation__active" @endif><a href="{{ route('admin.news.index') }}"><i class="zmdi zmdi-tv-list zmdi-hc-fw"></i> Kelola Informasi</a></li>
+
                 @endcan
 
-            @can('access-super-admin')
+                @can('access-super-admin')
                 <!-- Menu Super Admin -->
                     <li class="navigation__sub
-                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category')
+                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category' || Request::segment(2)=='speciesSex' || Request::segment(2)=='appendix' || Request::segment(2)=='source' || Request::segment(2)=='unit')
                             navigation__sub--active navigation__sub--toggled
                         @endif"><a href=""><i class="zmdi zmdi-labels zmdi-hc-fw"></i>Kelola Data Master</a>
                         <ul>
@@ -151,7 +165,10 @@
                             <li @if(Request::segment(2)=='purposeType') class="navigation__active" @endif><a href="{{ route('admin.purposeType.index') }}"><i class="zmdi zmdi-local-convenience-store zmdi-hc-fw"></i> Kelola Jenis Kegiatan</a></li>
                             <li @if(Request::segment(2)=='typeIdentify') class="navigation__active" @endif><a href="{{ route('admin.typeIdentify.index') }}"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i> Kelola Tipe Identitas </a></li>
                             <li @if(Request::segment(2)=='category') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
-                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Species</a></li>
+                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Spesies</a></li>
+                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-layers zmdi-hc-fw"></i> Appendiks</a></li>
+                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-fire zmdi-hc-fw"></i> Sumber Appendiks</a></li>
+                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-collection-item zmdi-hc-fw"></i> Satuan Spesies</a></li>
                         </ul>
                     </li>
                     <li @if(Request::segment(2)=='admin') class="navigation__active" @endif><a href="{{ route('superadmin.index') }}"><i class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Kelola User</a></li>
