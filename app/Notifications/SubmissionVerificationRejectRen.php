@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class SubmissionVerificationReject extends Notification
+class SubmissionVerificationRejectRen extends Notification
 {
     use Queueable;
 
