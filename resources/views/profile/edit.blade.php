@@ -15,9 +15,17 @@
                 <div class="card-block">
 
                     @include('includes.notifications')
+                        @can('access-pelaku-usaha')
+                            <form action="{{ route('profile.update', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        @endcan
 
-                    <form action="{{ route('profile.update', ['id' => $company->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        @can('access-admin')
+                            <form action="{{ route('profile.update.admin', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        @endcan
 
+                        @can('access-super-admin')
+                            <form action="{{ route('profile.update.admin', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        @endcan
                         {!! csrf_field() !!}
 
                         @include('profile._form', ['company' => $company])
