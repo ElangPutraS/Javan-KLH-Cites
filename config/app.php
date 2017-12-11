@@ -169,6 +169,7 @@ return [
          */
 
         Barryvdh\DomPDF\ServiceProvider::class,
+        XmlResponse\XmlResponseServiceProvider::class,
 
         /*
          * Application Service Providers...

@@ -142,4 +142,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admi
     Route::get('reportSatsln', 'ReportController@reportSatsln')->name('admin.report.satsln');
     Route::get('printReportSatsln/{m?}/{y?}', 'ReportController@printReportSatsln')->name('admin.report.printReportSatsln');
     Route::get('printReportDetailSatsln/{id}', 'ReportController@printReportDetailSatsln')->name('admin.report.printReportDetailSatsln');
+    Route::get('portal-insw', 'ReportController@portalInsw')->name('admin.report.portalInsw');
+    Route::get('send-insw/{tradePermitId}', 'ReportController@sendInsw')->name('admin.report.sendInsw');
 });
