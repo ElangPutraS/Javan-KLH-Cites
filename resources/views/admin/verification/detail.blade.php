@@ -69,7 +69,7 @@
                 </div>
             @endif
         </div>
-    </section>  
+    </section>
 @endsection
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
