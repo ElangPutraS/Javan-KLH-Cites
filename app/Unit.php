@@ -12,4 +12,8 @@ class Unit extends Model
         'unit_code',
         'unit_description',
     ];
+
+    public function unitSpecies(){
+        return $this->hasOne(Unit::class);
+    }
 }

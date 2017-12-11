@@ -1,4 +1,6 @@
-<div class="form-group">
+
+@if($trade_permit->period !== 6)
+    <div class="form-group">
     <h5>Melakukan Perpanjangan ? </h5>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="is_renewal">
@@ -7,6 +9,8 @@
         </div>
     </div>
 </div>
+@endif
+
 
 <div class="form-group">
 
@@ -69,21 +73,27 @@
     </div>
 </div>
 
-<div class="form-group" id="showPeriod">
-    <label class="control-label">Masa Berlaku (Bulan)</label>
-    <div class="col-sm-14">
-        @if($trade_permit->period == 6)
-            <input id="period" type="number" name="period" min="1" max="6" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit , 'period')) }}" readonly>
-        @else
-            <div class="btn-group btn-group--colors" data-toggle="buttons">
-                <label class="btn bg-red waves-effect {{ '1' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period1" name="period" value="1" autocomplete="off" {{ '1' == old('period', array_get($trade_permit, 'period')) ? 'checked' : '' }} required></label> 1 Bulan &nbsp;&nbsp;&nbsp;
-                <label class="btn bg-red waves-effect {{ '2' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period2" name="period" value="2" autocomplete="off" {{ '2' == old('period', array_get($trade_permit, 'period')) ? 'checked' : '' }} required></label> 2 Bulan &nbsp;&nbsp;&nbsp;
-                <label class="btn bg-red waves-effect {{ '3' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period3" name="period" value="3" autocomplete="off" {{ '3' == old('period', array_get($trade_permit, 'period')) ? 'checked' : '' }} required></label> 3 Bulan &nbsp;&nbsp;&nbsp;
-            </div>
-        @endif
 
+
+@if($trade_permit->period !== 6)
+    <div class="form-group" id="showPeriod">
+        <label class="control-label">Masa Berlaku (Bulan)</label>
+        <div class="col-sm-14">
+            @if($trade_permit->period == 6)
+                <input id="period" type="number" name="period" min="1" max="6" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit , 'period')) }}" readonly>
+            @else
+                <div class="btn-group btn-group--colors" data-toggle="buttons">
+                    <label class="btn bg-red waves-effect {{ '1' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period1" name="period" value="1" autocomplete="off" {{ '1' == old('period', array_get($trade_permit, 'period')) ? 'checked' : '' }} required></label> 1 Bulan &nbsp;&nbsp;&nbsp;
+                    <label class="btn bg-red waves-effect {{ '2' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period2" name="period" value="2" autocomplete="off" {{ '2' == old('period', array_get($trade_permit, 'period')) ? 'checked' : '' }} required></label> 2 Bulan &nbsp;&nbsp;&nbsp;
+                    <label class="btn bg-red waves-effect {{ '3' == old('period', array_get($trade_permit, 'period')) ? 'active' : '' }}"><input type="radio" id="period3" name="period" value="3" autocomplete="off" {{ '3' == old('period', array_get($trade_permit, 'period')) ? 'checked' : '' }} required></label> 3 Bulan &nbsp;&nbsp;&nbsp;
+                </div>
+            @endif
+
+        </div>
     </div>
-</div>
+@endif
+
+
 
 <div class="form-group">
     <label class="control-label">Pelabuhan Ekspor</label>
@@ -123,16 +133,19 @@
     </div>
 </div>
 
-<div class="form-group">
-    <h5>C. Dokumen Unggahan</h5>
-</div>
-<div class="form-group">
-    <label class="control-label">Re-upload SATS-LN</label>
-    <div class="col-sm-14">
-        <input type="hidden" class="form-control" name="document_type_id" value="9" required>
-        <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
+@if($trade_permit->status_code === 3)
+    <div class="form-group">
+        <h5>C. Dokumen Unggahan</h5>
     </div>
-</div>
+    <div class="form-group">
+        <label class="control-label">Re-upload SATS-LN</label>
+        <div class="col-sm-14">
+            <input type="hidden" class="form-control" name="document_type_id" value="9" required>
+            <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
+        </div>
+    </div>
+@endif
+
 
 <div class="card">
     <div class="card-block">

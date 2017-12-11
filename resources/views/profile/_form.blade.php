@@ -1,38 +1,22 @@
 <div class="form-group">
     <h5>A. Data Akun</h5>
 </div>
+
 <div class="form-group">
     <label class="control-label">Nama</label>
     <div class="col-sm-14">
-        @if(count($company)!=0)
-            <input type="hidden" name="user_id" class="form-control" value="{{ old('user_id', array_get($company->userProfile->user, 'id')) }}">
-            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company->userProfile->user, 'name')) }}">
-        @else
-            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company, 'name')) }}">
-        @endif
+        <input type="text" name="name" max="190" class="form-control" value="{{ old('name', array_get($user, 'name')) }}" required>
     </div>
 </div>
 
 <div class="form-group">
     <label class="control-label">Email</label>
     <div class="col-sm-14">
-        @if(count($company)!=0)
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company->userProfile->user, 'email')) }}" readonly>
-        @else
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company, 'email')) }}">
-        @endif
+        <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}" required>
     </div>
 </div>
 
-@if(count($company)==0)
-<div class="form-group">
-    <label class="control-label">Password</label>
-    <div class="col-sm-14">
-        <input type="password" name="password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
-    </div>
-</div>
-@endif
-
+@can('access-pelaku-usaha')
 <div class="form-group">
     <h5>B. Data Pelaku Usaha</h5>
 </div>
@@ -270,4 +254,5 @@
 
 <div id="form-dynamic">
 </div>
+@endcan
 

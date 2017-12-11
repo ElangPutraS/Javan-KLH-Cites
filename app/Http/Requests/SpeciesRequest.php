@@ -27,6 +27,8 @@ class SpeciesRequest extends FormRequest
             'scientific_name' => 'required|string|max:100',
             'indonesia_name' => 'required|string|max:100',
             'general_name' => 'required|string|max:100',
+            'hs_code' => 'required|string|max:100',
+            'sp_code' => 'required|string|max:100',
         ];
     }
 }

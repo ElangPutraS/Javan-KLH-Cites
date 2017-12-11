@@ -10,9 +10,9 @@
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
                         {{ csrf_field() }}
-
+                        <br><font style="font-size: medium">1. Data Akun</font><br>
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                            <label for="name" class="col-md-4 control-label">Nama</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                            <label for="password" class="col-md-4 control-label">Kata Sandi</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" value="{{ old('password') }}" required>
@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
+                            <label for="password-confirm" class="col-md-4 control-label">Konfirmasi Kata Sandi</label>
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{ old('password_confirmation') }}" required>
@@ -70,10 +70,10 @@
                             </div>
                         </div>
 
-                        <br><center>--------------------------- Data Personal -----------------------------</center><br>
+                        <br><font style="font-size: medium">2. Data Pelaku Usaha</font><br><br>
 
                         <div class="form-group{{ $errors->has('place_birth') ? ' has-error' : '' }}">
-                            <label for="place_birth" class="col-md-4 control-label">Place Birth</label>
+                            <label for="place_birth" class="col-md-4 control-label">Tempat Lahir</label>
 
                             <div class="col-md-6">
                                 <input id="place_birth" type="text" class="form-control" name="place_birth" value="{{ old('place_birth') }}" required>
@@ -87,7 +87,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('date_birth') ? ' has-error' : '' }}">
-                            <label for="date_birth" class="col-md-4 control-label">Date Birth</label>
+                            <label for="date_birth" class="col-md-4 control-label">Tanggal Lahir</label>
 
                             <div class="col-md-6">
                                 <input id="date_birth" placeholder="Pilih Tanggal" type="text" class="form-control" name="date_birth" value="{{ old('date_birth') }}" max="{{date('Y-m-d')}}" required>
@@ -101,7 +101,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('mobile') ? ' has-error' : '' }}">
-                            <label for="mobile" class="col-md-4 control-label">Mobile Number</label>
+                            <label for="mobile" class="col-md-4 control-label">Nomor Telepon</label>
 
                             <div class="col-md-6">
                                 <input id="mobile" type="text" class="form-control" name="mobile" value="{{ old('mobile') }}" required>
@@ -115,11 +115,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('nation') ? ' has-error' : '' }}">
-                            <label for="nation" class="col-md-4 control-label">Country</label>
+                            <label for="nation" class="col-md-4 control-label">Negara</label>
 
                             <div class="col-md-6">
                                 <select id="nation" class="form-control" name="nation" onchange="getState(this)" required>
-                                    <option value="">--Choose Country--</option>
+                                    <option value="">--Pilih Negara--</option>
                                     @foreach($countries as $key => $country)
                                         <option value="{{ $key }}" {{ $key == old('nation') ? 'selected' : '' }}>{{ $country }}</option>
                                     @endforeach
@@ -134,11 +134,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('state') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">Province</label>
+                            <label for="state" class="col-md-4 control-label">Provinsi</label>
 
                             <div class="col-md-6">
                                 <select id="state" class="form-control" name="state" onchange="getCity(this)" required>
-                                    <option value="">--Choose Province--</option>
+                                    <option value="">--Pilih Provinsi--</option>
                                     @foreach($provinces as $key => $province)
                                         <option value="{{ $key }}" {{ $key == old('state') ? 'selected' : '' }}>{{ $province }}</option>
                                     @endforeach
@@ -153,11 +153,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">City</label>
+                            <label for="state" class="col-md-4 control-label">Kota</label>
 
                             <div class="col-md-6">
                                 <select id="city" class="form-control" name="city" required>
-                                    <option value="">--Choose City--</option>
+                                    <option value="">--Pilih Kota--</option>
                                     @foreach($cities as $key => $city)
                                         <option value="{{ $key }}" {{ $key == old('city') ? 'selected' : '' }}>{{ $city }}</option>
                                     @endforeach
@@ -172,7 +172,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Address</label>
+                            <label for="address" class="col-md-4 control-label">Alamat</label>
 
                             <div class="col-md-6">
                                 <textarea id="address" class="form-control" name="address" required>{{ old('address') }}</textarea>
@@ -185,11 +185,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('identify_type') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">Identity Type</label>
+                            <label for="state" class="col-md-4 control-label">Tipe Identitas</label>
 
                             <div class="col-md-6">
                                 <select id="identify_type" class="form-control" name="identify_type" required>
-                                    <option value="">--Choose Identity Type--</option>
+                                    <option value="">--Pilih Tipe Identitas--</option>
                                     @foreach($user_type_identify as $key=>$idn)
                                         <option value="{{ $key }}" {{ $key == old('identify_type') ? 'selected' : '' }}>{{ $idn }}</option>
                                     @endforeach
@@ -204,7 +204,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('person_identify') ? ' has-error' : '' }}">
-                            <label for="person_identify" class="col-md-4 control-label">Identity Number</label>
+                            <label for="person_identify" class="col-md-4 control-label">Nomor Identitas</label>
 
                             <div class="col-md-6">
                                 <input id="person_identify" type="text" class="form-control" name="person_identify" value="{{ old('person_identify') }}" required>
@@ -216,10 +216,11 @@
                                 @endif
                             </div>
                         </div>
-                        <br><center>--------------------------- Data Company -----------------------------</center><br>
+
+                        <br><font style="font-size: medium">3. Data Perusahaan</font><br>
 
                         <div class="form-group{{ $errors->has('company_name') ? ' has-error' : '' }}">
-                            <label for="company_name" class="col-md-4 control-label">Company Name</label>
+                            <label for="company_name" class="col-md-4 control-label">Nama Perusahaan</label>
 
                             <div class="col-md-6">
                                 <input id="company_name" type="text" class="form-control" name="company_name" value="{{ old('company_name') }}" required>
@@ -233,7 +234,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_email') ? ' has-error' : '' }}">
-                            <label for="company_email" class="col-md-4 control-label">Company Email</label>
+                            <label for="company_email" class="col-md-4 control-label">Email Perusahaan</label>
 
                             <div class="col-md-6">
                                 <input id="company_email" type="email" class="form-control" name="company_email" value="{{ old('company_email') }}" required>
@@ -247,11 +248,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_nation') ? ' has-error' : '' }}">
-                            <label for="company_nation" class="col-md-4 control-label">Company Country</label>
+                            <label for="company_nation" class="col-md-4 control-label">Negara Perusahaan</label>
 
                             <div class="col-md-6">
                                 <select id="company_nation" class="form-control" name="company_nation" onchange="getStateCompany(this)" required>
-                                    <option value="">--Choose Company Country--</option>
+                                    <option value="">--Pilih Negara Perusahaan--</option>
                                     @foreach($countries as $key => $country)
                                         <option value="{{ $key }}" {{ $key == old('company_nation') ? 'selected' : '' }}>{{ $country }}</option>
                                     @endforeach
@@ -266,11 +267,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_state') ? ' has-error' : '' }}">
-                            <label for="company_state" class="col-md-4 control-label">Company Province</label>
+                            <label for="company_state" class="col-md-4 control-label">Provinsi Perusahaan</label>
 
                             <div class="col-md-6">
                                 <select id="company_state" class="form-control" name="company_state" onchange="getCityCompany(this)" required>
-                                    <option value="">--Choose Company Province--</option>
+                                    <option value="">--Pilih Provinsi Perusahaan--</option>
                                     @foreach($provinces as $key => $province)
                                         <option value="{{ $key }}" {{ $key == old('company_state') ? 'selected' : '' }}>{{ $province }}</option>
                                     @endforeach
@@ -285,11 +286,11 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_city') ? ' has-error' : '' }}">
-                            <label for="state" class="col-md-4 control-label">Company City</label>
+                            <label for="state" class="col-md-4 control-label">Kota Perusahaan</label>
 
                             <div class="col-md-6">
                                 <select id="company_city" class="form-control" name="company_city" required>
-                                    <option value="">--Choose Company City--</option>
+                                    <option value="">--Pilih Kota Perusahaan--</option>
                                     @foreach($cities as $key => $city)
                                         <option value="{{ $key }}" {{ $key == old('company_city') ? 'selected' : '' }}>{{ $city }}</option>
                                     @endforeach
@@ -304,7 +305,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_address') ? ' has-error' : '' }}">
-                            <label for="address" class="col-md-4 control-label">Company Address</label>
+                            <label for="address" class="col-md-4 control-label">Alamat Perusahaan</label>
 
                             <div class="col-md-6">
                                 <textarea id="company_address" class="form-control" name="company_address" required>{{ old('company_address') }}</textarea>
@@ -317,7 +318,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('company_fax') ? ' has-error' : '' }}">
-                            <label for="company_fax" class="col-md-4 control-label">Company Fax</label>
+                            <label for="company_fax" class="col-md-4 control-label">Fax Perusahaan</label>
 
                             <div class="col-md-6">
                                 <input id="company_fax" type="text" class="form-control" name="company_fax" value="{{ old('company_fax') }}" required>
@@ -331,7 +332,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="long-lang" class="col-md-4 control-label">Company Location</label>
+                            <label for="long-lang" class="col-md-4 control-label">Lokasi Perusahaan</label>
 
                             <div class="col-md-6">
                                 <div id="map" style="width: 100%; height: 300px;"></div>
@@ -339,7 +340,7 @@
                                 <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude') }}" required>
                             </div>
                         </div>
-                        <br><center>--------------------------- Company Document -----------------------------</center><br>
+                        <br><font style="font-size: medium">4. Dokumen Perusahaan</font><br><br>
                         <center>
                             <button onclick="tambahForm(this)" class="btn btn-success">
                                 Tambah
@@ -454,7 +455,7 @@
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
-                    var element='<option value="">--Choose Province--</option>';
+                    var element='<option value="">--Pilih Provinsi--</option>';
                     for(var i=0; i<data.length; i++){
                         element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
                     }
@@ -470,7 +471,7 @@
                 url: window.baseUrl +'/getCity/'+province,
                 dataType: 'json',
                 success : function (data) {
-                    var element='<option value="">--Choose City--</option>';
+                    var element='<option value="">--Pilih Kota--</option>';
                     for(var i=0; i<data.length; i++){
                         element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
                     }
@@ -487,7 +488,7 @@
                 dataType: 'json',
                 success : function (data) {
                     //alert(data);
-                    var element='<option value="">--Choose Company Province-</option>';
+                    var element='<option value="">--Pilih Provinsi Perusahaan-</option>';
                     for(var i=0; i<data.length; i++){
                         element+='<option value="'+data[i].id+'">'+data[i].province_name+'</option>';
                     }
@@ -503,7 +504,7 @@
                 url: window.baseUrl +'/getCity/'+city,
                 dataType: 'json',
                 success : function (data) {
-                    var element='<option value="">--Choose Company City--</option>';
+                    var element='<option value="">--Pilih Kota Perusahaan--</option>';
                     for(var i=0; i<data.length; i++){
                         element+='<option value="'+data[i].id+'">'+data[i].city_name_full+'</option>';
                     }
@@ -514,8 +515,8 @@
 
         function tambahForm(a) {
             var form='<div id="dynamic"><div class="form-group">';
-            form+='<label for="state" class="col-md-4 control-label">Document</label>';
-            form+='<div class="col-md-6"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Choose Document Type--</option>';
+            form+='<label for="state" class="col-md-4 control-label">Dokumen</label>';
+            form+='<div class="col-md-6"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Pilih Tipe Dokumen--</option>';
             form+='<?=$doc_type?>';
             form+='</select></div></div>';
             form+='<div class="form-group"><label class="col-md-4 control-label"></label><div class="col-md-5"><input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" required>';

@@ -52,4 +52,13 @@ class Species extends Model
         return $this->belongsTo(Category::class)
             ->withTrashed();
     }
+
+    public function unit(){
+        return $this->belongsTo(Unit::class);
+    }
+
+    public function source(){
+        return $this->belongsTo(Source::class);
+    }
+
 }
