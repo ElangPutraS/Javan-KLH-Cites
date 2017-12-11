@@ -18,4 +18,9 @@ class SpeciesQuota extends Model
         return $this->belongsTo(Species::class)
             ->withTrashed();
     }
+
+    public function history()
+    {
+        return $this->hasMany(HistoryQuota::class);
+    }
 }

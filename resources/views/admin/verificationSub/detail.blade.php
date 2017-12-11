@@ -23,7 +23,7 @@
                     </small>
                 </div>
                 <div class="card-block">
-
+                    @include('includes.notifications')
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
                         {!! csrf_field() !!}
                         
@@ -150,6 +150,7 @@
                                             <th>Nama Species</th>
                                             <th>Jenis Kelamin</th>
                                             <th>Jumlah Ekspor</th>
+                                            <th>Kuota Tahun Ini</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -160,6 +161,13 @@
                                                 <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
                                                 <td>{{$species->speciesSex->sex_name}}</td>
                                                 <td>{{$species->pivot->total_exported}}</td>
+                                                <td>
+                                                    @foreach($species->speciesQuota as $quota)
+                                                        @if($quota->year == date('Y'))
+                                                            {{$quota->quota_amount}}
+                                                        @endif
+                                                    @endforeach
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -202,7 +210,7 @@
             var id=a.getAttribute('data-id');
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan memverifikasi permohonan SATSL-LN?',
+                text: 'Akan memverifikasi permohonan SATS-LN?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
@@ -215,7 +223,7 @@
             var id=a.getAttribute('data-id');
             swal({
                 title: 'Apakah Anda Yakin?',
-                text: 'Akan menolak verifikasi permohonan SATSL-LN?',
+                text: 'Akan menolak verifikasi permohonan SATS-LN?',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
@@ -238,11 +246,10 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type:'post',
-                        url: window.baseUrl +'/admin/verification/rej/'+id,
+                        url: window.baseUrl +'/admin/verificationSub/rej/'+id,
                         data: 'alasan='+alasan,
                         success : function(cek){
                             location.href='{{url('admin/verificationSub')}}';
-
                         }
                     });
                 });

@@ -24,7 +24,7 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|string|max:255',
+            'name'                  => 'required|string|max:190',
             'place_birth'           => 'required|string|max:100',
             'date_birth'            => 'required',
             'mobile'                => 'required|numeric|digits_between:0,12',

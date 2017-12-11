@@ -4,7 +4,7 @@
 	<section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Tambah Pelabuhan Baru</h1>
+                <h1>Kelola Pelabuhan Baru</h1>
             </header>
 
             <div class="card">

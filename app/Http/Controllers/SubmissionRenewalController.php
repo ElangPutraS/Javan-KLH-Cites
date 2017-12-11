@@ -53,6 +53,7 @@ class SubmissionRenewalController extends Controller
                 'valid_start' => $valid_start,
                 'valid_until' => $valid_until,
                 'valid_renewal' => $trade_permit->valid_renewal+1,
+                'permit_type' => '2'
             ]);
         }else
         {

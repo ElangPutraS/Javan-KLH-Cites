@@ -23,42 +23,43 @@
                         <div class="form-group">
                             <label class="control-label">Nama Pelaku Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}" readonly>
+                                <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) ?? '' }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Email Pelaku Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}" readonly>
+                                <input type="text" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) ?? '' }}" readonly>
                             </div>
                         </div>
 
+                        @can('access-pelaku-usaha')
                         <div class="form-group">
                             <label class="control-label">Tempat Tanggal Lahir</label>
                             <div class="col-sm-14">
-                                <input type="text" name="name" class="form-control" value="{{$user->userProfile->place_of_birth}}, {{Carbon\Carbon::parse($user->userProfile->date_of_birth)->format('d-m-Y')}}" readonly>
+                                <input type="text" name="name" class="form-control" value="{{$user->userProfile->place_of_birth}}, {{Carbon\Carbon::parse($user->userProfile->date_of_birth)->format('d-m-Y') ?? ''}}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Alamat</label>
                             <div class="col-sm-14">
-                                <input type="text" name="address" class="form-control" value="{{$user->userProfile->address}}, {{$user->userProfile->city->city_name}}" readonly>
+                                <input type="text" name="address" class="form-control" value="{{$user->userProfile->address.', '.$user->userProfile->city->city_name_full }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Nomor Telepon</label>
                             <div class="col-sm-14">
-                                <input type="text" name="address" class="form-control" value="{{$user->userProfile->mobile}}" readonly>
+                                <input type="text" name="address" class="form-control" value="{{$user->userProfile->mobile ?? '' }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Nomor Identitas</label>
                             <div class="col-sm-14">
-                                <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) }}" readonly>
+                                <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) ?? '' }}" readonly>
                             </div>
                         </div>
 
@@ -69,28 +70,28 @@
                         <div class="form-group">
                             <label class="control-label">Nama Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) }}" readonly>
+                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) ?? '' }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Alamat Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) }}" readonly>
+                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) ?? '' }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Nomor Faksimile</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->userProfile->company, 'company_fax')) }}" readonly>
+                                <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->userProfile->company, 'company_fax')) ?? '' }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Email Perusahaan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_email" class="form-control" value="{{$company->company_email}}" readonly>
+                                <input type="text" name="company_email" class="form-control" value="{{$company->company_email ?? '' }}" readonly>
                             </div>
                         </div>
 
@@ -133,6 +134,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endcan
 
 
                         <div class="form-group">
