@@ -220,7 +220,32 @@
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href='{{url('admin/verificationSub/rej')}}/'+id;
+                swal({
+                    title: 'Tuliskan alasan penolakan verifikasi',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Submit',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false
+                }).then(function (alasan) {
+                    swal({
+                        type: 'success',
+                        title: 'Penolakan verifikasi berhasil!`',
+                        html: 'Alasan penolakan: ' + alasan
+                    });
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type:'post',
+                        url: window.baseUrl +'/admin/verification/rej/'+id,
+                        data: 'alasan='+alasan,
+                        success : function(cek){
+                            location.href='{{url('admin/verificationSub')}}';
+
+                        }
+                    });
+                });
             });
         }
     </script>
