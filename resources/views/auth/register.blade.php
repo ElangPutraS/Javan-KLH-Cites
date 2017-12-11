@@ -70,7 +70,7 @@
                             </div>
                         </div>
 
-                        <br><font style="font-size: medium">1. Data Pelaku Usaha</font><br><br>
+                        <br><font style="font-size: medium">2. Data Pelaku Usaha</font><br><br>
 
                         <div class="form-group{{ $errors->has('place_birth') ? ' has-error' : '' }}">
                             <label for="place_birth" class="col-md-4 control-label">Tempat Lahir</label>
@@ -340,7 +340,7 @@
                                 <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude') }}" required>
                             </div>
                         </div>
-                        <br><center>--------------------------- Dokumen Perusahaan -----------------------------</center><br>
+                        <br><font style="font-size: medium">4. Dokumen Perusahaan</font><br><br>
                         <center>
                             <button onclick="tambahForm(this)" class="btn btn-success">
                                 Tambah
