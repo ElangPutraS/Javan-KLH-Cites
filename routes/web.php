@@ -99,10 +99,13 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admi
     Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
     Route::post('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
+
     Route::get('verificationRen', 'SubmissionVerificationController@indexRen')->name('admin.verificationRen.index');
     Route::get('verificationRen/{id}/detail', 'SubmissionVerificationController@showRen')->name('admin.verificationRen.show');
     Route::get('verificationRen/acc/{id}', 'SubmissionVerificationController@updateRen');
-    Route::get('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejectRen');
+    Route::post('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejectRen');
+
+    Route::post('verification/rej/{id}', 'SubmissionVerificationController@updateRejection');
 
     Route::get('pnbp', 'PnbpController@index')->name('admin.pnbp.index');
     Route::get('pnbp/{id}/show', 'PnbpController@show')->name('admin.pnbp.create');

@@ -147,8 +147,6 @@
                         </ul>
                     </li>
 
-                    <li @if(Request::segment(2)=='news') class="navigation__active" @endif><a href="{{ route('admin.news.index') }}"><i class="zmdi zmdi-tv-list zmdi-hc-fw"></i> Kelola Informasi</a></li>
-
                 @endcan
 
                 @can('access-super-admin')

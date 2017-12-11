@@ -111,8 +111,10 @@ class SubmissionVerificationController extends Controller
     public function updateRej(Request $request, $id){
         $trade_permit = TradePermit::findOrFail($id);
 
+        dd($request->alasan);
         $trade_permit->update([
-            'updated_by' => $request->user()->id
+            'updated_by' => $request->user()->id,
+            'reject_reason' => $request->alasan
         ]);
 
         $status = TradePermitStatus::where('status_code','300')->first();
@@ -188,6 +190,7 @@ class SubmissionVerificationController extends Controller
             'valid_renewal'             => $trade_permit->valid_renewal,
             'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
+
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -231,4 +234,17 @@ class SubmissionVerificationController extends Controller
 
         return redirect()->route('admin.verificationSub.index')->with('success', 'Verifikasi permohonan pembaharuan berhasil ditolak.');
     }
+
+    public function updateRejection(Request $request, $id)
+    {
+        $trade_permit=TradePermit::findOrFail($id);
+        $trade_permit->update([
+            'trade_permit_status_id' =>'3',
+            'reject_reason' => $request->alasan,
+            'valid_renewal' => $trade_permit->valid_renewal+1,
+        ]);
+
+        return $trade_permit;
+    }
+
 }
