@@ -130,7 +130,10 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth'])->group(function
     Route::get('unit', 'UnitController@index')->name('admin.unit.index');
 
     Route::get('unit','UnitController@index')->name('admin.unit.index');
+
     Route::get('reportPnpb', 'ReportController@reportPnbp')->name('admin.report.pnbp');
+
+    Route::get('reportSatsln', 'ReportController@reportSatsln')->name('admin.report.satsln');
 
 });
 

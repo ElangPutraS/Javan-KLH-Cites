@@ -33,7 +33,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-primary" <?php if($jumlah_tradePermit>=20){echo 'disabled title="tidak diizinkan melakukan permohonan bertingkat"';}?>>Simpan Baru</button>
+                                <button type="submit" class="btn btn-primary" <?php if($jumlah_tradePermit>=20){echo 'disabled title="tidak diizinkan melakukan permohonan bertahap"';}?>>Simpan Baru</button>
                                 <a href="{{ route('user.submission.index') }}" class="btn btn-default">Batal</a>
                             </div>
                         </div>
