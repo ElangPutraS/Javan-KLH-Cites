@@ -108,7 +108,6 @@
 
                     {{--<li @if(Request::segment(2)=='branch') class="navigation__active" @endif><a href=""><i class="zmdi zmdi-shield-check zmdi-hc-fw"></i> Cabang Pengelola Perizinan</a></li>--}}
 
-                    <li @if(Request::segment(2)=='species') class="navigation__active" @endif><a href="{{ route('admin.species.index') }}"><i class="zmdi zmdi-flower-alt zmdi-hc-fw"></i> Kelola Spesies dan HS</a></li>
 
                     <li class="navigation__sub @if(Request::segment(2)=='verificationSub' || Request::segment(2)=='verificationRen') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-assignment-check zmdi-hc-fw"></i>Verifikasi SATS-LN</a>
                         <ul>
@@ -120,25 +119,6 @@
                     <li @if(Request::segment(2)=='pnbp') class="navigation__active" @endif><a href="{{ route('admin.pnbp.index') }}"><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> Kelola PNBP</a></li>
 
                     <li @if(Request::segment(2)=='news') class="navigation__active" @endif><a href="{{ route('admin.news.index') }}"><i class="zmdi zmdi-tv-list zmdi-hc-fw"></i> Kelola Informasi</a></li>
-
-                    <li class="navigation__sub
-                        @if(Request::segment(2)=='ports' || Request::segment(2)=='countries' || Request::segment(2)=='provinces' || Request::segment(2)=='cities' || Request::segment(2)=='purposeType' || Request::segment(2)=='typeIdentify' || Request::segment(2)=='category' || Request::segment(2)=='speciesSex'|| Request::segment(2)=='appendix' || Request::segment(2)=='source' || Request::segment(2)=='unit')
-                            navigation__sub--active navigation__sub--toggled
-                        @endif"><a href=""><i class="zmdi zmdi-labels zmdi-hc-fw"></i>Kelola Data Master</a>
-                        <ul>
-                            <li @if(Request::segment(2)=='ports') class="navigation__active" @endif><a href="{{ route('admin.ports.index') }}"><i class="zmdi zmdi-directions-boat zmdi-hc-fw"></i> Kelola Pelabuhan</a></li>
-                            <li @if(Request::segment(2)=='countries') class="navigation__active" @endif><a href="{{ route('admin.countries.index') }}"><i class="zmdi zmdi-local-airport zmdi-hc-fw"></i> Kelola Negara </a></li>
-                            <li @if(Request::segment(2)=='provinces') class="navigation__active" @endif><a href="{{ route('admin.provinces.index') }}"><i class="zmdi zmdi-local-parking zmdi-hc-fw"></i> Kelola Provinsi </a></li>
-                            <li @if(Request::segment(2)=='cities') class="navigation__active" @endif><a href="{{ route('admin.cities.index') }}"><i class="zmdi zmdi-directions-railway zmdi-hc-fw"></i> Kelola Kabupaten/Kota </a></li>
-                            <li @if(Request::segment(2)=='purposeType') class="navigation__active" @endif><a href="{{ route('admin.purposeType.index') }}"><i class="zmdi zmdi-local-convenience-store zmdi-hc-fw"></i> Kelola Jenis Kegiatan</a></li>
-                            <li @if(Request::segment(2)=='typeIdentify') class="navigation__active" @endif><a href="{{ route('admin.typeIdentify.index') }}"><i class="zmdi zmdi-pin-account zmdi-hc-fw"></i> Kelola Tipe Identitas </a></li>
-                            <li @if(Request::segment(2)=='category') class="navigation__active" @endif><a href="{{ route('admin.species.category') }}"><i class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a></li>
-                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a href="{{ route('admin.speciesSex.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Species</a></li>
-                            <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a href="{{ route('admin.appendix.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Appendiks</a></li>
-                            <li @if(Request::segment(2)=='source') class="navigation__active" @endif><a href="{{ route('admin.source.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Sumber  Appendiks</a></li>
-                            <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a href="{{ route('admin.unit.index') }}"><i class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Satuan Species</a></li>
-                        </ul>
-                    </li>
 
                     <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln') navigation__sub--active navigation__sub--toggled @endif"><a href=""><i class="zmdi zmdi-book zmdi-hc-fw"></i>Laporan</a>
                         <ul>
