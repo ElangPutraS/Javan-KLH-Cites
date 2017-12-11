@@ -108,7 +108,7 @@ class UserVerificationController extends Controller
             'reject_reason' => $request->alasan,
         ]);
 
-        $alasan = $request->alasan;
+        $alasan = $request->get('alasan');
 
         $company->user->notify(new VerificationCompanyReject($alasan));
 
