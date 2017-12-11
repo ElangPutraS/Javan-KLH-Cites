@@ -9,7 +9,6 @@
 
             <div class="card">
                 <div class="card-header">
-                    <<<<<<< HEAD
                     <h2 class="card-title">Daftar Laporan SATS-LN</h2>
                     <small class="card-subtitle"></small>
                 </div>
@@ -85,86 +84,6 @@
                                         break;
                                     default : echo 'Semua Bulan';
                                     break;
-                                    =======
-                                    <h2 class="card-title">Daftar Laporan PNBP</h2>
-                                    <small class="card-subtitle"></small>
-                                    </div>
-                                    <div class="card-block">
-                                    <form method="post" enctype="multipart/form-data" class="form-horizontal" id="form-search">
-                                    <div class="form-group">
-                                    <div class="row">
-                                    <div class="col-sm-2">
-                                    <label>Bulan</label>
-                                    </div>
-                                    <div class="col-sm-3">
-                                    <select name="month" id="month" class="form-control select2">
-                                    <option value="">--Semua Bulan--</option>
-                                    <option value="1" {{ Request::input('m') == '1' ? 'selected' : '' }} > Januari</option>
-                                    <option value="2" {{ Request::input('m') == '2' ? 'selected' : '' }} >Februari</option>
-                                    <option value="3" {{ Request::input('m') == '3' ? 'selected' : '' }} >Maret</option>
-                                    <option value="4" {{ Request::input('m') == '4' ? 'selected' : '' }} >April</option>
-                                    <option value="5" {{ Request::input('m') == '5' ? 'selected' : '' }} >Mei</option>
-                                    <option value="6" {{ Request::input('m') == '6' ? 'selected' : '' }} >Juni</option>
-                                    <option value="7" {{ Request::input('m') == '7' ? 'selected' : '' }} >Juli</option>
-                                    <option value="8" {{ Request::input('m') == '8' ? 'selected' : '' }} >Agustus</option>
-                                    <option value="9" {{ Request::input('m') == '9' ? 'selected' : '' }} >September</option>
-                                    <option value="10" {{ Request::input('m') == '10' ? 'selected' : '' }} >Oktober</option>
-                                    <option value="11" {{ Request::input('m') == '11' ? 'selected' : '' }} >November</option>
-                                    <option value="12" {{ Request::input('m') == '12' ? 'selected' : '' }} >Desember</option>
-                                    </select>
-                    </div>
-                    <div class="col-sm-2">
-                        <label>Tahun</label>
-                    </div>
-                    <div class="col-sm-3">
-                        <select name="year" id="year" class="form-control select2">
-                            <option value="">--Semua Tahun--</option>
-                            @foreach($tahun as $year)
-                                <option value="{{ $year->year }}" {{ Request::input('y') == $year->year ? 'selected' : '' }} > {{ $year->year }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-sm-2">
-                        <button type="submit" class="btn btn-primary">Cari</button>
-                    </div>
-                </div>
-            </div>
-            </form>
-            <table>
-                <tr>
-                    <th>Bulan </th>
-                    <td>: </td>
-                    <td>
-    <?php
-    if(Request::input('m') !== null){
-        switch (Request::input('m')) {
-            case 1: echo 'Januari';
-                break;
-            case 2: echo 'Februari';
-                break;
-            case 3: echo 'Maret';
-                break;
-            case 4: echo 'April';
-                break;
-            case 5: echo 'Mei';
-                break;
-            case 6: echo 'Juni';
-                break;
-            case 7: echo 'Juli';
-                break;
-            case 8: echo 'Agustus';
-                break;
-            case 9: echo 'September';
-                break;
-            case 10: echo 'Oktober';
-                break;
-            case 11: echo 'November';
-                break;
-            case 12: echo 'Desember';
-                break;
-            default : echo 'Semua Bulan';
-                break;
-                >>>>>>> master
                                         }
     }else{
         echo 'Semua Bulan';
