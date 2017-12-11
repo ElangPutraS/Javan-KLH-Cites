@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1db7380df49eefe92c5f0584f91fde22",
+    "content-hash": "4c35a353566af571919f8606859814b2",
     "packages": [
         {
             "name": "barryvdh/laravel-dompdf",
@@ -436,42 +436,6 @@
                 "trusted proxy"
             ],
             "time": "2017-06-15T17:19:42+00:00"
-        },
-        {
-            "name": "jailtonsc/laravel-response-xml",
-            "version": "v2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/jailtonsc/laravel-response-xml.git",
-                "reference": "571aad65e0f35abbc31372e2d091be6aa2eae685"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/jailtonsc/laravel-response-xml/zipball/571aad65e0f35abbc31372e2d091be6aa2eae685",
-                "reference": "571aad65e0f35abbc31372e2d091be6aa2eae685",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "XmlResponse\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Add the method xml integrating the laravel's response, converting eloquent return to XML.",
-            "keywords": [
-                "eloquent",
-                "laravel",
-                "response",
-                "xml"
-            ],
-            "time": "2017-06-02T13:32:33+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -1652,6 +1616,55 @@
                 "stylesheet"
             ],
             "time": "2016-07-19T19:14:21+00:00"
+        },
+        {
+            "name": "spatie/array-to-xml",
+            "version": "2.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/array-to-xml.git",
+                "reference": "abea6694036ab2d818ceb5c80485a24833a0f9cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/array-to-xml/zipball/abea6694036ab2d818ceb5c80485a24833a0f9cc",
+                "reference": "abea6694036ab2d818ceb5c80485a24833a0f9cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "^6.3",
+                "spatie/phpunit-snapshot-assertions": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\ArrayToXml\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://murze.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Convert an array to xml",
+            "homepage": "https://github.com/spatie/array-to-xml",
+            "keywords": [
+                "array",
+                "convert",
+                "xml"
+            ],
+            "time": "2017-09-07T17:44:43+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
