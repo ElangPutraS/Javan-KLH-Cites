@@ -80,7 +80,7 @@ class RegisterController extends Controller
             'company_longitude' => 'required',
             'owner_name'        => 'required|string|max:191',
             'captivity_address' => 'required',
-            'labor_total'       => 'required|numeric',
+            'labor_total'       => 'required|numeric|digits_between:0,5',
             'investation_total' => 'required',
             'npwp_number'       => 'required|numeric',
             'date_distribution' => 'required',
@@ -118,7 +118,7 @@ class RegisterController extends Controller
 
         $type = TypeIdentify::find($data['identify_type']);
         $user_profile->typeIdentify()->attach($type, ['user_type_identify_number' => $data['person_identify']]);
-        
+
         $company = new Company([
             'company_name'      => $data['company_name'],
             'company_address'   => $data['company_address'],
