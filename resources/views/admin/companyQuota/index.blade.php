@@ -3,27 +3,24 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Kelola Kuota Spesies & HS</h1>
+            <h1>Kelola Kuota Perusahaan</h1>
         </header>
 
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Daftar Kuota Species {{$species->species_indonesia_name}}</h2>
-                <small class="card-subtitle">({{$species->species_scientific_name}})</small>
+                <h2 class="card-title">Daftar Kuota Perusahaan</h2>
+                <small class="card-subtitle"></small>
             </div>
 
             <div class="card-block">
                 @include('includes.notifications')
-                <a href="{{ route('admin.species.createquota', ['species_id' => Request::segment(3)]) }}" class="btn btn-primary">Tambah Baru</a>
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm">
                         <thead class="thead-default">
                         <tr>
                             <th>No</th>
-                            <th>Tahun</th>
-                            <th>Jumlah Kuota</th>
-                            <th>Tanggal Dibuat</th>
-                            <th>Tanggal Diperbaharui</th>
+                            <th>Nama Perusahaan</th>
+                            <th>Jumlah Species</th>
                             <th>Aksi</th>
                         </tr>
                         </thead>
@@ -34,12 +31,8 @@
                                     <td>{{ (($quota->currentPage() - 1 ) * $quota->perPage() ) + $loop->iteration }}</td>
                                     <td>{{$quot->year}}</td>
                                     <td>{{$quot->quota_amount}}</td>
-                                    <td>{{$quot->created_at->toFormattedDateString()}}</td>
-                                    <td>{{$quot->updated_at->toFormattedDateString()}}</td>
                                     <td>
-                                        <a href="{{route('admin.species.plusquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-plus zmdi-hc-fw"></i></a>
-                                        <a href="{{route('admin.species.minusquota', ['species_id' => Request::segment(3), 'id' => $quot->id])}}" class="btn btn-sm btn-warning"><i class="zmdi zmdi-minus zmdi-hc-fw"></i></a>
-                                        <a style="color:white;" onclick="deleteQuota(this)" data-id="{{$quot->id}}" class="btn btn-sm btn-danger"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
+                                        <a href="{{route('admin.species.detail', ['id'=> $spec->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
