@@ -46,6 +46,7 @@
     </div>
 @endif
 @push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
         function plusKuota(a) {
             var kuota_skg=$('#quota_now').val();
@@ -71,6 +72,17 @@
             var kuota = parseInt(kuota_skg) - parseInt(kuota_minus);
 
             $('#quota_amount').val(kuota);
+
+            if(kuota < 0){
+                swal(
+                    'Oops...',
+                    'Pengurangan kuota melebihi dari jumlah kuota saat ini !',
+                    'error'
+                )
+                $('#quota_amount').val(kuota_skg);
+                $('#quota_min').val('');
+
+            }
 
         }
     </script>
