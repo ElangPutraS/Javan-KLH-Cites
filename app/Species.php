@@ -19,13 +19,13 @@ class Species extends Model
         'species_general_name',
         'is_appendix',
         'appendix_source_id',
-        'species_sex_id',
         'species_category_id',
         'nominal',
         'hs_code',
         'sp_code',
         'unit_id',
         'source_id',
+        'species_description',
     ];
 
     public function speciesQuota(){
