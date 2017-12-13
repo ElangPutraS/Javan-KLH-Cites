@@ -21,7 +21,7 @@
                             <h5>A. Informasi Pelaku Usaha</h5>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Nama Pelaku Usaha</label>
+                            <label class="control-label">Nama</label>
                             <div class="col-sm-14">
                                 <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) ?? '' }}" readonly>
                             </div>
@@ -45,7 +45,7 @@
                         <div class="form-group">
                             <label class="control-label">Alamat</label>
                             <div class="col-sm-14">
-                                <input type="text" name="address" class="form-control" value="{{$user->userProfile->address.', '.$user->userProfile->city->city_name_full }}" readonly>
+                                <input type="text" name="address" class="form-control" value="{{$user->userProfile->address.', '.$user->userProfile->city->city_name_full.', Provinsi '.$user->userProfile->province->province_name.', '.$user->userProfile->country->country_name }}" readonly>
                             </div>
                         </div>
 
@@ -68,16 +68,16 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Nama Usaha</label>
+                            <label class="control-label">Nama Perusahaan</label>
                             <div class="col-sm-14">
                                 <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) ?? '' }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Alamat Usaha</label>
+                            <label class="control-label">Nama Pemilik Perusahaan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) ?? '' }}" readonly>
+                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) ?? '' }}" readonly>
                             </div>
                         </div>
 
@@ -96,11 +96,53 @@
                         </div>
 
                         <div class="form-group">
+                            <label class="control-label">Alamat Perusahaan</label>
+                            <div class="col-sm-14">
+                                <input type="text" name="company_address" class="form-control" value="{{$user->company->company_address.', '.$user->company->city->city_name_full.', Provinsi '.$user->company->province->province_name.', '.$user->company->country->country_name }}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
                             <label class="control-label">Lokasi Perusahaan</label>
                             <div class="col-sm-14">
                                 <div id="map" style="width: 100%; height: 300px;"></div>
                                 <input id="company_latitude" type="hidden" name="company_latitude" value="{{ old('company_latitude', $company->company_latitude ?? '') }}">
                                 <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude', $company->company_longitude ?? '') }}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Alamat Penangkaran</label>
+                            <div class="col-sm-14">
+                                <input type="text" name="captivity_address" class="form-control" value="{{$user->company->captivity_address}}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Total Pekerja</label>
+                            <div class="col-sm-14">
+                                <input type="text" name="labor_total" class="form-control" value="{{$user->company->labor_total}} Orang" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Total Investasi</label>
+                            <div class="col-sm-14">
+                                <input type="text" name="investation_total" class="form-control" value="Rp. {{ number_format($user->company->investation_total,2,',','.')}}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Nomor NPWP Perusahaan</label>
+                            <div class="col-sm-14">
+                                <input type="text" name="npwp_number" class="form-control" value="{{$user->company->npwp_number}}" readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Tanggal Masa Berlaku Surat Izin Berakhir</label>
+                            <div class="col-sm-14">
+                                <input type="text" name="date_distribution" class="form-control" value="{{Carbon\Carbon::parse($user->company->date_distribution)->format('d-m-Y')}}" readonly>
                             </div>
                         </div>
 
