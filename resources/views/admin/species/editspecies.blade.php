@@ -41,13 +41,9 @@
                 if (document.getElementById('is_appendix1').checked) {
                     document.getElementById('showAppendix').style.display='block';
                     $("#appendix_source_id").attr('required', '');
-                    document.getElementById('showSourceAppendix').style.display='block';
-                    $("#source_id").attr('required', '');
                 }else if(document.getElementById('is_appendix2').checked){
                     document.getElementById('showAppendix').style.display='none';
                     $("#appendix_source_id").removeAttr('required');
-                    document.getElementById('showSourceAppendix').style.display='none';
-                    $("#source_id").removeAttr('required');
                 }
             });
         });

@@ -25,8 +25,7 @@
                             <th>Nama Indonesia</th>
                             <th>Nama Umum</th>
                             <th>Appendiks</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Kategori</th>
+                            <th>Komoditas</th>
                             <th>Kuota Tahun Ini</th>
                             <th>Kuota</th>
                             <th>Aksi</th>
@@ -47,16 +46,20 @@
                                         Tidak Memiliki Appendix
                                     @endif
                                 </td>
-                                <td>{{$spec->speciesSex->sex_name}}</td>
                                 <td>{{$spec->speciesCategory->species_category_name}}</td>
                                 <td>
+                                    <?php $cek=0;?>
                                     @foreach($spec->speciesQuota as $kuota)
                                         @if($kuota->year == date('Y'))
-                                            {{ $kuota->quota_amount }}
-                                        @else
-                                            Kuota belum ditentukan
+                                            <?php $cek = $kuota->quota_amount?>
                                         @endif
                                     @endforeach
+
+                                    @if ($cek !==0)
+                                        {{$cek}}
+                                    @else
+                                        Kuota belum ditentukan
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="{{route('admin.species.showquota',['id'=>$spec->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a>
