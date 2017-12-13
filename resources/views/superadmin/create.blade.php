@@ -18,7 +18,7 @@
                     <form action="{{ route('superadmin.storeUser') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('superadmin._form', ['company' => null])
+                        @include('superadmin._form', ['company' => null, 'user' => null])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">

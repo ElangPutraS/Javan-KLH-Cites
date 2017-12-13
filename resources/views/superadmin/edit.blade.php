@@ -16,8 +16,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('superadmin.updateUser', ['id' => $company->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        {{ method_field('PUT') }}
+                    <form action="{{ route('superadmin.updateUser', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
 
                         {!! csrf_field() !!}
 
