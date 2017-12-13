@@ -149,133 +149,131 @@ class ReportController extends Controller
     {
         $tradePermit = TradePermit::findOrFail($tradePermitId);
 
-        //return response()->xml($tradePermit);
-
         $send = [
             'header' => [
-                'noPengajuan' => 'qwerty',
-                'tglPengajuan' => 'qwerty',
-                'jnsPengajuan' => 'qwerty',
-                'kdPengajuan' => 'qwerty',
-                'jnsPerijinan' => 'qwerty',
-                'statusPerijinan' => 'qwerty',
-                'noPerijinan' => 'qwerty',
-                'tglPerijinan' => 'qwerty',
-                'tglAwalPerijinan' => 'qwerty',
-                'tglAkhirPerijinan' => 'qwerty',
-                'kdInstansi' => 'qwerty',
-                'kdKantor' => 'qwerty',
-                'kdDirektorat' => 'qwerty',
-                'remarks' => 'qwerty',
+                'noPengajuan' => $tradePermit->id,
+                'tglPengajuan' => $tradePermit->date_submission,
+                'jnsPengajuan' => $tradePermit->purposeType->purpose_type_name,
+                'kdPengajuan' => $tradePermit->trade_permit_code,
+                'jnsPerijinan' => $tradePermit->tradingType->trading_type_name,
+                'statusPerijinan' => $tradePermit->tradeStatus->status_name,
+                'noPerijinan' => null,
+                'tglPerijinan' => $tradePermit->date_submission,
+                'tglAwalPerijinan' => $tradePermit->valid_start,
+                'tglAkhirPerijinan' => $tradePermit->valid_until,
+                'kdInstansi' => null,
+                'kdKantor' => null,
+                'kdDirektorat' => null,
+                'remarks' => null,
                 'narahubung' => [
-                    'nama' => 'qwerty',
-                    'jabatan' => 'qwerty',
-                    'identitas' => ''
+                    'nama' => null,
+                    'jabatan' => null,
+                    'identitas' => null
                 ],
-                'kota' => ''
+                'kota' => null
             ],
             'trader' => [
-                'tipe' => 'qwerty',
-                'jnsID' => 'qwerty',
-                'npwp' => 'qwerty',
-                'nama' => 'qwerty',
-                'alamat' => 'qwerty',
-                'kdpos' => 'qwerty',
-                'kota' => 'qwerty',
-                'propinsi' => 'qwerty',
-                'negara' => 'qwerty',
-                'telp' => 'qwerty',
-                'fax' => 'qwerty',
-                'email' => 'qwerty',
+                'tipe' => $tradePermit->tradingType->trading_type_name,
+                'jnsID' => null,
+                'npwp' => null,
+                'nama' => $tradePermit->company->company_name,
+                'alamat' => $tradePermit->company->company_address,
+                'kdpos' => null,
+                'kota' => $tradePermit->company->city->city_name_full,
+                'propinsi' => $tradePermit->company->province->province_name,
+                'negara' => $tradePermit->company->country->country_name,
+                'telp' => null,
+                'fax' => $tradePermit->company->company_fax,
+                'email' => $tradePermit->company->email,
                 'narahubung' => [
-                    'nama' => 'qwerty',
-                    'jabatan' => 'qwerty',
-                    'alamat' => 'qwerty',
-                    'identitas' => 'qwerty',
-                    'telp' => 'qwerty',
-                    'email' => ''
+                    'nama' => null,
+                    'jabatan' => null,
+                    'alamat' => null,
+                    'identitas' => null,
+                    'telp' => null,
+                    'email' => null
                 ]
             ],
             'sla' => [
-                'kodeStatus' => 'qwerty',
-                'wkStatus' => 'qwerty',
-                'uraianStatus' => 'qwerty',
-                'standardSLA' => 'qwerty',
-                'idPetugas' => 'qwerty',
-                'nmPetugas' => ''
+                'kodeStatus' => null,
+                'wkStatus' => null,
+                'uraianStatus' => null,
+                'standardSLA' => null,
+                'idPetugas' => null,
+                'nmPetugas' => null
             ],
             'referensi' => [
-                'jnsDok' => 'qwerty',
-                'noDok' => 'qwerty',
-                'tglDok' => 'qwerty',
-                'kdDok' => 'qwerty',
-                'penerbit' => 'qwerty',
-                'negpenerbit' => ''
+                'jnsDok' => null,
+                'noDok' => null,
+                'tglDok' => $tradePermit->date_submission,
+                'kdDok' => null,
+                'penerbit' => null,
+                'negpenerbit' => null
             ],
             'transportasi' => [
                 'moda' => [
-                    'jnsmoda' => 'qwerty',
-                    'angkutno' => 'qwerty',
-                    'angkutnama' => 'qwerty',
-                    'tgltiba' => ''
+                    'jnsmoda' => null,
+                    'angkutno' => null,
+                    'angkutnama' => null,
+                    'tgltiba' => null
                 ],
                 'lokasi' => [
                     'negmuat' => [
-                        'kdNegara' => ''
+                        'kdNegara' => 'ID'
                     ],
-                    'negbkr' => 'qwerty',
+                    'negbkr' => 'Indonesia',
                     'negTrans' => [
-                        'kdNegara' => ''
+                        'kdNegara' => 'ID'
                     ],
-                    'plbmuat' => 'qwerty',
+                    'plbmuat' => $tradePermit->portExpor->port_name,
                     'plbbkr' => [
-                        'kdPelabuhan' => ''
+                        'kdPelabuhan' => $tradePermit->portExpor->port_code
                     ],
                     'plbtrans' => [
-                        'kdPelabuhan' => ''
+                        'kdPelabuhan' => $tradePermit->portDest->port_code
                     ],
-                    'tmptimbun' => ''
+                    'tmptimbun' => null
                 ],
                 'tmpinstalasi' => [
-                    'nama' => 'qwerty',
-                    'alamat' => ''
+                    'nama' => null,
+                    'alamat' => null
                 ],
                 'tujuan' => [
-                    'tujmasuk' => 'qwerty',
-                    'drhtuju' => 'qwerty',
-                    'negtuju' => ''
+                    'tujmasuk' => null,
+                    'drhtuju' => null,
+                    'negtuju' => null
                 ],
                 'container' => [
-                    'nocont' => 'qwerty',
-                    'segel' => ''
+                    'nocont' => null,
+                    'segel' => null
                 ]
             ],
             'komoditas' => [
-                'serial' => 'qwerty',
-                'noHS' => 'qwerty',
-                'deskripsiHS' => 'qwerty',
-                'uraianBarang' => 'qwerty',
-                'nmLatin' => 'qwerty',
-                'sediaan' => 'qwerty',
-                'periode' => 'qwerty',
-                'flagperubahan' => 'qwerty',
-                'jmlSatuan' => 'qwerty',
-                'jnsSatuan' => 'qwerty',
-                'nobatch' => 'qwerty',
-                'noCAS' => 'qwerty',
+                'serial' => null,
+                'noHS' => null,
+                'deskripsiHS' => null,
+                'uraianBarang' => null,
+                'nmLatin' => null,
+                'sediaan' => null,
+                'periode' => null,
+                'flagperubahan' => null,
+                'jmlSatuan' => null,
+                'jnsSatuan' => null,
+                'nobatch' => null,
+                'noCAS' => null,
                 'negTujuan' => [
-                    'kdNegara' => ''
+                    'kdNegara' => null
                 ],
                 'pelAsal' => [
-                    'kdPelabuhan' => ''
+                    'kdPelabuhan' => null
                 ],
                 'pelBkr' => [
-                    'kdPelabuhan' => ''
+                    'kdPelabuhan' => null
                 ],
-                'netto' => ''
+                'netto' => null
             ]
         ];
 
-        return $result = ArrayToXml::convert($send, 'persetujuan');
+        return $result = ArrayToXml::convert($tradePermit->toArray(), 'persetujuan');
     }
 }

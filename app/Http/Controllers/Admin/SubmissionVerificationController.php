@@ -111,16 +111,14 @@ class SubmissionVerificationController extends Controller
     public function updateRej(Request $request, $id){
         $trade_permit = TradePermit::findOrFail($id);
 
-        dd($request->alasan);
         $trade_permit->update([
             'updated_by' => $request->user()->id,
-            'reject_reason' => $request->alasan
+            'reject_reason' => $request->get('alasan'),
         ]);
 
         $status = TradePermitStatus::where('status_code','300')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
-        //Ini buat get alasannya : $request->get('alasan')
 
         //nambahin log
         $log=LogTradePermit::create([
@@ -243,6 +241,9 @@ class SubmissionVerificationController extends Controller
             'reject_reason' => $request->alasan,
             'valid_renewal' => $trade_permit->valid_renewal+1,
         ]);
+
+        $alasan = $request->get('alasan');
+        $trade_permit->company->user->notify(new SubmissionVerificationRejectRen($alasan));
 
         return $trade_permit;
     }

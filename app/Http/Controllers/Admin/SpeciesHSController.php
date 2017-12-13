@@ -28,8 +28,8 @@ class SpeciesHSController extends Controller
     	$appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
     	$categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
-        $sources = Source::orderBy('source_description', 'asc')->pluck('source_description', 'id');
-        $units = Unit::orderBy('unit_description', 'asc')->pluck('unit_description', 'id');
+        $sources = Source::orderBy('source_description', 'asc')->get();
+        $units = Unit::orderBy('unit_description', 'asc')->get();
     	return view('admin.species.createspecies', compact('appendix', 'species_sex', 'categories','sources','units'));
     }
 
@@ -41,13 +41,13 @@ class SpeciesHSController extends Controller
     		'species_indonesia_name' => $request->get('indonesia_name'),
     		'species_general_name' => $request->get('general_name'),
     		'is_appendix' => $request->get('is_appendix'),
-    		'species_sex_id' => $request->get('species_sex_id'),
     		'species_category_id' => $request->get('species_category_id'),
     		'nominal' => $nominal,
     		'hs_code' => $request->get('hs_code'),
     		'sp_code' => $request->get('sp_code'),
     		'unit_id' => $request->get('unit_id'),
-    		'source_id' => $request->get('source_id')
+    		'source_id' => $request->get('source_id'),
+            'species_description' => $request->get('description')
     		]);
     	$species->save();
     	if($request->get('is_appendix')!=0){
@@ -62,8 +62,8 @@ class SpeciesHSController extends Controller
     	$appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
         $categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
-        $sources = Source::orderBy('source_code', 'asc')->pluck('source_code', 'id');
-        $units = Unit::orderBy('unit_description', 'asc')->pluck('unit_description', 'id');
+        $sources = Source::orderBy('source_description', 'asc')->get();
+        $units = Unit::orderBy('unit_description', 'asc')->get();
     	return view('admin.species.editspecies', compact('species', 'appendix', 'species_sex','categories','sources','units'));
     }
 
@@ -81,8 +81,9 @@ class SpeciesHSController extends Controller
             'hs_code' => $request->get('hs_code'),
     		'sp_code' => $request->get('sp_code'),
     		'unit_id' => $request->get('unit_id'),
-    		'source_id' => $request->get('source_id')
-    		]);
+    		'source_id' => $request->get('source_id'),
+            'species_description' => $request->get('description')
+        ]);
 
     	if($request->get('is_appendix')!=0){
     		$appendix=AppendixSource::find($request->get('appendix_source_id'));
