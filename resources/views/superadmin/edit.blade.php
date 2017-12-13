@@ -163,5 +163,16 @@ foreach ($document_type as $key=>$dt){
                 }
             });
         }
+        function roleChange() {
+            var x = document.getElementById("role_name").value;
+            if (x == 1 || x == 3){
+                document.getElementById('showData').style.display='none';
+                $("#company_longitude").removeAttr('required');
+                $("#document_type").removeAttr('required');
+                $("#company_file").removeAttr('required');
+            }else{
+                document.getElementById('showData').style.display='block';
+            }
+        }
     </script>
 @endpush

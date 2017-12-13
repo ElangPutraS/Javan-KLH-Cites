@@ -4,11 +4,11 @@
 <div class="form-group">
     <label class="control-label">Nama</label>
     <div class="col-sm-14">
-        @if(count($company)!=0)
-            <input type="hidden" name="user_id" class="form-control" value="{{ old('user_id', array_get($company->user, 'id')) }}">
-            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company->user, 'name')) }}">
+        @if(count($user)!=0)
+            <input type="hidden" name="user_id" class="form-control" value="{{ old('user_id', array_get($user->user, 'id')) }}">
+            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}">
         @else
-            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company, 'name')) }}">
+            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}">
         @endif
     </div>
 </div>
@@ -16,10 +16,10 @@
 <div class="form-group">
     <label class="control-label">Email</label>
     <div class="col-sm-14">
-        @if(count($company)!=0)
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company->user, 'email')) }}" readonly>
+        @if(count($user)!=0)
+            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}" readonly>
         @else
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company, 'email')) }}">
+            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}">
         @endif
     </div>
 </div>
@@ -28,7 +28,7 @@
 <div class="form-group">
     <label class="control-label">Password</label>
     <div class="col-sm-14">
-        <input type="password" name="password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+        <input type="password" name="password" class="form-control" value="{{ old('password', array_get($user, 'password')) }}">
     </div>
 </div>
 @endif
@@ -38,16 +38,13 @@
         <select name="role_name" id="role_name" class="form-control select2" onchange="roleChange()">
             <option value="">--Pilih Role--</option>
             @foreach($roles as $key => $role_name)
-                @if(count($company)!=0)
-                    <option value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
-                @else
-                    <option value="{{ $key }}"{{ $key == old('role_name') ? 'selected' : '' }}>{{ $role_name }}</option>
-                @endif
+                <option value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
             @endforeach
         </select>
     </div>
 </div>
-<div id="showData">
+
+<div id="showData" style="display:@if(isset($user)) @if($user->roles->first()->id == 2) active @else none @endif @endif;">
     <div class="form-group">
         <h5>B. Data Pelaku Usaha</h5>
     </div>
@@ -205,7 +202,7 @@
                 <select name="company_city_id" id="company_city_id" class="form-control select2">
                     <option value="">--Pilih Kota Perusahaan--</option>
                     @foreach($cities as $key => $city)
-                    <option value="{{ $key }}" {{ $key == old('company_city_id', array_get($company, 'city_id')) ? 'selected' : '' }}>{{ $city }}</option>
+                        <option value="{{ $key }}" {{ $key == old('company_city_id', array_get($company, 'city_id')) ? 'selected' : '' }}>{{ $city }}</option>
                     @endforeach
                 </select>
             </div>
@@ -300,4 +297,4 @@
 
     </div>
 
-</div>
+    </div>
