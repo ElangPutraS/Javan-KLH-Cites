@@ -44,7 +44,7 @@ class UserRoleController extends Controller
         $cities           = City::orderBy('city_name_full', 'asc')->pluck('city_name_full', 'id');
         $document_type    = DocumentType::where('is_permit',0)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
         $identity_type    = TypeIdentify::orderBy('type_identify_name', 'asc')->pluck('type_identify_name', 'id');
-        //$user            = User::orderBy('name', 'asc')->pluck('name', 'id');
+        //$users            = User::orderBy('name', 'asc')->pluck('name', 'id');
         $roles            = Role::orderBy('role_name', 'asc')->pluck('role_name', 'id');
 
         return view('superadmin.create', compact( 'countries', 'provinces', 'cities', 'document_type', 'identity_type','roles'));
@@ -52,12 +52,12 @@ class UserRoleController extends Controller
 
     public function store(CompanyStoreRequest $request)
     {
+    if ($request->get('role_name') == 2){
         $user = User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => bcrypt($request->password),
         ]);
-
         $user_profile = new UserProfile([
             'place_of_birth' => $request->get('place_birth'),
             'date_of_birth'  => $request->get('date_birth'),
@@ -112,8 +112,16 @@ class UserRoleController extends Controller
         }
 
         $user->roles()->sync($request->role_name);
+    }else{
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+    }
 
-        return redirect()->route('superadmin.editUser', ['id' => $company->id])->with('success', 'Data berhasil dibuat.');
+
+        return redirect()->route('superadmin.editUser', ['id' => $user->id])->with('success', 'Data berhasil dibuat.');
     }
     public function edit($id)
     {
@@ -138,10 +146,8 @@ class UserRoleController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function update(CompanyUpdateRequest $request, $id)
+    public function update(CompanyUpdateRequest $request, Company $company)
     {
-        $user        = User::findOrFail($id);
-        $company = $user->company;
         $company->update([
             'company_name' => $request->get('company_name'),
             'company_address' => $request->get('company_address'),
@@ -156,7 +162,7 @@ class UserRoleController extends Controller
             'updated_by' => $request->user()->id,
         ]);
 
-
+        $user        = $company->user();
         $user->update([
             'name' => $request->name,
         ]);
@@ -206,6 +212,16 @@ class UserRoleController extends Controller
         $user->roles()->sync($request->role_name);
 
         return redirect()->route('superadmin.editUser', $company)->with('success', 'Data berhasil diubah.');
+    }
+
+    public function storeUser(Request $request){
+        $user = User::create([
+            'name'     => $request->name,
+            'email'    => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        return redirect()->route('superadmin.editUser', ['id' => $user->id])->with('success', 'Data berhasil dibuat.');
     }
 
 }

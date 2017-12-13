@@ -5,10 +5,10 @@
     <label class="control-label">Nama</label>
     <div class="col-sm-14">
         @if(count($company)!=0)
-            <input type="hidden" name="user_id" class="form-control" value="{{ old('user_id', array_get($user, 'id')) }}">
-            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}">
+            <input type="hidden" name="user_id" class="form-control" value="{{ old('user_id', array_get($company->user, 'id')) }}">
+            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company->user, 'name')) }}">
         @else
-            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}">
+            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($company, 'name')) }}">
         @endif
     </div>
 </div>
@@ -17,9 +17,9 @@
     <label class="control-label">Email</label>
     <div class="col-sm-14">
         @if(count($company)!=0)
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}" readonly>
+            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company->user, 'email')) }}" readonly>
         @else
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}">
+            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($company, 'email')) }}">
         @endif
     </div>
 </div>
@@ -28,17 +28,17 @@
 <div class="form-group">
     <label class="control-label">Password</label>
     <div class="col-sm-14">
-        <input type="password" name="password" class="form-control" value="{{ old('password', array_get($user, 'password')) }}">
+        <input type="password" name="password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
     </div>
 </div>
 @endif
 <div class="form-group">
     <label class="control-label">Role</label>
     <div class="col-sm-4">
-        <select name="role_name" id="role_name" class="form-control select2">
+        <select name="role_name" id="role_name" class="form-control select2" onchange="roleChange()">
             <option value="">--Pilih Role--</option>
             @foreach($roles as $key => $role_name)
-                @if(count($user)!=0)
+                @if(count($company)!=0)
                     <option value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
                 @else
                     <option value="{{ $key }}"{{ $key == old('role_name') ? 'selected' : '' }}>{{ $role_name }}</option>
@@ -47,8 +47,7 @@
         </select>
     </div>
 </div>
-
-@if($company !== NULL)
+<div id="showData">
     <div class="form-group">
         <h5>B. Data Pelaku Usaha</h5>
     </div>
@@ -206,7 +205,7 @@
                 <select name="company_city_id" id="company_city_id" class="form-control select2">
                     <option value="">--Pilih Kota Perusahaan--</option>
                     @foreach($cities as $key => $city)
-                        <option value="{{ $key }}" {{ $key == old('company_city_id', array_get($company, 'city_id')) ? 'selected' : '' }}>{{ $city }}</option>
+                    <option value="{{ $key }}" {{ $key == old('company_city_id', array_get($company, 'city_id')) ? 'selected' : '' }}>{{ $city }}</option>
                     @endforeach
                 </select>
             </div>
@@ -296,8 +295,9 @@
             <input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" {{$company==null ? 'required' : ''}}>
         </div>
     </div>
-    @endif
 
-<div id="form-dynamic">
+    <div id="form-dynamic">
+
+    </div>
+
 </div>
-

@@ -18,7 +18,7 @@
                     <form action="{{ route('superadmin.storeUser') }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('superadmin._form', ['company' => null, 'user' => null])
+                        @include('superadmin._form', ['company' => null])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
@@ -150,6 +150,17 @@
         function hapusForm(a) {
             //alert('cek');
             a.closest('#dynamic').remove();
+        }
+        function roleChange() {
+            var x = document.getElementById("role_name").value;
+            if (x == 1 || x == 3){
+                document.getElementById('showData').style.display='none';
+                $("#company_longitude").removeAttr('required');
+                $("#document_type").removeAttr('required');
+                $("#company_file").removeAttr('required');
+            }else{
+                document.getElementById('showData').style.display='block';
+            }
         }
     </script>
 @endpush
