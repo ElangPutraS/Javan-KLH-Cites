@@ -25,8 +25,7 @@
                             <th>Nama Indonesia</th>
                             <th>Nama Umum</th>
                             <th>Appendiks</th>
-                            <th>Jenis Kelamin</th>
-                            <th>Kategori</th>
+                            <th>Komoditas</th>
                             <th>Kuota Tahun Ini</th>
                             <th>Kuota</th>
                             <th>Aksi</th>
@@ -47,7 +46,6 @@
                                         Tidak Memiliki Appendix
                                     @endif
                                 </td>
-                                <td>{{$spec->speciesSex->sex_name}}</td>
                                 <td>{{$spec->speciesCategory->species_category_name}}</td>
                                 <td>
                                     @foreach($spec->speciesQuota as $kuota)

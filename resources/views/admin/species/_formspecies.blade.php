@@ -44,10 +44,10 @@
 </div>
 
 <div class="form-group" id="showAppendix" style="display:{{'1' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : 'none' }};">
-    <label class="control-label">Appendix</label>
+    <label class="control-label">Appendiks</label>
     <div class="col-sm-14">
         <select name="appendix_source_id" id="appendix_source_id" class="form-control select2"  @if($species!==NULL) @if($species->is_appendix===1) required @endif @endif>
-            <option value="">--Pilih Appendix--</option>
+            <option value="">--Pilih Appendiks--</option>
             @foreach($appendix as $key => $append)
                 <option value="{{ $key }}" {{ $key == old('appendix_source_id', array_get($species, 'appendix_source_id')) ? 'selected' : '' }}>{{ $append }}</option>
             @endforeach
@@ -56,35 +56,23 @@
 </div>
 
 
-<div class="form-group" id="showSourceAppendix" style="display:{{'1' == old('is_appendix', array_get($species, 'is_appendix')) ? 'active' : 'none' }};">
-    <label class="control-label">Sumber Appendix</label>
+<div class="form-group" id="showSourceAppendix" >
+    <label class="control-label">Sumber Appendiks</label>
     <div class="col-sm-14">
         <select name="source_id" id="source_id" class="form-control select2" @if($species!==NULL) @if($species->is_appendix===1) required @endif @endif>
-            <option value="">--Pilih Appendix Source--</option>
-            @foreach($sources as $key => $source)
-                <option value="{{ $key }}" {{ $key == old('source_id', array_get($species, 'source_id')) ? 'selected' : '' }}>{{ $source }}</option>
+            <option value="">--Pilih Sumber Appendiks--</option>
+            @foreach($sources as $source)
+                <option value="{{ $source->id }}" {{ $source->id == old('source_id', array_get($species, 'source_id')) ? 'selected' : '' }}>{{ $source->source_code.' - '.$source->source_description }}</option>
             @endforeach
         </select>
     </div>
 </div>
 
 <div class="form-group">
-    <label class="control-label">Jenis Kelamin Species</label>
-    <div class="col-sm-14">
-        <select name="species_sex_id" id="species_sex_id" class="form-control select2" required>
-            <option value="">--Pilih Species Sex--</option>
-            @foreach($species_sex as $key => $sex_name)
-                <option value="{{ $key }}" {{ $key == old('species_sex_id', array_get($species, 'species_sex_id')) ? 'selected' : '' }}>{{ $sex_name }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label">Kategori Species</label>
+    <label class="control-label">Komoditas Spesies</label>
     <div class="col-sm-14">
         <select name="species_category_id" id="species_category_id" class="form-control select2" required>
-            <option value="">--Pilih Species Category--</option>
+            <option value="">--Pilih Komoditas Spesies--</option>
             @foreach($categories as $key => $category_name)
                 <option value="{{ $key }}" {{ $key == old('species_category_id', array_get($species, 'species_category_id')) ? 'selected' : '' }}>{{ $category_name }}</option>
             @endforeach
@@ -93,12 +81,19 @@
 </div>
 
 <div class="form-group">
+    <label class="control-label">Deskripsi</label>
+    <div class="col-sm-14">
+        <textarea id="description" name="description" type="text" class="form-control" >{{ old('description', array_get($species, 'species_description')) }}</textarea>
+    </div>
+</div>
+
+<div class="form-group">
     <label class="control-label">Satuan</label>
     <div class="col-sm-14">
         <select name="unit_id" id="unit_id" class="form-control select2" required>
-            <option value="">--Pilih Unit--</option>
-            @foreach($units as $key => $unit_description)
-                <option value="{{ $key }}" {{ $key == old('unit_id', array_get($species, 'unit_id')) ? 'selected' : '' }}>{{ $unit_description }}</option>
+            <option value="">--Pilih Satuan--</option>
+            @foreach($units as $unit)
+                <option value="{{ $unit->id }}" {{ $unit->id == old('unit_id', array_get($species, 'unit_id')) ? 'selected' : '' }}>{{ $unit->unit_code.' - '.$unit->unit_description }}</option>
             @endforeach
         </select>
     </div>

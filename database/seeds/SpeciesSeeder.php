@@ -29,7 +29,6 @@ class SpeciesSeeder extends Seeder
                 'sp_code' => $item['sp_code'],
                 'unit_id' => $item['unit_id'],
                 'source_id' => $item['source_id'],
-                'species_sex_id' => $faker->numberBetween(1,2),
                 'nominal' => '100000',
                 'species_category_id' => $item['species_category_id']
             ]);

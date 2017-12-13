@@ -20,9 +20,6 @@
                     <form action="" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
 
                         {!! csrf_field() !!}
-                        <div class="form-group">
-                            <h3>Form Species</h3>
-                        </div>
 
                         <div class="form-group">
                             <label class="control-label">HS Code</label>
@@ -40,20 +37,20 @@
 
                         @if($species->is_appendix === 1)
                             <div class="form-group">
-                                <label class="control-label">Appendix</label>
+                                <label class="control-label">Appendiks</label>
                                 <div class="col-sm-14">
                                     <input type="text" name="appendix_name" class="form-control" value="{{ old('appendix_name', array_get($species->appendixSource, 'appendix_source_code')) }}" required readonly>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Sumber Appendix</label>
+                                <label class="control-label">Sumber Appendiks</label>
                                 <div class="col-sm-14">
                                     <textarea type="text" name="source_name" class="form-control" value="" required readonly>{{ old('source_name', array_get($species->source, 'source_description')) }}</textarea>
                                 </div>
                             </div>
                         @else
                             <div class="form-group">
-                                <label class="control-label">Appendix</label>
+                                <label class="control-label">Appendiks</label>
                                 <div class="col-sm-14">
                                     <input type="text" name="appendix_name" class="form-control" value="Non-Appendix" required readonly>
                                 </div>
@@ -82,9 +79,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Jenis Kelamin</label>
+                            <label class="control-label">Deskripsi</label>
                             <div class="col-sm-14">
-                                <input type="text" name="general_name" class="form-control" value="{{ old('general_name', array_get($species->speciesSex, 'sex_name')) }}" required readonly>
+                                <input type="text" name="description" class="form-control" value="{{ old('description', array_get($species, 'species_description')) }}" required readonly>
                             </div>
                         </div>
 
