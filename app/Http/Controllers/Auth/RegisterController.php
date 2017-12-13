@@ -57,7 +57,7 @@ class RegisterController extends Controller
     {
         $date=date('Y-m-d');
         return Validator::make($data, [
-            'name'              => 'required|string|max:255',
+            'name'              => 'required|string|max:191',
             'email'             => 'required|string|email|max:255|unique:users',
             'password'          => 'required|string|min:6|confirmed',
             'place_birth'       => 'required|string',
@@ -72,12 +72,18 @@ class RegisterController extends Controller
             'company_name'      => 'required|string',
             'company_email'     => 'required|string|email|max:255',
             'company_city'      => 'required',
-            'company_state'      => 'required',
-            'company_nation'      => 'required',
+            'company_state'     => 'required',
+            'company_nation'    => 'required',
             'company_address'   => 'required|string',
             'company_fax'       => 'required|numeric',
             'company_latitude'  => 'required',
             'company_longitude' => 'required',
+            'owner_name'        => 'required|string|max:191',
+            'captivity_address' => 'required',
+            'labor_total'       => 'required|numeric',
+            'investation_total' => 'required',
+            'npwp_number'       => 'required|numeric',
+            'date_distribution' => 'required',
         ]);
     }
 
@@ -112,7 +118,7 @@ class RegisterController extends Controller
 
         $type = TypeIdentify::find($data['identify_type']);
         $user_profile->typeIdentify()->attach($type, ['user_type_identify_number' => $data['person_identify']]);
-
+        
         $company = new Company([
             'company_name'      => $data['company_name'],
             'company_address'   => $data['company_address'],
@@ -120,7 +126,13 @@ class RegisterController extends Controller
             'company_fax'       => $data['company_fax'],
             'company_latitude'  => $data['company_latitude'],
             'company_longitude' => $data['company_longitude'],
-            'country_id'         => $data['company_nation'],
+            'owner_name'        => $data['owner_name'],
+            'captivity_address' => $data['captivity_address'],
+            'labor_total'       => $data['labor_total'],
+            'investation_total' => str_replace( '.', '', $data['investation_total']),
+            'npwp_number'       => $data['npwp_number'],
+            'date_distribution' => $data['date_distribution'],
+            'country_id'        => $data['company_nation'],
             'province_id'       => $data['company_state'],
             'city_id'           => $data['company_city'],
             'created_by'        => $user->id,
