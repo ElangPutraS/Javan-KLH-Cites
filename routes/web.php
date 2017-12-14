@@ -41,7 +41,7 @@ Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
 Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
 Route::get('/getSpeciesComodity/{comodity}', 'LocationController@getSpeciesComodity');
-Route::get('/getDocumentType', 'LocationController@getDocumentReEkspor');
+Route::get('/getDocumentType/{id}', 'LocationController@getDocument');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {

@@ -29,15 +29,25 @@ class LocationController extends Controller
         }
         $species=Species::where('is_appendix',$is_appendix)->orderBy('species_scientific_name','asc')
             ->with('appendixSource')
-            ->with('speciesSex')
+            ->with('unit')
             ->with('speciesQuota')  
             ->get();
 
         return json_encode($species);
     }
 
-    public function getDocumentReEkspor(){
-        $document_type=DocumentType::where('is_permit', 3)->first();
+    public function getDocument($id){
+        $data=[];
+        if($id == '1'){
+            $data=[5];
+        }else if($id == '2'){
+            $data=[4,5];
+        }else if($id == '3'){
+            $data=[];
+        }else if($id == '4'){
+            $data=[4,3];
+        }
+        $document_type=DocumentType::whereIn('is_permit', $data)->get();
 
         return json_encode($document_type);
     }

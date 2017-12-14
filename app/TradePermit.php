@@ -28,6 +28,7 @@ class TradePermit extends Model
         'valid_renewal',
         'permit_type',
         'reject_reason',
+        'category_id',
     ];
 
     public function documentTypes()
@@ -78,6 +79,11 @@ class TradePermit extends Model
 
     public function logTrade() {
         return $this->hasMany(LogTradePermit::class, 'trade_permit_id', 'id');
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class)
+            ->withTrashed();
     }
 
 }
