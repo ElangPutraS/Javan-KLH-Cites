@@ -59,7 +59,7 @@
 <div class="form-group" id="showSourceAppendix" >
     <label class="control-label">Sumber Appendiks</label>
     <div class="col-sm-14">
-        <select name="source_id" id="source_id" class="form-control select2" @if($species!==NULL) @if($species->is_appendix===1) required @endif @endif>
+        <select name="source_id" id="source_id" class="form-control select2" required>
             <option value="">--Pilih Sumber Appendiks--</option>
             @foreach($sources as $source)
                 <option value="{{ $source->id }}" {{ $source->id == old('source_id', array_get($species, 'source_id')) ? 'selected' : '' }}>{{ $source->source_code.' - '.$source->source_description }}</option>

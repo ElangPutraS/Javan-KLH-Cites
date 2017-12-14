@@ -43,6 +43,12 @@ class ProfileUpdateRequest extends FormRequest
             'company_fax'           => 'required|numeric|digits_between:0,30',
             'company_latitude'      => 'required',
             'company_longitude'     => 'required',
+            'owner_name'            => 'required|string|max:191',
+            'captivity_address'     => 'required',
+            'labor_total'           => 'required|numeric|digits_between:0,5',
+            'investation_total'     => 'required',
+            'npwp_number'           => 'required|numeric',
+            'date_distribution'     => 'required',
         ];
     }
 }
