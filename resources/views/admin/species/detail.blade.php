@@ -10,7 +10,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah Spesies & HS</h2>
+                    <h2 class="card-title">Detail Spesies & HS</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">

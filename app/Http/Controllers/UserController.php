@@ -41,7 +41,7 @@ class UserController extends Controller
     public function update(ProfileUpdateRequest $request, $id)
     {
         $user = User::findOrFail($id);
-        $company = $user->company();
+        $company = $user->company;
 
         $company->update([
             'company_name' => $request->get('company_name'),
@@ -54,6 +54,12 @@ class UserController extends Controller
             'province_id' => $request->get('company_province_id'),
             'country_id' => $request->get('company_country_id'),
             'updated_by' => $request->user()->id,
+            'owner_name' => $request->get('owner_name'),
+            'captivity_address' => $request->get('captivity_address'),
+            'labor_total' => $request->get('labor_total'),
+            'investation_total' => str_replace( '.', '',$request->get('investation_total')),
+            'npwp_number' => $request->get('npwp_number'),
+            'date_distribution' => $request->get('date_distribution'),
         ]);
 
         $user->update([
