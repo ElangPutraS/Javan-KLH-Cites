@@ -41,4 +41,12 @@ class LocationController extends Controller
 
         return json_encode($document_type);
     }
+
+    public function getSpeciesComodity($comodity)
+    {
+        $species = Species::where('species_category_id', $comodity)->orderBy('species_scientific_name','asc')
+                    ->with('unit')->get();
+
+        return json_encode($species);
+    }
 }
