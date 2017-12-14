@@ -18,8 +18,9 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group">
-                            <h5>A. Informasi Pelaku Usaha</h5>
+                            <h5>A. Informasi @if($user->roles()->first()->role_id == '2') Pemilik Usaha @else Admin @endif</h5>
                         </div>
+
                         <div class="form-group">
                             <label class="control-label">Nama</label>
                             <div class="col-sm-14">
@@ -35,6 +36,12 @@
                         </div>
 
                         @can('access-pelaku-usaha')
+                        <div class="form-group">
+                            <label class="control-label">Nama Pemilik Perusahaan</label>
+                            <div class="col-sm-14">
+                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) ?? '' }}" readonly>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label">Tempat Tanggal Lahir</label>
                             <div class="col-sm-14">
@@ -69,13 +76,6 @@
 
                         <div class="form-group">
                             <label class="control-label">Nama Perusahaan</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) ?? '' }}" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label">Nama Pemilik Perusahaan</label>
                             <div class="col-sm-14">
                                 <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) ?? '' }}" readonly>
                             </div>

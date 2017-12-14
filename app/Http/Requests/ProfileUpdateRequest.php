@@ -48,6 +48,7 @@ class ProfileUpdateRequest extends FormRequest
             'labor_total'           => 'required|numeric|digits_between:0,5',
             'investation_total'     => 'required',
             'npwp_number'           => 'required|numeric|digits_between:0,30',
+            'npwp_number_user'      => 'required|numeric|digits_between:0,30',
             'date_distribution'     => 'required',
         ];
     }
