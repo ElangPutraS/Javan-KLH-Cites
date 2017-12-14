@@ -29,6 +29,7 @@ class SpeciesRequest extends FormRequest
             'general_name' => 'required|string|max:100',
             'hs_code' => 'required|string|max:100',
             'sp_code' => 'required|string|max:100',
+            'nominal' => 'required|integer|max:12',
         ];
     }
 }
