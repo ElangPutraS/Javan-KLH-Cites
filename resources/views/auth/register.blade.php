@@ -407,7 +407,7 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('date_distribution') ? ' has-error' : '' }}">
-                            <label for="date_distribution" class="col-md-4 control-label">Tanggal Izin Edar</label>
+                            <label for="date_distribution" class="col-md-4 control-label">Masa Berlaku Izin Edar</label>
 
                             <div class="col-md-6">
                                 <input id="date_distribution" placeholder="Pilih Tanggal Berakhirnya Surat Izin Edar" type="text" class="form-control" name="date_distribution" value="{{ old('date_distribution') }}" max="{{date('Y-m-d')}}" required>
