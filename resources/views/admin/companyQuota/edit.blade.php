@@ -9,22 +9,22 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah Kuota Species {{$species->species_indonesia_name}}</h2>
-                    <small class="card-subtitle">({{$species->species_scientific_name}})</small>
+                    <h2 class="card-title">Ubah Kuota Species Perusahaan</h2>
+                    <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
 
                     @include('includes.notifications')
 
-                    <form action="{{route('admin.species.updatequota', ['species_id' => $species->id, 'id' => $quota->id]) }}" method="post" class="form-horizontal">
+                    <form action="{{route('admin.companyQuota.update', ['company' => $company->id, 'id' => $quota->id]) }}" method="post" class="form-horizontal">
                         {!! csrf_field() !!}
 
-                        @include('admin.species._formquota', ['species' => $species, 'quota' => $quota])
+                        @include('admin.companyQuota._form', ['company' => $company, 'quota' => $quota])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
-                                <a href="{{ route('admin.species.showquota', ['species_id'=> $species->id]) }}" class="btn btn-default">Kembali ke Daftar</a>
+                                <a href="{{ route('admin.companyQuota.detail', ['id'=> $company->id]) }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
                     </form>

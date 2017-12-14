@@ -14,6 +14,7 @@ class CreateCompanyQuotaTable extends Migration
     public function up()
     {
         Schema::create('company_quota', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('company_id')->unsigned()->nullable();
             $table->foreign('company_id')
                 ->references('id')->on('companies')
