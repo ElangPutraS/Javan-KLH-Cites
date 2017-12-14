@@ -88,6 +88,8 @@
             @can('access-pelaku-usaha')
                 @if(auth()->user()->company->company_status >0)
                     <!-- Menu Pelaku Usaha -->
+                        <li @if(Request::segment(1)=='companyQuota') class="navigation__active" @endif><a href="{{ route('user.companyQuota.index') }}"><i class="zmdi zmdi-case-check zmdi-hc-fw"></i> Kuota Spesies Perusahaan </a></li>
+
                         <li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATS-LN</a>
                             <ul>
                                 <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
