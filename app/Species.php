@@ -61,4 +61,11 @@ class Species extends Model
         return $this->belongsTo(Source::class);
     }
 
+    public function companyQuota()
+    {
+        return $this->belongsToMany(Company::class, 'company_quota')
+            ->withPivot('id', 'quota_amount', 'realization', 'year')
+            ->using(CompanyQuota::class);
+    }
+
 }
