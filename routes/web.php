@@ -145,6 +145,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('printReportDetailSatsln/{id}', 'ReportController@printReportDetailSatsln')->name('admin.report.printReportDetailSatsln');
     Route::get('portal-insw', 'ReportController@portalInsw')->name('admin.report.portalInsw');
     Route::get('send-insw/{tradePermitId}', 'ReportController@sendInsw')->name('admin.report.sendInsw');
+    Route::get('print-satsln/{id}', 'ReportController@printSatsln')->name('admin.report.printSatsln');
 
     Route::get('companyQuota', 'CompanyQuotaController@index')->name('admin.companyQuota.index');
     Route::get('companyQuota/{id}/detail', 'CompanyQuotaController@detail')->name('admin.companyQuota.detail');
@@ -153,4 +154,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('companyQuota/{company_id}/edit/{id}', 'CompanyQuotaController@edit')->name('admin.companyQuota.edit');
     Route::post('companyQuota/{company_id}/update/{id}', 'CompanyQuotaController@update')->name('admin.companyQuota.update');
     Route::get('companyQuota/{company_id}/delete/{pivot_id}', 'CompanyQuotaController@destroy')->name('admin.companyQuota.delete');
+
+    Route::resource('percentage', 'PercentageController', ['as' => 'admin']);
 });

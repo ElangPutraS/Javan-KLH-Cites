@@ -276,4 +276,14 @@ class ReportController extends Controller
 
         return $result = ArrayToXml::convert($tradePermit->toArray(), 'persetujuan');
     }
+
+    public function printSatsln(Request $request, $id) {
+        $user = $request->user();
+        $trade_permit = TradePermit::findOrFail($id);
+
+        $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream();
+        //return view('pdf.satsln');
+    }
 }

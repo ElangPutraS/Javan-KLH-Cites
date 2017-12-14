@@ -144,14 +144,16 @@
                     <td align="right"><?= number_format(($value->nominal * $value->pivot->total_exported)) ?></td>
                 </tr>
                 <?php
+                $total[] = $value->nominal;
+                $subtotal[] = $value->nominal * $value->pivot->total_exported;
                 $total_exported[] = $value->pivot->total_exported;
                 ?>
             <?php } ?>
             <tr>
                 <td colspan="2" align="center">JUMLAH</td>
                 <td align="center"><?= array_sum($total_exported) ?></td>
-                <td align="right"></td>
-                <td align="right"></td>
+                <td align="right"><?= number_format(array_sum($total)) ?></td>
+                <td align="right"><?= number_format(array_sum($subtotal)) ?></td>
             </tr>
             </tbody>
         </table>

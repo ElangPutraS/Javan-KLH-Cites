@@ -28,8 +28,10 @@
                                 <option value="8" {{ Request::input('m') == '8' ? 'selected' : '' }} >Agustus</option>
                                 <option value="9" {{ Request::input('m') == '9' ? 'selected' : '' }} >September</option>
                                 <option value="10" {{ Request::input('m') == '10' ? 'selected' : '' }} >Oktober</option>
-                                <option value="11" {{ Request::input('m') == '11' ? 'selected' : '' }} >November</option>
-                                <option value="12" {{ Request::input('m') == '12' ? 'selected' : '' }} >Desember</option>
+                                <option value="11" {{ Request::input('m') == '11' ? 'selected' : '' }} >November
+                                </option>
+                                <option value="12" {{ Request::input('m') == '12' ? 'selected' : '' }} >Desember
+                                </option>
                             </select>
                         </div>
 
@@ -52,66 +54,79 @@
                     <div class="card-block">
                         <table>
                             <tr>
-                                <th>Bulan </th>
-                                <td>: </td>
+                                <th>Bulan</th>
+                                <td>:</td>
                                 <td>
                                     <?php
-                                    if(Request::input('m') !== null){
-                                    switch (Request::input('m')) {
-                                    case 1: echo 'Januari';
-                                        break;
-                                    case 2: echo 'Februari';
-                                        break;
-                                    case 3: echo 'Maret';
-                                        break;
-                                    case 4: echo 'April';
-                                        break;
-                                    case 5: echo 'Mei';
-                                        break;
-                                    case 6: echo 'Juni';
-                                        break;
-                                    case 7: echo 'Juli';
-                                        break;
-                                    case 8: echo 'Agustus';
-                                        break;
-                                    case 9: echo 'September';
-                                        break;
-                                    case 10: echo 'Oktober';
-                                        break;
-                                    case 11: echo 'November';
-                                        break;
-                                    case 12: echo 'Desember';
-                                        break;
-                                    default : echo 'Semua Bulan';
-                                    break;
+                                    if (Request::input('m') !== null) {
+                                        switch (Request::input('m')) {
+                                            case 1:
+                                                echo 'Januari';
+                                                break;
+                                            case 2:
+                                                echo 'Februari';
+                                                break;
+                                            case 3:
+                                                echo 'Maret';
+                                                break;
+                                            case 4:
+                                                echo 'April';
+                                                break;
+                                            case 5:
+                                                echo 'Mei';
+                                                break;
+                                            case 6:
+                                                echo 'Juni';
+                                                break;
+                                            case 7:
+                                                echo 'Juli';
+                                                break;
+                                            case 8:
+                                                echo 'Agustus';
+                                                break;
+                                            case 9:
+                                                echo 'September';
+                                                break;
+                                            case 10:
+                                                echo 'Oktober';
+                                                break;
+                                            case 11:
+                                                echo 'November';
+                                                break;
+                                            case 12:
+                                                echo 'Desember';
+                                                break;
+                                            default :
+                                                echo 'Semua Bulan';
+                                                break;
                                         }
-    }else{
-        echo 'Semua Bulan';
-    }
+                                    } else {
+                                        echo 'Semua Bulan';
+                                    }
                                     ?>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Tahun </th>
-                                <td>: </td>
+                                <th>Tahun</th>
+                                <td>:</td>
                                 <td>
                                     <?php
-                                    if(Request::input('y') !== null){
-                                        if(Request::input('y') == 'all'){
+                                    if (Request::input('y') !== null) {
+                                        if (Request::input('y') == 'all') {
                                             echo 'Semua Tahun';
-                                        }else{
+                                        } else {
                                             echo Request::input('y');
                                         }
-                                    }else{
+                                    } else {
                                         echo 'Semua Tahun';
                                     }
                                     ?>
                                 </td>
                             </tr>
                             <tr>
-                                <th>Jumlah SATS-LN Terbit </th>
-                                <td>: </td>
-                                <td> {{ $trade_permits->count() }} berkas </td>
+                                <th>Jumlah SATS-LN Terbit</th>
+                                <td>:</td>
+                                <td> {{ $trade_permits->count() }} berkas</td>
                             </tr>
                         </table>
 
@@ -162,21 +177,34 @@
                                         </td>
                                         <td>{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
                                         <td>
-                                            <a class="btn btn-success" href="{{ route('admin.report.printReportDetailSatsln', ['id' => $trade_permit->id]) }}" target="_blank"><i class="fa fa-print"></i> Cetak</a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="9">
-                                            @if ($trade_permit->id)
-                                            <a class="btn btn-success" href="{{ route('admin.report.printReportSatsln', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}" target="_blank"><i class="fa fa-print"></i> Cetak</a>
+                                            @if ($trade_permit->tradeStatus->status_code >= '600')
+                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info" target="_blank"><i class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
+                                            @else
+
                                             @endif
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="10"><center>Data Kosong</center></td>
+                                        <td colspan="10">
+                                            <center>Data Kosong</center>
+                                        </td>
                                     </tr>
                                 @endforelse
+
+                                @if($trade_permit)
+                                    <tr>
+                                        <td colspan="9">
+                                            @if ($trade_permit->tradeStatus->status_code >= '600')
+                                                <a href="{{route('user.submissionGradually.printSatsln', ['id'=> $trade_permit->id])}}"
+                                                   class="btn btn-sm btn-info" target="_blank"><i
+                                                            class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
+                                            @else
+
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endif
                                 </tbody>
                             </table>
                         </div>
@@ -190,22 +218,22 @@
 @endsection
 @push('body.script')
     <script type="text/javascript">
-        $(document).ready(function(){
-            $('#form-search').submit(function(ev) {
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
                 ev.preventDefault();
 
                 var month = $('#month').val();
                 var year = $('#year').val();
 
-                if(month == ''){
+                if (month == '') {
                     month = 'all';
                 }
 
-                if(year == ''){
+                if (year == '') {
                     year = 'all';
                 }
 
-                location.href='?m='+month+'&y='+year;
+                location.href = '?m=' + month + '&y=' + year;
             });
         });
     </script>
