@@ -1,6 +1,6 @@
-@media screen and (min-width: 600px) {
-	.container {
-
+@media screen and (max-width: 800px) {
+	.footer div:nth-child(1) {
+		display: none;
 	}
 }
 
@@ -89,9 +89,6 @@
 
 .footer {
 	background-color: #1ab394;
-}
-
-.footer {
 	color: #fff;
 }
 
