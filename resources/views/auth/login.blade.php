@@ -2,8 +2,7 @@
 
 @section('content')
 
-<div class="container">
-    <div class="row" style="margin-top: 10px;">
+    <div class="row klh-content">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
@@ -16,7 +15,8 @@
                             <label for="email" class="col-md-4 control-label">E-Mail</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="email" class="form-control" name="email"
+                                       value="{{ old('email') }}" required autofocus>
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -44,7 +44,8 @@
                             <div class="col-md-6 col-md-offset-4">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
+                                        Remember Me
                                     </label>
                                 </div>
                             </div>
@@ -66,5 +67,4 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
