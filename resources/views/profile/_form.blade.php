@@ -240,7 +240,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Tanggal Masa Berlaku Surat Izin Berakhir</label>
+    <label class="control-label">Masa Berlaku Surat Izin Edar Berakhir</label>
     <div class="col-sm-14">
         <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" name="date_distribution" class="form-control" value="{{ old('date_distribution', array_get($company, 'date_distribution')) }}" required>
     </div>

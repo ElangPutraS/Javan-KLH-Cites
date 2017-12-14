@@ -63,6 +63,8 @@ Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->nam
 Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index')->middleware(['auth', 'can:access-pelaku-usaha']);
 Route::get('invoice/{id}/detail', 'InvoiceController@show')->name('user.invoice.detail')->middleware(['auth', 'can:access-pelaku-usaha']);
 
+Route::get('companyQuota/', 'CompanyQuotaController@index')->name('user.companyQuota.index')->middleware(['auth', 'can:access-pelaku-usaha']);
+
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-super-n-admin'])->group(function () {
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
