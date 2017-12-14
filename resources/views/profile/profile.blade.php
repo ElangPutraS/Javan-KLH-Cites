@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Tanggal Masa Berlaku Surat Izin Berakhir</label>
+                            <label class="control-label">Masa Berlaku Surat Izin Edar Berakhir</label>
                             <div class="col-sm-14">
                                 <input type="text" name="date_distribution" class="form-control" value="{{Carbon\Carbon::parse($user->company->date_distribution)->format('d-m-Y')}}" readonly>
                             </div>
