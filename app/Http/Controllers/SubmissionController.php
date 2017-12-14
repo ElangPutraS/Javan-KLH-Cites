@@ -19,7 +19,7 @@ class SubmissionController extends Controller
 {
     public function index()
     {
-        $trade_permits = TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
+        $trade_permits = TradePermit::orderBy('created_at', 'desc')->paginate(10);
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }

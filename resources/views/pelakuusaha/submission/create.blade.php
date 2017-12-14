@@ -14,19 +14,8 @@
                 </div>
                 <div class="card-block">
                     <?php
-                        $tahun=date('Y');
-                        $tambah=mktime(0,0,0,date('m')+6,date('d')+0,date('Y')+0);
-                        $cek=date('Y', $tambah);
-                        if($jumlah_tradePermit<20){
-                            if($cek>$tahun){
-                                echo '
-                                    <div class="alert alert-danger" role="alert">
-                                        <h4 class="alert-heading">Tidak Diizinkan Mengajukan Permohonan</h4>
-                                        <p>Waktu pengajuan tidak sesuai, silahkan mengajukan permohonan pada awal tahun atau mengajukan permohonan bertahap.</p>
-                                    </div>
-                                ';
-                            }
-                        }else{
+
+                        if($jumlah_tradePermit>=20){
                             echo '
                                 <div class="alert alert-danger" role="alert">
                                     <h4 class="alert-heading">Tidak Diizinkan Mengajukan Permohonan</h4>
@@ -46,7 +35,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-primary" <?php if($jumlah_tradePermit < 20){ if($cek>$tahun){echo 'disabled title="tidak diizinkan melakukan permohonan langsung"';}} else { echo 'disabled title="tidak diizinkan melakukan permohonan langsung"'; }?>>Simpan Baru</button>
+                                <button type="submit" class="btn btn-primary" <?php if($jumlah_tradePermit >= 20){  echo 'disabled title="tidak diizinkan melakukan permohonan langsung"'; }?>>Simpan Baru</button>
                                 <a href="{{ route('user.submission.index') }}" class="btn btn-default">Batal</a>
                             </div>
                         </div>

@@ -28,7 +28,7 @@ class DocumentTypeSeeder extends Seeder
         ]);
 
         DocumentType::create([
-            'document_type_name' => 'Balai Konservasi SDA',
+            'document_type_name' => 'Surat Permohonan',
             'is_permit' => 1,
         ]);
 
@@ -44,6 +44,11 @@ class DocumentTypeSeeder extends Seeder
 
         DocumentType::create([
             'document_type_name' => 'Dokumen Asal Usul',
+            'is_permit' => 1,
+        ]);
+
+        DocumentType::create([
+            'document_type_name' => 'Dokumen Lainnya',
             'is_permit' => 1,
         ]);
 

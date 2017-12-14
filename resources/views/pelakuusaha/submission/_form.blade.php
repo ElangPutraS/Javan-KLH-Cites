@@ -3,38 +3,37 @@
     <h5>A. Informasi Pelaku Usaha</h5>
 </div>
 <div class="form-group">
-    <label class="control-label">Nama Pelaku Usaha</label>
+    <label class="control-label">Nama Pemilik Perusahaan</label>
     <div class="col-sm-14">
-        <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}" readonly>
+        <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user->company, 'owner_name')) }}" readonly>
     </div>
 </div>
 
 <div class="form-group">
-    <label class="control-label">Nomor Identitas</label>
+    <label class="control-label">Nama Perusahaan</label>
     <div class="col-sm-14">
-        <input type="text" name="identity_number" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->typeIdentify->first()->pivot, 'user_type_identify_number')) ?? '' }}" readonly>
-    </div>
-</div>
-
-
-<div class="form-group">
-    <label class="control-label">Nama Usaha</label>
-    <div class="col-sm-14">
-        <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) }}" readonly>
+        <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->company, 'company_name')) }}" readonly>
     </div>
 </div>
 
 <div class="form-group">
-    <label class="control-label">Alamat Usaha</label>
+    <label class="control-label">Alamat Perusahaan</label>
     <div class="col-sm-14">
-        <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) }}" readonly>
+        <input type="text" name="company_address" class="form-control" value="{{ $user->company->company_address.', '.$user->company->city->city_name_full.', Provinsi '.$user->company->province->province_name.', '.$user->company->country->country_name }}" readonly>
     </div>
 </div>
 
 <div class="form-group">
-    <label class="control-label">Nomor Faksimile</label>
+    <label class="control-label">Alamat Penangkaran</label>
     <div class="col-sm-14">
-        <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->userProfile->company, 'company_fax')) }}" readonly>
+        <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->company, 'captivity_address')) }}" readonly>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Nomor NPWP</label>
+    <div class="col-sm-14">
+        <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->company, 'npwp_number')) }}" readonly>
     </div>
 </div>
 
