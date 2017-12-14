@@ -33,22 +33,7 @@ class DocumentTypeSeeder extends Seeder
         ]);
 
         DocumentType::create([
-            'document_type_name' => 'BAP Stok Ekspor',
-            'is_permit' => 1,
-        ]);
-
-        DocumentType::create([
-            'document_type_name' => 'Form C',
-            'is_permit' => 1,
-        ]);
-
-        DocumentType::create([
             'document_type_name' => 'Dokumen Asal Usul',
-            'is_permit' => 1,
-        ]);
-
-        DocumentType::create([
-            'document_type_name' => 'Dokumen Lainnya',
             'is_permit' => 1,
         ]);
 
@@ -56,6 +41,22 @@ class DocumentTypeSeeder extends Seeder
             'document_type_name' => 'Dokumen Izin Impor',
             'is_permit' => 3,
         ]);
+
+        DocumentType::create([
+            'document_type_name' => 'Form C',
+            'is_permit' => 4,
+        ]);
+
+        DocumentType::create([
+            'document_type_name' => 'BAP Stok Impor',
+            'is_permit' => 4,
+        ]);
+
+        DocumentType::create([
+            'document_type_name' => 'Dokumen Lainnya',
+            'is_permit' => 5,
+        ]);
+
         DocumentType::create([
             'document_type_name' => 'Dokumen Re-Upload',
             'is_permit' => 2,

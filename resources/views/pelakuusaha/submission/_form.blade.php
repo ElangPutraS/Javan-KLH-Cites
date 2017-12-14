@@ -1,39 +1,44 @@
 
 <div class="form-group">
-    <h5>A. Informasi Pelaku Usaha</h5>
+    <h5>A. Informasi Perusahaan</h5>
 </div>
 <div class="form-group">
-    <label class="control-label">Nama Pemilik Perusahaan</label>
-    <div class="col-sm-14">
-        <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user->company, 'owner_name')) }}" readonly>
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Nama Pemilik Perusahaan</label>
+            <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user->company, 'owner_name')) }}" readonly>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Nama Perusahaan</label>
+            <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->company, 'company_name')) }}" readonly>
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Alamat Perusahaan</label>
+            <textarea type="text" name="company_address" class="form-control" readonly>{{ $user->company->company_address.', '.$user->company->city->city_name_full.', Provinsi '.$user->company->province->province_name.', '.$user->company->country->country_name }}</textarea>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Alamat Penangkaran</label>
+            <textarea type="text" name="captivity_address" class="form-control" readonly>{{ $user->company->company_address }}</textarea>
+        </div>
     </div>
 </div>
 
 <div class="form-group">
-    <label class="control-label">Nama Perusahaan</label>
-    <div class="col-sm-14">
-        <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->company, 'company_name')) }}" readonly>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label">Alamat Perusahaan</label>
-    <div class="col-sm-14">
-        <input type="text" name="company_address" class="form-control" value="{{ $user->company->company_address.', '.$user->company->city->city_name_full.', Provinsi '.$user->company->province->province_name.', '.$user->company->country->country_name }}" readonly>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label">Alamat Penangkaran</label>
-    <div class="col-sm-14">
-        <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->company, 'captivity_address')) }}" readonly>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label">Nomor NPWP</label>
-    <div class="col-sm-14">
-        <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->company, 'npwp_number')) }}" readonly>
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Nomor NPWP</label>
+            <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->company, 'npwp_number')) }}" readonly>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Masa Berlaku Surat Izin Edar</label>
+            <input type="text" name="date_distribution" class="form-control" value="{{ Carbon\Carbon::parse($user->company->date_distribution)->toFormattedDateString() }}" readonly>
+        </div>
     </div>
 </div>
 
@@ -52,7 +57,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Jenis Kegiatan</label>
+    <label class="control-label">Komoditas</label>
     <div class="col-sm-14">
         <select name="purpose_type_id" id="purpose_type_id" class="form-control select2" required>
             <option value="">--Pilih Jenis Kegiatan--</option>
@@ -64,49 +69,94 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Masa Berlaku</label>
-    <div class="col-sm-14">
-        6 Bulan
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label">Pelabuhan Ekspor</label>
-    <div class="col-sm-14">
-        <select name="port_exportation" id="port_exportation" class="form-control select2" required>
-            <option value="">--Pilih Pelabuhan Ekspor--</option>
-            @foreach($ports as $key => $port)
-                <option value="{{ $key }}" {{ $key == old('port_exportation', array_get($trade_permit, 'port_exportation')) ? 'selected' : '' }}>{{ $port }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label">Pelabuhan Tujuan</label>
-    <div class="col-sm-14">
-        <select name="port_destination" id="port_destination" class="form-control select2" required>
-            <option value="">--Pilih Pelabuhan Tujuan--</option>
-            @foreach($ports as $key => $port)
-                <option value="{{ $key }}" {{ $key == old('port_destination', array_get($trade_permit, 'port_destination')) ? 'selected' : '' }}>{{ $port }}</option>
-            @endforeach
-        </select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="control-label">Penerima</label>
-    <div class="col-sm-14">
-        <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" required>
-    </div>
-</div>
-
-<div class="form-group">
     <label class="control-label">Jenis Appendix</label>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="appendix_type">
             <label class="btn bg-green waves-effect"><input type="radio" id="appendix_type1" name="appendix_type" value="EA" autocomplete="off" required></label> SATS-LN Site (EA) &nbsp;&nbsp;&nbsp;&nbsp;
             <label class="btn bg-green waves-effect"><input type="radio" id="appendix_type2" name="appendix_type" value="EB" autocomplete="off" required></label> SATS-LN Non Site (EB)
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Sumber Species</label>
+    <div class="col-sm-14">
+        <select name="purpose_type_id" id="purpose_type_id" class="form-control select2" required>
+            <option value="">--Pilih Jenis Kegiatan--</option>
+            @foreach($purpose_types as $key => $purpose_type)
+                <option value="{{ $key }}" {{ $key == old('purpose_type_id', array_get($trade_permit, 'purpose_type_id')) ? 'selected' : '' }}>{{ $purpose_type }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Maksud Transaksi</label>
+    <div class="col-sm-14">
+        <select name="purpose_type_id" id="purpose_type_id" class="form-control select2" required>
+            <option value="">--Pilih Jenis Kegiatan--</option>
+            @foreach($purpose_types as $key => $purpose_type)
+                <option value="{{ $key }}" {{ $key == old('purpose_type_id', array_get($trade_permit, 'purpose_type_id')) ? 'selected' : '' }}>{{ $purpose_type }}</option>
+            @endforeach
+        </select>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Penerima</label>
+            <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" required>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Alamat Penerima</label>
+            <textarea type="text" name="consignee_address" class="form-control" required>{{ old('consignee_address', array_get($trade_permit, 'consignee_address')) }}</textarea>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Negara Tujuan</label>
+            <select name="city_destination" id="city_destination" class="form-control select2" required>
+                <option value="">--Pilih Negara Tujuan--</option>
+                @foreach($ports as $key => $port)
+                    <option value="{{ $key }}" {{ $key == old('city_destination', array_get($trade_permit, 'port_destination')) ? 'selected' : '' }}>{{ $port }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Pelabuhan Tujuan</label>
+            <select name="port_destination" id="port_destination" class="form-control select2" required>
+                <option value="">--Pilih Pelabuhan Tujuan--</option>
+                @foreach($ports as $key => $port)
+                    <option value="{{ $key }}" {{ $key == old('port_destination', array_get($trade_permit, 'port_destination')) ? 'selected' : '' }}>{{ $port }}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Negara Ekspor</label>
+            <select name="city_exportation" id="city_exportation" class="form-control select2" required>
+                <option value="">--Pilih Negara Tujuan--</option>
+                @foreach($ports as $key => $port)
+                    <option value="{{ $key }}" {{ $key == old('city_destination', array_get($trade_permit, 'port_destination')) ? 'selected' : '' }}>{{ $port }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Pelabuhan Ekspor</label>
+            <select name="port_exportation" id="port_exportation" class="form-control select2" required>
+                <option value="">--Pilih Pelabuhan Ekspor--</option>
+                @foreach($ports as $key => $port)
+                    <option value="{{ $key }}" {{ $key == old('port_exportation', array_get($trade_permit, 'port_exportation')) ? 'selected' : '' }}>{{ $port }}</option>
+                @endforeach
+            </select>
         </div>
     </div>
 </div>
