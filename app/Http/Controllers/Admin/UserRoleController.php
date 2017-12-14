@@ -148,9 +148,10 @@ class UserRoleController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function update(CompanyUpdateRequest $request, Company $company)
+    public function update(CompanyUpdateRequest $request, $id)
     {
-        $user        = $company->user();
+        $user        = User::findOrFail($id);
+        $company     = $user->company;
         if ($request->get('role_name') == 2) {
             $company->update([
                 'company_name' => $request->get('company_name'),
@@ -218,13 +219,13 @@ class UserRoleController extends Controller
             $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
-                'password' => $request->password,
+                //'password' => $request->password,
             ]);
-            $user->roles()->sync($request->role_name);
+            //$user->roles()->sync($request->role_name);
 
         }
 
-        return redirect()->route('superadmin.editUser', $company)->with('success', 'Data berhasil diubah.');
+        return redirect()->route('superadmin.editUser', ['id' => $id])->with('success', 'Data berhasil diubah.');
     }
 
     public function storeUser(Request $request){
