@@ -8,6 +8,7 @@
             <input type="hidden" name="user_id" class="form-control" value="{{ old('user_id', array_get($user->user, 'id')) }}">
             <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}">
         @else
+
             <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}">
         @endif
     </div>
@@ -38,7 +39,11 @@
         <select name="role_name" id="role_name" class="form-control select2" onchange="roleChange()">
             <option value="">--Pilih Role--</option>
             @foreach($roles as $key => $role_name)
-                <option value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
+                @if($user == NULL)
+                    <option value="{{ $key }}">{{ $role_name }}</option>
+                @else
+                    <option value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
+                @endif
             @endforeach
         </select>
     </div>
@@ -273,7 +278,7 @@
         <label class="control-label">Dokumen</label>
         <div class="row">
             <div class="col-sm-10">
-                <select id="document_type" class="form-control" name="document_type[]" {{$company==null ? 'required' : '' }}>
+                <select id="document_type" class="form-control" name="document_type[]"{{$company !== null ? 'required' : '' }}>
                     <option value="">--Choose Document Type--</option>
                     @foreach($document_type as $key=>$dt)
                         <option value="{{ $key }}" {{ $key == old('document_type') ? 'selected' : '' }}>{{ $dt }}</option>
@@ -289,7 +294,7 @@
     <div class="form-group">
         <label class="control-label"></label>
         <div class="col-sm-14">
-            <input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" {{$company==null ? 'required' : ''}}>
+            <input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" {{$company !== null ? 'required' : ''}}>
         </div>
     </div>
 
