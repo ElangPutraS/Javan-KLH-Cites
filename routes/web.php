@@ -40,6 +40,7 @@ Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
 Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
+Route::get('/getSpeciesComodity/{comodity}', 'LocationController@getSpeciesComodity');
 Route::get('/getDocumentType', 'LocationController@getDocumentReEkspor');
 
 
@@ -144,4 +145,12 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('printReportDetailSatsln/{id}', 'ReportController@printReportDetailSatsln')->name('admin.report.printReportDetailSatsln');
     Route::get('portal-insw', 'ReportController@portalInsw')->name('admin.report.portalInsw');
     Route::get('send-insw/{tradePermitId}', 'ReportController@sendInsw')->name('admin.report.sendInsw');
+
+    Route::get('companyQuota', 'CompanyQuotaController@index')->name('admin.companyQuota.index');
+    Route::get('companyQuota/{id}/detail', 'CompanyQuotaController@detail')->name('admin.companyQuota.detail');
+    Route::get('companyQuota/{id}/show', 'CompanyQuotaController@show')->name('admin.companyQuota.create');
+    Route::post('companyQuota/{id}/store', 'CompanyQuotaController@store')->name('admin.companyQuota.store');
+    Route::get('companyQuota/{company_id}/edit/{id}', 'CompanyQuotaController@edit')->name('admin.companyQuota.edit');
+    Route::post('companyQuota/{company_id}/update/{id}', 'CompanyQuotaController@update')->name('admin.companyQuota.update');
+    Route::get('companyQuota/{company_id}/delete/{pivot_id}', 'CompanyQuotaController@destroy')->name('admin.companyQuota.delete');
 });
