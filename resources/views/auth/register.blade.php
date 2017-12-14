@@ -233,6 +233,20 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('owner_name') ? ' has-error' : '' }}">
+                            <label for="owner_name" class="col-md-4 control-label">Nama Pemilik Perusahaan</label>
+
+                            <div class="col-md-6">
+                                <input id="owner_name" type="text" class="form-control" name="owner_name" value="{{ old('owner_name') }}" required>
+
+                                @if ($errors->has('owner_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('owner_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('company_email') ? ' has-error' : '' }}">
                             <label for="company_email" class="col-md-4 control-label">Email Perusahaan</label>
 
@@ -242,6 +256,20 @@
                                 @if ($errors->has('company_email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('company_email') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('company_fax') ? ' has-error' : '' }}">
+                            <label for="company_fax" class="col-md-4 control-label">Fax Perusahaan</label>
+
+                            <div class="col-md-6">
+                                <input id="company_fax" type="text" class="form-control" name="company_fax" value="{{ old('company_fax') }}" required>
+
+                                @if ($errors->has('company_fax'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('company_fax') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -317,20 +345,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('company_fax') ? ' has-error' : '' }}">
-                            <label for="company_fax" class="col-md-4 control-label">Fax Perusahaan</label>
-
-                            <div class="col-md-6">
-                                <input id="company_fax" type="text" class="form-control" name="company_fax" value="{{ old('company_fax') }}" required>
-
-                                @if ($errors->has('company_fax'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('company_fax') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
                         <div class="form-group">
                             <label for="long-lang" class="col-md-4 control-label">Lokasi Perusahaan</label>
 
@@ -340,6 +354,73 @@
                                 <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude') }}" required>
                             </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('captivity_address') ? ' has-error' : '' }}">
+                            <label for="captivity_address" class="col-md-4 control-label">Alamat Penangkaran</label>
+
+                            <div class="col-md-6">
+                                <textarea id="captivity_address" class="form-control" name="captivity_address" required>{{ old('captivity_address') }}</textarea>
+                                @if ($errors->has('captivity_address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('captivity_address') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('labor_total') ? ' has-error' : '' }}">
+                            <label for="long-lang" class="col-md-4 control-label">Total Pekerja</label>
+                            <div class="col-sm-6">
+                                <input id="labor_total" name="labor_total" type="number" class="form-control" min="0" value="{{ old('labor_total') ?? '0'}}" required>
+                                @if ($errors->has('labor_total'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('labor_total') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('investation_total') ? ' has-error' : '' }}">
+                            <label for="long-lang" class="col-md-4 control-label">Total Investasi</label>
+                            <div class="col-sm-6">
+                                <input id="investation_total" name="investation_total" type="text" class="form-control input-mask" data-mask="000.000.000.000.000" placeholder="eg: 000.000,00" maxlength="15" value="{{ old('investation_total')}}" required>
+                                @if ($errors->has('investation_total'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('investation_total') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('npwp_number') ? ' has-error' : '' }}">
+                            <label for="npwp_number" class="col-md-4 control-label">Nomor NPWP Perusahaan</label>
+
+                            <div class="col-md-6">
+                                <input id="npwp_number" type="text" class="form-control" name="npwp_number" value="{{ old('npwp_number') }}" required>
+
+                                @if ($errors->has('npwp_number'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('npwp_number') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group{{ $errors->has('date_distribution') ? ' has-error' : '' }}">
+                            <label for="date_distribution" class="col-md-4 control-label">Tanggal Izin Edar</label>
+
+                            <div class="col-md-6">
+                                <input id="date_distribution" placeholder="Pilih Tanggal Berakhirnya Surat Izin Edar" type="text" class="form-control" name="date_distribution" value="{{ old('date_distribution') }}" max="{{date('Y-m-d')}}" required>
+
+                                @if ($errors->has('date_distribution'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('date_distribution') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <br><font style="font-size: medium">4. Dokumen Perusahaan</font><br><br>
                         <center>
                             <button onclick="tambahForm(this)" class="btn btn-success">
@@ -411,9 +492,16 @@
                 autoclose: true,
                 endDate: new Date(),
             });
+
+            $( "#date_distribution" ).datepicker({
+                format: "yyyy-mm-dd",
+                todayHighlight: true,
+                autoclose: true,
+            });
         });
     </script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
+    <script src="{{ asset('template/vendors/bower_components/jquery-mask-plugin/dist/jquery.mask.min.js') }}"></script>
     <script type="text/javascript">
         function initialize() {
             $('#company_latitude').val('-6.175392');

@@ -20,6 +20,10 @@ class UpdateSpecies2Table extends Migration
             $table->foreign('unit_id')->references('id')->on('unit');
             $table->integer('source_id')->unsigned()->nullable();
             $table->foreign('source_id')->references('id')->on('sources');
+            $table->text('species_description')->nullable();
+            $table->dropForeign(['species_sex_id']);
+            $table->dropColumn('species_sex_id');
+
 
         });
     }
@@ -38,6 +42,8 @@ class UpdateSpecies2Table extends Migration
             $table->dropForeign(['unit_id']);
             $table->dropColumn('unit_id');
             $table->dropColumn('source_id');
+            $table->dropColumn('species_description');
+
         });
     }
 }

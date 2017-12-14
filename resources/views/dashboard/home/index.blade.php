@@ -16,6 +16,21 @@
         <header class="content__title">
             <h1>Beranda</h1>
         </header>
+        @can('access-pelaku-usaha')
+            @if(auth()->user()->company->company_status == '0')
+                <div class="card card-danger card-inverse">
+                    <div class="card-header">
+                        <h2 class="card-title">Perusahaan Belum Diverifikasi</h2>
+                        <small class="card-subtitle">{{ date('l, d F Y') }}</small>
+                    </div>
+
+                    <div class="card-block">
+                        <p>Maaf, Anda belum bisa mengajukan permohonan karena perusahaan belum diverifikasi. Mohon tunggu sampai perusahaan Anda diverifikasi oleh admin. Pemberitahuan akan dikirim melalui email Anda yang terdaftar. </p>
+                        <p>Terima Kasih.</p>
+                    </div>
+                </div>
+            @endif
+        @endcan
 
         <!--div class="card">
             <div class="card-header">
@@ -28,7 +43,7 @@
             </div>
         </div-->
 
-        @if (auth()->user()->roles->first()->id != 1)
+        @if (auth()->user()->roles->first()->id == 2)
 
         <div class="card">
             <!--div class="card-block">

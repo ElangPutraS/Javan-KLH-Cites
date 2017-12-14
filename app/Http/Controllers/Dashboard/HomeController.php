@@ -7,11 +7,16 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
     	// User
     	$nowDate = date('Y-m');
-    	$tradePermit = \App\TradePermit::where('date_submission', 'like', $nowDate.'-%')->orderBy('date_submission', 'desc')->get();
+    	if(auth()->user()->roles->first()->id == 2){
+            $tradePermit = \App\TradePermit::where([['date_submission', 'like', $nowDate.'-%'],['company_id', $request->user()->company->id]])->orderBy('date_submission', 'desc')->get();
+        }else{
+            $tradePermit = \App\TradePermit::where('date_submission', 'like', $nowDate.'-%')->orderBy('date_submission', 'desc')->get();
+        }
+
     	$news = \App\News::orderBy('created_at', 'desc')->limit(3)->get();
     	// Admin
     	$tradePermitAssign = \App\TradePermit::count();

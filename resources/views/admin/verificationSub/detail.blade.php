@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Pengajuan Permohonan SATS-LN Langsung</h2>
+                    <h2 class="card-title">Pengajuan Permohonan SATS-LN @if($trade_permit->period<6) Bertahap @else Langsung @endif</h2>
                     <small class="card-subtitle">Status Permohonan :
                         @if($trade_permit->tradeStatus->status_code==100)
                             <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>

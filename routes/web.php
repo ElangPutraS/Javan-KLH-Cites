@@ -63,7 +63,7 @@ Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index')->mi
 Route::get('invoice/{id}/detail', 'InvoiceController@show')->name('user.invoice.detail')->middleware(['auth', 'can:access-pelaku-usaha']);
 
 
-Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admin' || 'can:access-super-admin'])->group(function () {
+Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-super-n-admin'])->group(function () {
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
     Route::get('verification/{id}', 'UserVerificationController@show')->name('admin.verification.show');
     Route::get('verification/acc/{id}', 'UserVerificationController@update');
@@ -142,4 +142,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-admi
     Route::get('reportSatsln', 'ReportController@reportSatsln')->name('admin.report.satsln');
     Route::get('printReportSatsln/{m?}/{y?}', 'ReportController@printReportSatsln')->name('admin.report.printReportSatsln');
     Route::get('printReportDetailSatsln/{id}', 'ReportController@printReportDetailSatsln')->name('admin.report.printReportDetailSatsln');
+    Route::get('portal-insw', 'ReportController@portalInsw')->name('admin.report.portalInsw');
+    Route::get('send-insw/{tradePermitId}', 'ReportController@sendInsw')->name('admin.report.sendInsw');
 });

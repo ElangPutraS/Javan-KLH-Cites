@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Permohonan Pembaharuan SATS-LN</h2>
+                    <h2 class="card-title">Permohonan Pembaharuan SATS-LN @if($trade_permit->period<6) Bertahap @else Langsung @endif</h2>
                     <small class="card-subtitle">Status Permohonan :
                         @if($trade_permit->tradeStatus->status_code==100)
                             <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
@@ -173,11 +173,6 @@
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
                                 @if($trade_permit->tradeStatus->status_code == '100')
-                                    <center>
-                                        <button type="button" onclick="acceptTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-success waves-effect">Terima</button>&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <button type="button" onclick="rejectTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-danger waves-effect">Tolak</button>
-                                    </center>
-                                @elseif($trade_permit->tradeStatus->status_code == '300')
                                     <center>
                                         <button type="button" onclick="acceptTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-success waves-effect">Terima</button>&nbsp;&nbsp;&nbsp;&nbsp;
                                         <button type="button" onclick="rejectTradePermit(this)" data-id="{{$trade_permit->id}}" class="btn btn-danger waves-effect">Tolak</button>
