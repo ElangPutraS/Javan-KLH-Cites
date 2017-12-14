@@ -78,4 +78,11 @@ class Company extends Model
     public function tradePermits(){
         return $this->hasMany(TradePermit::class);
     }
+
+    public function companyQuota()
+    {
+        return $this->belongsToMany(Species::class, 'company_quota')
+            ->withPivot('id', 'quota_amount', 'realization', 'year')
+            ->using(CompanyQuota::class);
+    }
 }
