@@ -32,7 +32,7 @@
     </div>
 
     <div class="row klh-content">
-      <div class="col-md-6">
+      <div class="col-md-12">
         <div class="panel panel-default panel-primary">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-list"></i> Informasi Terbaru</h3>
@@ -44,7 +44,7 @@
                 <br>
                 <small>by {{ $value->user->name }} at {{ date('l, d F Y', strtotime($value->created_at)) }}</small>
               </h3>
-              <p>{{ limit_text($value->content, 50) }}</p>
+              {!! limit_text($value->content, 50) !!}
               <p><a href="{{ url('news', $value->id) }}"><small>Read more...</small></a></p>
             </div>
           @empty
@@ -54,7 +54,7 @@
           @endforelse
         </div>
       </div>
-      <div class="col-md-6">
+      <!--div class="col-md-6">
         <div class="panel panel-default panel-warning">
           <div class="panel-heading">
             <h3 class="panel-title"><i class="fa fa-bullhorn"></i> Pengumuman</h3>
@@ -63,7 +63,7 @@
             Tidak ada pengumuman terbaru.
           </div>
         </div>
-      </div>
+      </div-->
     </div>
 
 @endsection
