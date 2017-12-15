@@ -19,7 +19,7 @@
                         <thead class="thead-default">
                         <tr>
                             <th>No</th>
-                            <th>Nama Species</th>
+                            <th>Nama Spesies</th>
                             <th>Tahun</th>
                             <th>Jumlah Kuota</th>
                             <th>Jumlah yang telah terealisasi</th>

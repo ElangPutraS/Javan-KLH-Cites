@@ -1,6 +1,5 @@
 
-@if($trade_permit->period !== 6)
-    <div class="form-group">
+<div class="form-group">
     <h5>Melakukan Perpanjangan ? </h5>
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="is_renewal">
@@ -9,8 +8,16 @@
         </div>
     </div>
 </div>
-@endif
 
+<div class="form-group">
+    <h5>Cetak Blanko Ulang? </h5>
+    <div class="col-sm-14">
+        <div class="btn-group btn-group--colors" data-toggle="buttons" id="is_renewal">
+            <label class="btn bg-light-blue waves-effect"><input type="radio" id="is_renewal1" name="is_renewal" value="1" autocomplete="off" required></label>Ya &nbsp;&nbsp;&nbsp;
+            <label class="btn bg-red waves-effect"><input type="radio" id="is_renewal2" name="is_renewal" value="0" autocomplete="off" required></label>Tidak
+        </div>
+    </div>
+</div>
 
 <div class="form-group">
     <h5>A. Informasi Pelaku Usaha</h5>
@@ -93,11 +100,11 @@
     <div class="row">
         <div class="col-sm-6">
             <label class="control-label">Penerima</label>
-            <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" required>
+            <input type="text" id="consignee" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" required>
         </div>
         <div class="col-sm-6">
             <label class="control-label">Alamat Penerima</label>
-            <textarea name="consignee_address" class="form-control" value="{{ old('consignee_address', array_get($trade_permit, 'consignee_address')) }}" required></textarea>
+            <textarea name="consignee_address" id="consignee_address" class="form-control" required>{{ old('consignee_address', array_get($trade_permit, 'consignee_address')) }}</textarea>
         </div>
     </div>
 </div>
@@ -106,10 +113,10 @@
     <div class="row">
         <div class="col-sm-6">
             <label class="control-label">Negara Tujuan</label>
-            <select name="port_exportation" id="country_destination" class="form-control select2" required>
+            <select name="country_destination" id="country_destination" class="form-control select2" required>
                 <option value="">--Pilih Negara Tujuan--</option>
-                @foreach($ports as $key => $port)
-                    <option value="{{ $key }}" {{ $key == old('country_destination', array_get($trade_permit, 'country_destination'), , '1') ? 'selected' : '' }}>{{ $port }}</option>
+                @foreach($countries as $key => $country)
+                    <option value="{{ $key }}" {{ $key == old('country_destination', array_get($trade_permit, 'country_destination')) ? 'selected' : '' }}>{{ $country }}</option>
                 @endforeach
             </select>
         </div>
@@ -129,10 +136,10 @@
     <div class="row">
         <div class="col-sm-6">
             <label class="control-label">Negara Ekspor</label>
-            <select name="port_exportation" id="country_exportation" class="form-control select2" required>
+            <select name="country_exportation" id="country_exportation" class="form-control select2" required>
                 <option value="">--Pilih Negara Ekspor--</option>
-                @foreach($ports as $key => $port)
-                    <option value="{{ $key }}" {{ $key == old('country_exportation', array_get($trade_permit, 'country_exportation'), '1') ? 'selected' : '' }}>{{ $port }}</option>
+                @foreach($countries as $key => $country)
+                    <option value="{{ $key }}" {{ $key == old('country_exportation', array_get($trade_permit, 'country_exportation')) ? 'selected' : '' }}>{{ $country }}</option>
                 @endforeach
             </select>
         </div>
@@ -162,7 +169,7 @@
     <div class="form-group">
         <label class="control-label">Re-upload SATS-LN</label>
         <div class="col-sm-14">
-            <input type="hidden" class="form-control" name="document_type_id" value="9" required>
+            <input type="hidden" class="form-control" name="document_type_id" value="10" required>
             <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
         </div>
     </div>
