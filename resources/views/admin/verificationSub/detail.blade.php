@@ -105,14 +105,15 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-7">
-                                    <label class="control-label">Sumber Spesies</label>
-                                    <input type="text" name="source_id" class="form-control" value="Spesimen diambil dari alam.{{ old('source_id', array_get($trade_permit->source, 'source_id')) }}" readonly>
-                                </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Maksud Transaksi</label>
                                     <input type="text" name="purpose_type_id" class="form-control" value="{{ old('purpose_type_id', array_get($trade_permit->purposeType, 'purpose_type_name')) }}" readonly>
                                 </div>
+                                <div class="col-sm-7">
+                                    <label class="control-label">Sumber Spesies</label>
+                                    <input type="text" name="source_id" class="form-control" value="Spesimen diambil dari alam.{{ old('source_id', array_get($trade_permit->source, 'source_id')) }}" readonly>
+                                </div>
+
                             </div>
                         </div>
 
@@ -121,18 +122,18 @@
                                 <div class="col-sm-4">
                                     <label class="control-label">Penerima</label>
                                     <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" readonly>
-                                </div> 
+                                </div>
                                 <div class="col-sm-7">
                                     <label class="control-label">Alamat Penerima</label>
                                     <input type="text" name="consignee" class="form-control" value="Jln. Molobulu Utara, Maluku{{ old('consignee', array_get($trade_permit, 'consignee_address')) }}" readonly>
                                 </div>
-                                
+
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label class="control-label">Negara Tujuan</label>
                                     <input type="text" name="country_destination" class="form-control" value="Indonesia{{ old('country_destination', array_get($trade_permit->portExpor, 'country_destination')) }}" readonly>
                                 </div>
@@ -145,7 +146,7 @@
 
                         <div class="form-group">
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <label class="control-label">Negara Ekspor</label>
                                     <input type="text" name="country_exportation" class="form-control" value="Indonesia{{ old('country_exportation', array_get($trade_permit->portExpor, 'country_exportation')) }}" readonly>
                                 </div>

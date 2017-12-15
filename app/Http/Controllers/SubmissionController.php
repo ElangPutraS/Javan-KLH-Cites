@@ -19,9 +19,9 @@ use PDF;
 
 class SubmissionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $trade_permits = TradePermit::orderBy('created_at', 'desc')->paginate(10);
+        $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
@@ -30,12 +30,6 @@ class SubmissionController extends Controller
     public function detail(Request $request, $id)
     {
         $user           = $request->user();
-
-
-        $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
-        $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
-        $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
-        $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         $trade_permit=TradePermit::findOrFail($id);
 
@@ -62,15 +56,16 @@ class SubmissionController extends Controller
     {
         //isi trade permit
         $trade_permit = new TradePermit([
-            'trade_permit_code'  => 'cek',
+            'trade_permit_code' => 'cek',
             'consignee'         => $request->get('consignee'),
             'appendix_type'     => $request->get('appendix_type'),
             'date_submission'   => date('Y-m-d'),
-            'period'            => 6,
+            'period'            => 0,
             'port_exportation'  => $request->get('port_exportation'),
             'port_destination'  => $request->get('port_destination'),
-            'trading_type_id'  => $request->get('trading_type_id'),
-            'purpose_type_id'  => $request->get('purpose_type_id'),
+            'category_id'       => $request->get(''),
+            'trading_type_id'   => $request->get('trading_type_id'),
+            'purpose_type_id'   => $request->get('purpose_type_id'),
             'created_by'        => $request->user()->id,
         ]);
         $trade_permit->save();
@@ -95,7 +90,7 @@ class SubmissionController extends Controller
             'consignee'                 => $request->get('consignee'),
             'appendix_type'             => $request->get('appendix_type'),
             'date_submission'           => date('Y-m-d'),
-            'period'                    => 6,
+            'period'                    => 0,
             'port_exportation'          => $request->get('port_exportation'),
             'port_destination'          => $request->get('port_destination'),
             'trading_type_id'           => $request->get('trading_type_id'),
