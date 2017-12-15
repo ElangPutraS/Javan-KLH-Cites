@@ -40,10 +40,16 @@
                 <h4 class="card-block__title mb-4">Data Perusahaan</h4>
 
                 <ul class="icon-list">
-                    <li><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> {{$company->company_name}}</li>
-                    <li><i class="zmdi zmdi-email"></i> {{$company->company_email}}</li>
-                    <li><i class="zmdi zmdi-case zmdi-hc-fw"></i> Fax -  {{$company->company_fax}}</li>
-                    <li><i class="zmdi zmdi-pin zmdi-hc-fw"></i> {{$company->company_address}}, {{$company->city->city_name_full}}, Provinsi {{$company->province->province_name}}, {{$company->country->country_name}}  </li>
+                    <li><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> <b>Nama Perusahaan</b> - {{$company->company_name}}</li>
+                    <li><i class="zmdi zmdi-account zmdi-hc-fw"></i> <b>Nama Pemilik Perusahaan</b> - {{$company->owner_name}}</li>
+                    <li><i class="zmdi zmdi-email"></i> <b>Email Perusahaan</b> - {{$company->company_email}}</li>
+                    <li><i class="zmdi zmdi-case zmdi-hc-fw"></i> <b>Fax</b> -  {{$company->company_fax}}</li>
+                    <li><i class="zmdi zmdi-pin zmdi-hc-fw"></i> <b>Alamat Perusahaan</b> - {{$company->company_address}}, {{$company->city->city_name_full}}, Provinsi {{$company->province->province_name}}, {{$company->country->country_name}}  </li>
+                    <li><i class="zmdi zmdi-pin zmdi-hc-fw"></i> <b>Alamat Penangkaran</b> - {{$company->captivity_address}}  </li>
+                    <li><i class="zmdi zmdi-card zmdi-hc-fw"></i> <b>Nomor NPWP Perusahaan</b> - {{$company->npwp_number}}  </li>
+                    <li><i class="zmdi zmdi-male-female zmdi-hc-fw"></i> <b>Total Pekerja</b> - {{$company->labor_total}} orang  </li>
+                    <li><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> <b>Total Investasi</b> - Rp. {{ number_format($company->investation_total,2,',','.')}}  </li>
+                    <li><i class="zmdi zmdi-calendar zmdi-hc-fw"></i> <b>Masa Berlaku Surat Izin Edan</b> - {{ Carbon\Carbon::parse($company->date_distribution)->toFormattedDateString() }}  </li>
                     <li>
                         <div id="map" style="width: 100%; height: 300px;"></div>
                         <input id="company_latitude" type="hidden" name="company_latitude" value="{{ old('company_latitude', $company->company_latitude ?? '') }}">
