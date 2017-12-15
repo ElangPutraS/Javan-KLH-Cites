@@ -272,7 +272,7 @@
                         <a href="{{$doc->pivot->download_url}}"><i class="zmdi zmdi-download zmdi-hc-fw"></i> Download</a>
                     </div>
                     <div class="col-sm-2">
-                        <button onclick="deleteFile(this)" data-type-id="{{$doc->pivot->document_type_id}}" data-company-id="{{$doc->pivot->company_id}}" data-document-name="{{$doc->pivot->document_name}}" class="btn btn-danger">X</button>
+                        <button type="button" onclick="deleteFile(this)" data-type-id="{{$doc->pivot->document_type_id}}" data-company-id="{{$doc->pivot->company_id}}" data-document-name="{{$doc->pivot->document_name}}" class="btn btn-danger">X</button>
                     </div>
                 </div>
             </div>
