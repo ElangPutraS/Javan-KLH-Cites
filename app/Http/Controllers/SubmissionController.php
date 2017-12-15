@@ -12,6 +12,8 @@ use App\Species;
 use App\TradePermit;
 use App\TradePermitStatus;
 use App\TradingType;
+use App\Category;
+use App\Source;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -47,11 +49,13 @@ class SubmissionController extends Controller
         $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
         $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
+        $categories     = Category::orderBy('species_category_code', 'asc')->get();
+        $sources        = Source::orderBy('source_code', 'asc')->get();
         $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         $jumlah_tradePermit = TradePermit::where([['company_id', $request->user()->company->id], ['date_submission', date('Y-m-d')]])->count();
 
-        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'jumlah_tradePermit'));
+        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'categories', 'sources', 'document_types', 'jumlah_tradePermit'));
     }
 
     public function store(SubmissionDirectRequest $request)

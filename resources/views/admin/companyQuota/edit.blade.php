@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah Kuota Species Perusahaan</h2>
+                    <h2 class="card-title">Ubah Kuota Spesies Perusahaan</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">

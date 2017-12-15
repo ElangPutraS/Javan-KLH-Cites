@@ -83,6 +83,7 @@ class RegisterController extends Controller
             'labor_total'       => 'required|numeric|digits_between:0,5',
             'investation_total' => 'required',
             'npwp_number'       => 'required|numeric|digits_between:0,30',
+            'npwp_number_user'  => 'required|numeric|digits_between:0,30',
             'date_distribution' => 'required',
         ]);
     }
@@ -112,6 +113,7 @@ class RegisterController extends Controller
             'country_id'     => $data['nation'],
             'province_id'    => $data['state'],
             'city_id'        => $data['city'],
+            'npwp_number'    => $data['npwp_number_user'],
         ]);
 
         $user->userProfile()->save($user_profile);

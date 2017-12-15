@@ -3,12 +3,12 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Kelola Kuota Species Perusahaan</h1>
+            <h1>Kelola Kuota Spesies Perusahaan</h1>
         </header>
 
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Daftar Kuota Species Perusahaan</h2>
+                <h2 class="card-title">Daftar Kuota Spesies Perusahaan</h2>
                 <small class="card-subtitle"></small>
             </div>
 

@@ -70,7 +70,21 @@
                             </div>
                         </div>
 
-                        <br><font style="font-size: medium">2. Data Pelaku Usaha</font><br><br>
+                        <br><font style="font-size: medium">2. Data Pemilik Usaha</font><br><br>
+
+                        <div class="form-group{{ $errors->has('owner_name') ? ' has-error' : '' }}">
+                            <label for="owner_name" class="col-md-4 control-label">Nama Pemilik Perusahaan</label>
+
+                            <div class="col-md-6">
+                                <input id="owner_name" type="text" class="form-control" name="owner_name" value="{{ old('owner_name') }}" required>
+
+                                @if ($errors->has('owner_name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('owner_name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('place_birth') ? ' has-error' : '' }}">
                             <label for="place_birth" class="col-md-4 control-label">Tempat Lahir</label>
@@ -184,6 +198,18 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('npwp_number_user') ? ' has-error' : '' }}">
+                            <label for="npwp_number" class="col-md-4 control-label">Nomor NPWP Pemilik Perusahaan</label>
+                            <div class="col-md-6">
+                                <input id="npwp_number_user" type="text" class="form-control" name="npwp_number_user" value="{{ old('npwp_number_user') }}" required>
+                                @if ($errors->has('npwp_number_user'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('npwp_number_user') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
                         <div class="form-group{{ $errors->has('identify_type') ? ' has-error' : '' }}">
                             <label for="state" class="col-md-4 control-label">Tipe Identitas</label>
 
@@ -228,20 +254,6 @@
                                 @if ($errors->has('company_name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('company_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('owner_name') ? ' has-error' : '' }}">
-                            <label for="owner_name" class="col-md-4 control-label">Nama Pemilik Perusahaan</label>
-
-                            <div class="col-md-6">
-                                <input id="owner_name" type="text" class="form-control" name="owner_name" value="{{ old('owner_name') }}" required>
-
-                                @if ($errors->has('owner_name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('owner_name') }}</strong>
                                     </span>
                                 @endif
                             </div>

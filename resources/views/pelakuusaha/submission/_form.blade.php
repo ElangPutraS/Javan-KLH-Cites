@@ -5,7 +5,7 @@
 <div class="form-group">
     <div class="row">
         <div class="col-sm-6">
-            <label class="control-label">Nama Pemilik Perusahaan</label>
+            <label class="control-label">Nama Pemilik Usaha</label>
             <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user->company, 'owner_name')) }}" readonly>
         </div>
         <div class="col-sm-6">
@@ -15,16 +15,15 @@
     </div>
 </div>
 
-
 <div class="form-group">
     <div class="row">
         <div class="col-sm-6">
-            <label class="control-label">Alamat Perusahaan</label>
-            <textarea type="text" name="company_address" class="form-control" readonly>{{ $user->company->company_address.', '.$user->company->city->city_name_full.', Provinsi '.$user->company->province->province_name.', '.$user->company->country->country_name }}</textarea>
+            <label class="control-label">Nomor NPWP Pemilik Usaha</label>
+            <input type="text" name="npwp_number_user" class="form-control" value="{{ old('npwp_number_user', array_get($user->userProfile, 'npwp_number')) }}" readonly>
         </div>
         <div class="col-sm-6">
-            <label class="control-label">Alamat Penangkaran</label>
-            <textarea type="text" name="captivity_address" class="form-control" readonly>{{ $user->company->company_address }}</textarea>
+            <label class="control-label">Nomor NPWP Perusahaan</label>
+            <input type="text" name="npwp_number" class="form-control" value="{{ old('npwp_number', array_get($user->company, 'npwp_number')) }}" readonly>
         </div>
     </div>
 </div>
@@ -32,12 +31,25 @@
 <div class="form-group">
     <div class="row">
         <div class="col-sm-6">
-            <label class="control-label">Nomor NPWP</label>
-            <input type="text" name="company_fax" class="form-control" value="{{ old('company_fax', array_get($user->company, 'npwp_number')) }}" readonly>
+            <label class="control-label">Alamat Usaha</label>
+            <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->company, 'company_address')) }}" readonly>
         </div>
+        <div class="col-sm-6">
+            <label class="control-label">Alamat Penangkaran</label>
+            <input type="text" name="captivity_address" class="form-control" value="{{ old('captivity_address', array_get($user->company, 'captivity_address')) }}" readonly>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="row">
         <div class="col-sm-6">
             <label class="control-label">Masa Berlaku Surat Izin Edar</label>
             <input type="text" name="date_distribution" class="form-control" value="{{ Carbon\Carbon::parse($user->company->date_distribution)->toFormattedDateString() }}" readonly>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Nomor Kontak</label>
+            <input type="text" name="mobile" class="form-control" value="{{ old('mobile', array_get($user->userProfile, 'mobile')) }}" readonly>
         </div>
     </div>
 </div>
@@ -59,10 +71,10 @@
 <div class="form-group">
     <label class="control-label">Komoditas</label>
     <div class="col-sm-14">
-        <select name="purpose_type_id" id="purpose_type_id" class="form-control select2" required>
-            <option value="">--Pilih Jenis Kegiatan--</option>
-            @foreach($purpose_types as $key => $purpose_type)
-                <option value="{{ $key }}" {{ $key == old('purpose_type_id', array_get($trade_permit, 'purpose_type_id')) ? 'selected' : '' }}>{{ $purpose_type }}</option>
+        <select name="category_id" id="category_id" class="form-control select2" required>
+            <option value="">--Pilih Komoditas--</option>
+            @foreach($categories as $category)
+                <option value="{{ $category->id }}" {{ $key == old('category_id', array_get($trade_permit, 'category_id')) ? 'selected' : '' }}>{{ $category->species_category_code.' - '.$category->species_category_name }}</option>
             @endforeach
         </select>
     </div>
@@ -79,12 +91,12 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Sumber Species</label>
+    <label class="control-label">Sumber Spesies</label>
     <div class="col-sm-14">
-        <select name="purpose_type_id" id="purpose_type_id" class="form-control select2" required>
-            <option value="">--Pilih Jenis Kegiatan--</option>
-            @foreach($purpose_types as $key => $purpose_type)
-                <option value="{{ $key }}" {{ $key == old('purpose_type_id', array_get($trade_permit, 'purpose_type_id')) ? 'selected' : '' }}>{{ $purpose_type }}</option>
+        <select name="source_id" id="source_id" class="form-control select2" required>
+            <option value="">--Pilih Sumber Spesies--</option>
+            @foreach($sources as $source)
+                <option value="{{ $source->id }}" {{ $key == old('source_id', array_get($trade_permit, 'source_id')) ? 'selected' : '' }}>{{ $source->source_code.' - '.$source->source_description }}</option>
             @endforeach
         </select>
     </div>
@@ -94,7 +106,7 @@
     <label class="control-label">Maksud Transaksi</label>
     <div class="col-sm-14">
         <select name="purpose_type_id" id="purpose_type_id" class="form-control select2" required>
-            <option value="">--Pilih Jenis Kegiatan--</option>
+            <option value="">--Pilih Maksud Transaksi--</option>
             @foreach($purpose_types as $key => $purpose_type)
                 <option value="{{ $key }}" {{ $key == old('purpose_type_id', array_get($trade_permit, 'purpose_type_id')) ? 'selected' : '' }}>{{ $purpose_type }}</option>
             @endforeach
@@ -193,7 +205,7 @@
                     <th>Nama Lokal</th>
                     <th>Nama Umum</th>
                     <th>Sumber Appendix</th>
-                    <th>Jenis Kelamin</th>
+                    <th>Satuan</th>
                     <th>Aksi</th>
                 </tr>
                 </thead>
@@ -220,18 +232,21 @@
         var jumlahSpesimen=0;
         $(document).ready(function(){
             $('input[name="appendix_type"]').change(function(){
-                var syarat='';
+                var s1='';
                 var table=$('#data-table').DataTable();
 
                 if (document.getElementById('appendix_type1').checked) {
-                    syarat=document.getElementById('appendix_type1').value;
+                    s1=document.getElementById('appendix_type1').value;
                 }else if(document.getElementById('appendix_type2').checked){
-                    syarat=document.getElementById('appendix_type2').value;
+                    s1=document.getElementById('appendix_type2').value;
                 }
+
+                var s2=$('#category_id').val();
+                var s3=$('#source_id').val();
 
                 $.ajax({
                     type:'get',
-                    url: window.baseUrl + '/getSpecies/'+syarat,
+                    url: window.baseUrl + '/getSpecies/'+s1,
                     dataType: 'json',
                     success : function(data){
                         var element='';
@@ -245,8 +260,9 @@
                             var scientific_name=data[i].species_scientific_name;
                             var indonesia_name=data[i].species_scientific_name;
                             var general_name=data[i].species_general_name;
+                            var unit=data[i].unit.unit_description;
                             var appendix_source='';
-                            if(syarat=='EA'){
+                            if(s1=='EA'){
                                 appendix_source=data[i]['appendix_source'].appendix_source_code;
                             }else{
                                 appendix_source='Tidak Memiliki Appendix';
@@ -269,9 +285,8 @@
                                 }
                             }
 
-                            var species_sex=data[i]['species_sex'].sex_name;
-                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-jk="'+species_sex+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input" '+disabled+'><span class="custom-control-indicator"></span>'+notif+'</label>';
-                            table.row.add([no, scientific_name, indonesia_name, general_name, appendix_source, species_sex, aksi]).draw();
+                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-unit="'+unit+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input" '+disabled+'><span class="custom-control-indicator"></span>'+notif+'</label>';
+                            table.row.add([no, scientific_name, indonesia_name, general_name, appendix_source, unit, aksi]).draw();
                         }
                     }
                 });
@@ -287,25 +302,42 @@
             });
 
             $('input[name="trading_type_id"]').change(function(){
-                if (document.getElementById('trading_type_id4').checked) {
+                var trading_type_id = '';
+                if (document.getElementById('trading_type_id1').checked) {
+                    trading_type_id = document.getElementById('trading_type_id1').value;
+                }else if(document.getElementById('trading_type_id2').checked){
+                    trading_type_id = document.getElementById('trading_type_id2').value;
+                }else if(document.getElementById('trading_type_id3').checked){
+                    trading_type_id = document.getElementById('trading_type_id3').value;
+                }else if(document.getElementById('trading_type_id4').checked){
+                    trading_type_id = document.getElementById('trading_type_id4').value;
+                }
+
+                $('#formDoc').html('');
+                if(trading_type_id != ''){
                     $.ajax({
                         type:'get',
-                        url: window.baseUrl + '/getDocumentType',
+                        url: window.baseUrl + '/getDocumentType/'+trading_type_id,
                         dataType: 'json',
                         success : function(data){
                             console.log(data);
+                            var form='';
+                            $('#formDoc').html(form);
 
-                            var form='<div class="form-group"><label class="control-label">'+data['document_type_name']+'</label>';
-                            form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data['id']+'" required>';
-                            form+='<input id="document_'+data['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
-                            form+='</div></div>';
-
+                            for(var i=0; i<data.length; i++){
+                                form+='<div class="form-group"><label class="control-label">'+data[i]['document_type_name']+'</label>';
+                                form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data[i]['id']+'" required>';
+                                form+='<input id="document_'+data[i]['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
+                                form+='</div></div>';
+                                
+                            }
                             $('#formDoc').html(form);
                         }
                     });
-                }else {
+                }else{
                     $('#formDoc').html('');
                 }
+                
             });
         });
 
@@ -316,13 +348,15 @@
                 /*if(a.getAttribute('data-quota')==0){
                     min=0;
                 }*/
-                form+='<div class="form-group" id="formSpecies-'+a.getAttribute('value')+'"><label class="control-label">Jumlah</label>';
-                form+='<p style="font-size: smaller"> Nama Spesimen : '+a.getAttribute('data-indonesia')+' (<i>'+a.getAttribute('data-scientific')+'</i>) | Jenis Kelamin : '+a.getAttribute('data-jk')+'</p>';
+                form+='<div class="form-group" id="formSpecies-'+a.getAttribute('value')+'"><label class="control-label"><b>Nama Spesimen : '+a.getAttribute('data-indonesia')+' (<i>'+a.getAttribute('data-scientific')+'</i>) | Satuan : '+a.getAttribute('data-unit')+'</b></label>';
+                form+='<p style="font-size: smaller">Jumlah</p>';
                 form+='<div class="col-sm-14">';
 
                 form+='<input type="hidden" name="species_id[]" class="form-control" value="'+a.getAttribute('value')+'">';
-                form+='<input type="number" min="'+min+'" max="'+a.getAttribute('data-quota')+'" name="quantity[]" class="form-control" value="{{ old('quantity[]') ?? '0'}}" required>';
-                form+='</div></div>';
+                form+='<input type="number" min="'+min+'" max="'+a.getAttribute('data-quota')+'" name="quantity[]" class="form-control" value="{{ old('quantity[]') ?? '0'}}" required></div>';
+                form+='<p style="font-size: smaller">Deskripsi Spesies</p>';
+                form+='<div class="col-sm-14"><textarea class="form-control" id="description" name="description[]"></textarea></div>';
+                form+='</div>';
 
                 jumlahSpesimen=jumlahSpesimen+1;
                 $('#dynamicForm').append(form);

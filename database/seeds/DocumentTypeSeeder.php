@@ -48,7 +48,7 @@ class DocumentTypeSeeder extends Seeder
         ]);
 
         DocumentType::create([
-            'document_type_name' => 'BAP Stok Impor',
+            'document_type_name' => 'BAP Stok Ekspor',
             'is_permit' => 4,
         ]);
 
