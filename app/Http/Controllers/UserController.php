@@ -11,8 +11,10 @@ use App\Http\Requests\ProfileUpdateRequest;
 use App\Province;
 use App\TypeIdentify;
 use App\User;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -77,6 +79,7 @@ class UserController extends Controller
                 'province_id'   => $request->get('province_id'),
                 'country_id'   => $request->get('country_id'),
                 'updated_by' => $request->user()->id,
+                'npwp_number' => $request->get('npwp_number_user'),
             ]
         );
 
@@ -114,6 +117,14 @@ class UserController extends Controller
 
     public function updateAdmin(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string|max:191',
+            'email' => [
+                'required','string','email', 'max:255',
+                Rule::unique('users')->ignore($id),
+            ],
+        ]);
+
         $user = User::findOrFail($id);
         $company = $user->company();
 

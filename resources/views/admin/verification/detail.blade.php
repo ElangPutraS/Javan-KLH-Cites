@@ -15,14 +15,21 @@
 
         <div class="card">
             <div class="profile__info">
-                <h4 class="card-block__title mb-4">Data Pelaku Usaha</h4>
+                <h4 class="card-block__title mb-4">Data Akun</h4>
 
                 <ul class="icon-list">
                     <li><i class="zmdi zmdi-account zmdi-hc-fw"></i> {{$company->userProfile->user->name}}</li>
                     <li><i class="zmdi zmdi-email"></i> {{$company->userProfile->user->email}}</li>
-                    <li><i class="zmdi zmdi-phone"></i> {{$company->userProfile->mobile}}</li>
-                    <li><i class="zmdi zmdi-cake zmdi-hc-fw"></i> {{$company->userProfile->place_of_birth}}, {{Carbon\Carbon::parse($company->userProfile->date_of_birth)->format('d-m-Y')}}</li>
-                    <li><i class="zmdi zmdi-pin zmdi-hc-fw"></i> {{$company->userProfile->address}}, {{$company->city->city_name_full}}, Provinsi {{$company->province->province_name}}, {{$company->country->country_name}}. </li>
+                </ul>
+
+                <br><h4 class="card-block__title mb-4">Data Pemilik Usaha</h4>
+
+                <ul class="icon-list">
+                    <li><i class="zmdi zmdi-account zmdi-hc-fw"></i> <b>Nama Pemilik Perusahaan</b> - {{$company->owner_name}}</li>
+                    <li><i class="zmdi zmdi-phone"></i> <b>Nomor Telepon</b> -  {{$company->userProfile->mobile}}</li>
+                    <li><i class="zmdi zmdi-cake zmdi-hc-fw"></i> <b>Tempat, Tanggal Lahir</b> -  {{$company->userProfile->place_of_birth}}, {{Carbon\Carbon::parse($company->userProfile->date_of_birth)->format('d-m-Y')}}</li>
+                    <li><i class="zmdi zmdi-pin zmdi-hc-fw"></i> <b>Alamat Pemilik Perusahaan</b> - {{$company->userProfile->address}}, {{$company->city->city_name_full}}, Provinsi {{$company->province->province_name}}, {{$company->country->country_name}}. </li>
+                    <li><i class="zmdi zmdi-card zmdi-hc-fw"></i> <b>NPWP Pemilik Perusahaan</b> - {{$company->userProfile->npwp_number}}</li>
                 </ul>
 
                 <br><h4 class="card-block__title mb-4">Identitas</h4>
@@ -41,7 +48,7 @@
 
                 <ul class="icon-list">
                     <li><i class="zmdi zmdi-city-alt zmdi-hc-fw"></i> <b>Nama Perusahaan</b> - {{$company->company_name}}</li>
-                    <li><i class="zmdi zmdi-account zmdi-hc-fw"></i> <b>Nama Pemilik Perusahaan</b> - {{$company->owner_name}}</li>
+                    
                     <li><i class="zmdi zmdi-email"></i> <b>Email Perusahaan</b> - {{$company->company_email}}</li>
                     <li><i class="zmdi zmdi-case zmdi-hc-fw"></i> <b>Fax</b> -  {{$company->company_fax}}</li>
                     <li><i class="zmdi zmdi-pin zmdi-hc-fw"></i> <b>Alamat Perusahaan</b> - {{$company->company_address}}, {{$company->city->city_name_full}}, Provinsi {{$company->province->province_name}}, {{$company->country->country_name}}  </li>

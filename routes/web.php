@@ -39,9 +39,9 @@ Route::get('/getProvince/{country}', 'LocationController@getProvince');
 Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
-Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
+Route::get('/getSpecies/{appendix_type}/{category_id}/{source_id}', 'LocationController@getSpecies');
 Route::get('/getSpeciesComodity/{comodity}', 'LocationController@getSpeciesComodity');
-Route::get('/getDocumentType', 'LocationController@getDocumentReEkspor');
+Route::get('/getDocumentType/{id}', 'LocationController@getDocument');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
@@ -99,7 +99,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
 
     Route::get('verificationSub', 'SubmissionVerificationController@index')->name('admin.verificationSub.index');
     Route::get('verificationSub/{id}/detail', 'SubmissionVerificationController@show')->name('admin.verificationSub.show');
-    Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
+    Route::get('verificationSub/acc/{id}/{period}', 'SubmissionVerificationController@update');
     Route::post('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
 

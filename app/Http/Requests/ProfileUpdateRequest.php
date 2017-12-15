@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ProfileUpdateRequest extends FormRequest
 {
@@ -24,6 +26,10 @@ class ProfileUpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'email' => [
+                'required','string','email', 'max:255',
+                Rule::unique('users')->ignore(Request::user()->id),
+            ],
             'name'                  => 'required|string|max:191',
             'place_birth'           => 'required|string|max:100',
             'date_birth'            => 'required',
@@ -48,6 +54,7 @@ class ProfileUpdateRequest extends FormRequest
             'labor_total'           => 'required|numeric|digits_between:0,5',
             'investation_total'     => 'required',
             'npwp_number'           => 'required|numeric|digits_between:0,30',
+            'npwp_number_user'      => 'required|numeric|digits_between:0,30',
             'date_distribution'     => 'required',
         ];
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\TradePermit;
 use Illuminate\Http\Request;
 use App\DocumentType;
@@ -33,8 +34,9 @@ class SubmissionRenewalController extends Controller
         $trading_types = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types = PurposeType::pluck('purpose_type_name', 'id');
         $ports = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
+        $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $trade_permit = TradePermit::findOrFail($id);
-        return view('pelakuusaha.renewals.edit', compact('user', 'trade_permit', 'trading_types', 'purpose_types', 'ports'));
+        return view('pelakuusaha.renewals.edit', compact('user', 'trade_permit', 'trading_types', 'purpose_types', 'ports', 'countries'));
     }
 
     public function update(Request $request, $id)
