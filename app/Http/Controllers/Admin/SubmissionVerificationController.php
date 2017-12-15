@@ -34,7 +34,7 @@ class SubmissionVerificationController extends Controller
         return view ('admin.verificationSub.detail', compact('trade_permit','user'));
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $request, $id, $period){
         $trade_permit = TradePermit::findOrFail($id);
 
         //Cek Cukup atau Engganya Kuota
@@ -50,12 +50,13 @@ class SubmissionVerificationController extends Controller
 
         if($cek == ''){
             $valid_start = Carbon::now()->format('Y-m-d');
-            $valid_until = Carbon::now()->addMonth($trade_permit->period)->format('Y-m-d');
+            $valid_until = Carbon::now()->addMonth($period)->format('Y-m-d');
 
 
             $trade_permit->update([
                 'valid_start' => $valid_start,
                 'valid_until' => $valid_until,
+                'period'      => $period,
                 'updated_by' => $request->user()->id
             ]);
 
@@ -79,6 +80,12 @@ class SubmissionVerificationController extends Controller
                 'company_id'                => $trade_permit->company_id,
                 'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
                 'created_by'                => $request->user()->id,
+                'category_id'               => $trade_permit->category_id,
+                'source_id'                 => $trade_permit->source_id,
+                'country_destination'       => $trade_permit->country_destination,
+                'country_exportation'       => $trade_permit->country_exportation,
+                'consignee_address'         => $trade_permit->consignee_address,
+
             ]);
             $trade_permit->logTrade()->save($log);
 

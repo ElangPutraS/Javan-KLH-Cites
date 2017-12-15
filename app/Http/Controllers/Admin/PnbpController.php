@@ -70,9 +70,12 @@ class PnbpController extends Controller
             'purpose_type_id'           => $trade_permit->purpose_type_id,
             'company_id'                => $trade_permit->company_id,
             'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
-            'valid_renewal'             => $trade_permit->valid_renewal,
-            'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
+            'category_id'               => $trade_permit->category_id,
+            'source_id'                 => $trade_permit->source_id,
+            'country_destination'       => $trade_permit->country_destination,
+            'country_exportation'       => $trade_permit->country_exportation,
+            'consignee_address'         => $trade_permit->consignee_address,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -110,9 +113,12 @@ class PnbpController extends Controller
             'purpose_type_id'           => $trade_permit->purpose_type_id,
             'company_id'                => $trade_permit->company_id,
             'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
-            'valid_renewal'             => $trade_permit->valid_renewal,
-            'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
+            'category_id'               => $trade_permit->category_id,
+            'source_id'                 => $trade_permit->source_id,
+            'country_destination'       => $trade_permit->country_destination,
+            'country_exportation'       => $trade_permit->country_exportation,
+            'consignee_address'         => $trade_permit->consignee_address,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -148,7 +154,12 @@ class PnbpController extends Controller
     }
 
     public function getCode($id){
-        $kode = $id;
+        $kode = '';
+        for($a = 5; $a>strlen($id); $a--){
+            $kode.='0';
+        }
+
+        $kode .= $id;
 
         $bulan = date('m');
         $month = "";
