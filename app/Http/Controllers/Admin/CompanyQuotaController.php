@@ -15,7 +15,7 @@ class CompanyQuotaController extends Controller
 {
     public function index()
     {
-        $companies = Company::orderBy('company_name', 'asc')->paginate(10);
+        $companies = Company::where('company_status','1')->orderBy('company_name', 'asc')->paginate(10);
 
         return view('admin.companyQuota.index', compact('companies'));
     }

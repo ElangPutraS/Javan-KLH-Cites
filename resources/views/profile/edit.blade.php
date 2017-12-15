@@ -149,7 +149,7 @@ foreach ($document_type as $key=>$dt){
             var form='<div id="dynamic"><div class="form-group"><label class="control-label">Dokumen</label><div class="row">';
             form +='<div class="col-sm-10"><select id="document_type" class="form-control" name="document_type[]" required><option value="">--Choose Document Type--</option>';
             form +='<?=$doc_type?>';
-            form +='</select></div><div class="col-sm-2"><button onclick="hapusForm(this)" class="btn btn-danger">X</button></div></div></div>';
+            form +='</select></div><div class="col-sm-2"><button type="button" onclick="hapusForm(this)" class="btn btn-danger">X</button></div></div></div>';
             form +='<div class="form-group"><label class="control-label"></label><div class="col-sm-14"><input id="company_file" type="file" class="form-control" name="company_file[]" accept="file_extension" required></div></div></div>';
             $('#form-dynamic').append(form);
         }
