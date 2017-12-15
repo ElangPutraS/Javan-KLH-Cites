@@ -159,15 +159,16 @@
                         </div>
                         <div class="card">
                             <div class="card-block">
-                                <table class="table table-sm mb-0">
-                                    <thead>
-                                    <tr style="background-color: lightgrey;">
-                                        <th>Jenis Dokumen</th>
-                                        <th>Nama Dokumen</th>
-                                        <th>Download</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0">
+                                        <thead>
+                                        <tr style="background-color: lightgrey;">
+                                            <th>Jenis Dokumen</th>
+                                            <th>Nama Dokumen</th>
+                                            <th>Download</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
                                         @foreach($trade_permit->documentTypes as $document)
                                             <tr>
                                                 <th scope="row">{{$document->document_type_name}}</th>
@@ -175,8 +176,9 @@
                                                 <td><a href="{{$document->pivot->download_url}}">[ <i class="zmdi zmdi-download zmdi-hc-fw"></i> download ]</a></td>
                                             </tr>
                                         @endforeach
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
 

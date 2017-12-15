@@ -12,8 +12,8 @@ class TradingTypeSeeder extends Seeder
      */
     public function run()
     {
-        TradingType::create(['trading_type_code' => 'IM', 'trading_type_name' => 'Importir']);
-        TradingType::create(['trading_type_code' => 'EX', 'trading_type_name' => 'Eksportir']);
+        TradingType::create(['trading_type_code' => 'IM', 'trading_type_name' => 'Impor']);
+        TradingType::create(['trading_type_code' => 'EX', 'trading_type_name' => 'Ekspor']);
         TradingType::create(['trading_type_code' => 'SU', 'trading_type_name' => 'Supplier']);
         TradingType::create(['trading_type_code' => 'RX', 'trading_type_name' => 'Re-Ekspor']);
     }

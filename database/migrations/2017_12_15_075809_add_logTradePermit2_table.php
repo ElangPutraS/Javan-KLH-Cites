@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddTradePermitTable extends Migration
+class AddLogTradePermit2Table extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AddTradePermitTable extends Migration
      */
     public function up()
     {
-        Schema::table('trade_permit', function (Blueprint $table) {
+        Schema::table('log_trade_permit', function (Blueprint $table) {
             $table->text('consignee_address');
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')
@@ -41,7 +41,7 @@ class AddTradePermitTable extends Migration
      */
     public function down()
     {
-        Schema::table('trade_permit', function (Blueprint $table) {
+        Schema::table('log_trade_permit', function (Blueprint $table) {
             $table->dropColumn('consignee_address');
             $table->dropForeign(['category_id']);
             $table->dropColumn('category_id');

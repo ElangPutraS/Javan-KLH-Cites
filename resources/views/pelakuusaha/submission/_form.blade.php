@@ -71,7 +71,7 @@
 <div class="form-group">
     <label class="control-label">Komoditas</label>
     <div class="col-sm-14">
-        <select name="category_id" id="category_id" class="form-control select2" required>
+        <select name="category_id" id="category_id" class="form-control select2" onchange="cekSpesimen(this)" required>
             <option value="">--Pilih Komoditas--</option>
             @foreach($categories as $category)
                 <option value="{{ $category->id }}" {{ $key == old('category_id', array_get($trade_permit, 'category_id')) ? 'selected' : '' }}>{{ $category->species_category_code.' - '.$category->species_category_name }}</option>
@@ -93,7 +93,7 @@
 <div class="form-group">
     <label class="control-label">Sumber Spesies</label>
     <div class="col-sm-14">
-        <select name="source_id" id="source_id" class="form-control select2" required>
+        <select name="source_id" id="source_id" class="form-control select2" onchange="cekSpesimen(this)" required>
             <option value="">--Pilih Sumber Spesies--</option>
             @foreach($sources as $source)
                 <option value="{{ $source->id }}" {{ $key == old('source_id', array_get($trade_permit, 'source_id')) ? 'selected' : '' }}>{{ $source->source_code.' - '.$source->source_description }}</option>
@@ -131,10 +131,10 @@
     <div class="row">
         <div class="col-sm-6">
             <label class="control-label">Negara Tujuan</label>
-            <select name="city_destination" id="city_destination" class="form-control select2" required>
+            <select name="country_destination" id="country_destination" class="form-control select2" required>
                 <option value="">--Pilih Negara Tujuan--</option>
-                @foreach($ports as $key => $port)
-                    <option value="{{ $key }}" {{ $key == old('city_destination', array_get($trade_permit, 'port_destination')) ? 'selected' : '' }}>{{ $port }}</option>
+                @foreach($countries as $key => $country)
+                    <option value="{{ $key }}" {{ $key == old('country_destination', array_get($trade_permit, 'country_destination')) ? 'selected' : '' }}>{{ $country }}</option>
                 @endforeach
             </select>
         </div>
@@ -154,10 +154,10 @@
     <div class="row">
         <div class="col-sm-6">
             <label class="control-label">Negara Ekspor</label>
-            <select name="city_exportation" id="city_exportation" class="form-control select2" required>
+            <select name="country_exportation" id="country_exportation" class="form-control select2" required>
                 <option value="">--Pilih Negara Tujuan--</option>
-                @foreach($ports as $key => $port)
-                    <option value="{{ $key }}" {{ $key == old('city_destination', array_get($trade_permit, 'port_destination')) ? 'selected' : '' }}>{{ $port }}</option>
+                @foreach($countries as $key => $country)
+                    <option value="{{ $key }}" {{ $key == old('country_exportation', array_get($trade_permit, 'country_exportation')) ? 'selected' : '' }}>{{ $country }}</option>
                 @endforeach
             </select>
         </div>
@@ -232,64 +232,7 @@
         var jumlahSpesimen=0;
         $(document).ready(function(){
             $('input[name="appendix_type"]').change(function(){
-                var s1='';
-                var table=$('#data-table').DataTable();
-
-                if (document.getElementById('appendix_type1').checked) {
-                    s1=document.getElementById('appendix_type1').value;
-                }else if(document.getElementById('appendix_type2').checked){
-                    s1=document.getElementById('appendix_type2').value;
-                }
-
-                var s2=$('#category_id').val();
-                var s3=$('#source_id').val();
-
-                $.ajax({
-                    type:'get',
-                    url: window.baseUrl + '/getSpecies/'+s1,
-                    dataType: 'json',
-                    success : function(data){
-                        var element='';
-                        console.log(data);
-                        $('#dynamicForm').html('');
-                        table.rows().remove().draw();
-                        var no=0;
-
-                        for(var i=0; i<data.length; i++){
-                            no=no+1;
-                            var scientific_name=data[i].species_scientific_name;
-                            var indonesia_name=data[i].species_scientific_name;
-                            var general_name=data[i].species_general_name;
-                            var unit=data[i].unit.unit_description;
-                            var appendix_source='';
-                            if(s1=='EA'){
-                                appendix_source=data[i]['appendix_source'].appendix_source_code;
-                            }else{
-                                appendix_source='Tidak Memiliki Appendix';
-                            }
-
-                            var quota='0';
-                            var date=new Date();
-                            var disabled='disabled';
-                            var notif='<font color="red">Kuota 0, kuota belum ditentukan oleh admin!</font>';
-
-                            for(var a=0; a<data[i].species_quota.length; a++){
-                                if(data[i].species_quota[a].year == date.getFullYear()){
-                                    quota=data[i].species_quota[a].quota_amount;
-                                    if(data[i].species_quota[a].quota_amount==0){
-                                        notif='<font color="red">Kuota tahun '+data[i].species_quota[a].year+' adalah '+data[i].species_quota[a].quota_amount+'</font>';
-                                    }else{
-                                        disabled='';
-                                        notif='';
-                                    }
-                                }
-                            }
-
-                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-unit="'+unit+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input" '+disabled+'><span class="custom-control-indicator"></span>'+notif+'</label>';
-                            table.row.add([no, scientific_name, indonesia_name, general_name, appendix_source, unit, aksi]).draw();
-                        }
-                    }
-                });
+                cekSpesimen(this);
             });
 
             $('#form-submission').submit(function(ev) {
@@ -367,7 +310,66 @@
         }
 
         function cekSpesimen(a){
+            var s1='';
+            var table=$('#data-table').DataTable();
 
+            if (document.getElementById('appendix_type1').checked) {
+                s1=document.getElementById('appendix_type1').value;
+            }else if(document.getElementById('appendix_type2').checked){
+                s1=document.getElementById('appendix_type2').value;
+            }
+
+            var s2=$('#category_id').val();
+            var s3=$('#source_id').val();
+
+            if(s1 != '' && s2 != '' && s3 != ''){
+                $.ajax({
+                    type:'get',
+                    url: window.baseUrl + '/getSpecies/'+s1+'/'+s2+'/'+s3,
+                    dataType: 'json',
+                    success : function(data){
+                        var element='';
+                        console.log(data);
+                        $('#dynamicForm').html('');
+                        table.rows().remove().draw();
+                        var no=0;
+
+                        for(var i=0; i<data.length; i++){
+                            no=no+1;
+                            var scientific_name=data[i].species_scientific_name;
+                            var indonesia_name=data[i].species_scientific_name;
+                            var general_name=data[i].species_general_name;
+                            var unit=data[i].unit.unit_description;
+                            var appendix_source='';
+                            if(s1=='EA'){
+                                appendix_source=data[i]['appendix_source'].appendix_source_code;
+                            }else{
+                                appendix_source='Tidak Memiliki Appendix';
+                            }
+
+                            var quota='0';
+                            var date=new Date();
+                            var disabled='disabled';
+                            var notif='<font color="red">Kuota 0, kuota belum ditentukan oleh admin!</font>';
+
+                            for(var a=0; a<data[i].company_quota.length; a++){
+                                if(data[i].company_quota[a].pivot.year == date.getFullYear()){
+                                    quota=data[i].company_quota[a].pivot.quota_amount;
+                                    if(data[i].company_quota[a].pivot.quota_amount==0){
+                                        notif='<font color="red">Kuota tahun '+data[i].species_quota[a].pivot.year+' adalah '+data[i].species_quota[a].pivot.quota_amount+'</font>';
+                                    }else{
+                                        disabled='';
+                                        notif='';
+                                    }
+                                }
+                            }
+
+                            var aksi='<label class="custom-control custom-checkbox"><input type="checkbox" data-quota="'+quota+'" data-indonesia="'+indonesia_name+'" data-scientific="'+scientific_name+'" data-unit="'+unit+'" value="'+data[i].id+'" name="pilihan[]" onchange="test(this)" class="custom-control-input" '+disabled+'><span class="custom-control-indicator"></span>'+notif+'</label>';
+                            table.row.add([no, scientific_name, indonesia_name, general_name, appendix_source, unit, aksi]).draw();
+                        }
+                    }
+                });
+            }
         }
     </script>
 @endpush

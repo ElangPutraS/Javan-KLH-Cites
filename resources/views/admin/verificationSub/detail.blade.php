@@ -160,21 +160,30 @@
                         <div class="form-group">
                             <h5>C. Dokumen Unggahan</h5>
                         </div>
-                        @foreach($trade_permit->documentTypes as $document)
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <b>{{$document->document_type_name}}</b>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        {{$document->pivot->document_name}}
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <a href="{{$document->pivot->download_url}}">[ <i class="zmdi zmdi-download zmdi-hc-fw"></i> download ]</a>
-                                    </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0">
+                                        <thead>
+                                        <tr style="background-color: lightgrey;">
+                                            <th>Jenis Dokumen</th>
+                                            <th>Nama Dokumen</th>
+                                            <th>Download</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($trade_permit->documentTypes as $document)
+                                            <tr>
+                                                <th scope="row">{{$document->document_type_name}}</th>
+                                                <td>{{$document->pivot->document_name}}</td>
+                                                <td><a href="{{$document->pivot->download_url}}">[ <i class="zmdi zmdi-download zmdi-hc-fw"></i> download ]</a></td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
 
                         <div class="form-group">
                             <h5>D. Daftar Spesimen</h5>
@@ -187,9 +196,9 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Species</th>
-                                            <th>Satuan</th>
                                             <th>Jumlah Ekspor</th>
                                             <th>Kuota Tahun Ini</th>
+                                            <th>Satuan</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -198,7 +207,6 @@
                                             <tr>
                                                 <td><?=$no++?></td>
                                                 <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
-                                                <td>{{$species->unit->unit_description}}</td>
                                                 <td>{{$species->pivot->total_exported}}</td>
                                                 <td>
                                                     @foreach($species->speciesQuota as $quota)
@@ -207,6 +215,7 @@
                                                         @endif
                                                     @endforeach
                                                 </td>
+                                                <td>{{$species->unit->unit_description}}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
@@ -219,7 +228,7 @@
                             <label class="form-control-label">Masa Berlaku yang Diberikan</label>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <input type="text" name="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
+                                    <input type="text" name="period" id="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" @if($trade_permit->tradeStatus->status_code != '100') readonly @endif required >
                                 </div>
                                 <div class="col-sm-2">
                                     Bulan
@@ -259,15 +268,25 @@
     <script>
         function acceptTradePermit(a) {
             var id=a.getAttribute('data-id');
-            swal({
-                title: 'Apakah Anda Yakin?',
-                text: 'Akan memverifikasi permohonan SATS-LN?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-            }).then(function() {
-                location.href='{{url('admin/verificationSub/acc')}}/'+id;
-            });
+            var period = $('#period').val();
+            if(period != '0'){
+                swal({
+                    title: 'Apakah Anda Yakin?',
+                    text: 'Akan memverifikasi permohonan SATS-LN?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                }).then(function() {
+                    location.href='{{url('admin/verificationSub/acc')}}/'+id+'/'+period;
+                });
+            }else{
+                swal(
+                    'Oops...',
+                    'Masa berlaku permohonan belum Anda isi, silahkan isi terlebih dahulu!',
+                    'error'
+                )
+            }
+
         }
 
         function rejectTradePermit(a) {

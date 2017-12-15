@@ -20,17 +20,19 @@ class LocationController extends Controller
         return json_encode($city);
     }
 
-    public function getSpecies($syarat){
+    public function getSpecies($appendix_type, $category_id, $source_id){
         $is_appendix='';
-        if($syarat=='EA'){
+        if($appendix_type=='EA'){
             $is_appendix='1';
-        }elseif($syarat=='EB'){
+        }elseif($appendix_type=='EB'){
             $is_appendix='0';
         }
-        $species=Species::where('is_appendix',$is_appendix)->orderBy('species_scientific_name','asc')
+
+        $species=Species::where([['is_appendix',$is_appendix],['species_category_id', $category_id], ['source_id', $source_id]])->orderBy('species_scientific_name','asc')
             ->with('appendixSource')
             ->with('unit')
             ->with('speciesQuota')  
+            ->with('companyQuota')
             ->get();
 
         return json_encode($species);
