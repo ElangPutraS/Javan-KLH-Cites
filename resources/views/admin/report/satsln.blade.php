@@ -178,7 +178,7 @@
                                         <td>{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
                                         <td>
                                             @if ($trade_permit->tradeStatus->status_code >= '600')
-                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info" target="_blank"><i class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
+                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info print" target="_blank"><i class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
                                             @else
 
                                             @endif
@@ -235,6 +235,42 @@
 
                 location.href = '?m=' + month + '&y=' + year;
             });
+        });
+    </script>
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        $('.print').click(function() {
+            swal({
+                title: 'Apakah anda yakin?',
+                text: 'Akan mencetak laporan ini?',
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then(function () {
+                swal({
+                    title: 'Masukan Security Stamp',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Cetak',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false
+                }).then(function (value) {
+                    if (value === false || value === '') {
+                        return false;
+                    }
+
+                    swal({
+                        type: 'success',
+                        title: 'Cetak laporan sedang diproses'
+                    }).then(function () {
+                        //window.location = $('.print').attr('href');
+                        window.open($('.print').attr('href'), '_blank');
+                    });
+                });
+            });
+
+            return false;
         });
     </script>
 @endpush

@@ -16,12 +16,12 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.percentage.update', $port) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
+                    <form action="{{ route('admin.percentage.update', $percentage) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {{ method_field('PUT') }}
 
                         {!! csrf_field() !!}
 
-                        @include('admin.percentage._form', ['port' => $port])
+                        @include('admin.percentage._form', ['percentage' => $percentage])
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">

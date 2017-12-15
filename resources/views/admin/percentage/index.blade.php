@@ -35,7 +35,7 @@
                             <tbody>
                             @forelse($percentages as $percentage)
                             <tr>
-                                <td>{{ (($percentages->currentPage() - 1 ) * $percentage->perPage() ) + $loop->iteration }}</td>
+                                <td>{{ (($percentages->currentPage() - 1 ) * $percentages->perPage() ) + $loop->iteration }}</td>
                                 <td>{{ $percentage->name }}</td>
                                 <td>{{ $percentage->value }}</td>
                                 <td>{{ $percentage->created_at->toFormattedDateString() }}</td>

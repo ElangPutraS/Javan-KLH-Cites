@@ -28,7 +28,7 @@ class PercentageController extends \App\Http\Controllers\Controller
     public function create()
     {
         //
-        return view('admin.percentage.create', ['port' => null]);
+        return view('admin.percentage.create', ['percentage' => null]);
     }
 
     /**
@@ -42,7 +42,7 @@ class PercentageController extends \App\Http\Controllers\Controller
         //
         $validator = $request->validate([
             'name' => "required|max:64",
-            'value' => 'required|numeric|max:3'
+            'value' => 'required|numeric'
         ]);
 
         $percentage = new Percentage([
@@ -89,7 +89,7 @@ class PercentageController extends \App\Http\Controllers\Controller
         //
         $validator = $request->validate([
             'name' => "required|max:64",
-            'value' => 'required|numeric|max:3'
+            'value' => 'required|numeric'
         ]);
 
         $percentage->update([
