@@ -15,9 +15,9 @@ class PercentageController extends \App\Http\Controllers\Controller
     public function index()
     {
         //
-        $percentage = Percentage::orderBy('id', 'asc')->paginate(10);
+        $percentages = Percentage::orderBy('id', 'asc')->paginate(10);
 
-        return view('admin.percentage.index', compact('percentage'));
+        return view('admin.percentage.index', compact('percentages'));
     }
 
     /**
@@ -44,10 +44,6 @@ class PercentageController extends \App\Http\Controllers\Controller
             'name' => "required|max:64",
             'value' => 'required|numeric|max:3'
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('admin.percentage.create')->withErrors($validator)->withInput();
-        }
 
         $percentage = new Percentage([
             'name' => $request->get('name'),
@@ -95,10 +91,6 @@ class PercentageController extends \App\Http\Controllers\Controller
             'name' => "required|max:64",
             'value' => 'required|numeric|max:3'
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->route('admin.percentage.edit')->withErrors($validator)->withInput();
-        }
 
         $percentage->update([
             'name' => $request->get('name'),

@@ -196,7 +196,7 @@
                                     <tr>
                                         <td colspan="9">
                                             @if ($trade_permit->tradeStatus->status_code >= '600')
-                                                <a href="{{route('user.submissionGradually.printSatsln', ['id'=> $trade_permit->id])}}"
+                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}"
                                                    class="btn btn-sm btn-info" target="_blank"><i
                                                             class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
                                             @else

@@ -20,13 +20,13 @@
 <table border="1" cellspacing="0" style="margin: 10px;" width="80%">
     <!--tr>
 		<td height="10">
-			<div style="float: left; height: 64px;"><img src="<?= asset('images/CITES_logo_high_resolution.jpg') ?>" height="64"></div>
+			<div style="float: left; height: 64px;"><img src="{{ asset('images/CITES_logo_high_resolution.jpg') }}" height="64"></div>
 			<div style="float: right; height: 64px; width: 128px; text-align: center; font-size: 10px">CONVENTION ON INTERNATIONAL TRADE IN ENDANGERED SPECIES OF WILD FAUNA AND FLORA</div>
 </td>
-		<td style="text-align: center;"><img src="<?= asset('images/logo-garuda_acehdesain_grey.jpg') ?>" height="64"></td>
+		<td style="text-align: center;"><img src="{{ asset('images/logo-garuda_acehdesain_grey.jpg') }}" height="64"></td>
 		<td>KEMENTERIAN LINGKUNGAN HIDUP DAN KEHUTANAN DIREKTORAT JENDERAL KONSERVASI SUMBER DAYA ALAM DAN EKOSISTEM<hr>MINISTRY OF ENVIRONMENT AND FORESTRY DIRECTORATE GENERAL OF ECOSYSTEM AND NATURAL RESOURCES CONSERVATION
 </td>
-		<td style="text-align: center;"><img src="<?= asset('images/logo-garuda_acehdesain_grey.jpg') ?>" height="64px"></td>
+		<td style="text-align: center;"><img src="{{ asset('images/logo-garuda_acehdesain_grey.jpg') }}" height="64px"></td>
 	</tr-->
 
     <tr>
@@ -64,7 +64,7 @@
                         <hr>
                         <i>Permitt</i></td>
                     <td>No. :</td>
-                    <td width="400"><?= $trade_permit->trade_permit_code ?></td>
+                    <td width="400">{{ $trade_permit->trade_permit_code }}</td>
                     <!--td>
                         <table>
                             <tr>
@@ -83,7 +83,7 @@
                             </tr>
                         </table>
                     </td-->
-                    <td><?= $trade_permit->tradingType->trading_type_name ?></td>
+                    <td>{{ $trade_permit->tradingType->trading_type_name }}</td>
                 </tr>
             </table>
         </td>
@@ -98,7 +98,7 @@
                         <hr>
                         <i>Permitee (name. address, country)</i></td>
                     <td>:</td>
-                    <td><?= $trade_permit->company->company_name . ' - ' . $trade_permit->company->company_address ?></td>
+                    <td>{{ $trade_permit->company->company_name . ' - ' . $trade_permit->company->company_address }}</td>
                 </tr>
             </table>
         </td>
@@ -113,7 +113,7 @@
                         <hr>
                         <i>Permitee (name. address, country)</i></td>
                     <td>:</td>
-                    <td><?= $trade_permit->consignee ?></td>
+                    <td>{{ $trade_permit->consignee }}</td>
                 </tr>
             </table>
         </td>
@@ -128,7 +128,7 @@
                         <hr>
                         <i>Valid until</i></td>
                     <td>:</td>
-                    <td><?= $trade_permit->valid_until ? $trade_permit->valid_until : null ?></td>
+                    <td>{{ $trade_permit->valid_until ? $trade_permit->valid_until : null }}</td>
                 </tr>
             </table>
         </td>
@@ -141,7 +141,7 @@
                         <hr>
                         <i>Place Port of destination</i></td>
                     <td>:</td>
-                    <td><?= $trade_permit->portDest->port_name ?></td>
+                    <td>{{ $trade_permit->portDest->port_name }}</td>
                 </tr>
             </table>
         </td>
@@ -156,7 +156,7 @@
                         <hr>
                         <i>Port exportation</i></td>
                     <td>:</td>
-                    <td><?= $trade_permit->portExpor->port_name ?></td>
+                    <td>{{ $trade_permit->portExpor->port_name }}</td>
                 </tr>
             </table>
         </td>
@@ -169,7 +169,7 @@
                         <hr>
                         <i>Purpose of transaction</i></td>
                     <td>:</td>
-                    <td><?= $trade_permit->purposeType->purpose_type_name ?></td>
+                    <td>{{ $trade_permit->purposeType->purpose_type_name }}</td>
                 </tr>
             </table>
         </td>
@@ -217,17 +217,16 @@
                     </td>
                 </tr>
 
-                <?php $i = 1; ?>
-                <?php foreach ($trade_permit->tradeSpecies as $key => $value) { ?>
+                @foreach($trade_permit->tradeSpecies as $value)
                     <tr>
-                        <td align="center"><?= $i++ ?></td>
-                        <td><?= $value->species_scientific_name ?></td>
-                        <td align="center"><?= $value->speciesQuota[0]->quota_amount ?></td>
-                        <td align="center"><?= $value->speciesSex->sex_name ?></td>
-                        <td align="center"><?= $value->appendixSource->appendix_source_code ?></td>
-                        <td align="center"><?= $value->pivot->total_exported . '/* (' . $value->year . ')' ?></td>
+                        <td align="center">{{ $loop->iteration }}</td>
+                        <td>{{ $value->species_scientific_name }}</td>
+                        <td align="center">{{ $value->speciesQuota[0]->quota_amount }}</td>
+                        <td align="center">{{ $value->speciesSex->sex_name }}</td>
+                        <td align="center">{{ $value->appendixSource->appendix_source_code }}</td>
+                        <td align="center">{{ $value->pivot->total_exported . '/* (' . $value->year . ')' }}</td>
                     </tr>
-                <?php } ?>
+                @endforeach
             </table>
         </td>
     </tr>
@@ -263,7 +262,7 @@
                     <td>X.</td>
                     <td>Sertifikat ini diterbitkan oleh
                         <hr>
-                        <i>This permitt is issued by</i><br>Tempat/<i>Place</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal/<i>Date</i>: <?= date('d/m/Y', strtotime($trade_permit->date_submission)) ?>
+                        <i>This permitt is issued by</i><br>Tempat/<i>Place</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal/<i>Date</i>: {{ date('d/m/Y', strtotime($trade_permit->date_submission)) }}
                     </td>
                 </tr>
             </table>
@@ -303,12 +302,12 @@
                             </thead>
 
                             <tbody>
-                            <?php foreach ($trade_permit->tradeSpecies as $key => $item) : ?>
+                            @foreach($trade_permit->tradeSpecies as $item)
                             <tr>
-                                <td align="center"><?= $key + 1 ?></td>
-                                <td align="center"><?= $item->pivot->total_exported ?></td>
+                                <td align="center">{{ $loop->iteration }}</td>
+                                <td align="center">{{ $item->pivot->total_exported }}</td>
                             </tr>
-                            <?php endforeach; ?>
+                            @endforeach
                             </tbody>
                         </table>
                     </td>
@@ -337,7 +336,7 @@
                                     Port of exportation
                                 </td>
                                 <td>:</td>
-                                <td><?= $trade_permit->portExpor->port_name ?></td>
+                                <td>{{ $trade_permit->portExpor->port_name }}</td>
                             </tr>
                         </table>
                     </td>
@@ -359,7 +358,7 @@
                         Valid until
                     </td>
                     <td>:</td>
-                    <td><?= $trade_permit->valid_until ?></td>
+                    <td>{{ $trade_permit->valid_until }}</td>
                 </tr>
                 <tr>
                     <td>Dikirim kepada (nama, alamat, negara)
@@ -367,7 +366,7 @@
                         Consignee (name, address, country)
                     </td>
                     <td>:</td>
-                    <td><?= $trade_permit->consignee ?></td>
+                    <td>{{ $trade_permit->consignee }}</td>
                 </tr>
                 <tr>
                     <td>Pelabuhan pemberangkatan
@@ -375,7 +374,7 @@
                         Port of exportation
                     </td>
                     <td>:</td>
-                    <td><?= $trade_permit->portExpor->port_name ?></td>
+                    <td>{{ $trade_permit->portExpor->port_name }}</td>
                 </tr>
                 <tr>
                     <td>Pelabuhan tujuan
@@ -383,7 +382,7 @@
                         Port of destination
                     </td>
                     <td>:</td>
-                    <td><?= $trade_permit->portDest->port_name ?></td>
+                    <td>{{ $trade_permit->portDest->port_name }}</td>
                 </tr>
                 <tr>
                     <td>Tanggal

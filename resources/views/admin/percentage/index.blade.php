@@ -33,18 +33,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse($percentage as $percentages)
+                            @forelse($percentages as $percentage)
                             <tr>
-                                <td>{{ (($percentage->currentPage() - 1 ) * $percentage->perPage() ) + $loop->iteration }}</td>
-                                <td>{{ $percentages->name }}</td>
-                                <td>{{ $percentages->value }}</td>
-                                <td>{{ $percentages->created_at->toFormattedDateString() }}</td>
-                                <td>{{ $percentages->updated_at->toFormattedDateString() }}</td>
+                                <td>{{ (($percentages->currentPage() - 1 ) * $percentage->perPage() ) + $loop->iteration }}</td>
+                                <td>{{ $percentage->name }}</td>
+                                <td>{{ $percentage->value }}</td>
+                                <td>{{ $percentage->created_at->toFormattedDateString() }}</td>
+                                <td>{{ $percentage->updated_at->toFormattedDateString() }}</td>
                                 <td>
-                                    <a href="{{ route('admin.percentage.edit', $percentages) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
+                                    <a href="{{ route('admin.percentage.edit', $percentage) }}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
                                     <a href="javascript:void(0);" onclick="deletePort(this)" class="btn btn-sm btn-danger">
                                         <i class="zmdi zmdi-delete zmdi-hc-fw"></i>
-                                        <form action="{{ route('admin.percentage.destroy', $percentages) }}" method="post">
+                                        <form action="{{ route('admin.percentage.destroy', $percentage) }}" method="post">
                                             {!! csrf_field() !!}
                                             <input type="hidden" name="_method" value="DELETE">
                                         </form>
@@ -60,7 +60,7 @@
                         </table>
                     </div>
 
-                    {!! $percentage->links() !!}
+                    {!! $percentages->links() !!}
 
                 </div>
             </div>
