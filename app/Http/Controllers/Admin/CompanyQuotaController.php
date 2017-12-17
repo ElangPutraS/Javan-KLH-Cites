@@ -56,11 +56,14 @@ class CompanyQuotaController extends Controller
     {
         $quota = CompanyQuota::find($id);
         $company = Company::findOrFail($company_id);
+        $spec = Species::findOrFail($quota->species_id)->speciesQuota->where('year', $quota->year)->first();
+        $total = CompanyQuota::where('species_id',$quota->species_id)->sum('quota_amount');
+        $quota_now = $spec->quota_amount - $total;
 
         $species = Species::orderBy('species_scientific_name','asc')->get();
         $categories = Category::orderBy('species_category_code')->get();
 
-        return view( 'admin.companyQuota.edit', compact('quota', 'company', 'species', 'categories'));
+        return view( 'admin.companyQuota.edit', compact('quota', 'company', 'species', 'categories', 'quota_now'));
     }
 
     public function update(CompanyQuotaUpdateRequest $request, $company_id, $id){
@@ -73,13 +76,6 @@ class CompanyQuotaController extends Controller
             'realization'  => $request->get('realization'),
             'year'         => $request->get('year'),
         ]);
-        //dd($request->get('quota_amount').' / '.$request->get('realization').' / '.$request->get('year'));
-        /*$kuota->pivot->quota_amount = $request->get('quota_amount');
-        $kuota->pivot->realization = $request->get('realization');
-        $kuota->pivot->year = $request->get('year');
-        $kuota->save();*/
-
-
 
         return redirect()->route('admin.companyQuota.detail', ['id' => $company_id])->with('success', 'Data berhasil diubah.');
     }

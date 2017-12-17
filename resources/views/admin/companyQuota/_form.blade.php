@@ -15,22 +15,32 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Spesies</label>
-    <div class="col-sm-14">
-        <select name="species_id" id="species_id" class="form-control select2" required>
-            <option value="">--Pilih Spesies--</option>
-            @foreach($species as $spec)
-                <option value="{{ $spec->id }}" {{ $spec->id == old('species_id', array_get($quota, 'species_id')) ? 'selected' : '' }}><i>{{ $spec->species_scientific_name }}</i> - {{$spec->unit->unit_description}}</option>
-            @endforeach
-        </select>
+    <div class="row">
+        <div class="col-sm-6">
+            <label class="control-label">Spesies</label>
+            <select name="species_id" id="species_id" class="form-control select2" required>
+                <option value="">--Pilih Spesies--</option>
+                @foreach($species as $spec)
+                    <option value="{{ $spec->id }}" {{ $spec->id == old('species_id', array_get($quota, 'species_id')) ? 'selected' : '' }}><i>{{ $spec->species_scientific_name }}</i> - {{$spec->unit->unit_description}}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="col-sm-6">
+            <label class="control-label">Tahun</label>
+            <input type="text" name="year" placeholder="ex : 20xx" class="form-control" value="{{ old('year', array_get($quota, 'year')) }}" maxlength="4" required>
+        </div>
     </div>
 </div>
 
-<div class="form-group">
-    <label class="control-label">Tahun</label>
-    <div class="col-sm-14">
-        <input type="text" name="year" class="form-control" value="{{ old('year', array_get($quota, 'year')) }}" maxlength="4" required>
-    </div>
+<div class="kuotaYear">
+    @if($quota)
+        <div class="form-group">
+            <label class="control-label">Kuota yang Tersedia</label>
+            <div class="col-sm-14">
+                <input type="text" name="quota_in" class="form-control" value="{{ $quota_now ?? '0' }}" readonly>
+            </div>
+        </div>
+    @endif
 </div>
 
 <div class="form-group">
