@@ -16,7 +16,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{route('admin.companyQuota.update', ['company' => $company->id, 'id' => $quota->id]) }}" method="post" class="form-horizontal">
+                    <form action="{{route('admin.companyQuota.update', ['company' => $company->id, 'id' => $quota->id]) }}" method="post" class="form-horizontal" id="form-quota">
                         {!! csrf_field() !!}
 
                         @include('admin.companyQuota._form', ['company' => $company, 'quota' => $quota])

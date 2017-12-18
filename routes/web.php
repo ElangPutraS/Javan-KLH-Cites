@@ -42,6 +42,7 @@ Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@
 Route::get('/getSpecies/{appendix_type}/{category_id}/{source_id}', 'LocationController@getSpecies');
 Route::get('/getSpeciesComodity/{comodity}', 'LocationController@getSpeciesComodity');
 Route::get('/getDocumentType/{id}', 'LocationController@getDocument');
+Route::get('/getKuotaNasional/{species_id}/{year}', 'LocationController@getKuotaNasional');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {

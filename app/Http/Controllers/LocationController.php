@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\CompanyQuota;
 use App\DocumentType;
 use App\Province;
 use App\Species;
@@ -60,5 +61,19 @@ class LocationController extends Controller
                     ->with('unit')->get();
 
         return json_encode($species);
+    }
+
+    public function getKuotaNasional($species_id, $year){
+        $spec = Species::findOrFail($species_id)->speciesQuota->where('year', $year)->first();
+
+        if($spec){
+            $total = CompanyQuota::where('species_id',$species_id)->sum('quota_amount');
+            $quota_now = $spec->quota_amount - $total;
+
+            return $quota_now;
+        }else{
+            return json_encode(0);
+        }
+
     }
 }

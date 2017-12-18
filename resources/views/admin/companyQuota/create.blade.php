@@ -16,7 +16,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{route('admin.companyQuota.store', ['id' => $company->id])}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                    <form action="{{route('admin.companyQuota.store', ['id' => $company->id])}}" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal" id="form-quota">
                         {!! csrf_field() !!}
 
                         @include('admin.companyQuota._form', ['company' => $company, 'quota' => null])
