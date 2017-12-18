@@ -15,6 +15,8 @@ class AddLogTradePermit2Table extends Migration
     {
         Schema::table('log_trade_permit', function (Blueprint $table) {
             $table->text('consignee_address');
+            $table->integer('is_blanko')->default(0);
+            $table->integer('is_renewal')->default(0);
             $table->integer('category_id')->unsigned()->nullable();
             $table->foreign('category_id')
                 ->references('id')->on('categories')
@@ -43,6 +45,8 @@ class AddLogTradePermit2Table extends Migration
     {
         Schema::table('log_trade_permit', function (Blueprint $table) {
             $table->dropColumn('consignee_address');
+            $table->dropColumn('is_blanko');
+            $table->dropColumn('is_renewal');
             $table->dropForeign(['category_id']);
             $table->dropColumn('category_id');
             $table->dropForeign(['source_id']);
