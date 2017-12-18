@@ -1,4 +1,4 @@
-
+<input type="hidden" name="company_id" id="company_id"  class="form-control" value="{{ old('company_id', array_get($user->company, 'id')) }}" readonly>
 <div class="form-group">
     <h5>A. Informasi Perusahaan</h5>
 </div>
@@ -353,7 +353,7 @@
                             var notif='<font color="red">Kuota 0, kuota belum ditentukan oleh admin!</font>';
 
                             for(var a=0; a<data[i].company_quota.length; a++){
-                                if(data[i].company_quota[a].pivot.year == date.getFullYear()){
+                                if(data[i].company_quota[a].pivot.year == date.getFullYear() && data[i].company_quota[a].pivot.company_id == $('#company_id').val()){
                                     quota=data[i].company_quota[a].pivot.quota_amount;
                                     if(data[i].company_quota[a].pivot.quota_amount==0){
                                         notif='<font color="red">Kuota tahun '+data[i].species_quota[a].pivot.year+' adalah '+data[i].species_quota[a].pivot.quota_amount+'</font>';
