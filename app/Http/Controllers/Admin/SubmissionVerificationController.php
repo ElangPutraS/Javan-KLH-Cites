@@ -150,7 +150,7 @@ class SubmissionVerificationController extends Controller
     public function updateRen(Request $request, $id){
         $trade_permit = TradePermit::findOrFail($id);
 
-        if($trade_permit->is_renewal == 1){
+        /*if($trade_permit->is_renewal == 1){
             $valid_start = Carbon::parse($trade_permit->valid_until)->format('Y-m-d');
             $valid_until = Carbon::now()->addMonth($request->get('period'))->format('Y-m-d');
             $trade_permit->update([
@@ -176,7 +176,9 @@ class SubmissionVerificationController extends Controller
         //update pnbp
         $pnbp_last      =   Pnbp::orderBy('id','desc')->first();
         $trade_permit->pnbp->update([
-            'pnbp_code' => getCodePnbp($pnbp_last->id+1),
+            'pnbp_code'     => getCodePnbp($pnbp_last->id+1),
+            'pnbp_amount'   => 100000,
+            'payment_status'=> 0,
         ]);
 
         //nambahin log
@@ -200,9 +202,24 @@ class SubmissionVerificationController extends Controller
             'created_by'                => $request->user()->id,
 
         ]);
-        $trade_permit->logTrade()->save($log);
+        $trade_permit->logTrade()->save($log);*/
+        dd($request);
+        //update realisasi
+        foreach ($request->get('detail_id') as $key => $id) {
+            $detail = $trade_permit->tradeSpecies->first();
+            $detail->pivot->where('id', $id)->update([
+                'total_exported'    => $request->get('exported_before')[$key]
+                ]);
 
-        $trade_permit->company->user->notify(new SubmissionVerificationRen());
+            $trade_permit->tradeSpecies()->attach([
+                'total_exported' => $request->get('exported_now')[$key],
+                'log_trade_permit_id' => 1,//$log->id, 
+                'description' => $detail->pivot->where('id', $id)->description, 
+                'valid_renewal' => $trade_permit->valid_renewal
+                ]);
+        }
+
+        //$trade_permit->company->user->notify(new SubmissionVerificationRen());
 
         return redirect()->route('admin.verificationRen.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }

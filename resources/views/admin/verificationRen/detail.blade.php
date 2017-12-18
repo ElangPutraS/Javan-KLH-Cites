@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-block">
 
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
+                    <form action="{{ route() }}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
                         {!! csrf_field() !!}
 
                         <div class="form-group">
@@ -232,7 +232,7 @@
                                                 <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
                                                 <td>{{$species->unit->unit_description}}</td>
                                                 <td>10</td>
-                                                <td><input type="text" name="exported_before[]" class="form-control" value="{{$species->pivot->total_exported}}" max="10"></td>
+                                                <td><input type="hidden" name="detail_id[]" value="{{$species->pivot->id}}" max="10"> <input type="text" name="exported_before[]" class="form-control" value="{{$species->pivot->total_exported}}" max="10"></td>
                                                 <td><input type="number" name="exported_now[]" class="form-control" value="" placeholder="0" min="0" max="10"></td>
                                             </tr>
                                         @endforeach
