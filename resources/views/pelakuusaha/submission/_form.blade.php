@@ -155,7 +155,7 @@
         <div class="col-sm-6">
             <label class="control-label">Negara Ekspor</label>
             <select name="country_exportation" id="country_exportation" class="form-control select2" required>
-                <option value="">--Pilih Negara Tujuan--</option>
+                <option value="">--Pilih Negara Ekspor--</option>
                 @foreach($countries as $key => $country)
                     <option value="{{ $key }}" {{ $key == old('country_exportation', array_get($trade_permit, 'country_exportation')) ? 'selected' : '' }}>{{ $country }}</option>
                 @endforeach
