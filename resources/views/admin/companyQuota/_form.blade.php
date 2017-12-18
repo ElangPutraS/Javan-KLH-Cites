@@ -18,7 +18,7 @@
     <div class="row">
         <div class="col-sm-6">
             <label class="control-label">Spesies</label>
-            <select name="species_id" id="species_id" class="form-control select2" required>
+            <select name="species_id" id="species_id" class="form-control select2" onchange="cekKuotaNasional(this)" required>
                 <option value="">--Pilih Spesies--</option>
                 @foreach($species as $spec)
                     <option value="{{ $spec->id }}" {{ $spec->id == old('species_id', array_get($quota, 'species_id')) ? 'selected' : '' }}><i>{{ $spec->species_scientific_name }}</i> - {{$spec->unit->unit_description}}</option>
@@ -27,26 +27,24 @@
         </div>
         <div class="col-sm-6">
             <label class="control-label">Tahun</label>
-            <input type="text" name="year" placeholder="ex : 20xx" class="form-control" value="{{ old('year', array_get($quota, 'year')) }}" maxlength="4" required>
+            <input type="text" id="year" name="year" placeholder="ex : 20xx" class="form-control" value="{{ old('year', array_get($quota, 'year')) }}" maxlength="4" oninput="cekKuotaNasional(this)" required>
         </div>
     </div>
 </div>
 
 <div class="kuotaYear">
-    @if($quota)
-        <div class="form-group">
-            <label class="control-label">Kuota yang Tersedia</label>
-            <div class="col-sm-14">
-                <input type="text" name="quota_in" class="form-control" value="{{ $quota_now ?? '0' }}" readonly>
-            </div>
+    <div class="form-group">
+        <label class="control-label">Kuota yang Tersedia</label>
+        <div class="col-sm-14">
+            <input type="text" id="quota_in" name="quota_in" class="form-control" value="{{ $quota_now ?? '0' }}" readonly>
         </div>
-    @endif
+    </div>
 </div>
 
 <div class="form-group">
     <label class="control-label">Jumlah Kuota</label>
     <div class="col-sm-14">
-        <input type="number" name="quota_amount" class="form-control" value="{{ old('quota_amount', array_get($quota, 'quota_amount')) }}" min="0" required>
+        <input type="number" id="quota_amount" name="quota_amount" class="form-control" value="{{ old('quota_amount', array_get($quota, 'quota_amount')) }}" min="0" required>
     </div>
 </div>
 
@@ -62,6 +60,22 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function(){
+            $('#form-quota').submit(function(ev) {
+                //alert(parseInt($('#quota_in').val()) - parseInt($('#quota_amount').val()));
+                if(parseInt($('#quota_in').val()) - parseInt($('#quota_amount').val()) >= 0 ){
+                    this.submit();
+                }else{
+                    swal(
+                        'Oops...',
+                        'Kuota yang Anda masukkan tidak mencukupi, kuota perusahaan harus kurang dari sisa kuota nasional!',
+                        'error'
+                    );
+                    ev.preventDefault();
+
+                }
+            });
+        });
         function cariSpesies(a) {
             var comodity=$('#species_comodity').val();
             $.ajax({
@@ -77,6 +91,23 @@
                     $('#species_id').html(element);
                 }
             });
+        }
+        
+        function cekKuotaNasional(a) {
+            var species_id = $('#species_id').val();
+            var tahun = $('#year').val();
+
+            if(species_id != '' && tahun != ''){
+                $.ajax({
+                    type: 'get',
+                    url: window.baseUrl +'/getKuotaNasional/'+species_id+'/'+tahun,
+                    dataType: 'json',
+                    success : function (data) {
+                        console.log(data);
+                        $('#quota_in').val(data);
+                    }
+                });
+            }
         }
     </script>
 @endpush
