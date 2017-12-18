@@ -15,7 +15,7 @@ class AddTradePermitDetailTable extends Migration
     {
         Schema::table('trade_permit_detail', function (Blueprint $table) {
             $table->integer('log_trade_permit_id');
-            $table->integer('is_renewal')->default(0);
+            $table->integer('valid_renewal')->default(0);
             $table->text('description');
         });
     }
@@ -29,7 +29,7 @@ class AddTradePermitDetailTable extends Migration
     {
         Schema::table('trade_permit_detail', function (Blueprint $table) {
             $table->dropColumn('log_trade_permit_id');
-            $table->dropColumn('is_renewal');
+            $table->dropColumn('valid_renewal');
             $table->dropColumn('description');
         });
     }

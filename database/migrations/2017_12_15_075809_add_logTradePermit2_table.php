@@ -14,6 +14,7 @@ class AddLogTradePermit2Table extends Migration
     public function up()
     {
         Schema::table('log_trade_permit', function (Blueprint $table) {
+            $table->string('trade_permit_code','30');
             $table->text('consignee_address');
             $table->integer('is_blanko')->default(0);
             $table->integer('is_renewal')->default(0);
@@ -44,6 +45,7 @@ class AddLogTradePermit2Table extends Migration
     public function down()
     {
         Schema::table('log_trade_permit', function (Blueprint $table) {
+            $table->dropColumn('trade_permit_code');
             $table->dropColumn('consignee_address');
             $table->dropColumn('is_blanko');
             $table->dropColumn('is_renewal');
