@@ -56,7 +56,7 @@
                     <li><i class="zmdi zmdi-card zmdi-hc-fw"></i> <b>Nomor NPWP Perusahaan</b> - {{$company->npwp_number}}  </li>
                     <li><i class="zmdi zmdi-male-female zmdi-hc-fw"></i> <b>Total Pekerja</b> - {{$company->labor_total}} orang  </li>
                     <li><i class="zmdi zmdi-money-box zmdi-hc-fw"></i> <b>Total Investasi</b> - Rp. {{ number_format($company->investation_total,2,',','.')}}  </li>
-                    <li><i class="zmdi zmdi-calendar zmdi-hc-fw"></i> <b>Masa Berlaku Surat Izin Edan</b> - {{ Carbon\Carbon::parse($company->date_distribution)->toFormattedDateString() }}  </li>
+                    <li><i class="zmdi zmdi-calendar zmdi-hc-fw"></i> <b>Masa Berlaku Surat Izin Edar</b> - {{ Carbon\Carbon::parse($company->date_distribution)->toFormattedDateString() }}  </li>
                     <li>
                         <div id="map" style="width: 100%; height: 300px;"></div>
                         <input id="company_latitude" type="hidden" name="company_latitude" value="{{ old('company_latitude', $company->company_latitude ?? '') }}">
