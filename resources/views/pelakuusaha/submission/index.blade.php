@@ -10,7 +10,7 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h2 class="card-title">Daftar Permohonan SATS-LN Pengguna</h2>
+                    <h2 class="card-title">Riwayat Permohonan SATS-LN Pengguna</h2>
                     <small class="card-subtitle"></small>
                 </div>
 

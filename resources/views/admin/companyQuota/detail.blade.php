@@ -70,7 +70,7 @@
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href='/admin/companyQuota/'+company+'/delete/'+pivot;
+                location.href= window.baseUrl +'/admin/companyQuota/'+company+'/delete/'+pivot;
             });
         }
     </script>

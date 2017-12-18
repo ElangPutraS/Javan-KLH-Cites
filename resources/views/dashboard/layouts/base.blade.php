@@ -95,9 +95,9 @@
                     <!-- Menu Pelaku Usaha -->
                         <li @if(Request::segment(1)=='companyQuota') class="navigation__active" @endif><a href="{{ route('user.companyQuota.index') }}"><i class="zmdi zmdi-case-check zmdi-hc-fw"></i> Kuota Spesies Perusahaan </a></li>
 
-                        <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Daftar Permohonan</a></li>
+                        <li @if(Request::segment(1)=='submission'&&Request::segment(2)=='') class="navigation__active" @endif><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i> Riwayat Permohonan</a></li>
 
-                        <li @if(Request::segment(2)=='create') class="navigation__active" @endif><a href="{{ route('user.submission.create') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan Langsung</a></li>
+                        <li @if(Request::segment(2)=='create') class="navigation__active" @endif><a href="{{ route('user.submission.create') }}"><i class="zmdi zmdi-assignment-o zmdi-hc-fw"></i> Permohonan SATS-LN</a></li>
 
                         {{--<li class="navigation__sub @if(Request::segment(1)=='submission') navigation__sub--active navigation__sub--toggled @endif"><a href="{{ route('user.submission.index') }}"><i class="zmdi zmdi-collection-text zmdi-hc-fw"></i>Permohonan SATS-LN</a>
                             <ul>
