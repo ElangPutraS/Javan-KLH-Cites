@@ -150,10 +150,9 @@ class SubmissionVerificationController extends Controller
     public function updateRen(Request $request, $id){
         $trade_permit = TradePermit::findOrFail($id);
 
-        $valid_start = Carbon::parse($trade_permit->valid_until)->format('Y-m-d');
-        $valid_until = Carbon::now()->addMonth($request->get('period'))->format('Y-m-d');
-
         if($trade_permit->is_renewal == 1){
+            $valid_start = Carbon::parse($trade_permit->valid_until)->format('Y-m-d');
+            $valid_until = Carbon::now()->addMonth($request->get('period'))->format('Y-m-d');
             $trade_permit->update([
                 'valid_start' => $valid_start,
                 'valid_until' => $valid_until,
@@ -174,6 +173,11 @@ class SubmissionVerificationController extends Controller
         $status = TradePermitStatus::where('status_code','200')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
+        //update pnbp
+        $pnbp_last      =   Pnbp::orderBy('id','desc')->first();
+        $trade_permit->pnbp->update([
+            'pnbp_code' => getCodePnbp($pnbp_last->id+1),
+        ]);
 
         //nambahin log
         $log=LogTradePermit::create([
@@ -294,6 +298,48 @@ class SubmissionVerificationController extends Controller
 
         $kode .= '/'.$month.'/SATS-LN/'.date('Y');
 
+
+        return $kode;
+    }
+
+    public function getCodePnbp($id){
+        $kode = '';
+        for($a = 5; $a>strlen($id); $a--){
+            $kode.='0';
+        }
+
+        $kode .= $id;
+
+        $bulan = date('m');
+        $month = "";
+        switch ($bulan){
+            case 1: $month='I';
+                break;
+            case 2: $month='II';
+                break;
+            case 3: $month='III';
+                break;
+            case 4: $month='IV';
+                break;
+            case 5: $month='V';
+                break;
+            case 6: $month='VI';
+                break;
+            case 7: $month='VII';
+                break;
+            case 8: $month='VIII';
+                break;
+            case 9: $month='IX';
+                break;
+            case 10: $month='X';
+                break;
+            case 11: $month='XI';
+                break;
+            case 12: $month='XII';
+                break;
+        }
+
+        $kode.='/PNBP/'.$month.'-'.date('Y');
 
         return $kode;
     }
