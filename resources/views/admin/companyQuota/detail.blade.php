@@ -3,12 +3,12 @@
 @section('content')
     <section class="content">
         <header class="content__title">
-            <h1>Kelola Kuota Species Perusahaan</h1>
+            <h1>Kelola Kuota Spesies Perusahaan</h1>
         </header>
 
         <div class="card">
             <div class="card-header">
-                <h2 class="card-title">Daftar Kuota Species Perusahaan</h2>
+                <h2 class="card-title">Daftar Kuota Spesies Perusahaan</h2>
                 <small class="card-subtitle">{{ strtoupper($company->company_name) }}</small>
             </div>
 
@@ -20,7 +20,7 @@
                         <thead class="thead-default">
                         <tr>
                             <th>No</th>
-                            <th>Nama Species</th>
+                            <th>Nama Spesies</th>
                             <th>Tahun</th>
                             <th>Jumlah Kuota</th>
                             <th>Jumlah yang telah terealisasi</th>

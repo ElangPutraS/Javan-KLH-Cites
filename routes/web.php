@@ -39,9 +39,10 @@ Route::get('/getProvince/{country}', 'LocationController@getProvince');
 Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
-Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
+Route::get('/getSpecies/{appendix_type}/{category_id}/{source_id}', 'LocationController@getSpecies');
 Route::get('/getSpeciesComodity/{comodity}', 'LocationController@getSpeciesComodity');
-Route::get('/getDocumentType', 'LocationController@getDocumentReEkspor');
+Route::get('/getDocumentType/{id}', 'LocationController@getDocument');
+Route::get('/getKuotaNasional/{species_id}/{year}', 'LocationController@getKuotaNasional');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
@@ -99,7 +100,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
 
     Route::get('verificationSub', 'SubmissionVerificationController@index')->name('admin.verificationSub.index');
     Route::get('verificationSub/{id}/detail', 'SubmissionVerificationController@show')->name('admin.verificationSub.show');
-    Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
+    Route::get('verificationSub/acc/{id}/{period}', 'SubmissionVerificationController@update');
     Route::post('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
 
@@ -147,6 +148,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('printReportDetailSatsln/{id}', 'ReportController@printReportDetailSatsln')->name('admin.report.printReportDetailSatsln');
     Route::get('portal-insw', 'ReportController@portalInsw')->name('admin.report.portalInsw');
     Route::get('send-insw/{tradePermitId}', 'ReportController@sendInsw')->name('admin.report.sendInsw');
+    Route::get('print-satsln/{id}', 'ReportController@printSatsln')->name('admin.report.printSatsln');
 
     Route::get('companyQuota', 'CompanyQuotaController@index')->name('admin.companyQuota.index');
     Route::get('companyQuota/{id}/detail', 'CompanyQuotaController@detail')->name('admin.companyQuota.detail');
@@ -155,4 +157,6 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('companyQuota/{company_id}/edit/{id}', 'CompanyQuotaController@edit')->name('admin.companyQuota.edit');
     Route::post('companyQuota/{company_id}/update/{id}', 'CompanyQuotaController@update')->name('admin.companyQuota.update');
     Route::get('companyQuota/{company_id}/delete/{pivot_id}', 'CompanyQuotaController@destroy')->name('admin.companyQuota.delete');
+
+    Route::resource('percentage', 'PercentageController', ['as' => 'admin']);
 });

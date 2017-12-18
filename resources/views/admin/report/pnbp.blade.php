@@ -167,6 +167,7 @@
                                 <th width="150px">Masa Berlaku</th>
                                 <th>IHH</th>
                                 <th>EA-EB</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -203,10 +204,10 @@
                                     </td>
                                     <td> Rp. {{ number_format(100000,2,',','.') }} </td>
                                     <td> Rp. {{ number_format($pnbp->total_payment,2,',','.') }} </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="9">
-                                        <a class="btn btn-success" href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}" target="_blank"><i class="fa fa-print"></i> Cetak</a>
+                                    <td>
+                                        <a class="btn btn-success"
+                                           href="{{ route('admin.report.printReportDetailSatsln', ['id' => $trade_permit->id]) }}"
+                                           target="_blank"><i class="fa fa-print"></i> Cetak</a>
                                     </td>
                                 </tr>
                             @empty
@@ -216,6 +217,15 @@
                                     </td>
                                 </tr>
                             @endforelse
+                            @if($pnbp)
+                                <tr>
+                                    <td colspan="9">
+                                        <a class="btn btn-success"
+                                           href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
+                                           target="_blank"><i class="fa fa-print"></i> Cetak List</a>
+                                    </td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>
@@ -248,4 +258,5 @@
             });
         });
     </script>
+
 @endpush
