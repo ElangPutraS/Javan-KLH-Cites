@@ -46,15 +46,13 @@ class CompanyUpdateRequest extends FormRequest
                 'company_status'        => 'required',
                 'company_latitude'      => 'required',
                 'company_longitude'     => 'required',
-                'new_password'          => 'max:6',
-                'confirm_password'      => 'max:6',
+                'password'              => 'max:6',
             ];
         }else{
             return [
                 'name'                  => 'required|string|max:255',
                 'email'                 => 'required|string|email|max:255',
-                'new_password'          => 'max:6',
-                'confirm_password'      => 'max:6',
+                'password'              => 'max:6',
             ];
         }
 
