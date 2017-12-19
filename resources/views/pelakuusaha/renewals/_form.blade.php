@@ -12,9 +12,9 @@
 <div class="form-group">
     <h5>Cetak Blanko Ulang? </h5>
     <div class="col-sm-14">
-        <div class="btn-group btn-group--colors" data-toggle="buttons" id="is_renewal">
-            <label class="btn bg-light-blue waves-effect"><input type="radio" id="is_renewal1" name="is_renewal" value="1" autocomplete="off" required></label>Ya &nbsp;&nbsp;&nbsp;
-            <label class="btn bg-red waves-effect"><input type="radio" id="is_renewal2" name="is_renewal" value="0" autocomplete="off" required></label>Tidak
+        <div class="btn-group btn-group--colors" data-toggle="buttons" id="is_blanko">
+            <label class="btn bg-light-blue waves-effect"><input type="radio" id="is_blanko1" name="is_blanko" value="1" autocomplete="off" required></label>Ya &nbsp;&nbsp;&nbsp;
+            <label class="btn bg-red waves-effect"><input type="radio" id="is_blanko2" name="is_blanko" value="0" autocomplete="off" required></label>Tidak
         </div>
     </div>
 </div>
@@ -162,19 +162,16 @@
     </div>
 </div>
 
-@if($trade_permit->status_code === 3)
-    <div class="form-group">
-        <h5>C. Dokumen Unggahan</h5>
+<div class="form-group">
+    <h5>C. Dokumen Unggahan</h5>
+</div>
+<div class="form-group">
+    <label class="control-label">Re-upload SATS-LN</label>
+    <div class="col-sm-14">
+        <input type="hidden" class="form-control" name="document_type_id" value="10" required>
+        <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
     </div>
-    <div class="form-group">
-        <label class="control-label">Re-upload SATS-LN</label>
-        <div class="col-sm-14">
-            <input type="hidden" class="form-control" name="document_type_id" value="10" required>
-            <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
-        </div>
-    </div>
-@endif
-
+</div>
 
 <div class="card">
     <div class="card-block">

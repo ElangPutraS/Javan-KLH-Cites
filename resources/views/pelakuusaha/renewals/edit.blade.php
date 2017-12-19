@@ -12,8 +12,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
-
+                    <form action="{{ route('user.renewal.update', ['id' => $trade_permit->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
 
                         @include('pelakuusaha.renewals._form')
