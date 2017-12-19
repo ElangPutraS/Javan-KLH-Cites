@@ -68,21 +68,21 @@
         <h5>Ubah Password</h5>
     </div>
     <div class="form-group">
-        <label class="control-label">Password Lama</label>
+        <label class="control-label">Kata Sandi</label>
         <div class="col-sm-14">
-            <input type="old_password" name="old_password" id="old_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+            <input type="password" name="old_password" id="old_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Password Baru</label>
+        <label class="control-label">Kata Sandi Baru</label>
         <div class="col-sm-14">
-            <input type="new_password" name="new_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+            <input type="password" name="new_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
         </div>
     </div>
     <div class="form-group">
-        <label class="control-label">Konfirmasi Password Baru</label>
+        <label class="control-label">Konfirmasi Kata Sandi Baru</label>
         <div class="col-sm-14">
-            <input type="confirm_password" name="confirm_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+            <input type="password" name="confirm_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
         </div>
     </div>
 </div>
