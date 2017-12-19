@@ -17,7 +17,7 @@ class AddTradePermitDetailTable extends Migration
             $table->increments('id');
             $table->integer('log_trade_permit_id');
             $table->integer('valid_renewal')->default(0);
-            $table->text('description');
+            $table->text('description')->nullable();
         });
     }
 
