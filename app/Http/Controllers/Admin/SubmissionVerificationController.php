@@ -166,8 +166,16 @@ class SubmissionVerificationController extends Controller
         }
 
         if($trade_permit->is_blanko == 1){
+            $trade_last      =   TradePermit::orderBy('trade_permit_code','desc')->first();
+            $id='';
+            if($trade_last === null){
+                $id = 1;
+            }else{
+                $id = substr($trade_last->trade_permit_code,0,5) + 1;
+            }
+
             $trade_permit->update([
-                'trade_permit_code' => $this->create_kode($trade_permit->id),
+                'trade_permit_code' => $this->create_kode($id),
             ]);
         }
 
@@ -175,9 +183,16 @@ class SubmissionVerificationController extends Controller
         $trade_permit->tradeStatus()->associate($status)->save();
 
         //update pnbp
-        $pnbp_last      =   Pnbp::orderBy('id','desc')->first();
+        $pnbp_last      =   Pnbp::orderBy('pnbp_code','desc')->first();
+        $id='';
+        if($pnbp_last === null){
+            $id = 1;
+        }else{
+            $id = substr($pnbp_last->pnbp_code,0,5) + 1;
+        }
+
         $trade_permit->pnbp->update([
-            'pnbp_code'     => $this->getCodePnbp($pnbp_last->id+1),
+            'pnbp_code'     => $this->getCodePnbp($id),
             'pnbp_amount'   => 100000,
             'payment_status'=> 0,
         ]);
@@ -215,6 +230,7 @@ class SubmissionVerificationController extends Controller
             $detail->pivot->where('id', $id)->update([
                 'total_exported'    => $request->get('exported_before')[$key]
                 ]);
+
             $kuota = $detail->pivot->where('id', $id)->first();
 
             $trade_permit->tradeSpecies()->attach($kuota->species_id, [
@@ -223,7 +239,17 @@ class SubmissionVerificationController extends Controller
                 'description' => $kuota->description,
                 'valid_renewal' => $trade_permit->valid_renewal
                 ]);
+
+            //update realisasi di kuota perusahaan
+            $realization = $detail->pivot->where([['species_id', $detail->id], ['trade_permit_id', $trade_permit->id]])->sum('total_exported');
+
+            $kuota = $detail->companyQuota()->first();
+            $kuota->pivot->where('id', $id)->update([
+                'realization'  => $realization,
+            ]);
         }
+
+
 
         $trade_permit->company->user->notify(new SubmissionVerificationRen());
 

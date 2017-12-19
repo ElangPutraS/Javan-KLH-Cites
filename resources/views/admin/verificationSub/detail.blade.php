@@ -94,7 +94,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Komoditas</label>
-                                    <input type="text" name="category_id" class="form-control" value="CT001 - MAMALIA{{ old('category_id', array_get($trade_permit->category, 'species_category_name')) }}" readonly>
+                                    <input type="text" name="category_id" class="form-control" value="{{ $trade_permit->category->species_category_code.' - '.$trade_permit->category->species_category_name }}" readonly>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Jenis Appendix</label>
@@ -197,7 +197,7 @@
                                             <th>No</th>
                                             <th>Nama Species</th>
                                             <th>Jumlah Ekspor</th>
-                                            <th>Kuota Tahun Ini</th>
+                                            <th>Kuota Perusahaan Tahun Ini</th>
                                             <th>Satuan</th>
                                         </tr>
                                         </thead>
@@ -209,9 +209,9 @@
                                                 <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
                                                 <td>{{$species->pivot->total_exported}}</td>
                                                 <td>
-                                                    @foreach($species->speciesQuota as $quota)
-                                                        @if($quota->year == date('Y'))
-                                                            {{$quota->quota_amount}}
+                                                    @foreach($species->companyQuota as $quota)
+                                                        @if($quota->pivot->year == date('Y') && $quota->pivot->company_id == $trade_permit->company_id)
+                                                            {{$quota->pivot->quota_amount}}
                                                         @endif
                                                     @endforeach
                                                 </td>
@@ -228,7 +228,7 @@
                             <label class="form-control-label">Masa Berlaku yang Diberikan</label>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <input type="text" name="period" id="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" @if($trade_permit->tradeStatus->status_code != '100') readonly @endif required >
+                                    <input type="number" min="1" max="6" name="period" id="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" @if($trade_permit->tradeStatus->status_code != '100') readonly @endif required >
                                 </div>
                                 <div class="col-sm-2">
                                     Bulan

@@ -28,12 +28,12 @@ class PnbpController extends Controller
     public function show($id)
     {
         $trade_permit   =   TradePermit::findOrFail($id);
-        $pnbp_last      =   Pnbp::orderBy('id','desc')->first();
+        $pnbp_last      =   Pnbp::orderBy('pnbp_code','desc')->first();
         $id='';
         if($pnbp_last === null){
             $id = 1;
         }else{
-            $id = $pnbp_last->id + 1;
+            $id = substr($pnbp_last->pnbp_code,0,5) + 1;
         }
         $pnbp_code      =   $this->getCode($id);
 

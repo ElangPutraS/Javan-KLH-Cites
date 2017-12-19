@@ -58,7 +58,7 @@ class SubmissionController extends Controller
     {
         //isi trade permit
         $trade_permit = new TradePermit([
-            'trade_permit_code'     => 'cek',
+            'trade_permit_code'     => '0',
             'consignee'             => $request->get('consignee'),
             'appendix_type'         => $request->get('appendix_type'),
             'date_submission'       => date('Y-m-d'),
@@ -77,8 +77,15 @@ class SubmissionController extends Controller
         $trade_permit->save();
 
         //susun kode trade permit
+        $trade_last      =   TradePermit::orderBy('trade_permit_code','desc')->first();
+        $id='';
+        if($trade_last === null){
+            $id = 1;
+        }else{
+            $id = substr($trade_last->trade_permit_code,0,5) + 1;
+        }
         $trade_permit->update([
-            'trade_permit_code' => $this->create_kode($trade_permit->id),
+            'trade_permit_code' => $this->create_kode($id),
         ]);
 
         //relasi
