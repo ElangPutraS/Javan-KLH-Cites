@@ -172,7 +172,19 @@ foreach ($document_type as $key=>$dt){
                 $("#company_file").removeAttr('required');
             }else{
                 document.getElementById('showData').style.display='block';
+                initialize();
+                google.maps.event.addDomListener(window, 'load', initialize);
             }
         }
+        function showChangePass() {
+            //document.getElementById('showChangePass').style.display='block';
+            var x = document.getElementById("showChangePass");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
     </script>
 @endpush

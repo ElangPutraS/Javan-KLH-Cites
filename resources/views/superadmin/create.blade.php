@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Kelola Pelaku Usaha</h1>
+                <h1>Kelola User</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Tambah Data Pelaku Usaha dan Perusahaan</h2>
+                    <h2 class="card-title">Tambah Data User</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">

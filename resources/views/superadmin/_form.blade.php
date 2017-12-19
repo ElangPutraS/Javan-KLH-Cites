@@ -17,33 +17,85 @@
     <label class="control-label">Email</label>
     <div class="col-sm-14">
         @if(count($user)!=0)
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}" readonly>
+            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}" @if(isset($user)) @if($user->roles->first()->id !== 3) readonly @else  @endif @endif; >
         @else
-            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}">
+            <input type="email" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) }}" >
         @endif
     </div>
 </div>
+ <div class="form-group">
+        <label class="control-label">Role</label>
+        <div class="row">
+            <div class="col-sm-4">
+                <select name="role_name" id="role_name" class="form-control select2" onchange="roleChange()" required>
+                    <option value="">--Pilih Role--</option>
+                    @foreach($roles as $key => $role_name)
+                        @if($user == NULL)
+                            <option value="{{ $key }}">{{ $role_name }}</option>
+                        @else
+                            @if($user->roles->first()->id !== 2)
+                                @if($key == 2)
+                                    <option disabled value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
+                                @else
+                                    <option value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
+                                @endif
+                            @else
+                                <option value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
+                            @endif
 
+                        @endif
+                    @endforeach
+                </select>
+            </div>
+        </div>
+    </div>
 
-<div class="form-group">
-    <label class="control-label">Role</label>
-    <div class="col-sm-4">
-        <select name="role_name" id="role_name" class="form-control select2" onchange="roleChange()" required>
-            <option value="">--Pilih Role--</option>
-            @foreach($roles as $key => $role_name)
-                @if($user == NULL)
-                    <option value="{{ $key }}">{{ $role_name }}</option>
-                @else
-                    <option value="{{ $key }}"{{ $key == old('role_name', array_get($user->roles->first(), 'id')) ? 'selected' : '' }}>{{ $role_name }}</option>
-                @endif
-            @endforeach
-        </select>
+@if($user !== NULL )
+    <div class="form-group">
+        <a onclick="showChangePass()" class="btn btn-default">Ubah Password</a>
+    </div>
+@else
+    <div class="form-group">
+        <label class="control-label">Password</label>
+        <div class="col-sm-14">
+            <input type="password" id="password" name="password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+        </div>
+    </div>
+@endif
+
+<div id="showChangePass" style="display: none">
+    <div class="form-group">
+        <h5>Ubah Password</h5>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Password Lama</label>
+        <div class="col-sm-14">
+            <input type="old_password" name="old_password" id="old_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Password Baru</label>
+        <div class="col-sm-14">
+            <input type="new_password" name="new_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Konfirmasi Password Baru</label>
+        <div class="col-sm-14">
+            <input type="confirm_password" name="confirm_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+        </div>
     </div>
 </div>
 
 <div id="showData" style="display:@if(isset($user)) @if($user->roles->first()->id == 2) active @else none @endif @endif;">
     <div class="form-group">
         <h5>B. Data Pelaku Usaha</h5>
+    </div>
+    <div class="form-group">
+        <label class="control-label">Nama Pemilik Perusahaan</label>
+        <div class="col-sm-14">
+            <input type="text" name="owner_name" class="form-control" value="{{ old('owner_name', array_get($company, 'owner_name')) }}">
+        </div>
     </div>
     <div class="form-group">
         <label class="control-label">Tempat Lahir, Tanggal Lahir</label>
@@ -238,7 +290,42 @@
         <div class="col-sm-14">
             <div id="map" style="width: 100%; height: 300px;"></div>
             <input id="company_latitude" type="hidden" name="company_latitude" value="{{ old('company_latitude', array_get($company, 'company_latitude')) }}">
-            <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude', array_get($company, 'company_longitude')) }}" required>
+            <input id="company_longitude" type="hidden"  name="company_longitude" value="{{ old('company_longitude', array_get($company, 'company_longitude')) }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Alamat Penangkaran</label>
+        <div class="col-sm-14">
+            <input type="text" name="captivity_address" class="form-control" value="{{ old('captivity_address', array_get($company, 'captivity_address')) }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Total Pekerja</label>
+        <div class="col-sm-14">
+            <input type="number" name="labor_total" class="form-control" min="0" placeholder="0" value="{{ old('labor_total', array_get($company, 'labor_total')) }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Total Investasi</label>
+        <div class="col-sm-14">
+            <input id="investation_total" name="investation_total" type="text" class="form-control input-mask" data-mask="000.000.000.000.000" placeholder="eg: 000.000,00" maxlength="15" value="{{ old('investation_total', array_get($company, 'investation_total'))}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Nomor NPWP Perusahaan</label>
+        <div class="col-sm-14">
+            <input id="npwp_number" type="text" class="form-control" name="npwp_number" value="{{ old('npwp_number', array_get($company, 'npwp_number')) }}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Masa Berlaku Surat Izin Edar Berakhir</label>
+        <div class="col-sm-14">
+            <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" name="date_distribution" class="form-control" value="{{ old('date_distribution', array_get($company, 'date_distribution')) }}">
         </div>
     </div>
 
@@ -293,5 +380,4 @@
     <div id="form-dynamic">
 
     </div>
-
-    </div>
+</div>
