@@ -162,19 +162,16 @@
     </div>
 </div>
 
-@if($trade_permit->status_code === 3)
-    <div class="form-group">
-        <h5>C. Dokumen Unggahan</h5>
+<div class="form-group">
+    <h5>C. Dokumen Unggahan</h5>
+</div>
+<div class="form-group">
+    <label class="control-label">Re-upload SATS-LN</label>
+    <div class="col-sm-14">
+        <input type="hidden" class="form-control" name="document_type_id" value="10" required>
+        <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
     </div>
-    <div class="form-group">
-        <label class="control-label">Re-upload SATS-LN</label>
-        <div class="col-sm-14">
-            <input type="hidden" class="form-control" name="document_type_id" value="10" required>
-            <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
-        </div>
-    </div>
-@endif
-
+</div>
 
 <div class="card">
     <div class="card-block">
