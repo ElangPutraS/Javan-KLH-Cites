@@ -72,6 +72,7 @@ class SubmissionController extends Controller
             'country_destination'   => $request->get('country_destination'),
             'country_exportation'   => $request->get('country_exportation'),
             'created_by'            => $request->user()->id,
+            'stamp' => ''
         ]);
         $trade_permit->save();
 
