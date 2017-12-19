@@ -288,4 +288,11 @@ class ReportController extends Controller
         return $pdf->stream();
         //return view('pdf.satsln');
     }
+
+    public function storeStampSatsln($id, $stamp) {
+        $tradePermit = TradePermit::findOrFail($id);
+        $tradePermit->stamp = $stamp;
+
+        return $tradePermit->save();
+    }
 }

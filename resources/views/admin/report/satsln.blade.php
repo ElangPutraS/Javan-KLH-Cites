@@ -177,8 +177,8 @@
                                         </td>
                                         <td>{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
                                         <td>
-                                            @if ($trade_permit->tradeStatus->status_code >= '600')
-                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info print" target="_blank"><i class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
+                                            @if ($trade_permit->tradeStatus->status_code == '600')
+                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->tradePermit->id])}}" class="btn btn-sm btn-info print" target="_blank" data-id="{{ $trade_permit->tradePermit->id }}"><i class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
                                             @else
 
                                             @endif
@@ -234,6 +234,8 @@
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
         $('.print').click(function() {
+            printBtn = $(this);
+
             swal({
                 title: 'Apakah anda yakin?',
                 text: 'Akan mencetak laporan ini?',
@@ -251,14 +253,36 @@
                     allowOutsideClick: false
                 }).then(function (value) {
                     if (value === false || value === '') {
+                        swal('Security stamp harus diisi.');
+
                         return false;
                     }
+
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type:'post',
+                        url: window.baseUrl+'/store-stamp-satsln/'+printBtn.data('id')+'/'+value,
+                        success: function(result) {
+                            alert(result);
+                        },
+                        error: function (xhr) {
+                            swal(xhr.statusText);
+                        }
+                    });
+
+                    /*$.get(window.baseUrl+'/store-stamp-satsln/'+printBtn.data('id')+'/'+value, function(data, status) {
+                        swal(data);
+                    });*/
 
                     swal({
                         type: 'success',
                         title: 'Cetak laporan sedang diproses'
                     }).then(function () {
                         //window.location = $('.print').attr('href');
+                        satslnId = $('.print').data('id');
+
                         window.open($('.print').attr('href'), '_blank');
                     });
                 });
