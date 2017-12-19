@@ -354,9 +354,10 @@
 
                             for(var a=0; a<data[i].company_quota.length; a++){
                                 if(data[i].company_quota[a].pivot.year == date.getFullYear() && data[i].company_quota[a].pivot.company_id == $('#company_id').val()){
-                                    quota=data[i].company_quota[a].pivot.quota_amount;
-                                    if(data[i].company_quota[a].pivot.quota_amount==0){
-                                        notif='<font color="red">Kuota tahun '+data[i].species_quota[a].pivot.year+' adalah '+data[i].species_quota[a].pivot.quota_amount+'</font>';
+                                    quota = data[i].company_quota[a].pivot.quota_amount - data[i].company_quota[a].pivot.realization;
+                                    //console.log(quota);
+                                    if(quota<=0){
+                                        notif='<font color="red">Kuota perusahaan tahun ini adalah 0 / sudah habis.</font>';
                                     }else{
                                         disabled='';
                                         notif='';

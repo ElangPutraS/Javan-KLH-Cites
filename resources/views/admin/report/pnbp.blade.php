@@ -167,6 +167,8 @@
                                 <th width="150px">Masa Berlaku</th>
                                 <th>IHH</th>
                                 <th>EA-EB</th>
+                                <th>Subtotal</th>
+                                <th>Formula</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -204,6 +206,16 @@
                                     </td>
                                     <td> Rp. {{ number_format(100000,2,',','.') }} </td>
                                     <td> Rp. {{ number_format($pnbp->total_payment,2,',','.') }} </td>
+                                    <td>
+                                        <select class="form-control input-sm" name="percentage">
+                                            @forelse($percentages as $percentage)
+                                                <option value="{{ $percentage->value }}">{{ $percentage->value }}%
+                                                </option>
+                                            @empty
+                                                <option value="0" selected>0%</option>
+                                            @endforelse
+                                        </select>
+                                    </td>
                                     <td>
                                         <a class="btn btn-success"
                                            href="{{ route('admin.report.printReportDetailSatsln', ['id' => $trade_permit->id]) }}"

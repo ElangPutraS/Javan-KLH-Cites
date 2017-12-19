@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Pnbp;
 use App\TradePermit;
 use Illuminate\Http\Request;
 use App\DocumentType;
@@ -20,11 +21,11 @@ class SubmissionRenewalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trade_permits = TradePermit::whereHas('tradeStatus', function ($query) {
+        $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->whereHas('tradeStatus', function ($query) {
             $query->where([['status_code', '=', '300'],['permit_type', '=', '2']])->orWhere('status_code', '>=', '600');
-        })->orderBy('trade_permit_code', 'asc')->paginate(10);
+        })->orderBy('trade_permit_code', 'desc')->paginate(10);
         return view('pelakuusaha.renewals.index', compact('trade_permits'));
     }
 
@@ -42,57 +43,46 @@ class SubmissionRenewalController extends Controller
     public function update(Request $request, $id)
     {
         $trade_permit = TradePermit::findOrFail($id);
-
-        $valid_start = $trade_permit->valid_until;
-        $valid_until = Carbon::parse($valid_start)->addMonth($request->get('period'))->format('Y-m-d');
-
-        if ($request->is_renewal == 1)
-        {
-            $valid_start = $trade_permit->valid_until;
-            $valid_until = Carbon::parse($valid_start)->addMonth($request->get('period'))->format('Y-m-d');
+        if($request->get('is_renewal') == 1){
             $trade_permit->update([
-                'period' => $request->get('period'),
-                'valid_start' => $valid_start,
-                'valid_until' => $valid_until,
-                'valid_renewal' => $trade_permit->valid_renewal+1,
-                'permit_type' => '2'
+                'valid_renewal'         => $trade_permit->valid_renewal+1,
+                'is_renewal'            => $request->get('is_renewal'),
+                'permit_type'           => '2',
+                'is_blanko'             => $request->get('is_blanko')
             ]);
-        }else
-        {
+        }else {
             $trade_permit->update([
+                'consignee_address' => $request->get('consignee_address'),
                 'consignee' => $request->get('consignee'),
                 'port_exportation' => $request->get('port_exportation'),
                 'port_destination' => $request->get('port_destination'),
-                'valid_renewal' => $trade_permit->valid_renewal+1,
+                'country_exportation' => $request->get('country_exportation'),
+                'country_destination' => $request->get('country_destination'),
+                'valid_renewal' => $trade_permit->valid_renewal + 1,
+                'is_renewal' => $request->get('is_renewal'),
                 'purpose_type_id' => $request->get('purpose_type_id'),
-                'permit_type' => '2'
+                'permit_type' => '2',
+                'is_blanko' => $request->get('is_blanko')
             ]);
         }
 
-
         if($request->document_trade_permit != ''){
+            $file_path = $request->document_trade_permit->store('/upload/file/trade_document');
 
-                $file_path = $request->document_trade_permit->store('/upload/file/trade_document');
+            $document_type = DocumentType::find($request->get('document_type_id'));
 
-                $document_type = DocumentType::find($request->get('document_type_id'));
-
-                $trade_permit->documentTypes()->attach($document_type, [
-                    'document_name' => $request->document_trade_permit->getClientOriginalName(),
-                    'file_path'     => $file_path
-                ]);
-
+            $trade_permit->documentTypes()->attach($document_type, [
+                'document_name' => $request->document_trade_permit->getClientOriginalName(),
+                'file_path'     => $file_path
+            ]);
         }
+
         $status = TradePermitStatus::where('status_code', 100)->first();
         $trade_permit->tradeStatus()->associate($status);
         $trade_permit->save();
 
-        $trade_permit->pnbp->update([
-                'payment_status' => 0,
-            ]);
-
-
         $log = LogTradePermit::create([
-            'log_description' => $status->status_name.' ( Pembaharuan Permohonan )',
+            'log_description'           => $status->status_name.' ( Pembaharuan Permohonan )',
             'trade_permit_code'         => $trade_permit->trade_permit_code,
             'valid_start'               => $trade_permit->valid_start,
             'valid_until'               => $trade_permit->valid_until,
@@ -109,6 +99,13 @@ class SubmissionRenewalController extends Controller
             'valid_renewal'             => $trade_permit->valid_renewal,
             'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
+            'is_blanko'                 => $trade_permit->is_blanko,
+            'is_renewal'                => $trade_permit->is_renewal,
+            'category_id'               => $trade_permit->category_id,
+            'source_id'                 => $trade_permit->source_id,
+            'country_destination'       => $trade_permit->country_destination,
+            'country_exportation'       => $trade_permit->country_exportation,
+            'consignee_address'         => $trade_permit->consignee_address,
         ]);
         $trade_permit->logTrade()->save($log);
 

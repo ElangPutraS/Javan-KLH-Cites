@@ -28,12 +28,12 @@ class PnbpController extends Controller
     public function show($id)
     {
         $trade_permit   =   TradePermit::findOrFail($id);
-        $pnbp_last      =   Pnbp::orderBy('id','desc')->first();
+        $pnbp_last      =   Pnbp::orderBy('pnbp_code','desc')->first();
         $id='';
         if($pnbp_last === null){
             $id = 1;
         }else{
-            $id = $pnbp_last->id + 1;
+            $id = substr($pnbp_last->pnbp_code,0,5) + 1;
         }
         $pnbp_code      =   $this->getCode($id);
 
@@ -56,7 +56,7 @@ class PnbpController extends Controller
 
         //nambahin log
         $log=LogTradePermit::create([
-            'log_description' => 'Buat PNBP Permohonan',
+            'log_description'           => 'Buat PNBP Permohonan',
             'trade_permit_code'         => $trade_permit->trade_permit_code,
             'valid_start'               => $trade_permit->valid_start,
             'valid_until'               => $trade_permit->valid_until,
@@ -138,10 +138,12 @@ class PnbpController extends Controller
 
         //History Payment
         $history = new HistoryPayment([
+            'pnbp_code' => $pnbp->pnbp_code,
             'notes' => $notes,
             'total_payment' => $request->get('pnbp_amount'),
             'payment_method' => $request->get('payment_method'),
             'transaction_number' => $request->get('transaction_number'),
+            'log_trade_permit_id' => $log->id,
             ]);
         $history->save();
 

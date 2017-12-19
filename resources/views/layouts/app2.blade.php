@@ -53,7 +53,7 @@
                     <a href="{{ url('/') }}" class="navbar-brand">
                         <img src="{{ asset('images/CITES_logo_high_resolution_white.png') }}">
                         <img src="{{ asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') }}">
-                        <span>KEMENTERIAN LINGKUNGAN HIDUP</span>
+                        <span>KEMENTERIAN LINGKUNGAN HIDUP DAN KEHUTANAN</span>
                         <span>REPUBLIK INDONESIA</span>
                     </a>
                 </div>
@@ -107,11 +107,11 @@
                 <img src="{{ asset('images/CITES_logo_high_resolution_white.png') }}">
                 <img src="{{ asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') }}">
                 <br>
-                <span>KEMENTERIAN LINGKUNGAN HIDUP</span>
+                <span>KEMENTERIAN LINGKUNGAN HIDUP DAN KEHUTANAN</span>
                 <br>
                 <span>REPUBLIK INDONESIA</span>
                 <br>
-                <span>www.menlh.go.id - Copyright &copy; 2017</span>
+                <span>www.menlhk.go.id - Copyright &copy; 2017</span>
                 <!--p class="text-muted">Place sticky footer content here.</p-->
             </div>
 

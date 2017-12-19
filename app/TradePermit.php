@@ -33,6 +33,8 @@ class TradePermit extends Model
         'source_id',
         'country_destination',
         'country_exportation',
+        'is_blanko',
+        'is_renewal',
     ];
 
     public function documentTypes()
@@ -58,7 +60,7 @@ class TradePermit extends Model
     public function tradeSpecies()
     {
         return $this->belongsToMany(Species::class, 'trade_permit_detail')
-            ->withPivot('total_exported', 'log_trade_permit_id', 'description')
+            ->withPivot('total_exported', 'log_trade_permit_id', 'description', 'valid_renewal', 'id')
             ->withTrashed();
     }
 

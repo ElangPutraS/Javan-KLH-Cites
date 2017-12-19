@@ -24,7 +24,7 @@
                 </div>
                 <div class="card-block">
 
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
+                    <form action="{{ route('admin.verificationRen.acc', ['id' => $trade_permit->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-verification">
                         {!! csrf_field() !!}
 
                         <div class="form-group">
@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Komoditas</label>
-                                    <input type="text" name="category_id" class="form-control" value="CT001 - MAMALIA{{ old('category_id', array_get($trade_permit->category, 'species_category_name')) }}" readonly>
+                                    <input type="text" name="category_id" class="form-control" value="{{ $trade_permit->category->species_category_code.' - '.$trade_permit->category->species_category_name }}" readonly>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Jenis Appendix</label>
@@ -227,14 +227,23 @@
                                         <tbody>
                                         <?php $no=1;?>
                                         @foreach($trade_permit->tradeSpecies as $species)
-                                            <tr>
-                                                <td><?=$no++?></td>
-                                                <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
-                                                <td>{{$species->unit->unit_description}}</td>
-                                                <td>10</td>
-                                                <td><input type="text" name="exported_before[]" class="form-control" value="{{$species->pivot->total_exported}}" max="10"></td>
-                                                <td><input type="number" name="exported_now[]" class="form-control" value="" placeholder="0" min="0" max="10"></td>
-                                            </tr>
+                                            <?php
+                                                $total_exported = $species->pivot->where([['species_id', $species->id], ['trade_permit_id', $trade_permit->id]])->sum('total_exported');
+                                                $kuota = $species->companyQuota()->first();
+                                            ?>
+                                            @if($species->pivot->valid_renewal == $trade_permit->valid_renewal - 1)
+                                                <tr>
+                                                    <td><?=$no++?></td>
+                                                    <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
+                                                    <td>{{$species->unit->unit_description}}</td>
+                                                    <td>
+                                                        {{ $kuota->pivot->where([['company_id', $trade_permit->company_id], ['species_id', $species->id], ['year', date_format( $trade_permit->updated_at, 'Y')]])->first()->quota_amount }}
+                                                        <br>(yang telah terealisasi : {{ $total_exported }})
+                                                    </td>
+                                                    <td><input type="hidden" name="detail_id[]" value="{{$species->pivot->id}}" max="10"> <input type="text" name="exported_before[]" class="form-control" value="{{$species->pivot->total_exported}}" max="10"></td>
+                                                    <td><input type="number" name="exported_now[]" class="form-control" value="" placeholder="0" min="0" max="10"></td>
+                                                </tr>
+                                            @endif
                                         @endforeach
                                         </tbody>
                                     </table>
@@ -282,6 +291,7 @@
 
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+
         function acceptTradePermit(a) {
             var id=a.getAttribute('data-id');
             swal({
@@ -291,7 +301,7 @@
                 showCancelButton: true,
                 confirmButtonText: 'Yes',
             }).then(function() {
-                location.href='{{url('admin/verificationRen/acc')}}/'+id;
+                $('#form-verification').submit();
             });
         }
 
