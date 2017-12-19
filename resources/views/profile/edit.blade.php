@@ -164,7 +164,7 @@ foreach ($document_type as $key=>$dt){
             var document_name=a.getAttribute('data-document-name');
             $.ajax({
                 type: 'get',
-                url: '/deleteDoc/'+type_id+'/'+company_id+'/'+document_name,
+                url: window.baseUrl +'/deleteDoc/'+type_id+'/'+company_id+'/'+document_name,
                 success : function (data) {
                     a.closest('#file_download').remove();
                     //alert(data);

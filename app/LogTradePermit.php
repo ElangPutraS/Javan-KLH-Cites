@@ -30,6 +30,7 @@ class LogTradePermit extends Model
         'source_id',
         'country_destination',
         'country_exportation',
+        'trade_permit_code',
     ];
 
 
