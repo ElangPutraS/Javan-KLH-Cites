@@ -33,6 +33,8 @@ class TradePermit extends Model
         'source_id',
         'country_destination',
         'country_exportation',
+        'is_blanko',
+        'is_renewal',
     ];
 
     public function documentTypes()

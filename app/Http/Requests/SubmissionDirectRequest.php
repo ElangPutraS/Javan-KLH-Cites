@@ -24,7 +24,7 @@ class SubmissionDirectRequest extends FormRequest
     public function rules()
     {
         return [
-            'description.*'             => 'required|max:6500',
+            'description.*'             => 'max:6500',
             'consignee'                 => 'required|max:6500',
             'consignee_address'         => 'required|max:6500',
             'document_trade_permit.*'   => 'required|max:8000',

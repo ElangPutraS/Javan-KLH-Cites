@@ -14,7 +14,7 @@ class AddLogTradePermit2Table extends Migration
     public function up()
     {
         Schema::table('log_trade_permit', function (Blueprint $table) {
-            $table->string('trade_permit_code','30');
+            $table->string('trade_permit_code','30')->nullable();
             $table->text('consignee_address');
             $table->integer('is_blanko')->default(0);
             $table->integer('is_renewal')->default(0);

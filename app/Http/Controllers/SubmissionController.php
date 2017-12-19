@@ -58,7 +58,6 @@ class SubmissionController extends Controller
     {
         //isi trade permit
         $trade_permit = new TradePermit([
-            'trade_permit_code'     => 'cek',
             'consignee'             => $request->get('consignee'),
             'appendix_type'         => $request->get('appendix_type'),
             'date_submission'       => date('Y-m-d'),
@@ -76,11 +75,6 @@ class SubmissionController extends Controller
             'stamp' => ''
         ]);
         $trade_permit->save();
-
-        //susun kode trade permit
-        $trade_permit->update([
-            'trade_permit_code' => $this->create_kode($trade_permit->id),
-        ]);
 
         //relasi
         $company = $request->user()->company;
