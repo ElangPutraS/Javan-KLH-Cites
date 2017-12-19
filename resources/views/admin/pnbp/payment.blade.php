@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Permohonan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="permit_type" class="form-control" value="@if($trade_permit->permit_type == 1) @if($trade_permit->period<6) Permohonan Bertingkat @else Permohonan Langsung @endif @else Pembaharuan Permohonan @endif" readonly>
+                                <input type="text" name="permit_type" class="form-control" value="@if($trade_permit->permit_type == 1) @if($trade_permit->period<6) Permohonan Bertahap @else Permohonan Langsung @endif @else Pembaharuan Permohonan @endif" readonly>
                             </div>
                         </div>
 

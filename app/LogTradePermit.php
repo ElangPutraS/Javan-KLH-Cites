@@ -25,6 +25,11 @@ class LogTradePermit extends Model
         'created_by',
         'valid_renewal',
         'permit_type',
+        'consignee_address',
+        'category_id',
+        'source_id',
+        'country_destination',
+        'country_exportation',
     ];
 
 
@@ -59,5 +64,22 @@ class LogTradePermit extends Model
     public function company(){
         return $this->belongsTo(Company::class)
             ->withTrashed();
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class)
+            ->withTrashed();
+    }
+
+    public function source(){
+        return $this->belongsTo(Source::class);
+    }
+
+    public function countryDest(){
+        return $this->belongsTo(Country::class, 'country_destination', 'id');
+    }
+
+    public function countryExpor(){
+        return $this->belongsTo(Country::class, 'country_exportation', 'id');
     }
 }

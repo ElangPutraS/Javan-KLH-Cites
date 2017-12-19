@@ -40,19 +40,25 @@
         $(document).ready(function(){
             $('input[name="is_renewal"]').change(function(){
                 if (document.getElementById('is_renewal1').checked) {
-                    document.getElementById('showPeriod').style.display='block';
+                    //document.getElementById('showPeriod').style.display='block';
                     //$("#period").attr('required', '');
                     $("#port_exportation").attr('disabled','');
                     $("#port_destination").attr('disabled','');
                     $("#purpose_type_id").attr('disabled','');
                     $("#consignee").attr('readonly','');
+                    $("#consignee_address").attr('readonly','');
+                    $("#country_destination").attr('disabled','');
+                    $("#country_exportation").attr('disabled','');
                 }else if(document.getElementById('is_renewal2').checked){
-                    document.getElementById('showPeriod').style.display='none';
+                    //document.getElementById('showPeriod').style.display='none';
                     //$("#period").removeAttr('required');
                     $("#port_exportation").removeAttr('disabled','');
                     $("#port_destination").removeAttr('disabled','');
                     $("#purpose_type_id").removeAttr('disabled','');
                     $("#consignee").removeAttr('readonly','');
+                    $("#consignee_address").removeAttr('readonly','');
+                    $("#country_destination").removeAttr('disabled','');
+                    $("#country_exportation").removeAttr('disabled','');
                 }
             });
         });

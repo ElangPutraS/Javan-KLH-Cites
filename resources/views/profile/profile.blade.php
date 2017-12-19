@@ -16,25 +16,31 @@
 
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-submission">
                         {!! csrf_field() !!}
+                        <div class="form-group">
+                            <h5>A. Informasi @if($user->roles()->first()->id == '2') Pemilik Usaha @else Admin @endif</h5>
+                        </div>
 
                         <div class="form-group">
-                            <h5>A. Informasi Pelaku Usaha</h5>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Nama</label>
+                            <label class="control-label">Nama Admin</label>
                             <div class="col-sm-14">
                                 <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) ?? '' }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Email Pelaku Usaha</label>
+                            <label class="control-label">Email Admin</label>
                             <div class="col-sm-14">
                                 <input type="text" name="email" class="form-control" value="{{ old('email', array_get($user, 'email')) ?? '' }}" readonly>
                             </div>
                         </div>
 
                         @can('access-pelaku-usaha')
+                        <div class="form-group">
+                            <label class="control-label">Nama Pemilik Perusahaan</label>
+                            <div class="col-sm-14">
+                                <input type="text" name="owner_name" class="form-control" value="{{ old('owner_name', array_get($user->company, 'owner_name')) ?? '' }}" readonly>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label">Tempat Tanggal Lahir</label>
                             <div class="col-sm-14">
@@ -69,13 +75,6 @@
 
                         <div class="form-group">
                             <label class="control-label">Nama Perusahaan</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) ?? '' }}" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label">Nama Pemilik Perusahaan</label>
                             <div class="col-sm-14">
                                 <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) ?? '' }}" readonly>
                             </div>
@@ -140,7 +139,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Tanggal Masa Berlaku Surat Izin Berakhir</label>
+                            <label class="control-label">Masa Berlaku Surat Izin Edar Berakhir</label>
                             <div class="col-sm-14">
                                 <input type="text" name="date_distribution" class="form-control" value="{{Carbon\Carbon::parse($user->company->date_distribution)->format('d-m-Y')}}" readonly>
                             </div>

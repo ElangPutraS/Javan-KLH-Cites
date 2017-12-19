@@ -62,8 +62,8 @@ class SpeciesHSController extends Controller
     	$appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
         $categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
-        $sources = Source::orderBy('source_description', 'asc')->get();
-        $units = Unit::orderBy('unit_description', 'asc')->get();
+        $sources = Source::orderBy('source_code', 'asc')->get();
+        $units = Unit::orderBy('unit_code', 'asc')->get();
     	return view('admin.species.editspecies', compact('species', 'appendix', 'species_sex','categories','sources','units'));
     }
 

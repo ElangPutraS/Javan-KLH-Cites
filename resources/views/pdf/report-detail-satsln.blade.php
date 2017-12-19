@@ -69,7 +69,7 @@
 <body>
 <div id="header">
     <div id="header-logo">
-        <img src="<?= asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') ?>" height="70">
+        <img src="{{ asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') }}" height="70">
     </div>
     <div id="header-info">
         <span>KEMENTERIAN LINGKUNGAN HIDUP DAN KEHUTANAN DIREKTORAT JENDERAL KONSERVASI SUMBER DAYA ALAM DAN EKOSISTEM</span>
@@ -85,10 +85,10 @@
         <span>SURAT	PERINTAH PEMBAYARAN PUNGUTAN PERDAGANGAN TUMBUHAN/SATWA LIAR DALAM NEGERI</span>
         <br>
         <br>
-        <span>Nomor: <?= $tradePermit->id ?></span>
+        <span>Nomor: {{ $tradePermit->id }}</span>
         <br>
-        <span>Periode Tanggal: <?= date('d F Y', strtotime($tradePermit->valid_start)) ?>
-            s/d <?= date('d F Y', strtotime($tradePermit->valid_until)) ?></span>
+        <span>Periode Tanggal: {{ date('d F Y', strtotime($tradePermit->valid_start)) }}
+            s/d {{ date('d F Y', strtotime($tradePermit->valid_until)) }}</span>
     </div>
 
     <div id="content-detail">
@@ -96,18 +96,18 @@
             <tr>
                 <td>Kode</td>
                 <td>:</td>
-                <td><?= $tradePermit->trade_permit_code ?></td>
+                <td>{{ $tradePermit->trade_permit_code }}</td>
             </tr>
 
             <tr>
                 <td>Nama Perusahaan</td>
                 <td>:</td>
-                <td><?= $tradePermit->company->company_name ?></td>
+                <td>{{ $tradePermit->company->company_name }}</td>
             </tr>
             <tr>
                 <td>Nomor SK/Tanggal</td>
                 <td>:</td>
-                <td>__________/<?= date('l, d F Y', strtotime($tradePermit->valid_start)) ?></td>
+                <td>__________/{{ date('l, d F Y', strtotime($tradePermit->valid_start)) }}</td>
             </tr>
             <tr>
                 <td>Nomor Seri</td>
@@ -117,7 +117,7 @@
             <tr>
                 <td>Pelabuhan Tujuan</td>
                 <td>:</td>
-                <td><?= $tradePermit->portDest->port_name ?></td>
+                <td>{{ $tradePermit->portDest->port_name }}</td>
             </tr>
         </table>
 
@@ -135,23 +135,25 @@
             </thead>
 
             <tbody>
-            <?php foreach ($tradePermit->tradeSpecies as $key => $value) { ?>
+            @foreach ($tradePermit->tradeSpecies as $value)
                 <tr>
-                    <td align="center"><?= $key + 1 ?></td>
-                    <td><?= $value->species_scientific_name ?></td>
-                    <td align="center"><?= $value->pivot->total_exported ?></td>
-                    <td align="right"><?= number_format($value->nominal) ?></td>
-                    <td align="right"><?= number_format(($value->nominal * $value->pivot->total_exported)) ?></td>
+                    <td align="center">{{ $loop->iteration }}</td>
+                    <td>{{ $value->species_scientific_name }}</td>
+                    <td align="center">{{ $value->pivot->total_exported }}</td>
+                    <td align="right">{{ number_format($value->nominal) }}</td>
+                    <td align="right">{{ number_format(($value->nominal * $value->pivot->total_exported)) }}</td>
                 </tr>
-                <?php
+                @php
+                $total[] = $value->nominal;
+                $subtotal[] = $value->nominal * $value->pivot->total_exported;
                 $total_exported[] = $value->pivot->total_exported;
-                ?>
-            <?php } ?>
+                @endphp
+            @endforeach
             <tr>
                 <td colspan="2" align="center">JUMLAH</td>
-                <td align="center"><?= array_sum($total_exported) ?></td>
-                <td align="right"></td>
-                <td align="right"></td>
+                <td align="center">{{ array_sum($total_exported) }}</td>
+                <td align="right">{{ number_format(array_sum($total)) }}</td>
+                <td align="right">{{ number_format(array_sum($subtotal)) }}</td>
             </tr>
             </tbody>
         </table>

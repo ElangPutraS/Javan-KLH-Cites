@@ -18,7 +18,13 @@
 
 @can('access-pelaku-usaha')
 <div class="form-group">
-    <h5>B. Data Pelaku Usaha</h5>
+    <h5>B. Data Pemilik Usaha</h5>
+</div>
+<div class="form-group">
+    <label class="control-label">Nama Pemilik Perusahaan</label>
+    <div class="col-sm-14">
+        <input type="text" name="owner_name" class="form-control" value="{{ old('owner_name', array_get($company, 'owner_name')) }}" required>
+    </div>
 </div>
 <div class="form-group">
     <label class="control-label">Tempat Lahir, Tanggal Lahir</label>
@@ -135,6 +141,13 @@
 </div>
 
 <div class="form-group">
+    <label class="control-label">Nomor NPWP Pemilik Perusahaan</label>
+    <div class="col-sm-14">
+        <input id="npwp_number_user" type="text" class="form-control" name="npwp_number_user" value="{{ old('npwp_number_user', array_get($user->userProfile, 'npwp_number')) }}" required>
+    </div>
+</div>
+
+<div class="form-group">
     <h5>C. Data Perusahaan</h5>
 </div>
 <div class="form-group">
@@ -144,12 +157,7 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label class="control-label">Nama Pemilik Perusahaan</label>
-    <div class="col-sm-14">
-        <input type="text" name="owner_name" class="form-control" value="{{ old('owner_name', array_get($company, 'owner_name')) }}" required>
-    </div>
-</div>
+
 
 <div class="form-group">
     <label class="control-label">Alamat Email</label>
@@ -240,7 +248,7 @@
 </div>
 
 <div class="form-group">
-    <label class="control-label">Tanggal Masa Berlaku Surat Izin Berakhir</label>
+    <label class="control-label">Masa Berlaku Surat Izin Edar Berakhir</label>
     <div class="col-sm-14">
         <input type="text" class="form-control date-picker flatpickr-input active" placeholder="Pilih Tanggal" name="date_distribution" class="form-control" value="{{ old('date_distribution', array_get($company, 'date_distribution')) }}" required>
     </div>
@@ -264,7 +272,7 @@
                         <a href="{{$doc->pivot->download_url}}"><i class="zmdi zmdi-download zmdi-hc-fw"></i> Download</a>
                     </div>
                     <div class="col-sm-2">
-                        <button onclick="deleteFile(this)" data-type-id="{{$doc->pivot->document_type_id}}" data-company-id="{{$doc->pivot->company_id}}" data-document-name="{{$doc->pivot->document_name}}" class="btn btn-danger">X</button>
+                        <button type="button" onclick="deleteFile(this)" data-type-id="{{$doc->pivot->document_type_id}}" data-company-id="{{$doc->pivot->company_id}}" data-document-name="{{$doc->pivot->document_name}}" class="btn btn-danger">X</button>
                     </div>
                 </div>
             </div>
