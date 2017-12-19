@@ -39,11 +39,21 @@ class SubmissionVerificationController extends Controller
         $trade_permit = TradePermit::findOrFail($id);
         $company = $trade_permit->company;
 
+        //susun kode trade permit
+        $trade_last      =   TradePermit::orderBy('trade_permit_code','desc')->first();
+        $id='';
+        if($trade_last === null || $trade_last->trade_permit_code == ''){
+            $id = 1;
+        }else{
+            $id = substr($trade_last->trade_permit_code,0,5) + 1;
+        }
+
+        //valid start dan valid until
         $valid_start = Carbon::now()->format('Y-m-d');
         $valid_until = Carbon::now()->addMonth($period)->format('Y-m-d');
 
-
         $trade_permit->update([
+            'trade_permit_code' => $this->create_kode($id),
             'valid_start' => $valid_start,
             'valid_until' => $valid_until,
             'period'      => $period,
