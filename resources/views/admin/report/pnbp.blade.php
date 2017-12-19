@@ -224,20 +224,18 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9">
+                                    <td colspan="11">
                                         <center>Data Kosong</center>
                                     </td>
                                 </tr>
                             @endforelse
-                            @if($pnbp)
-                                <tr>
-                                    <td colspan="9">
-                                        <a class="btn btn-success"
-                                           href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
-                                           target="_blank"><i class="fa fa-print"></i> Cetak List</a>
-                                    </td>
-                                </tr>
-                            @endif
+                            <tr>
+                                <td colspan="11">
+                                    <a class="btn btn-success"
+                                       href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
+                                       target="_blank"><i class="fa fa-print"></i> Cetak List</a>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>

@@ -147,7 +147,7 @@
                                     <th>Pelabuhan Tujuan</th>
                                     <th width="200px">Jenis Permohonan</th>
                                     <th width="50px">Jumlah Species</th>
-                                    <th></th>
+                                    <th>Aksi</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -192,19 +192,13 @@
                                     </tr>
                                 @endforelse
 
-                                @if($trade_permit)
                                     <tr>
                                         <td colspan="9">
-                                            @if ($trade_permit->tradeStatus->status_code >= '600')
-                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}"
-                                                   class="btn btn-sm btn-info" target="_blank"><i
-                                                            class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
-                                            @else
-
-                                            @endif
+                                            <a class="btn btn-success"
+                                               href="{{ route('admin.report.printReportSatsln', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
+                                               target="_blank"><i class="fa fa-print"></i> Cetak List</a>
                                         </td>
                                     </tr>
-                                @endif
                                 </tbody>
                             </table>
                         </div>

@@ -33,7 +33,7 @@
     </div>
 
     <div class="wrapper wrapper-content">
-        <div class="row klh-content">
+        <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default panel-primary">
                     <div class="panel-heading">
