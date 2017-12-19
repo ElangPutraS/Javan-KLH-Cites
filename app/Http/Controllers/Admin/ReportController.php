@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Percentage;
 use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,8 +35,9 @@ class ReportController extends Controller
 
         $trade_permits = LogTradePermit::get();
         $tahun = HistoryPayment::select(DB::raw('YEAR(created_at) year'))->distinct()->get();
+        $percentages = Percentage::all();
 
-        return view('admin.report.pnbp', compact('payments', 'trade_permits', 'tahun'));
+        return view('admin.report.pnbp', compact('payments', 'trade_permits', 'tahun', 'percentages'));
     }
 
     public function printReportPnbp($m = 'all', $y = 'all')
@@ -66,12 +68,12 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
-    public function printReportDetailSatsln($id)
+    public function printReportDetailSatsln($id, $percentage = 0)
     {
         $tradePermit = TradePermit::with(['tradeSpecies'])->where('id', '=', $id)->first();
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
-        $pdf = PDF::loadView('pdf.report-detail-satsln', compact('tradePermit'));
+        $pdf = PDF::loadView('pdf.report-detail-satsln', compact('tradePermit', 'percentage'));
         $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
     }
