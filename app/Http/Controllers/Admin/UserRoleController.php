@@ -221,7 +221,7 @@ class UserRoleController extends Controller
                 'email' => $request->email,
                 //'password' => $request->password,
             ]);
-            //$user->roles()->sync($request->role_name);
+            $user->roles()->sync($request->role_name);
 
         }
 
