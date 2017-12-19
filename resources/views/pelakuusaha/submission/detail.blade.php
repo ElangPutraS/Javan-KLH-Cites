@@ -84,7 +84,7 @@
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Komoditas</label>
-                                    <input type="text" name="category_id" class="form-control" value="CT001 - MAMALIA{{ old('category_id', array_get($trade_permit->category, 'species_category_name')) }}" readonly>
+                                    <input type="text" name="category_id" class="form-control" value="{{ $trade_permit->category->species_category_code.' - '.$trade_permit->category->species_category_name }}" readonly>
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Jenis Appendix</label>

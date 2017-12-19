@@ -21,11 +21,11 @@ class SubmissionRenewalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $trade_permits = TradePermit::whereHas('tradeStatus', function ($query) {
+        $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->whereHas('tradeStatus', function ($query) {
             $query->where([['status_code', '=', '300'],['permit_type', '=', '2']])->orWhere('status_code', '>=', '600');
-        })->orderBy('trade_permit_code', 'asc')->paginate(10);
+        })->orderBy('trade_permit_code', 'desc')->paginate(10);
         return view('pelakuusaha.renewals.index', compact('trade_permits'));
     }
 
