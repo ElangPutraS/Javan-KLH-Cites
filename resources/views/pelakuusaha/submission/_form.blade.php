@@ -182,7 +182,7 @@
         <label class="control-label">{{$document_type}}</label>
         <div class="col-sm-14">
             <input type="hidden" class="form-control" name="document_type_id[]" value="{{$key}}" required>
-            <input id="document_{{$key}}" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" {{$trade_permit==null ? 'required' : ''}}>
+            <input id="document_{{$key}}" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" {{$trade_permit == null  ? 'required' : ''}}>
         </div>
     </div>
 @endforeach
@@ -268,9 +268,13 @@
                             $('#formDoc').html(form);
 
                             for(var i=0; i<data.length; i++){
+                                var required = '';
+                                if(data[i]['is_permit'] != '5'){
+                                    required = 'required';
+                                }
                                 form+='<div class="form-group"><label class="control-label">'+data[i]['document_type_name']+'</label>';
                                 form+='<div class="col-sm-14"><input type="hidden" class="form-control" name="document_type_id[]" value="'+data[i]['id']+'" required>';
-                                form+='<input id="document_'+data[i]['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>';
+                                form+='<input id="document_'+data[i]['id']+'" type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" '+required+'>';
                                 form+='</div></div>';
                                 
                             }

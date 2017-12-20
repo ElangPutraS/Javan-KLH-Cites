@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Permohonan Pembaharuan SATS-LN @if($trade_permit->period<6) Bertahap @else Langsung @endif</h2>
+                    <h2 class="card-title">Permohonan Pembaharuan SATS-LN</h2>
                     <small class="card-subtitle">Status Permohonan :
                         @if($trade_permit->tradeStatus->status_code==100)
                             <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
@@ -156,7 +156,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label class="control-label">Alamat Penerima</label>
-                                    <input type="text" name="consignee" class="form-control" value="Jln. Molobulu Utara, Maluku{{ old('consignee', array_get($trade_permit, 'consignee_address')) }}" readonly>
+                                    <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee_address')) }}" readonly>
                                 </div>
 
                             </div>
@@ -219,6 +219,7 @@
                                             <th>No</th>
                                             <th>Nama Species</th>
                                             <th>Satuan</th>
+                                            <th>Deskripsi</th>
                                             <th>Kuota Perusahaan</th>
                                             <th>Realisasi Sebelumnya</th>
                                             <th>Jumlah Ekspor Baru</th>
@@ -236,6 +237,7 @@
                                                     <td><?=$no++?></td>
                                                     <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
                                                     <td>{{$species->unit->unit_description}}</td>
+                                                    <td>{{$species->pivot->description}}</td>
                                                     <td>
                                                         {{ $kuota->pivot->where([['company_id', $trade_permit->company_id], ['species_id', $species->id], ['year', date_format( $trade_permit->updated_at, 'Y')]])->first()->quota_amount }}
                                                         <br>(yang telah terealisasi : {{ $total_exported }})
@@ -255,7 +257,7 @@
                             <label class="form-control-label">Masa Berlaku yang Diberikan</label>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <input type="text" name="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
+                                    <input type="text" min="1" max="6" name="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
                                 </div>
                                 <div class="col-sm-2">
                                     Bulan

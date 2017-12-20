@@ -233,7 +233,7 @@
     </script>
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
-        $('.print').click(function() {
+        /*$('.print').click(function() {
             printBtn = $(this);
 
             swal({
@@ -272,9 +272,9 @@
                         }
                     });
 
-                    /*$.get(window.baseUrl+'/store-stamp-satsln/'+printBtn.data('id')+'/'+value, function(data, status) {
+                    /!*$.get(window.baseUrl+'/store-stamp-satsln/'+printBtn.data('id')+'/'+value, function(data, status) {
                         swal(data);
-                    });*/
+                    });*!/
 
                     swal({
                         type: 'success',
@@ -289,6 +289,6 @@
             });
 
             return false;
-        });
+        });*/
     </script>
 @endpush

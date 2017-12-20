@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Pengajuan Permohonan SATS-LN Langsung</h2>
+                    <h2 class="card-title">Pengajuan Permohonan SATS-LN</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
@@ -122,7 +122,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label class="control-label">Alamat Penerima</label>
-                                    <input type="text" name="consignee" class="form-control" value="Jln. Molobulu Utara, Maluku{{ old('consignee', array_get($trade_permit, 'consignee_address')) }}" readonly>
+                                    <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee_address')) }}" readonly>
                                 </div>
 
                             </div>
@@ -196,6 +196,7 @@
                                             <th>Nama Species</th>
                                             <th>Satuan</th>
                                             <th>Jumlah Ekspor</th>
+                                            <th>Deskripsi</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -206,6 +207,7 @@
                                                 <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
                                                 <td>{{$species->unit->unit_description}}</td>
                                                 <td>{{$species->pivot->total_exported}}</td>
+                                                <td>{{$species->pivot->description}}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>
