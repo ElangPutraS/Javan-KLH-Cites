@@ -27,7 +27,6 @@ class ProvinceUpdateRequest extends FormRequest
             'country_id'        => 'required',
             'province_code'     => 'required|string|max:4',
             'province_name'     => 'required|string|max:50',
-            'email'             => 'email',
         ];
   
     }
