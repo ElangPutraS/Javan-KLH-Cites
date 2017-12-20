@@ -72,6 +72,7 @@ class SubmissionController extends Controller
             'country_destination'   => $request->get('country_destination'),
             'country_exportation'   => $request->get('country_exportation'),
             'created_by'            => $request->user()->id,
+            'stamp' => ''
         ]);
         $trade_permit->save();
 
@@ -133,7 +134,9 @@ class SubmissionController extends Controller
             $trade_permit->tradeSpecies()->attach($species, [
                 'total_exported'        => $quantity,
                 'log_trade_permit_id'   => $log->id,
-                'description'           => $request->get('description')[$key]
+                'description'           => $request->get('description')[$key],
+                'company_id'            => $trade_permit->company_id,
+                'year'                  => date('Y')
             ]);
         }
 

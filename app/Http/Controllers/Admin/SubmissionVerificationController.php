@@ -91,9 +91,11 @@ class SubmissionVerificationController extends Controller
 
         //Update Realisasi Kuota Perusahaan
         foreach ($trade_permit->tradeSpecies as $species){
+            $realization = $species->pivot->where([['company_id', $company->id], ['species_id', $species->id], ['year', date('Y')]])->sum('total_exported');
+
             $kuota = $species->companyQuota()->first();
             $kuota->pivot->where([['company_id', $company->id], ['species_id', $species->id], ['year', date('Y')]])->update([
-                'realization' => $species->pivot->total_exported,
+                'realization' => $realization,
                 ]);
         }
 
@@ -136,6 +138,13 @@ class SubmissionVerificationController extends Controller
             'consignee_address'         => $trade_permit->consignee_address,
         ]);
         $trade_permit->logTrade()->save($log);
+
+        //set trade permit detail 0
+        foreach ($trade_permit->tradeSpecies as $species){
+            $cek = $species->pivot->update([
+                'total_exported'    => 0
+                ]);
+        }
 
         $alasan = $request->get('alasan');
         $trade_permit->company->user->notify(new SubmissionVerificationReject($alasan));
@@ -247,11 +256,13 @@ class SubmissionVerificationController extends Controller
                 'total_exported' => $request->get('exported_now')[$key],
                 'log_trade_permit_id' => 1,//$log->id, 
                 'description' => $kuota->description,
-                'valid_renewal' => $trade_permit->valid_renewal
+                'valid_renewal' => $trade_permit->valid_renewal,
+                'company_id'    => $trade_permit->company_id,
+                'year'      => date('Y')
                 ]);
 
             //update realisasi di kuota perusahaan
-            $realization = $detail->pivot->where([['species_id', $detail->id], ['trade_permit_id', $trade_permit->id]])->sum('total_exported');
+            $realization = $detail->pivot->where([['company_id', $trade_permit->company_id], ['year', date('Y')], ['species_id', $detail->id]])->sum('total_exported');
 
             $kuota = $detail->companyQuota()->first();
             $kuota->pivot->where('id', $id)->update([

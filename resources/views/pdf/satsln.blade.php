@@ -222,7 +222,7 @@
                         <td align="center">{{ $loop->iteration }}</td>
                         <td>{{ $value->species_scientific_name }}</td>
                         <td align="center">{{ $value->speciesQuota[0]->quota_amount }}</td>
-                        <td align="center">{{ $value->speciesSex->species_description }}</td>
+                        <td align="center">{{ $value->species_description }}</td>
                         <td align="center">{{ $value->appendixSource->appendix_source_code }}</td>
                         <td align="center">{{ $value->pivot->total_exported . '/* (' . $value->year . ')' }}</td>
                     </tr>
