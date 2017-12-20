@@ -144,7 +144,6 @@ class SubmissionVerificationController extends Controller
             $cek = $species->pivot->update([
                 'total_exported'    => 0
                 ]);
-            echo $cek.' ';
         }
 
         $alasan = $request->get('alasan');
