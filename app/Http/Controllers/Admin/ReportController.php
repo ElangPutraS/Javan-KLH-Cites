@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Percentage;
+use Illuminate\Support\Facades\Log;
 use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -70,7 +71,7 @@ class ReportController extends Controller
 
     public function printReportDetailSatsln($id, $percentage = 0)
     {
-        $tradePermit = TradePermit::with(['tradeSpecies'])->where('id', '=', $id)->first();
+        $tradePermit = LogTradePermit::with(['tradePermit'])->where('id', $id)->first();
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.report-detail-satsln', compact('tradePermit', 'percentage'));
