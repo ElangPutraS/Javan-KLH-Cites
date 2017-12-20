@@ -257,7 +257,7 @@
                             <label class="form-control-label">Masa Berlaku yang Diberikan</label>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <input type="text" name="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
+                                    <input type="text" min="1" max="6" name="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
                                 </div>
                                 <div class="col-sm-2">
                                     Bulan
