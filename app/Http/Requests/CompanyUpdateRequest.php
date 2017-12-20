@@ -24,7 +24,7 @@ class CompanyUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        if (Request::input() == '2'){
+        if (Request::input('role_name') == '2'){
             return [
                 'name'                  => 'required|string|max:255',
                 'place_birth'           => 'required|string|max:100',
