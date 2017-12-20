@@ -76,13 +76,13 @@
     <div class="form-group">
         <label class="control-label">Kata Sandi Baru</label>
         <div class="col-sm-14">
-            <input type="password" name="new_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+            <input type="password" id="new_password" name="new_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
         </div>
     </div>
     <div class="form-group">
         <label class="control-label">Konfirmasi Kata Sandi Baru</label>
-        <div class="col-sm-14">
-            <input type="password" name="confirm_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+        <div class="col-sm-14" id="password_warning">
+            <input type="password" id="confirm_password" name="confirm_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
         </div>
     </div>
 </div>

@@ -186,5 +186,22 @@ foreach ($document_type as $key=>$dt){
             }
         }
 
+        $(document).ready(function(){
+            $('#confirm_password').focusout(function(){
+                var pass = $('#new_password').val();
+                var pass2 = $('#confirm_password').val();
+                if(pass != pass2){
+                   // alert('password')
+                    //$('#confirm_password').removeClass('form-control');
+                    $('#password_warning').addClass('has-warning');
+                    $('#confirm_password').addClass('form-control-warning');
+                }else{
+                    $('#password_warning').removeClass('has-warning');
+                    $('#confirm_password').removeClass('form-control-warning');
+                }
+            });
+        });
+
+
     </script>
 @endpush
