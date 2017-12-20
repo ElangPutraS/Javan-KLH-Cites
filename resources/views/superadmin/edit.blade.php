@@ -16,8 +16,7 @@
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('superadmin.updateUser', ['id' => $company->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        {{ method_field('PUT') }}
+                    <form action="{{ route('superadmin.updateUser', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
 
                         {!! csrf_field() !!}
 
@@ -164,5 +163,45 @@ foreach ($document_type as $key=>$dt){
                 }
             });
         }
+        function roleChange() {
+            var x = document.getElementById("role_name").value;
+            if (x == 1 || x == 3){
+                document.getElementById('showData').style.display='none';
+                $("#company_longitude").removeAttr('required');
+                $("#document_type").removeAttr('required');
+                $("#company_file").removeAttr('required');
+            }else{
+                document.getElementById('showData').style.display='block';
+                initialize();
+                google.maps.event.addDomListener(window, 'load', initialize);
+            }
+        }
+        function showChangePass() {
+            //document.getElementById('showChangePass').style.display='block';
+            var x = document.getElementById("showChangePass");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+
+        $(document).ready(function(){
+            $('#confirm_password').focusout(function(){
+                var pass = $('#new_password').val();
+                var pass2 = $('#confirm_password').val();
+                if(pass != pass2){
+                   // alert('password')
+                    //$('#confirm_password').removeClass('form-control');
+                    $('#password_warning').addClass('has-warning');
+                    $('#confirm_password').addClass('form-control-warning');
+                }else{
+                    $('#password_warning').removeClass('has-warning');
+                    $('#confirm_password').removeClass('form-control-warning');
+                }
+            });
+        });
+
+
     </script>
 @endpush
