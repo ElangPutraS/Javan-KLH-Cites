@@ -218,7 +218,7 @@
                                     </td>
                                     <td>
                                         <a class="btn btn-success"
-                                           href="{{ route('admin.report.printReportDetailSatsln', ['id' => $trade_permit->id]) }}"
+                                           href="{{ route('admin.report.printReportDetailSatsln', ['id' => $pnbp->pnbp->tradePermit->id]) }}"
                                            target="_blank"><i class="fa fa-print"></i> Cetak</a>
                                     </td>
                                 </tr>

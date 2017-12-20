@@ -22,4 +22,8 @@ class HistoryPayment extends Model
     {
     	return $this->belongsTo(Pnbp::class);
     }
+
+    public function tradeSpecies(){
+        return $this->hasOne(LogTradePermit::class, 'log_trade_permit_id', 'id');
+    }
 }
