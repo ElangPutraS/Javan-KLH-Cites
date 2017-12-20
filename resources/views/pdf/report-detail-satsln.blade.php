@@ -135,7 +135,8 @@
             </thead>
 
             <tbody>
-            @foreach ($tradePermit->tradeSpecies as $value)
+            @foreach ($tradePermit->tradePermit->tradeSpecies as $value)
+                @if($tradePermit->valid_renewal == $value->pivot->valid_renewal)
                 <tr>
                     <td align="center">{{ $loop->iteration }}</td>
                     <td>{{ $value->species_scientific_name }}</td>
@@ -148,6 +149,7 @@
                 $subtotal[] = $value->nominal * $value->pivot->total_exported;
                 $total_exported[] = $value->pivot->total_exported;
                 @endphp
+                @endif
             @endforeach
             <tr>
                 <td colspan="2" align="center">JUMLAH</td>
