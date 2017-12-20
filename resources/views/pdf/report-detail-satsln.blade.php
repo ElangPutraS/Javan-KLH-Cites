@@ -148,9 +148,20 @@
                 $total[] = $value->nominal;
                 $subtotal[] = $value->nominal * $value->pivot->total_exported;
                 $total_exported[] = $value->pivot->total_exported;
+                $no = $loop->iteration + 1;
                 @endphp
                 @endif
             @endforeach
+            <tr>
+                <td align="center"> {{ $no }} </td>
+                <td> EA/EB </td>
+                <td align="center"></td>
+                <td align="right">{{ number_format(100000) }}</td>
+                <td align="right">{{ number_format(100000) }}</td>
+            </tr>
+            @php
+                $subtotal[] = 100000;
+            @endphp
             <tr>
                 <td colspan="2" align="center">JUMLAH</td>
                 <td align="center">{{ array_sum($total_exported) }}</td>
