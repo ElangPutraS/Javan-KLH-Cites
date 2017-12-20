@@ -177,24 +177,10 @@
                                 <tr>
                                     <td>{{ (($payments->currentPage() - 1 ) * $payments->perPage() ) + $loop->iteration }}</td>
                                     <td>{{ Carbon\Carbon::parse($pnbp->created_at)->format('d-m-Y') }}</td>
-                                    <td>{{ $pnbp->pnbp->tradePermit->trade_permit_code }}</td>
-                                    <td>{{ $pnbp->pnbp->pnbp_code }}</td>
+                                    <td>{{ $pnbp->logTrade->trade_permit_code }}</td>
+                                    <td>{{ $pnbp->pnbp_code }}</td>
                                     <td>{{ $pnbp->pnbp->tradePermit->company->company_name }}</td>
-                                    <td>
-                                        <?php
-                                        foreach ($trade_permits as $trade_permit) {
-                                            if ($pnbp->total_payment > 100000) {
-                                                if ($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '1') {
-                                                    echo Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y');
-                                                }
-                                            } else {
-                                                if ($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '2') {
-                                                    echo Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y');
-                                                }
-                                            }
-                                        }
-                                        ?>
-                                    </td>
+                                    <td> {{ Carbon\Carbon::parse($pnbp->logTrade->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($pnbp->logTrade->valid_until)->format('d-m-Y')  }} </td>
                                     <td>
                                         <?php
                                         if ($pnbp->total_payment > 100000) {
