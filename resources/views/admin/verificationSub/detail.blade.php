@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label class="control-label">Alamat Penerima</label>
-                                    <input type="text" name="consignee" class="form-control" value="Jln. Molobulu Utara, Maluku{{ old('consignee', array_get($trade_permit, 'consignee_address')) }}" readonly>
+                                    <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee_address')) }}" readonly>
                                 </div>
 
                             </div>
@@ -199,6 +199,7 @@
                                             <th>Jumlah Ekspor</th>
                                             <th>Kuota Perusahaan Tahun Ini</th>
                                             <th>Satuan</th>
+                                            <th>Deskripsi</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -216,6 +217,7 @@
                                                     @endforeach
                                                 </td>
                                                 <td>{{$species->unit->unit_description}}</td>
+                                                <td>{{$species->pivot->description}}</td>
                                             </tr>
                                         @endforeach
                                         </tbody>

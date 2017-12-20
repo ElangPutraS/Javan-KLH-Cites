@@ -134,7 +134,9 @@ class SubmissionController extends Controller
             $trade_permit->tradeSpecies()->attach($species, [
                 'total_exported'        => $quantity,
                 'log_trade_permit_id'   => $log->id,
-                'description'           => $request->get('description')[$key]
+                'description'           => $request->get('description')[$key],
+                'company_id'            => $trade_permit->company_id,
+                'year'                  => date('Y')
             ]);
         }
 

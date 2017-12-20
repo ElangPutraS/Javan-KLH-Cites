@@ -59,8 +59,9 @@
                             </tbody>
                         </table>
                     </div>
-
+                    <nav>
                     {!! $ports->links() !!}
+                    </nav>
 
                 </div>
             </div>
