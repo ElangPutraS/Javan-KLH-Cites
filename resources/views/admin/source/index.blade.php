@@ -45,7 +45,7 @@
                         </table>
                     </div>
 
-                    {!! $sources->links() !!}
+                    {!! $sources->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

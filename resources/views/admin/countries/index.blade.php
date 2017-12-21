@@ -60,7 +60,7 @@
                         </table>
                     </div>
 
-                    {!! $countries->links() !!}
+                    {!! $countries->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

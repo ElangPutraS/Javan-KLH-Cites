@@ -45,7 +45,7 @@
                         </table>
                     </div>
 
-                    {!! $units->links() !!}
+                    {!! $units->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

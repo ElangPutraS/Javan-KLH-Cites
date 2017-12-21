@@ -57,7 +57,7 @@
                         </table>
                     </div>
 
-                    {!! $type_identify->links() !!}
+                    {!! $type_identify->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

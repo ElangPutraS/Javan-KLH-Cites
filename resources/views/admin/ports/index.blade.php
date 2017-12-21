@@ -60,7 +60,7 @@
                         </table>
                     </div>
 
-                    {!! $ports->links() !!}
+                   {!! $ports->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

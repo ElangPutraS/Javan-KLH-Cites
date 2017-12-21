@@ -60,7 +60,7 @@
                         </table>
                     </div>
 
-                    {!! $news->links() !!}
+                    {!! $news->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
