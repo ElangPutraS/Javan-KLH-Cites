@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Kelola Pelaku Usaha</h1>
+                <h1>Kelola User</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah Data Pelaku Usaha dan Perusahaan</h2>
+                    <h2 class="card-title">Ubah Data User</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
@@ -24,7 +24,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button id="saveUser" name="saveUser" type="submit" class="btn btn-primary">Simpan</button>
                                 <a href="{{ route('superadmin.index') }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
@@ -181,8 +181,10 @@ foreach ($document_type as $key=>$dt){
             var x = document.getElementById("showChangePass");
             if (x.style.display === "none") {
                 x.style.display = "block";
+                $('#saveUser').prop( "disabled", true )
             } else {
                 x.style.display = "none";
+                $('#saveUser').prop( "disabled", false )
             }
         }
 
@@ -195,9 +197,12 @@ foreach ($document_type as $key=>$dt){
                     //$('#confirm_password').removeClass('form-control');
                     $('#password_warning').addClass('has-warning');
                     $('#confirm_password').addClass('form-control-warning');
+                    $('#saveUser').prop( "disabled", true )
                 }else{
                     $('#password_warning').removeClass('has-warning');
                     $('#confirm_password').removeClass('form-control-warning');
+                    $('#saveUser').prop( "disabled", false )
+
                 }
             });
         });
