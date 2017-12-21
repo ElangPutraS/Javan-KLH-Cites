@@ -82,7 +82,7 @@
     <div class="form-group">
         <label class="control-label">Konfirmasi Kata Sandi Baru</label>
         <div class="col-sm-14" id="password_warning">
-            <input type="password" id="confirm_password" name="confirm_password" class="form-control" value="{{ old('password', array_get($company, 'password')) }}">
+            <input type="password" id="confirm_password" name="confirm_password" class="form-control" title="Kata sandi yang dimasukan harus sama dengan kata sandi baru" value="{{ old('password', array_get($company, 'password')) }}">
         </div>
     </div>
 </div>
@@ -135,6 +135,17 @@
                 <input type="text" name="address" class="form-control" value="{{ old('address', array_get($company->userProfile, 'address')) }}">
             @else
                 <input type="text" name="address" class="form-control" value="{{ old('address', array_get($company, 'address')) }}">
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Nomor NPWP Pemilik Perusahaan</label>
+        <div class="col-sm-14">
+            @if(count($company)!=0)
+                <input id="npwp_number_user" type="text" class="form-control" name="npwp_number_user" value="{{ old('npwp_number_user', array_get($company->userProfile, 'npwp_number')) }}">
+            @else
+                <input id="npwp_number_user" type="text" class="form-control" name="npwp_number_user" value="{{ old('address', array_get($company, 'npwp_number')) }}">
             @endif
         </div>
     </div>
