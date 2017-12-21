@@ -243,7 +243,7 @@
                                                         <br>(yang telah terealisasi : {{ $total_exported }})
                                                     </td>
                                                     <td><input type="hidden" name="detail_id[]" value="{{$species->pivot->id}}" max="10"> <input type="text" name="exported_before[]" class="form-control" value="{{$species->pivot->total_exported}}" max="10"></td>
-                                                    <td><input type="number" name="exported_now[]" class="form-control" value="" placeholder="0" min="0" max="10"></td>
+                                                    <td><input type="number" name="exported_now[]" class="form-control" value="0" min="0" max="10"></td>
                                                 </tr>
                                             @endif
                                         @endforeach
@@ -257,7 +257,7 @@
                             <label class="form-control-label">Masa Berlaku yang Diberikan</label>
                             <div class="row">
                                 <div class="col-sm-9">
-                                    <input type="text" min="1" max="6" name="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
+                                    <input type="text" min="1" max="6" name="period" id="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
                                 </div>
                                 <div class="col-sm-2">
                                     Bulan
@@ -295,16 +295,24 @@
     <script>
 
         function acceptTradePermit(a) {
-            var id=a.getAttribute('data-id');
-            swal({
-                title: 'Apakah Anda Yakin?',
-                text: 'Akan memverifikasi permohonan pembaharuan SATSL-LN?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-            }).then(function() {
-                $('#form-verification').submit();
-            });
+            var period=$('#period').val();
+            if(period > '0' && period <= 6){
+                swal({
+                    title: 'Apakah Anda Yakin?',
+                    text: 'Akan memverifikasi permohonan pembaharuan SATSL-LN?',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                }).then(function() {
+                    $('#form-verification').submit();
+                });
+            }else{
+                swal(
+                    'Oops...',
+                    'Masa berlaku pembaharuan permohonan belum Anda isi atau format salah, silahkan isi terlebih dahulu max 6 bulan!',
+                    'error'
+                )
+            }
         }
 
         function rejectTradePermit(a) {
