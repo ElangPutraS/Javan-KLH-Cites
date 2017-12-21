@@ -167,6 +167,9 @@
                                 <th width="150px">Masa Berlaku</th>
                                 <th>IHH</th>
                                 <th>EA-EB</th>
+                                <th>Subtotal</th>
+                                <th>Formula</th>
+                                <th>Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -174,24 +177,10 @@
                                 <tr>
                                     <td>{{ (($payments->currentPage() - 1 ) * $payments->perPage() ) + $loop->iteration }}</td>
                                     <td>{{ Carbon\Carbon::parse($pnbp->created_at)->format('d-m-Y') }}</td>
-                                    <td>{{ $pnbp->pnbp->tradePermit->trade_permit_code }}</td>
-                                    <td>{{ $pnbp->pnbp->pnbp_code }}</td>
+                                    <td>{{ $pnbp->logTrade->trade_permit_code }}</td>
+                                    <td>{{ $pnbp->pnbp_code }}</td>
                                     <td>{{ $pnbp->pnbp->tradePermit->company->company_name }}</td>
-                                    <td>
-                                        <?php
-                                        foreach ($trade_permits as $trade_permit) {
-                                            if ($pnbp->total_payment > 100000) {
-                                                if ($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '1') {
-                                                    echo Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y');
-                                                }
-                                            } else {
-                                                if ($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '2') {
-                                                    echo Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y');
-                                                }
-                                            }
-                                        }
-                                        ?>
-                                    </td>
+                                    <td> {{ Carbon\Carbon::parse($pnbp->logTrade->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($pnbp->logTrade->valid_until)->format('d-m-Y')  }} </td>
                                     <td>
                                         <?php
                                         if ($pnbp->total_payment > 100000) {
@@ -203,19 +192,36 @@
                                     </td>
                                     <td> Rp. {{ number_format(100000,2,',','.') }} </td>
                                     <td> Rp. {{ number_format($pnbp->total_payment,2,',','.') }} </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="9">
-                                        <a class="btn btn-success" href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}" target="_blank"><i class="fa fa-print"></i> Cetak</a>
+                                    <td>
+                                        <select class="form-control input-sm" name="percentage">
+                                            @forelse($percentages as $percentage)
+                                                <option value="{{ $percentage->value }}">{{ $percentage->value }}%
+                                                </option>
+                                            @empty
+                                                <option value="0" selected>0%</option>
+                                            @endforelse
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success"
+                                           href="{{ route('admin.report.printReportDetailSatsln', ['id' => $pnbp->log_trade_permit_id]) }}"
+                                           target="_blank"><i class="fa fa-print"></i> Cetak</a>
                                     </td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9">
+                                    <td colspan="11">
                                         <center>Data Kosong</center>
                                     </td>
                                 </tr>
                             @endforelse
+                            <tr>
+                                <td colspan="11">
+                                    <a class="btn btn-success"
+                                       href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
+                                       target="_blank"><i class="fa fa-print"></i> Cetak List</a>
+                                </td>
+                            </tr>
                             </tbody>
                         </table>
                     </div>
@@ -248,4 +254,5 @@
             });
         });
     </script>
+
 @endpush

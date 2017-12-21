@@ -15,7 +15,7 @@ class CreateTradePermitTable extends Migration
     {
         Schema::create('trade_permit', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('trade_permit_code','20');
+            $table->string('trade_permit_code','30')->nullable();
             $table->text('consignee');
             $table->string('appendix_type','10');
             $table->date('date_submission');

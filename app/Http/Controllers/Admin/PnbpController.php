@@ -28,12 +28,12 @@ class PnbpController extends Controller
     public function show($id)
     {
         $trade_permit   =   TradePermit::findOrFail($id);
-        $pnbp_last      =   Pnbp::orderBy('id','desc')->first();
+        $pnbp_last      =   Pnbp::orderBy('pnbp_code','desc')->first();
         $id='';
         if($pnbp_last === null){
             $id = 1;
         }else{
-            $id = $pnbp_last->id + 1;
+            $id = substr($pnbp_last->pnbp_code,0,5) + 1;
         }
         $pnbp_code      =   $this->getCode($id);
 
@@ -56,7 +56,7 @@ class PnbpController extends Controller
 
         //nambahin log
         $log=LogTradePermit::create([
-            'log_description' => 'Buat PNBP Permohonan',
+            'log_description'           => 'Buat PNBP Permohonan',
             'trade_permit_code'         => $trade_permit->trade_permit_code,
             'valid_start'               => $trade_permit->valid_start,
             'valid_until'               => $trade_permit->valid_until,
@@ -70,9 +70,12 @@ class PnbpController extends Controller
             'purpose_type_id'           => $trade_permit->purpose_type_id,
             'company_id'                => $trade_permit->company_id,
             'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
-            'valid_renewal'             => $trade_permit->valid_renewal,
-            'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
+            'category_id'               => $trade_permit->category_id,
+            'source_id'                 => $trade_permit->source_id,
+            'country_destination'       => $trade_permit->country_destination,
+            'country_exportation'       => $trade_permit->country_exportation,
+            'consignee_address'         => $trade_permit->consignee_address,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -110,9 +113,12 @@ class PnbpController extends Controller
             'purpose_type_id'           => $trade_permit->purpose_type_id,
             'company_id'                => $trade_permit->company_id,
             'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
-            'valid_renewal'             => $trade_permit->valid_renewal,
-            'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
+            'category_id'               => $trade_permit->category_id,
+            'source_id'                 => $trade_permit->source_id,
+            'country_destination'       => $trade_permit->country_destination,
+            'country_exportation'       => $trade_permit->country_exportation,
+            'consignee_address'         => $trade_permit->consignee_address,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -132,10 +138,12 @@ class PnbpController extends Controller
 
         //History Payment
         $history = new HistoryPayment([
+            'pnbp_code' => $pnbp->pnbp_code,
             'notes' => $notes,
             'total_payment' => $request->get('pnbp_amount'),
             'payment_method' => $request->get('payment_method'),
             'transaction_number' => $request->get('transaction_number'),
+            'log_trade_permit_id' => $log->id,
             ]);
         $history->save();
 
@@ -148,7 +156,12 @@ class PnbpController extends Controller
     }
 
     public function getCode($id){
-        $kode = $id;
+        $kode = '';
+        for($a = 5; $a>strlen($id); $a--){
+            $kode.='0';
+        }
+
+        $kode .= $id;
 
         $bulan = date('m');
         $month = "";

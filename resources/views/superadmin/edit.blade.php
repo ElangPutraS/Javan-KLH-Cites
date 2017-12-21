@@ -4,20 +4,19 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Kelola Pelaku Usaha</h1>
+                <h1>Kelola User</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah Data Pelaku Usaha dan Perusahaan</h2>
+                    <h2 class="card-title">Ubah Data User</h2>
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
 
                     @include('includes.notifications')
 
-                    <form action="{{ route('superadmin.updateUser', ['id' => $company->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
-                        {{ method_field('PUT') }}
+                    <form action="{{ route('superadmin.updateUser', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal">
 
                         {!! csrf_field() !!}
 
@@ -25,7 +24,7 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                <button id="saveUser" name="saveUser" type="submit" class="btn btn-primary">Simpan</button>
                                 <a href="{{ route('superadmin.index') }}" class="btn btn-default">Kembali ke Daftar</a>
                             </div>
                         </div>
@@ -164,5 +163,50 @@ foreach ($document_type as $key=>$dt){
                 }
             });
         }
+        function roleChange() {
+            var x = document.getElementById("role_name").value;
+            if (x == 1 || x == 3){
+                document.getElementById('showData').style.display='none';
+                $("#company_longitude").removeAttr('required');
+                $("#document_type").removeAttr('required');
+                $("#company_file").removeAttr('required');
+            }else{
+                document.getElementById('showData').style.display='block';
+                initialize();
+                google.maps.event.addDomListener(window, 'load', initialize);
+            }
+        }
+        function showChangePass() {
+            //document.getElementById('showChangePass').style.display='block';
+            var x = document.getElementById("showChangePass");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+                $('#saveUser').prop( "disabled", true )
+            } else {
+                x.style.display = "none";
+                $('#saveUser').prop( "disabled", false )
+            }
+        }
+
+        $(document).ready(function(){
+            $('#confirm_password').focusout(function(){
+                var pass = $('#new_password').val();
+                var pass2 = $('#confirm_password').val();
+                if(pass != pass2){
+                   // alert('password')
+                    //$('#confirm_password').removeClass('form-control');
+                    $('#password_warning').addClass('has-warning');
+                    $('#confirm_password').addClass('form-control-warning');
+                    $('#saveUser').prop( "disabled", true )
+                }else{
+                    $('#password_warning').removeClass('has-warning');
+                    $('#confirm_password').removeClass('form-control-warning');
+                    $('#saveUser').prop( "disabled", false )
+
+                }
+            });
+        });
+
+
     </script>
 @endpush

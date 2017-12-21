@@ -21,6 +21,7 @@ class UserProfile extends Model
         'city_id',
         'user_type_identify_id',
         'update_by',
+        'npwp_number',
     ];
 
     public function user()

@@ -44,7 +44,7 @@ class Species extends Model
     public function tradeSpecies()
     {
         return $this->belongsToMany(TradePermit::class, 'trade_permit_detail')
-            ->withPivot('total_exported')
+            ->withPivot('total_exported', 'log_trade_permit_id', 'description', 'valid_renewal', 'id', 'company_id', 'year')
             ->withTrashed();
     }
 
@@ -59,6 +59,13 @@ class Species extends Model
 
     public function source(){
         return $this->belongsTo(Source::class);
+    }
+
+    public function companyQuota()
+    {
+        return $this->belongsToMany(Company::class, 'company_quota')
+            ->withPivot('id', 'quota_amount', 'realization', 'year')
+            ->using(CompanyQuota::class);
     }
 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Country;
 use App\DocumentType;
 use App\Http\Requests\SubmissionDirectRequest;
 use App\LogTradePermit;
@@ -12,14 +13,16 @@ use App\Species;
 use App\TradePermit;
 use App\TradePermitStatus;
 use App\TradingType;
+use App\Category;
+use App\Source;
 use Illuminate\Http\Request;
 use PDF;
 
 class SubmissionController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $trade_permits = TradePermit::orderBy('trade_permit_code', 'asc')->paginate(10);
+        $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
@@ -28,12 +31,6 @@ class SubmissionController extends Controller
     public function detail(Request $request, $id)
     {
         $user           = $request->user();
-
-
-        $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
-        $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
-        $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
-        $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         $trade_permit=TradePermit::findOrFail($id);
 
@@ -47,34 +44,37 @@ class SubmissionController extends Controller
         $trading_types  = TradingType::orderBy('trading_type_name', 'asc')->pluck('trading_type_name', 'id');
         $purpose_types  = PurposeType::pluck('purpose_type_name', 'id');
         $ports          = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
+        $categories     = Category::orderBy('species_category_code', 'asc')->get();
+        $sources        = Source::orderBy('source_code', 'asc')->get();
+        $countries      = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $document_types = DocumentType::where('is_permit', 1)->orderBy('document_type_name', 'asc')->pluck('document_type_name', 'id');
 
         $jumlah_tradePermit = TradePermit::where([['company_id', $request->user()->company->id], ['date_submission', date('Y-m-d')]])->count();
 
-        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'document_types', 'jumlah_tradePermit'));
+        return view('pelakuusaha.submission.create', compact('user', 'trading_types', 'purpose_types', 'ports', 'categories', 'sources', 'document_types', 'jumlah_tradePermit', 'countries'));
     }
 
     public function store(SubmissionDirectRequest $request)
     {
         //isi trade permit
         $trade_permit = new TradePermit([
-            'trade_permit_code'  => 'cek',
-            'consignee'         => $request->get('consignee'),
-            'appendix_type'     => $request->get('appendix_type'),
-            'date_submission'   => date('Y-m-d'),
-            'period'            => 6,
-            'port_exportation'  => $request->get('port_exportation'),
-            'port_destination'  => $request->get('port_destination'),
-            'trading_type_id'  => $request->get('trading_type_id'),
-            'purpose_type_id'  => $request->get('purpose_type_id'),
-            'created_by'        => $request->user()->id,
+            'consignee'             => $request->get('consignee'),
+            'appendix_type'         => $request->get('appendix_type'),
+            'date_submission'       => date('Y-m-d'),
+            'period'                => 0,
+            'port_exportation'      => $request->get('port_exportation'),
+            'port_destination'      => $request->get('port_destination'),
+            'category_id'           => $request->get('category_id'),
+            'source_id'             => $request->get('source_id'),
+            'consignee_address'     => $request->get('consignee_address'),
+            'trading_type_id'       => $request->get('trading_type_id'),
+            'purpose_type_id'       => $request->get('purpose_type_id'),
+            'country_destination'   => $request->get('country_destination'),
+            'country_exportation'   => $request->get('country_exportation'),
+            'created_by'            => $request->user()->id,
+            'stamp' => ''
         ]);
         $trade_permit->save();
-
-        //susun kode trade permit
-        $trade_permit->update([
-            'trade_permit_code' => $this->create_kode($trade_permit->id),
-        ]);
 
         //relasi
         $company = $request->user()->company;
@@ -91,9 +91,16 @@ class SubmissionController extends Controller
             'consignee'                 => $request->get('consignee'),
             'appendix_type'             => $request->get('appendix_type'),
             'date_submission'           => date('Y-m-d'),
-            'period'                    => 6,
+            'period'                    => 0,
             'port_exportation'          => $request->get('port_exportation'),
             'port_destination'          => $request->get('port_destination'),
+            'consignee_address'         => $request->get('consignee_address'),
+            'trading_type_id'           => $request->get('trading_type_id'),
+            'purpose_type_id'           => $request->get('purpose_type_id'),
+            'category_id'               => $request->get('category_id'),
+            'source_id'                 => $request->get('source_id'),
+            'country_destination'       => $request->get('country_destination'),
+            'country_exportation'       => $request->get('country_exportation'),
             'trading_type_id'           => $request->get('trading_type_id'),
             'purpose_type_id'           => $request->get('purpose_type_id'),
             'company_id'                => $trade_permit->company_id,
@@ -125,7 +132,11 @@ class SubmissionController extends Controller
             $species = Species::findOrFail($request->get('species_id')[$key]);
 
             $trade_permit->tradeSpecies()->attach($species, [
-                'total_exported' => $quantity
+                'total_exported'        => $quantity,
+                'log_trade_permit_id'   => $log->id,
+                'description'           => $request->get('description')[$key],
+                'company_id'            => $trade_permit->company_id,
+                'year'                  => date('Y')
             ]);
         }
 
@@ -134,7 +145,12 @@ class SubmissionController extends Controller
 
     public function create_kode($id)
     {
-        $kode = $id;
+        $kode = '';
+        for($a = 5; $a>strlen($id); $a--){
+            $kode.='0';
+        }
+
+        $kode .= $id;
 
         $bulan = date('m');
         $month = "";

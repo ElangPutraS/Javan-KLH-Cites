@@ -39,8 +39,10 @@ Route::get('/getProvince/{country}', 'LocationController@getProvince');
 Route::get('/getCity/{province}', 'LocationController@getCity');
 Route::get('/companyDocument/{id}', 'UserController@downloadCompanyDocument');
 Route::get('/deleteDoc/{type_id}/{company_id}/{document_name}', 'UserController@deleteDocument');
-Route::get('/getSpecies/{syarat}', 'LocationController@getSpecies');
-Route::get('/getDocumentType', 'LocationController@getDocumentReEkspor');
+Route::get('/getSpecies/{appendix_type}/{category_id}/{source_id}', 'LocationController@getSpecies');
+Route::get('/getSpeciesComodity/{comodity}', 'LocationController@getSpeciesComodity');
+Route::get('/getDocumentType/{id}', 'LocationController@getDocument');
+Route::get('/getKuotaNasional/{species_id}/{year}', 'LocationController@getKuotaNasional');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {
@@ -61,6 +63,8 @@ Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->nam
 
 Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index')->middleware(['auth', 'can:access-pelaku-usaha']);
 Route::get('invoice/{id}/detail', 'InvoiceController@show')->name('user.invoice.detail')->middleware(['auth', 'can:access-pelaku-usaha']);
+
+Route::get('companyQuota/', 'CompanyQuotaController@index')->name('user.companyQuota.index')->middleware(['auth', 'can:access-pelaku-usaha']);
 
 
 Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-super-n-admin'])->group(function () {
@@ -96,13 +100,13 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
 
     Route::get('verificationSub', 'SubmissionVerificationController@index')->name('admin.verificationSub.index');
     Route::get('verificationSub/{id}/detail', 'SubmissionVerificationController@show')->name('admin.verificationSub.show');
-    Route::get('verificationSub/acc/{id}', 'SubmissionVerificationController@update');
+    Route::get('verificationSub/acc/{id}/{period}', 'SubmissionVerificationController@update');
     Route::post('verificationSub/rej/{id}', 'SubmissionVerificationController@updateRej');
 
 
     Route::get('verificationRen', 'SubmissionVerificationController@indexRen')->name('admin.verificationRen.index');
     Route::get('verificationRen/{id}/detail', 'SubmissionVerificationController@showRen')->name('admin.verificationRen.show');
-    Route::get('verificationRen/acc/{id}', 'SubmissionVerificationController@updateRen');
+    Route::post('verificationRen/acc/{id}', 'SubmissionVerificationController@updateRen')->name('admin.verificationRen.acc');
     Route::post('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejectRen');
 
     Route::post('verification/rej/{id}', 'SubmissionVerificationController@updateRejection');
@@ -144,4 +148,16 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('printReportDetailSatsln/{id}', 'ReportController@printReportDetailSatsln')->name('admin.report.printReportDetailSatsln');
     Route::get('portal-insw', 'ReportController@portalInsw')->name('admin.report.portalInsw');
     Route::get('send-insw/{tradePermitId}', 'ReportController@sendInsw')->name('admin.report.sendInsw');
+    Route::get('print-satsln/{id}', 'ReportController@printSatsln')->name('admin.report.printSatsln');
+    Route::get('store-stamp-satsln/{id}/{stamp}', 'ReportController@storeStampSatsln')->name('admin.report.storeStampSatsln');
+
+    Route::get('companyQuota', 'CompanyQuotaController@index')->name('admin.companyQuota.index');
+    Route::get('companyQuota/{id}/detail', 'CompanyQuotaController@detail')->name('admin.companyQuota.detail');
+    Route::get('companyQuota/{id}/show', 'CompanyQuotaController@show')->name('admin.companyQuota.create');
+    Route::post('companyQuota/{id}/store', 'CompanyQuotaController@store')->name('admin.companyQuota.store');
+    Route::get('companyQuota/{company_id}/edit/{id}', 'CompanyQuotaController@edit')->name('admin.companyQuota.edit');
+    Route::post('companyQuota/{company_id}/update/{id}', 'CompanyQuotaController@update')->name('admin.companyQuota.update');
+    Route::get('companyQuota/{company_id}/delete/{pivot_id}', 'CompanyQuotaController@destroy')->name('admin.companyQuota.delete');
+
+    Route::resource('percentage', 'PercentageController', ['as' => 'admin']);
 });

@@ -28,6 +28,13 @@ class TradePermit extends Model
         'valid_renewal',
         'permit_type',
         'reject_reason',
+        'consignee_address',
+        'category_id',
+        'source_id',
+        'country_destination',
+        'country_exportation',
+        'is_blanko',
+        'is_renewal',
     ];
 
     public function documentTypes()
@@ -53,7 +60,7 @@ class TradePermit extends Model
     public function tradeSpecies()
     {
         return $this->belongsToMany(Species::class, 'trade_permit_detail')
-            ->withPivot('total_exported')
+            ->withPivot('total_exported', 'log_trade_permit_id', 'description', 'valid_renewal', 'id', 'company_id', 'year')
             ->withTrashed();
     }
 
@@ -78,6 +85,23 @@ class TradePermit extends Model
 
     public function logTrade() {
         return $this->hasMany(LogTradePermit::class, 'trade_permit_id', 'id');
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class)
+            ->withTrashed();
+    }
+
+    public function source(){
+        return $this->belongsTo(Source::class);
+    }
+
+    public function countryDest(){
+        return $this->belongsTo(Country::class, 'country_destination', 'id');
+    }
+
+    public function countryExpor(){
+        return $this->belongsTo(Country::class, 'country_exportation', 'id');
     }
 
 }

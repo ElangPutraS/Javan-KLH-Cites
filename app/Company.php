@@ -24,6 +24,12 @@ class Company extends Model
         'company_longitude',
         'company_status',
         'reject_reason',
+        'owner_name',
+        'captivity_address',
+        'labor_total',
+        'investation_total',
+        'npwp_number',
+        'date_distribution',
         'user_profile_id',
         'country_id',
         'province_id',
@@ -71,5 +77,12 @@ class Company extends Model
 
     public function tradePermits(){
         return $this->hasMany(TradePermit::class);
+    }
+
+    public function companyQuota()
+    {
+        return $this->belongsToMany(Species::class, 'company_quota')
+            ->withPivot('id', 'quota_amount', 'realization', 'year')
+            ->using(CompanyQuota::class);
     }
 }

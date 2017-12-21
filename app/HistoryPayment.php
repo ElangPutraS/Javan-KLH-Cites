@@ -14,10 +14,16 @@ class HistoryPayment extends Model
         'payment_method',
         'transaction_number',
         'pnbp_id',
+        'pnbp_code',
+        'log_trade_permit_id',
     ];
 
     public function pnbp()
     {
     	return $this->belongsTo(Pnbp::class);
+    }
+
+    public function logTrade(){
+        return $this->belongsTo(LogTradePermit::class, 'log_trade_permit_id', 'id');
     }
 }

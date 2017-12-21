@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Percentage;
+use Illuminate\Support\Facades\Log;
 use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,8 +36,9 @@ class ReportController extends Controller
 
         $trade_permits = LogTradePermit::get();
         $tahun = HistoryPayment::select(DB::raw('YEAR(created_at) year'))->distinct()->get();
+        $percentages = Percentage::all();
 
-        return view('admin.report.pnbp', compact('payments', 'trade_permits', 'tahun'));
+        return view('admin.report.pnbp', compact('payments', 'trade_permits', 'tahun', 'percentages'));
     }
 
     public function printReportPnbp($m = 'all', $y = 'all')
@@ -66,12 +69,12 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
-    public function printReportDetailSatsln($id)
+    public function printReportDetailSatsln($id, $percentage = 0)
     {
-        $tradePermit = TradePermit::with(['tradeSpecies'])->where('id', '=', $id)->first();
+        $tradePermit = LogTradePermit::with(['tradePermit'])->where('id', $id)->first();
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
-        $pdf = PDF::loadView('pdf.report-detail-satsln', compact('tradePermit'));
+        $pdf = PDF::loadView('pdf.report-detail-satsln', compact('tradePermit', 'percentage'));
         $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
     }
@@ -275,5 +278,22 @@ class ReportController extends Controller
         ];
 
         return $result = ArrayToXml::convert($tradePermit->toArray(), 'persetujuan');
+    }
+
+    public function printSatsln(Request $request, $id) {
+        $user = $request->user();
+        $trade_permit = TradePermit::findOrFail($id);
+
+        $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream();
+        //return view('pdf.satsln');
+    }
+
+    public function storeStampSatsln($id, $stamp) {
+        $tradePermit = TradePermit::findOrFail($id);
+        $tradePermit->stamp = $stamp;
+
+        return $tradePermit->save();
     }
 }

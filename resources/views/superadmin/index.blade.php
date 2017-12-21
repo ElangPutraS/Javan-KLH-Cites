@@ -40,8 +40,8 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->roles->first()->role_name}}</td>
                                     @if($user->deleted_at === NULL )
-                                        <td>Aktif</td>
-                                        <td>
+                                            <td>Aktif</td>
+                                            <td>
                                             <a href="{{route('superadmin.editUser',['id'=>$user->id])}}" class="btn btn-sm btn-primary"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a>
                                             <a onclick="deleteUser(this)" data-id="{{$user->id}}" class="btn btn-sm btn-danger" style="color:white;"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></a>
                                         </td>

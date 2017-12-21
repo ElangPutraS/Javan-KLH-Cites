@@ -11,8 +11,10 @@ use App\Http\Requests\ProfileUpdateRequest;
 use App\Province;
 use App\TypeIdentify;
 use App\User;
+use Dotenv\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -41,7 +43,7 @@ class UserController extends Controller
     public function update(ProfileUpdateRequest $request, $id)
     {
         $user = User::findOrFail($id);
-        $company = $user->company();
+        $company = $user->company;
 
         $company->update([
             'company_name' => $request->get('company_name'),
@@ -54,6 +56,12 @@ class UserController extends Controller
             'province_id' => $request->get('company_province_id'),
             'country_id' => $request->get('company_country_id'),
             'updated_by' => $request->user()->id,
+            'owner_name' => $request->get('owner_name'),
+            'captivity_address' => $request->get('captivity_address'),
+            'labor_total' => $request->get('labor_total'),
+            'investation_total' => str_replace( '.', '',$request->get('investation_total')),
+            'npwp_number' => $request->get('npwp_number'),
+            'date_distribution' => $request->get('date_distribution'),
         ]);
 
         $user->update([
@@ -71,6 +79,7 @@ class UserController extends Controller
                 'province_id'   => $request->get('province_id'),
                 'country_id'   => $request->get('country_id'),
                 'updated_by' => $request->user()->id,
+                'npwp_number' => $request->get('npwp_number_user'),
             ]
         );
 
@@ -108,6 +117,14 @@ class UserController extends Controller
 
     public function updateAdmin(Request $request, $id)
     {
+        $request->validate([
+            'name' => 'required|string|max:191',
+            'email' => [
+                'required','string','email', 'max:255',
+                Rule::unique('users')->ignore($id),
+            ],
+        ]);
+
         $user = User::findOrFail($id);
         $company = $user->company();
 
