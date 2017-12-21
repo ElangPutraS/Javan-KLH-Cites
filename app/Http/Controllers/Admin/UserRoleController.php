@@ -67,6 +67,8 @@ class UserRoleController extends Controller
             'country_id'     => $request->get('country_id'),
             'province_id'    => $request->get('province_id'),
             'city_id'        => $request->get('city_id'),
+            'npwp_number'    => $request->get('npwp_number_user'),
+            'created_by'     => $request->user()->id,
         ]);
 
         $user->userProfile()->save($user_profile);
@@ -85,7 +87,7 @@ class UserRoleController extends Controller
             'city_id' => $request->get('company_city_id'),
             'province_id' => $request->get('company_province_id'),
             'country_id' => $request->get('company_country_id'),
-            'updated_by' => $request->user()->id,
+            'created_by' => $request->user()->id,
             'owner_name' => $request->get('owner_name'),
             'captivity_address' => $request->get('captivity_address'),
             'labor_total' => $request->get('labor_total'),
@@ -207,6 +209,7 @@ class UserRoleController extends Controller
                         'province_id'   => $request->get('province_id'),
                         'country_id'   => $request->get('country_id'),
                         'updated_by' => $request->user()->id,
+                        'npwp_number'    => $request->get('npwp_number_user'),
                     ]
                 );
 

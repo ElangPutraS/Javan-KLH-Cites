@@ -59,9 +59,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <nav>
-                    {!! $ports->links() !!}
-                    </nav>
+
+                   {!! $ports->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

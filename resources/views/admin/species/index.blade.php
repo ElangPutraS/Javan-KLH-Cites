@@ -79,7 +79,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $species->links() }}
+                {{ $species->links('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
 

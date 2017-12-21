@@ -91,12 +91,12 @@
                                 <div class="col-sm-4">
                                     <h6>Melakukan Perpanjangan ? </h6>
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" id="is_renewal1" name="is_renewal" value="1" class="custom-control-input" disabled>
+                                        <input type="radio" id="is_renewal1" name="is_renewal" value="1" class="custom-control-input" @if($trade_permit->is_renewal == '1') checked @endif }} disabled>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Ya</span>
                                     </label>
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" id="is_renewal2" name="is_renewal" value="0" class="custom-control-input" checked disabled>
+                                        <input type="radio" id="is_renewal2" name="is_renewal" value="0" class="custom-control-input" @if($trade_permit->is_renewal == '0') checked @endif disabled>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Tidak</span>
                                     </label>
@@ -104,12 +104,12 @@
                                 <div class="col-sm-4">
                                     <h6>Cetak Blanko Ulang? </h6>
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" id="is_blanko1" name="is_blanko" value="1" class="custom-control-input" checked disabled>
+                                        <input type="radio" id="is_blanko1" name="is_blanko" value="1" class="custom-control-input" @if($trade_permit->is_blanko == '1') checked @endif }} disabled>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Ya</span>
                                     </label>
                                     <label class="custom-control custom-radio">
-                                        <input type="radio" id="is_blanko2" name="is_blanko" value="0" class="custom-control-input" disabled>
+                                        <input type="radio" id="is_blanko2" name="is_blanko" value="0" class="custom-control-input" @if($trade_permit->is_blanko == '0') checked @endif }} disabled>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Tidak</span>
                                     </label>
@@ -142,7 +142,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label class="control-label">Sumber Spesies</label>
-                                    <input type="text" name="source_id" class="form-control" value="Spesimen diambil dari alam.{{ old('source_id', array_get($trade_permit->source, 'source_id')) }}" readonly>
+                                    <input type="text" name="source_id" class="form-control" value="{{ $trade_permit->source->source_code.' - '.$trade_permit->source->source_description }}" readonly>
                                 </div>
 
                             </div>
@@ -234,7 +234,7 @@
                                             ?>
                                             @if($species->pivot->valid_renewal == $trade_permit->valid_renewal - 1)
                                                 <tr>
-                                                    <td><?=$no++?></td>
+                                                    <td>{{ $no }}</td>
                                                     <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
                                                     <td>{{$species->unit->unit_description}}</td>
                                                     <td>{{$species->pivot->description}}</td>
@@ -242,9 +242,14 @@
                                                         {{ $kuota->pivot->where([['company_id', $trade_permit->company_id], ['species_id', $species->id], ['year', date_format( $trade_permit->updated_at, 'Y')]])->first()->quota_amount }}
                                                         <br>(yang telah terealisasi : {{ $total_exported }})
                                                     </td>
-                                                    <td><input type="hidden" name="detail_id[]" value="{{$species->pivot->id}}" max="10"> <input type="text" name="exported_before[]" class="form-control" value="{{$species->pivot->total_exported}}" max="10"></td>
-                                                    <td><input type="number" name="exported_now[]" class="form-control" value="" placeholder="0" min="0" max="10"></td>
+                                                    <td>
+                                                        <input type="hidden" name="detail_id[]" id="detail_id{{$no}}" value="{{$species->pivot->id}}" max="10">
+                                                        <input type="hidden" name="exported[]" id="exported{{$no}}" class="form-control" value="{{$species->pivot->total_exported}}" max="10">
+                                                        <input type="text" name="exported_before[]" id="exported_before{{$no}}" class="form-control" value="{{$species->pivot->total_exported}}" max="10">
+                                                    </td>
+                                                    <td><input type="number" name="exported_now[]" id="exported_now{{$no}}" class="form-control" value="0" min="0" max="10"></td>
                                                 </tr>
+                                                @php $no++ @endphp
                                             @endif
                                         @endforeach
                                         </tbody>
@@ -253,17 +258,32 @@
                             </div>
                         </div>
 
-                        <div class="form-group has-success">
-                            <label class="form-control-label">Masa Berlaku yang Diberikan</label>
-                            <div class="row">
-                                <div class="col-sm-9">
-                                    <input type="text" min="1" max="6" name="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
-                                </div>
-                                <div class="col-sm-2">
-                                    Bulan
+                        @if($trade_permit->is_renewal == 0)
+                            <div class="form-group">
+                                <label class="form-control-label">Masa Berlaku</label>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <input type="text" min="1" max="6" name="period" id="period" class="form-control" value="{{ old('period', array_get($trade_permit, 'period')) }}" readonly required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        Bulan
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @else
+                            <div class="form-group has-success">
+                                <label class="form-control-label">Masa Berlaku yang Diberikan</label>
+                                <div class="row">
+                                    <div class="col-sm-9">
+                                        <input type="text" min="1" max="6" name="period" id="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        Bulan
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
@@ -295,16 +315,32 @@
     <script>
 
         function acceptTradePermit(a) {
-            var id=a.getAttribute('data-id');
-            swal({
-                title: 'Apakah Anda Yakin?',
-                text: 'Akan memverifikasi permohonan pembaharuan SATSL-LN?',
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-            }).then(function() {
-                $('#form-verification').submit();
-            });
+            var period=$('#period').val();
+            if(period > '0' && period <= 6){
+                if(cekListSpecies()){
+                    swal({
+                        title: 'Apakah Anda Yakin?',
+                        text: 'Akan memverifikasi permohonan pembaharuan SATSL-LN?',
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes',
+                    }).then(function() {
+                        $('#form-verification').submit();
+                    });
+                }else{
+                    swal(
+                        'Oops...',
+                        'Jumlah realisasi sebelumnya dan ekspor baru, harus sama dengan jumlah realisasi yang diajukan sebelumnya! ',
+                        'error'
+                    )
+                }
+            }else{
+                swal(
+                    'Oops...',
+                    'Masa berlaku pembaharuan permohonan belum Anda isi atau format salah, silahkan isi terlebih dahulu max 6 bulan!',
+                    'error'
+                )
+            }
         }
 
         function rejectTradePermit(a) {
@@ -343,6 +379,22 @@
                     });
                 });
             });
+        }
+
+        function cekListSpecies() {
+            var jumlah = parseInt('{{$no - 1}}');
+            var status = false;
+            for(var a = 1; a<=jumlah; a++){
+                if( parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()) ==  parseInt($('#exported'+a).val())){
+                    //alert(parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()));
+                    status = true;
+                }else{
+                    status = false;
+                    break;
+                }
+
+            }
+            return status;
         }
     </script>
 @endpush

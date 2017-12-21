@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label class="control-label">Sumber Spesies</label>
-                                    <input type="text" name="source_id" class="form-control" value="Spesimen diambil dari alam.{{ old('source_id', array_get($trade_permit->source, 'source_id')) }}" readonly>
+                                    <input type="text" name="source_id" class="form-control" value="{{ $trade_permit->source->source_code.' - '.$trade_permit->source->source_description }}" readonly>
                                 </div>
 
                             </div>

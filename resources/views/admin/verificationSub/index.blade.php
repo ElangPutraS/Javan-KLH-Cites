@@ -57,7 +57,7 @@
                                 <td>
                                     <a href="{{route('admin.verificationSub.show', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a>
 
-                                    @if ($trade_permit->tradeStatus->status_code >= '200')
+                                    @if ($trade_permit->tradeStatus->status_code >= '200' && $trade_permit->tradeStatus->status_code != '300')
                                         <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}"
                                            class="btn btn-sm btn-info" target="_blank"><i
                                                     class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
@@ -73,7 +73,7 @@
                         </table>
                     </div>
 
-                    {!! $trade_permits->links() !!}
+                    {!! $trade_permits->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

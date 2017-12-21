@@ -22,7 +22,7 @@ class SubmissionVerificationController extends Controller
 {
     public function index()
     {
-        $trade_permits = TradePermit::where('permit_type','1')->orderBy('date_submission', 'desc')->paginate(10);
+        $trade_permits = TradePermit::where('permit_type','1')->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.verificationSub.index', compact('trade_permits'));
     }
@@ -154,7 +154,7 @@ class SubmissionVerificationController extends Controller
 
     public function indexRen()
     {
-        $trade_permits = TradePermit::where('permit_type','2')->orderBy('date_submission', 'desc')->paginate(10);
+        $trade_permits = TradePermit::where('permit_type','2')->orderBy('created_at', 'desc')->paginate(10);
 
         return view('admin.verificationRen.index', compact('trade_permits'));
     }

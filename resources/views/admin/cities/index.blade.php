@@ -64,7 +64,7 @@
                         </table>
                     </div>
 
-                    {!! $cities->links() !!}
+                    {!! $cities->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

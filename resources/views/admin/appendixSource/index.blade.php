@@ -45,7 +45,7 @@
                         </table>
                     </div>
 
-                    {!! $appendix_sources->links() !!}
+                    {!! $appendix_sources->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

@@ -25,7 +25,7 @@ class SubmissionRenewalController extends Controller
     {
         $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->whereHas('tradeStatus', function ($query) {
             $query->where([['status_code', '=', '300'],['permit_type', '=', '2']])->orWhere('status_code', '>=', '600');
-        })->orderBy('trade_permit_code', 'desc')->paginate(10);
+        })->orderBy('created_at', 'desc')->paginate(10);
         return view('pelakuusaha.renewals.index', compact('trade_permits'));
     }
 
