@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Percentage;
-use Illuminate\Support\Facades\Log;
 use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

@@ -233,7 +233,7 @@
     </script>
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
-        /*$('.print').click(function() {
+        $('.print').click(function() {
             printBtn = $(this);
 
             swal({
@@ -258,37 +258,16 @@
                         return false;
                     }
 
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type:'post',
-                        url: window.baseUrl+'/store-stamp-satsln/'+printBtn.data('id')+'/'+value,
-                        success: function(result) {
-                            alert(result);
-                        },
-                        error: function (xhr) {
-                            swal(xhr.statusText);
-                        }
-                    });
-
-                    /!*$.get(window.baseUrl+'/store-stamp-satsln/'+printBtn.data('id')+'/'+value, function(data, status) {
-                        swal(data);
-                    });*!/
-
                     swal({
                         type: 'success',
                         title: 'Cetak laporan sedang diproses'
                     }).then(function () {
-                        //window.location = $('.print').attr('href');
-                        satslnId = $('.print').data('id');
-
                         window.open($('.print').attr('href'), '_blank');
                     });
                 });
             });
 
             return false;
-        });*/
+        });
     </script>
 @endpush
