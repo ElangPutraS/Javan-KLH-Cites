@@ -48,6 +48,7 @@ class CompanyStoreRequest extends FormRequest
                 'company_status'        => 'required',
                 'company_latitude'      => 'required',
                 'company_longitude'     => 'required',
+                'date_distribution'     => 'required',
             ];
         }else{
             return [

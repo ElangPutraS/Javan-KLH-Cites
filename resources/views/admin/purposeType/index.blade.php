@@ -60,7 +60,7 @@
                         </table>
                     </div>
 
-                    {!! $purposetypes->links() !!}
+                    {!! $purposetypes->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
