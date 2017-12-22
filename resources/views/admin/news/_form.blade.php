@@ -1,5 +1,5 @@
 <div class="form-group">
-    <h3>Data Informasi</h3>
+    <h2 class="card-title">Data Informasi</h2>
 </div>
 
 <div class="form-group">
