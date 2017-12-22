@@ -13,10 +13,25 @@
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
+                    <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                        <div class="input-group col-sm-4">
+                            <span class="input-group-addon" id="basic-month">Kode Pelabuhan</span>
+                            <input class="form-control" type="text" placeholder="Cari kode pelabuhan.." name="port_code" id="port_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                        </div>
 
+                        <div class="input-group col-sm-4">
+                            <span class="input-group-addon" id="basic-year">Nama Pelabuhan</span>
+                            <input class="form-control" placeholder="Cari nama pelabuhan.." type="text" name="port_name" id="port_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                        </div>
+
+                        <div class="btn-group col-sm-4" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form>
                     @include('includes.notifications')
 
-                    <a href="{{ route('admin.ports.create') }}" class="btn btn-primary">Tambah Baru</a>
+                    <br><a href="{{ route('admin.ports.create') }}" class="btn btn-primary">Tambah Baru</a>
 
                     <hr>
 
@@ -60,7 +75,7 @@
                         </table>
                     </div>
 
-                   {!! $ports->links('vendor.pagination.bootstrap-4') !!}
+                   {!! $ports->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
@@ -70,6 +85,17 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var code = $('#port_code').val();
+                var name = $('#port_name').val();
+
+                location.href = '?c=' + code + '&n=' + name;
+            });
+        });
+
         function deletePort(a) {
             swal({
                 title: 'Apakah Anda Yakin?',
