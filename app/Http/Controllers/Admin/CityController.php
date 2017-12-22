@@ -19,9 +19,34 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cities = City::orderBy('city_name', 'asc')->paginate(10);
+        $code1 = ''; $code2= ''; $code3 = '';
+        $name1 = ''; $name2 = ''; $name3 = '';
+
+        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+            $cities = City::orderBy('city_name', 'asc')->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $code1 = '%'.$request->input('c');
+                $code2 = '%'.$request->input('c').'%';
+                $code3 = $request->input('c').'%';
+            }
+
+            if($request->input('n') != ''){
+                $name1 = '%'.$request->input('n');
+                $name2 = '%'.$request->input('n').'%';
+                $name3 = $request->input('n').'%';
+            }
+
+            $cities = City::where('port_code', 'like', $code1)
+                ->orWhere('port_code', 'like', $code2)
+                ->orWhere('port_code', 'like', $code3)
+                ->orWhere('port_name', 'like', $name1)
+                ->orWhere('port_name', 'like', $name2)
+                ->orWhere('port_name', 'like', $name3)
+                ->orderBy('city_name')->paginate(10);
+        }
 
         return view('admin.cities.index', compact('cities'));
     }

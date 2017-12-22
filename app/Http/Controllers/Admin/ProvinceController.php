@@ -18,9 +18,35 @@ class ProvinceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $provinces = Province::orderBy('province_name', 'asc')->paginate(10);
+        $code1 = ''; $code2= ''; $code3 = '';
+        $name1 = ''; $name2 = ''; $name3 = '';
+
+        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+            $provinces = Province::orderBy('province_name', 'asc')->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $code1 = '%'.$request->input('c');
+                $code2 = '%'.$request->input('c').'%';
+                $code3 = $request->input('c').'%';
+            }
+
+            if($request->input('n') != ''){
+                $name1 = '%'.$request->input('n');
+                $name2 = '%'.$request->input('n').'%';
+                $name3 = $request->input('n').'%';
+            }
+
+            $provinces = Province::where('province_code', 'like', $code1)
+                ->orWhere('province_code', 'like', $code2)
+                ->orWhere('province_code', 'like', $code3)
+                ->orWhere('province_name', 'like', $name1)
+                ->orWhere('province_name', 'like', $name2)
+                ->orWhere('province_name', 'like', $name3)
+                ->orderBy('province_name')->paginate(10);
+        }
+
 
         return view('admin.provinces.index', compact('provinces'));
     }

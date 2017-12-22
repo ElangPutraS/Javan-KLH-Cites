@@ -15,7 +15,7 @@ class PortController extends \App\Http\Controllers\Controller {
 		$name1 = ''; $name2 = ''; $name3 = '';
 
 		if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
-            $ports = Ports::orderBy('port_code')->paginate(10);
+            $ports = Ports::orderBy('port_name')->paginate(10);
         }else{
 		    if($request->input('c') != ''){
                 $code1 = '%'.$request->input('c');
@@ -35,7 +35,7 @@ class PortController extends \App\Http\Controllers\Controller {
                 ->orWhere('port_name', 'like', $name1)
                 ->orWhere('port_name', 'like', $name2)
                 ->orWhere('port_name', 'like', $name3)
-                ->orderBy('port_code')->paginate(10);
+                ->orderBy('port_name')->paginate(10);
         }
 
 		return view('admin.ports.index', compact('ports'));
