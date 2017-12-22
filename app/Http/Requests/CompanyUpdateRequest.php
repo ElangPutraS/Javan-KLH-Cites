@@ -48,10 +48,11 @@ class CompanyUpdateRequest extends FormRequest
                 'company_longitude'     => 'required',
                 'password'              => 'max:6',
                 'date_distribution'     => 'required',
-                'npwp_number'           => 'required',
-                'npwp_number_user'      => 'required',
-                'labor_total'           => 'required',
-                'investation_total'     => 'required',
+                'npwp_number'           => 'required|max:30',
+                'npwp_number_user'      => 'required|max:30',
+                'labor_total'           => 'required|max:11',
+                'investation_total'     => 'required|max:20',
+                'captivity_address'     => 'required|string',
             ];
         }else{
             return [
