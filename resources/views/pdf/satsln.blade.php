@@ -18,7 +18,7 @@
 <body>
 
 <table border="1" cellspacing="0" style="margin: 10px;" width="80%">
-    <!--tr>
+<!--tr>
 		<td height="10">
 			<div style="float: left; height: 64px;"><img src="{{ asset('images/CITES_logo_high_resolution.jpg') }}" height="64"></div>
 			<div style="float: right; height: 64px; width: 128px; text-align: center; font-size: 10px">CONVENTION ON INTERNATIONAL TRADE IN ENDANGERED SPECIES OF WILD FAUNA AND FLORA</div>
@@ -128,7 +128,7 @@
                         <hr>
                         <i>Valid until</i></td>
                     <td>:</td>
-                    <td>{{ $trade_permit->valid_until ? $trade_permit->valid_until : null }}</td>
+                    <td>{{ date('d-m-Y', strtotime($trade_permit->valid_until ? $trade_permit->valid_until : null)) }}</td>
                 </tr>
             </table>
         </td>
@@ -218,13 +218,16 @@
                 </tr>
 
                 @foreach($trade_permit->tradeSpecies as $value)
+                    @php
+                        $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', '2017'], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
+                    @endphp
                     <tr>
                         <td align="center">{{ $loop->iteration }}</td>
                         <td>{{ $value->species_scientific_name }}</td>
-                        <td align="center">{{ $value->speciesQuota[0]->quota_amount }}</td>
+                        <td align="center">{{ $value->pivot->total_exported }}</td>
                         <td align="center">{{ $value->species_description }}</td>
                         <td align="center">{{ $value->appendixSource->appendix_source_code . '(' . $value->source->source_code . ')' }}</td>
-                        <td align="center">{{ $value->pivot->total_exported . '/ (' . $value->pivot->year . ')' }}</td>
+                        <td align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
                     </tr>
                 @endforeach
             </table>
@@ -249,7 +252,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" height="32">&nbsp;</td>
+                    <td colspan="4" height="32" align="center">
+                        {{ $trade_permit->stamp }}
+                    </td>
                 </tr>
             </table>
         </td>
@@ -259,10 +264,17 @@
         <td colspan="2">
             <table width="100%">
                 <tr>
-                    <td>X.</td>
-                    <td>Sertifikat ini diterbitkan oleh
-                        <hr>
-                        <i>This permitt is issued by</i><br>Tempat/<i>Place</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tanggal/<i>Date</i>: {{ date('d/m/Y', strtotime($trade_permit->date_submission)) }}
+                    <td valign="top">X.</td>
+                    <td>
+                        <u>Sertifikat ini diterbitkan oleh</u>
+                        <br>
+                        <i>This permitt is issued by</i><br><br><br><br><br><br><br>
+                        <div style="float: left; margin-right: 200px;">
+                            <u>Jakarta</u><br>Tempat/<i>Place</i>
+                        </div>
+                        <div>
+                            <u>{{ date('d/m/Y', strtotime($trade_permit->date_submission)) }}</u><br>Tanggal/<i>Date</i>
+                        </div>
                     </td>
                 </tr>
             </table>
@@ -271,9 +283,13 @@
         <td colspan="2">
             <table>
                 <tr>
-                    <td>ATAS NAMA DIREKTUR JENDERAL KONSERVASI SUMBER DAYA ALAM DAN EKOSISTEM
+                    <td align="center">
+                        ATAS NAMA DIREKTUR JENDERAL KONSERVASI SUMBER DAYA ALAM DAN EKOSISTEM
                         <hr>
-                        <i>FOR THE DIRECTOR GENERAL OF ECOSYSTEM AND NATURAL RESOURCES CONSERVATION</i></td>
+                        <i>FOR THE DIRECTOR GENERAL OF ECOSYSTEM AND NATURAL RESOURCES CONSERVATION</i>
+                        <br><br><br><br>
+                        {{ auth()->user()->name }}
+                    </td>
                 </tr>
             </table>
         </td>
@@ -290,7 +306,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <table>
+                        <table border="1" cellspacing="0">
                             <thead align="center">
                             <tr>
                                 <th colspan="2">Lihat kolom jenis/See column of species</th>
@@ -302,12 +318,12 @@
                             </thead>
 
                             <tbody>
-                            @foreach($trade_permit->tradeSpecies as $item)
-                            <tr>
-                                <td align="center">{{ $loop->iteration }}</td>
-                                <td align="center">{{ $item->pivot->total_exported }}</td>
-                            </tr>
-                            @endforeach
+                            @for($i = 1; $i <= 12; $i++)
+                                <tr>
+                                    <td align="center">{{ $i }}</td>
+                                    <td align="center"></td>
+                                </tr>
+                            @endfor
                             </tbody>
                         </table>
                     </td>
@@ -336,7 +352,7 @@
                                     Port of exportation
                                 </td>
                                 <td>:</td>
-                                <td>{{ $trade_permit->portExpor->port_name }}</td>
+                                <td></td>
                             </tr>
                         </table>
                     </td>
@@ -358,7 +374,7 @@
                         Valid until
                     </td>
                     <td>:</td>
-                    <td>{{ $trade_permit->valid_until }}</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Dikirim kepada (nama, alamat, negara)
@@ -366,7 +382,7 @@
                         Consignee (name, address, country)
                     </td>
                     <td>:</td>
-                    <td>{{ $trade_permit->consignee }}</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Pelabuhan pemberangkatan
@@ -374,7 +390,7 @@
                         Port of exportation
                     </td>
                     <td>:</td>
-                    <td>{{ $trade_permit->portExpor->port_name }}</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Pelabuhan tujuan
@@ -382,7 +398,7 @@
                         Port of destination
                     </td>
                     <td>:</td>
-                    <td>{{ $trade_permit->portDest->port_name }}</td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td>Tanggal
