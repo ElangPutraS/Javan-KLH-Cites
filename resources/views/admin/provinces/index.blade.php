@@ -14,12 +14,12 @@
                 </div>
                 <div class="card-block">
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
-                        <div class="input-group col-sm-4">
+                        <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-month">Kode Provinsi</span>
                             <input class="form-control" type="text" placeholder="Cari kode provinsi.." name="province_code" id="province_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
                         </div>
 
-                        <div class="input-group col-sm-4">
+                        <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Nama Provinsi</span>
                             <input class="form-control" placeholder="Cari nama provinsi.." type="text" name="province_name" id="province_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
                         </div>

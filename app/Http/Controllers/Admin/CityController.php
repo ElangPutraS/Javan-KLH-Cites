@@ -39,12 +39,12 @@ class CityController extends Controller
                 $name3 = $request->input('n').'%';
             }
 
-            $cities = City::where('port_code', 'like', $code1)
-                ->orWhere('port_code', 'like', $code2)
-                ->orWhere('port_code', 'like', $code3)
-                ->orWhere('port_name', 'like', $name1)
-                ->orWhere('port_name', 'like', $name2)
-                ->orWhere('port_name', 'like', $name3)
+            $cities = City::where('city_code', 'like', $code1)
+                ->orWhere('city_code', 'like', $code2)
+                ->orWhere('city_code', 'like', $code3)
+                ->orWhere('city_name_full', 'like', $name1)
+                ->orWhere('city_name_full', 'like', $name2)
+                ->orWhere('city_name_full', 'like', $name3)
                 ->orderBy('city_name')->paginate(10);
         }
 

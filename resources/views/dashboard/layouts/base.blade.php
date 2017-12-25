@@ -249,10 +249,10 @@
                                         href="{{ route('admin.species.category') }}"><i
                                             class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a>
                             </li>
-                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a
+                            <!-- <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a
                                         href="{{ route('admin.speciesSex.index') }}"><i
                                             class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Spesies</a>
-                            </li>
+                            </li> -->
                             <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a
                                         href="{{ route('admin.appendix.index') }}"><i
                                             class="zmdi zmdi-layers zmdi-hc-fw"></i> Appendiks</a></li>

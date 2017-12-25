@@ -14,17 +14,17 @@
                 </div>
                 <div class="card-block">
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
-                        <div class="input-group col-sm-4">
+                        <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-month">Kode Kabupaten/Kota</span>
                             <input class="form-control" type="text" placeholder="Cari kode Kabupaten/Kota.." name="city_code" id="city_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
                         </div>
 
-                        <div class="input-group col-sm-4">
+                        <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Nama Kabupaten/Kota</span>
                             <input class="form-control" placeholder="Cari nama Kabupaten/Kota.." type="text" name="city_name" id="city_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
                         </div>
 
-                        <div class="btn-group col-sm-4" role="group" aria-label="...">
+                        <div class="btn-group col-sm-2" role="group" aria-label="...">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
                             </button>
                         </div>
@@ -79,7 +79,7 @@
                         </table>
                     </div>
 
-                    {!! $cities->links('vendor.pagination.bootstrap-4') !!}
+                    {!! $cities->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
