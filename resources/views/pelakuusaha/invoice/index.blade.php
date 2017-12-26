@@ -67,9 +67,6 @@
                                     </td>
                                     <td>
                                         <a href="{{route('user.invoice.detail', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a>
-                                        @if ($trade_permit->tradeStatus->status_code >= '200')
-                                            <a href="{{route('user.invoice.cetakPnbp', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info" target="_blank"><i class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
-                                        @endif
                                     </td>
                                 </tr>
                             @empty
