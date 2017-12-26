@@ -31,6 +31,8 @@ class LogTradePermit extends Model
         'country_destination',
         'country_exportation',
         'trade_permit_code',
+        'stamp',
+        'is_printed',
     ];
 
 
