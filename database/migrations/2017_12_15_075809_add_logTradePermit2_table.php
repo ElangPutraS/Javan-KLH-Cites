@@ -34,6 +34,8 @@ class AddLogTradePermit2Table extends Migration
             $table->foreign('country_exportation')
                 ->references('id')->on('countries')
                 ->onDelete('cascade');
+            $table->string('stamp', 64)->nullable();
+            $table->tinyInteger('is_printed')->nullable();
         });
     }
 
@@ -57,6 +59,8 @@ class AddLogTradePermit2Table extends Migration
             $table->dropColumn('country_destination');
             $table->dropForeign(['country_exportation']);
             $table->dropColumn('country_exportation');
+            $table->dropColumn('stamp');
+            $table->dropColumn('is_printed');
         });
     }
 }

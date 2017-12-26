@@ -165,13 +165,15 @@
 <div class="form-group">
     <h5>C. Dokumen Unggahan</h5>
 </div>
+@foreach($document_type as $key => $document)
 <div class="form-group">
-    <label class="control-label">Re-upload SATS-LN</label>
+    <label class="control-label">{{$document}}</label>
     <div class="col-sm-14">
-        <input type="hidden" class="form-control" name="document_type_id" value="10" required>
-        <input type="file" class="form-control" name="document_trade_permit" accept="file_extension" required>
+        <input type="hidden" class="form-control" name="document_type_id[]" value="{{$key}}" required>
+        <input type="file" class="form-control" name="document_trade_permit[]" accept="file_extension" required>
     </div>
 </div>
+@endforeach
 
 <div class="card">
     <div class="card-block">

@@ -85,6 +85,8 @@ class SubmissionVerificationController extends Controller
             'country_destination'       => $trade_permit->country_destination,
             'country_exportation'       => $trade_permit->country_exportation,
             'consignee_address'         => $trade_permit->consignee_address,
+            'is_printed'                => $trade_permit->is_print,
+            'stamp'                     => $trade_permit->stamp,
 
         ]);
         $trade_permit->logTrade()->save($log);
@@ -136,6 +138,8 @@ class SubmissionVerificationController extends Controller
             'country_destination'       => $trade_permit->country_destination,
             'country_exportation'       => $trade_permit->country_exportation,
             'consignee_address'         => $trade_permit->consignee_address,
+            'is_printed'                => $trade_permit->is_print,
+            'stamp'                     => $trade_permit->stamp,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -176,6 +180,7 @@ class SubmissionVerificationController extends Controller
             $trade_permit->update([
                 'valid_start' => $valid_start,
                 'valid_until' => $valid_until,
+                'period'      => $request->get('period'),
                 'updated_by' => $request->user()->id
             ]);
         }else{
@@ -240,6 +245,8 @@ class SubmissionVerificationController extends Controller
             'country_destination'       => $trade_permit->country_destination,
             'country_exportation'       => $trade_permit->country_exportation,
             'consignee_address'         => $trade_permit->consignee_address,
+            'is_printed'                => $trade_permit->is_print,
+            'stamp'                     => $trade_permit->stamp,
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -304,6 +311,8 @@ class SubmissionVerificationController extends Controller
             'valid_renewal'             => $trade_permit->valid_renewal,
             'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
+            'is_printed'                => $trade_permit->is_print,
+            'stamp'                     => $trade_permit->stamp,
         ]);
         $trade_permit->logTrade()->save($log);
 

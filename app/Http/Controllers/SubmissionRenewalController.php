@@ -37,7 +37,9 @@ class SubmissionRenewalController extends Controller
         $ports = Ports::orderBy('port_name', 'asc')->pluck('port_name', 'id');
         $countries = Country::orderBy('country_name', 'asc')->pluck('country_name', 'id');
         $trade_permit = TradePermit::findOrFail($id);
-        return view('pelakuusaha.renewals.edit', compact('user', 'trade_permit', 'trading_types', 'purpose_types', 'ports', 'countries'));
+        $document_type = DocumentType::where('is_permit', '2')->pluck('document_type_name', 'id');
+
+        return view('pelakuusaha.renewals.edit', compact('user', 'trade_permit', 'trading_types', 'purpose_types', 'ports', 'countries', 'document_type'));
     }
 
     public function update(Request $request, $id)
@@ -48,33 +50,40 @@ class SubmissionRenewalController extends Controller
                 'valid_renewal'         => $trade_permit->valid_renewal+1,
                 'is_renewal'            => $request->get('is_renewal'),
                 'permit_type'           => '2',
-                'is_blanko'             => $request->get('is_blanko')
+                'is_blanko'             => $request->get('is_blanko'),
+                'is_printed'            => 0,
+                'stamp'                 => null,
             ]);
         }else {
             $trade_permit->update([
-                'consignee_address' => $request->get('consignee_address'),
-                'consignee' => $request->get('consignee'),
-                'port_exportation' => $request->get('port_exportation'),
-                'port_destination' => $request->get('port_destination'),
-                'country_exportation' => $request->get('country_exportation'),
-                'country_destination' => $request->get('country_destination'),
-                'valid_renewal' => $trade_permit->valid_renewal + 1,
-                'is_renewal' => $request->get('is_renewal'),
-                'purpose_type_id' => $request->get('purpose_type_id'),
-                'permit_type' => '2',
-                'is_blanko' => $request->get('is_blanko')
+                'consignee_address'     => $request->get('consignee_address'),
+                'consignee'             => $request->get('consignee'),
+                'port_exportation'      => $request->get('port_exportation'),
+                'port_destination'      => $request->get('port_destination'),
+                'country_exportation'   => $request->get('country_exportation'),
+                'country_destination'   => $request->get('country_destination'),
+                'valid_renewal'         => $trade_permit->valid_renewal + 1,
+                'is_renewal'            => $request->get('is_renewal'),
+                'purpose_type_id'       => $request->get('purpose_type_id'),
+                'permit_type'           => '2',
+                'is_blanko'             => $request->get('is_blanko'),
+                'is_printed'            => 0,
+                'stamp'                 => null,
             ]);
         }
 
-        if($request->document_trade_permit != ''){
-            $file_path = $request->document_trade_permit->store('/upload/file/trade_document');
+        if($request->document_trade_permit) {
+            foreach ($request->document_trade_permit as $key => $file) {
 
-            $document_type = DocumentType::find($request->get('document_type_id'));
+                $file_path = $file->store('/upload/file/trade_document');
 
-            $trade_permit->documentTypes()->attach($document_type, [
-                'document_name' => $request->document_trade_permit->getClientOriginalName(),
-                'file_path'     => $file_path
-            ]);
+                $document_type = DocumentType::findOrFail($request->get('document_type_id')[$key]);
+
+                $trade_permit->documentTypes()->attach($document_type, [
+                    'document_name' => $file->getClientOriginalName(),
+                    'file_path'     => $file_path
+                ]);
+            }
         }
 
         $status = TradePermitStatus::where('status_code', 100)->first();
@@ -106,6 +115,8 @@ class SubmissionRenewalController extends Controller
             'country_destination'       => $trade_permit->country_destination,
             'country_exportation'       => $trade_permit->country_exportation,
             'consignee_address'         => $trade_permit->consignee_address,
+            'is_printed'                => $trade_permit->is_print,
+            'stamp'                     => $trade_permit->stamp,
         ]);
         $trade_permit->logTrade()->save($log);
 

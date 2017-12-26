@@ -15,9 +15,22 @@ class TypeIdentifyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $type_identify = TypeIdentify::orderBy('type_identify_name', 'asc')->paginate(10);
+        $name = '';
+
+        if( $request->input('n') == '' ||  $request->input('n') == null ){
+            $type_identify = TypeIdentify::orderBy('type_identify_name', 'asc')->paginate(10);
+        }else{
+
+            if($request->input('n') != '') {
+                $name = '%' . $request->input('n') . '%';
+            }
+
+            $type_identify = TypeIdentify::where('type_identify_name', 'like', $name)
+                ->orderBy('type_identify_name')->paginate(10);
+        }
+        
 
         return view('admin.typeIdentify.index', compact('type_identify'));
     }
