@@ -125,7 +125,7 @@
                             data: {id: printBtn.data('id'), stamp: value},
                             success: function (result) {
                                 if (result == 'true') {
-                                    swal('Data berhasil di stamp.' + printBtn.data('id') + value).then(function () {
+                                    swal('Data berhasil di stamp.').then(function () {
                                         swal({
                                             type: 'success',
                                             title: 'Cetak laporan sedang diproses'

@@ -12,9 +12,9 @@
 */
 
 Route::get('/', function () {
-    $news = \App\News::orderBy('created_at', 'desc')->limit(3)->get();
+    $news = \App\News::orderBy('created_at', 'desc')->limit(6)->get();
 
-    return view('welcome2', compact('news'));
+    return view('welcome3', compact('news'));
 });
 
 Route::get('/news/{id}', function ($id) {
