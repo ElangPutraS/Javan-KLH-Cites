@@ -10,30 +10,22 @@ class SourceController extends Controller
 {
     public function index(Request $request)
     {
-        $code1 = ''; $code2= ''; $code3 = '';
-        $name1 = ''; $name2 = ''; $name3 = '';
+        $code = '';
+        $name = '';
 
         if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
             $sources = Source::orderBy('source_code', 'asc')->paginate(10);
         }else{
             if($request->input('c') != ''){
-                $code1 = '%'.$request->input('c');
-                $code2 = '%'.$request->input('c').'%';
-                $code3 = $request->input('c').'%';
+                $code = '%'.$request->input('c').'%';
             }
 
             if($request->input('n') != ''){
-                $name1 = '%'.$request->input('n');
-                $name2 = '%'.$request->input('n').'%';
-                $name3 = $request->input('n').'%';
+                $name = '%'.$request->input('n').'%';
             }
 
-            $sources = Source::where('source_code', 'like', $code1)
-                ->orWhere('source_code', 'like', $code2)
-                ->orWhere('source_code', 'like', $code3)
-                ->orWhere('source_description', 'like', $name1)
-                ->orWhere('source_description', 'like', $name2)
-                ->orWhere('source_description', 'like', $name3)
+            $sources = Source::where('source_code', 'like', $code)
+                ->orWhere('source_description', 'like', $name)
                 ->orderBy('source_code')->paginate(10);
         }
 

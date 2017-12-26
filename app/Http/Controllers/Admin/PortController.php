@@ -11,30 +11,22 @@ use App\Http\Requests\PortUpdateRequest;
 class PortController extends \App\Http\Controllers\Controller {
 
 	public function index(Request $request) {
-		$code1 = ''; $code2= ''; $code3 = '';
-		$name1 = ''; $name2 = ''; $name3 = '';
+		$code = '';
+		$name = '';
 
 		if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
             $ports = Ports::orderBy('port_name')->paginate(10);
         }else{
 		    if($request->input('c') != ''){
-                $code1 = '%'.$request->input('c');
-                $code2 = '%'.$request->input('c').'%';
-                $code3 = $request->input('c').'%';
+                $code = '%'.$request->input('c').'%';;
             }
 
             if($request->input('n') != ''){
-                $name1 = '%'.$request->input('n');
-                $name2 = '%'.$request->input('n').'%';
-                $name3 = $request->input('n').'%';
+                $name = '%'.$request->input('n').'%';
             }
 
-            $ports = Ports::where('port_code', 'like', $code1)
-                ->orWhere('port_code', 'like', $code2)
-                ->orWhere('port_code', 'like', $code3)
-                ->orWhere('port_name', 'like', $name1)
-                ->orWhere('port_name', 'like', $name2)
-                ->orWhere('port_name', 'like', $name3)
+            $ports = Ports::where('port_code', 'like', $code)
+                ->orWhere('port_name', 'like', $name)
                 ->orderBy('port_name')->paginate(10);
         }
 

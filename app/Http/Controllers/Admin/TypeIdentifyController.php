@@ -17,26 +17,17 @@ class TypeIdentifyController extends Controller
      */
     public function index(Request $request)
     {
-        $name1 = ''; $name2 = ''; $name3 = '';
+        $name = '';
 
         if( $request->input('n') == '' ||  $request->input('n') == null ){
             $type_identify = TypeIdentify::orderBy('type_identify_name', 'asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code1 = '%'.$request->input('c');
-                $code2 = '%'.$request->input('c').'%';
-                $code3 = $request->input('c').'%';
+
+            if($request->input('n') != '') {
+                $name = '%' . $request->input('n') . '%';
             }
 
-            if($request->input('n') != ''){
-                $name1 = '%'.$request->input('n');
-                $name2 = '%'.$request->input('n').'%';
-                $name3 = $request->input('n').'%';
-            }
-
-            $type_identify = TypeIdentify::where('type_identify_name', 'like', $name1)
-                ->orWhere('type_identify_name', 'like', $name2)
-                ->orWhere('type_identify_name', 'like', $name3)
+            $type_identify = TypeIdentify::where('type_identify_name', 'like', $name)
                 ->orderBy('type_identify_name')->paginate(10);
         }
         

@@ -19,30 +19,22 @@ class PurposeTypeController extends Controller
      */
     public function index(Request $request)
     {
-        $code1 = ''; $code2= ''; $code3 = '';
-        $name1 = ''; $name2 = ''; $name3 = '';
+        $code = '';
+        $name = '';
 
         if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
             $purposetypes = PurposeType::orderBy('purpose_type_name', 'asc')->paginate(10);
         }else{
             if($request->input('c') != ''){
-                $code1 = '%'.$request->input('c');
-                $code2 = '%'.$request->input('c').'%';
-                $code3 = $request->input('c').'%';
+                $code = '%'.$request->input('c').'%';
             }
 
             if($request->input('n') != ''){
-                $name1 = '%'.$request->input('n');
-                $name2 = '%'.$request->input('n').'%';
-                $name3 = $request->input('n').'%';
+                $name = '%'.$request->input('n').'%';
             }
 
-            $purposetypes = PurposeType::where('purpose_type_code', 'like', $code1)
-                ->orWhere('purpose_type_code', 'like', $code2)
-                ->orWhere('purpose_type_code', 'like', $code3)
-                ->orWhere('purpose_type_name', 'like', $name1)
-                ->orWhere('purpose_type_name', 'like', $name2)
-                ->orWhere('purpose_type_name', 'like', $name3)
+            $purposetypes = PurposeType::where('purpose_type_code', 'like', $code)
+                ->orWhere('purpose_type_name', 'like', $name)
                 ->orderBy('purpose_type_name')->paginate(10);
         }
 
