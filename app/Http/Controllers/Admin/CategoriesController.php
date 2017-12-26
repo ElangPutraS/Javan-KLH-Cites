@@ -10,9 +10,27 @@ use App\Http\Controllers\Controller;
 
 class CategoriesController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-       $categories =Category::orderBy('species_category_code','asc')->paginate(10);
+        $code = '';
+        $name = '';
+
+        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+            $categories =Category::orderBy('species_category_name','asc')->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $code = '%'.$request->input('c').'%';
+            }
+
+            if($request->input('n') != ''){
+                $name = '%'.$request->input('n').'%';
+            }
+
+            $categories = Category::where('species_category_code', 'like', $code)
+                ->orWhere('species_category_name', 'like', $name)
+                ->orderBy('species_category_name')->paginate(10);
+        }
+
        return view('admin.species.category', compact('categories'));
     }
 

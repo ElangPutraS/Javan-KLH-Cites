@@ -13,10 +13,25 @@
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
+                    <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-month">Kode Kabupaten/Kota</span>
+                            <input class="form-control" type="text" placeholder="Cari kode Kabupaten/Kota.." name="city_code" id="city_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                        </div>
 
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-year">Nama Kabupaten/Kota</span>
+                            <input class="form-control" placeholder="Cari nama Kabupaten/Kota.." type="text" name="city_name" id="city_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                        </div>
+
+                        <div class="btn-group col-sm-2" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form>
                     @include('includes.notifications')
 
-                    <a href="{{ route('admin.cities.create') }}" class="btn btn-primary">Tambah Baru</a>
+                    <br><a href="{{ route('admin.cities.create') }}" class="btn btn-primary">Tambah Baru</a>
 
                     <hr>
 
@@ -64,7 +79,7 @@
                         </table>
                     </div>
 
-                    {!! $cities->links('vendor.pagination.bootstrap-4') !!}
+                    {!! $cities->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
@@ -74,6 +89,17 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var code = $('#city_code').val();
+                var name = $('#city_name').val();
+
+                location.href = '?c=' + code + '&n=' + name;
+            });
+        });
+
         function deleteCities(a) {
             swal({
                 title: 'Apakah Anda Yakin?',

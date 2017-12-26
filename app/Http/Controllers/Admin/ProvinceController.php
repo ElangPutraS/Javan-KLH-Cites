@@ -18,9 +18,27 @@ class ProvinceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $provinces = Province::orderBy('province_name', 'asc')->paginate(10);
+        $code = '';
+        $name = '';
+
+        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+            $provinces = Province::orderBy('province_name', 'asc')->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $code = '%'.$request->input('c').'%';
+            }
+
+            if($request->input('n') != ''){
+                $name = '%'.$request->input('n').'%';
+            }
+
+            $provinces = Province::where('province_code', 'like', $code)
+                ->orWhere('province_name', 'like', $name)
+                ->orderBy('province_name')->paginate(10);
+        }
+
 
         return view('admin.provinces.index', compact('provinces'));
     }

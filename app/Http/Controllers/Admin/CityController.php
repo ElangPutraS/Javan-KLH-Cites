@@ -19,9 +19,26 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $cities = City::orderBy('city_name', 'asc')->paginate(10);
+        $code = '';
+        $name = '';
+
+        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+            $cities = City::orderBy('city_name', 'asc')->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $code2 = '%'.$request->input('c').'%';
+            }
+
+            if($request->input('n') != ''){
+                $name2 = '%'.$request->input('n').'%';
+            }
+
+            $cities = City::where('city_code', 'like', $code)
+                ->orWhere('city_name_full', 'like', $name)
+                ->orderBy('city_name')->paginate(10);
+        }
 
         return view('admin.cities.index', compact('cities'));
     }

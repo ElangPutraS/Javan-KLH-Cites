@@ -61,5 +61,10 @@ class DocumentTypeSeeder extends Seeder
             'document_type_name' => 'Dokumen Re-Upload',
             'is_permit' => 2,
         ]);
+
+        DocumentType::create([
+            'document_type_name' => 'Surat Permohonan',
+            'is_permit' => 2,
+        ]);
     }
 }

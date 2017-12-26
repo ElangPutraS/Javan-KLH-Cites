@@ -191,21 +191,30 @@
                         <div class="form-group">
                             <h5>C. Dokumen Unggahan</h5>
                         </div>
-                        @foreach($trade_permit->documentTypes as $document)
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-4">
-                                        <b>{{$document->document_type_name}}</b>
-                                    </div>
-                                    <div class="col-sm-4">
-                                        {{$document->pivot->document_name}}
-                                    </div>
-                                    <div class="col-sm-4">
-                                        <a href="{{$document->pivot->download_url}}">[ <i class="zmdi zmdi-download zmdi-hc-fw"></i> download ]</a>
-                                    </div>
+                        <div class="card">
+                            <div class="card-block">
+                                <div class="table-responsive">
+                                    <table class="table table-sm mb-0">
+                                        <thead>
+                                        <tr style="background-color: lightgrey;">
+                                            <th>Jenis Dokumen</th>
+                                            <th>Nama Dokumen</th>
+                                            <th>Download</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($trade_permit->documentTypes as $document)
+                                            <tr>
+                                                <th scope="row">{{$document->document_type_name}}</th>
+                                                <td>{{$document->pivot->document_name}}</td>
+                                                <td><a href="{{$document->pivot->download_url}}">[ <i class="zmdi zmdi-download zmdi-hc-fw"></i> download ]</a></td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                        @endforeach
+                        </div>
 
                         <div class="form-group">
                             <h5>D. Daftar Spesimen</h5>
@@ -245,9 +254,9 @@
                                                     <td>
                                                         <input type="hidden" name="detail_id[]" id="detail_id{{$no}}" value="{{$species->pivot->id}}" max="10">
                                                         <input type="hidden" name="exported[]" id="exported{{$no}}" class="form-control" value="{{$species->pivot->total_exported}}" max="10">
-                                                        <input type="text" name="exported_before[]" id="exported_before{{$no}}" class="form-control" value="{{$species->pivot->total_exported}}" max="10">
+                                                        <input type="text" name="exported_before[]" id="exported_before{{$no}}" class="form-control" min="0" max="10" value="{{$species->pivot->total_exported}}" @if($trade_permit->trade_permit_status_id == 2) readonly @endif>
                                                     </td>
-                                                    <td><input type="number" name="exported_now[]" id="exported_now{{$no}}" class="form-control" value="0" min="0" max="10"></td>
+                                                    <td><input type="text" name="exported_now[]" id="exported_now{{$no}}" class="form-control" min="0" max="10" @if($trade_permit->trade_permit_status_id == 2) value="{{ $species->pivot->where([['species_id', $species->id], ['trade_permit_id', $trade_permit->id], ['valid_renewal', $trade_permit->valid_renewal]])->first()->total_exported }}" readonly @else value="0" @endif></td>
                                                 </tr>
                                                 @php $no++ @endphp
                                             @endif
@@ -275,7 +284,7 @@
                                 <label class="form-control-label">Masa Berlaku yang Diberikan</label>
                                 <div class="row">
                                     <div class="col-sm-9">
-                                        <input type="text" min="1" max="6" name="period" id="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" required>
+                                        <input type="text" min="1" max="6" name="period" id="period" class="form-control form-control-success" value="{{ old('period', array_get($trade_permit, 'period')) }}" @if($trade_permit->trade_permit_status_id == 2) readonly @endif required>
                                     </div>
                                     <div class="col-sm-2">
                                         Bulan

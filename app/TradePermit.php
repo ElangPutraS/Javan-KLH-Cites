@@ -35,6 +35,8 @@ class TradePermit extends Model
         'country_exportation',
         'is_blanko',
         'is_renewal',
+        'is_printed',
+        'stamp',
     ];
 
     public function documentTypes()
