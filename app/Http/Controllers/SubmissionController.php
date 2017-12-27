@@ -15,6 +15,7 @@ use App\TradePermitStatus;
 use App\TradingType;
 use App\Category;
 use App\Source;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
 
@@ -22,7 +23,47 @@ class SubmissionController extends Controller
 {
     public function index(Request $request)
     {
-        $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->orderBy('created_at', 'desc')->paginate(10);
+        $code = '';
+        $period = '';
+        $date_from = '';
+        $date_until = '';
+
+        if($request->input('c') == '' && $request->input('p') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('p') == null && $request->input('df') == null && $request->input('du') == null ){
+            $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->orderBy('created_at', 'desc')->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $code = '%'.$request->input('c').'%';;
+            }
+
+            if($request->input('p') != ''){
+                $period = $request->input('p');
+            }
+
+            if($request->input('df') != '' && $request->input('du') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
+
+                $trade_permits = TradePermit::where('trade_permit_code', 'like', $code)
+                    ->orWhere('period', $period)
+                    ->orWhereBetween('date_submission', [$date_from , $date_until ])
+                    ->orderBy('created_at', 'desc')->paginate(10);
+            }else {
+                if($request->input('df') != ''){
+                    $date_from = $request->input('df');
+                }
+
+                if($request->input('du') != '') {
+                    $date_until = $request->input('du');
+                }
+
+                $trade_permits = TradePermit::where('trade_permit_code', 'like', $code)
+                    ->orWhere('period', $period)
+                    ->orWhereDate('date_submission', '=', $date_from)
+                    ->orWhereDate('date_submission', '=', $date_until)
+                    ->orderBy('created_at', 'desc')->paginate(10);
+            }
+        }
+
 
         return view('pelakuusaha.submission.index', compact('trade_permits'));
     }
