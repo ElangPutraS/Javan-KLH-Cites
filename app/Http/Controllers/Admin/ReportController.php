@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Percentage;
+use App\User;
 use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -314,5 +315,125 @@ class ReportController extends Controller
         } else {
             echo 'false';
         }
+    }
+
+    public function companyInvestation(Request $request){
+        $company_name = '';
+        $owner_name = '';
+
+        if($request->input('c') == '' && $request->input('o') == '' || $request->input('c') == null && $request->input('o') == null ){
+            $users = User::whereHas('roles', function ($q) {
+                $q->where('id', '=', 2);
+            })->whereHas('company', function ($q) {
+                $q->where('company_status', '=', 1);
+            })->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $company_name = '%'.$request->input('c').'%';;
+            }
+
+            if($request->input('o') != ''){
+                $owner_name = '%'.$request->input('o').'%';
+            }
+
+            $users = User::whereHas('roles', function ($q) {
+                $q->where('id', '=', 2);
+            })->whereHas('company',  function ($q) {
+                $q->where('company_status', '=', 1);
+            })->whereHas('company',  function ($q) use($company_name, $owner_name) {
+                $q->where('company_name', 'like', $company_name)
+                ->orWhere('owner_name', 'like', $owner_name);
+            })->paginate(10);
+        }
+
+        return view('admin.report.investation', compact('users'));
+    }
+
+    public function printReportInvestation($c = '', $o = '')
+    {
+        $company_name = $c;
+        $owner_name = $o;
+
+        if($company_name == '' && $owner_name == '' || $company_name == null && $owner_name == null ){
+            $users = User::whereHas('roles', function ($q) {
+                $q->where('id', '=', 2);
+            })->whereHas('company', function ($q) {
+                $q->where('company_status', '=', 1);
+            })->paginate(10);
+        }else{
+            $users = User::whereHas('roles', function ($q) {
+                $q->where('id', '=', 2);
+            })->whereHas('company',  function ($q) {
+                $q->where('company_status', '=', 1);
+            })->whereHas('company',  function ($q) use($company_name, $owner_name) {
+                $q->where('company_name', 'like', $company_name)
+                    ->orWhere('owner_name', 'like', $owner_name);
+            })->paginate(10);
+        }
+
+        PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
+        $pdf = PDF::loadView('pdf.report-investation', compact('users'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function companyLabor(Request $request){
+        $company_name = '';
+        $owner_name = '';
+
+        if($request->input('c') == '' && $request->input('o') == '' || $request->input('c') == null && $request->input('o') == null ){
+            $users = User::whereHas('roles', function ($q) {
+                $q->where('id', '=', 2);
+            })->whereHas('company', function ($q) {
+                $q->where('company_status', '=', 1);
+            })->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $company_name = '%'.$request->input('c').'%';;
+            }
+
+            if($request->input('o') != ''){
+                $owner_name = '%'.$request->input('o').'%';
+            }
+
+            $users = User::whereHas('roles', function ($q) {
+                $q->where('id', '=', 2);
+            })->whereHas('company',  function ($q) {
+                $q->where('company_status', '=', 1);
+            })->whereHas('company',  function ($q) use($company_name, $owner_name) {
+                $q->where('company_name', 'like', $company_name)
+                    ->orWhere('owner_name', 'like', $owner_name);
+            })->paginate(10);
+        }
+
+        return view('admin.report.labor', compact('users'));
+    }
+
+    public function printReportLabor($c = '', $o = '')
+    {
+        $company_name = $c;
+        $owner_name = $o;
+
+        if($company_name == '' && $owner_name == '' || $company_name == null && $owner_name == null ){
+            $users = User::whereHas('roles', function ($q) {
+                $q->where('id', '=', 2);
+            })->whereHas('company', function ($q) {
+                $q->where('company_status', '=', 1);
+            })->paginate(10);
+        }else{
+            $users = User::whereHas('roles', function ($q) {
+                $q->where('id', '=', 2);
+            })->whereHas('company',  function ($q) {
+                $q->where('company_status', '=', 1);
+            })->whereHas('company',  function ($q) use($company_name, $owner_name) {
+                $q->where('company_name', 'like', $company_name)
+                    ->orWhere('owner_name', 'like', $owner_name);
+            })->paginate(10);
+        }
+
+        PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
+        $pdf = PDF::loadView('pdf.report-labor', compact('users'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream();
     }
 }
