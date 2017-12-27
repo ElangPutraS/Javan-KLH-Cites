@@ -1,0 +1,163 @@
+/*!
+ * Start Bootstrap - Small Business (https://startbootstrap.com/template-overviews/small-business)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-small-business/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 64px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 66px;
+  }
+}
+
+.container {
+  min-width: 705px;
+}
+
+#klh-navbar {
+  background: #0c390e;
+}
+
+#klh-navbar .container .navbar-header .navbar-brand img:nth-child(1) {
+  width: 50px;
+  position: absolute;
+  top: 0;
+}
+
+#klh-navbar .container .navbar-header .navbar-brand span:nth-child(2) {
+  position: relative;
+  left: 55px;
+  top: -15px;
+  font-weight: bold;
+}
+
+#klh-navbar .container .navbar-header .navbar-brand span:nth-child(3) {
+  position: relative;
+  left: -45px;
+  top: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#klh-navbar .container .navbar-header .navbar-brand span:nth-child(4) {
+  position: relative;
+  left: -447px;
+  top: 12px;
+  font-size: 10px;
+}
+
+footer {
+  margin-top: 15px;
+  background: #0c390e;
+  color: silver;
+}
+
+#footer-1 {
+  height: 80px;
+}
+
+#footer-1 img:nth-child(1) {
+  width: 64px;
+  position: absolute;
+  left: 20px;
+  top: 5px;
+}
+
+#footer-1 span:nth-child(2) {
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  left: 88px;
+  top: 8px;
+}
+
+#footer-1 span:nth-child(3) {
+  font-weight: bold;
+  font-size: 15px;
+  position: absolute;
+  left: 88px;
+  top: 30px;
+}
+
+#footer-1 span:nth-child(4) {
+  font-weight: bold;
+  font-size: 10px;
+  position: absolute;
+  left: 88px;
+  top: 48px;
+}
+
+#footer-1 span:nth-child(5) {
+  font-weight: bold;
+  font-size: 9px;
+  position: absolute;
+  left: 20px;
+  top: 70px;
+}
+
+#footer-2 {
+  height: 150px;
+}
+
+#footer-2 span:nth-child(1) {
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  left: 20px;
+  top: 8px;
+}
+
+#footer-2 ul:nth-child(2) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  font-size: 12px;
+}
+
+#footer-2 ul:nth-child(2) li div:nth-child(1) {
+  float: left;
+  margin-right: 10px;
+}
+
+#footer-3 {
+  height: 80px;
+}
+
+#footer-3 span:nth-child(1) {
+  font-weight: bold;
+  font-size: 20px;
+  position: absolute;
+  left: 20px;
+  top: 8px;
+}
+
+#footer-3 ul:nth-child(2) {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  font-size: 12px;
+  text-align: justify;
+}
+
+#footer-3 ul:nth-child(2) li {
+  display: inline-block;
+}
+
+#footer-3 ul:nth-child(2) li a {
+  text-decoration: none;
+  color: silver;
+}
+
+#footer-3 ul:nth-child(2) li a:hover {
+  color: #0D0A0A;
+}

@@ -20,7 +20,7 @@ class PnbpController extends Controller
     {
         $trade_permits = TradePermit::whereHas('tradeStatus', function ($query) {
             $query->where('status_code', '200');
-        })->orderBy('trade_permit_code', 'asc')->paginate(10);
+        })->where('is_printed', '=', 1)->orderBy('trade_permit_code', 'asc')->paginate(10);
 
         return view('admin.pnbp.index', compact('trade_permits'));
     }

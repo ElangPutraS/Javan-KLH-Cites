@@ -177,10 +177,13 @@
                                         </td>
                                         <td>{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
                                         <td>
-                                            @if ($trade_permit->tradeStatus->status_code == '600')
-                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->tradePermit->id])}}" class="btn btn-sm btn-info print" target="_blank" data-id="{{ $trade_permit->tradePermit->id }}"><i class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
+                                            @if ($trade_permit->tradeStatus->status_code == '600' && $trade_permit->tradePermit->is_printed == 0)
+                                                <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->tradePermit->id])}}"
+                                                   class="btn btn-sm btn-info print" target="_blank"
+                                                   data-id="{{ $trade_permit->tradePermit->id }}"><i
+                                                            class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
                                             @else
-
+                                                <small>Blanko sudah dicetak</small>
                                             @endif
                                         </td>
                                     </tr>
@@ -192,13 +195,13 @@
                                     </tr>
                                 @endforelse
 
-                                    <tr>
-                                        <td colspan="9">
-                                            <a class="btn btn-success"
-                                               href="{{ route('admin.report.printReportSatsln', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
-                                               target="_blank"><i class="fa fa-print"></i> Cetak List</a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td colspan="9">
+                                        <a class="btn btn-success"
+                                           href="{{ route('admin.report.printReportSatsln', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
+                                           target="_blank"><i class="fa fa-print"></i> Cetak List</a>
+                                    </td>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -233,7 +236,7 @@
     </script>
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
-        /*$('.print').click(function() {
+        $('.print').click(function () {
             printBtn = $(this);
 
             swal({
@@ -256,39 +259,61 @@
                         swal('Security stamp harus diisi.');
 
                         return false;
+                    } else {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            type: 'post',
+                            url: window.baseUrl + '/admin/store-stamp-satsln',
+                            data: {id: printBtn.data('id'), stamp: value},
+                            success: function (result) {
+                                if (result == 'true') {
+                                    swal('Data berhasil di stamp.' + printBtn.data('id') + value).then(function () {
+                                        swal({
+                                            type: 'success',
+                                            title: 'Cetak laporan sedang diproses'
+                                        }).then(function () {
+                                            window.open($('.print').attr('href'), '_blank');
+                                        });
+                                    });
+                                } else {
+                                    swal('Data tidak berhasil di stamp.');
+
+                                    return false;
+                                }
+                            },
+                            error: function (xhr) {
+                                swal('Data tidak berhasil di stamp.');
+
+                                return false;
+                            },
+                            complete: function () {
+                                $.ajax({
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    },
+                                    url: window.baseUrl + '/admin/store-is-printed',
+                                    type: 'post',
+                                    data: {id: printBtn.data('id'), is_printed: 1},
+                                    success: function (result) {
+                                        if (result == 'true') {
+                                            //window.location = window.baseUrl + '/admin/verificationSub'
+                                        } else {
+                                            return false;
+                                        }
+                                    },
+                                    error: function (xhr) {
+
+                                    }
+                                });
+                            }
+                        });
                     }
-
-                    $.ajax({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        },
-                        type:'post',
-                        url: window.baseUrl+'/store-stamp-satsln/'+printBtn.data('id')+'/'+value,
-                        success: function(result) {
-                            alert(result);
-                        },
-                        error: function (xhr) {
-                            swal(xhr.statusText);
-                        }
-                    });
-
-                    /!*$.get(window.baseUrl+'/store-stamp-satsln/'+printBtn.data('id')+'/'+value, function(data, status) {
-                        swal(data);
-                    });*!/
-
-                    swal({
-                        type: 'success',
-                        title: 'Cetak laporan sedang diproses'
-                    }).then(function () {
-                        //window.location = $('.print').attr('href');
-                        satslnId = $('.print').data('id');
-
-                        window.open($('.print').attr('href'), '_blank');
-                    });
                 });
             });
 
             return false;
-        });*/
+        });
     </script>
 @endpush

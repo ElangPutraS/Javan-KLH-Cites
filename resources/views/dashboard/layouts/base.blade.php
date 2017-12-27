@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('template/vendors/bower_components/flatpickr/dist/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('js/redactor/redactor.css') }}">
+    <link rel="stylesheet" href="{{ asset('js/redactor/alignment.css') }}" >
 
     <!-- App styles -->
     <link rel="stylesheet" href="{{ asset('template/css/app.min.css') }}">
@@ -252,10 +253,10 @@
                                         href="{{ route('admin.species.category') }}"><i
                                             class="zmdi zmdi-nature-people zmdi-hc-fw"></i> Kelola Kategori Spesies</a>
                             </li>
-                            <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a
+                            <!-- <li @if(Request::segment(2)=='speciesSex') class="navigation__active" @endif><a
                                         href="{{ route('admin.speciesSex.index') }}"><i
                                             class="zmdi zmdi-local-wc zmdi-hc-fw"></i> Kelola Jenis Kelamin Spesies</a>
-                            </li>
+                            </li> -->
                             <li @if(Request::segment(2)=='appendix') class="navigation__active" @endif><a
                                         href="{{ route('admin.appendix.index') }}"><i
                                             class="zmdi zmdi-layers zmdi-hc-fw"></i> Appendiks</a></li>
@@ -304,11 +305,20 @@
 <script src="{{ asset('template/vendors/bower_components/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset('template/vendors/bower_components/jquery-mask-plugin/dist/jquery.mask.min.js') }}"></script>
 <script src="{{ asset('js/redactor/redactor.js') }}"></script>
+<script src="{{ asset('js/redactor/alignment.js') }}"></script>
+<script src="{{ asset('js/redactor/table.js') }}"></script>
+<script src="{{ asset('js/redactor/fontsize.js') }}"></script>
+<script src="{{ asset('js/redactor/fontcolor.js') }}"></script>
+<script src="{{ asset('js/redactor/fontfamily.js') }}"></script>
+<script src="{{ asset('js/redactor/underline.js') }}"></script>
+<script src="{{ asset('js/redactor/fullscreen.js') }}"></script>
 
 
 <script type="text/javascript">
     $(function () {
-        $('#content-form-news').redactor({});
+        $('#content-form-news').redactor({
+            plugins: ['alignment', 'table', 'fontsize', 'fontcolor', 'fontfamily', 'underline', 'fullscreen']
+        });
 
     });
 

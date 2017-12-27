@@ -17,9 +17,26 @@ class PurposeTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $purposetypes = PurposeType::orderBy('purpose_type_name', 'asc')->paginate(10);
+        $code = '';
+        $name = '';
+
+        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+            $purposetypes = PurposeType::orderBy('purpose_type_name', 'asc')->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $code = '%'.$request->input('c').'%';
+            }
+
+            if($request->input('n') != ''){
+                $name = '%'.$request->input('n').'%';
+            }
+
+            $purposetypes = PurposeType::where('purpose_type_code', 'like', $code)
+                ->orWhere('purpose_type_name', 'like', $name)
+                ->orderBy('purpose_type_name')->paginate(10);
+        }
 
         return view('admin.purposeType.index', compact('purposetypes'));
     }

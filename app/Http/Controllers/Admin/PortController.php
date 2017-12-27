@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Ports;
 use App\Http\Requests\PortStoreRequest;
@@ -9,8 +10,25 @@ use App\Http\Requests\PortUpdateRequest;
 
 class PortController extends \App\Http\Controllers\Controller {
 
-	public function index() {
-		$ports = Ports::orderBy('port_code')->paginate(10);
+	public function index(Request $request) {
+		$code = '';
+		$name = '';
+
+		if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+            $ports = Ports::orderBy('port_name')->paginate(10);
+        }else{
+		    if($request->input('c') != ''){
+                $code = '%'.$request->input('c').'%';;
+            }
+
+            if($request->input('n') != ''){
+                $name = '%'.$request->input('n').'%';
+            }
+
+            $ports = Ports::where('port_code', 'like', $code)
+                ->orWhere('port_name', 'like', $name)
+                ->orderBy('port_name')->paginate(10);
+        }
 
 		return view('admin.ports.index', compact('ports'));
 	}

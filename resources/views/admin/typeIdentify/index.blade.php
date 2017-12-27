@@ -13,10 +13,20 @@
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
+                    <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                        <div class="input-group col-sm-6">
+                            <span class="input-group-addon" id="basic-year">Nama Tipe Identitas</span>
+                            <input class="form-control" placeholder="Cari nama tipe identitas" type="text" name="identity_name" id="identity_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                        </div>
 
+                        <div class="btn-group col-sm-2" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form>
                     @include('includes.notifications')
 
-                    <a href="{{ route('admin.typeIdentify.create') }}" class="btn btn-primary">Tambah Baru</a>
+                    <br><a href="{{ route('admin.typeIdentify.create') }}" class="btn btn-primary">Tambah Baru</a>
                     <hr>
 
                     <div class="table-responsive">
@@ -57,7 +67,7 @@
                         </table>
                     </div>
 
-                    {!! $type_identify->links() !!}
+                    {!! $type_identify->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
@@ -67,6 +77,16 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var name = $('#identity_name').val();
+
+                location.href = '?n=' + name;
+            });
+        });
+
         function deleteTypeIdentify(a) {
             swal({
                 title: 'Apakah Anda Yakin?',

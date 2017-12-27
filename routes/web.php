@@ -12,9 +12,9 @@
 */
 
 Route::get('/', function () {
-    $news = \App\News::orderBy('created_at', 'desc')->limit(3)->get();
+    $news = \App\News::orderBy('created_at', 'desc')->limit(6)->get();
 
-    return view('welcome2', compact('news'));
+    return view('welcome3', compact('news'));
 });
 
 Route::get('/news/{id}', function ($id) {
@@ -149,7 +149,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('portal-insw', 'ReportController@portalInsw')->name('admin.report.portalInsw');
     Route::get('send-insw/{tradePermitId}', 'ReportController@sendInsw')->name('admin.report.sendInsw');
     Route::get('print-satsln/{id}', 'ReportController@printSatsln')->name('admin.report.printSatsln');
-    Route::get('store-stamp-satsln/{id}/{stamp}', 'ReportController@storeStampSatsln')->name('admin.report.storeStampSatsln');
+    Route::post('store-stamp-satsln', 'ReportController@storeStampSatsln')->name('admin.report.storeStampSatsln');
+    Route::post('store-is-printed', 'ReportController@storeIsPrinted')->name('admin.report.storeIsPrinted');
 
     Route::get('companyQuota', 'CompanyQuotaController@index')->name('admin.companyQuota.index');
     Route::get('companyQuota/{id}/detail', 'CompanyQuotaController@detail')->name('admin.companyQuota.detail');

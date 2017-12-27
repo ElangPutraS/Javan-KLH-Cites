@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Percentage;
-use Illuminate\Support\Facades\Log;
 use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -34,7 +33,9 @@ class ReportController extends Controller
             $payments = HistoryPayment::where('created_at', 'like', $reqDate)->orderBy('created_at', 'asc')->paginate(10);
         }
 
-        $trade_permits = LogTradePermit::get();
+        $trade_permits = LogTradePermit::whereHas('tradePermit', function ($q) {
+            $q->where('is_printed', '=', 0);
+        })->get();
         $tahun = HistoryPayment::select(DB::raw('YEAR(created_at) year'))->distinct()->get();
         $percentages = Percentage::all();
 
@@ -280,7 +281,8 @@ class ReportController extends Controller
         return $result = ArrayToXml::convert($tradePermit->toArray(), 'persetujuan');
     }
 
-    public function printSatsln(Request $request, $id) {
+    public function printSatsln(Request $request, $id)
+    {
         $user = $request->user();
         $trade_permit = TradePermit::findOrFail($id);
 
@@ -290,10 +292,27 @@ class ReportController extends Controller
         //return view('pdf.satsln');
     }
 
-    public function storeStampSatsln($id, $stamp) {
-        $tradePermit = TradePermit::findOrFail($id);
-        $tradePermit->stamp = $stamp;
+    public function storeStampSatsln(Request $request)
+    {
+        $tradePermit = TradePermit::findOrFail($request->id);
+        $tradePermit->stamp = $request->stamp;
 
-        return $tradePermit->save();
+        if ($tradePermit->save()) {
+            echo 'true';
+        } else {
+            echo 'false';
+        }
+    }
+
+    public function storeIsPrinted(Request $request)
+    {
+        $tradePermit = TradePermit::findOrFail($request->id);
+        $tradePermit->is_printed = $request->is_printed;
+
+        if ($tradePermit->save()) {
+            echo 'true';
+        } else {
+            echo 'false';
+        }
     }
 }

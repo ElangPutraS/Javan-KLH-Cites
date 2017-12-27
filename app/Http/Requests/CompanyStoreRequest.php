@@ -48,6 +48,12 @@ class CompanyStoreRequest extends FormRequest
                 'company_status'        => 'required',
                 'company_latitude'      => 'required',
                 'company_longitude'     => 'required',
+                'date_distribution'     => 'required',
+                'npwp_number'           => 'required|max:30',
+                'npwp_number_user'      => 'required|max:30',
+                'labor_total'           => 'required|max:11',
+                'investation_total'     => 'required|max:20',
+                'captivity_address'     => 'required|string',
             ];
         }else{
             return [

@@ -71,7 +71,7 @@
                         </table>
                     </div>
 
-                    {!! $trade_permits->links() !!}
+                    {!! $trade_permits->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

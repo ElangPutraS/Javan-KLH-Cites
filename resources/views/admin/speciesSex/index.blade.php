@@ -60,7 +60,7 @@
                         </table>
                     </div>
 
-                    {!! $speciessex->links() !!}
+                    {!! $speciessex->links('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

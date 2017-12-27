@@ -8,9 +8,26 @@ use App\Http\Controllers\Controller;
 
 class SourceController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $sources = Source::orderBy('source_code', 'asc')->paginate(10);
+        $code = '';
+        $name = '';
+
+        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+            $sources = Source::orderBy('source_code', 'asc')->paginate(10);
+        }else{
+            if($request->input('c') != ''){
+                $code = '%'.$request->input('c').'%';
+            }
+
+            if($request->input('n') != ''){
+                $name = '%'.$request->input('n').'%';
+            }
+
+            $sources = Source::where('source_code', 'like', $code)
+                ->orWhere('source_description', 'like', $name)
+                ->orderBy('source_code')->paginate(10);
+        }
 
         return view('admin.source.index', compact('sources'));
     }

@@ -13,7 +13,22 @@
                     <small class="card-subtitle"></small>
                 </div>
                 <div class="card-block">
+                    <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-month">Kode Appendiks</span>
+                            <input class="form-control" type="text" placeholder="Cari kode appendiks" name="appendix_code" id="appendix_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                        </div>
 
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-year">Nama Appendiks</span>
+                            <input class="form-control" placeholder="Cari nama appendiks.." type="text" name="description" id="description" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                        </div>
+
+                        <div class="btn-group col-sm-2" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form><br>
                     @include('includes.notifications')
 
                     <div class="table-responsive">
@@ -45,7 +60,7 @@
                         </table>
                     </div>
 
-                    {!! $appendix_sources->links() !!}
+                    {!! $appendix_sources->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
@@ -55,6 +70,17 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var code = $('#appendix_code').val();
+                var name = $('#description').val();
+
+                location.href = '?c=' + code + '&n=' + name;
+            });
+        });
+
         function deleteProvinces(a) {
             swal({
                 title: 'Apakah Anda Yakin?',

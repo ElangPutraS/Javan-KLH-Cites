@@ -111,9 +111,8 @@
                                 </div>
                                 <div class="col-sm-7">
                                     <label class="control-label">Sumber Spesies</label>
-                                    <input type="text" name="source_id" class="form-control" value="Spesimen diambil dari alam.{{ old('source_id', array_get($trade_permit->source, 'source_id')) }}" readonly>
+                                    <input type="text" name="source_id" class="form-control" value="{{ $trade_permit->source->source_code.' - '.$trade_permit->source->source_description }}" readonly>
                                 </div>
-
                             </div>
                         </div>
 
@@ -271,7 +270,7 @@
         function acceptTradePermit(a) {
             var id=a.getAttribute('data-id');
             var period = $('#period').val();
-            if(period != '0'){
+            if(period > '0' && period <= 6){
                 swal({
                     title: 'Apakah Anda Yakin?',
                     text: 'Akan memverifikasi permohonan SATS-LN?',
@@ -284,7 +283,7 @@
             }else{
                 swal(
                     'Oops...',
-                    'Masa berlaku permohonan belum Anda isi, silahkan isi terlebih dahulu!',
+                    'Masa berlaku permohonan belum Anda isi atau format salah, silahkan isi terlebih dahulu max 6 bulan!',
                     'error'
                 )
             }
