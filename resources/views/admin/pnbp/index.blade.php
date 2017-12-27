@@ -30,37 +30,38 @@
                                 <th>Status</th>
                                 <th>IHH</th>
                                 <th>EA-EB</th>
+                                <th>Nilai Persentase</th>
                                 <th>Total</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <?php $a=1;?>
+                            <?php $a = 1;?>
                             @forelse($trade_permits as $trade_permit)
-                            <tr>
-                                <td>{{ (($trade_permits->currentPage() - 1 ) * $trade_permits->perPage() ) + $loop->iteration }}</td>
-                                <td>{{ $trade_permit->trade_permit_code }}</td>
-                                <td>
-                                    @if($trade_permit->pnbp !== null)
-                                        {{ $trade_permit->pnbp->pnbp_code }}
-                                    @else
-                                        PNBP belum dibuat
-                                    @endif
-                                </td>
-                                <td>{{ $trade_permit->company->company_name }}</td>
-                                <td>{{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y').' sd. '.Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}</td>
-                                <td>
-                                    @if($trade_permit->tradeStatus->status_code==100)
-                                        <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
-                                    @elseif($trade_permit->tradeStatus->status_code==200)
-                                        <span class="badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
-                                    @elseif($trade_permit->tradeStatus->status_code==300)
-                                        <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
-                                    @else
-                                        <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
-                                    @endif
-                                    <br>
-                                    Tagihan : 
+                                <tr>
+                                    <td>{{ (($trade_permits->currentPage() - 1 ) * $trade_permits->perPage() ) + $loop->iteration }}</td>
+                                    <td>{{ $trade_permit->trade_permit_code }}</td>
+                                    <td>
+                                        @if($trade_permit->pnbp !== null)
+                                            {{ $trade_permit->pnbp->pnbp_code }}
+                                        @else
+                                            PNBP belum dibuat
+                                        @endif
+                                    </td>
+                                    <td>{{ $trade_permit->company->company_name }}</td>
+                                    <td>{{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y').' sd. '.Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}</td>
+                                    <td>
+                                        @if($trade_permit->tradeStatus->status_code==100)
+                                            <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                        @elseif($trade_permit->tradeStatus->status_code==200)
+                                            <span class="badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                        @elseif($trade_permit->tradeStatus->status_code==300)
+                                            <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                        @else
+                                            <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                        @endif
+                                        <br>
+                                        Tagihan :
                                         @if($trade_permit->pnbp !== null)
                                             @if($trade_permit->pnbp->payment_status == 0)
                                                 Belum Lunas
@@ -70,31 +71,55 @@
                                         @else
                                             Belum Lunas
                                         @endif
-                                </td>
-                                <td>
-                                    <?php
-                                        $jumlah=0;
-                                        foreach ($trade_permit->tradeSpecies as $species) {
-                                            if($trade_permit->permit_type == 1){
-                                                $jumlah = $jumlah + ($species->pivot->total_exported * $species->nominal);
-                                            }
-                                        }
-                                        echo 'Rp. '.number_format($jumlah,2,',','.');
+                                    </td>
+                                    <td>
+                                        @if($trade_permit->pnbp)
+                                            {{ 'Rp. '.number_format($trade_permit->pnbp->pnbp_sub_amount, 2, ',', '.') }}
+                                        @else
+                                            @php
+                                                $jumlah=0;
+                                                foreach ($trade_permit->tradeSpecies as $species) {
+                                                    if($trade_permit->permit_type == 1){
+                                                        $jumlah = $jumlah + ($species->pivot->total_exported * $species->nominal);
+                                                    }
+                                                }
+                                                echo 'Rp. '.number_format($jumlah, 2, ',', '.');
 
-                                        $jumlah = $jumlah + 100000;
-                                    ?>
-                                </td>
-                                <td> Rp. {{ number_format(100000,2,',','.') }} </td>
-                                <td> Rp. {{ number_format($jumlah,2,',','.') }} </td>
-                                <td>
-                                    <a href="{{route('admin.pnbp.create', ['id' => $trade_permit->id])}}" class="btn btn-sm btn-primary" title="Buat PNBP">PNBP</a><br><br>
-                                    <a href="{{route('admin.pnbp.payment', ['id' => $trade_permit->id])}}" class="btn btn-sm btn-success" title="Bayar Tagihan">Bayar</a>
-                                </td>
-                            </tr>
+                                                $jumlah = $jumlah + 100000;
+                                            @endphp
+                                        @endif
+                                    </td>
+                                    <td>Rp. {{ number_format(100000, 2, ',', '.') }}</td>
+                                    <td>
+                                        @if($trade_permit->pnbp)
+                                            {{ 'Rp. '.number_format($trade_permit->pnbp->pnbp_percentage_amount, 2, ',', '.') }}
+                                        @else
+                                            Rp. 0
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($trade_permit->pnbp)
+                                            {{ 'Rp. '.number_format($trade_permit->pnbp->pnbp_amount, 2, ',', '.') }}
+                                        @else
+                                            Rp. {{ number_format($jumlah,2,',','.') }}
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($trade_permit->pnbp)
+                                            <a href="{{route('admin.pnbp.payment', ['id' => $trade_permit->id])}}"
+                                               class="btn btn-sm btn-success" title="Bayar Tagihan">Bayar</a>
+                                        @else
+                                            <a href="{{route('admin.pnbp.create', ['id' => $trade_permit->id])}}"
+                                               class="btn btn-sm btn-primary" title="Buat PNBP">PNBP</a><br><br>
+                                        @endif
+                                    </td>
+                                </tr>
                             @empty
-                            <tr>
-                                <td colspan="10"><center>Data Kosong</center></td>
-                            </tr>
+                                <tr>
+                                    <td colspan="10">
+                                        <center>Data Kosong</center>
+                                    </td>
+                                </tr>
                             @endforelse
                             </tbody>
                         </table>

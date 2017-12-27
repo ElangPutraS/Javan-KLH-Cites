@@ -38,7 +38,6 @@ class ReportController extends Controller
             $q->where('is_printed', '=', 0);
         })->get();
         $tahun = HistoryPayment::select(DB::raw('YEAR(created_at) year'))->distinct()->get();
-        $percentages = Percentage::all();
 
         return view('admin.report.pnbp', compact('payments', 'trade_permits', 'tahun', 'percentages'));
     }

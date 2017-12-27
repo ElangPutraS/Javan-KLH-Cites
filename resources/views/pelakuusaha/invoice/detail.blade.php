@@ -17,7 +17,7 @@
 
                     <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                         {!! csrf_field() !!}
-                        
+
                         <div class="form-group">
                             <h5>A. Informasi Pelaku Usaha</h5>
                         </div>
@@ -131,35 +131,35 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php 
-                                            $no=1;
-                                            $total=0;
+                                        <?php
+                                        $no=1;
+                                        $total=0;
                                         ?>
                                         @foreach($trade_permit->tradeSpecies as $species)
                                             @if($trade_permit->permit_type == 1)
                                                 <tr>
                                                     <td><?=$no++?></td>
                                                     <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
-                                                    <td>{{$species->speciesSex->sex_name}}</td>
+                                                    <td>{{$species->species_description}}</td>
                                                     <td>{{$species->pivot->total_exported}}</td>
                                                     <td>Rp. {{ number_format($species->pivot->total_exported * $species->nominal,2,',','.') }}</td>
                                                 </tr>
                                                 <?php $total=$total+($species->pivot->total_exported * $species->nominal)?>
                                             @endif
                                         @endforeach
-                                            <?php $total=$total+100000?>
-                                            <tr>
-                                                <td><?=$no++?></td>
-                                                <td>Blanko</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>Rp. {{ number_format(100000,2,',','.') }}</td>
-                                            </tr>
+                                        <?php $total=$total+100000?>
+                                        <tr>
+                                            <td><?=$no++?></td>
+                                            <td>Blanko</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>Rp. {{ number_format(100000,2,',','.') }}</td>
+                                        </tr>
 
-                                            <tr>
-                                                <td colspan="4" align="right"><b>Total Tagihan</b></td>
-                                                <td><b>Rp. {{ number_format($total,2,',','.') }}</b></td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="4" align="right"><b>Total Tagihan</b></td>
+                                            <td><b>Rp. {{ number_format($total,2,',','.') }}</b></td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
