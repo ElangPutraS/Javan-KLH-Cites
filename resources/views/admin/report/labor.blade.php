@@ -86,7 +86,7 @@
                         </table>
                     </div>
 
-                    {!! $users->links() !!}
+                    {!! $users->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
