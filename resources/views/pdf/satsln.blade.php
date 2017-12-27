@@ -62,9 +62,9 @@
                     <td width="10">I.</td>
                     <td>Surat Angkut Tumbuhan dan Satwa Liar
                         <hr>
-                        <i>Permitt</i></td>
+                        <i>Permit</i></td>
                     <td>No. :</td>
-                    <td width="400">{{ $trade_permit->trade_permit_code }}</td>
+                    <td width="400">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->trade_permit_code }} @else @endif</td>
                     <!--td>
                         <table>
                             <tr>
@@ -83,7 +83,7 @@
                             </tr>
                         </table>
                     </td-->
-                    <td>{{ $trade_permit->tradingType->trading_type_name }}</td>
+                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->tradingType->trading_type_name }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -98,7 +98,7 @@
                         <hr>
                         <i>Permitee (name. address, country)</i></td>
                     <td>:</td>
-                    <td>{{ $trade_permit->company->company_name . ' - ' . $trade_permit->company->company_address }}</td>
+                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->company->company_name . ' - ' . $trade_permit->company->company_address }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -113,7 +113,7 @@
                         <hr>
                         <i>Permitee (name. address, country)</i></td>
                     <td>:</td>
-                    <td>{{ $trade_permit->consignee }}</td>
+                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->consignee . ' , ' . $trade_permit->consignee_address }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -128,7 +128,7 @@
                         <hr>
                         <i>Valid until</i></td>
                     <td>:</td>
-                    <td>{{ date('d-m-Y', strtotime($trade_permit->valid_until ? $trade_permit->valid_until : null)) }}</td>
+                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ date('d-m-Y', strtotime($trade_permit->valid_until ? $trade_permit->valid_until : null)) }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -141,7 +141,7 @@
                         <hr>
                         <i>Place Port of destination</i></td>
                     <td>:</td>
-                    <td>{{ $trade_permit->portDest->port_name }}</td>
+                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->portDest->port_name }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -156,7 +156,7 @@
                         <hr>
                         <i>Port exportation</i></td>
                     <td>:</td>
-                    <td>{{ $trade_permit->portExpor->port_name }}</td>
+                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->portExpor->port_name }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -169,7 +169,7 @@
                         <hr>
                         <i>Purpose of transaction</i></td>
                     <td>:</td>
-                    <td>{{ $trade_permit->purposeType->purpose_type_name }}</td>
+                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->purposeType->purpose_type_name }} @else @endif </td>
                 </tr>
             </table>
         </td>
@@ -216,20 +216,23 @@
                         Total exported/Quota (Year)
                     </td>
                 </tr>
+                @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
+                    @foreach($trade_permit->tradeSpecies as $value)
+                        @php
+                            $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', '2017'], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
+                        @endphp
+                        <tr>
+                            <td align="center">{{ $loop->iteration }}</td>
+                            <td>{{ $value->species_scientific_name }}</td>
+                            <td align="center">{{ $value->pivot->total_exported }}</td>
+                            <td align="center">{{ $value->species_description }}</td>
+                            <td align="center">{{ $value->appendixSource->appendix_source_code . '(' . $value->source->source_code . ')' }}</td>
+                            <td align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
+                        </tr>
+                    @endforeach
+                @else
 
-                @foreach($trade_permit->tradeSpecies as $value)
-                    @php
-                        $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', '2017'], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
-                    @endphp
-                    <tr>
-                        <td align="center">{{ $loop->iteration }}</td>
-                        <td>{{ $value->species_scientific_name }}</td>
-                        <td align="center">{{ $value->pivot->total_exported }}</td>
-                        <td align="center">{{ $value->species_description }}</td>
-                        <td align="center">{{ $value->appendixSource->appendix_source_code . '(' . $value->source->source_code . ')' }}</td>
-                        <td align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
-                    </tr>
-                @endforeach
+                @endif
             </table>
         </td>
     </tr>
@@ -253,7 +256,7 @@
                 </tr>
                 <tr>
                     <td colspan="4" height="32" align="center">
-                        {{ $trade_permit->stamp }}
+                        @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->stamp }} @else @endif
                     </td>
                 </tr>
             </table>
@@ -261,8 +264,8 @@
     </tr>
 
     <tr>
-        <td colspan="2">
-            <table width="100%">
+        <td colspan="2" style="border: none;" >
+            <table width="100%" >
                 <tr>
                     <td valign="top">X.</td>
                     <td>
@@ -273,14 +276,14 @@
                             <u>Jakarta</u><br>Tempat/<i>Place</i>
                         </div>
                         <div>
-                            <u>{{ date('d/m/Y', strtotime($trade_permit->date_submission)) }}</u><br>Tanggal/<i>Date</i>
+                            <u>@if($trade_permit->permit_type == 1 ){{ date('d/m/Y', strtotime($trade_permit->date_submission)) }} @else @endif </u><br>Tanggal/<i>Date</i>
                         </div>
                     </td>
                 </tr>
             </table>
         </td>
 
-        <td colspan="2">
+        <td colspan="2" style="border: none">
             <table>
                 <tr>
                     <td align="center">
@@ -294,16 +297,32 @@
             </table>
         </td>
     </tr>
+    <tr>
+        <td width="50%" colspan="2">
+            <table class="text-centered">
+                <tr>
+                    <td width="10">IX.</td>
+                    <td>Diisi oleh petugas pemeriksa pengiriman
+                        <hr>
+                        <i>To be completed by official who inspect the shipment</i></td>
+                </tr>
+            </table>
+        </td>
 
+        <td width="50%" colspan="2">
+            <table>
+                <tr>
+                    <td colspan="3">XII. Pembaharuan
+                        <hr>
+                        Renewal
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
     <tr>
         <td colspan="2">
             <table>
-                <tr>
-                    <td>XI. Diisi oleh petugas pemeriksa pengiriman
-                        <hr>
-                        To be completed by official who inspect the shipment
-                    </td>
-                </tr>
                 <tr>
                     <td>
                         <table border="1" cellspacing="0">
@@ -357,24 +376,40 @@
                         </table>
                     </td>
                 </tr>
+                <tr>
+                    <td></td>
+
+                    <td>
+                        <table cellspacing="10">
+                            <tr>
+                                <td><center>Cap
+                                        <hr>
+                                        official stamp
+                                    </center>
+                                </td>
+                                <td> </td>
+                                <td><center>Tanda Tangan
+                                    <hr>
+                                    Signature
+                                    </center>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                </tr>
             </table>
         </td>
 
         <td colspan="2">
-            <table>
-                <tr>
-                    <td colspan="3">XII. Pembaharuan
-                        <hr>
-                        Renewal
-                    </td>
-                </tr>
+            <table >
                 <tr>
                     <td>Berlaku sampai dengan
                         <hr>
                         Valid until
                     </td>
                     <td>:</td>
-                    <td></td>
+                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ date('d-m-Y', strtotime($trade_permit->valid_until ? $trade_permit->valid_until : null)) }} @else @endif</td>
                 </tr>
                 <tr>
                     <td>Dikirim kepada (nama, alamat, negara)
@@ -382,7 +417,7 @@
                         Consignee (name, address, country)
                     </td>
                     <td>:</td>
-                    <td></td>
+                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->consignee. ' , ' . $trade_permit->consignee_address }} @else @endif</td>
                 </tr>
                 <tr>
                     <td>Pelabuhan pemberangkatan
@@ -390,7 +425,7 @@
                         Port of exportation
                     </td>
                     <td>:</td>
-                    <td></td>
+                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->portExpor->port_name }} @else @endif</td>
                 </tr>
                 <tr>
                     <td>Pelabuhan tujuan
@@ -398,7 +433,7 @@
                         Port of destination
                     </td>
                     <td>:</td>
-                    <td></td>
+                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->portDest->port_name }} @else @endif</td>
                 </tr>
                 <tr>
                     <td>Tanggal
@@ -406,11 +441,35 @@
                         Date
                     </td>
                     <td>:</td>
-                    <td>&nbsp;</td>
+                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ date('d/m/Y', strtotime($trade_permit->valid_start)) }} @else @endif </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+
+                    <td>
+                        <table cellspacing="25">
+                            <tr>
+                                <td><center>Cap
+                                        <hr>
+                                        Official stamp
+                                    </center>
+                                </td>
+                                <td><center>Tanda Tangan
+                                    <hr>
+                                    Signature
+                                    </center>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+
                 </tr>
             </table>
         </td>
     </tr>
+
+
 </table>
 
 </body>

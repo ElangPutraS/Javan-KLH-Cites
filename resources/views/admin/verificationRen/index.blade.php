@@ -54,7 +54,20 @@
                                         <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
                                     @endif
                                 </td>
-                                <td><a href="{{route('admin.verificationRen.show', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
+                                <td>
+                                    <a href="{{route('admin.verificationRen.show', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a>
+
+
+                                    @if ($trade_permit->tradeStatus->status_code == '200' && $trade_permit->permit_type == 2)
+                                        <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}"
+                                           class="btn btn-sm btn-info @if($trade_permit->is_blanko == 1) print @else printed @endif" target="_blank"
+                                           data-id="{{ $trade_permit->id }}"><i
+                                                    class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
+                                    @else
+                                        <br>
+                                        <small>Blanko sudah dicetak</small>
+                                    @endif
+                                </td>
                             </tr>
                             @empty
                             <tr>
@@ -72,3 +85,110 @@
         </div>
     </section>
 @endsection
+
+@push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        $('.printed').click(function () {
+            printBtn = $(this);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: window.baseUrl + '/admin/store-is-printed',
+                type: 'post',
+                data: {id: printBtn.data('id'), is_printed: 1},
+                success: function (result) {
+                    if (result == 'true') {
+                        //window.location = window.baseUrl + '/admin/verificationSub'
+                    } else {
+                        return false;
+                    }
+                },
+                error: function (xhr) {
+
+                }
+            });
+
+        }
+        $('.print').click(function () {
+            printBtn = $(this);
+
+            swal({
+                title: 'Apakah anda yakin?',
+                text: 'Akan mencetak laporan ini?',
+                type: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then(function () {
+                swal({
+                    title: 'Masukan Security Stamp',
+                    input: 'text',
+                    showCancelButton: true,
+                    confirmButtonText: 'Cetak',
+                    showLoaderOnConfirm: true,
+                    allowOutsideClick: false
+                }).then(function (value) {
+                    if (value === false || value === '') {
+                        swal('Security stamp harus diisi.');
+
+                        return false;
+                    } else {
+                        $.ajax({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            url: window.baseUrl + '/admin/store-stamp-satsln',
+                            type: 'post',
+                            data: {id: printBtn.data('id'), stamp: value},
+                            success: function (result) {
+                                if (result == 'true') {
+                                    swal('Data berhasil di stamp.').then(function () {
+                                        swal({
+                                            type: 'success',
+                                            title: 'Cetak laporan sedang diproses'
+                                        }).then(function () {
+                                            window.open($('.print').attr('href'), '_blank');
+                                        });
+                                    });
+                                } else {
+                                    swal('Data tidak berhasil di stamp.');
+
+                                    return false;
+                                }
+                            },
+                            error: function (xhr) {
+                                swal('Data tidak berhasil di stamp.');
+
+                                return false;
+                            },
+                            complete: function () {
+                                $.ajax({
+                                    headers: {
+                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                    },
+                                    url: window.baseUrl + '/admin/store-is-printed',
+                                    type: 'post',
+                                    data: {id: printBtn.data('id'), is_printed: 1},
+                                    success: function (result) {
+                                        if (result == 'true') {
+                                            //window.location = window.baseUrl + '/admin/verificationSub'
+                                        } else {
+                                            return false;
+                                        }
+                                    },
+                                    error: function (xhr) {
+
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+            return false;
+        });
+    </script>
+    @endpush
