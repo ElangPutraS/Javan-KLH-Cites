@@ -152,9 +152,9 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::post('store-stamp-satsln', 'ReportController@storeStampSatsln')->name('admin.report.storeStampSatsln');
     Route::post('store-is-printed', 'ReportController@storeIsPrinted')->name('admin.report.storeIsPrinted');
     Route::get('reportInvestation', 'ReportController@companyInvestation')->name('admin.report.investation');
-    Route::get('printReportInvestation/{c?}/{o?}', 'ReportController@printReportInvestation')->name('admin.report.printReportInvestation');
+    Route::get('printReportInvestation', 'ReportController@printReportInvestation')->name('admin.report.printReportInvestation');
     Route::get('reportLabor', 'ReportController@companyLabor')->name('admin.report.labor');
-    Route::get('printReportLabor/{c?}/{o?}', 'ReportController@printReportLabor')->name('admin.report.printReportLabor');
+    Route::get('printReportLabor', 'ReportController@printReportLabor')->name('admin.report.printReportLabor');
 
     Route::get('companyQuota', 'CompanyQuotaController@index')->name('admin.companyQuota.index');
     Route::get('companyQuota/{id}/detail', 'CompanyQuotaController@detail')->name('admin.companyQuota.detail');

@@ -78,7 +78,7 @@
                             <tr>
                                 <td colspan="11">
                                     <a class="btn btn-success"
-                                       href="{{ route('admin.report.printReportInvestation', ['c' => request()->input('c'), 'o' => request()->input('o')]) }}"
+                                       href="{{ url('admin/printReportInvestation?c='.request()->input('c').'&o='.request()->input('o')) }}"
                                        target="_blank"><i class="fa fa-print"></i> Cetak List</a>
                                 </td>
                             </tr>

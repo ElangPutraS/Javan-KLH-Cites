@@ -349,18 +349,26 @@ class ReportController extends Controller
         return view('admin.report.investation', compact('users'));
     }
 
-    public function printReportInvestation($c = '', $o = '')
+    public function printReportInvestation(Request $request)
     {
-        $company_name = $c;
-        $owner_name = $o;
+        $company_name = '';
+        $owner_name = '';
 
-        if($company_name == '' && $owner_name == '' || $company_name == null && $owner_name == null ){
+        if($request->input('c') == '' && $request->input('o') == '' || $request->input('c') == null && $request->input('o') == null ){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
+            if($request->input('c') != ''){
+                $company_name = '%'.$request->input('c').'%';;
+            }
+
+            if($request->input('o') != ''){
+                $owner_name = '%'.$request->input('o').'%';
+            }
+
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company',  function ($q) {
@@ -409,18 +417,26 @@ class ReportController extends Controller
         return view('admin.report.labor', compact('users'));
     }
 
-    public function printReportLabor($c = '', $o = '')
+    public function printReportLabor(Request $request)
     {
-        $company_name = $c;
-        $owner_name = $o;
+        $company_name = '';
+        $owner_name = '';
 
-        if($company_name == '' && $owner_name == '' || $company_name == null && $owner_name == null ){
+        if($request->input('c') == '' && $request->input('o') == '' || $request->input('c') == null && $request->input('o') == null ){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
+            if($request->input('c') != ''){
+                $company_name = '%'.$request->input('c').'%';;
+            }
+
+            if($request->input('o') != ''){
+                $owner_name = '%'.$request->input('o').'%';
+            }
+
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company',  function ($q) {
