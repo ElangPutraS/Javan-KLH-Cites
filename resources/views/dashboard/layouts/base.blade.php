@@ -274,6 +274,14 @@
                                             class="zmdi zmdi-chart zmdi-hc-fw"></i> Laporan SATS-LN</a></li>
                         </ul>
                     </li>
+
+                    <li @if(Request::segment(2)=='companyQuota') class="navigation__active" @endif><a
+                                href="{{route('admin.companyQuota.index')}}"><i
+                                    class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Kelola Kuota Perusahaan</a></li>
+
+                    <li @if(request()->segment(2) == 'portal-insw') class="navigation__active" @endif><a
+                                href="{{ route('admin.report.portalInsw') }}"><i
+                                    class="zmdi zmdi-input-antenna zmdi-hc-fw"></i> Portal INSW</a></li>
                 @endcan
             </ul>
         </div>
