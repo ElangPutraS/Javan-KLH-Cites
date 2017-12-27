@@ -26,20 +26,41 @@
                 <div class="card-block">
                     @include('includes.notifications')
 
-                    <form action="{{ route('admin.pnbp.storePayment', ['id' => $trade_permit->id]) }}" method="post" enctype="multipart/form-data" class="form-horizontal" id="form-payment">
+                    <form action="{{ route('admin.pnbp.storePayment', ['id' => $trade_permit->id]) }}" method="post"
+                          enctype="multipart/form-data" class="form-horizontal" id="form-payment">
                         {!! csrf_field() !!}
-                        
+
                         <div class="form-group">
                             <label class="control-label">Kode Permohonan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="trade_permit_code" class="form-control" value="{{ old('trade_permit_code', array_get($trade_permit, 'trade_permit_code')) }}" readonly>
+                                <input type="text" name="trade_permit_code" class="form-control"
+                                       value="{{ old('trade_permit_code', array_get($trade_permit, 'trade_permit_code')) }}"
+                                       readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Jenis Permohonan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="permit_type" class="form-control" value="@if($trade_permit->permit_type == 1) @if($trade_permit->period<6) Permohonan Bertahap @else Permohonan Langsung @endif @else Pembaharuan Permohonan @endif" readonly>
+                                <input type="text" name="permit_type" class="form-control"
+                                       value="@if($trade_permit->permit_type == 1) @if($trade_permit->period<6) Permohonan Bertahap @else Permohonan Langsung @endif @else Pembaharuan Permohonan @endif"
+                                       readonly>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Nilai Persentase Jual per-Spesies</label>
+                            <div class="col-sm-14">
+                                <select class="form-control disabled" name="percentage_value" disabled>
+                                    @forelse($percentages as $percentage)
+                                        <option value="{{ $percentage->value }}"{{ $trade_permit->pnbp->percentage_value == $percentage->value ? ' selected' : '' }}>
+                                            x{{ $percentage->value }}%
+                                        </option>
+                                    @empty
+                                        <option value="0" selected>x0%</option>
+                                    @endforelse
+                                </select>
+                                <input type="hidden" name="pnbp_percentage_amount" value="0">
                             </div>
                         </div>
 
@@ -47,48 +68,57 @@
                             <div class="card-block">
                                 <div class="table-responsive">
                                     <table class="table table-striped mb-0">
-                                    <center><h5>Tagihan</h5></center>
+                                        <center><h5>Tagihan</h5></center>
                                         <thead class="thead-default">
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Tagihan</th>
+                                            <th>Persentase</th>
+                                            <th>Nilai Persentase</th>
                                             <th>Jumlah</th>
+                                            <th>Total</th>
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php 
-                                            $no=1;
-                                            $total=0;
-                                        ?>
+                                        @php
+                                        $no = 1;
+                                        $total = [];
+                                        @endphp
                                         @foreach($trade_permit->tradeSpecies as $species)
                                             @if($trade_permit->permit_type == 1)
-                                                <?php $total=$total+($species->pivot->total_exported * $species->nominal)?>
+                                                <?php $total[] = $species->pivot->total_exported * $species->nominal; ?>
                                             @endif
                                         @endforeach
-                                            <tr>
-                                                <td><?=$no++?></td>
-                                                <td>IHH</td>
-                                                <td>
-                                                    Rp. {{ number_format($total,2,',','.') }} 
-                                                    @if($total == 0)
-                                                        (Lunas)
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                            <?php $total = $total + 100000; ?>
-                                            <tr>
-                                                <td><?=$no++?></td>
-                                                <td>Blanko</td>
-                                                <td>Rp. {{ number_format(100000,2,',','.') }}</td>
-                                            </tr>
+                                        <tr>
+                                            <td><?= $no++ ?></td>
+                                            <td>IHH</td>
+                                            <td>{{ count($total) . 'x' . $trade_permit->pnbp->percentage_value }}%</td>
+                                            <td>Rp. {{ number_format($trade_permit->pnbp->pnbp_percentage_amount, 0, ',', '.')  }}</td>
+                                            <td>
+                                                Rp. {{ number_format(array_sum($total), 0, ',', '.') }}
+                                                @if(empty($total))
+                                                    (Lunas)
+                                                @endif
+                                            </td>
+                                            <td>Rp. {{ number_format(array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount, 0, ',', '.') }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><?= $no++ ?></td>
+                                            <td>Blanko</td>
+                                            <td></td>
+                                            <td></td>
+                                            <td>Rp. {{ number_format(100000, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format(100000, 0, ',', '.') }}</td>
+                                        </tr>
 
-                                            <tr>
-                                                <td colspan="2" align="right"><b>Total Tagihan</b></td>
-                                                <td><b>Rp. {{ number_format($total,2,',','.') }}</b></td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="5" align="right"><b>Total Tagihan</b></td>
+                                            <td><b>Rp. {{ number_format((array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000, 0, ',', '.') }}</b></td>
+                                        </tr>
                                         </tbody>
                                     </table>
-                                    <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control" value="{{ $total }}">
+                                    <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control"
+                                           value="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000 }}">
                                 </div>
                             </div>
                         </div>
@@ -96,10 +126,14 @@
                         <div class="form-group">
                             <label class="control-label">Metode Pembayaran</label>
                             <div class="col-sm-14">
-                                <select name="payment_method" id="payment_method" class="form-control select2" onchange="cekPayment(this)" required>
+                                <select name="payment_method" id="payment_method" class="form-control select2"
+                                        onchange="cekPayment(this)" required>
                                     <option value="">-- Pilih Metode Pembayaran --</option>
-                                    <option value="cash" {{'cash' == old('payment_method') ? 'selected' : '' }}>Cash</option>
-                                    <option value="transfer" {{'transfer' == old('payment_method') ? 'selected' : '' }}>Transfer</option>
+                                    <option value="cash" {{'cash' == old('payment_method') ? 'selected' : '' }}>Cash
+                                    </option>
+                                    <option value="transfer" {{'transfer' == old('payment_method') ? 'selected' : '' }}>
+                                        Transfer
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -109,7 +143,8 @@
                                 <div class="form-group">
                                     <label class="control-label">Nomor Transaksi</label>
                                     <div class="col-sm-14">
-                                        <input type="text" name="transaction_number" class="form-control" value="{{ old("transaction_number") }}" required>
+                                        <input type="text" name="transaction_number" class="form-control"
+                                               value="{{ old("transaction_number") }}" required>
                                     </div>
                                 </div>
                             @endif
@@ -118,32 +153,35 @@
                         <div class="form-group">
                             <label class="control-label">Nominal Pembayaran</label>
                             <div class="col-sm-14">
-                                <input type="number" name="nominal" id="nominal" class="form-control" value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" required>
+                                <input type="number" name="nominal" id="nominal" class="form-control"
+                                       value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" required>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Kembalian</label>
                             <div class="col-sm-14">
-                                <input type="text" name="cash_back" id="cash_back" class="form-control" value="{{ old('cash_back') ?? '0' }}" readonly>
+                                <input type="text" name="cash_back" id="cash_back" class="form-control"
+                                       value="{{ old('cash_back') ?? '0' }}" readonly>
                             </div>
                         </div>
 
-                    <div class="profile__info">
-                        <center>
-                            @if($trade_permit->pnbp === null)
-                                <font color="red"> PNBP belum dibuat! </font> <br><br>
-                            @else
-                                @if($trade_permit->pnbp->payment_status == 0)
-                                    <button type="submit" class="btn btn-success waves-effect">Simpan</button>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <div class="profile__info">
+                            <center>
+                                @if($trade_permit->pnbp === null)
+                                    <font color="red"> PNBP belum dibuat! </font> <br><br>
                                 @else
-                                    <font color="red"> Tagihan Telah Dibayarkan! </font> <br><br>
+                                    @if($trade_permit->pnbp->payment_status == 0)
+                                        <button type="submit" class="btn btn-success waves-effect">Simpan</button>&nbsp;
+                                        &nbsp;&nbsp;&nbsp;
+                                    @else
+                                        <font color="red"> Tagihan Telah Dibayarkan! </font> <br><br>
+                                    @endif
                                 @endif
-                            @endif
-                            <a href="{{ route('admin.pnbp.index') }}" class="btn btn-default">Kembali ke Daftar</a>
-                        </center>
-                    </div>
-                    
+                                <a href="{{ route('admin.pnbp.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                            </center>
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -153,37 +191,38 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script type="text/javascript">
-         $(document).ready(function(){
+        $(document).ready(function () {
 
-            $('#form-payment').submit(function(ev) {
+            $('#form-payment').submit(function (ev) {
                 var nominal = $('#nominal').val();
                 var pnbp_amount = $('#pnbp_amount').val();
-                var selisih =  parseInt(nominal) - parseInt(pnbp_amount);
-                if(selisih<0){
+                var selisih = parseInt(nominal) - parseInt(pnbp_amount);
+                if (selisih < 0) {
                     alert('Nominal kurang dari tagihan, silahkan bayar sesuai tagihan yang dibutuhkan!');
                     ev.preventDefault();
-                }else{
+                } else {
                     this.submit();
                 }
             });
 
-         });
-        function cekPayment (a) {
+        });
+
+        function cekPayment(a) {
             var select = $('#payment_method').val();
-            var form='';
-            if(select == 'transfer'){
+            var form = '';
+            if (select == 'transfer') {
                 form += '<div class="form-group"><label class="control-label">Nomor Transaksi</label><div class="col-sm-14"><input type="text" name="transaction_number" class="form-control" value="{{ old("transaction_number") }}" required></div></div>';
             }
             $('#formNumber').html(form);
         }
 
-        function cekKembalian (a) {
+        function cekKembalian(a) {
             var nominal = $('#nominal').val();
             var pnbp_amount = $('#pnbp_amount').val();
-            var selisih =  parseInt(nominal) - parseInt(pnbp_amount);
-            if(nominal == ''){
+            var selisih = parseInt(nominal) - parseInt(pnbp_amount);
+            if (nominal == '') {
                 $('#cash_back').val(0);
-            }else{
+            } else {
                 $('#cash_back').val(selisih);
             }
         }

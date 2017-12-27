@@ -129,6 +129,8 @@
                 <td>No.</td>
                 <td>Nama Jenis</td>
                 <td>Kuantiti</td>
+                <td>Persentase</td>
+                <td>Nilai Persentase (Rp)</td>
                 <td>Tarif (Rp)</td>
                 <td>Jumlah Bayar (Rp)</td>
             </tr>
@@ -137,16 +139,21 @@
             <tbody>
             @foreach ($tradePermit->tradePermit->tradeSpecies as $value)
                 @if($tradePermit->valid_renewal == $value->pivot->valid_renewal)
+                    @php
+                    $tradePermit = \App\TradePermit::where('id', '=', $value->pivot->trade_permit_id)->first();
+                    @endphp
                 <tr>
                     <td align="center">{{ $loop->iteration }}</td>
                     <td>{{ $value->species_scientific_name }}</td>
                     <td align="center">{{ $value->pivot->total_exported }}</td>
+                    <td align="center">{{ $tradePermit->pnbp->percentage_value }}%</td>
+                    <td align="center">{{ number_format($value->pivot->total_exported * ($value->nominal * ($tradePermit->pnbp->percentage_value / 100)), 0, ',', '.') }}</td>
                     <td align="right">{{ number_format($value->nominal) }}</td>
-                    <td align="right">{{ number_format(($value->nominal * $value->pivot->total_exported)) }}</td>
+                    <td align="right">{{ number_format($value->nominal + ($value->pivot->total_exported * ($value->nominal * ($tradePermit->pnbp->percentage_value / 100)))) }}</td>
                 </tr>
                 @php
                 $total[] = $value->nominal;
-                $subtotal[] = $value->nominal * $value->pivot->total_exported;
+                $subtotal[] = array_sum($total) + ($value->pivot->total_exported * ($value->nominal * ($tradePermit->pnbp->percentage_value / 100)));
                 $total_exported[] = $value->pivot->total_exported;
                 $no = $loop->iteration + 1;
                 @endphp
@@ -154,8 +161,7 @@
             @endforeach
             <tr>
                 <td align="center"> {{ $no }} </td>
-                <td> EA/EB </td>
-                <td align="center"></td>
+                <td colspan="4"> EA/EB </td>
                 <td align="right">{{ number_format(100000) }}</td>
                 <td align="right">{{ number_format(100000) }}</td>
             </tr>
@@ -163,9 +169,7 @@
                 $subtotal[] = 100000;
             @endphp
             <tr>
-                <td colspan="2" align="center">JUMLAH</td>
-                <td align="center">{{ array_sum($total_exported) }}</td>
-                <td align="right">{{ number_format(array_sum($total)) }}</td>
+                <td colspan="6" align="center">JUMLAH</td>
                 <td align="right">{{ number_format(array_sum($subtotal)) }}</td>
             </tr>
             </tbody>
@@ -199,7 +203,7 @@
             </tr>
             <tr>
                 <td>KRISNA RYA</td>
-                <td>ZULKIFLI HASAN</td>
+                <td>SITI NURBAYA</td>
             </tr>
         </table>
     </div>

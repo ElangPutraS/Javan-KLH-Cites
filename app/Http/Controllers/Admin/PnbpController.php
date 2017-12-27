@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\PnbpUpdateRequest;
 use App\Http\Requests\PnbpPaymentRequest;
 use App\LogTradePermit;
+use App\Percentage;
 use App\Pnbp;
 use App\TradePermit;
 use App\TradePermitStatus;
@@ -21,8 +22,9 @@ class PnbpController extends Controller
         $trade_permits = TradePermit::whereHas('tradeStatus', function ($query) {
             $query->where('status_code', '200');
         })->where('is_printed', '=', 1)->orderBy('trade_permit_code', 'asc')->paginate(10);
+        $percentages = Percentage::all();
 
-        return view('admin.pnbp.index', compact('trade_permits'));
+        return view('admin.pnbp.index', compact('trade_permits', 'percentages'));
     }
 
     public function show($id)
@@ -36,8 +38,9 @@ class PnbpController extends Controller
             $id = substr($pnbp_last->pnbp_code,0,5) + 1;
         }
         $pnbp_code      =   $this->getCode($id);
+        $percentages = Percentage::all();
 
-        return view('admin.pnbp.create', compact('trade_permit', 'pnbp_code'));
+        return view('admin.pnbp.create', compact('trade_permit', 'pnbp_code', 'percentages'));
     }
 
     public function store(PnbpUpdateRequest $request, $id)
@@ -48,6 +51,9 @@ class PnbpController extends Controller
         $pnbp=new Pnbp([
             'pnbp_code'     => $request->get('pnbp_code'),
             'pnbp_amount'   => $request->get('pnbp_amount'),
+            'percentage_value' => $request->get('percentage_value'),
+            'pnbp_percentage_amount' => $request->get('pnbp_percentage_amount'),
+            'pnbp_sub_amount'   => $request->get('pnbp_sub_amount'),
             'created_by'    => $request->user()->id,
             'updated_by'    => $request->user()->id,
         ]);
@@ -76,6 +82,8 @@ class PnbpController extends Controller
             'country_destination'       => $trade_permit->country_destination,
             'country_exportation'       => $trade_permit->country_exportation,
             'consignee_address'         => $trade_permit->consignee_address,
+            'stamp' => $trade_permit->stamp,
+            'is_printed' => $trade_permit->is_printed
         ]);
         $trade_permit->logTrade()->save($log);
 
@@ -85,8 +93,9 @@ class PnbpController extends Controller
     public function showPayment($id)
     {
         $trade_permit   =   TradePermit::findOrFail($id);
+        $percentages = Percentage::all();
         
-        return view('admin.pnbp.payment', compact('trade_permit'));
+        return view('admin.pnbp.payment', compact('trade_permit', 'percentages'));
     }
 
     public function storePayment(PnbpPaymentRequest $request, $id)
@@ -119,6 +128,8 @@ class PnbpController extends Controller
             'country_destination'       => $trade_permit->country_destination,
             'country_exportation'       => $trade_permit->country_exportation,
             'consignee_address'         => $trade_permit->consignee_address,
+            'stamp' => $trade_permit->stamp,
+            'is_printed' => $trade_permit->is_printed
         ]);
         $trade_permit->logTrade()->save($log);
 
