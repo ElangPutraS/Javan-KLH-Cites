@@ -335,14 +335,39 @@ class ReportController extends Controller
                 $owner_name = '%'.$request->input('o').'%';
             }
 
-            $users = User::whereHas('roles', function ($q) {
-                $q->where('id', '=', 2);
-            })->whereHas('company',  function ($q) {
-                $q->where('company_status', '=', 1);
-            })->whereHas('company',  function ($q) use($company_name, $owner_name) {
-                $q->where('company_name', 'like', $company_name)
-                ->orWhere('owner_name', 'like', $owner_name);
-            })->paginate(10);
+            if($request->input('df') != '' && $request->input('du') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
+
+                $users = User::whereHas('roles', function ($q) {
+                    $q->where('id', '=', 2);
+                })->whereHas('company',  function ($q) {
+                    $q->where('company_status', '=', 1);
+                })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
+                    $q->where('company_name', 'like', $company_name)
+                        ->orWhere('owner_name', 'like', $owner_name)
+                        ->orWhereBetween('created_at', [$date_from , $date_until]);
+                })->paginate(10);
+            }else {
+                if($request->input('df') != ''){
+                    $date_from = $request->input('df');
+                }
+
+                if($request->input('du') != '') {
+                    $date_until = $request->input('du');
+                }
+
+                $users = User::whereHas('roles', function ($q) {
+                    $q->where('id', '=', 2);
+                })->whereHas('company',  function ($q) {
+                    $q->where('company_status', '=', 1);
+                })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
+                    $q->where('company_name', 'like', $company_name)
+                        ->orWhere('owner_name', 'like', $owner_name)
+                        ->orWhereDate('date_submission', '=', $date_from)
+                        ->orWhereDate('date_submission', '=', $date_until);
+                })->paginate(10);
+            }
         }
 
         return view('admin.report.investation', compact('users'));
