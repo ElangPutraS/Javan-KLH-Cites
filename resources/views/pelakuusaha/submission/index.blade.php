@@ -100,7 +100,7 @@
                         </table>
                     </div>
 
-                    {!! $trade_permits->links('vendor.pagination.bootstrap-4') !!}
+                    {!! $trade_permits->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>

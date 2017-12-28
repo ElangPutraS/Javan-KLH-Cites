@@ -130,17 +130,15 @@
 @push('body.script')
     <script type="text/javascript">
         $(document).ready(function () {
-            $(document).ready(function () {
-                $('#form-search').submit(function (ev) {
-                    ev.preventDefault();
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
 
-                    var company_name = $('#company_name').val();
-                    var owner_name = $('#owner_name').val();
-                    var date_from = $('#date_from').val();
-                    var date_until = $('#date_until').val();
+                var company_name = $('#company_name').val();
+                var owner_name = $('#owner_name').val();
+                var date_from = $('#date_from').val();
+                var date_until = $('#date_until').val();
 
-                    location.href = '?company_name=' + company_name + '&owner_name=' + owner_name + '&date_from=' + date_from + '&date_until=' + date_until;
-                });
+                location.href = '?company_name=' + company_name + '&owner_name=' + owner_name + '&date_from=' + date_from + '&date_until=' + date_until;
             });
         });
     </script>
