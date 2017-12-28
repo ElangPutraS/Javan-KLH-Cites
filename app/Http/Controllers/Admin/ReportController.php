@@ -328,8 +328,8 @@ class ReportController extends Controller
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
-            $company_name = '%'.$request->input('c').'%';
-            $owner_name = '%'.$request->input('o').'%';
+            $company_name = '%'.$request->input('company_name').'%';
+            $owner_name = '%'.$request->input('owner_name').'%';
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
@@ -376,8 +376,8 @@ class ReportController extends Controller
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
-            $company_name = '%'.$request->input('c').'%';
-            $owner_name = '%'.$request->input('o').'%';
+            $company_name = '%'.$request->input('company_name').'%';
+            $owner_name = '%'.$request->input('owner_name').'%';
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
@@ -426,8 +426,8 @@ class ReportController extends Controller
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
-            $company_name = '%'.$request->input('c').'%';
-            $owner_name = '%'.$request->input('o').'%';
+            $company_name = '%'.$request->input('company_name').'%';
+            $owner_name = '%'.$request->input('owner_name').'%';
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
@@ -474,8 +474,8 @@ class ReportController extends Controller
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
-            $company_name = '%'.$request->input('c').'%';
-            $owner_name = '%'.$request->input('o').'%';
+            $company_name = '%'.$request->input('company_name').'%';
+            $owner_name = '%'.$request->input('owner_name').'%';
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
