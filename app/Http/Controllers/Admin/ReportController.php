@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Percentage;
 use App\User;
+use Carbon\Carbon;
 use PDF;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -320,20 +321,15 @@ class ReportController extends Controller
         $company_name = '';
         $owner_name = '';
 
-        if($request->input('c') == '' && $request->input('o') == '' || $request->input('c') == null && $request->input('o') == null ){
+        if($request->input('c') == '' && $request->input('o') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('o') == null && $request->input('df') == null && $request->input('du') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $company_name = '%'.$request->input('c').'%';;
-            }
-
-            if($request->input('o') != ''){
-                $owner_name = '%'.$request->input('o').'%';
-            }
+            $company_name = '%'.$request->input('c').'%';
+            $owner_name = '%'.$request->input('o').'%';
 
             if($request->input('df') != '' && $request->input('du') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
@@ -345,17 +341,12 @@ class ReportController extends Controller
                     $q->where('company_status', '=', 1);
                 })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
                     $q->where('company_name', 'like', $company_name)
-                        ->orWhere('owner_name', 'like', $owner_name)
-                        ->orWhereBetween('created_at', [$date_from , $date_until]);
+                        ->where('owner_name', 'like', $owner_name)
+                        ->whereBetween('created_at', [$date_from , $date_until]);
                 })->paginate(10);
             }else {
-                if($request->input('df') != ''){
-                    $date_from = $request->input('df');
-                }
-
-                if($request->input('du') != '') {
-                    $date_until = $request->input('du');
-                }
+                $date_from = '%'.$request->input('df').'%';
+                $date_until = '%'.$request->input('du').'%';
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -363,9 +354,9 @@ class ReportController extends Controller
                     $q->where('company_status', '=', 1);
                 })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
                     $q->where('company_name', 'like', $company_name)
-                        ->orWhere('owner_name', 'like', $owner_name)
-                        ->orWhereDate('date_submission', '=', $date_from)
-                        ->orWhereDate('date_submission', '=', $date_until);
+                        ->where('owner_name', 'like', $owner_name)
+                        ->whereDate('created_at', 'like', $date_from)
+                        ->whereDate('created_at', 'like', $date_until);
                 })->paginate(10);
             }
         }
@@ -378,29 +369,44 @@ class ReportController extends Controller
         $company_name = '';
         $owner_name = '';
 
-        if($request->input('c') == '' && $request->input('o') == '' || $request->input('c') == null && $request->input('o') == null ){
+        if($request->input('c') == '' && $request->input('o') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('o') == null && $request->input('df') == null && $request->input('du') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $company_name = '%'.$request->input('c').'%';;
-            }
+            $company_name = '%'.$request->input('c').'%';
+            $owner_name = '%'.$request->input('o').'%';
 
-            if($request->input('o') != ''){
-                $owner_name = '%'.$request->input('o').'%';
-            }
+            if($request->input('df') != '' && $request->input('du') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
 
-            $users = User::whereHas('roles', function ($q) {
-                $q->where('id', '=', 2);
-            })->whereHas('company',  function ($q) {
-                $q->where('company_status', '=', 1);
-            })->whereHas('company',  function ($q) use($company_name, $owner_name) {
-                $q->where('company_name', 'like', $company_name)
-                    ->orWhere('owner_name', 'like', $owner_name);
-            })->paginate(10);
+                $users = User::whereHas('roles', function ($q) {
+                    $q->where('id', '=', 2);
+                })->whereHas('company',  function ($q) {
+                    $q->where('company_status', '=', 1);
+                })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
+                    $q->where('company_name', 'like', $company_name)
+                        ->where('owner_name', 'like', $owner_name)
+                        ->whereBetween('created_at', [$date_from , $date_until]);
+                })->paginate(10);
+            }else {
+                $date_from = '%'.$request->input('df').'%';
+                $date_until = '%'.$request->input('du').'%';
+
+                $users = User::whereHas('roles', function ($q) {
+                    $q->where('id', '=', 2);
+                })->whereHas('company',  function ($q) {
+                    $q->where('company_status', '=', 1);
+                })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
+                    $q->where('company_name', 'like', $company_name)
+                        ->where('owner_name', 'like', $owner_name)
+                        ->whereDate('created_at', 'like', $date_from)
+                        ->whereDate('created_at', 'like', $date_until);
+                })->paginate(10);
+            }
         }
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
@@ -413,29 +419,44 @@ class ReportController extends Controller
         $company_name = '';
         $owner_name = '';
 
-        if($request->input('c') == '' && $request->input('o') == '' || $request->input('c') == null && $request->input('o') == null ){
+        if($request->input('c') == '' && $request->input('o') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('o') == null && $request->input('df') == null && $request->input('du') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $company_name = '%'.$request->input('c').'%';;
-            }
+            $company_name = '%'.$request->input('c').'%';
+            $owner_name = '%'.$request->input('o').'%';
 
-            if($request->input('o') != ''){
-                $owner_name = '%'.$request->input('o').'%';
-            }
+            if($request->input('df') != '' && $request->input('du') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
 
-            $users = User::whereHas('roles', function ($q) {
-                $q->where('id', '=', 2);
-            })->whereHas('company',  function ($q) {
-                $q->where('company_status', '=', 1);
-            })->whereHas('company',  function ($q) use($company_name, $owner_name) {
-                $q->where('company_name', 'like', $company_name)
-                    ->orWhere('owner_name', 'like', $owner_name);
-            })->paginate(10);
+                $users = User::whereHas('roles', function ($q) {
+                    $q->where('id', '=', 2);
+                })->whereHas('company',  function ($q) {
+                    $q->where('company_status', '=', 1);
+                })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
+                    $q->where('company_name', 'like', $company_name)
+                        ->where('owner_name', 'like', $owner_name)
+                        ->whereBetween('created_at', [$date_from , $date_until]);
+                })->paginate(10);
+            }else {
+                $date_from = '%'.$request->input('df').'%';
+                $date_until = '%'.$request->input('du').'%';
+
+                $users = User::whereHas('roles', function ($q) {
+                    $q->where('id', '=', 2);
+                })->whereHas('company',  function ($q) {
+                    $q->where('company_status', '=', 1);
+                })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
+                    $q->where('company_name', 'like', $company_name)
+                        ->where('owner_name', 'like', $owner_name)
+                        ->whereDate('created_at', 'like', $date_from)
+                        ->whereDate('created_at', 'like', $date_until);
+                })->paginate(10);
+            }
         }
 
         return view('admin.report.labor', compact('users'));
@@ -446,29 +467,44 @@ class ReportController extends Controller
         $company_name = '';
         $owner_name = '';
 
-        if($request->input('c') == '' && $request->input('o') == '' || $request->input('c') == null && $request->input('o') == null ){
+        if($request->input('c') == '' && $request->input('o') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('o') == null && $request->input('df') == null && $request->input('du') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
                 $q->where('company_status', '=', 1);
             })->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $company_name = '%'.$request->input('c').'%';;
-            }
+            $company_name = '%'.$request->input('c').'%';
+            $owner_name = '%'.$request->input('o').'%';
 
-            if($request->input('o') != ''){
-                $owner_name = '%'.$request->input('o').'%';
-            }
+            if($request->input('df') != '' && $request->input('du') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
 
-            $users = User::whereHas('roles', function ($q) {
-                $q->where('id', '=', 2);
-            })->whereHas('company',  function ($q) {
-                $q->where('company_status', '=', 1);
-            })->whereHas('company',  function ($q) use($company_name, $owner_name) {
-                $q->where('company_name', 'like', $company_name)
-                    ->orWhere('owner_name', 'like', $owner_name);
-            })->paginate(10);
+                $users = User::whereHas('roles', function ($q) {
+                    $q->where('id', '=', 2);
+                })->whereHas('company',  function ($q) {
+                    $q->where('company_status', '=', 1);
+                })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
+                    $q->where('company_name', 'like', $company_name)
+                        ->where('owner_name', 'like', $owner_name)
+                        ->whereBetween('created_at', [$date_from , $date_until]);
+                })->paginate(10);
+            }else {
+                $date_from = '%'.$request->input('df').'%';
+                $date_until = '%'.$request->input('du').'%';
+
+                $users = User::whereHas('roles', function ($q) {
+                    $q->where('id', '=', 2);
+                })->whereHas('company',  function ($q) {
+                    $q->where('company_status', '=', 1);
+                })->whereHas('company',  function ($q) use($company_name, $owner_name, $date_from, $date_until) {
+                    $q->where('company_name', 'like', $company_name)
+                        ->where('owner_name', 'like', $owner_name)
+                        ->whereDate('created_at', 'like', $date_from)
+                        ->whereDate('created_at', 'like', $date_until);
+                })->paginate(10);
+            }
         }
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
