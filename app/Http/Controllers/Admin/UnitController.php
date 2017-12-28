@@ -16,16 +16,11 @@ class UnitController extends Controller
         if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
             $units = Unit::orderBy('unit_code', 'asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code = '%'.$request->input('c').'%';
-            }
-
-            if($request->input('n') != ''){
-                $name = '%'.$request->input('n').'%';
-            }
+            $code = '%'.$request->input('c').'%';
+            $name = '%'.$request->input('n').'%';
 
             $units = Unit::where('unit_code', 'like', $code)
-                ->orWhere('unit_description', 'like', $name)
+                ->where('unit_description', 'like', $name)
                 ->orderBy('unit_code')->paginate(10);
         }
 

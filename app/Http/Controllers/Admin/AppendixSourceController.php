@@ -16,16 +16,11 @@ class AppendixSourceController extends Controller
         if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
             $appendix_sources = AppendixSource::orderBy('appendix_source_code', 'asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code = '%'.$request->input('c').'%';
-            }
-
-            if($request->input('n') != ''){
-                $name = '%'.$request->input('n').'%';
-            }
+            $code = '%'.$request->input('c').'%';
+            $name = '%'.$request->input('n').'%';
 
             $appendix_sources = AppendixSource::where('appendix_source_code', 'like', $code)
-                ->orWhere('description', 'like', $name)
+                ->where('description', 'like', $name)
                 ->orderBy('appendix_source_code')->paginate(10);
         }
 
