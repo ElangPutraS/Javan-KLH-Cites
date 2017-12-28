@@ -16,12 +16,12 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-month">Kode Jenis Kegiatan</span>
-                            <input class="form-control" type="text" placeholder="Cari kode jenis kegiatan" name="purpose_type_code" id="purpose_type_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari kode jenis kegiatan" name="purpose_type_code" id="purpose_type_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-year">Nama Jenis Kegiatan</span>
-                            <input class="form-control" placeholder="Cari nama jenis kegiatan" type="text" name="purpose_type_name" id="purpose_type_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control" placeholder="Cari nama jenis kegiatan" type="text" name="purpose_type_name" id="purpose_type_name" value="@if(Request::input('name')){{Request::input('name')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-2" role="group" aria-label="...">
@@ -93,7 +93,7 @@
                 var code = $('#purpose_type_code').val();
                 var name = $('#purpose_type_name').val();
 
-                location.href = '?c=' + code + '&n=' + name;
+                location.href = '?code=' + code + '&name=' + name;
             });
         });
 

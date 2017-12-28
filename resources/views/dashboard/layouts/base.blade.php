@@ -274,7 +274,7 @@
                                             class="zmdi zmdi-collection-item zmdi-hc-fw"></i> Satuan Spesies</a></li>
                         </ul>
                     </li>
-                    <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln') navigation__sub--active navigation__sub--toggled @endif">
+                    <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln' || Request::segment(2)=='reportInvestation' || Request::segment(2)=='reportLabor') navigation__sub--active navigation__sub--toggled @endif">
                         <a href=""><i class="zmdi zmdi-book zmdi-hc-fw"></i>Laporan</a>
                         <ul>
                             <li @if(request()->segment(2) =='reportPnbp') class="navigation__active" @endif><a
@@ -283,6 +283,12 @@
                             <li @if(request()->segment(2) == 'reportSatsln') class="navigation__active" @endif><a
                                         href="{{ route('admin.report.satsln') }}"><i
                                             class="zmdi zmdi-chart zmdi-hc-fw"></i> Laporan SATS-LN</a></li>
+                            <li @if(request()->segment(2) == 'reportInvestation') class="navigation__active" @endif><a
+                                        href="{{ route('admin.report.investation') }}"><i
+                                            class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Laporan Investasi</a></li>
+                            <li @if(request()->segment(2) == 'reportLabor') class="navigation__active" @endif><a
+                                        href="{{ route('admin.report.labor') }}"><i
+                                            class="zmdi zmdi-assignment-check zmdi-hc-fw"></i> Laporan Serapan Tenaga Kerja</a></li>
                         </ul>
                     </li>
 

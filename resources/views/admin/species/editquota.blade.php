@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Kelola Kuota Spesies & HS</h1>
+                <h1>Kelola Kuota Ekspor Nasional Spesies & HS</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Ubah Kuota Species {{$species->species_indonesia_name}}</h2>
+                    <h2 class="card-title">Ubah Kuota Ekspor Nasional Species {{$species->species_indonesia_name}}</h2>
                     <small class="card-subtitle">({{$species->species_scientific_name}})</small>
                 </div>
                 <div class="card-block">

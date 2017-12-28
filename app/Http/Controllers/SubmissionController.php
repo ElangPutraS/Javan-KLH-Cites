@@ -28,23 +28,23 @@ class SubmissionController extends Controller
         $date_from = '';
         $date_until = '';
 
-        if($request->input('c') == '' && $request->input('p') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('p') == null && $request->input('df') == null && $request->input('du') == null ){
+        if($request->input('code') == '' && $request->input('period') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('code') == null && $request->input('period') == null && $request->input('date_from') == null && $request->input('date_until') == null ){
             $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->orderBy('created_at', 'desc')->paginate(10);
         }else{
-            $code = '%'.$request->input('c').'%';
-            $period = '%'.$request->input('p').'%';
+            $code = '%'.$request->input('code').'%';
+            $period = '%'.$request->input('period').'%';
 
-            if($request->input('df') != '' && $request->input('du') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
+            if($request->input('date_from') != '' && $request->input('date_until') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
 
                 $trade_permits = TradePermit::where('trade_permit_code', 'like', $code)
                     ->where('period', 'like', $period)
                     ->whereBetween('date_submission', [$date_from , $date_until ])
                     ->orderBy('created_at', 'desc')->paginate(10);
             }else {
-                $date_from = '%'.$request->input('df').'%';
-                $date_until = '%'.$request->input('du').'%';
+                $date_from = '%'.$request->input('date_from').'%';
+                $date_until = '%'.$request->input('date_until').'%';
 
                 $trade_permits = TradePermit::where('trade_permit_code', 'like', $code)
                     ->where('period', 'like' , $period)

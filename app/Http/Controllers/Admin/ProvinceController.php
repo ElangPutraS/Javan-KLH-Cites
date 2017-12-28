@@ -23,11 +23,11 @@ class ProvinceController extends Controller
         $code = '';
         $name = '';
 
-        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
             $provinces = Province::orderBy('province_name', 'asc')->paginate(10);
         }else{
-            $code = '%'.$request->input('c').'%';
-            $name = '%'.$request->input('n').'%';
+            $code = '%'.$request->input('code').'%';
+            $name = '%'.$request->input('name').'%';
 
             $provinces = Province::where('province_code', 'like', $code)
                 ->where('province_name', 'like', $name)

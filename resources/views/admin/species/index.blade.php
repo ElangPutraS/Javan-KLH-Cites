@@ -13,14 +13,54 @@
             </div>
 
             <div class="card-block">
+                <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                    <div class="input-group col-sm-3">
+                        <span class="input-group-addon" id="basic-month">Kode HS</span>
+                        <input class="form-control" type="text" placeholder="Cari kode HS.." name="hs_code" id="hs_code" value="@if(Request::input('hs_code')){{Request::input('hs_code')}} @endif">
+                    </div>
+
+                    <div class="input-group col-sm-3">
+                        <span class="input-group-addon" id="basic-year">Kode SP</span>
+                        <input class="form-control" placeholder="Cari kode sp.." type="text" name="sp_code" id="sp_code" value="@if(Request::input('sp_code')){{Request::input('sp_code')}} @endif">
+                    </div>
+
+                    <div class="input-group col-sm-4">
+                        <span class="input-group-addon" id="basic-month">Komoditas</span>
+                        <input class="form-control" type="text" placeholder="Cari komoditas.." name="category" id="category" value="@if(Request::input('category')){{Request::input('category')}} @endif">
+                    </div>
+
+                    <br><br><br>
+
+                    <div class="input-group col-sm-3">
+                        <span class="input-group-addon" id="basic-month">Nama Ilmiah</span>
+                        <input class="form-control" type="text" placeholder="Cari nama ilmiah.." name="scientific_name" id="scientific_name" value="@if(Request::input('scientific_name')){{Request::input('scientific_name')}} @endif">
+                    </div>
+
+                    <div class="input-group col-sm-3">
+                        <span class="input-group-addon" id="basic-year">Nama Indonesia</span>
+                        <input class="form-control" placeholder="Cari nama indonesia.." type="text" name="indonesia_name" id="indonesia_name" value="@if(Request::input('indonesia_name')){{Request::input('indonesia_name')}} @endif">
+                    </div>
+
+                    <div class="input-group col-sm-4">
+                        <span class="input-group-addon" id="basic-month">Nama Umum</span>
+                        <input class="form-control" type="text" placeholder="Cari nama umum.." name="general_name" id="general_name" value="@if(Request::input('general_name')){{Request::input('general_name')}} @endif">
+                    </div>
+
+                    <div class="btn-group col-sm-1" role="group" aria-label="...">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                        </button>
+                    </div>
+                </form>
                 @include('includes.notifications')
-                <a href="{{ route('admin.species.createSpecies') }}" class="btn btn-primary">Tambah Baru</a>
+                <br><a href="{{ route('admin.species.createSpecies') }}" class="btn btn-primary">Tambah Baru</a>
                 <hr>
                 <div class="table-responsive">
                     <table class="table table-bordered table-sm">
                         <thead class="thead-default">
                         <tr>
                             <th>No</th>
+                            <th>HS Code</th>
+                            <th>SP Code</th>
                             <th>Nama Ilmiah</th>
                             <th>Nama Indonesia</th>
                             <th>Nama Umum</th>
@@ -36,6 +76,8 @@
                             @forelse($species as $spec)
                             <tr>
                                 <td>{{ (($species->currentPage() - 1 ) * $species->perPage() ) + $loop->iteration }}</td>
+                                <td>{{$spec->hs_code}}</td>
+                                <td>{{$spec->sp_code}}</td>
                                 <td><i>{{$spec->species_scientific_name}}</i></td>
                                 <td>{{$spec->species_indonesia_name}}</td>
                                 <td>{{$spec->species_general_name}}</td>
@@ -79,7 +121,7 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $species->links('vendor.pagination.bootstrap-4') }}
+                {{ $species->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
 
@@ -88,6 +130,21 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var hs_code = $('#hs_code').val();
+                var sp_code = $('#sp_code').val();
+                var category = $('#category').val();
+                var scientific_name = $('#scientific_name').val();
+                var indonesia_name = $('#indonesia_name').val();
+                var general_name = $('#general_name').val();
+
+                location.href = '?hs_code=' + hs_code + '&sp_code=' + sp_code + '&category=' + category + '&scientific_name=' + scientific_name + '&indonesia_name=' + indonesia_name + '&general_name=' + general_name;
+            });
+        });
+
         function deleteSpecies(a) {
             var id=a.getAttribute('data-id');
             swal({
