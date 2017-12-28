@@ -4,12 +4,12 @@
     <section class="content">
         <div class="content__inner">
             <header class="content__title">
-                <h1>Kelola Kuota Spesies & HS</h1>
+                <h1>Kelola Kuota Ekspor Perusahaan</h1>
             </header>
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Tambah Kuota Perusahaan</h2>
+                    <h2 class="card-title">Tambah Kuota Ekspor Perusahaan</h2>
                     <small class="card-subtitle">({{$company->company_name}})</small>
                 </div>
                 <div class="card-block">

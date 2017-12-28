@@ -16,12 +16,12 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-month">Kode Kabupaten/Kota</span>
-                            <input class="form-control" type="text" placeholder="Cari kode Kabupaten/Kota.." name="city_code" id="city_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari kode Kabupaten/Kota.." name="city_code" id="city_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Nama Kabupaten/Kota</span>
-                            <input class="form-control" placeholder="Cari nama Kabupaten/Kota.." type="text" name="city_name" id="city_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control" placeholder="Cari nama Kabupaten/Kota.." type="text" name="city_name" id="city_name" value="@if(Request::input('name')){{Request::input('name')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-2" role="group" aria-label="...">
@@ -96,7 +96,7 @@
                 var code = $('#city_code').val();
                 var name = $('#city_name').val();
 
-                location.href = '?c=' + code + '&n=' + name;
+                location.href = '?code=' + code + '&name=' + name;
             });
         });
 

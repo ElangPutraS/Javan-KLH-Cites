@@ -16,7 +16,7 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-6">
                             <span class="input-group-addon" id="basic-year">Nama Tipe Identitas</span>
-                            <input class="form-control" placeholder="Cari nama tipe identitas" type="text" name="identity_name" id="identity_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control" placeholder="Cari nama tipe identitas" type="text" name="identity_name" id="identity_name" value="@if(Request::input('name')){{Request::input('name')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-2" role="group" aria-label="...">
@@ -83,7 +83,7 @@
 
                 var name = $('#identity_name').val();
 
-                location.href = '?n=' + name;
+                location.href = '?name=' + name;
             });
         });
 

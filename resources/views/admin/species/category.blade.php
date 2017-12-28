@@ -16,12 +16,12 @@
                 <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                     <div class="input-group col-sm-5">
                         <span class="input-group-addon" id="basic-month">Kode Kategori</span>
-                        <input class="form-control" type="text" placeholder="Cari kode kategori spesies" name="category_code" id="category_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                        <input class="form-control" type="text" placeholder="Cari kode kategori spesies" name="category_code" id="category_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
                     </div>
 
                     <div class="input-group col-sm-5">
                         <span class="input-group-addon" id="basic-year">Nama Kategori</span>
-                        <input class="form-control" placeholder="Cari nama kategori spesies" type="text" name="category_name" id="category_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                        <input class="form-control" placeholder="Cari nama kategori spesies" type="text" name="category_name" id="category_name" value="@if(Request::input('name')){{Request::input('name')}} @endif">
                     </div>
 
                     <div class="btn-group col-sm-2" role="group" aria-label="...">
@@ -78,7 +78,7 @@
                 var code = $('#category_code').val();
                 var name = $('#category_name').val();
 
-                location.href = '?c=' + code + '&n=' + name;
+                location.href = '?code=' + code + '&name=' + name;
             });
         });
 
