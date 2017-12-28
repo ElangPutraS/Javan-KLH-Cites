@@ -87,6 +87,7 @@
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No.</th>
+                                <th>Tanggal Pendaftaran</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Nama Pemilik Usaha</th>
                                 <th>Jumlah Serapan Tenaga Kerja</th>
@@ -96,6 +97,7 @@
                             @forelse($users as $user)
                                 <tr>
                                     <td>{{ (($users->currentPage() - 1 ) * $users->perPage() ) + $loop->iteration }}</td>
+                                    <td>{{ $user->company->created_at->toFormattedDateString() }}</td>
                                     <td>{{ $user->company->company_name }}</td>
                                     <td>{{ $user->company->owner_name }}</td>
                                     <td>{{ $user->company->labor_total }} orang</td>
