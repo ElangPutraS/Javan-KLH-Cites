@@ -394,12 +394,16 @@
             var jumlah = parseInt('{{$no - 1}}');
             var status = false;
             for(var a = 1; a<=jumlah; a++){
-                if( parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()) ==  parseInt($('#exported'+a).val())){
-                    //alert(parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()));
-                    status = true;
+                if($('#exported_before'+a).val() >= 0 && $('#exported_now'+a).val() >= 0){
+                    if( parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()) ==  parseInt($('#exported'+a).val())){
+                        //alert(parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()));
+                        status = true;
+                    }else{
+                        status = false;
+                        break;
+                    }
                 }else{
                     status = false;
-                    break;
                 }
 
             }

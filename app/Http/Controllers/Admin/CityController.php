@@ -27,16 +27,11 @@ class CityController extends Controller
         if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
             $cities = City::orderBy('city_name', 'asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code2 = '%'.$request->input('c').'%';
-            }
-
-            if($request->input('n') != ''){
-                $name2 = '%'.$request->input('n').'%';
-            }
+            $code = '%'.$request->input('c').'%';
+            $name = '%'.$request->input('n').'%';
 
             $cities = City::where('city_code', 'like', $code)
-                ->orWhere('city_name_full', 'like', $name)
+                ->where('city_name_full', 'like', $name)
                 ->orderBy('city_name')->paginate(10);
         }
 
