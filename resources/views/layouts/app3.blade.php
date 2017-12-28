@@ -156,12 +156,6 @@
                     <a class="btn btn-success btn-lg" href="{{ route('login') }}">Masuk</a>
                 @endif
             @else
-                <a class="btn btn-danger btn-lg" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-	                                                     document.getElementById('logout-form').submit();">
-                    Keluar
-                </a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                       style="display: none;">
                     {{ csrf_field() }}
