@@ -204,10 +204,11 @@ class SubmissionVerificationController extends Controller
         $trade_permit = TradePermit::findOrFail($id);
 
         if($trade_permit->is_renewal == 1){
-            $valid_start = Carbon::parse($trade_permit->valid_until)->format('Y-m-d');
-            $valid_until = Carbon::now()->addMonth($request->get('period'))->format('Y-m-d');
+            $valid_start = Carbon::createFromFormat('Y-m-d', $trade_permit->valid_until);
+            $valid_until = Carbon::createFromFormat('Y-m-d', $trade_permit->valid_until)->addMonth($request->get('period'))->format('Y-m-d');
+
             $trade_permit->update([
-                'valid_start' => $valid_start,
+                'valid_start' => $valid_start->format('Y-m-d'),
                 'valid_until' => $valid_until,
                 'period'      => $request->get('period'),
                 'updated_by' => $request->user()->id

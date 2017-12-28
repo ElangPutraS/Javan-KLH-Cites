@@ -23,7 +23,7 @@
                             <tr>
                                 <th width="50px">No</th>
                                 <th>Kode Permohonan</th>
-                                <th width="150px">Tanggal Dibuat</th>
+                                <th width="150px">Masa Berlaku</th>
                                 <th>Penerima</th>
                                 <th>Periode</th>
                                 <th>Pelabuhan Ekspor</th>
