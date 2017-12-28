@@ -16,12 +16,12 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-month">Kode Appendiks</span>
-                            <input class="form-control" type="text" placeholder="Cari kode appendiks" name="appendix_code" id="appendix_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari kode appendiks" name="appendix_code" id="appendix_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Nama Appendiks</span>
-                            <input class="form-control" placeholder="Cari nama appendiks.." type="text" name="description" id="description" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control" placeholder="Cari nama appendiks.." type="text" name="description" id="description" value="@if(Request::input('name')){{Request::input('name')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-2" role="group" aria-label="...">
@@ -77,7 +77,7 @@
                 var code = $('#appendix_code').val();
                 var name = $('#description').val();
 
-                location.href = '?c=' + code + '&n=' + name;
+                location.href = '?code=' + code + '&name=' + name;
             });
         });
 
