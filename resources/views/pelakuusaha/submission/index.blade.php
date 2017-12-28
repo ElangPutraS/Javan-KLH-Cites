@@ -23,26 +23,25 @@
 
                         <div class="input-group col-sm-2">
                             <span class="input-group-addon" id="basic-year">Periode</span>
-                            <select name="period" id="period" class="form-control select2" onchange="getState(this)">
+                            <select name="period" id="period" class="form-control select2">
                                 <option value="">-- semua --</option>
-                                <option value="1"> 1 bulan</option>
-                                <option value="2"> 2 bulan</option>
-                                <option value="3"> 3 bulan</option>
-                                <option value="4"> 4 bulan</option>
-                                <option value="5"> 5 bulan</option>
-                                <option value="6"> 6 bulan</option>
-
+                                <option value="1" @if(request()->input('p') == 1) selected @endif> 1 bulan</option>
+                                <option value="2" @if(request()->input('p') == 2) selected @endif> 2 bulan</option>
+                                <option value="3" @if(request()->input('p') == 3) selected @endif> 3 bulan</option>
+                                <option value="4" @if(request()->input('p') == 4) selected @endif> 4 bulan</option>
+                                <option value="5" @if(request()->input('p') == 5) selected @endif> 5 bulan</option>
+                                <option value="6" @if(request()->input('p') == 6) selected @endif> 6 bulan</option>
                             </select>
                         </div>
 
                         <div class="input-group col-sm-3">
                             <span class="input-group-addon" id="basic-year">Tanggal Dibuat (dari)</span>
-                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('df')){{Request::input('df')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-3">
                             <span class="input-group-addon" id="basic-year">Tanggal Dibuat (sampai)</span>
-                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('du')){{Request::input('du')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-1" role="group" aria-label="...">
