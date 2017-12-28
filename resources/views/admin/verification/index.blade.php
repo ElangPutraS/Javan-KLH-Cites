@@ -13,16 +13,41 @@
             </div>
 
             <div class="card-block">
+                <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                    <div class="input-group col-sm-5">
+                        <span class="input-group-addon" id="basic-year">Nama Pemilik Usaha</span>
+                        <input class="form-control" placeholder="Cari nama pemilik usaha.." type="text" name="owner_name" id="owner_name" value="@if(Request::input('owner_name')){{Request::input('owner_name')}} @endif">
+                    </div>
 
+                    <div class="input-group col-sm-5">
+                        <span class="input-group-addon" id="basic-month">Nama Perusahaan</span>
+                        <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
+                    </div><br><br><br>
+
+                    <div class="input-group col-sm-5">
+                        <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (dari)</span>
+                        <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
+                    </div>
+
+                    <div class="input-group col-sm-5">
+                        <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (sampai)</span>
+                        <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
+                    </div>
+
+                    <div class="btn-group col-sm-1" role="group" aria-label="...">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                        </button>
+                    </div>
+                </form><br>
                 @include('includes.notifications')
 
                 <div class="table-responsive">
-                    <table id="data-table" class="table table-bordered">
+                    <table class="table table-bordered table-sm">
                         <thead class="thead-default">
                         <tr>
                             <th>No</th>
                             <th>Tanggal Register</th>
-                            <th>Nama Pelaku Usaha</th>
+                            <th>Nama Pemilik Usaha</th>
                             <th>Nama Usaha</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -33,7 +58,7 @@
                         <tr>
                             <td>{{ (($companies->currentPage() - 1 ) * $companies->perPage() ) + $loop->iteration }}</td>
                             <td>{{Carbon\Carbon::parse($company->created_at)->format('d-m-Y')}}</td>
-                            <td>{{$company->userProfile->user->name}}</td>
+                            <td>{{$company->owner_name}}</td>
                             <td>{{$company->company_name}}</td>
                             <td>
                                 @if($company->company_status == 0)
@@ -50,9 +75,25 @@
                         </tbody>
                     </table>
                 </div>
-                {{ $companies->links('vendor.pagination.bootstrap-4') }}
+                {{ $companies->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') }}
             </div>
         </div>
 
     </section>
 @endsection
+@push('body.script')
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var company_name = $('#company_name').val();
+                var owner_name = $('#owner_name').val();
+                var date_from = $('#date_from').val();
+                var date_until = $('#date_until').val();
+
+                location.href = '?company_name=' + company_name + '&owner_name=' + owner_name + '&date_from=' + date_from + '&date_until=' + date_until;
+            });
+        });
+    </script>
+@endpush

@@ -23,11 +23,6 @@ class SubmissionController extends Controller
 {
     public function index(Request $request)
     {
-        $code = '';
-        $period = '';
-        $date_from = '';
-        $date_until = '';
-
         if($request->input('code') == '' && $request->input('period') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('code') == null && $request->input('period') == null && $request->input('date_from') == null && $request->input('date_until') == null ){
             $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->orderBy('created_at', 'desc')->paginate(10);
         }else{
@@ -38,15 +33,15 @@ class SubmissionController extends Controller
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
                 $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
 
-                $trade_permits = TradePermit::where('trade_permit_code', 'like', $code)
-                    ->where('period', 'like', $period)
+                $trade_permits = TradePermit::where([['company_id', '=', $request->user()->company->id], ['trade_permit_code', 'like', $code], ['period', 'like', $period] ])
                     ->whereBetween('date_submission', [$date_from , $date_until ])
                     ->orderBy('created_at', 'desc')->paginate(10);
             }else {
                 $date_from = '%'.$request->input('date_from').'%';
                 $date_until = '%'.$request->input('date_until').'%';
 
-                $trade_permits = TradePermit::where('trade_permit_code', 'like', $code)
+                $trade_permits = TradePermit::where('company_id', $request->user()->company->id)
+                    ->where('trade_permit_code', 'like', $code)
                     ->where('period', 'like' , $period)
                     ->whereDate('date_submission', 'like', $date_from)
                     ->whereDate('date_submission', 'like', $date_until)
@@ -89,6 +84,7 @@ class SubmissionController extends Controller
     {
         //isi trade permit
         $trade_permit = new TradePermit([
+            'trade_permit_code'     => ' ',
             'consignee'             => $request->get('consignee'),
             'appendix_type'         => $request->get('appendix_type'),
             'date_submission'       => date('Y-m-d'),
