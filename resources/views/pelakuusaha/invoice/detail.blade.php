@@ -24,21 +24,26 @@
                         <div class="form-group">
                             <label class="control-label">Nama Pelaku Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user, 'name')) }}" readonly>
+                                <input type="text" name="name" class="form-control"
+                                       value="{{ old('name', array_get($user, 'name')) }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Nama Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) }}" readonly>
+                                <input type="text" name="company_name" class="form-control"
+                                       value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) }}"
+                                       readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Alamat Usaha</label>
                             <div class="col-sm-14">
-                                <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) }}" readonly>
+                                <input type="text" name="company_address" class="form-control"
+                                       value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) }}"
+                                       readonly>
                             </div>
                         </div>
 
@@ -48,49 +53,65 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Perdagangan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly>
+                                <input type="text" name="trading_type_id" class="form-control"
+                                       value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}"
+                                       readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Jenis Kegiatan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="purpose_type_id" class="form-control" value="{{ old('purpose_type_id', array_get($trade_permit->purposeType, 'purpose_type_name')) }}" readonly>
+                                <input type="text" name="purpose_type_id" class="form-control"
+                                       value="{{ old('purpose_type_id', array_get($trade_permit->purposeType, 'purpose_type_name')) }}"
+                                       readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Masa Berlaku</label>
                             <div class="col-sm-14">
-                                <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit, 'period')) }} Bulan" readonly>
+                                <input type="text" name="trading_type_id" class="form-control"
+                                       value="{{ old('trading_type_id', array_get($trade_permit, 'period')) }} Bulan"
+                                       readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Pelabuhan Ekspor</label>
                             <div class="col-sm-14">
-                                <input type="text" name="port_exportation" class="form-control" value="{{ old('port_exportation', array_get($trade_permit->portExpor, 'port_name')) }}" readonly>
+                                <input type="text" name="port_exportation" class="form-control"
+                                       value="{{ old('port_exportation', array_get($trade_permit->portExpor, 'port_name')) }}"
+                                       readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Pelabuhan Tujuan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="port_destination" class="form-control" value="{{ old('port_destination', array_get($trade_permit->portExpor, 'port_name')) }}" readonly>
+                                <input type="text" name="port_destination" class="form-control"
+                                       value="{{ old('port_destination', array_get($trade_permit->portExpor, 'port_name')) }}"
+                                       readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Penerima</label>
                             <div class="col-sm-14">
-                                <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" readonly>
+                                <input type="text" name="consignee" class="form-control"
+                                       value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label">Jenis Appendix</label>
                             <div class="col-sm-14">
-                                <input type="text" name="appendix_type" class="form-control" value="<?php if($trade_permit->appendix_type=='EA'){echo 'SATS-LN Site (EA)';}else{ echo 'SATS-LN Non Site (EB)';}?>" readonly>
+                                <input type="text" name="appendix_type" class="form-control"
+                                       value="<?php if ($trade_permit->appendix_type == 'EA') {
+                                           echo 'SATS-LN Site (EA)';
+                                       } else {
+                                           echo 'SATS-LN Non Site (EB)';
+                                       }?>" readonly>
                             </div>
                         </div>
 
@@ -107,7 +128,8 @@
                                         {{$document->pivot->document_name}}
                                     </div>
                                     <div class="col-sm-4">
-                                        <a href="{{$document->pivot->download_url}}">[ <i class="zmdi zmdi-download zmdi-hc-fw"></i> download ]</a>
+                                        <a href="{{$document->pivot->download_url}}">[ <i
+                                                    class="zmdi zmdi-download zmdi-hc-fw"></i> download ]</a>
                                     </div>
                                 </div>
                             </div>
@@ -125,40 +147,48 @@
                                         <tr>
                                             <th>No</th>
                                             <th>Nama Species</th>
-                                            <th>Jenis Kelamin</th>
+                                            <th>Deskripsi</th>
                                             <th>Jumlah Ekspor</th>
+                                            <th>Persentase</th>
+                                            <th>Nilai Persentase</th>
+                                            <th>Nilai Ekspor</th>
                                             <th>Jumlah Pembayaran</th>
                                         </tr>
                                         </thead>
                                         <tbody>
                                         <?php
-                                        $no=1;
-                                        $total=0;
+                                        $no = 1;
+                                        $total = [];
                                         ?>
                                         @foreach($trade_permit->tradeSpecies as $species)
                                             @if($trade_permit->permit_type == 1)
+                                                @php
+                                                $tradePermit = \App\TradePermit::findOrFail($species->pivot->trade_permit_id);
+                                                @endphp
                                                 <tr>
                                                     <td><?=$no++?></td>
-                                                    <td>{{$species->species_indonesia_name}} (<i>{{$species->species_scientific_name}}</i>)</td>
+                                                    <td>{{$species->species_indonesia_name}}
+                                                        (<i>{{$species->species_scientific_name}}</i>)
+                                                    </td>
                                                     <td>{{$species->species_description}}</td>
                                                     <td>{{$species->pivot->total_exported}}</td>
-                                                    <td>Rp. {{ number_format($species->pivot->total_exported * $species->nominal,2,',','.') }}</td>
+                                                    <th align="center">x{{ $tradePermit->pnbp->percentage_value ? $tradePermit->pnbp->percentage_value : 0 }}%</th>
+                                                    <td align="right">Rp. {{ number_format($species->pivot->total_exported * ($species->nominal * ($tradePermit->pnbp->percentage_value / 100)), 0, ',', '.') }}</td>
+                                                    <td align="right">Rp. {{ number_format($species->nominal * $species->pivot->total_exported, 0, ',', '.') }}</td>
+                                                    <td align="right">Rp. {{ number_format(($species->nominal * $species->pivot->total_exported) + ($species->pivot->total_exported * ($species->nominal * ($tradePermit->pnbp->percentage_value / 100))), 0, ',', '.') }}</td>
                                                 </tr>
-                                                <?php $total=$total+($species->pivot->total_exported * $species->nominal)?>
+                                                <?php $total[] = ($species->nominal * $species->pivot->total_exported) + ($species->pivot->total_exported * ($species->nominal * ($tradePermit->pnbp->percentage_value / 100))); ?>
                                             @endif
                                         @endforeach
-                                        <?php $total=$total+100000?>
                                         <tr>
                                             <td><?=$no++?></td>
-                                            <td>Blanko</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>Rp. {{ number_format(100000,2,',','.') }}</td>
+                                            <td colspan="6">Blanko</td>
+                                            <td align="right">Rp. {{ number_format(100000, 0, ',', '.') }}</td>
                                         </tr>
-
+                                        @php $total[] = 100000; @endphp
                                         <tr>
-                                            <td colspan="4" align="right"><b>Total Tagihan</b></td>
-                                            <td><b>Rp. {{ number_format($total,2,',','.') }}</b></td>
+                                            <td colspan="7" align="center"><b>Total Tagihan</b></td>
+                                            <td align="right"><b>Rp. {{ number_format(array_sum($total), 0, ',', '.') }}</b></td>
                                         </tr>
                                         </tbody>
                                     </table>
@@ -169,7 +199,8 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-14">
-                                <a href="{{ route('user.invoice.index') }}" class="btn btn-default">Kembali ke Daftar</a>
+                                <a href="{{ route('user.invoice.index') }}" class="btn btn-default">Kembali ke
+                                    Daftar</a>
                             </div>
                         </div>
                     </form>

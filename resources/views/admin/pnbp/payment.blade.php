@@ -154,7 +154,7 @@
                             <label class="control-label">Nominal Pembayaran</label>
                             <div class="col-sm-14">
                                 <input type="number" name="nominal" id="nominal" class="form-control"
-                                       value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" required>
+                                       value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000 }}" max="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 200000 }}" required>
                             </div>
                         </div>
 
