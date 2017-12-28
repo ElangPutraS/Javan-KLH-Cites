@@ -14,6 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
     <!-- Custom CSS -->
     <link href="{{ asset('css/small-business.css') }}" rel="stylesheet">
@@ -151,14 +152,10 @@
             <p>SATS-LN adalah surat angkut dari Kementerian Kehutanan untuk Tumbuhan Alam dan Satwa Liar yang tidak
                 dilindungi Undang-Undang dan termasuk dalam daftar CITES.</p>
             @guest
-                <a class="btn btn-success btn-lg" href="{{ route('login') }}">Masuk</a>
+                @if(!Request::is('login') && !Request::is('register'))
+                    <a class="btn btn-success btn-lg" href="{{ route('login') }}">Masuk</a>
+                @endif
             @else
-                <a class="btn btn-danger btn-lg" href="{{ route('logout') }}"
-                   onclick="event.preventDefault();
-	                                                     document.getElementById('logout-form').submit();">
-                    Keluar
-                </a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST"
                       style="display: none;">
                     {{ csrf_field() }}
@@ -230,10 +227,12 @@
 </footer>
 
 <!-- jQuery -->
-<script src="{{ asset('js/jquery-3.2.1.slim.min.js') }}"></script>
+<script src="{{ asset('template/vendors/bower_components/jquery/dist/jquery.min.js') }}"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('bootstrap/js/bootstrap.min.js') }}"></script>
+@stack('body.script')
 
 </body>
 

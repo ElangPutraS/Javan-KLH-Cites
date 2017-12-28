@@ -22,19 +22,14 @@ class PurposeTypeController extends Controller
         $code = '';
         $name = '';
 
-        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
             $purposetypes = PurposeType::orderBy('purpose_type_name', 'asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code = '%'.$request->input('c').'%';
-            }
-
-            if($request->input('n') != ''){
-                $name = '%'.$request->input('n').'%';
-            }
+            $code = '%'.$request->input('code').'%';
+            $name = '%'.$request->input('name').'%';
 
             $purposetypes = PurposeType::where('purpose_type_code', 'like', $code)
-                ->orWhere('purpose_type_name', 'like', $name)
+                ->where('purpose_type_name', 'like', $name)
                 ->orderBy('purpose_type_name')->paginate(10);
         }
 

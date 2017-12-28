@@ -18,8 +18,26 @@ use App\Http\Requests\SpeciesQuotaUpdateRequest;
 
 class SpeciesHSController extends Controller
 {
-    public function index(){
-        $species = Species::orderBy('species_scientific_name', 'asc')->paginate(10);
+    public function index(Request $request){
+        if($request->input('hs_code') == '' && $request->input('sp_code') == '' && $request->input('category') == '' && $request->input('scientific_name') == '' && $request->input('indonesia_name') == '' && $request->input('general_name') == '' || $request->input('hs_code') == null && $request->input('sp_code') == null && $request->input('category') == null && $request->input('scientific_name') == null && $request->input('indonesia_name') == null && $request->input('general_name') == null){
+            $species = Species::orderBy('species_scientific_name', 'asc')->paginate(10);
+        }else{
+            $hs_code='%'.$request->input('hs_code').'%';
+            $sp_code='%'.$request->input('sp_code').'%';
+            $category='%'.$request->input('category').'%';
+            $scientific_name='%'.$request->input('scientific_name').'%';
+            $indonesia_name='%'.$request->input('indonesia_name').'%';
+            $general_name='%'.$request->input('general_name').'%';
+
+            $species = Species::where('hs_code', 'like', $hs_code)
+                ->where('sp_code', 'like', $sp_code)
+                ->where('species_scientific_name', 'like', $scientific_name)
+                ->where('species_indonesia_name', 'like', $indonesia_name)
+                ->where('species_general_name', 'like', $general_name)
+                ->whereHas('speciesCategory',  function ($q) use($category) {
+                    $q->where('species_category_name', 'like', $category);
+                })->orderBy('species_scientific_name', 'asc')->paginate(10);
+        }
 
         return view('admin.species.index', compact('species'));
     }

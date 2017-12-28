@@ -15,19 +15,14 @@ class CategoriesController extends Controller
         $code = '';
         $name = '';
 
-        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
             $categories =Category::orderBy('species_category_name','asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code = '%'.$request->input('c').'%';
-            }
-
-            if($request->input('n') != ''){
-                $name = '%'.$request->input('n').'%';
-            }
+            $code = '%'.$request->input('code').'%';
+            $name = '%'.$request->input('name').'%';
 
             $categories = Category::where('species_category_code', 'like', $code)
-                ->orWhere('species_category_name', 'like', $name)
+                ->where('species_category_name', 'like', $name)
                 ->orderBy('species_category_name')->paginate(10);
         }
 

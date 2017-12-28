@@ -13,19 +13,14 @@ class UnitController extends Controller
         $code = '';
         $name = '';
 
-        if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
+        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
             $units = Unit::orderBy('unit_code', 'asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code = '%'.$request->input('c').'%';
-            }
-
-            if($request->input('n') != ''){
-                $name = '%'.$request->input('n').'%';
-            }
+            $code = '%'.$request->input('code').'%';
+            $name = '%'.$request->input('name').'%';
 
             $units = Unit::where('unit_code', 'like', $code)
-                ->orWhere('unit_description', 'like', $name)
+                ->where('unit_description', 'like', $name)
                 ->orderBy('unit_code')->paginate(10);
         }
 

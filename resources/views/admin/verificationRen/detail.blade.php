@@ -326,7 +326,7 @@
         function acceptTradePermit(a) {
             var period=$('#period').val();
             if(period > '0' && period <= 6){
-                if(cekListSpecies()){
+                if(cekListSpecies() == 'true'){
                     swal({
                         title: 'Apakah Anda Yakin?',
                         text: 'Akan memverifikasi permohonan pembaharuan SATSL-LN?',
@@ -336,6 +336,12 @@
                     }).then(function() {
                         $('#form-verification').submit();
                     });
+                }else if(cekListSpecies() == 'false1'){
+                    swal(
+                        'Oops...',
+                        'Jumlah realisasi sebelumnya dan ekspor baru tidak boleh kurang dari 0! ',
+                        'error'
+                    )
                 }else{
                     swal(
                         'Oops...',
@@ -392,16 +398,20 @@
 
         function cekListSpecies() {
             var jumlah = parseInt('{{$no - 1}}');
-            var status = false;
+            var status = 'false2';
             for(var a = 1; a<=jumlah; a++){
-                if( parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()) ==  parseInt($('#exported'+a).val())){
-                    //alert(parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()));
-                    status = true;
+                if($('#exported_before'+a).val() >= 0 && $('#exported_now'+a).val() >= 0){
+                    if( parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()) ==  parseInt($('#exported'+a).val())){
+                        //alert(parseInt($('#exported_before'+a).val()) +  parseInt($('#exported_now'+a).val()));
+                        status = 'true';
+                    }else{
+                        status = 'false2';
+                        break;
+                    }
                 }else{
-                    status = false;
+                    status = 'false1';
                     break;
                 }
-
             }
             return status;
         }

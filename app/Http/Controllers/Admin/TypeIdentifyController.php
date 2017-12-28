@@ -19,13 +19,10 @@ class TypeIdentifyController extends Controller
     {
         $name = '';
 
-        if( $request->input('n') == '' ||  $request->input('n') == null ){
+        if( $request->input('name') == '' ||  $request->input('name') == null ){
             $type_identify = TypeIdentify::orderBy('type_identify_name', 'asc')->paginate(10);
         }else{
-
-            if($request->input('n') != '') {
-                $name = '%' . $request->input('n') . '%';
-            }
+            $name = '%'.$request->input('name').'%';
 
             $type_identify = TypeIdentify::where('type_identify_name', 'like', $name)
                 ->orderBy('type_identify_name')->paginate(10);

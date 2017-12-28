@@ -16,12 +16,12 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-month">Kode Satuan</span>
-                            <input class="form-control" type="text" placeholder="Cari kode satuan.." name="unit_code" id="unit_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari kode satuan.." name="unit_code" id="unit_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Deskripsi Satuan</span>
-                            <input class="form-control" placeholder="Cari deskripsi satuan.." type="text" name="unit_name" id="unit_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control" placeholder="Cari deskripsi satuan.." type="text" name="unit_name" id="unit_name" value="@if(Request::input('name')){{Request::input('name')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-2" role="group" aria-label="...">
@@ -77,7 +77,7 @@
                 var code = $('#unit_code').val();
                 var name = $('#unit_name').val();
 
-                location.href = '?c=' + code + '&n=' + name;
+                location.href = '?code=' + code + '&name=' + name;
             });
         });
 
