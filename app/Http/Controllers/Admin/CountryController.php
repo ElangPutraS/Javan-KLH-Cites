@@ -27,16 +27,11 @@ class CountryController extends Controller
         if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
             $countries = Country::orderBy('country_name', 'asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code = '%'.$request->input('c').'%';
-            }
-
-            if($request->input('n') != ''){
-                $name = '%'.$request->input('n').'%';
-            }
+            $code = '%'.$request->input('c').'%';
+            $name = '%'.$request->input('n').'%';
 
             $countries = Country::where('country_code', 'like', $code)
-                ->orWhere('country_name', 'like', $name)
+                ->where('country_name', 'like', $name)
                 ->orderBy('country_code')->paginate(10);
         }
 

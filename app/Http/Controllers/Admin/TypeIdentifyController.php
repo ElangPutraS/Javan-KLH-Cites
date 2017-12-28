@@ -22,10 +22,7 @@ class TypeIdentifyController extends Controller
         if( $request->input('n') == '' ||  $request->input('n') == null ){
             $type_identify = TypeIdentify::orderBy('type_identify_name', 'asc')->paginate(10);
         }else{
-
-            if($request->input('n') != '') {
-                $name = '%' . $request->input('n') . '%';
-            }
+            $name = '%'.$request->input('n').'%';
 
             $type_identify = TypeIdentify::where('type_identify_name', 'like', $name)
                 ->orderBy('type_identify_name')->paginate(10);

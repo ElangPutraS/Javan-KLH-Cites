@@ -16,16 +16,11 @@ class SourceController extends Controller
         if($request->input('c') == '' && $request->input('n') == '' || $request->input('c') == null && $request->input('n') == null ){
             $sources = Source::orderBy('source_code', 'asc')->paginate(10);
         }else{
-            if($request->input('c') != ''){
-                $code = '%'.$request->input('c').'%';
-            }
-
-            if($request->input('n') != ''){
-                $name = '%'.$request->input('n').'%';
-            }
+            $code = '%'.$request->input('c').'%';
+            $name = '%'.$request->input('n').'%';
 
             $sources = Source::where('source_code', 'like', $code)
-                ->orWhere('source_description', 'like', $name)
+                ->where('source_description', 'like', $name)
                 ->orderBy('source_code')->paginate(10);
         }
 

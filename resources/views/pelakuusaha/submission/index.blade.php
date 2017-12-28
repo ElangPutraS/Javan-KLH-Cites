@@ -15,7 +15,40 @@
                 </div>
 
                 <div class="card-block">
+                    <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                        <div class="input-group col-sm-3">
+                            <span class="input-group-addon" id="basic-month">Kode SATS-LN</span>
+                            <input class="form-control" type="text" placeholder="Cari kode SATS-LN.." name="trade_permit_code" id="trade_permit_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                        </div>
 
+                        <div class="input-group col-sm-2">
+                            <span class="input-group-addon" id="basic-year">Periode</span>
+                            <select name="period" id="period" class="form-control select2">
+                                <option value="">-- semua --</option>
+                                <option value="1" @if(request()->input('p') == 1) selected @endif> 1 bulan</option>
+                                <option value="2" @if(request()->input('p') == 2) selected @endif> 2 bulan</option>
+                                <option value="3" @if(request()->input('p') == 3) selected @endif> 3 bulan</option>
+                                <option value="4" @if(request()->input('p') == 4) selected @endif> 4 bulan</option>
+                                <option value="5" @if(request()->input('p') == 5) selected @endif> 5 bulan</option>
+                                <option value="6" @if(request()->input('p') == 6) selected @endif> 6 bulan</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group col-sm-3">
+                            <span class="input-group-addon" id="basic-year">Tanggal Dibuat (dari)</span>
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('df')){{Request::input('df')}} @endif">
+                        </div>
+
+                        <div class="input-group col-sm-3">
+                            <span class="input-group-addon" id="basic-year">Tanggal Dibuat (sampai)</span>
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('du')){{Request::input('du')}} @endif">
+                        </div>
+
+                        <div class="btn-group col-sm-1" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form><br>
                     @include('includes.notifications')
 
                     <div class="table-responsive">
@@ -74,3 +107,20 @@
         </div>
     </section>
 @endsection
+@push('body.script')
+    <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var code        = $('#trade_permit_code').val();
+                var period      = $('#period').val();
+                var date_from   = $('#date_from').val();
+                var date_until  = $('#date_until').val();
+
+                location.href = '?c=' + code + '&p=' + period+ '&df=' + date_from+ '&du=' + date_until;
+            });
+        });
+    </script>
+@endpush
