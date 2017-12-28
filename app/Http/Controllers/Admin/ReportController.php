@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Percentage;
+use App\Species;
 use App\User;
 use Carbon\Carbon;
 use PDF;
@@ -503,5 +504,20 @@ class ReportController extends Controller
         $pdf = PDF::loadView('pdf.report-labor', compact('users'));
         $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
+    }
+
+    public function reportForeignExchange(){
+        $species = DB::table('species as s')
+            ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+            ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+            ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+            ->havingRaw('SUM(tpd.total_exported) > 0')
+            ->orderBy('tpd.year','desc')
+            ->paginate(10);
+
+        $years = DB::table('trade_permit_detail')
+                ->select('year')->distinct()->orderBy('year', 'desc')->get();
+
+        return view('admin.report.foreign_exchange', compact('species', 'years'));
     }
 }
