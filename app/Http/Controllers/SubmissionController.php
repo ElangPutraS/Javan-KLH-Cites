@@ -35,8 +35,8 @@ class SubmissionController extends Controller
             $period = '%'.$request->input('period').'%';
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
 
                 $trade_permits = TradePermit::where('trade_permit_code', 'like', $code)
                     ->where('period', 'like', $period)
