@@ -16,12 +16,12 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-month">Kode Provinsi</span>
-                            <input class="form-control" type="text" placeholder="Cari kode provinsi.." name="province_code" id="province_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari kode provinsi.." name="province_code" id="province_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-year">Nama Provinsi</span>
-                            <input class="form-control" placeholder="Cari nama provinsi.." type="text" name="province_name" id="province_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control" placeholder="Cari nama provinsi.." type="text" name="province_name" id="province_name" value="@if(Request::input('name')){{Request::input('name')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-4" role="group" aria-label="...">
@@ -92,7 +92,7 @@
                 var code = $('#province_code').val();
                 var name = $('#province_name').val();
 
-                location.href = '?c=' + code + '&n=' + name;
+                location.href = '?code=' + code + '&name=' + name;
             });
         });
 

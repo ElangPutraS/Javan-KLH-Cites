@@ -16,12 +16,12 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-month">Kode Negara</span>
-                            <input class="form-control" type="text" placeholder="Cari kode negara.." name="country_code" id="country_code" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari kode negara.." name="country_code" id="country_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-year">Nama Negara</span>
-                            <input class="form-control" placeholder="Cari nama negara.." type="text" name="country_name" id="country_name" value="@if(Request::input('n')){{Request::input('n')}} @endif">
+                            <input class="form-control" placeholder="Cari nama negara.." type="text" name="country_name" id="country_name" value="@if(Request::input('name')){{Request::input('name')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-4" role="group" aria-label="...">
@@ -92,7 +92,7 @@
                 var code = $('#country_code').val();
                 var name = $('#country_name').val();
 
-                location.href = '?c=' + code + '&n=' + name;
+                location.href = '?code=' + code + '&name=' + name;
             });
         });
 
