@@ -20,17 +20,27 @@
                 ?>
                 <div class="card-block">
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
-                        <div class="input-group col-sm-4">
+                        <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-month">Nama Perusahaan</span>
-                            <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
                         </div>
 
-                        <div class="input-group col-sm-4">
+                        <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Nama Pemilik Usaha</span>
-                            <input class="form-control" placeholder="Cari nama pemilik usaha.." type="text" name="owner_name" id="owner_name" value="@if(Request::input('o')){{Request::input('o')}} @endif">
+                            <input class="form-control" placeholder="Cari nama pemilik usaha.." type="text" name="owner_name" id="owner_name" value="@if(Request::input('owner_name')){{Request::input('owner_name')}} @endif">
+                        </div><br><br><br>
+
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (dari)</span>
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
                         </div>
 
-                        <div class="btn-group col-sm-4" role="group" aria-label="...">
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (sampai)</span>
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
+                        </div>
+
+                        <div class="btn-group col-sm-1" role="group" aria-label="...">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
                             </button>
                         </div>
@@ -39,6 +49,28 @@
 
                 <div class="card-block">
                     <table>
+                        <tr>
+                            <th>Tanggal Pendaftaran dari&nbsp;&nbsp;&nbsp;</th>
+                            <td>: &nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @if(Request::input('df'))
+                                    {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('df'))->toFormattedDateString() }}
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Tanggal Pendaftaran sampai &nbsp;&nbsp;&nbsp;</th>
+                            <td>: &nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @if(Request::input('du'))
+                                    {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('du'))->toFormattedDateString() }}
+                                @else
+                                    -
+                                @endif
+                            </td>
+                        </tr>
                         <tr>
                             <th>Total Serapan Tenaga Kerja &nbsp;&nbsp;&nbsp;</th>
                             <td>: &nbsp;&nbsp;&nbsp;</td>
@@ -55,6 +87,7 @@
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No.</th>
+                                <th>Tanggal Pendaftaran</th>
                                 <th>Nama Perusahaan</th>
                                 <th>Nama Pemilik Usaha</th>
                                 <th>Jumlah Serapan Tenaga Kerja</th>
@@ -64,6 +97,7 @@
                             @forelse($users as $user)
                                 <tr>
                                     <td>{{ (($users->currentPage() - 1 ) * $users->perPage() ) + $loop->iteration }}</td>
+                                    <td>{{ $user->company->created_at->toFormattedDateString() }}</td>
                                     <td>{{ $user->company->company_name }}</td>
                                     <td>{{ $user->company->owner_name }}</td>
                                     <td>{{ $user->company->labor_total }} orang</td>
@@ -78,7 +112,7 @@
                             <tr>
                                 <td colspan="11">
                                     <a class="btn btn-success"
-                                       href="{{ url('admin/printReportLabor?c='.request()->input('c').'&o='.request()->input('o')) }}"
+                                       href="{{ url('admin/printReportLabor?company_name='.request()->input('company_name').'&owner_name='.request()->input('owner_name').'&date_from='.request()->input('date_from').'&date_until='.request()->input('date_until')) }}"
                                        target="_blank"><i class="fa fa-print"></i> Cetak List</a>
                                 </td>
                             </tr>
@@ -102,8 +136,10 @@
 
                     var company_name = $('#company_name').val();
                     var owner_name = $('#owner_name').val();
+                    var date_from = $('#date_from').val();
+                    var date_until = $('#date_until').val();
 
-                    location.href = '?c=' + company_name + '&o=' + owner_name;
+                    location.href = '?company_name=' + company_name + '&owner_name=' + owner_name + '&date_from=' + date_from + '&date_until=' + date_until;
                 });
             });
         });

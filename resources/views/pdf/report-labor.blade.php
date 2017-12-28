@@ -59,6 +59,28 @@ foreach ($users as $user) {
 ?>
 <table>
     <tr>
+        <th>Tanggal Pendaftaran dari&nbsp;&nbsp;&nbsp;</th>
+        <td>: &nbsp;&nbsp;&nbsp;</td>
+        <td>
+            @if(Request::input('df'))
+                {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('df'))->toFormattedDateString() }}
+            @else
+                -
+            @endif
+        </td>
+    </tr>
+    <tr>
+        <th>Tanggal Pendaftaran sampai &nbsp;&nbsp;&nbsp;</th>
+        <td>: &nbsp;&nbsp;&nbsp;</td>
+        <td>
+            @if(Request::input('du'))
+                {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('du'))->toFormattedDateString() }}
+            @else
+                -
+            @endif
+        </td>
+    </tr>
+    <tr>
         <th>Total Serapan Tenaga Kerja &nbsp;&nbsp;&nbsp;</th>
         <td>: &nbsp;&nbsp;&nbsp;</td>
         <td>{{ $total }} orang</td>
