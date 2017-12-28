@@ -321,7 +321,7 @@ class ReportController extends Controller
         $company_name = '';
         $owner_name = '';
 
-        if($request->input('c') == '' && $request->input('o') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('o') == null && $request->input('df') == null && $request->input('du') == null){
+        if($request->input('company_name') == '' && $request->input('owner_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('company_name') == null && $request->input('owner_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
@@ -331,9 +331,9 @@ class ReportController extends Controller
             $company_name = '%'.$request->input('c').'%';
             $owner_name = '%'.$request->input('o').'%';
 
-            if($request->input('df') != '' && $request->input('du') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
+            if($request->input('date_from') != '' && $request->input('date_until') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -345,8 +345,8 @@ class ReportController extends Controller
                         ->whereBetween('created_at', [$date_from , $date_until]);
                 })->paginate(10);
             }else {
-                $date_from = '%'.$request->input('df').'%';
-                $date_until = '%'.$request->input('du').'%';
+                $date_from = '%'.$request->input('date_from').'%';
+                $date_until = '%'.$request->input('date_until').'%';
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -369,7 +369,7 @@ class ReportController extends Controller
         $company_name = '';
         $owner_name = '';
 
-        if($request->input('c') == '' && $request->input('o') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('o') == null && $request->input('df') == null && $request->input('du') == null){
+        if($request->input('company_name') == '' && $request->input('owner_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('company_name') == null && $request->input('owner_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
@@ -379,9 +379,9 @@ class ReportController extends Controller
             $company_name = '%'.$request->input('c').'%';
             $owner_name = '%'.$request->input('o').'%';
 
-            if($request->input('df') != '' && $request->input('du') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
+            if($request->input('date_from') != '' && $request->input('date_until') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -393,8 +393,8 @@ class ReportController extends Controller
                         ->whereBetween('created_at', [$date_from , $date_until]);
                 })->paginate(10);
             }else {
-                $date_from = '%'.$request->input('df').'%';
-                $date_until = '%'.$request->input('du').'%';
+                $date_from = '%'.$request->input('date_from').'%';
+                $date_until = '%'.$request->input('date_until').'%';
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -419,7 +419,7 @@ class ReportController extends Controller
         $company_name = '';
         $owner_name = '';
 
-        if($request->input('c') == '' && $request->input('o') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('o') == null && $request->input('df') == null && $request->input('du') == null){
+        if($request->input('company_name') == '' && $request->input('owner_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('company_name') == null && $request->input('owner_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
@@ -429,9 +429,9 @@ class ReportController extends Controller
             $company_name = '%'.$request->input('c').'%';
             $owner_name = '%'.$request->input('o').'%';
 
-            if($request->input('df') != '' && $request->input('du') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
+            if($request->input('date_from') != '' && $request->input('date_until') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -443,8 +443,8 @@ class ReportController extends Controller
                         ->whereBetween('created_at', [$date_from , $date_until]);
                 })->paginate(10);
             }else {
-                $date_from = '%'.$request->input('df').'%';
-                $date_until = '%'.$request->input('du').'%';
+                $date_from = '%'.$request->input('date_from').'%';
+                $date_until = '%'.$request->input('date_until').'%';
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -467,7 +467,7 @@ class ReportController extends Controller
         $company_name = '';
         $owner_name = '';
 
-        if($request->input('c') == '' && $request->input('o') == '' && $request->input('df') == '' && $request->input('du') == '' || $request->input('c') == null && $request->input('o') == null && $request->input('df') == null && $request->input('du') == null){
+        if($request->input('company_name') == '' && $request->input('owner_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('company_name') == null && $request->input('owner_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
             })->whereHas('company', function ($q) {
@@ -477,9 +477,9 @@ class ReportController extends Controller
             $company_name = '%'.$request->input('c').'%';
             $owner_name = '%'.$request->input('o').'%';
 
-            if($request->input('df') != '' && $request->input('du') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('df'));
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('du'));
+            if($request->input('date_from') != '' && $request->input('date_until') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'));
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -491,8 +491,8 @@ class ReportController extends Controller
                         ->whereBetween('created_at', [$date_from , $date_until]);
                 })->paginate(10);
             }else {
-                $date_from = '%'.$request->input('df').'%';
-                $date_until = '%'.$request->input('du').'%';
+                $date_from = '%'.$request->input('date_from').'%';
+                $date_until = '%'.$request->input('date_until').'%';
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);

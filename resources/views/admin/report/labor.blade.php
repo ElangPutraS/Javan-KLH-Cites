@@ -22,22 +22,22 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-month">Nama Perusahaan</span>
-                            <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('c')){{Request::input('c')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Nama Pemilik Usaha</span>
-                            <input class="form-control" placeholder="Cari nama pemilik usaha.." type="text" name="owner_name" id="owner_name" value="@if(Request::input('o')){{Request::input('o')}} @endif">
+                            <input class="form-control" placeholder="Cari nama pemilik usaha.." type="text" name="owner_name" id="owner_name" value="@if(Request::input('owner_name')){{Request::input('owner_name')}} @endif">
                         </div><br><br><br>
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (dari)</span>
-                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('df')){{Request::input('df')}} @endif">
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (sampai)</span>
-                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('du')){{Request::input('du')}} @endif">
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-1" role="group" aria-label="...">
@@ -112,7 +112,7 @@
                             <tr>
                                 <td colspan="11">
                                     <a class="btn btn-success"
-                                       href="{{ url('admin/printReportLabor?c='.request()->input('c').'&o='.request()->input('o').'&df='.request()->input('df').'&du='.request()->input('du')) }}"
+                                       href="{{ url('admin/printReportLabor?company_name='.request()->input('company_name').'&owner_name='.request()->input('owner_name').'&date_from='.request()->input('date_from').'&date_until='.request()->input('date_until')) }}"
                                        target="_blank"><i class="fa fa-print"></i> Cetak List</a>
                                 </td>
                             </tr>
@@ -139,7 +139,7 @@
                     var date_from = $('#date_from').val();
                     var date_until = $('#date_until').val();
 
-                    location.href = '?c=' + company_name + '&o=' + owner_name + '&df=' + date_from + '&du=' + date_until;
+                    location.href = '?company_name=' + company_name + '&owner_name=' + owner_name + '&date_from=' + date_from + '&date_until=' + date_until;
                 });
             });
         });
