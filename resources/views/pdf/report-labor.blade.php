@@ -62,8 +62,8 @@ foreach ($users as $user) {
         <th>Tanggal Pendaftaran dari&nbsp;&nbsp;&nbsp;</th>
         <td>: &nbsp;&nbsp;&nbsp;</td>
         <td>
-            @if(Request::input('df'))
-                {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('df'))->toFormattedDateString() }}
+            @if(Request::input('date_from'))
+                {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('date_from'))->toFormattedDateString() }}
             @else
                 -
             @endif
@@ -73,8 +73,8 @@ foreach ($users as $user) {
         <th>Tanggal Pendaftaran sampai &nbsp;&nbsp;&nbsp;</th>
         <td>: &nbsp;&nbsp;&nbsp;</td>
         <td>
-            @if(Request::input('du'))
-                {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('du'))->toFormattedDateString() }}
+            @if(Request::input('date_until'))
+                {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('date_until'))->toFormattedDateString() }}
             @else
                 -
             @endif
@@ -93,6 +93,7 @@ foreach ($users as $user) {
     <thead align="center">
     <tr>
         <th width="50px">No.</th>
+        <th>Tanggal Pendaftaran</th>
         <th>Nama Perusahaan</th>
         <th>Nama Pemilik Usaha</th>
         <th>Jumlah Serapan Tenaga Kerja</th>
@@ -102,6 +103,7 @@ foreach ($users as $user) {
     @foreach($users as $user)
         <tr>
             <td>{{ (($users->currentPage() - 1 ) * $users->perPage() ) + $loop->iteration }}</td>
+            <td>{{ $user->company->created_at->toFormattedDateString() }}</td>
             <td>{{ $user->company->company_name }}</td>
             <td>{{ $user->company->owner_name }}</td>
             <td>{{ $user->company->labor_total }} orang</td>
