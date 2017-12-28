@@ -59,12 +59,12 @@
                                            class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw"
                                                                           title="detail"></i></a>
 
-                                        @if ($trade_permit->tradeStatus->status_code >= '200' && $trade_permit->tradeStatus->status_code != '300' && $trade_permit->is_printed == 0)
+                                        @if ($trade_permit->tradeStatus->status_code == '200' && $trade_permit->tradeStatus->status_code != '300' && $trade_permit->is_printed == 0)
                                             <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}"
                                                class="btn btn-sm btn-info print" target="_blank"
                                                data-id="{{ $trade_permit->id }}"><i
                                                         class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
-                                        @else
+                                        @elseif (($trade_permit->tradeStatus->status_code != '200' || $trade_permit->tradeStatus->status_code != '300') && $trade_permit->is_printed == 1)
                                             <br>
                                             <small>Blanko sudah dicetak</small>
                                         @endif

@@ -167,8 +167,8 @@
                                 <th width="150px">Masa Berlaku</th>
                                 <th>IHH</th>
                                 <th>EA-EB</th>
+                                <th>Nilai Persentase</th>
                                 <th>Subtotal</th>
-                                <th>Formula</th>
                                 <th>Aksi</th>
                             </tr>
                             </thead>
@@ -184,24 +184,15 @@
                                     <td>
                                         <?php
                                         if ($pnbp->total_payment > 100000) {
-                                            echo 'Rp. ' . number_format($pnbp->total_payment - 100000, 2, ',', '.');
+                                            echo 'Rp. ' . number_format($pnbp->total_payment - 100000, 0, ',', '.');
                                         } else {
                                             echo 'Rp. 0,00';
                                         }
                                         ?>
                                     </td>
-                                    <td> Rp. {{ number_format(100000,2,',','.') }} </td>
-                                    <td> Rp. {{ number_format($pnbp->total_payment,2,',','.') }} </td>
-                                    <td>
-                                        <select class="form-control input-sm" name="percentage">
-                                            @forelse($percentages as $percentage)
-                                                <option value="{{ $percentage->value }}">{{ $percentage->value }}%
-                                                </option>
-                                            @empty
-                                                <option value="0" selected>0%</option>
-                                            @endforelse
-                                        </select>
-                                    </td>
+                                    <td> Rp. {{ number_format(100000, 0, ',', '.') }} </td>
+                                    <td>Rp. {{ number_format($pnbp->pnbp->pnbp_percentage_amount, 0, ',', '.') }}</td>
+                                    <td> Rp. {{ number_format($pnbp->total_payment, 0, ',', '.') }} </td>
                                     <td>
                                         <a class="btn btn-success"
                                            href="{{ route('admin.report.printReportDetailSatsln', ['id' => $pnbp->log_trade_permit_id]) }}"

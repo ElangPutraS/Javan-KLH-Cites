@@ -152,7 +152,9 @@
             <p>SATS-LN adalah surat angkut dari Kementerian Kehutanan untuk Tumbuhan Alam dan Satwa Liar yang tidak
                 dilindungi Undang-Undang dan termasuk dalam daftar CITES.</p>
             @guest
-                <a class="btn btn-success btn-lg" href="{{ route('login') }}">Masuk</a>
+                @if(!Request::is('login') && !Request::is('register'))
+                    <a class="btn btn-success btn-lg" href="{{ route('login') }}">Masuk</a>
+                @endif
             @else
                 <a class="btn btn-danger btn-lg" href="{{ route('logout') }}"
                    onclick="event.preventDefault();
