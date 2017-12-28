@@ -18,7 +18,7 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-3">
                             <span class="input-group-addon" id="basic-month">Kode SATS-LN</span>
-                            <input class="form-control" type="text" placeholder="Cari kode SATS-LN.." name="trade_permit_code" id="trade_permit_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari kode SATS-LN.." name="trade_permit_code" id="trade_permit_code" value="@if(Request::input('code')){{ Request::input('code') }} @endif">
                         </div>
 
                         <div class="input-group col-sm-2">

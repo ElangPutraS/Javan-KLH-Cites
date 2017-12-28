@@ -15,7 +15,32 @@
                 </div>
 
                 <div class="card-block">
+                    <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-month">Kode SATS-LN</span>
+                            <input class="form-control" type="text" placeholder="Cari kode SATS-LN.." name="trade_permit_code" id="trade_permit_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
+                        </div>
 
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-month">Nama Perusahaan</span>
+                            <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
+                        </div><br><br><br>
+
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-year">Tanggal Dibuat (dari)</span>
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
+                        </div>
+
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-year">Tanggal Dibuat (sampai)</span>
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
+                        </div>
+
+                        <div class="btn-group col-sm-1" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form><br>
                     @include('includes.notifications')
 
                     <div class="table-responsive">
@@ -25,6 +50,7 @@
                                 <th width="50px">No</th>
                                 <th>Kode Permohonan</th>
                                 <th width="150px">Tanggal Dibuat</th>
+                                <th>Nama Perusahaan</th>
                                 <th>Penerima</th>
                                 <th>Periode</th>
                                 <th>Pelabuhan Ekspor</th>
@@ -38,6 +64,7 @@
                                 <tr>
                                     <td>{{ (($trade_permits->currentPage() - 1 ) * $trade_permits->perPage() ) + $loop->iteration }}</td>
                                     <td>{{ $trade_permit->trade_permit_code }}</td>
+                                    <td>{{ $trade_permit->company->company_name }}</td>
                                     <td>{{ Carbon\Carbon::parse($trade_permit->date_submission)->format('d-m-Y') }}</td>
                                     <td>{{ $trade_permit->consignee }}</td>
                                     <td>{{ $trade_permit->period }} bulan</td>
@@ -81,7 +108,7 @@
                         </table>
                     </div>
 
-                    {!! $trade_permits->links('vendor.pagination.bootstrap-4') !!}
+                    {!! $trade_permits->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
@@ -92,6 +119,19 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var code        = $('#trade_permit_code').val();
+                var company_name= $('#company_name').val();
+                var date_from   = $('#date_from').val();
+                var date_until  = $('#date_until').val();
+
+                location.href = '?code=' + code + '&company_name=' + company_name+ '&date_from=' + date_from+ '&date_until=' + date_until;
+            });
+        });
+
         $('.print').click(function () {
             printBtn = $(this);
 
