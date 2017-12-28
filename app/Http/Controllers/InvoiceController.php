@@ -20,7 +20,7 @@ class InvoiceController extends Controller
     public function show(Request $request, $id)
     {
         $user			= $request->user();
-        $trade_permit 	= TradePermit::findOrFail($id);
+        $trade_permit 	= TradePermit::with(['pnbp'])->where('id', '=', $id);
 
         return view('pelakuusaha.invoice.detail', compact('trade_permit', 'user'));
     }

@@ -9,23 +9,29 @@
             margin: 10px;
             padding: 0;
         }
+
         hr {
 
         }
+
         #header {
             border-bottom: #000 solid 2px;
         }
+
         #header #header-logo {
             float: left;
             text-align: center;
         }
+
         #header #header-info {
             text-align: center;
         }
+
         #header #header-info span:nth-child(1) {
             font-size: 14px;
             font-weight: bold;
         }
+
         #header #header-info span:nth-child(3) {
             font-size: 10px;
             font-weight: bold;
@@ -48,7 +54,7 @@
 
 @php $total = 0; @endphp
 @foreach($payments as $pnbp)
-@php $total = $total + $pnbp->total_payment; @endphp
+    @php $total = $total + $pnbp->total_payment; @endphp
 @endforeach
 <table>
     <tr>
@@ -56,49 +62,49 @@
         <td>:</td>
         <td>
             @if($month !== null)
-            @switch($month)
-            @case(1)
-            {{ 'Januari' }}
-            @break
-            @case(2)
-            {{ 'Februari' }}
-            @break
-            @case(3)
-            {{ 'Maret' }}
-            @break
-            @case(4)
-            {{ 'April' }}
-            @break
-            @case(5)
-            {{ 'Mei' }}
-            @break
-            @case(6)
-            {{ 'Juni' }}
-            @break
-            @case(7)
-            {{ 'Juli' }}
-            @break
-            @case(8)
-            {{ 'Agustus' }}
-            @break
-            @case(9)
-            {{ 'September' }}
-            @break
-            @case(10)
-            {{ 'Oktober' }}
-            @break
-            @case(11)
-            {{ 'November' }}
-            @break
-            @case(12)
-            {{ 'Desember' }}
-            @break
-            @default
-            {{ 'Semua bulan' }}
-            @break
-            @endswitch
+                @switch($month)
+                    @case(1)
+                    {{ 'Januari' }}
+                    @break
+                    @case(2)
+                    {{ 'Februari' }}
+                    @break
+                    @case(3)
+                    {{ 'Maret' }}
+                    @break
+                    @case(4)
+                    {{ 'April' }}
+                    @break
+                    @case(5)
+                    {{ 'Mei' }}
+                    @break
+                    @case(6)
+                    {{ 'Juni' }}
+                    @break
+                    @case(7)
+                    {{ 'Juli' }}
+                    @break
+                    @case(8)
+                    {{ 'Agustus' }}
+                    @break
+                    @case(9)
+                    {{ 'September' }}
+                    @break
+                    @case(10)
+                    {{ 'Oktober' }}
+                    @break
+                    @case(11)
+                    {{ 'November' }}
+                    @break
+                    @case(12)
+                    {{ 'Desember' }}
+                    @break
+                    @default
+                    {{ 'Semua Bulan' }}
+                    @break
+                @endswitch
             @else
-            {{ 'Semua Bulan' }}
+                {{ 'Semua Bulan' }}
             @endif
         </td>
     </tr>
@@ -107,13 +113,13 @@
         <td>:</td>
         <td>
             @if($year !== null)
-            @if($year == 'all')
-            {{ 'Semua Tahun' }}
+                @if($year == 'all')
+                    {{ 'Semua Tahun' }}
+                @else
+                    {{ $year }}
+                @endif
             @else
-            {{ $year }}
-            @endif
-            @else
-            {{ 'Semua Tahun' }}
+                {{ 'Semua Tahun' }}
             @endif
         </td>
     </tr>
@@ -135,6 +141,8 @@
         <th width="150px">Masa Berlaku</th>
         <th>IHH</th>
         <th>EA-EB</th>
+        <th>Persentase</th>
+        <th>Nilai Persentase</th>
         <th>Jumlah</th>
     </tr>
     </thead>
@@ -142,34 +150,48 @@
     @foreach($payments as $key => $pnbp)
         <tr>
             <td align="center">{{ (($payments->currentPage() - 1 ) * $payments->perPage() ) + $loop->iteration }}</td>
-            <td align="center">{{ Carbon\Carbon::parse($pnbp->created_at)->format('d-m-Y') }}</td>
+            <td align="center">{{ date('d-m-Y', strtotime($pnbp->created_at)) }}</td>
             <td align="center">{{ $pnbp->pnbp->tradePermit->trade_permit_code }}</td>
             <td align="center">{{ $pnbp->pnbp->pnbp_code }}</td>
             <td align="center">{{ $pnbp->pnbp->tradePermit->company->company_name }}</td>
             <td align="center">
-                @foreach($trade_permits as $trade_permit)
-                @if($pnbp->total_payment > 100000)
-                @if($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '1')
-                {{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}
-                @endif
-                @else
-                @if ($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '2')
-                {{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}
-                @endif
-                @endif
-                @endforeach
+                @php
+                /*@foreach($trade_permits as $trade_permit)
+                    @if($pnbp->total_payment > 100000)
+                        @if($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '1')
+                            {{ date('d-m-Y', strtotime($trade_permit->valid_start)) . ' sd. ' . date('d-m-Y', strtotime($trade_permit->valid_until)) }}
+                        @endif
+                    @else
+                        @if ($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '2')
+                            {{ date('d-m-Y', strtotime($trade_permit->valid_start)) . ' sd. ' . date('d-m-Y', strtotime($trade_permit->valid_until)) }}
+                        @endif
+                    @endif
+                @endforeach*/
+                echo date('d-m-Y', strtotime($pnbp->pnbp->tradePermit->valid_start)) . ' sd. ' . date('d-m-Y', strtotime($pnbp->pnbp->tradePermit->valid_until));
+                @endphp
             </td>
             <td align="right">
                 @if($pnbp->total_payment > 100000)
-                {{ 'Rp. ' . number_format($pnbp->total_payment - 100000, 2, ',', '.') }}
+                    {{ 'Rp. ' . number_format($pnbp->total_payment - 100000, 0, ',', '.') }}
                 @else
-                {{ 'Rp. 0,00' }}
+                    {{ 'Rp. 0,00' }}
                 @endif
-            </td align="right">
-            <td align="right"> Rp. {{ number_format(100000,2,',','.') }}</td>
-            <td align="right"> Rp. {{ number_format($pnbp->total_payment,2,',','.') }}</td>
+            </td>
+            <td align="right"> Rp. {{ number_format(100000, 0, ',', '.') }}</td>
+            <td align="center">{{ count($pnbp->pnbp->tradePermit->tradeSpecies->toArray()) . 'x' . $pnbp->pnbp->percentage_value }}
+                %
+            </td>
+            <td align="right">Rp. {{ number_format($pnbp->pnbp->pnbp_percentage_amount, 0, ',', '.') }}</td>
+            <td align="right"> Rp. {{ number_format($pnbp->total_payment, 0, ',', '.') }}</td>
         </tr>
+        @php
+        $totalPayment[] = $pnbp->total_payment;
+        @endphp
     @endforeach
+    <tr>
+        <td colspan="10" align="center"><b>Jumlah Total Pemasukan</b></td>
+        <td align="right">Rp. {{ number_format(array_sum($totalPayment), 0, ',', '.') }}</td>
+    </tr>
     </tbody>
 </table>
 </body>

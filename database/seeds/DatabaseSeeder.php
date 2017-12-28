@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
          $this->call(SpeciesSeeder::class);
          $this->call(UnitSeeder::class);
          $this->call(SourcesSeeder::class);
+         $this->call(PercentageSeeder::class);
     }
 }

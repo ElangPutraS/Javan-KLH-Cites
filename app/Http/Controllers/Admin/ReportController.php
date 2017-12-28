@@ -68,7 +68,7 @@ class ReportController extends Controller
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.report-pnbp', compact('payments', 'trade_permits', 'tahun', 'month', 'year'));
-        $pdf->setPaper('letter', 'portrait');
+        $pdf->setPaper('letter', 'landscape');
         return $pdf->stream();
     }
 

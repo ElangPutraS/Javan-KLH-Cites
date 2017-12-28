@@ -138,7 +138,7 @@
         <th>Periode</th>
         <th>Pelabuhan Ekspor</th>
         <th>Pelabuhan Tujuan</th>
-        <th>Jenis Permohonan</th>
+        <th>Jenis Laporan</th>
         <th>Jumlah Species</th>
     </tr>
     </thead>
@@ -155,7 +155,8 @@
             <td align="center">{{ $trade_permit->portExpor->port_name }}</td>
             <td align="center">{{ $trade_permit->portDest->port_name }}</td>
             <td align="center">
-                @if($trade_permit->permit_type == '1' && $trade_permit->period < 6)
+                @php
+                /*@if($trade_permit->permit_type == '1' && $trade_permit->period < 6)
                     {{ 'Permohonan SATS-LN Bertahap' }}
                 @elseif($trade_permit->permit_type == '1' && $trade_permit->period > 6)
                     {{ 'Permohonan SATS-LN Langsung' }}
@@ -163,7 +164,9 @@
                     {{ 'Pembaharuan Permohonan SATS-LN Bertahap' }}
                 @elseif ($trade_permit->permit_type == '2' && $trade_permit->period > 6)
                     {{ 'Pembaharuan Permohonan SATS-LN Langsung' }}
-                @endif
+                @endif*/
+                echo 'Permohonan';
+                @endphp
             </td>
             <td align=" center">{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
         </tr>

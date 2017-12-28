@@ -81,7 +81,7 @@
                                             <th>Nama Tagihan</th>
                                             <th>Persentase</th>
                                             <th>Nilai Persentase</th>
-                                            <th>Jumlah</th>
+                                            <th>Jumlah Ekspor</th>
                                             <th>Total</th>
                                         </tr>
                                         </thead>
@@ -92,7 +92,10 @@
                                         ?>
                                         @foreach($trade_permit->tradeSpecies as $species)
                                             @if($trade_permit->permit_type == 1)
-                                                <?php $total[] = ($species->pivot->total_exported * $species->nominal); ?>
+                                                <?php
+                                                $total[] = ($species->pivot->total_exported * $species->nominal);
+                                                $totalExport[] = $species->pivot->total_exported;
+                                                ?>
                                             @endif
                                         @endforeach
                                         <tr>
@@ -100,7 +103,7 @@
                                             <td>IHH</td>
                                             <td id="percentage-multiply">{{ count($total) }}x0%</td>
                                             <td id="percentage-multiply-value">Rp. 0</td>
-                                            <td id="amount-multiply">Rp. {{ number_format(array_sum($total), 0, ',', '.') }}</td>
+                                            <td>{{ array_sum($totalExport) }}</td>
                                             <td id="amount-total">Rp. {{ number_format(array_sum($total), 0, ',', '.') }}</td>
                                         </tr>
                                         <?php $totall = array_sum($total) + 100000; ?>
@@ -109,7 +112,7 @@
                                             <td>Blanko</td>
                                             <td></td>
                                             <td></td>
-                                            <td>Rp. {{ number_format(100000, 0, ',', '.') }}</td>
+                                            <td></td>
                                             <td>Rp. {{ number_format(100000, 0, ',', '.') }}</td>
                                         </tr>
 
