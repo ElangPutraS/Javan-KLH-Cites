@@ -404,8 +404,8 @@
                     }
                 }else{
                     status = false;
+                    break;
                 }
-
             }
             return status;
         }
