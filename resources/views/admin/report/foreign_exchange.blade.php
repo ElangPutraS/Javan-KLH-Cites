@@ -109,13 +109,15 @@
                                     </td>
                                 </tr>
                             @endforelse
-                            <tr>
-                                <td colspan="11">
-                                    <a class="btn btn-success"
-                                       href="{{ url('admin/printReportForeignExchange?scientific_name='.request()->input('scientific_name').'&indonesia_name='.request()->input('indonesia_name').'&general_name='.request()->input('general_name').'&year='.request()->input('year')) }}"
-                                       target="_blank"><i class="fa fa-print"></i> Cetak List</a>
-                                </td>
-                            </tr>
+                            @if($species !== null)
+                                <tr>
+                                    <td colspan="11">
+                                        <a class="btn btn-success"
+                                           href="{{ url('admin/printReportForeignExchange?scientific_name='.request()->input('scientific_name').'&indonesia_name='.request()->input('indonesia_name').'&general_name='.request()->input('general_name').'&year='.request()->input('year')) }}"
+                                           target="_blank"><i class="fa fa-print"></i> Cetak List</a>
+                                    </td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>
