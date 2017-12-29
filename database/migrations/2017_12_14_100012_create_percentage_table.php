@@ -16,7 +16,7 @@ class CreatePercentageTable extends Migration
         Schema::create('percentage', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 64);
-            $table->tinyInteger('value');
+            $table->integer('value');
             $table->timestamps();
         });
     }
