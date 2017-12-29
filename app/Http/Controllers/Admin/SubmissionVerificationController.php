@@ -71,7 +71,7 @@ class SubmissionVerificationController extends Controller
         //susun kode trade permit
         $trade_last      =   TradePermit::orderBy('trade_permit_code','desc')->first();
         $id='';
-        if($trade_last === null || $trade_last->trade_permit_code == ''){
+        if($trade_last === null || $trade_last->trade_permit_code == '' || $trade_last->trade_permit_code == ' '){
             $id = 1;
         }else{
             $id = substr($trade_last->trade_permit_code,0,5) + 1;

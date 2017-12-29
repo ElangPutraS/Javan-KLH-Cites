@@ -505,18 +505,69 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
-    public function reportForeignExchange(){
-        $species = DB::table('species as s')
-            ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
-            ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
-            ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
-            ->havingRaw('SUM(tpd.total_exported) > 0')
-            ->orderBy('tpd.year','desc')
-            ->paginate(10);
+    public function reportForeignExchange(Request $request)
+    {
+        if($request->input('scientific_name') == '' && $request->input('indonesia_name') == '' && $request->input('general_name') == '' && $request->input('year') == '' || $request->input('scientific_name') == null && $request->input('indonesia_name') == null && $request->input('general_name') == null && $request->input('year') == null){
+            $species = DB::table('species as s')
+                ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+                ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+                ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+                ->havingRaw('SUM(tpd.total_exported) > 0')
+                ->orderBy('tpd.year','desc')
+                ->paginate(10);
+
+        }else{
+            $scientific_name = '%'.$request->input('scientific_name').'%';
+            $indonesia_name  = '%'.$request->input('indonesia_name').'%';
+            $general_name    = '%'.$request->input('general_name').'%';
+            $year            = '%'.$request->input('year').'%';
+
+            $species = DB::table('species as s')
+                ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+                ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+                ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+                ->where([['species_scientific_name', 'like', $scientific_name], ['species_indonesia_name', 'like', $indonesia_name], ['species_general_name', 'like', $general_name], ['year', 'like', $year]])
+                ->havingRaw('SUM(tpd.total_exported) > 0')
+                ->orderBy('tpd.year','desc')
+                ->paginate(10);
+        }
 
         $years = DB::table('trade_permit_detail')
                 ->select('year')->distinct()->orderBy('year', 'desc')->get();
 
         return view('admin.report.foreign_exchange', compact('species', 'years'));
+    }
+
+    public function printReportForeignExchange(Request $request)
+    {
+        if($request->input('scientific_name') == '' && $request->input('indonesia_name') == '' && $request->input('general_name') == '' && $request->input('year') == '' || $request->input('scientific_name') == null && $request->input('indonesia_name') == null && $request->input('general_name') == null && $request->input('year') == null){
+            $species = DB::table('species as s')
+                ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+                ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+                ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+                ->havingRaw('SUM(tpd.total_exported) > 0')
+                ->orderBy('tpd.year','desc')
+                ->paginate(10);
+
+        }else{
+            $scientific_name = '%'.$request->input('scientific_name').'%';
+            $indonesia_name  = '%'.$request->input('indonesia_name').'%';
+            $general_name    = '%'.$request->input('general_name').'%';
+            $year            = '%'.$request->input('year').'%';
+
+            $species = DB::table('species as s')
+                ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+                ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+                ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+                ->where([['species_scientific_name', 'like', $scientific_name], ['species_indonesia_name', 'like', $indonesia_name], ['species_general_name', 'like', $general_name], ['year', 'like', $year]])
+                ->havingRaw('SUM(tpd.total_exported) > 0')
+                ->orderBy('tpd.year','desc')
+                ->paginate(10);
+        }
+
+        PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
+        $pdf = PDF::loadView('pdf.report-foreign-exchange', compact('species'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream();
     }
 }
