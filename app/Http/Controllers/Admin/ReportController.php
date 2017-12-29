@@ -28,9 +28,9 @@ class ReportController extends Controller
             if ($year != 'all' && $month != 'all') {
                 $reqDate = date('Y-m', strtotime($year . '-' . $month)) . '%';
             } else if ($year == 'all' && $month != 'all') {
-                $reqDate = '%' . date('m', strtotime($month)) . '%';
+                $reqDate = '%-' . $month . '-%';
             } else if ($year != 'all' && $month == 'all') {
-                $reqDate = date('Y', strtotime($year)) . '%';
+                $reqDate = $year . '-%';
             }
 
             $payments = HistoryPayment::where('created_at', 'like', $reqDate)->orderBy('created_at', 'asc')->paginate(10);
@@ -55,9 +55,9 @@ class ReportController extends Controller
             if ($year != 'all' && $month != 'all') {
                 $reqDate = date('Y-m', strtotime($year . '-' . $month)) . '%';
             } else if ($year == 'all' && $month != 'all') {
-                $reqDate = '%' . date('m', strtotime($month)) . '%';
+                $reqDate = '%-' . $month . '-%';
             } else if ($year != 'all' && $month == 'all') {
-                $reqDate = date('Y', strtotime($year)) . '%';
+                $reqDate = $year . '-%';
             }
 
             $payments = HistoryPayment::where('created_at', 'like', $reqDate)->orderBy('created_at', 'asc')->paginate(10);
@@ -93,11 +93,11 @@ class ReportController extends Controller
             })->orderBy('created_at', 'asc')->paginate(10);
         } else {
             if ($year != 'all' && $month != 'all') {
-                $reqDate = date('Y-m', strtotime($year . '-' . $month)) . '%';
+                $reqDate = date('Y-m', strtotime($year . '-' . $month)) . '-%';
             } else if ($year == 'all' && $month != 'all') {
-                $reqDate = '%' . date('m', strtotime($month)) . '%';
+                $reqDate = '%-' . $month . '-%';
             } else if ($year != 'all' && $month == 'all') {
-                $reqDate = date('Y', strtotime($year)) . '%';
+                $reqDate = $year . '-%';
             }
 
             $trade_permits = LogTradePermit::whereHas('tradeStatus', function ($q) use ($reqDate) {
@@ -115,6 +115,8 @@ class ReportController extends Controller
         $year = $y;
         $month = $m;
 
+        //dd($year.' '.$month);
+
         if ($year == 'all' && $month == 'all' || $year === null && $month === null) {
             $trade_permits = LogTradePermit::whereHas('tradeStatus', function ($query) {
                 $query->where('status_code', '600');
@@ -123,9 +125,9 @@ class ReportController extends Controller
             if ($year != 'all' && $month != 'all') {
                 $reqDate = date('Y-m', strtotime($year . '-' . $month)) . '%';
             } else if ($year == 'all' && $month != 'all') {
-                $reqDate = '%' . date('m', strtotime($month)) . '%';
+                $reqDate = '%-' . $month . '-%';
             } else if ($year != 'all' && $month == 'all') {
-                $reqDate = date('Y', strtotime($year)) . '%';
+                $reqDate = $year . '-%';
             }
 
             $trade_permits = LogTradePermit::whereHas('tradeStatus', function ($q) use ($reqDate) {
