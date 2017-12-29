@@ -44,8 +44,7 @@ class Species extends Model
     public function tradeSpecies()
     {
         return $this->belongsToMany(TradePermit::class, 'trade_permit_detail')
-            ->withPivot('total_exported', 'log_trade_permit_id', 'description', 'valid_renewal', 'id', 'company_id', 'year')
-            ->withTrashed();
+            ->withPivot('total_exported', 'log_trade_permit_id', 'description', 'valid_renewal', 'id', 'company_id', 'year');
     }
 
     public function speciesCategory(){

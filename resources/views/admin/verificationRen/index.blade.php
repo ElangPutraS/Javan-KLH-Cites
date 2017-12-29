@@ -56,14 +56,12 @@
                                 </td>
                                 <td>
                                     <a href="{{route('admin.verificationRen.show', ['id'=> $trade_permit->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a>
-
-
                                     @if ($trade_permit->tradeStatus->status_code == '200' && $trade_permit->permit_type == 2 && $trade_permit->is_printed == 0)
                                         <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->id])}}"
                                            class="btn btn-sm btn-info @if($trade_permit->is_blanko == 1) print @else printed @endif" target="_blank"
                                            data-id="{{ $trade_permit->id }}"><i
                                                     class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
-                                    @else
+                                    @elseif($trade_permit->tradeStatus->status_code == '200' && $trade_permit->is_printed == 1)
                                         <br>
                                         <small>Blanko sudah dicetak</small>
                                     @endif

@@ -20,9 +20,38 @@ use App\Notifications\SubmissionVerificationRejectRen;
 
 class SubmissionVerificationController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $trade_permits = TradePermit::where('permit_type','1')->orderBy('created_at', 'desc')->paginate(10);
+        if($request->input('code') == '' && $request->input('company_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('code') == null && $request->input('company_name') == null && $request->input('date_from') == null && $request->input('date_until') == null ){
+            $trade_permits = TradePermit::where('permit_type','1')->orderBy('created_at', 'desc')->paginate(10);
+        }else{
+            $code = '%'.$request->input('code').'%';
+            $company_name = '%'.$request->input('company_name').'%';
+
+            if($request->input('date_from') != '' && $request->input('date_until') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
+
+                $trade_permits = TradePermit::where('permit_type','1')
+                    ->where('trade_permit_code', 'like', $code)
+                    ->whereBetween('date_submission', [$date_from , $date_until])
+                    ->whereHas('company', function ($q) use($company_name) {
+                        $q->where('company_name', 'like', $company_name);
+                    })->orderBy('created_at', 'desc')->paginate(10);
+            }else {
+                $date_from = '%'.$request->input('date_from').'%';
+                $date_until = '%'.$request->input('date_until').'%';
+
+                $trade_permits = TradePermit::where('permit_type','1')
+                    ->where('trade_permit_code', 'like', $code)
+                    ->whereDate('date_submission', 'like', $date_from)
+                    ->whereDate('date_submission', 'like', $date_until)
+                    ->whereHas('company', function ($q) use($company_name) {
+                        $q->where('company_name', 'like', $company_name);
+                    })->orderBy('created_at', 'desc')->paginate(10);
+            }
+        }
+
 
         return view('admin.verificationSub.index', compact('trade_permits'));
     }
@@ -42,7 +71,7 @@ class SubmissionVerificationController extends Controller
         //susun kode trade permit
         $trade_last      =   TradePermit::orderBy('trade_permit_code','desc')->first();
         $id='';
-        if($trade_last === null || $trade_last->trade_permit_code == ''){
+        if($trade_last === null || $trade_last->trade_permit_code == '' || $trade_last->trade_permit_code == ' '){
             $id = 1;
         }else{
             $id = substr($trade_last->trade_permit_code,0,5) + 1;
@@ -175,10 +204,11 @@ class SubmissionVerificationController extends Controller
         $trade_permit = TradePermit::findOrFail($id);
 
         if($trade_permit->is_renewal == 1){
-            $valid_start = Carbon::parse($trade_permit->valid_until)->format('Y-m-d');
-            $valid_until = Carbon::now()->addMonth($request->get('period'))->format('Y-m-d');
+            $valid_start = Carbon::createFromFormat('Y-m-d', $trade_permit->valid_until);
+            $valid_until = Carbon::createFromFormat('Y-m-d', $trade_permit->valid_until)->addMonth($request->get('period'))->format('Y-m-d');
+
             $trade_permit->update([
-                'valid_start' => $valid_start,
+                'valid_start' => $valid_start->format('Y-m-d'),
                 'valid_until' => $valid_until,
                 'period'      => $request->get('period'),
                 'updated_by' => $request->user()->id

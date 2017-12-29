@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Percentage;
+use App\Species;
 use App\User;
 use Carbon\Carbon;
 use PDF;
@@ -414,6 +415,7 @@ class ReportController extends Controller
 
     public function companyLabor(Request $request)
     {
+        //dd($request->input('company_name').' , '.$request->input('owner_name').' , '.$request->input('date_from').' , '.$request->input('date_until'));
         if($request->input('company_name') == '' && $request->input('owner_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('company_name') == null && $request->input('owner_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
@@ -426,7 +428,7 @@ class ReportController extends Controller
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -471,7 +473,7 @@ class ReportController extends Controller
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -501,6 +503,72 @@ class ReportController extends Controller
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.report-labor', compact('users'));
+        $pdf->setPaper('letter', 'portrait');
+        return $pdf->stream();
+    }
+
+    public function reportForeignExchange(Request $request)
+    {
+        if($request->input('scientific_name') == '' && $request->input('indonesia_name') == '' && $request->input('general_name') == '' && $request->input('year') == '' || $request->input('scientific_name') == null && $request->input('indonesia_name') == null && $request->input('general_name') == null && $request->input('year') == null){
+            $species = DB::table('species as s')
+                ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+                ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+                ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+                ->havingRaw('SUM(tpd.total_exported) > 0')
+                ->orderBy('tpd.year','desc')
+                ->paginate(10);
+
+        }else{
+            $scientific_name = '%'.$request->input('scientific_name').'%';
+            $indonesia_name  = '%'.$request->input('indonesia_name').'%';
+            $general_name    = '%'.$request->input('general_name').'%';
+            $year            = '%'.$request->input('year').'%';
+
+            $species = DB::table('species as s')
+                ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+                ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+                ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+                ->where([['species_scientific_name', 'like', $scientific_name], ['species_indonesia_name', 'like', $indonesia_name], ['species_general_name', 'like', $general_name], ['year', 'like', $year]])
+                ->havingRaw('SUM(tpd.total_exported) > 0')
+                ->orderBy('tpd.year','desc')
+                ->paginate(10);
+        }
+
+        $years = DB::table('trade_permit_detail')
+                ->select('year')->distinct()->orderBy('year', 'desc')->get();
+
+        return view('admin.report.foreign_exchange', compact('species', 'years'));
+    }
+
+    public function printReportForeignExchange(Request $request)
+    {
+        if($request->input('scientific_name') == '' && $request->input('indonesia_name') == '' && $request->input('general_name') == '' && $request->input('year') == '' || $request->input('scientific_name') == null && $request->input('indonesia_name') == null && $request->input('general_name') == null && $request->input('year') == null){
+            $species = DB::table('species as s')
+                ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+                ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+                ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+                ->havingRaw('SUM(tpd.total_exported) > 0')
+                ->orderBy('tpd.year','desc')
+                ->paginate(10);
+
+        }else{
+            $scientific_name = '%'.$request->input('scientific_name').'%';
+            $indonesia_name  = '%'.$request->input('indonesia_name').'%';
+            $general_name    = '%'.$request->input('general_name').'%';
+            $year            = '%'.$request->input('year').'%';
+
+            $species = DB::table('species as s')
+                ->join('trade_permit_detail as tpd', 's.id', '=', 'tpd.species_id')
+                ->select('s.id as id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year as year' , DB::raw('SUM(tpd.total_exported) as total_export'))
+                ->groupBy('s.id', 'species_scientific_name', 'species_indonesia_name', 'species_general_name', 'nominal', 'tpd.year')
+                ->where([['species_scientific_name', 'like', $scientific_name], ['species_indonesia_name', 'like', $indonesia_name], ['species_general_name', 'like', $general_name], ['year', 'like', $year]])
+                ->havingRaw('SUM(tpd.total_exported) > 0')
+                ->orderBy('tpd.year','desc')
+                ->paginate(10);
+        }
+
+        PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
+        $pdf = PDF::loadView('pdf.report-foreign-exchange', compact('species'));
         $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
     }
