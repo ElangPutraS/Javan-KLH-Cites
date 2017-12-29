@@ -206,13 +206,16 @@
                                     </td>
                                 </tr>
                             @endforelse
-                            <tr>
-                                <td colspan="11">
-                                    <a class="btn btn-success"
-                                       href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
-                                       target="_blank"><i class="fa fa-print"></i> Cetak List</a>
-                                </td>
-                            </tr>
+
+                            @if(count($payments) > 0)
+                                <tr>
+                                    <td colspan="11">
+                                        <a class="btn btn-success"
+                                           href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
+                                           target="_blank"><i class="fa fa-print"></i> Cetak List</a>
+                                    </td>
+                                </tr>
+                            @endif
                             </tbody>
                         </table>
                     </div>
