@@ -156,7 +156,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('reportLabor', 'ReportController@companyLabor')->name('admin.report.labor');
     Route::get('printReportLabor', 'ReportController@printReportLabor')->name('admin.report.printReportLabor');
     Route::get('reportForeignExchange', 'ReportController@reportForeignExchange')->name('admin.report.foreignExchange');
-    Route::get('printReportForeignExchange', 'ReportController@printReportLabor')->name('admin.report.printReportforeignExchange');
+    Route::get('printReportForeignExchange', 'ReportController@printReportForeignExchange')->name('admin.report.printReportForeignExchange');
 
     Route::get('companyQuota', 'CompanyQuotaController@index')->name('admin.companyQuota.index');
     Route::get('companyQuota/{id}/detail', 'CompanyQuotaController@detail')->name('admin.companyQuota.detail');

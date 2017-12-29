@@ -55,29 +55,18 @@
                 <div class="card-block">
                     <table>
                         <tr>
-                            <th>Tanggal Pendaftaran dari&nbsp;&nbsp;&nbsp;</th>
+                            <th>Tahun&nbsp;&nbsp;&nbsp;</th>
                             <td>: &nbsp;&nbsp;&nbsp;</td>
                             <td>
-                                @if(Request::input('df'))
-                                    {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('df'))->toFormattedDateString() }}
+                                @if(Request::input('year'))
+                                    {{ Request::input('year') }}
                                 @else
                                     -
                                 @endif
                             </td>
                         </tr>
                         <tr>
-                            <th>Tanggal Pendaftaran sampai &nbsp;&nbsp;&nbsp;</th>
-                            <td>: &nbsp;&nbsp;&nbsp;</td>
-                            <td>
-                                @if(Request::input('du'))
-                                    {{ Carbon\Carbon::createFromFormat('Y-m-d', request()->input('du'))->toFormattedDateString() }}
-                                @else
-                                    -
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Total Investasi &nbsp;&nbsp;&nbsp;</th>
+                            <th>Total Devisa Negara &nbsp;&nbsp;&nbsp;</th>
                             <td>: &nbsp;&nbsp;&nbsp;</td>
                             <td><?=  'Rp. ' . number_format($total, 2, ',', '.') ?></td>
                         </tr>
@@ -123,7 +112,7 @@
                             <tr>
                                 <td colspan="11">
                                     <a class="btn btn-success"
-                                       href="{{ url('admin/printReportInvestation?company_name='.request()->input('company_name').'&owner_name='.request()->input('owner_name').'&date_from='.request()->input('date_from').'&date_until='.request()->input('date_until')) }}"
+                                       href="{{ url('admin/printReportForeignExchange?scientific_name='.request()->input('scientific_name').'&indonesia_name='.request()->input('indonesia_name').'&general_name='.request()->input('general_name').'&year='.request()->input('year')) }}"
                                        target="_blank"><i class="fa fa-print"></i> Cetak List</a>
                                 </td>
                             </tr>
