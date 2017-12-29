@@ -111,7 +111,7 @@
                             @endforelse
                             <tr>
                                 <td colspan="11">
-                                    <a class="btn btn-success"
+                                    <a class="btn btn-success @if(count($users) < 1) disabled @endif"
                                        href="{{ url('admin/printReportLabor?company_name='.request()->input('company_name').'&owner_name='.request()->input('owner_name').'&date_from='.request()->input('date_from').'&date_until='.request()->input('date_until')) }}"
                                        target="_blank"><i class="fa fa-print"></i> Cetak List</a>
                                 </td>

@@ -415,6 +415,7 @@ class ReportController extends Controller
 
     public function companyLabor(Request $request)
     {
+        //dd($request->input('company_name').' , '.$request->input('owner_name').' , '.$request->input('date_from').' , '.$request->input('date_until'));
         if($request->input('company_name') == '' && $request->input('owner_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('company_name') == null && $request->input('owner_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
             $users = User::whereHas('roles', function ($q) {
                 $q->where('id', '=', 2);
@@ -427,7 +428,7 @@ class ReportController extends Controller
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
@@ -472,7 +473,7 @@ class ReportController extends Controller
 
             if($request->input('date_from') != '' && $request->input('date_until') != ''){
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
                 $users = User::whereHas('roles', function ($q) {
                     $q->where('id', '=', 2);
