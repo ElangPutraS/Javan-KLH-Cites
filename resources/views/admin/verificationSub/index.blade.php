@@ -64,8 +64,8 @@
                                 <tr>
                                     <td>{{ (($trade_permits->currentPage() - 1 ) * $trade_permits->perPage() ) + $loop->iteration }}</td>
                                     <td>{{ $trade_permit->trade_permit_code }}</td>
-                                    <td>{{ $trade_permit->company->company_name }}</td>
                                     <td>{{ Carbon\Carbon::parse($trade_permit->date_submission)->format('d-m-Y') }}</td>
+                                    <td>{{ $trade_permit->company->company_name }}</td>
                                     <td>{{ $trade_permit->consignee }}</td>
                                     <td>{{ $trade_permit->period }} bulan</td>
                                     <td>{{ $trade_permit->portExpor->port_name }}</td>
