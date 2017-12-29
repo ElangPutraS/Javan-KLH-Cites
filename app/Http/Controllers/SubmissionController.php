@@ -23,34 +23,37 @@ class SubmissionController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->input('code') == '' && $request->input('period') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('code') == null && $request->input('period') == null && $request->input('date_from') == null && $request->input('date_until') == null ){
+        if($request->input('code') == '' && $request->input('period') == '' && $request->input('status') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('code') == null && $request->input('period') == null && $request->input('status') == null && $request->input('date_from') == null && $request->input('date_until') == null ){
             $trade_permits = TradePermit::where('company_id', $request->user()->company->id)->orderBy('created_at', 'desc')->paginate(10);
-        }else{
-            $code = '%'.$request->input('code').'%';
-            $period = '%'.$request->input('period').'%';
+        }else {
+            $code = '%' . $request->input('code') . '%';
+            $period = '%' . $request->input('period') . '%';
+            $status_search = '%' . $request->input('status') . '%';
 
-            if($request->input('date_from') != '' && $request->input('date_until') != ''){
+            if ($request->input('date_from') != '' && $request->input('date_until') != '') {
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
-                $trade_permits = TradePermit::where([['company_id', '=', $request->user()->company->id], ['trade_permit_code', 'like', $code], ['period', 'like', $period] ])
-                    ->whereBetween('date_submission', [$date_from , $date_until ])
+                $trade_permits = TradePermit::where([['company_id', '=', $request->user()->company->id], ['trade_permit_code', 'like', $code], ['period', 'like', $period], ['trade_permit_status_id', 'like', $status_search]])
+                    ->whereBetween('date_submission', [$date_from, $date_until])
                     ->orderBy('created_at', 'desc')->paginate(10);
-            }else {
-                $date_from = '%'.$request->input('date_from').'%';
-                $date_until = '%'.$request->input('date_until').'%';
+            } else {
+                $date_from = '%' . $request->input('date_from') . '%';
+                $date_until = '%' . $request->input('date_until') . '%';
 
                 $trade_permits = TradePermit::where('company_id', $request->user()->company->id)
                     ->where('trade_permit_code', 'like', $code)
-                    ->where('period', 'like' , $period)
+                    ->where('period', 'like', $period)
+                    ->where('trade_permit_status_id', 'like', $status_search)
                     ->whereDate('date_submission', 'like', $date_from)
                     ->whereDate('date_submission', 'like', $date_until)
                     ->orderBy('created_at', 'desc')->paginate(10);
             }
         }
 
+        $status = TradePermitStatus::orderBy('status_code')->get();
 
-        return view('pelakuusaha.submission.index', compact('trade_permits'));
+        return view('pelakuusaha.submission.index', compact('trade_permits', 'status'));
     }
 
 
