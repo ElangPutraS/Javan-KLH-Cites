@@ -61,10 +61,7 @@
                                            class="btn btn-sm btn-info @if($trade_permit->is_blanko == 1) print @else printed @endif" target="_blank"
                                            data-id="{{ $trade_permit->id }}"><i
                                                     class="zmdi zmdi-print zmdi-hc-fw" title="print"></i></a>
-                                    @elseif($trade_permit->tradeStatus->status_code == '100' || $trade_permit->tradeStatus->status_code == '300')
-                                        <br>
-                                        <small>Tidak diizinkan mencetak</small>
-                                    @else
+                                    @elseif($trade_permit->tradeStatus->status_code == '200' && $trade_permit->is_printed == 1)
                                         <br>
                                         <small>Blanko sudah dicetak</small>
                                     @endif
