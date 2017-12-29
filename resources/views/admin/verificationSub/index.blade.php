@@ -21,17 +21,27 @@
                             <input class="form-control" type="text" placeholder="Cari kode SATS-LN.." name="trade_permit_code" id="trade_permit_code" value="@if(Request::input('code')){{Request::input('code')}} @endif">
                         </div>
 
-                        <div class="input-group col-sm-5">
+                        <div class="input-group col-sm-6">
                             <span class="input-group-addon" id="basic-month">Nama Perusahaan</span>
                             <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
                         </div><br><br><br>
 
                         <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-year">Status</span>
+                            <select name="status" id="status" class="form-control select2">
+                                <option value="">-- semua --</option>
+                                @foreach($status as $stat)
+                                    <option value="{{ $stat->id }}" @if(request()->input('status') == $stat->id) selected @endif> {{ $stat->status_name }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="input-group col-sm-3">
                             <span class="input-group-addon" id="basic-year">Tanggal Dibuat (dari)</span>
                             <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
                         </div>
 
-                        <div class="input-group col-sm-5">
+                        <div class="input-group col-sm-3">
                             <span class="input-group-addon" id="basic-year">Tanggal Dibuat (sampai)</span>
                             <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                         </div>
@@ -125,10 +135,11 @@
 
                 var code        = $('#trade_permit_code').val();
                 var company_name= $('#company_name').val();
+                var status      = $('#status').val();
                 var date_from   = $('#date_from').val();
                 var date_until  = $('#date_until').val();
 
-                location.href = '?code=' + code + '&company_name=' + company_name+ '&date_from=' + date_from+ '&date_until=' + date_until;
+                location.href = '?code=' + code + '&company_name=' + company_name+ '&status=' + status+ '&date_from=' + date_from+ '&date_until=' + date_until;
             });
         });
 
