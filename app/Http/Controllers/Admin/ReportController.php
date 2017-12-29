@@ -22,7 +22,7 @@ class ReportController extends Controller
         $month = $request->input('m');
 
         if ($year == 'all' && $month == 'all' || $year === null && $month === null) {
-            $payments = HistoryPayment::orderBy('created_at', 'asc')->paginate(10);
+            $payments = HistoryPayment::whereHas('pnbp')->orderBy('created_at', 'asc')->paginate(10);
         } else {
             if ($year != 'all' && $month != 'all') {
                 $reqDate = date('Y-m', strtotime($year . '-' . $month)) . '%';
@@ -32,7 +32,7 @@ class ReportController extends Controller
                 $reqDate = date('Y', strtotime($year)) . '%';
             }
 
-            $payments = HistoryPayment::where('created_at', 'like', $reqDate)->orderBy('created_at', 'asc')->paginate(10);
+            $payments = HistoryPayment::whereHas('pnbp')->where('created_at', 'like', $reqDate)->orderBy('created_at', 'asc')->paginate(10);
         }
 
         $trade_permits = LogTradePermit::whereHas('tradePermit', function ($q) {

@@ -160,6 +160,7 @@
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No.</th>
+                                <th>Jenis Laporan</th>
                                 <th width="150px">Tanggal Pembayaran</th>
                                 <th>Kode Permohonan</th>
                                 <th>No PNBP</th>
@@ -176,6 +177,7 @@
                             @forelse($payments as $pnbp)
                                 <tr>
                                     <td>{{ (($payments->currentPage() - 1 ) * $payments->perPage() ) + $loop->iteration }}</td>
+                                    <td>{{ $pnbp->pnbp->tradePermit->permit_type == 1 ? 'Permohonan' : 'Pembaharuan' }}</td>
                                     <td>{{ Carbon\Carbon::parse($pnbp->created_at)->format('d-m-Y') }}</td>
                                     <td>{{ $pnbp->logTrade->trade_permit_code }}</td>
                                     <td>{{ $pnbp->pnbp_code }}</td>

@@ -89,6 +89,7 @@
                                         <?php
                                         $no = 1;
                                         $total = [];
+                                        $totalExport = [];
                                         ?>
                                         @foreach($trade_permit->tradeSpecies as $species)
                                             @if($trade_permit->permit_type == 1)

@@ -23,6 +23,7 @@
                             <thead class="thead-default">
                             <tr>
                                 <th width="50px">No</th>
+                                <th>Jenis Permohonan</th>
                                 <th>Kode Permohonan</th>
                                 <th>No PNBP</th>
                                 <th>Perusahaan</th>
@@ -40,6 +41,7 @@
                             @forelse($trade_permits as $trade_permit)
                                 <tr>
                                     <td>{{ (($trade_permits->currentPage() - 1 ) * $trade_permits->perPage() ) + $loop->iteration }}</td>
+                                    <td>{{ $trade_permit->permit_type == 1 ? 'Permohonan' : 'Pembaharuan' }}</td>
                                     <td>{{ $trade_permit->trade_permit_code }}</td>
                                     <td>
                                         @if($trade_permit->pnbp !== null)
