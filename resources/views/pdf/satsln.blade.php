@@ -8,16 +8,22 @@
             font: 10px arial, calibri;
             margin: 0;
             padding: 0;
+            color: white;
         }
 
         hr {
-
+            border: none;
         }
+
+        .colored{
+            color: black;
+        }
+
     </style>
 </head>
 <body>
 
-<table border="1" cellspacing="0" style="margin: 10px;" width="80%">
+<table cellspacing="0" style="margin: 10px;" width="80%">
 <!--tr>
 		<td height="10">
 			<div style="float: left; height: 64px;"><img src="{{ asset('images/CITES_logo_high_resolution.jpg') }}" height="64"></div>
@@ -60,30 +66,44 @@
             <table>
                 <tr>
                     <td width="10">I.</td>
-                    <td>Surat Angkut Tumbuhan dan Satwa Liar
+                    <td width="50">Surat Angkut Tumbuhan dan Satwa Liar
                         <hr>
-                        <i>Permit</i></td>
+                        <i>Permit</i>
+                    </td>
                     <td>No. :</td>
-                    <td width="400">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->trade_permit_code }} @else @endif</td>
-                    <!--td>
+                    <td class="colored" width="280">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->trade_permit_code }} @else @endif</td>
+                    <td width="140">
                         <table>
                             <tr>
-                                <td>
-                                    <label><input type="checkbox" name="trading_type">Export</label>
+                                @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
+                                <td class="colored" align="left">
+                                    @if($trade_permit->trading_type_id == 2)
+                                        x
+                                    @endif
+                                    <span>Export </span></td>
+                                <td class="colored" align="left">
+                                    @if($trade_permit->trading_type_id == 1)
+                                        x
+                                    @endif
+                                    <span>Import </span>
                                 </td>
-                                <td>
-                                    <label><input type="checkbox" name="trading_type">Import</label>
+                                <td class="colored" align="left">
+                                    @if($trade_permit->trading_type_id == 3)
+                                        x
+                                    @endif
+                                    <span>Re-export </span>
                                 </td>
-                                <td>
-                                    <label><input type="checkbox" name="trading_type">Re-Export</label>
+                                <td class="colored" align="left">
+                                    @if($trade_permit->trading_type_id == 4)
+                                        x
+                                    @endif
+                                    <span>Others </span>
                                 </td>
-                                <td>
-                                    <label><input type="checkbox" name="trading_type">Other</label>
-                                </td>
+                                    @endif
                             </tr>
                         </table>
-                    </td-->
-                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->tradingType->trading_type_name }} @else @endif</td>
+                    </td>
+                    <!--td class="colored" >@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->tradingType->trading_type_name }} @else @endif</td-->
                 </tr>
             </table>
         </td>
@@ -98,7 +118,7 @@
                         <hr>
                         <i>Permitee (name. address, country)</i></td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->company->company_name . ' - ' . $trade_permit->company->company_address }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->company->company_name . ' - ' . $trade_permit->company->company_address }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -113,7 +133,7 @@
                         <hr>
                         <i>Permitee (name. address, country)</i></td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->consignee . ' , ' . $trade_permit->consignee_address }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->consignee . ' , ' . $trade_permit->consignee_address }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -128,7 +148,7 @@
                         <hr>
                         <i>Valid until</i></td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ date('d-m-Y', strtotime($trade_permit->valid_until ? $trade_permit->valid_until : null)) }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ Carbon\Carbon::parse($trade_permit->valid_until)->format('d F Y') }} @endif</td>
                 </tr>
             </table>
         </td>
@@ -141,7 +161,7 @@
                         <hr>
                         <i>Place Port of destination</i></td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->portDest->port_name }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->portDest->port_name }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -156,7 +176,7 @@
                         <hr>
                         <i>Port exportation</i></td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->portExpor->port_name }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->portExpor->port_name }} @else @endif</td>
                 </tr>
             </table>
         </td>
@@ -169,7 +189,7 @@
                         <hr>
                         <i>Purpose of transaction</i></td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->purposeType->purpose_type_name }} @else @endif </td>
+                    <td class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->purposeType->purpose_type_name }} @else @endif </td>
                 </tr>
             </table>
         </td>
@@ -192,7 +212,7 @@
 
     <tr>
         <td colspan="4">
-            <table border="1" cellspacing="0" width="100%" style="border: 0;">
+            <table cellspacing="0" width="100%">
                 <tr style="text-align: center;">
                     <td>No.</td>
                     <td>Nama Jenis
@@ -221,22 +241,60 @@
                         @php
                             $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', '2017'], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
                         @endphp
-                        <tr>
-                            <td align="center">{{ $loop->iteration }}</td>
-                            <td>{{ $value->species_scientific_name }}</td>
-                            <td align="center">{{ $value->pivot->total_exported }}</td>
-                            <td align="center">{{ $value->species_description }}</td>
-                            <td align="center">{{ $value->appendixSource->appendix_source_code . '(' . $value->source->source_code . ')' }}</td>
-                            <td align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
+                        <tr >
+                            <td class="colored" align="center">{{ $loop->iteration }}</td>
+                            <td class="colored">{{ $value->species_scientific_name }}</td>
+                            <td class="colored" align="center">{{ $value->pivot->total_exported }}</td>
+                            <td class="colored" align="center">{{ $value->species_description }}</td>
+                            <td class="colored" align="center">
+                                @if($value->appendixSource->id == 1)
+                                    {{'I'. '(' . $value->source->source_code . ')'}}
+                                @elseif($value->appendixSource->id == 2)
+                                    {{'II'. '(' . $value->source->source_code . ')'}}
+                                @else
+                                    {{'-'. '(' . $value->source->source_code . ')'}}
+                                @endif
+                            </td>
+                            <td class="colored" align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
                         </tr>
                     @endforeach
-                @else
 
+                        <tr>
+                            <td colspan="4" class="colored">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td class="colored" align="right">T O T A L</td>
+                            <td class="colored" align="center">{{ $value->pivot->sum('total_exported') }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="colored">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                            </td>
+                        </tr>
+
+                    @for($i=0; $i<13-count($trade_permit); $i++)
+                        <tr>
+                            <td>EMP</td>
+                        </tr>
+                    @endfor
+
+                @else
+                    @for($i=0; $i<19-count($trade_permit); $i++)
+                        <tr>
+                            <td>EMP</td>
+                        </tr>
+                    @endfor
                 @endif
             </table>
-        </td>
-    </tr>
 
+    <tr>
+        <td>EMP</td>
+    </tr>
+    <tr>
+        <td>EMP</td>
+    </tr>
     <tr>
         <td colspan="4">
             <table width="100%">
@@ -255,8 +313,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" height="32" align="center">
-                        @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->stamp }} @else @endif
+                    <td colspan="4" height="32" align="center" class="colored">
+                        @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ 'Security Stamp No: '.$trade_permit->stamp }} @else @endif
                     </td>
                 </tr>
             </table>
@@ -265,19 +323,30 @@
 
     <tr>
         <td colspan="2" style="border: none;" >
-            <table width="100%" >
+            <table width="100%">
                 <tr>
                     <td valign="top">X.</td>
                     <td>
                         <u>Sertifikat ini diterbitkan oleh</u>
                         <br>
-                        <i>This permitt is issued by</i><br><br><br><br><br><br><br>
-                        <div style="float: left; margin-right: 200px;">
-                            <u>Jakarta</u><br>Tempat/<i>Place</i>
-                        </div>
-                        <div>
-                            <u>@if($trade_permit->permit_type == 1 ){{ date('d/m/Y', strtotime($trade_permit->date_submission)) }} @else @endif </u><br>Tanggal/<i>Date</i>
-                        </div>
+                        <i>This permitt is issued by</i><br><br><br><br><br>
+                        <table>
+                            <tr>
+                                <td align="left">
+                                    @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
+                                        <p class="colored">Jakarta</p>
+                                    @endif
+                                        <br>Tempat/<i>Place</i>
+                                </td>
+                                <td align="right">
+                                    <p class="colored">
+                                        @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1 )
+                                            {{ Carbon\Carbon::now()->format('d/m/Y') }}
+                                        @endif
+                                    </p><br>Tanggal/<i>Date</i>
+                                </td>
+                            </tr>
+                        </table>
                     </td>
                 </tr>
             </table>
@@ -325,7 +394,7 @@
             <table>
                 <tr>
                     <td>
-                        <table border="1" cellspacing="0">
+                        <table cellspacing="0">
                             <thead align="center">
                             <tr>
                                 <th colspan="2">Lihat kolom jenis/See column of species</th>
@@ -409,7 +478,7 @@
                         Valid until
                     </td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ date('d-m-Y', strtotime($trade_permit->valid_until ? $trade_permit->valid_until : null)) }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ Carbon\Carbon::parse($trade_permit->valid_until)->format('d F Y') }} @endif</td>
                 </tr>
                 <tr>
                     <td>Dikirim kepada (nama, alamat, negara)
@@ -417,7 +486,7 @@
                         Consignee (name, address, country)
                     </td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->consignee. ' , ' . $trade_permit->consignee_address }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->consignee. ' , ' . $trade_permit->consignee_address }} @else @endif</td>
                 </tr>
                 <tr>
                     <td>Pelabuhan pemberangkatan
@@ -425,7 +494,7 @@
                         Port of exportation
                     </td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->portExpor->port_name }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->portExpor->port_name }} @else @endif</td>
                 </tr>
                 <tr>
                     <td>Pelabuhan tujuan
@@ -433,7 +502,7 @@
                         Port of destination
                     </td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->portDest->port_name }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->portDest->port_name }} @else @endif</td>
                 </tr>
                 <tr>
                     <td>Tanggal
@@ -441,7 +510,7 @@
                         Date
                     </td>
                     <td>:</td>
-                    <td>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ date('d/m/Y', strtotime($trade_permit->valid_start)) }} @else @endif </td>
+                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d F Y') }} @else @endif </td>
                 </tr>
                 <tr>
                     <td></td>
