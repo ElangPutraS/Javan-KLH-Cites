@@ -148,7 +148,7 @@
                         <hr>
                         <i>Valid until</i></td>
                     <td>:</td>
-                    <td class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ date('d F Y', strtotime($trade_permit->valid_until ? $trade_permit->valid_until : null)) }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ Carbon\Carbon::parse($trade_permit->valid_until)->format('d F Y') }} @endif</td>
                 </tr>
             </table>
         </td>
@@ -339,7 +339,11 @@
                                         <br>Tempat/<i>Place</i>
                                 </td>
                                 <td align="right">
-                                    <p class="colored">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1 ){{ date('d/m/Y') }} @else @endif </p><br>Tanggal/<i>Date</i>
+                                    <p class="colored">
+                                        @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1 )
+                                            {{ Carbon\Carbon::now()->format('d/m/Y') }}
+                                        @endif
+                                    </p><br>Tanggal/<i>Date</i>
                                 </td>
                             </tr>
                         </table>
@@ -474,7 +478,7 @@
                         Valid until
                     </td>
                     <td>:</td>
-                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ date('d-m-Y', strtotime($trade_permit->valid_until ? $trade_permit->valid_until : null)) }} @else @endif</td>
+                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ Carbon\Carbon::parse($trade_permit->valid_until)->format('d F Y') }} @endif</td>
                 </tr>
                 <tr>
                     <td>Dikirim kepada (nama, alamat, negara)
@@ -506,7 +510,7 @@
                         Date
                     </td>
                     <td>:</td>
-                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ date('d/m/Y', strtotime($trade_permit->valid_start)) }} @else @endif </td>
+                    <td class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d F Y') }} @else @endif </td>
                 </tr>
                 <tr>
                     <td></td>
