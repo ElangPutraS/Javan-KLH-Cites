@@ -137,7 +137,7 @@ class SubmissionRenewalController extends Controller
             'purpose_type_id'           => $trade_permit->purpose_type_id,
             'company_id'                => $trade_permit->company_id,
             'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
-            'valid_renewal'             => $trade_permit->valid_renewal,
+            'valid_renewal'             => '2',
             'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
             'is_blanko'                 => $trade_permit->is_blanko,

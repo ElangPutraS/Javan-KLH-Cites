@@ -129,7 +129,8 @@ class PnbpController extends Controller
             'country_exportation'       => $trade_permit->country_exportation,
             'consignee_address'         => $trade_permit->consignee_address,
             'stamp' => $trade_permit->stamp,
-            'is_printed' => $trade_permit->is_printed
+            'is_printed' => $trade_permit->is_printed,
+            'permit_type' => $trade_permit->permit_type
         ]);
         $trade_permit->logTrade()->save($log);
 
