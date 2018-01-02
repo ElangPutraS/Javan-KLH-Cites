@@ -37,7 +37,7 @@
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (sampai)</span>
-                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
+                            <input class="form-control date-picker flatpickr-input active" placeholder="sampai tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-1" role="group" aria-label="...">
