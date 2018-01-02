@@ -154,29 +154,18 @@
                                 @forelse($trade_permits as $trade_permit)
                                     <tr>
                                         <td>{{ (($trade_permits->currentPage() - 1 ) * $trade_permits->perPage() ) + $loop->iteration }}</td>
-                                        <td>{{ $trade_permit->tradePermit->trade_permit_code }}</td>
+                                        <td>{{ $trade_permit->trade_permit_code }}</td>
                                         <td>{{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y').' sd. '.Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}</td>
                                         <td>{{ $trade_permit->consignee }}</td>
                                         <td>{{ $trade_permit->period }} bulan</td>
                                         <td>{{ $trade_permit->portExpor->port_name }}</td>
                                         <td>{{ $trade_permit->portDest->port_name  }}</td>
                                         <td>
-                                            @php
-                                            /*@if($trade_permit->permit_type == '1')
-                                                @if($trade_permit->period < 6)
-                                                    Permohonan SATS-LN Bertahap
-                                                @else
-                                                    Permohonan SATS-LN Langsung
-                                                @endif
-                                            @elseif($trade_permit->permit_type == '2')
-                                                @if($trade_permit->period < 6)
-                                                    Pembaharuan Permohonan SATS-LN Bertahap
-                                                @else
-                                                    Pembaharuan Permohonan SATS-LN Langsung
-                                                @endif
-                                            @endif*/
-                                            echo 'Permohonan';
-                                            @endphp
+                                            @if($trade_permit->permit_type == '1')
+                                                {{ 'Permohonan' }}
+                                            @else
+                                                {{ 'Pembaharuan' }}
+                                            @endif
                                         </td>
                                         <td>{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
                                         <td>
