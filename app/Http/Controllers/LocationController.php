@@ -67,7 +67,7 @@ class LocationController extends Controller
         $spec = Species::findOrFail($species_id)->speciesQuota->where('year', $year)->first();
 
         if($spec){
-            $total = CompanyQuota::where('species_id',$species_id)->sum('quota_amount');
+            $total = CompanyQuota::where([['species_id',$species_id], ['year', $year]])->sum('quota_amount');
             $quota_now = $spec->quota_amount - $total;
 
             return $quota_now;
