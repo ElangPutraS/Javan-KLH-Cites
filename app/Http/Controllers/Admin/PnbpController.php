@@ -189,6 +189,7 @@ class PnbpController extends Controller
             'purpose_type_id'           => $trade_permit->purpose_type_id,
             'company_id'                => $trade_permit->company_id,
             'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
+            'permit_type'               => $trade_permit->permit_type,
             'created_by'                => $request->user()->id,
             'category_id'               => $trade_permit->category_id,
             'source_id'                 => $trade_permit->source_id,
