@@ -14,10 +14,30 @@
                 </div>
 
                 <div class="card-block">
+                    <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-month">Judul</span>
+                            <input class="form-control" type="text" placeholder="Cari judul.." name="title" id="title" value="@if(Request::input('title')){{Request::input('title')}} @endif">
+                        </div>
 
+                        <div class="input-group col-sm-3">
+                            <span class="input-group-addon" id="basic-year">Tanggal Dibuat (dari)</span>
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
+                        </div>
+
+                        <div class="input-group col-sm-3">
+                            <span class="input-group-addon" id="basic-year">Tanggal Dibuat (sampai)</span>
+                            <input class="form-control date-picker flatpickr-input active" placeholder="sampai tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
+                        </div>
+
+                        <div class="btn-group col-sm-1" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                            </button>
+                        </div>
+                    </form><br>
                     @include('includes.notifications')
 
-                    <a href="{{ route('admin.news.create') }}" class="btn btn-primary">Tambah Baru</a>
+                    <a href="{{ route('admin.news.create') }}" class="btn btn-primary">Tambah Baru</a><hr>
 
                     <div class="table-responsive">
                         <table class="table table-bordered table-sm">
@@ -25,8 +45,8 @@
                             <tr>
                                 <th width="50px">No</th>
                                 <th width="150px">Judul</th>
-                                <th width="150px">Tanggal Buat</th>
-                                <th width="150px">Tanggal Update</th>
+                                <th width="150px">Tanggal DiBuat</th>
+                                <th width="150px">Tanggal Diubah</th>
                                 <th width="100px">Dibuat Oleh </th>
                                 <th width="150px">Aksi</th>
                             </tr>
@@ -60,7 +80,7 @@
                         </table>
                     </div>
 
-                    {!! $news->links('vendor.pagination.bootstrap-4') !!}
+                    {!! $news->appends(\Illuminate\Support\Facades\Input::except('page'))->render('vendor.pagination.bootstrap-4') !!}
 
                 </div>
             </div>
@@ -70,6 +90,18 @@
 @push('body.script')
     <script src="{{asset('template/vendors/bower_components/sweetalert2/dist/sweetalert2.min.js')}}"></script>
     <script>
+        $(document).ready(function () {
+            $('#form-search').submit(function (ev) {
+                ev.preventDefault();
+
+                var title      = $('#title').val();
+                var date_from  = $('#date_from').val();
+                var date_until = $('#date_until').val();
+
+                location.href = '?title=' + title + '&date_from=' + date_from + '&date_until=' + date_until;
+            });
+        });
+
         function deleteNews(a) {
             swal({
                 title: 'Apakah Anda Yakin?',
