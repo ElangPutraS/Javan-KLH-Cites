@@ -247,12 +247,16 @@
                             <td class="colored" align="center">{{ $value->pivot->total_exported }}</td>
                             <td class="colored" align="center">{{ $value->species_description }}</td>
                             <td class="colored" align="center">
-                                @if($value->appendixSource->id == 1)
-                                    {{'I'. '(' . $value->source->source_code . ')'}}
-                                @elseif($value->appendixSource->id == 2)
-                                    {{'II'. '(' . $value->source->source_code . ')'}}
+                                @if($value->is_appendix == 1)
+                                    @if($value->appendixSource->id == 1)
+                                        {{'I'. '(' . $value->source->source_code . ')'}}
+                                    @elseif($value->appendixSource->id == 2)
+                                        {{'II'. '(' . $value->source->source_code . ')'}}
+                                    @else
+                                        {{'-'. '(' . $value->source->source_code . ')'}}
+                                    @endif
                                 @else
-                                    {{'-'. '(' . $value->source->source_code . ')'}}
+                                    {{ '-' }}
                                 @endif
                             </td>
                             <td class="colored" align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
@@ -266,7 +270,7 @@
                         <tr>
                             <td></td>
                             <td class="colored" align="right">T O T A L</td>
-                            <td class="colored" align="center">{{ $value->pivot->sum('total_exported') }}</td>
+                            <td class="colored" align="center">{{ $value->pivot->where('id','=', $value->pivot->id)->sum('total_exported') }}</td>
                             <td></td>
                         </tr>
                         <tr>

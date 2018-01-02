@@ -22,28 +22,54 @@
                             <h5>A. Informasi Pelaku Usaha</h5>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Nama Pelaku Usaha</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="name" class="form-control"
-                                       value="{{ old('name', array_get($user, 'name')) }}" readonly>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label">Nama Pemilik Usaha</label>
+                                    <input type="text" name="name" class="form-control" value="{{ old('name', array_get($user->company, 'owner_name')) }}" readonly>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Nama Perusahaan</label>
+                                    <input type="text" name="company_name" class="form-control" value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) }}" readonly>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Nama Usaha</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="company_name" class="form-control"
-                                       value="{{ old('identity_number', array_get($user->userProfile->company, 'company_name')) }}"
-                                       readonly>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label">Nomor NPWP Pemilik Usaha</label>
+                                    <input type="text" name="npwp_number_user" class="form-control" value="{{ old('npwp_number_user', array_get($user->userProfile, 'npwp_number')) }}" readonly>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Nomor NPWP Perusahaan</label>
+                                    <input type="text" name="npwp_number" class="form-control" value="{{ old('npwp_number', array_get($user->company, 'npwp_number')) }}" readonly>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Alamat Usaha</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="company_address" class="form-control"
-                                       value="{{ old('company_address', array_get($user->userProfile->company, 'company_address')) }}"
-                                       readonly>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label">Alamat Usaha</label>
+                                    <input type="text" name="company_address" class="form-control" value="{{ old('company_address', array_get($user->company, 'company_address')) }}" readonly>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Alamat Penangkaran</label>
+                                    <input type="text" name="captivity_address" class="form-control" value="{{ old('captivity_address', array_get($user->company, 'captivity_address')) }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label class="control-label">Masa Berlaku Surat Izin Edar</label>
+                                    <input type="text" name="date_distribution" class="form-control" value="{{ Carbon\Carbon::parse($user->company->date_distribution)->toFormattedDateString() }}" readonly>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Nomor Kontak</label>
+                                    <input type="text" name="mobile" class="form-control" value="{{ old('mobile', array_get($user->userProfile, 'mobile')) }}" readonly>
+                                </div>
                             </div>
                         </div>
 
@@ -51,67 +77,80 @@
                             <h5>B. Informasi Permohonan</h5>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Jenis Perdagangan</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="trading_type_id" class="form-control"
-                                       value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}"
-                                       readonly>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Jenis Perdagangan</label>
+                                    <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="control-label">Komoditas</label>
+                                    <input type="text" name="category_id" class="form-control" value="{{ $trade_permit->category->species_category_code.' - '.$trade_permit->category->species_category_name }}" readonly>
+                                </div>
+                                <div class="col-sm-4">
+                                    <label class="control-label">Jenis Appendix</label>
+                                    <input type="text" name="appendix_type" class="form-control" value="<?php if($trade_permit->appendix_type=='EA'){echo 'SATS-LN Site (EA)';}else{ echo 'SATS-LN Non Site (EB)';}?>" readonly>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Jenis Kegiatan</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="purpose_type_id" class="form-control"
-                                       value="{{ old('purpose_type_id', array_get($trade_permit->purposeType, 'purpose_type_name')) }}"
-                                       readonly>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Maksud Transaksi</label>
+                                    <input type="text" name="purpose_type_id" class="form-control" value="{{ old('purpose_type_id', array_get($trade_permit->purposeType, 'purpose_type_name')) }}" readonly>
+                                </div>
+                                <div class="col-sm-7">
+                                    <label class="control-label">Sumber Spesies</label>
+                                    <input type="text" name="source_id" class="form-control" value="{{ $trade_permit->source->source_code.' - '.$trade_permit->source->source_description }}" readonly>
+                                </div>
+
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Masa Berlaku</label>
+                            <label class="control-label">Periode Permohonan</label>
                             <div class="col-sm-14">
-                                <input type="text" name="trading_type_id" class="form-control"
-                                       value="{{ old('trading_type_id', array_get($trade_permit, 'period')) }} Bulan"
-                                       readonly>
+                                <input type="text" name="period" class="form-control" value="@if($trade_permit->period == 0) Periode belum ditentukan @else {{ $trade_permit->period.' bulan' }} @endif" readonly>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Pelabuhan Ekspor</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="port_exportation" class="form-control"
-                                       value="{{ old('port_exportation', array_get($trade_permit->portExpor, 'port_name')) }}"
-                                       readonly>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Penerima</label>
+                                    <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" readonly>
+                                </div>
+                                <div class="col-sm-7">
+                                    <label class="control-label">Alamat Penerima</label>
+                                    <input type="text" name="consignee" class="form-control" value="{{ old('consignee', array_get($trade_permit, 'consignee_address')) }}" readonly>
+                                </div>
+
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Pelabuhan Tujuan</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="port_destination" class="form-control"
-                                       value="{{ old('port_destination', array_get($trade_permit->portExpor, 'port_name')) }}"
-                                       readonly>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Negara Tujuan</label>
+                                    <input type="text" name="country_destination" class="form-control" value="Indonesia{{ old('country_destination', array_get($trade_permit->portExpor, 'country_destination')) }}" readonly>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Pelabuhan Tujuan</label>
+                                    <input type="text" name="port_destination" class="form-control" value="{{ old('port_destination', array_get($trade_permit->portDest, 'port_name')) }}" readonly>
+                                </div>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Penerima</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="consignee" class="form-control"
-                                       value="{{ old('consignee', array_get($trade_permit, 'consignee')) }}" readonly>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label">Jenis Appendix</label>
-                            <div class="col-sm-14">
-                                <input type="text" name="appendix_type" class="form-control"
-                                       value="<?php if ($trade_permit->appendix_type == 'EA') {
-                                           echo 'SATS-LN Site (EA)';
-                                       } else {
-                                           echo 'SATS-LN Non Site (EB)';
-                                       }?>" readonly>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Negara Ekspor</label>
+                                    <input type="text" name="country_exportation" class="form-control" value="Indonesia{{ old('country_exportation', array_get($trade_permit->portExpor, 'country_exportation')) }}" readonly>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label class="control-label">Pelabuhan Ekspor</label>
+                                    <input type="text" name="port_exportation" class="form-control" value="{{ old('port_exportation', array_get($trade_permit->portExpor, 'port_name')) }}" readonly>
+                                </div>
                             </div>
                         </div>
 
