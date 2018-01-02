@@ -143,23 +143,61 @@ class ReportController extends Controller
         return $pdf->stream();
     }
 
-    public function portalInsw()
+    public function portalInsw(Request $request)
     {
-        $tradePermit = TradePermit::whereHas('tradeStatus', function ($q) {
-            $q->where('status_code', '600');
-            $q->orWhere('status_code', '700');
-        })->orderBy('updated_at', 'desc')->get();
+        if($request->input('code') == '' && $request->input('company_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('code') == null && $request->input('company_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
+            $tradePermit = LogTradePermit::where('is_printed', 1)
+                ->whereHas('tradeStatus', function ($q) {
+                    $q->where('status_code', '600');
+                    $q->orWhere('status_code', '700');
+                })->orderBy('updated_at', 'desc')->paginate(10);
+        }else{
+            $code           = '%'.$request->input('code').'%';
+            $company_name   = '%'.$request->input('company_name').'%';
+
+            if($request->input('date_from') != '' && $request->input('date_until') != ''){
+                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
+                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
+
+                $tradePermit = LogTradePermit::where('is_printed', 1)
+                    ->where('trade_permit_code', 'like', $code)
+                    ->whereBetween('valid_until', [$date_from , $date_until])
+                    ->whereHas('tradeStatus', function ($q) {
+                        $q->where('status_code', '600');
+                        $q->orWhere('status_code', '700');
+                    })
+                    ->whereHas('company',  function ($q) use ($company_name) {
+                        $q->where('company_name', 'like', $company_name);
+                    })->orderBy('updated_at', 'desc')->paginate(10);
+            }else {
+                $date_from = '%'.$request->input('date_from').'%';
+                $date_until = '%'.$request->input('date_until').'%';
+
+                $tradePermit = LogTradePermit::where('is_printed', 1)
+                    ->where('trade_permit_code', 'like', $code)
+                    ->whereDate('created_at', 'like', $date_from)
+                    ->whereDate('created_at', 'like', $date_until)
+                    ->whereHas('tradeStatus', function ($q) {
+                        $q->where('status_code', '600');
+                        $q->orWhere('status_code', '700');
+                    })
+                    ->whereHas('company',  function ($q) use ($company_name) {
+                        $q->where('company_name', 'like', $company_name);
+                    })->orderBy('updated_at', 'desc')->paginate(10);
+            }
+        }
+
 
         return view('admin.report.portal-insw', compact('tradePermit'));
     }
 
     public function sendInsw($tradePermitId)
     {
-        $tradePermit = TradePermit::findOrFail($tradePermitId);
+        $tradePermit = LogTradePermit::findOrFail($tradePermitId);
 
         $send = [
             'header' => [
-                'noPengajuan' => $tradePermit->id,
+                'noPengajuan' => $tradePermit->trade_permit_id,
                 'tglPengajuan' => $tradePermit->date_submission,
                 'jnsPengajuan' => $tradePermit->purposeType->purpose_type_name,
                 'kdPengajuan' => $tradePermit->trade_permit_code,
