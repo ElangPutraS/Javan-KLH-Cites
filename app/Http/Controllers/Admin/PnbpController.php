@@ -29,7 +29,6 @@ class PnbpController extends Controller
             $pnbp_code = '%' . $request->input('pnbp_code') . '%';
             $company_name = '%' . $request->input('company_name') . '%';
 
-
             if ($request->input('date_from') != '' && $request->input('date_until') != '') {
                 $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
                 $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
@@ -40,8 +39,9 @@ class PnbpController extends Controller
                     ->where('trade_permit_code', 'like', $trade_permit_code)
                     ->whereBetween('valid_start', [$date_from, $date_until])
                     ->whereHas('pnbp', function ($q) use ($pnbp_code) {
-                        $q->orWhere('pnbp_code', 'like', $pnbp_code);
+                        $q->where('pnbp_code', 'like', $pnbp_code);
                     })
+                    ->orDoesntHave('pnbp')
                     ->whereHas('company', function ($q) use ($company_name) {
                         $q->where('company_name', 'like', $company_name);
                     })->orderBy('trade_permit_code', 'desc')->paginate(10);
@@ -56,13 +56,12 @@ class PnbpController extends Controller
                     ->whereDate('valid_start', 'like', $date_from)
                     ->whereDate('valid_start', 'like', $date_until)
                     ->whereHas('pnbp', function ($q) use ($pnbp_code) {
-                        $q->orWhere('pnbp_code', 'like', $pnbp_code);
+                        $q->where('pnbp_code', 'like', $pnbp_code);
                     })
+                    ->orDoesntHave('pnbp')
                     ->whereHas('company', function ($q) use ($company_name) {
                         $q->where('company_name', 'like', $company_name);
                     })->orderBy('trade_permit_code', 'desc')->paginate(10);
-
-
             }
         }
 
