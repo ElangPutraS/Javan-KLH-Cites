@@ -239,7 +239,7 @@
                 @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
                     @foreach($trade_permit->tradeSpecies as $value)
                         @php
-                            $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', date('Y', strtotime($trade_permit->date_submission))], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
+                            $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', Carbon\Carbon::parse($trade_permit->date_submission)->format('Y')], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
                         @endphp
                         <tr >
                             <td class="colored" align="center">{{ $loop->iteration }}</td>
