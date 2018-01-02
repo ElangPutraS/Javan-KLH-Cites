@@ -290,6 +290,7 @@ class ReportController extends Controller
         $user = $request->user();
         $trade_permit = TradePermit::findOrFail($id);
 
+        PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit'));
         $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
