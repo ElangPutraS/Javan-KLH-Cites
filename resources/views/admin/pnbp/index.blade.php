@@ -18,34 +18,46 @@
                     <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-month">Kode SATS-LN</span>
-                            <input class="form-control" type="text" placeholder="Cari kode SATS-LN.." name="trade_permit_code" id="trade_permit_code" value="@if(Request::input('trade_permit_code')){{Request::input('trade_permit_code')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari kode SATS-LN.."
+                                   name="trade_permit_code" id="trade_permit_code"
+                                   value="@if(Request::input('trade_permit_code')){{Request::input('trade_permit_code')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-7">
                             <span class="input-group-addon" id="basic-year">No PNBP</span>
-                            <input class="form-control" placeholder="Cari no pnbp.." type="text" name="pnbp_code" id="pnbp_code" value="@if(Request::input('pnbp_code')){{Request::input('pnbp_code')}} @endif">
-                        </div><br><br><br>
+                            <input class="form-control" placeholder="Cari no pnbp.." type="text" name="pnbp_code"
+                                   id="pnbp_code"
+                                   value="@if(Request::input('pnbp_code')){{Request::input('pnbp_code')}} @endif">
+                        </div>
+                        <br><br><br>
 
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-month">Nama Perusahaan</span>
-                            <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
+                            <input class="form-control" type="text" placeholder="Cari nama perusahaan.."
+                                   name="company_name" id="company_name"
+                                   value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-3">
                             <span class="input-group-addon" id="basic-year">Tanggal Mulai Validasi (dari)</span>
-                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
+                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.."
+                                   type="text" name="date_from" id="date_from"
+                                   value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-4">
                             <span class="input-group-addon" id="basic-year">Tanggal Mulai Validasi (sampai)</span>
-                            <input class="form-control date-picker flatpickr-input active" placeholder="sampai tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
+                            <input class="form-control date-picker flatpickr-input active"
+                                   placeholder="sampai tanggal.." type="text" name="date_until" id="date_until"
+                                   value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-1" role="group" aria-label="...">
                             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
                             </button>
                         </div>
-                    </form><br>
+                    </form>
+                    <br>
 
                     @include('includes.notifications')
 
@@ -106,8 +118,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($trade_permit->pnbp)
+                                        @if($trade_permit->permit_type == 1 && $trade_permit->pnbp)
                                             {{ 'Rp. '.number_format($trade_permit->pnbp->pnbp_sub_amount, 2, ',', '.') }}
+                                        @elseif($trade_permit->permit_type == 2)
+                                            Rp. {{ number_format(0, 2, ',', '.') }}
                                         @else
                                             @php
                                                 $jumlah=0;
@@ -124,7 +138,7 @@
                                     </td>
                                     <td>Rp. {{ number_format(100000, 2, ',', '.') }}</td>
                                     <td>
-                                        @if($trade_permit->pnbp)
+                                        @if($trade_permit->pnbp && $trade_permit->permit_type == 1)
                                             {{ 'Rp. '.number_format($trade_permit->pnbp->pnbp_percentage_amount, 2, ',', '.') }}
                                         @else
                                             Rp. 0
@@ -171,13 +185,13 @@
             $('#form-search').submit(function (ev) {
                 ev.preventDefault();
 
-                var trade_permit_code   = $('#trade_permit_code').val();
-                var pnbp_code           = $('#pnbp_code').val();
-                var company_name        = $('#company_name').val();
-                var date_from           = $('#date_from').val();
-                var date_until          = $('#date_until').val();
+                var trade_permit_code = $('#trade_permit_code').val();
+                var pnbp_code = $('#pnbp_code').val();
+                var company_name = $('#company_name').val();
+                var date_from = $('#date_from').val();
+                var date_until = $('#date_until').val();
 
-                location.href = '?trade_permit_code=' + trade_permit_code + '&pnbp_code=' + pnbp_code + '&company_name=' + company_name+ '&date_from=' + date_from+ '&date_until=' + date_until;
+                location.href = '?trade_permit_code=' + trade_permit_code + '&pnbp_code=' + pnbp_code + '&company_name=' + company_name + '&date_from=' + date_from + '&date_until=' + date_until;
             });
         });
     </script>

@@ -193,7 +193,13 @@
                                         ?>
                                     </td>
                                     <td> Rp. {{ number_format(100000, 0, ',', '.') }} </td>
-                                    <td>Rp. {{ number_format($pnbp->pnbp->pnbp_percentage_amount, 0, ',', '.') }}</td>
+                                    <td>
+                                        @if($pnbp->logTrade->permit_type == 1)
+                                            {{ 'Rp. '.number_format($pnbp->logTrade->pnbp_percentage_amount, 2, ',', '.') }}
+                                        @else
+                                            Rp. 0
+                                        @endif
+                                    </td>
                                     <td> Rp. {{ number_format($pnbp->total_payment, 0, ',', '.') }} </td>
                                     <td>
                                         <a class="btn btn-success"
