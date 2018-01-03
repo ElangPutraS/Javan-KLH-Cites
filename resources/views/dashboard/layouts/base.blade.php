@@ -190,7 +190,7 @@
 
                 @can('access-super-admin')
                 <!-- Menu Super Admin -->
-                    <li @if(Request::segment(2)=='admin') class="navigation__active" @endif><a
+                    <li @if(Request::segment(2)=='user') class="navigation__active" @endif><a
                                 href="{{ route('superadmin.index') }}"><i
                                     class="zmdi zmdi-accounts-list zmdi-hc-fw"></i>Kelola User</a></li>
 
