@@ -145,47 +145,41 @@ class ReportController extends Controller
 
     public function portalInsw(Request $request)
     {
-        if($request->input('code') == '' && $request->input('company_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == ''){
-            $tradePermit = LogTradePermit::where('is_printed', 1)
-                ->whereHas('tradeStatus', function ($q) {
-                    $q->where('status_code', '600');
-                    $q->orWhere('status_code', '700');
-                })->orderBy('updated_at', 'desc')->paginate(10);
-        }else{
-            $code           = '%'.$request->input('code').'%';
-            $company_name   = '%'.$request->input('company_name').'%';
+        $code              = $request->input('code');
+        $company_name      = $request->input('company_name');
+        $date_from         = $request->input('date_from');
+        $date_until        = $request->input('date_until');
 
-            if($request->input('date_from') != '' && $request->input('date_until') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
+        $tradePermit = new LogTradePermit();
 
-                $tradePermit = LogTradePermit::where('is_printed', 1)
-                    ->where('trade_permit_code', 'like', $code)
-                    ->whereBetween('valid_until', [$date_from , $date_until])
-                    ->whereHas('tradeStatus', function ($q) {
-                        $q->where('status_code', '600');
-                        $q->orWhere('status_code', '700');
-                    })
-                    ->whereHas('company',  function ($q) use ($company_name) {
-                        $q->where('company_name', 'like', $company_name);
-                    })->orderBy('updated_at', 'desc')->paginate(10);
-            }else {
-                $date_from = '%'.$request->input('date_from').'%';
-                $date_until = '%'.$request->input('date_until').'%';
+        $tradePermit = $tradePermit->where('is_printed', 1)
+                        ->whereHas('tradeStatus', function ($q) {
+                            $q->where('status_code', '600');
+                            $q->orWhere('status_code', '700');
+                        });
 
-                $tradePermit = LogTradePermit::where('is_printed', 1)
-                    ->where('trade_permit_code', 'like', $code)
-                    ->whereDate('created_at', 'like', $date_from)
-                    ->whereDate('created_at', 'like', $date_until)
-                    ->whereHas('tradeStatus', function ($q) {
-                        $q->where('status_code', '600');
-                        $q->orWhere('status_code', '700');
-                    })
-                    ->whereHas('company',  function ($q) use ($company_name) {
-                        $q->where('company_name', 'like', $company_name);
-                    })->orderBy('updated_at', 'desc')->paginate(10);
-            }
+        if(!empty($code)){
+            $tradePermit = $tradePermit->where('trade_permit_code', 'like', '%'.$code.'%');
         }
+
+        if(!empty($company_name)){
+            $tradePermit = $tradePermit->whereHas('company', function ($q) use ($company_name) {
+                $q->where('company_name', 'like', '%'.$company_name.'%');
+            });
+        }
+
+        if(!empty($date_from) && !empty($date_until)){
+            $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
+            $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
+
+            $tradePermit = $tradePermit->whereBetween('valid_until', [$date_from, $date_until]);
+        }else if (empty($date_from) && !empty($date_until)){
+            $tradePermit = $tradePermit->whereDate('valid_until', '=', $date_until);
+        }else if (!empty($date_from) && empty($date_until)){
+            $tradePermit = $tradePermit->whereDate('valid_until', '=', $date_from);
+        }
+
+        $tradePermit = $tradePermit->orderBy('updated_at', 'desc')->paginate(10);
 
 
         return view('admin.report.portal-insw', compact('tradePermit'));
