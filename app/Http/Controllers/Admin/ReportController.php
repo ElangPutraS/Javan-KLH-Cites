@@ -145,7 +145,7 @@ class ReportController extends Controller
 
     public function portalInsw(Request $request)
     {
-        if($request->input('code') == '' && $request->input('company_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('code') == null && $request->input('company_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
+        if($request->input('code') == '' && $request->input('company_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == ''){
             $tradePermit = LogTradePermit::where('is_printed', 1)
                 ->whereHas('tradeStatus', function ($q) {
                     $q->where('status_code', '600');
