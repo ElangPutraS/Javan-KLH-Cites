@@ -161,7 +161,7 @@
                     Pembaharuan
                 @endif
             </td>
-            <td align=" center">{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
+            <td align=" center">{{ $trade_permit->tradePermit->tradeSpecies->groupBy('id')->count() }}</td>
         </tr>
     @endforeach
     </tbody>
