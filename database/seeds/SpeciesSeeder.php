@@ -53,5 +53,6 @@ class SpeciesSeeder extends Seeder
                 'species_id' => $item['species_id'],
             ]);
         }
+
     }
 }
