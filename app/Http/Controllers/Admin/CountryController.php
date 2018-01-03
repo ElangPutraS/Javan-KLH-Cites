@@ -21,21 +21,20 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-        $code = '';
-        $name = '';
+        $code = $request->input('code');
+        $name = $request->input('name');
 
-        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
-            $countries = Country::orderBy('country_name', 'asc')->paginate(10);
-        }else{
-            $code = '%'.$request->input('code').'%';
-            $name = '%'.$request->input('name').'%';
+        $countries = Country::query();
 
-            $countries = Country::where('country_code', 'like', $code)
-                ->where('country_name', 'like', $name)
-                ->orderBy('country_code')->paginate(10);
+        if($request->filled('code')){
+            $countries = $countries->where('country_code', 'like', '%'.$code.'%');
         }
 
+        if($request->filled('name')){
+            $countries = $countries->where('country_name', 'like', '%'.$name.'%');
+        }
 
+        $countries = $countries->orderBy('country_code')->paginate(10);
 
         return view('admin.countries.index', compact('countries'));
     }

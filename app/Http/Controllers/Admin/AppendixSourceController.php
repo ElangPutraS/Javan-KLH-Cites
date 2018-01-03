@@ -10,20 +10,20 @@ class AppendixSourceController extends Controller
 {
     public function index(Request $request)
     {
-        $code = '';
-        $name = '';
+        $code = $request->input('code');
+        $name = $request->input('name');
 
-        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
-            $appendix_sources = AppendixSource::orderBy('appendix_source_code', 'asc')->paginate(10);
-        }else{
-            $code = '%'.$request->input('code').'%';
-            $name = '%'.$request->input('name').'%';
+        $appendix_sources = AppendixSource::query();
 
-            $appendix_sources = AppendixSource::where('appendix_source_code', 'like', $code)
-                ->where('description', 'like', $name)
-                ->orderBy('appendix_source_code')->paginate(10);
+        if($request->filled('code')){
+            $appendix_sources = $appendix_sources->where('appendix_source_code', 'like', '%'.$code.'%');
         }
 
+        if($request->filled('name')){
+            $appendix_sources = $appendix_sources->where('description', 'like', '%'.$name.'%');
+        }
+
+        $appendix_sources = $appendix_sources->orderBy('appendix_source_code','asc')->paginate(10);
 
         return view('admin.appendixSource.index', compact('appendix_sources'));
     }

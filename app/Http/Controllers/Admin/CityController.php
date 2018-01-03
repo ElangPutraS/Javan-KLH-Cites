@@ -21,19 +21,20 @@ class CityController extends Controller
      */
     public function index(Request $request)
     {
-        $code = '';
-        $name = '';
+        $code = $request->input('code');
+        $name = $request->input('name');
 
-        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
-            $cities = City::orderBy('city_name', 'asc')->paginate(10);
-        }else{
-            $code = '%'.$request->input('code').'%';
-            $name = '%'.$request->input('name').'%';
+        $cities = City::query();
 
-            $cities = City::where('city_code', 'like', $code)
-                ->where('city_name_full', 'like', $name)
-                ->orderBy('city_name')->paginate(10);
+        if($request->filled('code')){
+            $cities = $cities->where('city_code', 'like', '%'.$code.'%');
         }
+
+        if($request->filled('name')){
+            $cities = $cities->where('city_name_full', 'like', '%'.$name.'%');
+        }
+
+        $cities = $cities->orderBy('city_name')->paginate(10);
 
         return view('admin.cities.index', compact('cities'));
     }
