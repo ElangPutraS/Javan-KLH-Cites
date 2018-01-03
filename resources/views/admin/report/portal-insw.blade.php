@@ -75,7 +75,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="9">Tidak ada data SATS-LN/Permohonan</td>
+                                        <td colspan="11">Tidak ada data SATS-LN/Permohonan</td>
                                     </tr>
                                 @endforelse
                                 </tbody>

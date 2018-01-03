@@ -189,7 +189,7 @@
 
                                 @if(count($trade_permits) > 0)
                                     <tr>
-                                        <td colspan="9">
+                                        <td colspan="10">
                                             <a class="btn btn-success"
                                                href="{{ route('admin.report.printReportSatsln', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
                                                target="_blank"><i class="fa fa-print"></i> Cetak List</a>

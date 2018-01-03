@@ -203,7 +203,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="11">
+                                    <td colspan="12">
                                         <center>Data Kosong</center>
                                     </td>
                                 </tr>
@@ -211,7 +211,7 @@
 
                             @if(count($payments) > 0)
                                 <tr>
-                                    <td colspan="11">
+                                    <td colspan="12">
                                         <a class="btn btn-success"
                                            href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
                                            target="_blank"><i class="fa fa-print"></i> Cetak List</a>
