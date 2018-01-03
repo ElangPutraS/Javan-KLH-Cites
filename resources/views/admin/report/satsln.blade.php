@@ -162,9 +162,9 @@
                                         <td>{{ $trade_permit->portDest->port_name  }}</td>
                                         <td>
                                             @if($trade_permit->permit_type == '1')
-                                                {{ 'Permohonan' }}
-                                            @else
-                                                {{ 'Pembaharuan' }}
+                                                Permohonan
+                                            @elseif($trade_permit->permit_type == '2')
+                                                Pembaharuan
                                             @endif
                                         </td>
                                         <td>{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>

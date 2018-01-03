@@ -303,7 +303,7 @@ class SubmissionVerificationController extends Controller
             'company_id'                => $trade_permit->company_id,
             'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
             'valid_renewal'             => $trade_permit->valid_renewal,
-            'permit_type'               => $trade_permit->permit_type,
+            'permit_type'               => 2,
             'created_by'                => $request->user()->id,
             'category_id'               => $trade_permit->category_id,
             'source_id'                 => $trade_permit->source_id,

@@ -239,7 +239,7 @@
                 @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
                     @foreach($trade_permit->tradeSpecies as $value)
                         @php
-                            $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', date('Y')], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
+                            $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', Carbon\Carbon::parse($trade_permit->date_submission)->format('Y')], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
                         @endphp
                         <tr >
                             <td class="colored" align="center">{{ $loop->iteration }}</td>
@@ -278,14 +278,14 @@
                             </td>
                         </tr>
 
-                    @for($i=0; $i<13-count($trade_permit); $i++)
+                    @for($i=1; $i<13; $i++)
                         <tr>
                             <td>EMP</td>
                         </tr>
                     @endfor
 
                 @else
-                    @for($i=0; $i<19-count($trade_permit); $i++)
+                    @for($i=1; $i<19; $i++)
                         <tr>
                             <td>EMP</td>
                         </tr>
