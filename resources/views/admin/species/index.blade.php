@@ -50,7 +50,7 @@
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
                         </button>
                     </div>
-                </form>
+                </form><br>
                 @include('includes.notifications')
                 <br><a href="{{ route('admin.species.createSpecies') }}" class="btn btn-primary">Tambah Baru</a>
                 <hr>

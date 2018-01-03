@@ -7,6 +7,7 @@ use App\Http\Requests\NewsUpdateRequest;
 use App\Province;
 use App\User;
 use App\News;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,9 +18,32 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $news = News::with('user')->paginate(10);
+        $title = $request->input('title');
+        $date_from = $request->input('date_from');
+        $date_until = $request->input('date_until');
+
+        $news = News::query();
+
+        $news = $news->with('user');
+
+        if($request->filled('title')){
+            $news = $news->where('title', 'like', '%'.$title.'%');
+        }
+
+        if($request->filled('date_from') && $request->filled('date_until')){
+            $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
+            $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
+
+            $news = $news->whereBetween('created_at', [$date_from, $date_until]);
+        }else if (!$request->filled('date_from') && $request->filled('date_until')){
+            $news = $news->whereDate('created_at', '=', $date_until);
+        }else if ($request->filled('date_from') && !$request->filled('date_until')){
+            $news = $news->whereDate('created_at', '=', $date_from);
+        }
+
+        $news = $news->orderBy('created_at', 'asc')->paginate(10);
 
         return view('admin.news.index', compact('news'));
     }
