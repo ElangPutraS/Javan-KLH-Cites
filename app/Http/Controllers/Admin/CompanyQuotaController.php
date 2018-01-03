@@ -15,14 +15,17 @@ class CompanyQuotaController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->input('company_name') == '' || $request->input('company_name') == null){
-            $companies = Company::where('company_status','1')->orderBy('company_name', 'asc')->paginate(10);
-        }else{
-            $company_name = '%'.$request->input('company_name').'%';
+        $company_name = $request->input('company_name');
 
-            $companies = Company::where([['company_status','1'], ['company_name', 'like', $company_name]])
-                ->orderBy('company_name', 'asc')->paginate(10);
+        $companies = new Company();
+
+        $companies = $companies->where('company_status','1');
+
+        if(!empty($company_name)){
+            $companies = $companies->where('company_name', 'like', '%'.$company_name.'%');
         }
+
+        $companies = $companies->orderBy('company_name', 'asc')->paginate(10);
 
         return view('admin.companyQuota.index', compact('companies'));
     }
