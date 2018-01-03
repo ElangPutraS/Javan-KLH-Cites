@@ -146,7 +146,7 @@
     @foreach($trade_permits as $trade_permit)
         <tr>
             <td align="center">{{ (($trade_permits->currentPage() - 1) * $trade_permits->perPage()) + $loop->iteration }}</td>
-            <td align="center">{{ $trade_permit->tradePermit->trade_permit_code }}</td>
+            <td align="center">{{ $trade_permit->trade_permit_code }}</td>
             <td align="center">{{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y') . ' sd.
                 ' . Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}
             </td>
@@ -155,18 +155,11 @@
             <td align="center">{{ $trade_permit->portExpor->port_name }}</td>
             <td align="center">{{ $trade_permit->portDest->port_name }}</td>
             <td align="center">
-                @php
-                /*@if($trade_permit->permit_type == '1' && $trade_permit->period < 6)
-                    {{ 'Permohonan SATS-LN Bertahap' }}
-                @elseif($trade_permit->permit_type == '1' && $trade_permit->period > 6)
-                    {{ 'Permohonan SATS-LN Langsung' }}
-                @elseif ($trade_permit->permit_type == '2' && $trade_permit->period < 6)
-                    {{ 'Pembaharuan Permohonan SATS-LN Bertahap' }}
-                @elseif ($trade_permit->permit_type == '2' && $trade_permit->period > 6)
-                    {{ 'Pembaharuan Permohonan SATS-LN Langsung' }}
-                @endif*/
-                echo 'Permohonan';
-                @endphp
+                @if($trade_permit->permit_type == '1')
+                    Permohonan
+                @elseif($trade_permit->permit_type == '2')
+                    Pembaharuan
+                @endif
             </td>
             <td align=" center">{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
         </tr>
