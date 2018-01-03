@@ -161,22 +161,11 @@
                                         <td>{{ $trade_permit->portExpor->port_name }}</td>
                                         <td>{{ $trade_permit->portDest->port_name  }}</td>
                                         <td>
-                                            @php
-                                            /*@if($trade_permit->permit_type == '1')
-                                                @if($trade_permit->period < 6)
-                                                    Permohonan SATS-LN Bertahap
-                                                @else
-                                                    Permohonan SATS-LN Langsung
-                                                @endif
+                                            @if($trade_permit->permit_type == '1')
+                                                Permohonan
                                             @elseif($trade_permit->permit_type == '2')
-                                                @if($trade_permit->period < 6)
-                                                    Pembaharuan Permohonan SATS-LN Bertahap
-                                                @else
-                                                    Pembaharuan Permohonan SATS-LN Langsung
-                                                @endif
-                                            @endif*/
-                                            echo 'Permohonan';
-                                            @endphp
+                                                Pembaharuan
+                                            @endif
                                         </td>
                                         <td>{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
                                         <td>

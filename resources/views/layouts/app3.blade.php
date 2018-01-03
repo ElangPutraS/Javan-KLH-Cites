@@ -176,7 +176,7 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-6" id="footer-1">
+            <div class="col-lg-6" id="footer-1">
                 <img src="{{ asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') }}">
                 <span>E-SATS-LN</span>
                 <span>KEMENTERIAN LINGKUNGAN HIDUP DAN KEHUTANAN</span>
@@ -184,7 +184,7 @@
                 <span>www.menlhk.go.id - Copyright &copy; 2017</span>
             </div>
 
-            <div class="col-md-4" id="footer-2">
+            <div class="col-lg-4" id="footer-2">
                 <span>Hubungi Kami</span>
                 <ul>
                     <li>
@@ -214,7 +214,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-2" id="footer-3">
+            <div class="col-lg-2" id="footer-3">
                 <span>Temukan Kami</span>
                 <ul>
                     <li><a href="#"><i class="fa fa-facebook fa-2x"></i></a></li>
