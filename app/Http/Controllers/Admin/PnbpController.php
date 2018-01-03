@@ -20,30 +20,30 @@ class PnbpController extends Controller
 
     public function index(Request $request)
     {
-        $trade_permit_code = Input::get('trade_permit_code');
-        $pnbp_code         = Input::get('pnbp_code');
-        $company_name      = Input::get('company_name');
-        $date_from         = Input::get('date_from');
-        $date_until        = Input::get('date_until');
+        $trade_permit_code = $request->input('trade_permit_code');
+        $pnbp_code         = $request->input('pnbp_code');
+        $company_name      = $request->input('company_name');
+        $date_from         = $request->input('date_from');
+        $date_until        = $request->input('date_until');
 
-        $query = new TradePermit();
+        $trade_permits = new TradePermit();
 
-        $query = $query->whereHas('tradeStatus', function ($query) {
+        $trade_permits = $trade_permits->whereHas('tradeStatus', function ($query) {
                     $query->where('status_code', '200');
                 })->where('is_printed', '=', 1);
 
         if(!empty($trade_permit_code)){
-            $query = $query->where('trade_permit_code', 'like', '%'.$trade_permit_code.'%');
+            $trade_permits = $trade_permits->where('trade_permit_code', 'like', '%'.$trade_permit_code.'%');
         }
 
         if(!empty($pnbp_code)){
-            $query = $query->whereHas('pnbp', function ($q) use ($pnbp_code) {
+            $trade_permits = $trade_permits->whereHas('pnbp', function ($q) use ($pnbp_code) {
                         $q->where('pnbp_code', 'like', '%'.$pnbp_code.'%');
                     });
         }
 
         if(!empty($company_name)){
-            $query = $query->whereHas('company', function ($q) use ($company_name) {
+            $trade_permits = $trade_permits->whereHas('company', function ($q) use ($company_name) {
                         $q->where('company_name', 'like', '%'.$company_name.'%');
                     });
         }
@@ -52,14 +52,14 @@ class PnbpController extends Controller
             $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
             $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
-            $query = $query->whereBetween('valid_start', [$date_from, $date_until]);
+            $trade_permits = $trade_permits->whereBetween('valid_start', [$date_from, $date_until]);
         }else if (empty($date_from) && !empty($date_until)){
-            $query = $query->whereDate('valid_start', '=', $date_until);
+            $trade_permits = $trade_permits->whereDate('valid_start', '=', $date_until);
         }else if (!empty($date_from) && empty($date_until)){
-            $query = $query->whereDate('valid_start', '=', $date_from);
+            $trade_permits = $trade_permits->whereDate('valid_start', '=', $date_from);
         }
 
-        $query = $query->orderBy('trade_permit_code', 'desc')->paginate(10);
+        $trade_permits = $trade_permits->orderBy('trade_permit_code', 'desc')->paginate(10);
 
         $percentages = Percentage::all();
 
