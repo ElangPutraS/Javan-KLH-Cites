@@ -15,7 +15,7 @@ class SpeciesSeeder extends Seeder
      */
     public function run()
     {
-        $jsonData = json_decode(File::get(database_path('json/species.json')), JSON_OBJECT_AS_ARRAY);
+        $jsonData = json_decode(File::get(database_path('json/species2018.json')), JSON_OBJECT_AS_ARRAY);
         $faker = Faker::create();
         foreach ($jsonData as $key => $item) {
 
