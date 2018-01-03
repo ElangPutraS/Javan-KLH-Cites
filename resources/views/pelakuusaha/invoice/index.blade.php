@@ -111,7 +111,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="9">
+                                    <td colspan="11">
                                         <center>Data Kosong</center>
                                     </td>
                                 </tr>
