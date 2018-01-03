@@ -221,7 +221,7 @@ class ReportController extends Controller
             'trader' => [
                 'tipe' => $tradePermit->tradingType->trading_type_name,
                 'jnsID' => null,
-                'npwp' => null,
+                'npwp' => $tradePermit->company->npwp_number,
                 'nama' => $tradePermit->company->company_name,
                 'alamat' => $tradePermit->company->company_address,
                 'kdpos' => null,
