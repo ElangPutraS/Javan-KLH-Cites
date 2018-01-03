@@ -12,4 +12,4 @@ deploy_testing_job:
         name: testing
         url: https://testing.javan.co.id/klh-cites
     script:
-        - ssh root@$SERVER_TESTING "cd /home/cites && git pull && chown -R www-data:www-data /home/cites && cd /home/cites && php composer.phar install --no-progress --prefer-dist --no-suggest && php artisan migrate"
+        - ssh root@$SERVER_TESTING "cd /home/cites && git pull && chown -R www-data:www-data /home/cites && cd /home/cites && php composer.phar install --no-progress --prefer-dist --no-suggest && php artisan migrate:fresh --seed"
