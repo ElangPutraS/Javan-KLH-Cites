@@ -43,5 +43,15 @@ class SpeciesSeeder extends Seeder
                 'species_id' => $item['species_id'],
             ]);
         }
+
+        $jsonData = json_decode(File::get(database_path('json/quotas2018.json')), JSON_OBJECT_AS_ARRAY);
+        foreach ($jsonData as $key => $item) {
+
+            SpeciesQuota::create([
+                'quota_amount' => $item['quota_amount'],
+                'year' => $item['year'],
+                'species_id' => $item['species_id'],
+            ]);
+        }
     }
 }
