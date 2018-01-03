@@ -150,7 +150,7 @@ class ReportController extends Controller
         $date_from         = $request->input('date_from');
         $date_until        = $request->input('date_until');
 
-        $tradePermit = new LogTradePermit();
+        $tradePermit = LogTradePermit::query();
 
         $tradePermit = $tradePermit->where('is_printed', 1)
                         ->whereHas('tradeStatus', function ($q) {
@@ -158,24 +158,24 @@ class ReportController extends Controller
                             $q->orWhere('status_code', '700');
                         });
 
-        if(!empty($code)){
+        if($request->filled('code')){
             $tradePermit = $tradePermit->where('trade_permit_code', 'like', '%'.$code.'%');
         }
 
-        if(!empty($company_name)){
+        if($request->filled('company_name')){
             $tradePermit = $tradePermit->whereHas('company', function ($q) use ($company_name) {
                 $q->where('company_name', 'like', '%'.$company_name.'%');
             });
         }
 
-        if(!empty($date_from) && !empty($date_until)){
+        if($request->filled('date_from') && $request->filled('date_until')){
             $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
             $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
             $tradePermit = $tradePermit->whereBetween('valid_until', [$date_from, $date_until]);
-        }else if (empty($date_from) && !empty($date_until)){
+        }else if (!$request->filled('date_from') && $request->filled('date_until')){
             $tradePermit = $tradePermit->whereDate('valid_until', '=', $date_until);
-        }else if (!empty($date_from) && empty($date_until)){
+        }else if ($request->filled('date_from') && !$request->filled('date_until')){
             $tradePermit = $tradePermit->whereDate('valid_until', '=', $date_from);
         }
 

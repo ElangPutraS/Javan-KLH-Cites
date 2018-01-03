@@ -17,11 +17,11 @@ class CompanyQuotaController extends Controller
     {
         $company_name = $request->input('company_name');
 
-        $companies = new Company();
+        $companies = Company::query();
 
         $companies = $companies->where('company_status','1');
 
-        if(!empty($company_name)){
+        if($request->filled('company_name')){
             $companies = $companies->where('company_name', 'like', '%'.$company_name.'%');
         }
 

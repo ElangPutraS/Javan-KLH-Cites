@@ -26,36 +26,37 @@ class PnbpController extends Controller
         $date_from         = $request->input('date_from');
         $date_until        = $request->input('date_until');
 
-        $trade_permits = new TradePermit();
+        $trade_permits = TradePermit::query();
 
         $trade_permits = $trade_permits->whereHas('tradeStatus', function ($query) {
                     $query->where('status_code', '200');
                 })->where('is_printed', '=', 1);
 
-        if(!empty($trade_permit_code)){
+        if($request->filled('trade_permit_code')){
             $trade_permits = $trade_permits->where('trade_permit_code', 'like', '%'.$trade_permit_code.'%');
         }
 
-        if(!empty($pnbp_code)){
+        if($request->filled('pnbp_code')){
             $trade_permits = $trade_permits->whereHas('pnbp', function ($q) use ($pnbp_code) {
                         $q->where('pnbp_code', 'like', '%'.$pnbp_code.'%');
                     });
         }
 
-        if(!empty($company_name)){
+        if($request->filled('company_name')){
             $trade_permits = $trade_permits->whereHas('company', function ($q) use ($company_name) {
                         $q->where('company_name', 'like', '%'.$company_name.'%');
                     });
         }
 
-        if(!empty($date_from) && !empty($date_until)){
+        if($request->filled('date_from') && $request->filled('date_until')){
+
             $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
             $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
             $trade_permits = $trade_permits->whereBetween('valid_start', [$date_from, $date_until]);
-        }else if (empty($date_from) && !empty($date_until)){
+        }else if (!$request->filled('date_from') && $request->filled('date_until')){
             $trade_permits = $trade_permits->whereDate('valid_start', '=', $date_until);
-        }else if (!empty($date_from) && empty($date_until)){
+        }else if ($request->filled('date_from') && !$request->filled('date_until')){
             $trade_permits = $trade_permits->whereDate('valid_start', '=', $date_from);
         }
 

@@ -24,22 +24,22 @@ class NewsController extends Controller
         $date_from = $request->input('date_from');
         $date_until = $request->input('date_until');
 
-        $news = new News();
+        $news = News::query();
 
         $news = $news->with('user');
 
-        if(!empty($title)){
+        if($request->filled('title')){
             $news = $news->where('title', 'like', '%'.$title.'%');
         }
 
-        if(!empty($date_from) && !empty($date_until)){
+        if($request->filled('date_from') && $request->filled('date_until')){
             $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
             $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
 
             $news = $news->whereBetween('created_at', [$date_from, $date_until]);
-        }else if (empty($date_from) && !empty($date_until)){
+        }else if (!$request->filled('date_from') && $request->filled('date_until')){
             $news = $news->whereDate('created_at', '=', $date_until);
-        }else if (!empty($date_from) && empty($date_until)){
+        }else if ($request->filled('date_from') && !$request->filled('date_until')){
             $news = $news->whereDate('created_at', '=', $date_from);
         }
 
