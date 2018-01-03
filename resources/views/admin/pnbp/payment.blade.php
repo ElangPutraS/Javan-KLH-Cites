@@ -94,14 +94,26 @@
                                             <td><?= $no++ ?></td>
                                             <td>IHH</td>
                                             <td>{{ count($total) . 'x' . $trade_permit->pnbp->percentage_value }}%</td>
-                                            <td>Rp. {{ number_format($trade_permit->pnbp->pnbp_percentage_amount, 0, ',', '.')  }}</td>
+                                            <td>
+                                                @if($trade_permit->permit_type == 1)
+                                                    Rp. {{ number_format($trade_permit->pnbp->pnpb_percentage_amount, 0, ',', '.')  }}
+                                                    @elseif($trade_permit->permit_type == 2)
+                                                    Rp. {{ number_format(count($total) * $trade_permit->pnbp->percentage_value, 0, ',', '.')  }}
+                                                    @endif
+                                            </td>
                                             <td>
                                                 Rp. {{ number_format(array_sum($total), 0, ',', '.') }}
                                                 @if(empty($total))
                                                     (Lunas)
                                                 @endif
                                             </td>
-                                            <td>Rp. {{ number_format(array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount, 0, ',', '.') }}</td>
+                                            <td>
+                                                @if($trade_permit->permit_type == 1)
+                                                    Rp. {{ number_format(array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount, 0, ',', '.') }}
+                                                    @elseif($trade_permit->permit_type == 2)
+                                                    Rp. {{ number_format(array_sum($total), 0, ',', '.') }}
+                                                    @endif
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td><?= $no++ ?></td>
@@ -114,12 +126,25 @@
 
                                         <tr>
                                             <td colspan="5" align="right"><b>Total Tagihan</b></td>
-                                            <td><b>Rp. {{ number_format((array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000, 0, ',', '.') }}</b></td>
+                                            <td>
+                                                <b>
+                                                    @if($trade_permit->permit_type == 1)
+                                                        Rp. {{ number_format((array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000, 0, ',', '.') }}
+                                                        @elseif($trade_permit->permit_type == 2)
+                                                        Rp. {{ number_format((array_sum($total)) + 100000, 0, ',', '.') }}
+                                                        @endif
+                                                </b>
+                                            </td>
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control"
-                                           value="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000 }}">
+                                    @if($trade_permit->permit_type == 1)
+                                        <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control"
+                                               value="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000 }}">
+                                        @elseif($trade_permit->permit_type == 2)
+                                        <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control"
+                                               value="{{ (array_sum($total)) + 100000 }}">
+                                        @endif
                                 </div>
                             </div>
                         </div>
@@ -154,8 +179,13 @@
                         <div class="form-group">
                             <label class="control-label">Nominal Pembayaran</label>
                             <div class="col-sm-14">
-                                <input type="number" name="nominal" id="nominal" class="form-control"
-                                       value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000 }}" max="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 200000 }}" required>
+                                @if($trade_permit->permit_type == 1)
+                                    <input type="number" name="nominal" id="nominal" class="form-control"
+                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000 }}" max="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 200000 }}" required>
+                                    @elseif($trade_permit->permit_type == 2)
+                                    <input type="number" name="nominal" id="nominal" class="form-control"
+                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total)) + 100000 }}" max="{{ (array_sum($total)) + 200000 }}" required>
+                                @endif
                             </div>
                         </div>
 

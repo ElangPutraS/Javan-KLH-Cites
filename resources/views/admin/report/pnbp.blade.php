@@ -193,7 +193,13 @@
                                         ?>
                                     </td>
                                     <td> Rp. {{ number_format(100000, 0, ',', '.') }} </td>
-                                    <td>Rp. {{ number_format($pnbp->pnbp->pnbp_percentage_amount, 0, ',', '.') }}</td>
+                                    <td>
+                                        @if($pnbp->logTrade->permit_type == 1)
+                                            {{ 'Rp. '.number_format($pnbp->logTrade->pnbp_percentage_amount, 2, ',', '.') }}
+                                        @else
+                                            Rp. 0
+                                        @endif
+                                    </td>
                                     <td> Rp. {{ number_format($pnbp->total_payment, 0, ',', '.') }} </td>
                                     <td>
                                         <a class="btn btn-success"
@@ -203,7 +209,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="11">
+                                    <td colspan="12">
                                         <center>Data Kosong</center>
                                     </td>
                                 </tr>
@@ -211,7 +217,7 @@
 
                             @if(count($payments) > 0)
                                 <tr>
-                                    <td colspan="11">
+                                    <td colspan="12">
                                         <a class="btn btn-success"
                                            href="{{ route('admin.report.printReportPnbp', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
                                            target="_blank"><i class="fa fa-print"></i> Cetak List</a>

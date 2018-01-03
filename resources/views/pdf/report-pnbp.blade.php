@@ -151,7 +151,7 @@
         <tr>
             <td align="center">{{ (($payments->currentPage() - 1 ) * $payments->perPage() ) + $loop->iteration }}</td>
             <td align="center">{{ date('d-m-Y', strtotime($pnbp->created_at)) }}</td>
-            <td align="center">{{ $pnbp->pnbp->tradePermit->trade_permit_code }}</td>
+            <td align="center">{{ $pnbp->logTrade->trade_permit_code }}</td>
             <td align="center">{{ $pnbp->pnbp->pnbp_code }}</td>
             <td align="center">{{ $pnbp->pnbp->tradePermit->company->company_name }}</td>
             <td align="center">

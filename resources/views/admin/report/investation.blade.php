@@ -37,7 +37,7 @@
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (sampai)</span>
-                            <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
+                            <input class="form-control date-picker flatpickr-input active" placeholder="sampai tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                         </div>
 
                         <div class="btn-group col-sm-1" role="group" aria-label="...">
@@ -104,13 +104,13 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="11">
+                                    <td colspan="5">
                                         <center>Data Kosong</center>
                                     </td>
                                 </tr>
                             @endforelse
                             <tr>
-                                <td colspan="11">
+                                <td colspan="5">
                                     <a class="btn btn-success @if(count($users)<1) disabled @endif"
                                        href="{{ url('admin/printReportInvestation?company_name='.request()->input('company_name').'&owner_name='.request()->input('owner_name').'&date_from='.request()->input('date_from').'&date_until='.request()->input('date_until')) }}"
                                        target="_blank"><i class="fa fa-print"></i> Cetak List</a>

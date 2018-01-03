@@ -154,7 +154,7 @@
                                 @forelse($trade_permits as $trade_permit)
                                     <tr>
                                         <td>{{ (($trade_permits->currentPage() - 1 ) * $trade_permits->perPage() ) + $loop->iteration }}</td>
-                                        <td>{{ $trade_permit->tradePermit->trade_permit_code }}</td>
+                                        <td>{{ $trade_permit->trade_permit_code }}</td>
                                         <td>{{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y').' sd. '.Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}</td>
                                         <td>{{ $trade_permit->consignee }}</td>
                                         <td>{{ $trade_permit->period }} bulan</td>
@@ -189,7 +189,7 @@
 
                                 @if(count($trade_permits) > 0)
                                     <tr>
-                                        <td colspan="9">
+                                        <td colspan="10">
                                             <a class="btn btn-success"
                                                href="{{ route('admin.report.printReportSatsln', ['m' => request()->input('m'), 'y' => request()->input('y')]) }}"
                                                target="_blank"><i class="fa fa-print"></i> Cetak List</a>
