@@ -20,30 +20,30 @@ class NewsController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->input('title') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('title') == null && $request->input('date_from') == null && $request->input('date_until') == null){
-            $news = News::with('user')->paginate(10);
-        }else{
-            $title = '%'.$request->input('title').'%';
+        $title = $request->input('title');
+        $date_from = $request->input('date_from');
+        $date_until = $request->input('date_until');
 
-            if($request->input('date_from') != '' && $request->input('date_until') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
+        $news = new News();
 
-                $news = News::with('user')
-                    ->where('title', 'like', $title)
-                    ->whereBetween('created_at', [$date_from , $date_until])
-                    ->paginate(10);
-            }else {
-                $date_from = '%'.$request->input('date_from').'%';
-                $date_until = '%'.$request->input('date_until').'%';
+        $news = $news->with('user');
 
-                $news = News::with('user')
-                    ->where('title', 'like', $title)
-                    ->whereDate('created_at', 'like', $date_from)
-                    ->whereDate('created_at', 'like', $date_until)
-                    ->paginate(10);
-            }
+        if(!empty($title)){
+            $news = $news->where('title', 'like', '%'.$title.'%');
         }
+
+        if(!empty($date_from) && !empty($date_until)){
+            $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
+            $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
+
+            $news = $news->whereBetween('created_at', [$date_from, $date_until]);
+        }else if (empty($date_from) && !empty($date_until)){
+            $news = $news->whereDate('created_at', '=', $date_until);
+        }else if (!empty($date_from) && empty($date_until)){
+            $news = $news->whereDate('created_at', '=', $date_from);
+        }
+
+        $news = $news->orderBy('created_at', 'asc')->paginate(10);
 
         return view('admin.news.index', compact('news'));
     }
