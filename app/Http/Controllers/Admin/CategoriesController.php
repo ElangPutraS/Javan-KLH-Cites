@@ -12,19 +12,20 @@ class CategoriesController extends Controller
 {
     public function index(Request $request)
     {
-        $code = '';
-        $name = '';
+        $code = $request->input('code');
+        $name = $request->input('name');
 
-        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
-            $categories =Category::orderBy('species_category_name','asc')->paginate(10);
-        }else{
-            $code = '%'.$request->input('code').'%';
-            $name = '%'.$request->input('name').'%';
+        $categories = Category::query();
 
-            $categories = Category::where('species_category_code', 'like', $code)
-                ->where('species_category_name', 'like', $name)
-                ->orderBy('species_category_name')->paginate(10);
+        if($request->filled('code')){
+            $categories = $categories->where('species_category_code', 'like', '%'.$code.'%');
         }
+
+        if($request->filled('name')){
+            $categories = $categories->where('species_category_name', 'like', '%'.$name.'%');
+        }
+
+        $categories = $categories->orderBy('species_category_name','asc')->paginate(10);
 
        return view('admin.species.category', compact('categories'));
     }

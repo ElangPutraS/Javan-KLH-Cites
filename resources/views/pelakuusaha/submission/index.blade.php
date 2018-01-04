@@ -21,7 +21,7 @@
                             <input class="form-control" type="text" placeholder="Cari kode SATS-LN.." name="trade_permit_code" id="trade_permit_code" value="@if(Request::input('code')){{ Request::input('code') }} @endif">
                         </div>
 
-                        <div class="input-group col-sm-3">
+                        <div class="input-group col-sm-2">
                             <span class="input-group-addon" id="basic-year">Periode</span>
                             <select name="period" id="period" class="form-control select2">
                                 <option value="">-- semua --</option>
@@ -45,17 +45,19 @@
                         </div><br><br><br>
 
                         <div class="input-group col-sm-5">
-                            <span class="input-group-addon" id="basic-year">Tanggal Dibuat (dari)</span>
+                            <span class="input-group-addon" id="basic-year">Tanggal Divalidasi (dari)</span>
                             <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
                         </div>
 
-                        <div class="input-group col-sm-6">
-                            <span class="input-group-addon" id="basic-year">Tanggal Dibuat (sampai)</span>
+                        <div class="input-group col-sm-5">
+                            <span class="input-group-addon" id="basic-year">Tanggal Divalidasi (sampai)</span>
                             <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                         </div>
 
-                        <div class="btn-group col-sm-1" role="group" aria-label="...">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
+                        <div class="btn-group col-sm-2" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" > Cari
+                            </button>&nbsp;&nbsp;&nbsp;
+                            <button type="reset" class="btn btn-danger" id="form-reset"> Reset Pencarian
                             </button>
                         </div>
                     </form><br>
@@ -131,6 +133,12 @@
                 var date_until  = $('#date_until').val();
 
                 location.href = '?code=' + code + '&period=' + period + '&status=' + status+ '&date_from=' + date_from+ '&date_until=' + date_until;
+            });
+
+            $('#form-reset').click(function (ev) {
+                ev.preventDefault();
+
+                location.href = '?code=&period=&status=&date_from=&date_until=';
             });
         });
     </script>

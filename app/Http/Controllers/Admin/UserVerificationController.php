@@ -20,31 +20,34 @@ class UserVerificationController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->input('company_name') == '' && $request->input('owner_name') == '' && $request->input('date_from') == '' && $request->input('date_until') == '' || $request->input('company_name') == null && $request->input('owner_name') == null && $request->input('date_from') == null && $request->input('date_until') == null){
-            $companies = Company::orderBy('company_name', 'asc')->paginate(10);
-        }else{
-            $company_name = '%'.$request->input('company_name').'%';
-            $owner_name = '%'.$request->input('owner_name').'%';
+        $company_name   = $request->input('company_name');
+        $owner_name     = $request->input('owner_name');
+        $date_from      = $request->input('date_from');
+        $date_until     = $request->input('date_until');
 
-            if($request->input('date_from') != '' && $request->input('date_until') != ''){
-                $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
-                $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'))->addDays(1);
+        $companies = Company::query();
 
-                $companies = Company::where('company_name', 'like', $company_name)
-                    ->where('owner_name', 'like', $owner_name)
-                    ->whereBetween('created_at', [$date_from , $date_until])
-                    ->orderBy('company_name', 'asc')->paginate(10);
-            }else {
-                $date_from = '%'.$request->input('date_from').'%';
-                $date_until = '%'.$request->input('date_until').'%';
-
-                $companies = Company::where('company_name', 'like', $company_name)
-                    ->where('owner_name', 'like', $owner_name)
-                    ->whereDate('created_at', 'like', $date_from)
-                    ->whereDate('created_at', 'like', $date_until)
-                    ->orderBy('company_name', 'asc')->paginate(10);
-            }
+        if($request->filled('company_name')){
+            $companies = $companies->where('company_name', 'like', '%'.$company_name.'%');
         }
+
+        if($request->filled('owner_name')){
+            $companies = $companies->where('owner_name', 'like', '%'.$owner_name.'%');
+        }
+
+        if($request->filled('date_from') && $request->filled('date_until')){
+            $date_from = Carbon::createFromFormat('Y-m-d', $request->input('date_from'))->addDays(-1);
+            $date_until = Carbon::createFromFormat('Y-m-d', $request->input('date_until'));
+
+            $companies = $companies->whereBetween('created_at', [$date_from, $date_until]);
+        }else if (!$request->filled('date_from') && $request->filled('date_until')){
+            $companies = $companies->whereDate('created_at', '=', $date_until);
+        }else if ($request->filled('date_from') && !$request->filled('date_until')){
+            $companies = $companies->whereDate('created_at', '=', $date_from);
+        }
+
+        $companies = $companies->orderBy('company_name', 'asc')->paginate(10);
+
         return view('admin.verification.index', compact('companies'));
     }
 
