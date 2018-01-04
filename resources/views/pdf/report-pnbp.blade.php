@@ -157,7 +157,7 @@
             <td align="center">
                 @php
                 /*@foreach($trade_permits as $trade_permit)
-                    @if($pnbp->total_payment > 100000)
+                    @if($pnbp->total_payment > $generalValueBlangko->value)
                         @if($trade_permit->trade_permit_id == $pnbp->pnbp->trade_permit_id && $trade_permit->trade_permit_status_id == '8' && $trade_permit->permit_type == '1')
                             {{ date('d-m-Y', strtotime($trade_permit->valid_start)) . ' sd. ' . date('d-m-Y', strtotime($trade_permit->valid_until)) }}
                         @endif
@@ -171,13 +171,13 @@
                 @endphp
             </td>
             <td align="right">
-                @if($pnbp->total_payment > 100000)
-                    {{ 'Rp. ' . number_format($pnbp->total_payment - 100000, 0, ',', '.') }}
+                @if($pnbp->total_payment > $generalValueBlangko->value)
+                    {{ 'Rp. ' . number_format($pnbp->total_payment - $generalValueBlangko->value, 0, ',', '.') }}
                 @else
                     {{ 'Rp. 0,00' }}
                 @endif
             </td>
-            <td align="right"> Rp. {{ number_format(100000, 0, ',', '.') }}</td>
+            <td align="right"> Rp. {{ number_format($generalValueBlangko->value, 0, ',', '.') }}</td>
             <td align="center">{{ count($pnbp->pnbp->tradePermit->tradeSpecies->toArray()) . 'x' . $pnbp->pnbp->percentage_value }}
                 %
             </td>

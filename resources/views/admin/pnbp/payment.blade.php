@@ -120,8 +120,8 @@
                                             <td>Blanko</td>
                                             <td></td>
                                             <td></td>
-                                            <td>Rp. {{ number_format(100000, 0, ',', '.') }}</td>
-                                            <td>Rp. {{ number_format(100000, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($generalValueBlangko->value, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($generalValueBlangko->value, 0, ',', '.') }}</td>
                                         </tr>
 
                                         <tr>
@@ -129,9 +129,9 @@
                                             <td>
                                                 <b>
                                                     @if($trade_permit->permit_type == 1)
-                                                        Rp. {{ number_format((array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000, 0, ',', '.') }}
+                                                        Rp. {{ number_format((array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueBlangko->value, 0, ',', '.') }}
                                                         @elseif($trade_permit->permit_type == 2)
-                                                        Rp. {{ number_format((array_sum($total)) + 100000, 0, ',', '.') }}
+                                                        Rp. {{ number_format((array_sum($total)) + $generalValueBlangko->value, 0, ',', '.') }}
                                                         @endif
                                                 </b>
                                             </td>
@@ -140,10 +140,10 @@
                                     </table>
                                     @if($trade_permit->permit_type == 1)
                                         <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control"
-                                               value="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000 }}">
+                                               value="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueBlangko->value }}">
                                         @elseif($trade_permit->permit_type == 2)
                                         <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control"
-                                               value="{{ (array_sum($total)) + 100000 }}">
+                                               value="{{ (array_sum($total)) + $generalValueBlangko->value }}">
                                         @endif
                                 </div>
                             </div>
@@ -181,10 +181,10 @@
                             <div class="col-sm-14">
                                 @if($trade_permit->permit_type == 1)
                                     <input type="number" name="nominal" id="nominal" class="form-control"
-                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 100000 }}" max="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + 200000 }}" required>
+                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueBlangko->value }}" max="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueTambahUang->value }}" required>
                                     @elseif($trade_permit->permit_type == 2)
                                     <input type="number" name="nominal" id="nominal" class="form-control"
-                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total)) + 100000 }}" max="{{ (array_sum($total)) + 200000 }}" required>
+                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total)) + $generalValueBlangko->value }}" max="{{ (array_sum($total)) + $generalValueTambahUang->value }}" required>
                                 @endif
                             </div>
                         </div>
