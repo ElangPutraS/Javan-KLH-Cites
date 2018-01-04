@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\GeneralValue;
 use App\Http\Requests\PnbpUpdateRequest;
 use App\Http\Requests\PnbpPaymentRequest;
 use App\LogTradePermit;
@@ -63,8 +64,9 @@ class PnbpController extends Controller
         $trade_permits = $trade_permits->orderBy('trade_permit_code', 'desc')->paginate(10);
 
         $percentages = Percentage::all();
+        $generalValueBlangko = GeneralValue::findOrFail(1);
 
-        return view('admin.pnbp.index', compact('trade_permits', 'percentages'));
+        return view('admin.pnbp.index', compact('trade_permits', 'percentages', 'generalValueBlangko'));
     }
 
     public function show($id)
@@ -134,8 +136,10 @@ class PnbpController extends Controller
     {
         $trade_permit   =   TradePermit::findOrFail($id);
         $percentages = Percentage::all();
+        $generalValueBlangko = GeneralValue::findOrFail(1);
+        $generalValueTambahUang = GeneralValue::findOrFail(2);
         
-        return view('admin.pnbp.payment', compact('trade_permit', 'percentages'));
+        return view('admin.pnbp.payment', compact('trade_permit', 'percentages', 'generalValueBlangko', 'generalValueTambahUang'));
     }
 
     public function storePayment(PnbpPaymentRequest $request, $id)

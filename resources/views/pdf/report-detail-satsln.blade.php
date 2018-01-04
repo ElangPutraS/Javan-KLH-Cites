@@ -129,7 +129,7 @@
                 <td>No.</td>
                 <td>Nama Jenis</td>
                 <td>Kuantiti</td>
-                <td>Persentase</td>
+                <td>Persentase (%)</td>
                 <td>Nilai Persentase (Rp)</td>
                 <td>Tarif (Rp)</td>
                 <td>Jumlah Bayar (Rp)</td>
@@ -138,22 +138,51 @@
 
             <tbody>
             @foreach ($tradePermit->tradePermit->tradeSpecies as $value)
-                @if($tradePermit->valid_renewal == $value->pivot->valid_renewal)
+                @if($value->pivot->total_exported > 0)
                     @php
-                        $tradePermit = \App\TradePermit::where('id', '=', $value->pivot->trade_permit_id)->first();
+                        //$tradePermit->valid_renewal == $value->pivot->valid_renewal
+                        $tradePermit2 = \App\TradePermit::where('id', '=', $value->pivot->trade_permit_id)->first();
                     @endphp
                     <tr>
                         <td align="center">{{ $loop->iteration }}</td>
                         <td>{{ $value->species_scientific_name }}</td>
                         <td align="center">{{ $value->pivot->total_exported }}</td>
-                        <td align="center">{{ $tradePermit->pnbp->percentage_value }}%</td>
-                        <td align="center">{{ number_format($value->pivot->total_exported * ($value->nominal * ($tradePermit->pnbp->percentage_value / 100)), 0, ',', '.') }}</td>
-                        <td align="right">{{ number_format($value->nominal * $value->pivot->total_exported) }}</td>
-                        <td align="right">{{ number_format(($value->nominal * $value->pivot->total_exported) + ($value->pivot->total_exported * ($value->nominal * ($tradePermit->pnbp->percentage_value / 100)))) }}</td>
+                        <td align="center">
+                            @if($tradePermit->permit_type == 1)
+                                {{ $tradePermit2->pnbp->percentage_value }}
+                                @elseif($tradePermit->permit_type == 2)
+                            0
+                            @endif
+                        </td>
+                        <td align="center">
+                            @if($tradePermit->permit_type == 1)
+                                {{ number_format($value->pivot->total_exported * ($value->nominal * ($tradePermit2->pnbp->percentage_value / 100)), 0, ',', '.') }}
+                                @elseif($tradePermit->permit_type == 2)
+                                0
+                            @endif
+                        </td>
+                        <td align="right">
+                            @if($tradePermit->permit_type == 1)
+                                {{ number_format($value->nominal * $value->pivot->total_exported) }}
+                                @elseif($tradePermit->permit_type == 2)
+                            0
+                                @endif
+                        </td>
+                        <td align="right">
+                            @if($tradePermit->permit_type == 1)
+                                {{ number_format(($value->nominal * $value->pivot->total_exported) + ($value->pivot->total_exported * ($value->nominal * ($tradePermit2->pnbp->percentage_value / 100)))) }}
+                                @elseif($tradePermit->permit_type == 2)
+                                0
+                                @endif
+                        </td>
                     </tr>
                     @php
                         $total[] = $value->nominal;
-                        $subtotal[] = ($value->nominal * $value->pivot->total_exported) + ($value->pivot->total_exported * ($value->nominal * ($tradePermit->pnbp->percentage_value / 100)));
+                        if ($tradePermit->permit_type == 1) {
+                            $subtotal[] = ($value->nominal * $value->pivot->total_exported) + ($value->pivot->total_exported * ($value->nominal * ($tradePermit2->pnbp->percentage_value / 100)));
+                        } elseif ($tradePermit->permit_type == 2) {
+                            $subtotal[] = 0;
+                        }
                         $total_exported[] = $value->pivot->total_exported;
                         $no = $loop->iteration + 1;
                     @endphp
@@ -162,11 +191,11 @@
             <tr>
                 <td align="center"> {{ $no }} </td>
                 <td colspan="4"> EA/EB</td>
-                <td align="right">{{ number_format(100000) }}</td>
-                <td align="right">{{ number_format(100000) }}</td>
+                <td align="right">{{ number_format($generalValueBlangko->value) }}</td>
+                <td align="right">{{ number_format($generalValueBlangko->value) }}</td>
             </tr>
             @php
-                $subtotal[] = 100000;
+                $subtotal[] = $generalValueBlangko->value;
             @endphp
             <tr>
                 <td colspan="6" align="center">JUMLAH</td>
