@@ -20,19 +20,20 @@ class ProvinceController extends Controller
      */
     public function index(Request $request)
     {
-        $code = '';
-        $name = '';
+        $code = $request->input('code');
+        $name = $request->input('name');
 
-        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
-            $provinces = Province::orderBy('province_name', 'asc')->paginate(10);
-        }else{
-            $code = '%'.$request->input('code').'%';
-            $name = '%'.$request->input('name').'%';
+        $provinces = Province::query();
 
-            $provinces = Province::where('province_code', 'like', $code)
-                ->where('province_name', 'like', $name)
-                ->orderBy('province_name')->paginate(10);
+        if($request->filled('code')){
+            $provinces = $provinces->where('province_code', 'like', '%'.$code.'%');
         }
+
+        if($request->filled('name')){
+            $provinces = $provinces->where('province_name', 'like', '%'.$name.'%');
+        }
+
+        $provinces = $provinces->orderBy('province_name')->paginate(10);
 
 
         return view('admin.provinces.index', compact('provinces'));

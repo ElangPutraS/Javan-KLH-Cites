@@ -19,19 +19,20 @@ class PurposeTypeController extends Controller
      */
     public function index(Request $request)
     {
-        $code = '';
-        $name = '';
+        $code = $request->input('code');
+        $name = $request->input('name');
 
-        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
-            $purposetypes = PurposeType::orderBy('purpose_type_name', 'asc')->paginate(10);
-        }else{
-            $code = '%'.$request->input('code').'%';
-            $name = '%'.$request->input('name').'%';
+        $purposetypes = PurposeType::query();
 
-            $purposetypes = PurposeType::where('purpose_type_code', 'like', $code)
-                ->where('purpose_type_name', 'like', $name)
-                ->orderBy('purpose_type_name')->paginate(10);
+        if($request->filled('code')){
+            $purposetypes = $purposetypes->where('purpose_type_code', 'like', '%'.$code.'%');
         }
+
+        if($request->filled('name')){
+            $purposetypes = $purposetypes->where('purpose_type_name', 'like', '%'.$name.'%');
+        }
+
+        $purposetypes = $purposetypes->orderBy('purpose_type_name', 'asc')->paginate(10);
 
         return view('admin.purposeType.index', compact('purposetypes'));
     }

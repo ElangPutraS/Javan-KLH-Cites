@@ -21,8 +21,30 @@ use Illuminate\Support\Facades\Hash;
 class UserRoleController extends Controller
 {
     public function index(Request $request ){
-        $users = User::withTrashed()->orderBy('name','asc')->paginate(10);
-        return view('superadmin.index', compact('users'));
+        $name  = $request->input('name');
+        $email = $request->input('email');
+        $role  = $request->input('role');
+
+        $users = User::query();
+
+        if($request->filled('name')){
+            $users = $users->where('name', 'like', '%'.$name.'%');
+        }
+
+        if($request->filled('email')){
+            $users = $users->where('email', 'like', '%'.$email.'%');
+        }
+
+        if($request->filled('role')){
+            $users = $users->whereHas('roles', function ($query) use($role) {
+                        $query->where('id', $role);
+                    });
+        }
+
+        $users = $users->withTrashed()->orderBy('name','asc')->paginate(10);
+
+        $roles = Role::orderBy('role_name', 'asc')->get();
+        return view('superadmin.index', compact('users', 'roles'));
     }
     public function destroy($id)
     {

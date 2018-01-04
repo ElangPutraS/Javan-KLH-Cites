@@ -10,19 +10,20 @@ class SourceController extends Controller
 {
     public function index(Request $request)
     {
-        $code = '';
-        $name = '';
+        $code = $request->input('code');
+        $name = $request->input('name');
 
-        if($request->input('code') == '' && $request->input('name') == '' || $request->input('code') == null && $request->input('name') == null ){
-            $sources = Source::orderBy('source_code', 'asc')->paginate(10);
-        }else{
-            $code = '%'.$request->input('code').'%';
-            $name = '%'.$request->input('name').'%';
+        $sources = Source::query();
 
-            $sources = Source::where('source_code', 'like', $code)
-                ->where('source_description', 'like', $name)
-                ->orderBy('source_code')->paginate(10);
+        if($request->filled('code')){
+            $sources = $sources->where('source_code', 'like', '%'.$code.'%');
         }
+
+        if($request->filled('name')){
+            $sources = $sources->where('source_description', 'like', '%'.$name.'%');
+        }
+
+        $sources = $sources->orderBy('source_code','asc')->paginate(10);
 
         return view('admin.source.index', compact('sources'));
     }

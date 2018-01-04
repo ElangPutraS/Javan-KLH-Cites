@@ -167,7 +167,7 @@
                                                 Pembaharuan
                                             @endif
                                         </td>
-                                        <td>{{ $trade_permit->tradePermit->tradeSpecies->count() }}</td>
+                                        <td>{{ $trade_permit->tradePermit->tradeSpecies->groupBy('id')->count() }}</td>
                                         <td>
                                             @if ($trade_permit->tradeStatus->status_code == '600' && $trade_permit->tradePermit->is_printed == 0)
                                                 <a href="{{route('admin.report.printSatsln', ['id'=> $trade_permit->tradePermit->id])}}"
