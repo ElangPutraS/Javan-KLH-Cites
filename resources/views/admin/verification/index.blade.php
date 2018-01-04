@@ -34,9 +34,9 @@
                         <input class="form-control date-picker flatpickr-input active" placeholder="sampai tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                     </div>
 
-                    <div class="btn-group col-sm-1" role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari
-                        </button>
+                    <div class="btn-group col-sm-2" role="group" aria-label="...">
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>&nbsp;&nbsp;&nbsp;
+                        <button type="reset" class="btn btn-danger" id="form-reset"> Reset Pencarian</button>
                     </div>
                 </form><br>
                 @include('includes.notifications')
@@ -54,7 +54,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($companies as $company)
+                        @forelse($companies as $company)
                         <tr>
                             <td>{{ (($companies->currentPage() - 1 ) * $companies->perPage() ) + $loop->iteration }}</td>
                             <td>{{Carbon\Carbon::parse($company->created_at)->format('d-m-Y')}}</td>
@@ -71,7 +71,9 @@
                             </td>
                             <td><a href="{{route('admin.verification.show', ['id'=> $company->id])}}" class="btn btn-sm btn-info"><i class="zmdi zmdi-book zmdi-hc-fw" title="detail"></i></a></td>
                         </tr>
-                        @endforeach
+                        @empty
+                            <td colspan="6"><center>Data Kosong</center></td>
+                        @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -94,6 +96,13 @@
 
                 location.href = '?company_name=' + company_name + '&owner_name=' + owner_name + '&date_from=' + date_from + '&date_until=' + date_until;
             });
+
+            $('#form-reset').click(function (ev) {
+                ev.preventDefault();
+
+                location.href = '?company_name=&owner_name=&date_from=&date_until=';
+            });
         });
+
     </script>
 @endpush
