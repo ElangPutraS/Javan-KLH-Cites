@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\GeneralValue;
 use App\Percentage;
 use App\Species;
 use App\User;
@@ -40,8 +41,9 @@ class ReportController extends Controller
             $q->where('is_printed', '=', 0);
         })->get();
         $tahun = HistoryPayment::select(DB::raw('YEAR(created_at) year'))->distinct()->get();
+        $generalValueBlangko = GeneralValue::findOrFail(1);
 
-        return view('admin.report.pnbp', compact('payments', 'trade_permits', 'tahun', 'percentages'));
+        return view('admin.report.pnbp', compact('payments', 'trade_permits', 'tahun', 'percentages', 'generalValueBlangko'));
     }
 
     public function printReportPnbp($m = 'all', $y = 'all')
@@ -75,11 +77,13 @@ class ReportController extends Controller
     public function printReportDetailSatsln($id, $percentage = 0)
     {
         $tradePermit = LogTradePermit::with(['tradePermit'])->where('id', $id)->first();
+        $generalValueBlangko = GeneralValue::findOrFail(1);
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
-        $pdf = PDF::loadView('pdf.report-detail-satsln', compact('tradePermit', 'percentage'));
+        $pdf = PDF::loadView('pdf.report-detail-satsln', compact('tradePermit', 'percentage', 'generalValueBlangko'));
         $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
+        //print_r($tradePermit);
     }
 
     public function reportSatsln(Request $request)
