@@ -184,16 +184,27 @@
                                     <td>{{ $pnbp->pnbp->tradePermit->company->company_name }}</td>
                                     <td> {{ Carbon\Carbon::parse($pnbp->logTrade->valid_start)->format('d-m-Y') . ' sd. ' . Carbon\Carbon::parse($pnbp->logTrade->valid_until)->format('d-m-Y')  }} </td>
                                     <td>
+                                        @if($pnbp->logTrade->permit_type == 1)
+                                            Rp. {{ number_format($pnbp->total_payment - $generalValueBlangko->value, 2, ',', '.') }}
+                                        @elseif($pnbp->logTrade->permit_type == 2)
+                                            Rp. 0,00
+                                        @endif
                                         <?php
-                                        if ($pnbp->total_payment > 100000) {
-                                            echo 'Rp. ' . number_format($pnbp->total_payment - 100000, 0, ',', '.');
+                                        /*if ($pnbp->total_payment > $generalValueBlangko->value) {
+                                            echo 'Rp. ' . number_format($pnbp->total_payment - $generalValueBlangko->value, 0, ',', '.');
                                         } else {
                                             echo 'Rp. 0,00';
-                                        }
+                                        }*/
                                         ?>
                                     </td>
-                                    <td> Rp. {{ number_format(100000, 0, ',', '.') }} </td>
-                                    <td>Rp. {{ number_format($pnbp->pnbp->pnbp_percentage_amount, 0, ',', '.') }}</td>
+                                    <td> Rp. {{ number_format($generalValueBlangko->value, 0, ',', '.') }} </td>
+                                    <td>
+                                        @if($pnbp->logTrade->permit_type == 1)
+                                            {{ 'Rp. '.number_format($pnbp->pnbp->pnbp_percentage_amount, 2, ',', '.') }}
+                                        @else
+                                            Rp. 0
+                                        @endif
+                                    </td>
                                     <td> Rp. {{ number_format($pnbp->total_payment, 0, ',', '.') }} </td>
                                     <td>
                                         <a class="btn btn-success"
