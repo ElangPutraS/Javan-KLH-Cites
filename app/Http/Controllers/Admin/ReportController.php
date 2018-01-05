@@ -321,9 +321,19 @@ class ReportController extends Controller
     {
         $user = $request->user();
         $trade_permit = TradePermit::findOrFail($id);
+        $trade_permit_detail = DB::table('species as s')
+            ->join('trade_permit_detail as t', 't.species_id', '=' ,'s.id')
+            ->join('company_quota as c', 'c.company_id', '=', 't.company_id')
+            ->join('unit as u', 'u.id', '=' ,'s.unit_id')
+            ->join('sources as so', 'so.id', '=' ,'s.source_id')
+            ->select('source_code','s.id', 'species_scientific_name', DB::select('select sum(total_exported) as total, species_id, trade_permit_id from trade_permit_detail where trade_permit_id =',$id ,' group by species_id, trade_permit_id '), 'species_description','is_appendix', 'appendix_source_id', 'unit_code', 'quota_amount', 'c.year as year')
+            ->where('t.trade_permit_id', '=', $id)
+            ->groupBy( 't.species_id', 't.trade_permit_id', 's.id', 'species_scientific_name', 'is_appendix', 'appendix_source_id', 'unit_code', 'species_description', 'source_code', 'quota_amount', 'c.year')->get();
 
+        //dd($trade_permit_detail);
+        //dd($species);
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
-        $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit'));
+        $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit', 'trade_permit_detail'));
         $pdf->setPaper('letter', 'portrait');
         return $pdf->stream();
         //return view('pdf.satsln');

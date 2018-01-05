@@ -236,41 +236,45 @@
                         Total exported/Quota (Year)
                     </td>
                 </tr>
+                @php
+                    dd($trade_permit_detail);
+                @endphp
                 @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
-                    @foreach($trade_permit->tradeSpecies as $value)
-                        @php
-                            $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', Carbon\Carbon::parse($trade_permit->date_submission)->format('Y')], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
-                        @endphp
+                    @foreach($trade_permit_detail as $value)
                         <tr >
+
                             <td class="colored" align="center">{{ $loop->iteration }}</td>
                             <td class="colored">{{ $value->species_scientific_name }}</td>
-                            <td class="colored" align="center">{{ $value->pivot->total_exported }}</td>
+                            <td class="colored" align="center">{{ $value->total_export }}</td>
                             <td class="colored" align="center">{{ $value->species_description }}</td>
                             <td class="colored" align="center">
                                 @if($value->is_appendix == 1)
-                                    @if($value->appendixSource->id == 1)
-                                        {{'I'. '(' . $value->source->source_code . ')'}}
-                                    @elseif($value->appendixSource->id == 2)
-                                        {{'II'. '(' . $value->source->source_code . ')'}}
+                                    @if($value->appendix_source_id == 1)
+                                        {{'I'. '(' . $value->source_code . ')'}}
+                                    @elseif($value->appendix_source_id == 2)
+                                        {{'II'. '(' . $value->source_code . ')'}}
                                     @else
-                                        {{'-'. '(' . $value->source->source_code . ')'}}
+                                        {{'-'. '(' . $value->source_code . ')'}}
                                     @endif
                                 @else
                                     {{ '-' }}
                                 @endif
                             </td>
-                            <td class="colored" align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
+                            <td class="colored" align="center">{{ $value->total_export . '/' . $value->quota_amount . ' (' . $value->year . ')' }}</td>
                         </tr>
+
+
                     @endforeach
 
                         <tr>
                             <td colspan="4" class="colored">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
                             </td>
+
                         </tr>
                         <tr>
                             <td></td>
                             <td class="colored" align="right">T O T A L</td>
-                            <td class="colored" align="center">{{ $value->pivot->where('id','=', $value->pivot->id)->sum('total_exported') }}</td>
+                            <td class="colored" align="center">{{ $value->total_export }}</td>
                             <td></td>
                         </tr>
                         <tr>
