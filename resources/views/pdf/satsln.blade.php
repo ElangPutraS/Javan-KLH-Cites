@@ -237,7 +237,7 @@
                     </td>
                 </tr>
                 @php
-                    dd($trade_permit_detail);
+                    //dd($trade_permit_detail);
                 @endphp
                 @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
                     @foreach($trade_permit_detail as $value)
