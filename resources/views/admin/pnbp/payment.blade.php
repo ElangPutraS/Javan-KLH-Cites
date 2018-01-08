@@ -42,10 +42,12 @@
                         <div class="form-group">
                             <label class="control-label">Jenis Permohonan</label>
                             <div class="col-sm-14">
-                                <!--input type="text" name="permit_type" class="form-control"
+                            <!--input type="text" name="permit_type" class="form-control"
                                        value="@if($trade_permit->permit_type == 1) @if($trade_permit->period<6) Permohonan Bertahap @else Permohonan Langsung @endif @else Pembaharuan Permohonan @endif"
                                        readonly-->
-                                    <input class="form-control" type="text" name="permit_type" value="@if ($trade_permit->permit_type == 1) Permohonan @elseif ($trade_permit->permit_type == 2) Pembaharuan @endif" readonly />
+                                <input class="form-control" type="text" name="permit_type"
+                                       value="@if ($trade_permit->permit_type == 1) Permohonan @elseif ($trade_permit->permit_type == 2) Pembaharuan @endif"
+                                       readonly/>
                             </div>
                         </div>
 
@@ -54,9 +56,13 @@
                             <div class="col-sm-14">
                                 <select class="form-control disabled" name="percentage_value" disabled>
                                     @forelse($percentages as $percentage)
-                                        <option value="{{ $percentage->value }}"{{ $trade_permit->pnbp->percentage_value == $percentage->value ? ' selected' : '' }}>
-                                            x{{ $percentage->value }}%
-                                        </option>
+                                        @if($trade_permit->permit_type == 1)
+                                            <option value="{{ $percentage->value }}"{{ $trade_permit->pnbp->percentage_value == $percentage->value ? ' selected' : '' }}>
+                                                x{{ $percentage->value }}%
+                                            </option>
+                                        @elseif($trade_permit->permit_type == 2)
+                                            <option value="0" selected>x0%</option>
+                                        @endif
                                     @empty
                                         <option value="0" selected>x0%</option>
                                     @endforelse
@@ -82,8 +88,8 @@
                                         </thead>
                                         <tbody>
                                         @php
-                                        $no = 1;
-                                        $total = [];
+                                            $no = 1;
+                                            $total = [];
                                         @endphp
                                         @foreach($trade_permit->tradeSpecies as $species)
                                             @if($trade_permit->permit_type == 1)
@@ -97,9 +103,9 @@
                                             <td>
                                                 @if($trade_permit->permit_type == 1)
                                                     Rp. {{ number_format($trade_permit->pnbp->pnpb_percentage_amount, 0, ',', '.')  }}
-                                                    @elseif($trade_permit->permit_type == 2)
+                                                @elseif($trade_permit->permit_type == 2)
                                                     Rp. {{ number_format(count($total) * $trade_permit->pnbp->percentage_value, 0, ',', '.')  }}
-                                                    @endif
+                                                @endif
                                             </td>
                                             <td>
                                                 Rp. {{ number_format(array_sum($total), 0, ',', '.') }}
@@ -110,9 +116,9 @@
                                             <td>
                                                 @if($trade_permit->permit_type == 1)
                                                     Rp. {{ number_format(array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount, 0, ',', '.') }}
-                                                    @elseif($trade_permit->permit_type == 2)
+                                                @elseif($trade_permit->permit_type == 2)
                                                     Rp. {{ number_format(array_sum($total), 0, ',', '.') }}
-                                                    @endif
+                                                @endif
                                             </td>
                                         </tr>
                                         <tr>
@@ -130,9 +136,9 @@
                                                 <b>
                                                     @if($trade_permit->permit_type == 1)
                                                         Rp. {{ number_format((array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueBlangko->value, 0, ',', '.') }}
-                                                        @elseif($trade_permit->permit_type == 2)
+                                                    @elseif($trade_permit->permit_type == 2)
                                                         Rp. {{ number_format((array_sum($total)) + $generalValueBlangko->value, 0, ',', '.') }}
-                                                        @endif
+                                                    @endif
                                                 </b>
                                             </td>
                                         </tr>
@@ -141,10 +147,10 @@
                                     @if($trade_permit->permit_type == 1)
                                         <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control"
                                                value="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueBlangko->value }}">
-                                        @elseif($trade_permit->permit_type == 2)
+                                    @elseif($trade_permit->permit_type == 2)
                                         <input type="hidden" name="pnbp_amount" id="pnbp_amount" class="form-control"
                                                value="{{ (array_sum($total)) + $generalValueBlangko->value }}">
-                                        @endif
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -181,10 +187,15 @@
                             <div class="col-sm-14">
                                 @if($trade_permit->permit_type == 1)
                                     <input type="number" name="nominal" id="nominal" class="form-control"
-                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueBlangko->value }}" max="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueTambahUang->value }}" required>
-                                    @elseif($trade_permit->permit_type == 2)
+                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)"
+                                           min="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueBlangko->value }}"
+                                           max="{{ (array_sum($total) + $trade_permit->pnbp->pnbp_percentage_amount) + $generalValueTambahUang->value }}"
+                                           required>
+                                @elseif($trade_permit->permit_type == 2)
                                     <input type="number" name="nominal" id="nominal" class="form-control"
-                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)" min="{{ (array_sum($total)) + $generalValueBlangko->value }}" max="{{ (array_sum($total)) + $generalValueTambahUang->value }}" required>
+                                           value="{{ old('nominal') }}" onkeyup="cekKembalian(this)"
+                                           min="{{ (array_sum($total)) + $generalValueBlangko->value }}"
+                                           max="{{ (array_sum($total)) + $generalValueTambahUang->value }}" required>
                                 @endif
                             </div>
                         </div>

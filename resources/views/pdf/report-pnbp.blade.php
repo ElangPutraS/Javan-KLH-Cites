@@ -140,7 +140,7 @@
         <th>Perusahaan</th>
         <th width="150px">Masa Berlaku</th>
         <th>IHH</th>
-        <th>EA-EB</th>
+        <th>Biaya Blanko SATS-LN</th>
         <th>Persentase</th>
         <th>Nilai Persentase</th>
         <th>Jumlah</th>
@@ -167,7 +167,7 @@
                         @endif
                     @endif
                 @endforeach*/
-                echo date('d-m-Y', strtotime($pnbp->pnbp->tradePermit->valid_start)) . ' sd. ' . date('d-m-Y', strtotime($pnbp->pnbp->tradePermit->valid_until));
+                echo date('d-m-Y', strtotime($pnbp->logTrade->valid_start)) . ' sd. ' . date('d-m-Y', strtotime($pnbp->logTrade->valid_until));
                 @endphp
             </td>
             <td align="right">
