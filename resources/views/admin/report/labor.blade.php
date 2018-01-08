@@ -27,7 +27,12 @@
                     <div class="input-group col-sm-5">
                         <span class="input-group-addon" id="basic-year">Nama Pemilik Usaha</span>
                         <input class="form-control" placeholder="Cari nama pemilik usaha.." type="text" name="owner_name" id="owner_name" value="@if(Request::input('owner_name')){{Request::input('owner_name')}} @endif">
-                    </div><br><br><br>
+                    </div>
+
+                    <div class="btn-group col-sm-2" role="group" aria-label="...">
+                        <button type="submit" class="btn btn-primary" style="width: 120px;"><i class="fa fa-search"></i> Cari </button>
+                    </div>
+                    <br><br><br>
 
                     <div class="input-group col-sm-5">
                         <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (dari)</span>
@@ -40,8 +45,7 @@
                     </div>
 
                     <div class="btn-group col-sm-2" role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>&nbsp;&nbsp;&nbsp;
-                        <button type="reset" class="btn btn-danger" id="form-reset"> Reset Pencarian</button>
+                        <button type="reset" class="btn btn-danger" id="form-reset" style="width: 120px;"> Reset Pencarian</button>
                     </div>
                 </form>
             </div>

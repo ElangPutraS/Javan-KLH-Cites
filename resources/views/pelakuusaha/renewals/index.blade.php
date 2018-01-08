@@ -41,7 +41,12 @@
                                 <option value="{{ $stat->id }}" @if(request()->input('status') == $stat->id) selected @endif> {{ $stat->status_name }} </option>
                             @endforeach
                         </select>
-                    </div><br><br><br>
+                    </div>
+
+                    <div class="btn-group col-sm-2" role="group" aria-label="...">
+                        <button type="submit" class="btn btn-primary" style="width: 120px;"><i class="fa fa-search"></i> Cari </button>
+                    </div>
+                    <br><br><br>
 
                     <div class="input-group col-sm-5">
                         <span class="input-group-addon" id="basic-year">Tanggal Divalidasi (dari)</span>
@@ -54,10 +59,7 @@
                     </div>
 
                     <div class="btn-group col-sm-2" role="group" aria-label="...">
-                        <button type="submit" class="btn btn-primary" > Cari
-                        </button>&nbsp;&nbsp;&nbsp;
-                        <button type="reset" class="btn btn-danger" id="form-reset"> Reset Pencarian
-                        </button>
+                        <button type="reset" class="btn btn-danger" id="form-reset" style="width: 120px;"> Reset Pencarian</button>
                     </div>
                 </form><br>
                 @include('includes.notifications')
