@@ -213,9 +213,12 @@
         <br><br><br><br>
         <ul id="tembusan">
             Tembusan:
+        </ul>
+        <!--ul id="tembusan">
+            Tembusan:
             <li>Direktur Jenderal</li>
             <li>Sekretaris Jenderal Kementerian Perhutanan</li>
-            <li>Kepala UPT yang bersangkutan<
+            <li>Kepala UPT yang bersangkutan
         </ul>
         <br><br><br><br>
         <table border="0" width="100%">
@@ -235,7 +238,7 @@
                 <td>KRISNA RYA</td>
                 <td>SITI NURBAYA</td>
             </tr>
-        </table>
+        </table-->
     </div>
 </div>
 </body>

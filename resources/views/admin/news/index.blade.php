@@ -14,7 +14,7 @@
 
             <div class="card-block">
                 <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
-                    <div class="input-group col-sm-4">
+                    <div class="input-group col-sm-3">
                         <span class="input-group-addon" id="basic-month">Judul</span>
                         <input class="form-control" type="text" placeholder="Cari judul.." name="title" id="title" value="@if(Request::input('title')){{Request::input('title')}} @endif">
                     </div>
@@ -29,7 +29,7 @@
                         <input class="form-control date-picker flatpickr-input active" placeholder="sampai tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                     </div>
 
-                    <div class="btn-group col-sm-2" role="group" aria-label="...">
+                    <div class="btn-group col-sm-3" role="group" aria-label="...">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>&nbsp;&nbsp;&nbsp;
                         <button type="reset" class="btn btn-danger" id="form-reset"> Reset Pencarian</button>
                     </div>
