@@ -1,6 +1,9 @@
 <li class="dropdown top-nav__notifications">
     <a href="" data-toggle="dropdown" aria-expanded="false">
-        <i class="zmdi zmdi-notifications"></i> <span class="badge" style="background-color: red; border-radius: 8px;">2</span>
+        <i class="zmdi zmdi-notifications"></i>
+        <span class="badge" style="background-color: red; border-radius: 8px;">
+            {{ count(auth()->user()->unreadNotifications) }}
+        </span>
     </a>
     <div class="dropdown-menu dropdown-menu-right dropdown-menu--block">
         <div class="listview listview--hover">
@@ -8,16 +11,42 @@
                 Notifications
             </div>
 
-            <div class="scroll-wrapper listview__scroll scrollbar-inner" style="position: relative;"><div class="listview__scroll scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 350px;">
-                    <a href="" class="listview__item">
-                        <div class="listview__content">
-                            <div class="listview__heading">David Belle</div>
-                            <p>Cum sociis natoque penatibus et magnis dis parturient montes</p>
+            <div class="scroll-wrapper listview__scroll scrollbar-inner" style="position: relative;">
+                <div class="listview__scroll scrollbar-inner scroll-content scroll-scrolly_visible" style="height: auto; margin-bottom: 0px; margin-right: 0px; max-height: 350px;">
+                    @forelse( auth()->user()->unreadNotifications as $notif)
+                        <a class="listview__item" data-link="{{ url($notif->data['url']) }}" data-id="{{ $notif->id }}" onclick="markRead(this)">
+                            <div class="listview__content">
+                                <div class="listview__heading">{{ $notif->data['user']['name'] }} <small>{{ $notif->data['time'] }} </small></div>
+                                <p>{{ $notif->data['text'] }} </p>
+                            </div>
+                        </a>
+                    @empty
+                        <div class="listview__item">
+                            <div class="listview__content">
+                                <div class="listview__heading">Tidak Ada Notifikasi</div>
+                            </div>
                         </div>
-                    </a>
-                </div><div class="scroll-element scroll-x scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="width: 88px;"></div></div></div><div class="scroll-element scroll-y scroll-scrolly_visible"><div class="scroll-element_outer"><div class="scroll-element_size"></div><div class="scroll-element_track"></div><div class="scroll-bar" style="height: 219px; top: 0px;"></div></div></div></div>
+                    @endforelse
+                </div>
+            </div>
 
             <div class="p-1"></div>
         </div>
     </div>
 </li>
+@push('body.script')
+    <script>
+        function markRead(a) {
+            var id = a.getAttribute('data-id');
+            var link = a.getAttribute('data-link');
+
+            $.ajax({
+                type:'get',
+                url: window.baseUrl +'/notif/read/'+id,
+                success : function(cek){
+                    location.href= link;
+                }
+            });
+        }
+    </script>
+@endpush
