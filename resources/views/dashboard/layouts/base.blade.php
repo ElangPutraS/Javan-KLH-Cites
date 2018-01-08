@@ -60,6 +60,12 @@
             </div>
         </form>
 
+        <ul class="top-nav">
+            @can('access-super-n-admin')
+                @include('includes.notification-admin')
+            @endcan
+        </ul>
+
     </header>
 
     <aside class="sidebar">
