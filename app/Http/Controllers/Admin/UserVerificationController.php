@@ -127,9 +127,9 @@ class UserVerificationController extends Controller
         //
     }
 
-    public function updateRej(Request $request, $id)
+    public function updateRej(Request $request)
     {
-        $company=Company::find($id);
+        $company=Company::find($request->get('id'));
         $company->update([
             'company_status' => 2,
             'reject_reason' => $request->alasan,

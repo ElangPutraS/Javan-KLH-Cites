@@ -167,7 +167,7 @@
                                 <th>Perusahaan</th>
                                 <th width="150px">Masa Berlaku</th>
                                 <th>IHH</th>
-                                <th>EA-EB</th>
+                                <th>Biaya Blanko SATS-LN</th>
                                 <th>Nilai Persentase</th>
                                 <th>Subtotal</th>
                                 <th>Aksi</th>

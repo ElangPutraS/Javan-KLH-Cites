@@ -126,9 +126,9 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        type:'post',
-                        url: window.baseUrl +'/admin/verification/rej/',
-                        data: 'alasan='+alasan,
+                        url: window.baseUrl +'/admin/verification/rej',
+                        type: 'post',
+                        data: {id: id, alasan: alasan},
                         success : function(cek){
                             location.href='{{url('admin/verification')}}';
                         }
