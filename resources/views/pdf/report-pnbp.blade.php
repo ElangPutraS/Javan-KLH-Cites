@@ -150,7 +150,7 @@
     @foreach($payments as $key => $pnbp)
         <tr>
             <td align="center">{{ (($payments->currentPage() - 1 ) * $payments->perPage() ) + $loop->iteration }}</td>
-            <td align="center">{{ date('d-m-Y', strtotime($pnbp->created_at)) }}</td>
+            <td align="center">{{ Carbon\Carbon::parse($pnbp->created_at)->format('d-m-Y') }}</td>
             <td align="center">{{ $pnbp->logTrade->trade_permit_code }}</td>
             <td align="center">{{ $pnbp->pnbp_code }}</td>
             <td align="center">{{ $pnbp->pnbp->tradePermit->company->company_name }}</td>
@@ -167,7 +167,7 @@
                         @endif
                     @endif
                 @endforeach*/
-                echo date('d-m-Y', strtotime($pnbp->logTrade->valid_start)) . ' sd. ' . date('d-m-Y', strtotime($pnbp->logTrade->valid_until));
+                echo \Carbon\Carbon::parse($pnbp->logTrade->valid_start)->format('d-m-Y') . ' sd. ' . \Carbon\Carbon::parse($pnbp->logTrade->valid_until)->format('d-m-Y');
                 @endphp
             </td>
             <td align="right">
