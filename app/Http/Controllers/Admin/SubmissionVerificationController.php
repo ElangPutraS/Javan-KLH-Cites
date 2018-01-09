@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\HistoryQuota;
 use App\LogTradePermit;
+use App\Notifications\SubmissionVerificationDb;
 use App\Pnbp;
 use App\SpeciesQuota;
 use App\TradePermit;
@@ -63,7 +64,7 @@ class SubmissionVerificationController extends Controller
 
     public function show($id){
         $trade_permit = TradePermit::findOrFail($id);
-       // dd($trade_permit);
+
         $user=User::withTrashed()->findOrFail($trade_permit->company->user_id);
 
         return view ('admin.verificationSub.detail', compact('trade_permit','user'));
@@ -135,6 +136,10 @@ class SubmissionVerificationController extends Controller
                 ]);
         }
 
+        //notifikasi ke user
+        $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
+
+        //notifikasi email
         $trade_permit->company->user->notify(new SubmissionVerification());
 
         return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverifikasi.');
@@ -184,6 +189,11 @@ class SubmissionVerificationController extends Controller
                 ]);
         }
 
+        //notifikasi ke user
+        $company = $trade_permit->company;
+        $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
+
+        //notifikasi email
         $alasan = $request->get('alasan');
         $trade_permit->company->user->notify(new SubmissionVerificationReject($alasan));
     }
@@ -348,8 +358,11 @@ class SubmissionVerificationController extends Controller
             ]);
         }
 
+        //notifikasi ke user
+        $company = $trade_permit->company;
+        $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
 
-
+        //notifikasi email
         $trade_permit->company->user->notify(new SubmissionVerificationRen());
 
         return redirect()->route('admin.verificationRen.index')->with('success', 'Permohonan berhasil diverifikasi.');
@@ -387,6 +400,11 @@ class SubmissionVerificationController extends Controller
         ]);
         $trade_permit->logTrade()->save($log);
 
+        //notifikasi ke user
+        $company = $trade_permit->company;
+        $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
+
+        //notifiaksi ke email
         $alasan = $request->get('alasan');
         $trade_permit->company->user->notify(new SubmissionVerificationRejectRen($alasan));
 

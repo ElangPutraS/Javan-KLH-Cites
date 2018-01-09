@@ -6,6 +6,7 @@ use App\City;
 use App\Company;
 use App\Country;
 use App\DocumentType;
+use App\Notifications\Registration;
 use App\Province;
 use App\Role;
 use App\TypeIdentify;
@@ -162,6 +163,14 @@ class RegisterController extends Controller
 
         $role = Role::find(2);
         $user->roles()->attach($role);
+
+        //Notif Untuk Admin
+        $notif_for = User::find(1);
+        $notif_for->notify( new Registration($user));
+
+        //Notif Untuk SuperAdmin
+        $notif_for = User::find(2);
+        $notif_for->notify( new Registration($user));
 
         return $user;
     }
