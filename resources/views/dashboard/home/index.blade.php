@@ -29,6 +29,20 @@
                         <p>Terima Kasih.</p>
                     </div>
                 </div>
+            @elseif(auth()->user()->company->company_status == '2')
+                <div class="card card-danger card-inverse">
+                    <div class="card-header">
+                        <h2 class="card-title">Pendaftaran Perusahaan Ditolak</h2>
+                        <small class="card-subtitle">{{ date('l, d F Y') }}</small>
+                    </div>
+
+                    <div class="card-block">
+                        <p>Pendaftaran perusahaan Anda ditolak dengan alasan {{ auth()->user()->company->reject_reason }}. Silahkan lakukan pendaftaran ulang.</p>
+                        <p>Terima Kasih.</p>
+                    </div>
+                </div>
+            @else
+
             @endif
         @endcan
 
