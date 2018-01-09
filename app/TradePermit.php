@@ -3,10 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 
 class TradePermit extends Model
 {
+    use Notifiable;
+
     protected $table = "trade_permit";
 
     protected $fillable = [

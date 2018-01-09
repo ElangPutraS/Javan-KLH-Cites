@@ -129,6 +129,10 @@ class PnbpController extends Controller
         ]);
         $trade_permit->logTrade()->save($log);
 
+        //notifikasi ke user
+        $company = $trade_permit->company;
+        $company->user->notify(new \App\Notifications\Pnbp($company->user, $trade_permit, $pnbp));
+
         return redirect()->route('admin.pnbp.index')->with('success', 'Data berhasil dibuat.');
     }
 
@@ -185,7 +189,7 @@ class PnbpController extends Controller
             ]);
 
         //historypayment
-        $pnbp=$trade_permit->pnbp;
+        $pnbp = $trade_permit->pnbp;
         $notes='';
         if($trade_permit->permit_type == 1){
             $notes='Pembayaran Permohonan Species dan Blanko';
@@ -206,6 +210,11 @@ class PnbpController extends Controller
 
         $pnbp->history()->save($history);
 
+        //notifikasi ke user
+        $company = $trade_permit->company;
+        $company->user->notify(new \App\Notifications\Pnbp($company->user, $trade_permit, $pnbp));
+
+        //notifikasi email
         $trade_permit->company->user->notify(new VerificationPayment());
 
         return redirect()->route('admin.pnbp.index')->with('success', 'Pembayaran dengan kode PNBP : '.$pnbp->pnbp_code.' berhasil dibayarkan.');

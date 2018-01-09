@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Notifications\SubmissionCreate;
 use App\Pnbp;
 use App\TradePermit;
+use App\User;
 use Illuminate\Http\Request;
 use App\DocumentType;
 use App\Ports;
@@ -153,7 +155,13 @@ class SubmissionRenewalController extends Controller
         ]);
         $trade_permit->logTrade()->save($log);
 
+        //Notif Untuk Admin
+        $notif_for = User::find(1);
+        $notif_for->notify( new SubmissionCreate(auth()->user(), $trade_permit));
 
+        //Notif Untuk SuperAdmin
+        $notif_for = User::find(2);
+        $notif_for->notify( new SubmissionCreate(auth()->user(), $trade_permit));
 
         return redirect()->route('user.renewal.index', ['id' => $trade_permit->id])->with('success', 'Data pembaharuan permohonan berhasil diajukan.');
     }

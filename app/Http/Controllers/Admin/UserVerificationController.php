@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Company;
+use App\Notifications\ValidRegistration;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -109,10 +110,8 @@ class UserVerificationController extends Controller
             'company_status' => 1
         ]);
 
-
+        $company->user->notify(new ValidRegistration($company->user));
         $company->user->notify(new VerificationCompany());
-
-
 
         return redirect()->route('admin.verification.index')->with('success', 'Data berhasil diverifikasi.');
     }
@@ -138,6 +137,7 @@ class UserVerificationController extends Controller
 
         $alasan = $request->get('alasan');
 
+        $company->user->notify(new ValidRegistration($company->user));
         $company->user->notify(new VerificationCompanyReject($alasan));
 
         return $company;

@@ -74,6 +74,9 @@ class LocationController extends Controller
         }else{
             return json_encode(0);
         }
+    }
 
+    public function markReadNotif($id){
+        auth()->user()->unreadNotifications()->find($id)->markAsRead();
     }
 }
