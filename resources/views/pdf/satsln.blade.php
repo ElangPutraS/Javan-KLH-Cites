@@ -8,6 +8,11 @@
             font: 10px arial, calibri;
             margin: 0;
             padding: 0;
+            color: white;
+        }
+
+        .colored{
+            color : black;
         }
     </style>
 </head>
@@ -227,32 +232,35 @@
                         Total exported/Quota (Year)
                     </td>
                 </tr>
+                @php
+                    //dd($trade_permit_detail);
+                @endphp
                 @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
-                    @foreach($trade_permit->tradeSpecies as $value)
+                    @foreach($trade_permit->tradeSpecies->groupBy('id') as $value)
                         @php
-                            $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', Carbon\Carbon::parse($trade_permit->date_submission)->format('Y')], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
+                            $companyQuota = $value[0]->companyQuota->first()->pivot->where([['year', '=', Carbon\Carbon::parse($trade_permit->date_submission)->format('Y')], ['company_id', '=', $trade_permit->company_id], ['species_id', '=', $value[0]->id]])->first();
                         @endphp
-                        @if($value->pivot->total_exported > 0)
+                        @if($value[0]->pivot->total_exported > 0)
                             <tr>
                                 <td class="colored" align="center">{{ $loop->iteration }}</td>
-                                <td class="colored">{{ $value->species_scientific_name }}</td>
-                                <td class="colored" align="center">{{ $value->pivot->total_exported }}</td>
-                                <td class="colored" align="center">{{ $value->species_description }}</td>
+                                <td class="colored">{{ $value[0]->species_scientific_name }}</td>
+                                <td class="colored" align="center">{{ $value[0]->pivot->where([['species_id', $value[0]->id], ['trade_permit_id', $trade_permit->id]])->sum('total_exported') }}</td>
+                                <td class="colored" align="center">{{ $value[0]->species_description }}</td>
                                 <td class="colored" align="center">
-                                    @if($value->is_appendix == 1)
-                                        @if($value->appendixSource->id == 1)
-                                            {{'I'. '(' . $value->source->source_code . ')'}}
-                                        @elseif($value->appendixSource->id == 2)
-                                            {{'II'. '(' . $value->source->source_code . ')'}}
+                                    @if($value[0]->is_appendix == 1)
+                                        @if($value[0]->appendixSource->id == 1)
+                                            {{'I'. '(' . $value[0]->source->source_code . ')'}}
+                                        @elseif($value[0]->appendixSource->id == 2)
+                                            {{'II'. '(' . $value[0]->source->source_code . ')'}}
                                         @else
-                                            {{'-'. '(' . $value->source->source_code . ')'}}
+                                            {{'-'. '(' . $value[0]->source->source_code . ')'}}
                                         @endif
                                     @else
                                         {{ '-' }}
                                     @endif
                                 </td>
                                 <td class="colored"
-                                    align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
+                                    align="center">{{ $value[0]->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value[0]->pivot->year . ')' }}</td>
                             </tr>
                         @endif
                     @endforeach
@@ -266,9 +274,16 @@
                         <td></td>
                         <td class="colored" align="right">T O T A L</td>
                         <td class="colored"
-                            align="center">{{ $value->pivot->sum('total_exported') }}</td>
+                            align="center">{{ $value[0]->pivot->where('trade_permit_id', $trade_permit->id)->sum('total_exported') }}</td>
                         <td></td>
                     </tr>
+
+                    @for($i=1; $i<(19 - count($trade_permit->tradeSpecies->groupBy('id')) ); $i++)
+                        <tr colspan="4">
+                            <td>EMP</td>
+                        </tr>
+                    @endfor
+
                     <tr>
                         <td colspan="4"></td>
                     </tr>
