@@ -152,7 +152,7 @@
             <td align="center">{{ (($payments->currentPage() - 1 ) * $payments->perPage() ) + $loop->iteration }}</td>
             <td align="center">{{ date('d-m-Y', strtotime($pnbp->created_at)) }}</td>
             <td align="center">{{ $pnbp->logTrade->trade_permit_code }}</td>
-            <td align="center">{{ $pnbp->pnbp->pnbp_code }}</td>
+            <td align="center">{{ $pnbp->pnbp_code }}</td>
             <td align="center">{{ $pnbp->pnbp->tradePermit->company->company_name }}</td>
             <td align="center">
                 @php
@@ -172,17 +172,27 @@
             </td>
             <td align="right">
                 @if($pnbp->total_payment > $generalValueBlangko->value)
-                    {{ 'Rp. ' . number_format($pnbp->total_payment - $generalValueBlangko->value, 0, ',', '.') }}
+                    {{ 'Rp. ' . number_format($pnbp->total_payment - $generalValueBlangko->value, 2, ',', '.') }}
                 @else
                     {{ 'Rp. 0,00' }}
                 @endif
             </td>
-            <td align="right"> Rp. {{ number_format($generalValueBlangko->value, 0, ',', '.') }}</td>
-            <td align="center">{{ count($pnbp->pnbp->tradePermit->tradeSpecies->toArray()) . 'x' . $pnbp->pnbp->percentage_value }}
-                %
+            <td align="right"> Rp. {{ number_format($generalValueBlangko->value, 2, ',', '.') }}</td>
+            <td align="center">
+                @if($pnbp->logTrade->permit_type == 1)
+                    {{ count($pnbp->pnbp->tradePermit->tradeSpecies->toArray()) . 'x' . $pnbp->pnbp->percentage_value }}%
+                    @elseif($pnbp->logTrade->permit_type == 2)
+                    {{ count($pnbp->pnbp->tradePermit->tradeSpecies->toArray()) . 'x0' }}%
+                    @endif
             </td>
-            <td align="right">Rp. {{ number_format($pnbp->pnbp->pnbp_percentage_amount, 0, ',', '.') }}</td>
-            <td align="right"> Rp. {{ number_format($pnbp->total_payment, 0, ',', '.') }}</td>
+            <td align="right">
+                @if($pnbp->logTrade->permit_type == 1)
+                    Rp. {{ number_format($pnbp->pnbp->pnbp_percentage_amount, 2, ',', '.') }}
+                    @elseif($pnbp->logTrade->permit_type == 2)
+                    Rp. {{ number_format(0, 2, ',', '.') }}
+                @endif
+            </td>
+            <td align="right"> Rp. {{ number_format($pnbp->total_payment, 2, ',', '.') }}</td>
         </tr>
         @php
         $totalPayment[] = $pnbp->total_payment;
@@ -190,7 +200,7 @@
     @endforeach
     <tr>
         <td colspan="10" align="center"><b>Jumlah Total Pemasukan</b></td>
-        <td align="right">Rp. {{ number_format(array_sum($totalPayment), 0, ',', '.') }}</td>
+        <td align="right">Rp. {{ number_format(array_sum($totalPayment), 2, ',', '.') }}</td>
     </tr>
     </tbody>
 </table>

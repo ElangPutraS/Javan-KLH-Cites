@@ -19,7 +19,12 @@
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-month">Nama Perusahaan</span>
                             <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
-                        </div><br><br><br>
+                        </div>
+
+                        <div class="btn-group col-sm-2" role="group" aria-label="...">
+                            <button type="submit" class="btn btn-primary" style="width: 120px;"><i class="fa fa-search"></i> Cari </button>
+                        </div>
+                        <br><br><br>
 
                         <div class="input-group col-sm-5">
                             <span class="input-group-addon" id="basic-year">Masa Berlaku (dari)</span>
@@ -32,8 +37,7 @@
                         </div>
 
                         <div class="btn-group col-sm-2" role="group" aria-label="...">
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Cari</button>&nbsp;&nbsp;&nbsp;
-                            <button type="reset" class="btn btn-danger" id="form-reset"> Reset Pencarian</button>
+                            <button type="reset" class="btn btn-danger" id="form-reset" style="width: 120px;"> Reset Pencarian</button>
                         </div>
                     </form><br>
 
@@ -104,7 +108,7 @@
             $('#form-reset').click(function (ev) {
                 ev.preventDefault();
 
-                location.href = '??code=&company_name=&date_from=&date_until=';
+                location.href = '?code=&company_name=&date_from=&date_until=';
             });
         });
 
