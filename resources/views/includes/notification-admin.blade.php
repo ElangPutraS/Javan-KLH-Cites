@@ -17,7 +17,7 @@
                         <a class="listview__item" data-link="{{ url($notif->data['url']) }}" data-id="{{ $notif->id }}" onclick="markRead(this)">
                             <div class="listview__content">
                                 <div class="listview__heading">{{ $notif->data['user']['name'] }} <small>{{ $notif->data['time'] }} </small></div>
-                                <p>{{ $notif->data['text'] }} </p>
+                                <font>{{ $notif->data['text'] }} </font>
                             </div>
                         </a>
                     @empty

@@ -71,13 +71,15 @@ class CompanyQuotaController extends Controller
 
         $species = Species::findOrFail($request->get('species_id'));
 
-        $company->companyQuota()->attach($species, [
+        $quota = $company->companyQuota()->attach($species, [
             'quota_amount'    => $request->get('quota_amount'),
             'realization'     => '0',
             'year'            => $request->get('year')
         ]);
 
-
+        //notif ke user
+        $quota = ['company_name' => $company->company_name, 'species_name' => $species->species_scientific_name, 'quota_amount' => $request->get('quota_amount')];
+        $company->user->notify(new \App\Notifications\CompanyQuota($company->user, $quota, 'buat'));
 
         return redirect()->route('admin.companyQuota.detail', ['id' => $id])->with('success', 'Data berhasil dibuat.');
     }
@@ -106,6 +108,11 @@ class CompanyQuotaController extends Controller
             'realization'  => $request->get('realization'),
             'year'         => $request->get('year'),
         ]);
+
+        //notif ke user
+        $species = Species::findOrFail($request->get('species_id'));
+        $quota = ['company_name' => $company->company_name, 'species_name' => $species->species_scientific_name, 'quota_amount' => $request->get('quota_amount')];
+        $company->user->notify(new \App\Notifications\CompanyQuota($company->user, $quota, 'ubah'));
 
         return redirect()->route('admin.companyQuota.detail', ['id' => $company_id])->with('success', 'Data berhasil diubah.');
     }
