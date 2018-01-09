@@ -7,6 +7,7 @@ use App\Country;
 use App\DocumentType;
 use App\Http\Requests\SubmissionDirectRequest;
 use App\LogTradePermit;
+use App\Notifications\SubmissionCreate;
 use App\Ports;
 use App\PurposeType;
 use App\Species;
@@ -15,6 +16,7 @@ use App\TradePermitStatus;
 use App\TradingType;
 use App\Category;
 use App\Source;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use PDF;
@@ -173,6 +175,16 @@ class SubmissionController extends Controller
                 'year'                  => date('Y')
             ]);
         }
+
+        $trade_permit = TradePermit::find($trade_permit->id);
+
+        //Notif Untuk Admin
+        $notif_for = User::find(1);
+        $notif_for->notify( new SubmissionCreate(auth()->user(), $trade_permit));
+
+        //Notif Untuk SuperAdmin
+        $notif_for = User::find(2);
+        $notif_for->notify( new SubmissionCreate(auth()->user(), $trade_permit));
 
         return redirect()->route('user.submission.index')->with('success', 'Data berhasil dibuat.');
     }

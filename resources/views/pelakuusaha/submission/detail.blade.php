@@ -10,7 +10,17 @@
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Pengajuan Permohonan SATS-LN</h2>
-                    <small class="card-subtitle"></small>
+                    <small class="card-subtitle">
+                        @if($trade_permit->tradeStatus->status_code==100)
+                            <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
+                        @elseif($trade_permit->tradeStatus->status_code==200)
+                            <span class="badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
+                        @elseif($trade_permit->tradeStatus->status_code==300)
+                            <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span> <span style="font-weight: bold;"> , Alasan : {{ $trade_permit->reject_reason }} </span>
+                        @else
+                            <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
+                        @endif
+                    </small>
                 </div>
                 <div class="card-block">
 

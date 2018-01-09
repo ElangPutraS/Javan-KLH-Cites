@@ -77,6 +77,8 @@ class CompanyQuotaController extends Controller
             'year'            => $request->get('year')
         ]);
 
+
+
         return redirect()->route('admin.companyQuota.detail', ['id' => $id])->with('success', 'Data berhasil dibuat.');
     }
 
