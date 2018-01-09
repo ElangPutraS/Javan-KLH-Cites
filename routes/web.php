@@ -43,6 +43,7 @@ Route::get('/getSpecies/{appendix_type}/{category_id}/{source_id}', 'LocationCon
 Route::get('/getSpeciesComodity/{comodity}', 'LocationController@getSpeciesComodity');
 Route::get('/getDocumentType/{id}', 'LocationController@getDocument');
 Route::get('/getKuotaNasional/{species_id}/{year}', 'LocationController@getKuotaNasional');
+Route::get('/notif/read/{id}', 'LocationController@markReadNotif');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {

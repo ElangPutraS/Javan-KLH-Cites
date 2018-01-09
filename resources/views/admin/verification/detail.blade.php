@@ -119,7 +119,7 @@
                 }).then(function (alasan) {
                     swal({
                         type: 'success',
-                        title: 'Penolakan verifikasi berhasil!`',
+                        title: 'Penolakan verifikasi berhasil!',
                         html: 'Alasan penolakan: ' + alasan
                     });
                     $.ajax({
