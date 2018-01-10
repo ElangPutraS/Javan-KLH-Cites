@@ -344,7 +344,7 @@ class ReportController extends Controller
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit'));
 
-        $pdf->setPaper('letter', 'portrait');
+        $pdf->setPaper('folio', 'portrait');
         return $pdf->stream();
         //return view('pdf.satsln');
     }
