@@ -67,9 +67,10 @@ class ReportController extends Controller
 
         $trade_permits = LogTradePermit::get();
         $tahun = HistoryPayment::select(DB::raw('YEAR(created_at) year'))->distinct()->get();
+        $generalValueBlangko = GeneralValue::findOrFail(1);
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
-        $pdf = PDF::loadView('pdf.report-pnbp', compact('payments', 'trade_permits', 'tahun', 'month', 'year'));
+        $pdf = PDF::loadView('pdf.report-pnbp', compact('payments', 'trade_permits', 'tahun', 'month', 'year', 'generalValueBlangko'));
         $pdf->setPaper('letter', 'landscape');
         return $pdf->stream();
     }
@@ -337,6 +338,7 @@ class ReportController extends Controller
 
         //dd($trade_permit_detail);
         //dd($species);
+
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit', 'trade_permit_detail'));
         $pdf->setPaper('letter', 'portrait');

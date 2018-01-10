@@ -8,17 +8,7 @@
             font: 10px arial, calibri;
             margin: 0;
             padding: 0;
-            color: white;
         }
-
-        hr {
-            border: none;
-        }
-
-        .colored{
-            color: black;
-        }
-
     </style>
 </head>
 <body>
@@ -71,39 +61,40 @@
                         <i>Permit</i>
                     </td>
                     <td>No. :</td>
-                    <td class="colored" width="280">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->trade_permit_code }} @else @endif</td>
+                    <td class="colored"
+                        width="280">@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1){{ $trade_permit->trade_permit_code }} @else @endif</td>
                     <td width="140">
                         <table>
                             <tr>
                                 @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
-                                <td class="colored" align="left">
-                                    @if($trade_permit->trading_type_id == 2)
-                                        x
-                                    @endif
-                                    <span>Export </span></td>
-                                <td class="colored" align="left">
-                                    @if($trade_permit->trading_type_id == 1)
-                                        x
-                                    @endif
-                                    <span>Import </span>
-                                </td>
-                                <td class="colored" align="left">
-                                    @if($trade_permit->trading_type_id == 3)
-                                        x
-                                    @endif
-                                    <span>Re-export </span>
-                                </td>
-                                <td class="colored" align="left">
-                                    @if($trade_permit->trading_type_id == 4)
-                                        x
-                                    @endif
-                                    <span>Others </span>
-                                </td>
-                                    @endif
+                                    <td class="colored" align="left">
+                                        @if($trade_permit->trading_type_id == 2)
+                                            x
+                                        @endif
+                                        <span>Export </span></td>
+                                    <td class="colored" align="left">
+                                        @if($trade_permit->trading_type_id == 1)
+                                            x
+                                        @endif
+                                        <span>Import </span>
+                                    </td>
+                                    <td class="colored" align="left">
+                                        @if($trade_permit->trading_type_id == 3)
+                                            x
+                                        @endif
+                                        <span>Re-export </span>
+                                    </td>
+                                    <td class="colored" align="left">
+                                        @if($trade_permit->trading_type_id == 4)
+                                            x
+                                        @endif
+                                        <span>Others </span>
+                                    </td>
+                                @endif
                             </tr>
                         </table>
                     </td>
-                    <!--td class="colored" >@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->tradingType->trading_type_name }} @else @endif</td-->
+                <!--td class="colored" >@if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1) {{ $trade_permit->tradingType->trading_type_name }} @else @endif</td-->
                 </tr>
             </table>
         </td>
@@ -240,6 +231,7 @@
                     //dd($trade_permit_detail);
                 @endphp
                 @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
+<<<<<<< HEAD
                     @foreach($trade_permit_detail as $value)
                         <tr >
 
@@ -294,15 +286,55 @@
                             <td>EMP</td>
                         </tr>
                     @endfor
+=======
+                    @foreach($trade_permit->tradeSpecies as $value)
+                        @php
+                            $companyQuota = $value->companyQuota->first()->pivot->where([['year', '=', Carbon\Carbon::parse($trade_permit->date_submission)->format('Y')], ['company_id', '=', $value->pivot->company_id], ['species_id', '=', $value->id]])->first();
+                        @endphp
+                        @if($value->pivot->total_exported > 0)
+                            <tr>
+                                <td class="colored" align="center">{{ $loop->iteration }}</td>
+                                <td class="colored">{{ $value->species_scientific_name }}</td>
+                                <td class="colored" align="center">{{ $value->pivot->total_exported }}</td>
+                                <td class="colored" align="center">{{ $value->species_description }}</td>
+                                <td class="colored" align="center">
+                                    @if($value->is_appendix == 1)
+                                        @if($value->appendixSource->id == 1)
+                                            {{'I'. '(' . $value->source->source_code . ')'}}
+                                        @elseif($value->appendixSource->id == 2)
+                                            {{'II'. '(' . $value->source->source_code . ')'}}
+                                        @else
+                                            {{'-'. '(' . $value->source->source_code . ')'}}
+                                        @endif
+                                    @else
+                                        {{ '-' }}
+                                    @endif
+                                </td>
+                                <td class="colored"
+                                    align="center">{{ $value->pivot->total_exported . '/' . $companyQuota->quota_amount . ' (' . $value->pivot->year . ')' }}</td>
+                            </tr>
+                        @endif
+                    @endforeach
+
+                    <tr>
+                        <td colspan="4" class="colored">
+                            --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="colored" align="right">T O T A L</td>
+                        <td class="colored"
+                            align="center">{{ $value->pivot->sum('total_exported') }}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"></td>
+                    </tr>
+>>>>>>> master
                 @endif
             </table>
-
-    <tr>
-        <td>EMP</td>
-    </tr>
-    <tr>
-        <td>EMP</td>
-    </tr>
+        </td>
     <tr>
         <td colspan="4">
             <table width="100%">
@@ -330,7 +362,7 @@
     </tr>
 
     <tr>
-        <td colspan="2" style="border: none;" >
+        <td colspan="2" style="border: none;">
             <table width="100%">
                 <tr>
                     <td valign="top">X.</td>
@@ -344,7 +376,7 @@
                                     @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
                                         <p class="colored">Jakarta</p>
                                     @endif
-                                        <br>Tempat/<i>Place</i>
+                                    <br>Tempat/<i>Place</i>
                                 </td>
                                 <td align="right">
                                     <p class="colored">
@@ -459,15 +491,17 @@
                     <td>
                         <table cellspacing="10">
                             <tr>
-                                <td><center>Cap
+                                <td>
+                                    <center>Cap
                                         <hr>
                                         official stamp
                                     </center>
                                 </td>
-                                <td> </td>
-                                <td><center>Tanda Tangan
-                                    <hr>
-                                    Signature
+                                <td></td>
+                                <td>
+                                    <center>Tanda Tangan
+                                        <hr>
+                                        Signature
                                     </center>
                                 </td>
                             </tr>
@@ -479,7 +513,7 @@
         </td>
 
         <td colspan="2">
-            <table >
+            <table>
                 <tr>
                     <td>Berlaku sampai dengan
                         <hr>
@@ -527,14 +561,16 @@
                     <td>
                         <table cellspacing="25">
                             <tr>
-                                <td><center>Cap
+                                <td>
+                                    <center>Cap
                                         <hr>
                                         Official stamp
                                     </center>
                                 </td>
-                                <td><center>Tanda Tangan
-                                    <hr>
-                                    Signature
+                                <td>
+                                    <center>Tanda Tangan
+                                        <hr>
+                                        Signature
                                     </center>
                                 </td>
                             </tr>
