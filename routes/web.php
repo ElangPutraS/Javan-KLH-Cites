@@ -44,6 +44,7 @@ Route::get('/getSpeciesComodity/{comodity}', 'LocationController@getSpeciesComod
 Route::get('/getDocumentType/{id}', 'LocationController@getDocument');
 Route::get('/getKuotaNasional/{species_id}/{year}', 'LocationController@getKuotaNasional');
 Route::get('/notif/read/{id}', 'LocationController@markReadNotif');
+Route::get('/notif/readAll', 'LocationController@markReadNotifAll');
 
 
 Route::namespace('Dashboard')->prefix('dashboard')->middleware(['auth'])->group(function () {

@@ -1,7 +1,7 @@
 <li class="dropdown top-nav__notifications">
     <a href="" data-toggle="dropdown" aria-expanded="false">
         <i class="zmdi zmdi-notifications"></i>
-        <span class="badge" style="background-color: red; border-radius: 8px;">
+        <span class="badge" id="jumlahNotif" style="background-color: red; border-radius: 8px;">
             {{ count(auth()->user()->unreadNotifications) }}
         </span>
     </a>
@@ -9,6 +9,11 @@
         <div class="listview listview--hover">
             <div class="listview__header">
                 Notifications
+                @if(count(auth()->user()->unreadNotifications) > 0)
+                    <div class="actions">
+                        <a onclick="markReadAll(this)" class="actions__item zmdi zmdi-check-all" data-ma-action="notifications-clear"></a>
+                    </div>
+                @endif
             </div>
 
             <div class="scroll-wrapper listview__scroll scrollbar-inner" style="position: relative;">
@@ -45,6 +50,16 @@
                 url: window.baseUrl +'/notif/read/'+id,
                 success : function(cek){
                     location.href= link;
+                }
+            });
+        }
+
+        function markReadAll(a) {
+            $.ajax({
+                type:'get',
+                url: window.baseUrl +'/notif/readAll',
+                success : function(cek){
+                    $('#jumlahNotif').html('0');
                 }
             });
         }

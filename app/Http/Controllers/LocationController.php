@@ -79,4 +79,9 @@ class LocationController extends Controller
     public function markReadNotif($id){
         auth()->user()->unreadNotifications()->find($id)->markAsRead();
     }
+
+    public function markReadNotifAll(){
+        auth()->user()->unreadNotifications->markAsRead();
+        //echo 'cek';
+    }
 }
