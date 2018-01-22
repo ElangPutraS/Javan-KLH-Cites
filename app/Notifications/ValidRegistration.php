@@ -49,7 +49,7 @@ class ValidRegistration extends Notification
         }
 
         return [
-            'time'      => Carbon::now()->format('d-m-Y'),
+            'time'      => Carbon::now()->format('Y-m-d H:i:s'),
             'notif_for' => $notifiable,
             'user'      => $this->user,
             'text'      => 'Pendaftaran Anda telah '.$status.'.',

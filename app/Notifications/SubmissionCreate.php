@@ -55,7 +55,7 @@ class SubmissionCreate extends Notification
         }
 
         return [
-            'time'      => Carbon::now()->format('d-m-Y'),
+            'time'      => Carbon::now()->format('Y-m-d H:i:s'),
             'notif_for' => $notifiable,
             'user'      => $this->user,
             'text'      => 'Mengajukan '.$jenis.' SATS-LN',
