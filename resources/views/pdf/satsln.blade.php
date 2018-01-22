@@ -224,7 +224,7 @@
                         <hr>
                         Quantity
                     </td>
-                    <td width="5%">Kelamin dan keterangan lain tentang spesimen
+                    <td width="8%">Kelamin dan keterangan lain tentang spesimen
                         <hr>
                         Sex and or other description of specimens
                     </td>
@@ -240,65 +240,13 @@
                 @php
                     //dd($trade_permit_detail);
                 @endphp
-                @if($trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1)
 
-                    @foreach($trade_permit_detail as $value)
-                        <tr >
-
-                            <td class="colored" align="center">{{ $loop->iteration }}</td>
-                            <td class="colored">{{ $value->species_scientific_name }}</td>
-                            <td class="colored" align="center">{{ $value->total_export }}</td>
-                            <td class="colored" align="center">{{ $value->species_description }}</td>
-                            <td class="colored" align="center">
-                                @if($value->is_appendix == 1)
-                                    @if($value->appendix_source_id == 1)
-                                        {{'I'. '(' . $value->source_code . ')'}}
-                                    @elseif($value->appendix_source_id == 2)
-                                        {{'II'. '(' . $value->source_code . ')'}}
-                                    @else
-                                        {{'-'. '(' . $value->source_code . ')'}}
-                                    @endif
-                                @else
-                                    {{ '-' }}
-                                @endif
-                            </td>
-                            <td class="colored" align="center">{{ $value->total_export . '/' . $value->quota_amount . ' (' . $value->year . ')' }}</td>
-                        </tr>
-
-
-                    @endforeach
-
-                        <tr>
-                            <td colspan="4" class="colored">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                            </td>
-
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td class="colored" align="right">T O T A L</td>
-                            <td class="colored" align="center">{{ $value->total_export }}</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td colspan="4" class="colored">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                            </td>
-                        </tr>
-
-                    @for($i=1; $i<13; $i++)
-                        <tr>
-                            <td>EMP</td>
-                        </tr>
-                    @endfor
-
-                @else
-                    @for($i=1; $i<19; $i++)
-                        <tr>
-                            <td>EMP</td>
-                        </tr>
-                    @endfor
+                @if($trade_permit->permit_type == 1 || $trade_permit->permit_type == 2 && $trade_permit->is_blanko == 1)
+                    @foreach($trade_permit->tradeSpecies->groupBy('id') as $value)
                         @php
                             $companyQuota = $value[0]->companyQuota->first()->pivot->where([['year', '=', Carbon\Carbon::parse($trade_permit->date_submission)->format('Y')], ['company_id', '=', $trade_permit->company_id], ['species_id', '=', $value[0]->id]])->first();
                         @endphp
+
                         @if($value[0]->pivot->total_exported > 0)
                             <tr>
                                 <td style="font-family: Calibri; font-size: 8pt;" class="colored" align="center">{{ $loop->iteration }}</td>
@@ -323,46 +271,29 @@
                             </tr>
                         @endif
                     @endforeach
-
-                    <tr>
-                        <td colspan="6" class="colored" align="center">
-                            ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td style="font-family: Calibri; font-size: 8pt;" class="colored" align="right">T O T A L</td>
-                        <td style="font-family: Calibri; font-size: 8pt;" class="colored"
-                            align="center">{{ $value[0]->pivot->where('trade_permit_id', $trade_permit->id)->sum('total_exported') }}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="6" class="colored" align="center">
-                            ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-                        </td>
-                    </tr>
-                    @for($i=1; $i<(25 - count($trade_permit->tradeSpecies->groupBy('id')) ); $i++)
                         <tr>
-                            <td><br></td>
-                        </tr>
-                    @endfor
+                            <td colspan="4" class="colored">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                            </td>
 
-                    @else
-                    @for($i=1; $i<28; $i++)
-                        <tr>
-                            <td><br></td>
                         </tr>
-                    @endfor
+                        <tr>
+                            <td></td>
+                            <td class="colored" align="right">T O T A L</td>
+                            <td class="colored" align="center">{{ $value[0]->pivot->where('trade_permit_id', $trade_permit->id)->sum('total_exported') }}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="colored">--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+                            </td>
+                        </tr>
 
                 @endif
 
-
-                    <tr>
-                        <td colspan="6"></td>
-                    </tr>
+                    @for($i=1; $i<(15 - count($trade_permit->tradeSpecies->groupBy('id')) ); $i++)
+                        <tr>
+                            <td><br></td>
+                        </tr>
+                    @endfor
 
             </table>
         </td>
