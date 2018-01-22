@@ -56,7 +56,7 @@ class SubmissionVerificationController extends Controller
             $trade_permits = $trade_permits->whereDate('date_submission', '=', $date_from);
         }
 
-        $trade_permits = $trade_permits->orderBy('created_at', 'desc')->paginate(10);
+        $trade_permits = $trade_permits->where('permit_type', '1')->orderBy('created_at', 'desc')->paginate(10);
 
         $status = TradePermitStatus::orderBy('status_code')->get();
         return view('admin.verificationSub.index', compact('trade_permits', 'status'));
