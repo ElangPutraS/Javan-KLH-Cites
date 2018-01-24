@@ -44,7 +44,7 @@ class Registration extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'time'      => Carbon::now()->format('Y-m-d H:i:s'),
+            'time'      => Carbon::now()->format('d-m-Y H:i'),
             'notif_for' => $notifiable,
             'user'      => $this->user,
             'text'      => ' melakukan registrasi.',
