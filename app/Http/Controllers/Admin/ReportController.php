@@ -327,7 +327,11 @@ class ReportController extends Controller
         $user = $request->user();
         $trade_permit = TradePermit::findOrFail($id);
 
+
         /*$trade_permit_detail = DB::table('species as s')
+
+        $trade_permit_detail = DB::table('species as s')
+
             ->join('trade_permit_detail as t', 't.species_id', '=' ,'s.id')
             ->join('company_quota as c', 'c.company_id', '=', 't.company_id')
             ->join('unit as u', 'u.id', '=' ,'s.unit_id')
@@ -338,13 +342,15 @@ class ReportController extends Controller
 
         //dd($trade_permit_detail);
         //dd($species);
+
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit', 'trade_permit_detail'));*/
 
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit'));
 
-        $pdf->setPaper('letter', 'portrait');
+        $pdf->setPaper('folio', 'portrait');
+
         return $pdf->stream();
         //return view('pdf.satsln');
     }

@@ -263,6 +263,9 @@
                             <li @if(Request::segment(2)=='unit') class="navigation__active" @endif><a
                                         href="{{ route('admin.unit.index') }}"><i
                                             class="zmdi zmdi-collection-item zmdi-hc-fw"></i> Satuan Spesies</a></li>
+                            <li @if(Request::segment(2)=='upload') class="navigation__active" @endif><a
+                                        href="{{ route('superadmin.upload') }}"><i
+                                            class="zmdi zmdi-collection-item zmdi-hc-fw"></i> Upload Data Master</a></li>
                         </ul>
                     </li>
                     <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln' || Request::segment(2)=='reportInvestation' || Request::segment(2)=='reportLabor' || request()->segment(2) == 'reportForeignExchange') navigation__sub--active navigation__sub--toggled @endif">

@@ -136,6 +136,9 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::post('user/{id}/edit','UserRoleController@update')->name('superadmin.updateUser');
     Route::get('user/create','UserRoleController@create')->name('superadmin.createUser');
     Route::post('user/create','UserRoleController@store')->name('superadmin.storeUser');
+    Route::get('upload','UploadMasterDataController@index')->name('superadmin.upload');
+    Route::get('downloadQuota/{type}', 'UploadMasterDataController@quotaExcel');
+    Route::get('downloadFormSpecies/{type}', 'UploadMasterDataController@speciesExcel');
 
     Route::get('appendix', 'AppendixSourceController@index')->name('admin.appendix.index');
 
