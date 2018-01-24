@@ -379,7 +379,11 @@
                         <hr>
                         <i>FOR THE DIRECTOR GENERAL OF ECOSYSTEM AND NATURAL RESOURCES CONSERVATION</i>
                         <br><br><br><br><br><br>
-                        <font class="colored">{{ strtoupper(auth()->user()->name) }}</font>
+                        <font class="colored">
+                            @if ( $trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1 )
+                                {{ strtoupper(auth()->user()->name) }}
+                            @endif
+                        </font>
                     </td>
                 </tr>
             </table>
@@ -495,7 +499,7 @@
         </td>
 
         <td colspan="2">
-            <table border="1" style="font-size: 10px" width="100%" class="bottom-page">
+            <table style="font-size: 10px" width="100%" class="bottom-page">
                 <tr>
                     <td width="160px"><br>Berlaku sampai dengan
                         <hr>
