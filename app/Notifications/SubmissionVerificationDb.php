@@ -59,7 +59,7 @@ class SubmissionVerificationDb extends Notification
         }
 
         return [
-            'time'      => Carbon::now()->format('Y-m-d H:i:s'),
+            Carbon::now('Asia/Jakarta')->format('Y-m-d H:i'),
             'notif_for' => $notifiable,
             'user'      => $this->user,
             'text'      => $jenis.' SATS-LN Anda telah '.$status.' oleh admin.',

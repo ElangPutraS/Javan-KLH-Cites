@@ -21,8 +21,9 @@
                     @forelse( auth()->user()->unreadNotifications as $notif)
                         <a class="listview__item" data-link="{{ url($notif->data['url']) }}" data-id="{{ $notif->id }}" onclick="markRead(this)">
                             <div class="listview__content">
-                                <div class="listview__heading">{{ $notif->data['user']['name'] }} <small>{{ $notif->data['time'] }} </small></div>
-                                <font>{{ $notif->data['text'] }} </font>
+                                <div class="listview__heading"><b>{{ $notif->data['user']['name'] }} </b></div>
+                                <font>{{ $notif->data['text'] }} </font><br>
+                                <small> <i class="zmdi zmdi-time zmdi-hc-fw"></i> {{ $notif->data['time'] }} </small>
                             </div>
                         </a>
                     @empty
