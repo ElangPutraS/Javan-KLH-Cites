@@ -379,14 +379,18 @@
                         <hr>
                         <i>FOR THE DIRECTOR GENERAL OF ECOSYSTEM AND NATURAL RESOURCES CONSERVATION</i>
                         <br><br><br><br><br><br>
-                        <font class="colored">{{ strtoupper(auth()->user()->name) }}</font>
+                        <font class="colored">
+                            @if ( $trade_permit->permit_type == 1 || $trade_permit->is_blanko == 1 )
+                                {{ strtoupper(auth()->user()->name) }}
+                            @endif
+                        </font>
                     </td>
                 </tr>
             </table>
         </td>
     </tr>
     <tr>
-        <td><br><br></td>
+        <td height="10px"></td>
     </tr>
     <tr>
         <td width="50%" colspan="2">
@@ -495,15 +499,16 @@
         </td>
 
         <td colspan="2">
-            <table border="1" style="font-size: 10px" width="100%" class="bottom-page">
+            <table style="font-size: 10px" width="100%" class="bottom-page">
                 <tr>
-                    <td width="160px"><br>Berlaku sampai dengan
+                    <td width="45%"><br>Berlaku sampai dengan
                         <hr>
                         Valid until<br><br>
                     </td>
-                    <td><br>:</td>
-                    <td width="185px" style="font-family: Calibri; font-size: 8pt;" class="colored"> <br>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ Carbon\Carbon::parse($trade_permit->valid_until)->format('d F Y') }}
+                    <td width="5%"><br>:</td>
+                    <td width="35%" style="font-family: Calibri; font-size: 8pt;" class="colored"> <br>@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ Carbon\Carbon::parse($trade_permit->valid_until)->format('d F Y') }}
                          @endif</td>
+                    <td width="15%"></td>
                 </tr>
                 <tr>
                     <td>Dikirim kepada (nama, alamat, negara)
@@ -513,6 +518,7 @@
                     <td>:</td>
                     <td style="font-family: Calibri; font-size: 8pt;" class="colored" >@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->consignee. ' , ' . $trade_permit->consignee_address }} @else @endif
                         </td>
+                    <td width="20%"></td>
                 </tr>
                 <tr>
                     <td>Pelabuhan pemberangkatan
@@ -522,6 +528,7 @@
                     <td>:</td>
                     <td style="font-family: Calibri; font-size: 8pt;" class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->portExpor->port_name }} @else @endif
                         </td>
+                    <td width="20%"></td>
                 </tr>
                 <tr>
                     <td>Pelabuhan tujuan
@@ -531,6 +538,7 @@
                     <td>:</td>
                     <td style="font-family: Calibri; font-size: 8pt;" class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ $trade_permit->portDest->port_name }} @else @endif
                         </td>
+                    <td width="20%"></td>
                 </tr>
                 <tr>
                     <td>Tanggal
@@ -540,11 +548,12 @@
                     <td>:</td>
                     <td style="font-family: Calibri; font-size: 8pt;" class="colored">@if($trade_permit->permit_type == 2 && $trade_permit->is_blanko == 0) {{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d F Y') }} @else @endif
                         </td>
+                    <td width="20%"></td>
                 </tr>
                 <tr>
                     <td></td>
 
-                    <td colspan="2">
+                    <td colspan="3">
                         <table cellspacing="25">
                             <tr>
                                 <td>
