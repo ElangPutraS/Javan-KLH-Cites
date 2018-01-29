@@ -140,7 +140,7 @@ class SubmissionVerificationController extends Controller
         $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
 
         //notifikasi email
-        $trade_permit->company->user->notify(new SubmissionVerification());
+        $trade_permit->company->user->notify(new SubmissionVerification($company, $trade_permit));
 
         return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }
@@ -194,8 +194,7 @@ class SubmissionVerificationController extends Controller
         $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
 
         //notifikasi email
-        $alasan = $request->get('alasan');
-        $trade_permit->company->user->notify(new SubmissionVerificationReject($alasan));
+        $company->user->notify(new SubmissionVerificationReject($company, $trade_permit));
     }
 
     //Verifikasi Renewal
@@ -363,16 +362,18 @@ class SubmissionVerificationController extends Controller
         $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
 
         //notifikasi email
-        $trade_permit->company->user->notify(new SubmissionVerificationRen());
+        $trade_permit->company->user->notify(new SubmissionVerificationRen($company, $trade_permit));
 
         return redirect()->route('admin.verificationRen.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }
 
-    public function updateRejectRen(Request $request, $id){
-        $trade_permit = TradePermit::findOrFail($id);
+    public function updateRejection(Request $request, $id)
+    {
+        $trade_permit=TradePermit::findOrFail($id);
 
         $trade_permit->update([
-            'updated_by' => $request->user()->id
+            'reject_reason' => $request->alasan,
+            'valid_renewal' => $trade_permit->valid_renewal+1,
         ]);
 
         $status = TradePermitStatus::where('status_code','300')->first();
@@ -380,8 +381,10 @@ class SubmissionVerificationController extends Controller
 
         //nambahin log
         $log=LogTradePermit::create([
-            'log_description'           => 'Verifikasi Permohonan Pembaharuan Ditolak',
+            'log_description'           => 'Verifikasi Permohonan Pembaharuan Diterima',
             'trade_permit_code'         => $trade_permit->trade_permit_code,
+            'valid_start'               => $trade_permit->valid_start,
+            'valid_until'               => $trade_permit->valid_until,
             'consignee'                 => $trade_permit->consignee,
             'appendix_type'             => $trade_permit->appendix_type,
             'date_submission'           => $trade_permit->date_submission,
@@ -393,8 +396,13 @@ class SubmissionVerificationController extends Controller
             'company_id'                => $trade_permit->company_id,
             'trade_permit_status_id'    => $trade_permit->trade_permit_status_id,
             'valid_renewal'             => $trade_permit->valid_renewal,
-            'permit_type'               => $trade_permit->permit_type,
+            'permit_type'               => 2,
             'created_by'                => $request->user()->id,
+            'category_id'               => $trade_permit->category_id,
+            'source_id'                 => $trade_permit->source_id,
+            'country_destination'       => $trade_permit->country_destination,
+            'country_exportation'       => $trade_permit->country_exportation,
+            'consignee_address'         => $trade_permit->consignee_address,
             'is_printed'                => $trade_permit->is_print,
             'stamp'                     => $trade_permit->stamp,
         ]);
@@ -404,24 +412,8 @@ class SubmissionVerificationController extends Controller
         $company = $trade_permit->company;
         $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
 
-        //notifiaksi ke email
-        $alasan = $request->get('alasan');
-        $trade_permit->company->user->notify(new SubmissionVerificationRejectRen($alasan));
-
-        return redirect()->route('admin.verificationSub.index')->with('success', 'Verifikasi permohonan pembaharuan berhasil ditolak.');
-    }
-
-    public function updateRejection(Request $request, $id)
-    {
-        $trade_permit=TradePermit::findOrFail($id);
-        $trade_permit->update([
-            'trade_permit_status_id' =>'3',
-            'reject_reason' => $request->alasan,
-            'valid_renewal' => $trade_permit->valid_renewal+1,
-        ]);
-
-        $alasan = $request->get('alasan');
-        $trade_permit->company->user->notify(new SubmissionVerificationRejectRen($alasan));
+        //notifikasi ke email
+        $company->user->notify(new SubmissionVerificationRejectRen($company, $trade_permit));
 
         return $trade_permit;
     }

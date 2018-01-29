@@ -53,27 +53,6 @@ class UserVerificationController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-    }
-
-    /**
      * Display the specified resource.
      *
      * @param  int  $id
@@ -85,16 +64,6 @@ class UserVerificationController extends Controller
         return view('admin.verification.detail', compact('company'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-    }
 
     /**
      * Update the specified resource in storage.
@@ -105,13 +74,14 @@ class UserVerificationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $company=Company::find($id);
+        $company = Company::find($id);
         $company->update([
             'company_status' => 1
         ]);
 
         $company->user->notify(new ValidRegistration($company->user));
-        $company->user->notify(new VerificationCompany());
+
+        $company->user->notify(new VerificationCompany($company));
 
         return redirect()->route('admin.verification.index')->with('success', 'Data berhasil diverifikasi.');
     }
@@ -132,13 +102,12 @@ class UserVerificationController extends Controller
         $company=Company::find($request->get('id'));
         $company->update([
             'company_status' => 2,
-            'reject_reason' => $request->alasan,
+            'reject_reason' => $request->get('alasan'),
         ]);
 
-        $alasan = $request->get('alasan');
-
         $company->user->notify(new ValidRegistration($company->user));
-        $company->user->notify(new VerificationCompanyReject($alasan));
+
+        $company->user->notify(new VerificationCompanyReject($company));
 
         return $company;
     }

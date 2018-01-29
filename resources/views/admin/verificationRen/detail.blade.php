@@ -377,7 +377,7 @@
                 }).then(function (alasan) {
                     swal({
                         type: 'success',
-                        title: 'Penolakan verifikasi berhasil!`',
+                        title: 'Penolakan verifikasi berhasil!',
                         html: 'Alasan penolakan: ' + alasan
                     });
                     $.ajax({
@@ -385,11 +385,10 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         type:'post',
-                        url: window.baseUrl +'/admin/verification/rej/'+id,
+                        url: window.baseUrl +'/admin/verificationRen/rej/'+id,
                         data: 'alasan='+alasan,
                         success : function(cek){
                             location.href='{{url('admin/verificationRen')}}';
-
                         }
                     });
                 });

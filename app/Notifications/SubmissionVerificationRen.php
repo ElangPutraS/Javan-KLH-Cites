@@ -2,6 +2,8 @@
 
 namespace App\Notifications;
 
+use App\Company;
+use App\TradePermit;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -11,14 +13,18 @@ class SubmissionVerificationRen extends Notification
 {
     use Queueable;
 
+    protected $trade_permit;
+    protected $company;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Company $company, TradePermit $trade_permit)
     {
-        //
+        $this->trade_permit = $trade_permit;
+        $this->company = $company;
     }
 
     /**
@@ -40,10 +46,8 @@ class SubmissionVerificationRen extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->subject('Verifikasi Pembaharuan')
-                    ->line('Status pembaharuan  telah diterima.')
-                    ->line('Terima kasih telah melakukan pembaharuan, silahkan untuk segera melakukan pembayaran.');
+        return (new MailMessage)->subject('Verifikasi Pembaharuan')
+            ->markdown('mail.submission.verification-accept', ['company' => $this->company, 'trade_permit' => $this->trade_permit, 'type' => 'pembaharuan']);
     }
 
     /**
