@@ -73,6 +73,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
     Route::get('verification/{id}', 'UserVerificationController@show')->name('admin.verification.show');
     Route::get('verification/acc/{id}', 'UserVerificationController@update');
+    Route::get('verification/destroy/{id}', 'UserVerificationController@destroy');
     Route::post('verification/rej', 'UserVerificationController@updateRej');
 
     Route::get('species', 'SpeciesHSController@index')->name('admin.species.index');

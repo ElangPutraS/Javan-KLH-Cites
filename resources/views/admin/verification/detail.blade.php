@@ -130,7 +130,7 @@
                         type: 'post',
                         data: {id: id, alasan: alasan},
                         success : function(cek){
-                            location.href='{{url('admin/verification')}}';
+                            location.href='{{url('admin/verification/destroy')}}/'+id;
                         }
                     });
                 });
