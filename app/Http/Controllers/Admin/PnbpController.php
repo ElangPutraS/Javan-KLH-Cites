@@ -215,7 +215,7 @@ class PnbpController extends Controller
         $company->user->notify(new \App\Notifications\Pnbp($company->user, $trade_permit, $pnbp));
 
         //notifikasi email
-        $trade_permit->company->user->notify(new VerificationPayment());
+        $trade_permit->company->user->notify(new VerificationPayment($company, $trade_permit));
 
         return redirect()->route('admin.pnbp.index')->with('success', 'Pembayaran dengan kode PNBP : '.$pnbp->pnbp_code.' berhasil dibayarkan.');
 

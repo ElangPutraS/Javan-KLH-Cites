@@ -73,8 +73,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
     Route::get('verification/{id}', 'UserVerificationController@show')->name('admin.verification.show');
     Route::get('verification/acc/{id}', 'UserVerificationController@update');
-    Route::post('verification/rej/{id}', 'UserVerificationController@updateRej');
-    //Route::get('verification/rej/{id}', 'UserVerificationController@updateRej');
+    Route::post('verification/rej', 'UserVerificationController@updateRej');
 
     Route::get('species', 'SpeciesHSController@index')->name('admin.species.index');
     Route::get('species/create', 'SpeciesHSController@create')->name('admin.species.createSpecies');
@@ -110,9 +109,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('verificationRen', 'SubmissionVerificationController@indexRen')->name('admin.verificationRen.index');
     Route::get('verificationRen/{id}/detail', 'SubmissionVerificationController@showRen')->name('admin.verificationRen.show');
     Route::post('verificationRen/acc/{id}', 'SubmissionVerificationController@updateRen')->name('admin.verificationRen.acc');
-    Route::post('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejectRen');
-
-    Route::post('verification/rej/{id}', 'SubmissionVerificationController@updateRejection');
+    Route::post('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejection');
 
     Route::get('pnbp', 'PnbpController@index')->name('admin.pnbp.index');
     Route::get('pnbp/{id}/show', 'PnbpController@show')->name('admin.pnbp.create');

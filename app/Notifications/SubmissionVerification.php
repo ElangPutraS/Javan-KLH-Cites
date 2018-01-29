@@ -46,7 +46,8 @@ class SubmissionVerification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage) ->markdown('mail.submission.verification-accept', ['company' => $this->company, 'trade_permit' => $this->trade_permit, 'type' => 'permohonan']);
+        return (new MailMessage)->subject('Verifikasi Permohonan')
+            ->markdown('mail.submission.verification-accept', ['company' => $this->company, 'trade_permit' => $this->trade_permit, 'type' => 'permohonan']);
     }
 
     /**

@@ -46,7 +46,7 @@ class SubmissionVerificationReject extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->subject('Verifikasi Pembaharuan')
+        return (new MailMessage)->subject('Verifikasi Permohonan')
             ->markdown('mail.submission.verification-reject', ['company' => $this->company, 'trade_permit' => $this->trade_permit, 'type' => 'permohonan']);
     }
 
