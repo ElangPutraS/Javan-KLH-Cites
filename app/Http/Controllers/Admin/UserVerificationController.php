@@ -94,20 +94,20 @@ class UserVerificationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $company = Company::findOrFail($id);
+        $company->user()->forceDelete();
+
+        return redirect()->route('admin.verification.index')->with('success', 'Registrasi perusahaan berhasil ditolak.');
     }
 
     public function updateRej(Request $request)
     {
-        $company=Company::find($request->get('id'));
-        $company->update([
-            'company_status' => 2,
-            'reject_reason' => $request->get('alasan'),
-        ]);
+        $company = Company::find($request->get('id'));
 
         $company->user->notify(new ValidRegistration($company->user));
 
-        $company->user->notify(new VerificationCompanyReject($company));
+        $company_item = ['company_name' => $company->company_name, 'company_status' => $company->company_status, 'reject_reason' => $request->get('alasan')];
+        $company->user->notify(new VerificationCompanyReject( $company_item ));
 
         return $company;
     }

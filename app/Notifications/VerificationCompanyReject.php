@@ -2,7 +2,6 @@
 
 namespace App\Notifications;
 
-use App\Company;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -19,7 +18,7 @@ class VerificationCompanyReject extends Notification
      *
      * @return void
      */
-    public function __construct(Company $company)
+    public function __construct($company)
     {
         $this->company = $company;
     }
