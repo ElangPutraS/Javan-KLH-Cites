@@ -140,7 +140,7 @@ class SubmissionVerificationController extends Controller
         $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
 
         //notifikasi email
-        $trade_permit->company->user->notify(new SubmissionVerification());
+        $trade_permit->company->user->notify(new SubmissionVerification($company, $trade_permit));
 
         return redirect()->route('admin.verificationSub.index')->with('success', 'Permohonan berhasil diverifikasi.');
     }
@@ -194,8 +194,7 @@ class SubmissionVerificationController extends Controller
         $company->user->notify(new SubmissionVerificationDb($company->user, $trade_permit));
 
         //notifikasi email
-        $alasan = $request->get('alasan');
-        $trade_permit->company->user->notify(new SubmissionVerificationReject($alasan));
+        $company->user->notify(new SubmissionVerificationReject($company, $trade_permit));
     }
 
     //Verifikasi Renewal
