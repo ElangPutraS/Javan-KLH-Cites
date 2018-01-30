@@ -341,7 +341,7 @@ class SubmissionVerificationController extends Controller
 
             $trade_permit->tradeSpecies()->attach($kuota->species_id, [
                 'total_exported' => $request->get('exported_now')[$key],
-                'log_trade_permit_id' => 1,//$log->id, 
+                'log_trade_permit_id' => $log->id,
                 'description' => $kuota->description,
                 'valid_renewal' => $trade_permit->valid_renewal,
                 'company_id'    => $trade_permit->company_id,
@@ -373,15 +373,15 @@ class SubmissionVerificationController extends Controller
 
         $trade_permit->update([
             'reject_reason' => $request->alasan,
-            'valid_renewal' => $trade_permit->valid_renewal+1,
+            'valid_renewal' => $trade_permit->valid_renewal,
         ]);
 
         $status = TradePermitStatus::where('status_code','300')->first();
         $trade_permit->tradeStatus()->associate($status)->save();
 
         //nambahin log
-        $log=LogTradePermit::create([
-            'log_description'           => 'Verifikasi Permohonan Pembaharuan Diterima',
+        $log = LogTradePermit::create([
+            'log_description'           => 'Verifikasi Permohonan Pembaharuan Ditolak',
             'trade_permit_code'         => $trade_permit->trade_permit_code,
             'valid_start'               => $trade_permit->valid_start,
             'valid_until'               => $trade_permit->valid_until,
@@ -407,6 +407,12 @@ class SubmissionVerificationController extends Controller
             'stamp'                     => $trade_permit->stamp,
         ]);
         $trade_permit->logTrade()->save($log);
+
+        foreach ($trade_permit->tradeSpecies as $key => $species){
+            $status = $trade_permit->tradeSpecies()->wherePivot('valid_renewal', ($trade_permit->valid_renewal - 1))->updateExistingPivot($species->id, [
+                'valid_renewal'         => $trade_permit->valid_renewal,
+            ]);
+        }
 
         //notifikasi ke user
         $company = $trade_permit->company;
