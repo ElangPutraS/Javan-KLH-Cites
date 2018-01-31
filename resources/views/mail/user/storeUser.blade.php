@@ -25,7 +25,7 @@
                 <td style="padding: 3px;"> {{ $user['password'] }} </td>
             </tr>
         </table><br>
-        Dimohon untuk tidak menyebarluaskan akun ini dan langsung lakukan perubahan password ketika berhasil login aplikasi. <br><br>
+        Untuk menjaga privasi akun yang telah dibuat, silahkan untuk segera melakukan perubahan password ketika berhasil login pada aplikasi. <br><br>
 
         Hormat kami,<br>
         Administrator E-SATSLN<br>
