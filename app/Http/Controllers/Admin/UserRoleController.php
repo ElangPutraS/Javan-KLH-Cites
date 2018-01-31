@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use App\Notifications\StoreUser;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
@@ -75,6 +76,7 @@ class UserRoleController extends Controller
 
     public function store(CompanyStoreRequest $request)
     {
+<<<<<<< HEAD
     if ($request->get('role_name') == 2){
         $user = User::create([
             'name'     => $request->name,
@@ -139,23 +141,93 @@ class UserRoleController extends Controller
                     'document_name' => $file->getClientOriginalName(),
                     'file_path'     => $file_path
                 ]);
+=======
+        if ($request->get('role_name') == 2){
+            $user = User::create([
+                'name'     => $request->name,
+                'email'    => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+            $user_profile = new UserProfile([
+                'place_of_birth' => $request->get('place_birth'),
+                'date_of_birth'  => $request->get('date_birth'),
+                'address'        => $request->get('address'),
+                'mobile'         => $request->get('mobile'),
+                'country_id'     => $request->get('country_id'),
+                'province_id'    => $request->get('province_id'),
+                'city_id'        => $request->get('city_id'),
+                'npwp_number'    => $request->get('npwp_number_user'),
+                'created_by'     => $request->user()->id,
+            ]);
+
+            $user->userProfile()->save($user_profile);
+
+            $type = TypeIdentify::find($request->get('type_identify'));
+            $user_profile->typeIdentify()->attach($type, ['user_type_identify_number' =>$request->get('identity_number')]);
+
+            $company = new Company([
+                'company_name' => $request->get('company_name'),
+                'company_address' => $request->get('company_address'),
+                'company_email' => $request->get('company_email'),
+                'company_fax' => $request->get('company_fax'),
+                'company_latitude' => $request->get('company_latitude'),
+                'company_longitude' => $request->get('company_longitude'),
+                'company_status' => $request->get('company_status'),
+                'city_id' => $request->get('company_city_id'),
+                'province_id' => $request->get('company_province_id'),
+                'country_id' => $request->get('company_country_id'),
+                'created_by' => $request->user()->id,
+                'owner_name' => $request->get('owner_name'),
+                'captivity_address' => $request->get('captivity_address'),
+                'labor_total' => $request->get('labor_total'),
+                'investation_total' => str_replace( '.', '',$request->get('investation_total')),
+                'npwp_number' => $request->get('npwp_number'),
+                'date_distribution' => $request->get('date_distribution'),
+            ]);
+
+            $company->save();
+            $company->userProfile()->associate($user_profile)->save();
+            $company->user()->associate($user)->save();
+
+            $role = Role::find(2);
+            $user->roles()->attach($role);
+
+            if($request->company_file!=''){
+                foreach ($request->company_file as $key => $file) {
+
+                    /**
+                     * @var \Illuminate\Http\UploadedFile $file
+                     */
+                    $file_path = $file->store('/upload/file');
+
+                    $document_type = DocumentType::find($request->get('document_type')[$key]);
+
+                    $company->companyDocuments()->attach($document_type, [
+                        'document_name' => $file->getClientOriginalName(),
+                        'file_path'     => $file_path
+                    ]);
+                }
+>>>>>>> master
             }
+
+            $user->roles()->sync($request->role_name);
+        }else{
+            $user = User::create([
+                'name'     => $request->name,
+                'email'    => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+
+            $user->roles()->sync($request->role_name);
         }
 
-        $user->roles()->sync($request->role_name);
-    }else{
-        $user = User::create([
-            'name'     => $request->name,
-            'email'    => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-
-        $user->roles()->sync($request->role_name);
-    }
-
+        //notifikasi email
+        $data_user = ['name' => $request->get('name'), 'email' => $request->get('email'), 'password' => $request->get('password'), 'company_name' => $request->get('company_name')];
+        $user->notify(new StoreUser($data_user));
 
         return redirect()->route('superadmin.editUser', ['id' => $user->id])->with('success', 'Data berhasil dibuat.');
     }
+
     public function edit($id)
     {
         $user     = User::findOrFail($id);

@@ -60,7 +60,7 @@ Route::get('submission/gradually/create', 'SubmissionGraduallyController@create'
 Route::post('submission/gradually/create', 'SubmissionGraduallyController@store')->name('user.submissionGradually.store')->middleware(['auth', 'can:access-pelaku-usaha']);
 Route::get('submission/gradually/{id}/print-satsln', 'SubmissionGraduallyController@printSatsln')->name('user.submissionGradually.printSatsln')->middleware(['auth', 'can:access-pelaku-usaha']);
 Route::get('renewal','SubmissionRenewalController@index')->name('user.renewal.index')->middleware(['auth', 'can:access-pelaku-usaha']);
-Route::get('renewalSubmission/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::get('renewal/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit')->middleware(['auth', 'can:access-pelaku-usaha']);
 Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->name('user.renewal.update')->middleware(['auth', 'can:access-pelaku-usaha']);
 
 Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index')->middleware(['auth', 'can:access-pelaku-usaha']);
