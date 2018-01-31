@@ -41,6 +41,6 @@ class ResetPasswordController extends Controller
     public function sendResetResponse()
     {
         Auth::logout();
-        return redirect()->route('dashboard.home.index');
+        return redirect()->route('login')->with('success','Password Anda berhasil diubah, silahkan login dengan password baru');
     }
 }
