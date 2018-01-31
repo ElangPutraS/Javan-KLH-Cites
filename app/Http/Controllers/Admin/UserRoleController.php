@@ -105,7 +105,7 @@ class UserRoleController extends Controller
             'company_fax' => $request->get('company_fax'),
             'company_latitude' => $request->get('company_latitude'),
             'company_longitude' => $request->get('company_longitude'),
-            'company_status' => $request->get('company_status'),
+            'company_status' => 1,
             'city_id' => $request->get('company_city_id'),
             'province_id' => $request->get('company_province_id'),
             'country_id' => $request->get('company_country_id'),
