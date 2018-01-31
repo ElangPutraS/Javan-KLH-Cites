@@ -40,9 +40,9 @@ class UserController extends Controller
         return view('profile.edit', compact('user', 'countries', 'provinces', 'cities', 'document_type', 'identity_type', 'company'));
     }
 
-    public function update(ProfileUpdateRequest $request, $id)
+    public function update(ProfileUpdateRequest $request)
     {
-        $user = User::findOrFail($id);
+        $user = $request->user();
         $company = $user->company;
 
         $company->update([
@@ -115,17 +115,17 @@ class UserController extends Controller
         return redirect()->route('profile.edit')->with('success', 'Data berhasil diubah.');
     }
 
-    public function updateAdmin(Request $request, $id)
+    public function updateAdmin(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:191',
             'email' => [
                 'required','string','email', 'max:255',
-                Rule::unique('users')->ignore($id),
+                Rule::unique('users')->ignore($request->user()->id),
             ],
         ]);
 
-        $user = User::findOrFail($id);
+        $user = $request->user();
         $company = $user->company();
 
         $user->update([

@@ -14,9 +14,9 @@ class PasswordUserController extends Controller
      * @param Company $company
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = $request->user();
         return view('profile.edit-profile', compact('user'));
     }
 
@@ -26,17 +26,17 @@ class PasswordUserController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         $request->validate([
             'new_password' => 'required|min:6',
         ]);
 
-        $user = User::findOrFail($id);
+        $user = $request->user();
 
         if ($request->get('old_password') && $request->get('new_password') && $request->get('confirm_password') !== NULL){
             if (!Hash::check($request->get('old_password'), $user->password)) {
-                return redirect()->route('profile.editPassword', ['id' => $id])->with('warning', 'Password Tidak Sama');
+                return redirect()->route('profile.editPassword')->with('warning', 'Password Tidak Sama');
             }
             else{
                 $user->update([
@@ -45,6 +45,6 @@ class PasswordUserController extends Controller
             }
         }
 
-        return redirect()->route('profile.editPassword', ['id' => $id])->with('success', 'Password berhasil diubah.');
+        return redirect()->route('profile.editPassword')->with('success', 'Password berhasil diubah.');
     }
 }

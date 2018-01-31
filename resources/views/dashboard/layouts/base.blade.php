@@ -80,7 +80,7 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('profile') }}"> <i class="zmdi zmdi-account zmdi-hc-fw"></i>
                         View Profile</a>
-                    <a class="dropdown-item" href="{{ route('profile.editPassword', ['id' => auth()->user()->id]) }}"> <i class="zmdi zmdi-lock zmdi-hc-fw"></i>
+                    <a class="dropdown-item" href="{{ route('profile.editPassword') }}"> <i class="zmdi zmdi-lock zmdi-hc-fw"></i>
                         Ubah Password</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i
