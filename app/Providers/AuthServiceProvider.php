@@ -42,6 +42,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasRole('Super Admin') || $user->hasRole('Administrator');
         });
 
+        Gate::define('update-password', function (){
+            return auth()->user()->id == $this->app->request->route('id');
+        });
+
 
     }
 }

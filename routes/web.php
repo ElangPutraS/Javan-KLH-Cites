@@ -33,6 +33,9 @@ Route::get('/profile/edit', 'UserController@edit')->name('profile.edit')->middle
 Route::post('/profile/{id}/edit', 'UserController@update')->name('profile.update')->middleware(['auth']);
 Route::post('/profile/{id}/editAdmin', 'UserController@updateAdmin')->name('profile.update.admin')->middleware(['auth']);
 
+Route::get('/profile/{id}/editPassword', 'PasswordUserController@edit')->name('profile.editPassword')->middleware(['auth', 'can:update-password']);
+Route::post('/profile/{id}/updatePassword', 'PasswordUserController@update')->name('profile.updatePassword')->middleware(['auth']);
+
 //JQUERY
 
 Route::get('/getProvince/{country}', 'LocationController@getProvince');
