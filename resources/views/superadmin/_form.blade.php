@@ -283,18 +283,18 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label class="control-label">Status Verifikasi</label>
-        <div class="col-sm-14">
-            @php($statuses = [0 => 'Menunggu Verifikasi', 1 => 'Disetujui', 2 => 'Ditolak'])
+    {{--<div class="form-group">--}}
+        {{--<label class="control-label">Status Verifikasi</label>--}}
+        {{--<div class="col-sm-14">--}}
+            {{--@php($statuses = [0 => 'Menunggu Verifikasi', 1 => 'Disetujui', 2 => 'Ditolak'])--}}
 
-            <select name="company_status" class="form-control select2">
-                @foreach($statuses as $key => $status)
-                    <option value="{{ $key }}" {{ $key == old('company_status', array_get($company, 'company_status')) ? 'selected' : '' }}>{{ $status }}</option>
-                @endforeach
-            </select>
-        </div>
-    </div>
+            {{--<select name="company_status" class="form-control select2">--}}
+                {{--@foreach($statuses as $key => $status)--}}
+                    {{--<option value="{{ $key }}" {{ $key == old('company_status', array_get($company, 'company_status')) ? 'selected' : '' }}>{{$key}}.{{ $status }}</option>--}}
+                {{--@endforeach--}}
+            {{--</select>--}}
+        {{--</div>--}}
+    {{--</div>--}}
 
     <div class="form-group">
         <label class="control-label">Lokasi</label>
