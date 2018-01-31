@@ -17,7 +17,7 @@ class PasswordUserController extends Controller
     public function edit(Request $request)
     {
         $user = $request->user();
-        return view('profile.edit-profile', compact('user'));
+        return view('profile.edit-password', compact('user'));
     }
 
     /**

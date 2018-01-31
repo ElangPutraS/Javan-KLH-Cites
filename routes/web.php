@@ -31,7 +31,6 @@ Auth::routes();
 Route::get('/profile', 'UserController@index')->name('profile')->middleware(['auth']);
 Route::get('/profile/edit', 'UserController@edit')->name('profile.edit')->middleware(['auth']);
 Route::post('/profile/edit', 'UserController@update')->name('profile.update')->middleware(['auth']);
-Route::post('/profile/editAdmin', 'UserController@updateAdmin')->name('profile.update.admin')->middleware(['auth']);
 
 Route::get('/profile/editPassword', 'PasswordUserController@edit')->name('profile.editPassword')->middleware(['auth']);
 Route::post('/profile/updatePassword', 'PasswordUserController@update')->name('profile.updatePassword')->middleware(['auth']);
