@@ -40,98 +40,83 @@ class UserController extends Controller
         return view('profile.edit', compact('user', 'countries', 'provinces', 'cities', 'document_type', 'identity_type', 'company'));
     }
 
-    public function update(ProfileUpdateRequest $request, $id)
+    public function update(ProfileUpdateRequest $request)
     {
-        $user = User::findOrFail($id);
+        $user = $request->user();
         $company = $user->company;
 
-        $company->update([
-            'company_name' => $request->get('company_name'),
-            'company_address' => $request->get('company_address'),
-            'company_email' => $request->get('company_email'),
-            'company_fax' => $request->get('company_fax'),
-            'company_latitude' => $request->get('company_latitude'),
-            'company_longitude' => $request->get('company_longitude'),
-            'city_id' => $request->get('company_city_id'),
-            'province_id' => $request->get('company_province_id'),
-            'country_id' => $request->get('company_country_id'),
-            'updated_by' => $request->user()->id,
-            'owner_name' => $request->get('owner_name'),
-            'captivity_address' => $request->get('captivity_address'),
-            'labor_total' => $request->get('labor_total'),
-            'investation_total' => str_replace( '.', '',$request->get('investation_total')),
-            'npwp_number' => $request->get('npwp_number'),
-            'date_distribution' => $request->get('date_distribution'),
-        ]);
-
-        $user->update([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-        ]);
-
-        $user->userProfile()->update(
-            [
-                'place_of_birth' => $request->get('place_birth'),
-                'date_of_birth' => $request->get('date_birth'),
-                'mobile'        => $request->get('mobile'),
-                'address'       => $request->get('address'),
-                'city_id'       => $request->get('city_id'),
-                'province_id'   => $request->get('province_id'),
-                'country_id'   => $request->get('country_id'),
+        if($user->hasRole('Pelaku Usaha')){
+            $company->update([
+                'company_name' => $request->get('company_name'),
+                'company_address' => $request->get('company_address'),
+                'company_email' => $request->get('company_email'),
+                'company_fax' => $request->get('company_fax'),
+                'company_latitude' => $request->get('company_latitude'),
+                'company_longitude' => $request->get('company_longitude'),
+                'city_id' => $request->get('company_city_id'),
+                'province_id' => $request->get('company_province_id'),
+                'country_id' => $request->get('company_country_id'),
                 'updated_by' => $request->user()->id,
-                'npwp_number' => $request->get('npwp_number_user'),
-            ]
-        );
+                'owner_name' => $request->get('owner_name'),
+                'captivity_address' => $request->get('captivity_address'),
+                'labor_total' => $request->get('labor_total'),
+                'investation_total' => str_replace( '.', '',$request->get('investation_total')),
+                'npwp_number' => $request->get('npwp_number'),
+                'date_distribution' => $request->get('date_distribution'),
+            ]);
 
-        $userProfile = $user->userProfile;
-        if($request->old_type_identify != $request->type_identify){
-            $userProfile->typeIdentify()->detach($request->old_type_identify);
+            $user->update([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+            ]);
 
-            $identity=TypeIdentify::find($request->type_identify);
-            $userProfile->typeIdentify()->attach($identity, ['user_type_identify_number' => $request->identity_number]);
-        }else{
-            $userProfile->typeIdentify()->updateExistingPivot($request->type_identify, ['user_type_identify_number' => $request->identity_number]);
-        }
+            $user->userProfile()->update(
+                [
+                    'place_of_birth' => $request->get('place_birth'),
+                    'date_of_birth' => $request->get('date_birth'),
+                    'mobile'        => $request->get('mobile'),
+                    'address'       => $request->get('address'),
+                    'city_id'       => $request->get('city_id'),
+                    'province_id'   => $request->get('province_id'),
+                    'country_id'   => $request->get('country_id'),
+                    'updated_by' => $request->user()->id,
+                    'npwp_number' => $request->get('npwp_number_user'),
+                ]
+            );
 
+            $userProfile = $user->userProfile;
+            if($request->old_type_identify != $request->type_identify){
+                $userProfile->typeIdentify()->detach($request->old_type_identify);
 
-        if($request->company_file!=''){
-            foreach ($request->company_file as $key => $file) {
-
-                /**
-                 * @var \Illuminate\Http\UploadedFile $file
-                 */
-                $file_path = $file->store('/upload/file');
-
-                $document_type = DocumentType::find($request->get('document_type')[$key]);
-
-                $company->companyDocuments()->attach($document_type, [
-                    'document_name' => $file->getClientOriginalName(),
-                    'file_path'     => $file_path
-                ]);
+                $identity=TypeIdentify::find($request->type_identify);
+                $userProfile->typeIdentify()->attach($identity, ['user_type_identify_number' => $request->identity_number]);
+            }else{
+                $userProfile->typeIdentify()->updateExistingPivot($request->type_identify, ['user_type_identify_number' => $request->identity_number]);
             }
+
+
+            if($request->company_file!=''){
+                foreach ($request->company_file as $key => $file) {
+
+                    /**
+                     * @var \Illuminate\Http\UploadedFile $file
+                     */
+                    $file_path = $file->store('/upload/file');
+
+                    $document_type = DocumentType::find($request->get('document_type')[$key]);
+
+                    $company->companyDocuments()->attach($document_type, [
+                        'document_name' => $file->getClientOriginalName(),
+                        'file_path'     => $file_path
+                    ]);
+                }
+            }
+        }else{
+            $user->update([
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+            ]);
         }
-
-
-        return redirect()->route('profile.edit')->with('success', 'Data berhasil diubah.');
-    }
-
-    public function updateAdmin(Request $request, $id)
-    {
-        $request->validate([
-            'name' => 'required|string|max:191',
-            'email' => [
-                'required','string','email', 'max:255',
-                Rule::unique('users')->ignore($id),
-            ],
-        ]);
-
-        $user = User::findOrFail($id);
-        $company = $user->company();
-
-        $user->update([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-        ]);
 
         return redirect()->route('profile.edit')->with('success', 'Data berhasil diubah.');
     }
