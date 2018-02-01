@@ -16,7 +16,7 @@
             </tr>
         </table>
         <center> <font size="4pt" color="#228b22"> "Tagihan Telah Lunas Dibayar" </font> </center> <br>
-        Terima kasih telah melakukan pembayaran. Silahkan login aplikasi untuk mengecek detail @if($trade_permit['permit_type'] == '1') permohonan @else pembaharuan @endif.<br><br>
+        Terima kasih telah melakukan pembayaran. Silahkan login aplikasi untuk melihat detail @if($trade_permit['permit_type'] == '1') permohonan @else pembaharuan @endif.<br><br>
 
         Hormat kami,<br>
         Administrator E-SATSLN<br>

@@ -26,7 +26,7 @@
             </tr>
         </table>
         <center> <font size="4pt" color="#228b22"> "Telah diterima" </font> </center> <br>
-        Silahkan login aplikasi untuk mengecek detail {{ $type }}.<br><br>
+        Silahkan login aplikasi untuk melihat detail {{ $type }}.<br><br>
 
         Hormat kami,<br>
         Administrator E-SATSLN<br>
