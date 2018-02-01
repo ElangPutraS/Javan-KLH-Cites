@@ -1,27 +1,36 @@
-<div style="width:900px; margin:0 auto;">
+<div style="width:900px; margin: 0 auto;">
     <div class="header" style="padding:20px 100px 20px 100px; background-color:#0c390e; color: #9d9d9d;">
         <img src="{{ asset('images/Lambang_Kementerian_Lingkungan_Hidup_dan_Kehutanan.png') }}" height="64" style="float: left;">
         <center><font style="font-size:16pt; font-weight: bold;"> E-SATSLN <br> Kementrian Lingkungan Hidup dan Kehutanan </font></center>
     </div>
 
     <div class="body" style="padding:20px 100px 20px 100px;">
-        <br>Yth Bapak/Ibu dari perusahaan {{ $company['company_name'] }},<br><br>
+        <br>Yth Bapak/Ibu dari perusahaan {{ $data['company_name'] }},<br><br>
 
-        {{ ucwords($type) }} SATS-LN dengan detail sebagai berikut.<br>
+        Berikut ini Tagihan SATS-LN dengan detail sebagai berikut.<br><br>
         <table border="0">
             <tr>
-                <td style="padding: 3px;"> Diberikan kepada </td>
+                <td style="padding: 3px;"> Kode SATSLN </td>
                 <td style="padding: 3px;"> : </td>
-                <td style="padding: 3px;"> {{ $trade_permit['consignee'] }} </td>
+                <td style="padding: 3px;"> {{ $data['trade_permit_code'] }} </td>
             </tr>
             <tr>
-                <td style="padding: 3px;"> Dibuat pada </td>
+                <td style="padding: 3px;"> IHH </td>
                 <td style="padding: 3px;"> : </td>
-                <td style="padding: 3px;"> {{ Carbon\Carbon::createFromFormat('Y-m-d', $trade_permit['date_submission'])->format('d-m-Y') }} </td>
+                <td style="padding: 3px;"> Rp @if($data['permit_type'] == '1') {{ number_format($data['pnbp_percentage'] + $data['pnbp_subAmount'],2,',','.') }} @else {{ number_format(0,2,',','.') }} @endif  </td>
             </tr>
-        </table>
-        <center> <font size="4pt" color="red"> "Telah ditolak" </font> </center> <br>
-        Dengan alasan <b>{{ $trade_permit['reject_reason'] }}</b>, silahkan login aplikasi untuk melihat detail {{ $type }}.<br><br>
+            <tr>
+                <td style="padding: 3px;"> Blanko </td>
+                <td style="padding: 3px;"> : </td>
+                <td style="padding: 3px;"> Rp {{ number_format($data['harga_blanko'],2,',','.') }} </td>
+            </tr>
+            <tr>
+                <td style="padding: 3px; font-weight: bold;"> Total Tagihan</td>
+                <td style="padding: 3px; font-weight: bold;"> : </td>
+                <td style="padding: 3px; font-weight: bold;"> Rp {{ number_format($data['total_pnbp'],2,',','.') }} </td>
+            </tr>
+        </table> <br>
+        Silahkan melakukan pembayaran ditempat atau melalui transfer ke rekening berikut [ ... ], untuk melunasi tagihan tersebut. Silahkan login aplikasi untuk melihat tagihan lebih lanjut.<br><br>
 
         Hormat kami,<br>
         Administrator E-SATSLN<br>
@@ -42,3 +51,4 @@
         </font>
     </div>
 </div>
+
