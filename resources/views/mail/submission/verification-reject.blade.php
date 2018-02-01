@@ -21,7 +21,7 @@
             </tr>
         </table>
         <center> <font size="4pt" color="red"> "Telah ditolak" </font> </center> <br>
-        Dengan alasan <b>{{ $trade_permit['reject_reason'] }}</b>, silahkan login aplikasi untuk mengecek detail {{ $type }}.<br><br>
+        Dengan alasan <b>{{ $trade_permit['reject_reason'] }}</b>, silahkan login aplikasi untuk melihat detail {{ $type }}.<br><br>
 
         Hormat kami,<br>
         Administrator E-SATSLN<br>

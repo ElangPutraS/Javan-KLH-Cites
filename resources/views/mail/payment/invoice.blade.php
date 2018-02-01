@@ -7,7 +7,7 @@
     <div class="body" style="padding:20px 100px 20px 100px;">
         <br>Yth Bapak/Ibu dari perusahaan {{ $data['company_name'] }},<br><br>
 
-        Berikut ini Tagihan @if($data['permit_type'] == '1') Permohonan @else Pembaharuan @endif SATS-LN dengan detail sebagai berikut.<br><br>
+        Berikut ini Tagihan SATS-LN dengan detail sebagai berikut.<br><br>
         <table border="0">
             <tr>
                 <td style="padding: 3px;"> Kode SATSLN </td>
@@ -30,7 +30,7 @@
                 <td style="padding: 3px; font-weight: bold;"> Rp {{ number_format($data['total_pnbp'],2,',','.') }} </td>
             </tr>
         </table> <br>
-        Silahkan melakukan pembayaran ditempat atau melalui transfer ke rekening berikut [ ... ], untuk melunasi tagihan tersebut. Terima kasih.<br><br>
+        Silahkan melakukan pembayaran ditempat atau melalui transfer ke rekening berikut [ ... ], untuk melunasi tagihan tersebut. Silahkan login aplikasi untuk melihat tagihan lebih lanjut.<br><br>
 
         Hormat kami,<br>
         Administrator E-SATSLN<br>

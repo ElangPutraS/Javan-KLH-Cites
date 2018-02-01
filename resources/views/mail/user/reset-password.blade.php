@@ -5,7 +5,7 @@
     </div>
 
     <div class="body" style="padding:20px 100px 20px 100px;">
-        <br>Anda menerima e-mail ini karena kita menerima permintaan reset password untuk akun Anda.
+        <br>Anda menerima e-mail ini karena kami menerima permintaan reset password untuk akun Anda.
 
         @component('mail::button', ['url' => url(config('app.url').route('password.reset', $token, false)) ])
             Reset Password
