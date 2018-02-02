@@ -16,8 +16,6 @@
 
                 <div class="card-block">
 
-                    @include('includes.notifications')
-
                     <a href="{{ URL::to('admin/downloadFormSpecies/xlsx') }}"><button class="btn btn-success">Download Form Species</button></a>
                     <hr>
 
@@ -33,18 +31,18 @@
 
                 <div class="card-block">
 
-                    @include('includes.notifications')
-
                     <a href="{{ URL::to('admin/downloadQuota/xlsx') }}"><button class="btn btn-success">Download Kuota Species</button></a>
                     <hr>
-                    <form action="{{ URL::to('importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                    <form action="{{ URL::to('admin/importExcel') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                        {{ csrf_field() }}
                         <label for="import_file">Upload Kuota Species</label>
                         <br>
-                        <input type="file" name="import_file" />
+                        <input type="file" name="import_file" id="import_file"/>
                         <button class="btn btn-primary">Import File</button>
                     </form>
                 </div>
             </div>
+
         </div>
     </section>
 @endsection
