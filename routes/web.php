@@ -140,6 +140,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('upload','UploadMasterDataController@index')->name('superadmin.upload');
     Route::get('downloadQuota/{type}', 'UploadMasterDataController@quotaExcel');
     Route::get('downloadFormSpecies/{type}', 'UploadMasterDataController@speciesExcel');
+    Route::get('downloadFormCategory/{type}', 'UploadMasterDataController@categoryExcel');
     Route::post('importExcel','UploadMasterDataController@importExcel');
 
     Route::get('appendix', 'AppendixSourceController@index')->name('admin.appendix.index');

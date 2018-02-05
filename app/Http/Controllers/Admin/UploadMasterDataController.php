@@ -19,12 +19,31 @@ class UploadMasterDataController extends Controller
     public function quotaExcel($type)
     {
         $quota = SpeciesQuota::get()->toArray();
+
         Excel::create('Data Quota', function($excel) use ($quota) {
             $excel->sheet('sheet name', function($sheet) use ($quota)
             {
+                $password = 'firma';
                 $sheet->fromArray($quota);
+                $sheet->freezeFirstRow();
+                $sheet->protectCells('A1', $password);
             });
         })->download($type);
+    }
+
+    public function categoryExcel()
+    {
+        Excel::create('Form Upload Spesies', function($excel) {
+        $excel->sheet('Input Data', function ($sheet) {
+            $head = array(
+                'No',
+                'species_category_code',
+                'species_category_name'
+            );
+            $data = array($head);
+            $sheet->fromArray($data, null, 'A1', false, false);
+        });
+        })->download('xlsx');
     }
 
     public function speciesExcel()
@@ -79,18 +98,19 @@ class UploadMasterDataController extends Controller
         })->download('xlsx');
     }
 
+
     public function importExcel(Request $request)
     {
         if($request->hasFile('import_file')){
             Excel::load($request->file('import_file')->getRealPath(), function ($reader) {
 //                dd($reader);
                 foreach ($reader->toArray() as $key => $row) {
-                    dd($key);
+                    //dd($key);
                     $data['species_scientific_name'] = $row['species_scientific_name'];
                     $data['species_indonesia_name'] = $row['species_indonesia_name'];
                     $data['species_general_name'] = $row['species_general_name'];
                     $data['is_appendix'] = 0;
-                    $data['appendix_source_id'] = 0;
+                    //$data['appendix_source_id'] = 0;
                     $data['species_category_id'] = 1;
                     $data['nominal'] = $row['nominal'];
                     $data['hs_code'] = $row['hs_code'];
@@ -100,13 +120,13 @@ class UploadMasterDataController extends Controller
                     $data['species_description'] = $row['species_description'];
 
                     if(!empty($data)) {
-                        DB::table('Species')->insert($data);
+                        \DB::table('Species')->insert($data);
                     }
                 }
             });
         }
 
-        Session::put('success', 'Youe file successfully import in database!!!');
+        \Session::put('success', 'Youe file successfully import in database!!!');
 
         return back();
     }
