@@ -21,17 +21,19 @@ class UploadMasterDataController extends Controller
 
     public function quotaExcel()
     {
-        Excel::create('Form Upload Quota', function($sheet) {
-            $sheet->freezeFirstRow();
-            $head = array(
-                'No',
-                'Quota',
-                'Category',
-                'Year'
-            );
+        Excel::create('Form Upload Quota', function($excel) {
+            $excel->sheet('Input Data', function ($sheet) {
+                $sheet->freezeFirstRow();
+                $head = array(
+                    'no',
+                    'quota_amount',
+                    'year',
+                    'species_id'
+                );
+
             $data = array($head);
             $sheet->fromArray($data, null, 'A1', false, false);
-
+            });
         })->download('xlsx');
     }
 
@@ -60,19 +62,38 @@ class UploadMasterDataController extends Controller
         Excel::create('Form Upload Spesies', function($excel) use ($categories,$appendix,$source) {
 
             $excel->sheet('Input Data', function ($sheet) use($categories,$appendix,$source){
-                $sheet->freezeFirstRow();
                 $sheet->setWidth(array(
                     'A'     => 3,
                     'B'     => 9,
                     'C'     => 9,
                     'D'     => 35,
                     'E'     => 35,
-                    'F'     => 35,
+                    'F'     => 30,
                     'F'     => 9,
                     'F'     => 9,
                     'F'     => 8,
-                    'j'     =>  50
+                    'j'     => 20,
+                    'K'     => 35
                 ));
+
+                $sheet->_parent->addNamedRange(
+                    new \PHPExcel_NamedRange(
+                        'categories', $sheet, 'V:V'
+                    )
+                );
+
+
+                $sheet->_parent->addNamedRange(
+                    new \PHPExcel_NamedRange(
+                        'appendix', $sheet, 'X:X'
+                    )
+                );
+
+                $sheet->_parent->addNamedRange(
+                    new \PHPExcel_NamedRange(
+                        'source', $sheet, 'Y:Y'
+                    )
+                );
 
                 $sheet->setCellValue('A1','No')
                     ->setCellValue('B1','hs_code')
@@ -86,7 +107,12 @@ class UploadMasterDataController extends Controller
                     ->setCellValue('J1','species_description')
                     ->setCellValue('K1','category')
                     ->setCellValue('L1','unit')
-                    ->setCellValue('M1','id_category')
+                    ->setCellValue('N1','id_category')
+                    ->setCellValue('O1','source_id')
+                    ->setCellValue('P1','unit_id')
+                    ->setCellValue('Q1','is_appendix')
+                    ->setCellValue('R1','appendix_source')
+
                     ->setCellValue('X1','0')
                     ->setCellValue('X2','1')
                     ->setCellValue('X3','2')
@@ -100,13 +126,16 @@ class UploadMasterDataController extends Controller
                     ->setCellValue('Y8','I')
                     ->setCellValue('Y9','O');
 
+                for ($i=1; $i <10 ; $i++){
+                    $sheet->setCellValue('Z'.$i,$i);
+                }
 
                 $sheet ->fromArray($categories, null, 'V1', false, false)
                         ->fromArray($appendix, null, 'V1', false, false)
                         ->fromArray($source, null, 'V1', false, false);
 
                 for ($i=2; $i <12 ; $i++) {
-                    $objValidation = $sheet->getCell('J'.$i)->getDataValidation();
+                    $objValidation = $sheet->getCell('K'.$i)->getDataValidation();
                     $objValidation->setType(\PHPExcel_Cell_DataValidation::TYPE_LIST);
                     $objValidation->setErrorStyle(\PHPExcel_Cell_DataValidation::STYLE_STOP);
                     $objValidation->setAllowBlank(false);
@@ -145,29 +174,12 @@ class UploadMasterDataController extends Controller
                     $objValidation1->setPrompt('Please pick a value from the drop-down list.');
                     $objValidation1->setFormula1('source');
 
-                    $sheet->setcellValue('L'.$i,'=VLOOKUP(J'.$i.',V1:W64,2,FALSE)');
+                    $sheet->setcellValue('M'.$i,'=VLOOKUP(K'.$i.',V1:W64,2,FALSE)')
+                    ->setCellValue('O'.$i, '=VLOOKUP(I2,Y1:Z9,2,FALSE)');
+
                 }
 
-
-                $sheet->_parent->addNamedRange(
-                    new \PHPExcel_NamedRange(
-                        'categories', $sheet, 'V:V'
-                    )
-                );
-
-
-                $sheet->_parent->addNamedRange(
-                    new \PHPExcel_NamedRange(
-                        'appendix', $sheet, 'X:X'
-                    )
-                );
-
-                $sheet->_parent->addNamedRange(
-                    new \PHPExcel_NamedRange(
-                        'source', $sheet, 'Y:Y'
-                    )
-                );
-
+//                dd($sheet->getCellByColumnAndRow(2,2));
             });
 
         })->download('xlsx');
@@ -223,6 +235,21 @@ class UploadMasterDataController extends Controller
 
     public function importQuota(Request $request)
     {
+        if($request->hasFile('import_file')){
+            Excel::load($request->file('import_file')->getRealPath(), function ($reader) {
+                foreach ($reader->toArray() as $key => $row) {
+                    $data['quota_amount'] = $row['quota_amount'];
+                    $data['year'] = $row['year'];
+                    $data['species_id'] = $row['species_id'];
 
+                    if(!empty($data)) {
+                        \DB::table('species_quota')->insert($data);
+                    }
+                }
+            });
+            return back()->with('success','Data berhasil ditambahkan');
+        }
+
+        return back()->with('warning','Data kategori tidak ditemukan, Silahkan tambahkan data');
     }
 }
