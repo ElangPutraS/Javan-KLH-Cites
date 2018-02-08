@@ -2,26 +2,25 @@
 
 namespace App\Notifications;
 
-use App\Company;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class VerificationCompany extends Notification
+class StoreUser extends Notification
 {
     use Queueable;
 
-    protected $company;
+    protected $user;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Company $company)
+    public function __construct($user)
     {
-        $this->company = $company;
+        $this->user = $user;
     }
 
     /**
@@ -43,8 +42,8 @@ class VerificationCompany extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->subject('Verifikasi Pelaku Usaha')
-            ->markdown('mail.company.verification-company', ['company' => $this->company]);
+        return (new MailMessage)->subject('Pemberitahuan Akun E-SATSLN')
+            ->markdown('mail.user.storeUser', [ 'user' => $this->user ]);
     }
 
     /**

@@ -30,8 +30,10 @@ Auth::routes();
 //PROFILE
 Route::get('/profile', 'UserController@index')->name('profile')->middleware(['auth']);
 Route::get('/profile/edit', 'UserController@edit')->name('profile.edit')->middleware(['auth']);
-Route::post('/profile/{id}/edit', 'UserController@update')->name('profile.update')->middleware(['auth']);
-Route::post('/profile/{id}/editAdmin', 'UserController@updateAdmin')->name('profile.update.admin')->middleware(['auth']);
+Route::post('/profile/edit', 'UserController@update')->name('profile.update')->middleware(['auth']);
+
+Route::get('/profile/editPassword', 'PasswordUserController@edit')->name('profile.editPassword')->middleware(['auth']);
+Route::post('/profile/updatePassword', 'PasswordUserController@update')->name('profile.updatePassword')->middleware(['auth']);
 
 //JQUERY
 
@@ -60,7 +62,7 @@ Route::get('submission/gradually/create', 'SubmissionGraduallyController@create'
 Route::post('submission/gradually/create', 'SubmissionGraduallyController@store')->name('user.submissionGradually.store')->middleware(['auth', 'can:access-pelaku-usaha']);
 Route::get('submission/gradually/{id}/print-satsln', 'SubmissionGraduallyController@printSatsln')->name('user.submissionGradually.printSatsln')->middleware(['auth', 'can:access-pelaku-usaha']);
 Route::get('renewal','SubmissionRenewalController@index')->name('user.renewal.index')->middleware(['auth', 'can:access-pelaku-usaha']);
-Route::get('renewalSubmission/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit')->middleware(['auth', 'can:access-pelaku-usaha']);
+Route::get('renewal/{id}','SubmissionRenewalController@edit')->name('user.renewal.edit')->middleware(['auth', 'can:access-pelaku-usaha']);
 Route::post('renewalSubmission/{id}', 'SubmissionRenewalController@update')->name('user.renewal.update')->middleware(['auth', 'can:access-pelaku-usaha']);
 
 Route::get('invoice', 'InvoiceController@index')->name('user.invoice.index')->middleware(['auth', 'can:access-pelaku-usaha']);
@@ -73,6 +75,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('verification', 'UserVerificationController@index')->name('admin.verification.index');
     Route::get('verification/{id}', 'UserVerificationController@show')->name('admin.verification.show');
     Route::get('verification/acc/{id}', 'UserVerificationController@update');
+    Route::get('verification/destroy/{id}', 'UserVerificationController@destroy');
     Route::post('verification/rej', 'UserVerificationController@updateRej');
 
     Route::get('species', 'SpeciesHSController@index')->name('admin.species.index');
@@ -109,9 +112,7 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('verificationRen', 'SubmissionVerificationController@indexRen')->name('admin.verificationRen.index');
     Route::get('verificationRen/{id}/detail', 'SubmissionVerificationController@showRen')->name('admin.verificationRen.show');
     Route::post('verificationRen/acc/{id}', 'SubmissionVerificationController@updateRen')->name('admin.verificationRen.acc');
-    Route::post('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejectRen');
-
-    Route::post('verification/rej/{id}', 'SubmissionVerificationController@updateRejection');
+    Route::post('verificationRen/rej/{id}', 'SubmissionVerificationController@updateRejection');
 
     Route::get('pnbp', 'PnbpController@index')->name('admin.pnbp.index');
     Route::get('pnbp/{id}/show', 'PnbpController@show')->name('admin.pnbp.create');

@@ -2,26 +2,25 @@
 
 namespace App\Notifications;
 
-use App\Company;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class VerificationCompany extends Notification
+class ResetPassword extends Notification
 {
     use Queueable;
 
-    protected $company;
+    protected $token;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Company $company)
+    public function __construct($token)
     {
-        $this->company = $company;
+        $this->token = $token;
     }
 
     /**
@@ -43,8 +42,8 @@ class VerificationCompany extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)->subject('Verifikasi Pelaku Usaha')
-            ->markdown('mail.company.verification-company', ['company' => $this->company]);
+        return (new MailMessage)->subject('Reset Password Akun E-SATSLN')
+            ->markdown('mail.user.reset-password', ['token' => $this->token]);
     }
 
     /**

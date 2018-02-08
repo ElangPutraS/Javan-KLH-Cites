@@ -312,6 +312,8 @@
                         title: 'Penolakan verifikasi berhasil!',
                         html: 'Alasan penolakan: ' + alasan
                     });
+
+                   //location.href='{{ url("/admin/verificationSub/rej") }}/'+id;
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

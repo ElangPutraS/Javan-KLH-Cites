@@ -6,6 +6,7 @@ use App\GeneralValue;
 use App\Http\Requests\PnbpUpdateRequest;
 use App\Http\Requests\PnbpPaymentRequest;
 use App\LogTradePermit;
+use App\Notifications\InvoiceSubmission;
 use App\Percentage;
 use App\Pnbp;
 use App\TradePermit;
@@ -129,8 +130,20 @@ class PnbpController extends Controller
         ]);
         $trade_permit->logTrade()->save($log);
 
-        //notifikasi ke user
+        //notifikasi tagihan email
+        $harga_blanko = GeneralValue::where('name', 'Harga Blangko')->first();
         $company = $trade_permit->company;
+        $data_notif = [
+            'company_name' => $company->company_name,
+            'trade_permit_code' => $trade_permit->trade_permit_code,
+            'permit_type' => $trade_permit->permit_type,
+            'harga_blanko' => $harga_blanko->value,
+            'pnbp_percentage' => $trade_permit->pnbp->pnbp_percentage_amount,
+            'pnbp_subAmount' => $trade_permit->pnbp->pnbp_sub_amount,
+            'total_pnbp' => $trade_permit->pnbp->pnbp_amount];
+        $company->user->notify(new InvoiceSubmission($data_notif));
+
+        //notifikasi ke user
         $company->user->notify(new \App\Notifications\Pnbp($company->user, $trade_permit, $pnbp));
 
         return redirect()->route('admin.pnbp.index')->with('success', 'Data berhasil dibuat.');
@@ -215,7 +228,7 @@ class PnbpController extends Controller
         $company->user->notify(new \App\Notifications\Pnbp($company->user, $trade_permit, $pnbp));
 
         //notifikasi email
-        $trade_permit->company->user->notify(new VerificationPayment());
+        $trade_permit->company->user->notify(new VerificationPayment($company, $trade_permit));
 
         return redirect()->route('admin.pnbp.index')->with('success', 'Pembayaran dengan kode PNBP : '.$pnbp->pnbp_code.' berhasil dibayarkan.');
 

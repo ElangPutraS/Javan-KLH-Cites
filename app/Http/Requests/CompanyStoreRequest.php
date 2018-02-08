@@ -45,7 +45,7 @@ class CompanyStoreRequest extends FormRequest
                 'company_city_id'       => 'required',
                 'company_email'         => 'required|string|email|max:255',
                 'company_fax'           => 'required|numeric|digits_between:0,30',
-                'company_status'        => 'required',
+//                'company_status'        => 'required',
                 'company_latitude'      => 'required',
                 'company_longitude'     => 'required',
                 'date_distribution'     => 'required',
