@@ -7,6 +7,36 @@
                 <h1>Upload Data Master</h1>
             </header>
             @include('includes.notifications')
+
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Download Data Kategori</h2>
+                            <small class="card-subtitle"></small>
+                        </div>
+
+                        <div class="card-block">
+                            <a href="{{ URL::to('admin/downloadCategory/xlsx') }}" name="upload"><button class="btn btn-success">Download</button></a>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">Download Data Spesies</h2>
+                            <small class="card-subtitle"></small>
+                        </div>
+
+                        <div class="card-block">
+                            <a href="{{ URL::to('admin/downloadSpecies/xlsx') }}" name="upload"><button class="btn btn-success">Download</button></a>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header">
                     <h2 class="card-title">Upload Kategori Species</h2>

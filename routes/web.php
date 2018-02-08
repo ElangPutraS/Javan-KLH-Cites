@@ -141,6 +141,8 @@ Route::namespace('Admin')->prefix('admin')->middleware(['auth', 'can:access-supe
     Route::get('downloadFormQuota/{type}', 'UploadMasterDataController@quotaExcel');
     Route::get('downloadFormSpecies/{type}', 'UploadMasterDataController@speciesExcel');
     Route::get('downloadFormCategory/{type}', 'UploadMasterDataController@categoryExcel');
+    Route::get('downloadCategory/{type}', 'UploadMasterDataController@downloadCategory');
+    Route::get('downloadSpecies/{type}', 'UploadMasterDataController@downloadSpecies');
     Route::post('importSpecies','UploadMasterDataController@importSpecies');
     Route::post('importCategory','UploadMasterDataController@importCategory');
     Route::post('importQuota','UploadMasterDataController@importQuota');
