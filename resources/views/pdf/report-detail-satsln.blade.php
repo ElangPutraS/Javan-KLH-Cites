@@ -190,7 +190,7 @@
             @endforeach
             <tr>
                 <td align="center"> {{ $no }} </td>
-                <td colspan="4"> EA/EB</td>
+                <td colspan="4"> biaya blanko SATS-LN</td>
                 <td align="right">{{ number_format($generalValueBlangko->value) }}</td>
                 <td align="right">{{ number_format($generalValueBlangko->value) }}</td>
             </tr>
