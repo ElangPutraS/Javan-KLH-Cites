@@ -26,14 +26,14 @@
         <div class="form-group">
             <label class="control-label">Kuota Tambahan</label>
             <div class="col-sm-14">
-                    <input type="number" name="quota_plus" id="quota_plus" oninput="plusKuota(this)" class="form-control" value="{{ old('quota_plus') }}" placeholder="0" min="1" required>
+                    <input type="number" name="quota_plus" id="quota_plus" oninput="plusKuota(this)" class="form-control" value="{{ old('quota_plus') }}" placeholder="ex : 0" value="0" min="0" required>
             </div>
         </div>
     @elseif(Request::segment(4) == 'minus')
         <div class="form-group">
             <label class="control-label">Kurangi Kuota</label>
             <div class="col-sm-14">
-                <input type="number" name="quota_min" id="quota_min" oninput="minusKuota(this)" class="form-control" value="{{ old('quota_min') }}" placeholder="0" min="1" required>
+                <input type="number" name="quota_min" id="quota_min" oninput="minusKuota(this)" class="form-control" value="{{ old('quota_min') }}" placeholder="ex : 0" value="0" min="0" required>
             </div>
         </div>
     @endif

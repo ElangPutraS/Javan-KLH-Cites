@@ -93,7 +93,7 @@ class SpeciesHSController extends Controller
     }
 
     public function edit($id){
-    	$species = Species::find($id);
+    	$species = Species::findOrFail($id);
     	$appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
     	$species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
         $categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
@@ -103,7 +103,7 @@ class SpeciesHSController extends Controller
     }
 
     public function update(SpeciesRequest $request, $id){
-    	$species = Species::find($id);
+    	$species = Species::findOrFail($id);
         $nominal = str_replace('.', '', $request->get('nominal'));
     	$species->update([
     		'species_scientific_name' => $request->get('scientific_name'),
@@ -121,7 +121,7 @@ class SpeciesHSController extends Controller
         ]);
 
     	if($request->get('is_appendix')!=0){
-    		$appendix=AppendixSource::find($request->get('appendix_source_id'));
+    		$appendix = AppendixSource::findOrFail($request->get('appendix_source_id'));
     		$species->appendixSource()->associate($appendix)->save();
     	}else{
     		$species->appendixSource()->dissociate()->save();
@@ -131,7 +131,7 @@ class SpeciesHSController extends Controller
 
     public function destroy($id)
     {
-    	$species=Species::find($id);
+    	$species = Species::findOrFail($id);
 
     	$species->delete();
     	SpeciesQuota::where('species_id', $id)->delete();
@@ -140,42 +140,42 @@ class SpeciesHSController extends Controller
     }
 
     public function showQuota($species_id){
-        $species=Species::findOrFail($species_id);
-        $quota=SpeciesQuota::where('species_id',$species_id)->orderBy('year','desc')->paginate(10);
+        $species = Species::findOrFail($species_id);
+        $quota = SpeciesQuota::where('species_id',$species_id)->orderBy('year','desc')->paginate(10);
         return view('admin.species.showquota', compact('species', 'quota'));
     }
 
     public function createQuota($species_id){
-        $species=Species::find($species_id);
+        $species = Species::findOrFail($species_id);
         return view('admin.species.createquota', compact('species'));
     }
 
     public function storeQuota(SpeciesQuotaRequest $request, $species_id){
-        $species=Species::find($species_id);
-        $quota=new SpeciesQuota([
+        $species = Species::findOrFail($species_id);
+        $quota = new SpeciesQuota([
         	'year' => $request->year,
         	'quota_amount' => $request->quota_amount,
         	]);
         $quota->save();
         $species->speciesQuota()->save($quota);
-        return redirect()->route('admin.species.index', ['species_id' => $species_id, 'id' => $quota->id])->with('success', 'Data berhasil dibuat.');
+        return redirect()->route('admin.species.showquota', ['species_id' => $species_id])->with('success', 'Data berhasil dibuat.');
     }
 
     public function editQuota($species_id, $id){
-        $species=Species::find($species_id);
-        $quota=SpeciesQuota::find($id);
+        $species = Species::findOrFail($species_id);
+        $quota = SpeciesQuota::findOrFail($id);
         return view('admin.species.editquota', compact('species', 'quota'));
     }
 
     public function updateQuota(SpeciesQuotaUpdateRequest $request, $species_id, $id){
-        $quota=SpeciesQuota::find($id);
+        $quota = SpeciesQuota::findOrFail($id);
 
         $quota->update([
             'year' => $request->year,
             'quota_amount' => $request->quota_amount,
             ]);
 
-        $note='';
+        $note = '';
         if($request->get('quota_plus') != ''){
             $note='Penambahan kuota sebanyak '.+$request->get('quota_plus');
         }else if($request->get('quota_min') != ''){
@@ -194,16 +194,17 @@ class SpeciesHSController extends Controller
 
     public function destroyQuota($species_id, $id)
     {
-        $quota=SpeciesQuota::find($id);
+        $quota = SpeciesQuota::findOrFail($id);
         $quota->delete();
 
         return redirect()->route('admin.species.showquota', ['species_id' => $species_id])->with('success', 'Data berhasil dihapus.');
     }
+
     public function detail(Request $request, $id)
     {
         $user           = $request->user();
 
-        $species=Species::findOrFail($id);
+        $species = Species::findOrFail($id);
         $appendix = AppendixSource::orderBy('appendix_source_code', 'asc')->pluck('appendix_source_code', 'id');
         $species_sex = SpeciesSex::orderBy('sex_name', 'asc')->pluck('sex_name', 'id');
         $categories = Category::orderBy('species_category_name')->pluck('species_category_name','id');
