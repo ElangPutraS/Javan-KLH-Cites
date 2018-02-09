@@ -263,7 +263,7 @@
                         url: window.baseUrl + '/getDocumentType/'+trading_type_id,
                         dataType: 'json',
                         success : function(data){
-                            console.log(data);
+                            //console.log(data);
                             var form='';
                             $('#formDoc').html(form);
 
@@ -333,7 +333,7 @@
                     dataType: 'json',
                     success : function(data){
                         var element='';
-                        console.log(data);
+                        //console.log(data);
                         $('#dynamicForm').html('');
                         table.rows().remove().draw();
                         var no=0;

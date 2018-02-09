@@ -320,7 +320,9 @@ class ReportController extends Controller
             ]
         ];
 
-        return $result = ArrayToXml::convert($tradePermit->toArray(), 'persetujuan');
+        $result = ArrayToXml::convert($tradePermit->toArray(), 'persetujuan');
+
+        return response($result, 200, ['Content-Type' => 'text/xml', 'charset' => 'UTF-8']);
     }
 
     public function printSatsln(Request $request, $id)
