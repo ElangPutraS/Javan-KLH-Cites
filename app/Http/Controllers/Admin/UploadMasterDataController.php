@@ -21,38 +21,45 @@ class UploadMasterDataController extends Controller
 
     public function quotaExcel()
     {
-        $categories = Category::select('species_category_name', 'id')->get()->toArray();
-        Excel::create('Form Upload Quota', function($excel) use($categories) {
-            $excel->sheet('Input Data', function ($sheet) use ($categories) {
-                $sheet->freezeFirstRow();
 
-                $sheet->setCellValue('A1','No')
+        Excel::create('Form Upload Quota', function($excel) {
+            $species = Species::select('species_scientific_name', 'id')->orderBy('species_scientific_name')->get()->toArray();
+            $excel->sheet('Input Data', function ($sheet) use ($species) {
+                $sheet->freezeFirstRow()
+                    ->setWidth(array(
+                        'D' => 45
+                        ))
+                    ->setCellValue('A1','No')
                     ->setCellValue('B1','quota_amount')
                     ->setCellValue('C1','year')
-                    ->setCellValue('D1','species_id');
+                    ->setCellValue('D1','species')
+                    ->setCellValue('E1','species_id');
 
-//                $sheet->_parent->addNamedRange(
-//                    new \PHPExcel_NamedRange(
-//                        'categories', $sheet, 'V:V'
-//                    )
-//                );
-//
-//                $objValidation = $sheet->getCell('D2')->getDataValidation();
-//                $objValidation->setType(\PHPExcel_Cell_DataValidation::TYPE_LIST);
-//                $objValidation->setErrorStyle(\PHPExcel_Cell_DataValidation::STYLE_STOP);
-//                $objValidation->setAllowBlank(false);
-//                $objValidation->setShowInputMessage(true);
-//                $objValidation->setShowErrorMessage(true);
-//                $objValidation->setShowDropDown(true);
-//                $objValidation->setErrorTitle('Input error');
-//                $objValidation->setError('Value is not in list.');
-//                $objValidation->setPromptTitle('Pick from list');
-//                $objValidation->setPrompt('Please pick a value from the drop-down list.');
-//                $objValidation->setFormula1('categories');
-//
-//                $sheet->setcellValue('E2','=VLOOKUP(D2,V1:W64,2,FALSE)');
-//
-//                $sheet ->fromArray($categories, null, 'V1', false, false);
+                $objValidation = $sheet->getCell('D2')->getDataValidation();
+                $objValidation->setType(\PHPExcel_Cell_DataValidation::TYPE_LIST)
+                    ->setErrorStyle(\PHPExcel_Cell_DataValidation::STYLE_STOP)
+                    ->setAllowBlank(false)
+                    ->setShowInputMessage(true)
+                    ->setShowErrorMessage(true)
+                    ->setShowDropDown(true)
+                    ->setErrorTitle('Input error')
+                    ->setError('Value is not in list.')
+                    ->setPromptTitle('Pick from list')
+                    ->setPrompt('Please pick a value from the drop-down list.')
+                    ->setFormula1('species');
+
+                $sheet->setcellValue('E2','=VLOOKUP(D2,Referensi!A1:W'.count($species). ' ,2,FALSE)');
+
+            });
+
+            $excel->sheet('Referensi', function ($sheet) use ($species) {
+                $sheet ->fromArray($species, null, 'A1', false, false);
+
+                $sheet->_parent->addNamedRange(
+                    new \PHPExcel_NamedRange(
+                        'species', $sheet, 'A:A'
+                    )
+                );
             });
         })->download('xlsx');
     }
@@ -76,9 +83,6 @@ class UploadMasterDataController extends Controller
     public function speciesExcel()
     {
         $categories = Category::select('species_category_name', 'id')->get()->toArray();
-//        $appendix   = AppendixSource::select('appendix_source_code','id')->get()->toArray();
-//        $source     = Source::select('source_code','id')->get()->toArray();
-
         Excel::create('Form Upload Spesies', function($excel) use ($categories) {
 
             $excel->sheet('Input Data', function ($sheet) use($categories){
@@ -88,12 +92,13 @@ class UploadMasterDataController extends Controller
                     'C'     => 9,
                     'D'     => 35,
                     'E'     => 35,
-                    'F'     => 30,
-                    'F'     => 9,
-                    'F'     => 9,
-                    'F'     => 8,
-                    'j'     => 20,
-                    'K'     => 35
+                    'F'     => 35,
+                    'G'     => 10,
+                    'H'     => 15,
+                    'I'     => 35,
+                    'j'     => 7,
+                    'K'     => 7,
+                    'L'     => 10
                 ));
 
                 $sheet->setCellValue('A1','No')
@@ -104,12 +109,128 @@ class UploadMasterDataController extends Controller
                     ->setCellValue('F1','species_indonesia_name')
                     ->setCellValue('G1','nominal')
                     ->setCellValue('H1','species_description')
-                    ->setCellValue('I1','species_category_id')
-                    ->setCellValue('J1','source_id')
-                    ->setCellValue('K1','unit_id')
-                    ->setCellValue('L1','is_appendix')
-                    ->setCellValue('M1','appendix_source_id');
+                    ->setCellValue('I1','category')
+                    ->setCellValue('J1','source')
+                    ->setCellValue('K1','unit')
+                    ->setCellValue('L1','appendix')
+                    ->setCellValue('M1','species_category_id')
+                    ->setCellValue('N1','source_id')
+                    ->setCellValue('O1','unit_id')
+                    ->setCellValue('P1','is_appendix')
+                    ->setCellValue('Q1','appendix_source_id');
+
+                    $i =2;
+                    $sheet->setcellValue('M'.$i,'=IF(I'.$i. '<>"",VLOOKUP(I'.$i. ',Referensi!A1:B'.count($categories). ',2,FALSE),"")')
+                        ->setCellValue('N'.$i, '=IF(J'.$i. '<>"",VLOOKUP(J'.$i. ',Referensi!D1:E9,2,FALSE),"")')
+                        ->setCellValue('O'.$i,'=IF(K'.$i. '<>"",VLOOKUP(K'.$i. ',Referensi!F1:G13,2,FALSE),"")')
+                        ->setCellValue('P'.$i,'=IF(L'.$i. '<>"",IF(L'.$i. '<>0,1,0),"")')
+                        ->setCellValue('Q'.$i,'=IF(L'.$i. '=0,"",IF(L'.$i. '=1,1,2))');
+
+                    $objValidation = $sheet->getCell('I'.$i)->getDataValidation();
+                    $objValidation->setType(\PHPExcel_Cell_DataValidation::TYPE_LIST)
+                        ->setErrorStyle(\PHPExcel_Cell_DataValidation::STYLE_STOP)
+                        ->setAllowBlank(false)
+                        ->setShowInputMessage(true)
+                        ->setShowErrorMessage(true)
+                        ->setShowDropDown(true)
+                        ->setErrorTitle('Input error')
+                        ->setError('Value is not in list.')
+                        ->setPromptTitle('Pick from list')
+                        ->setPrompt('Please pick a value from the drop-down list.')
+                        ->setFormula1('categories');
+
+                    $objValidation1 = $sheet->getCell('L'.$i)->getDataValidation();
+                    $objValidation1->setType(\PHPExcel_Cell_DataValidation::TYPE_LIST)
+                        ->setErrorStyle(\PHPExcel_Cell_DataValidation::STYLE_STOP)
+                        ->setAllowBlank(false)
+                        ->setShowInputMessage(true)
+                        ->setShowErrorMessage(true)
+                        ->setShowDropDown(true)
+                        ->setErrorTitle('Input error')
+                        ->setError('Value is not in list.')
+                        ->setPromptTitle('Pick from list')
+                        ->setPrompt('Please pick a value from the drop-down list.')
+                        ->setFormula1('appendix');
+
+                    $objValidation2 = $sheet->getCell('J'.$i)->getDataValidation();
+                    $objValidation2->setType(\PHPExcel_Cell_DataValidation::TYPE_LIST)
+                        ->setErrorStyle(\PHPExcel_Cell_DataValidation::STYLE_STOP)
+                        ->setAllowBlank(false)
+                        ->setShowInputMessage(true)
+                        ->setShowErrorMessage(true)
+                        ->setShowDropDown(true)
+                        ->setErrorTitle('Input error')
+                        ->setError('Value is not in list.')
+                        ->setPromptTitle('Pick from list')
+                        ->setPrompt('Please pick a value from the drop-down list.')
+                        ->setFormula1('source');
+
+                    $objValidation3 = $sheet->getCell('K'.$i)->getDataValidation();
+                    $objValidation3->setType(\PHPExcel_Cell_DataValidation::TYPE_LIST)
+                        ->setErrorStyle(\PHPExcel_Cell_DataValidation::STYLE_STOP)
+                        ->setAllowBlank(false)
+                        ->setShowInputMessage(true)
+                        ->setShowErrorMessage(true)
+                        ->setShowDropDown(true)
+                        ->setErrorTitle('Input error')
+                        ->setError('Value is not in list.')
+                        ->setPromptTitle('Pick from list')
+                        ->setPrompt('Please pick a value from the drop-down list.')
+                        ->setFormula1('unit');
             });
+
+            $excel->sheet('Referensi', function ($sheet) use($categories){
+                $sheet ->fromArray($categories, null, 'A1', false, false);
+                $sheet->setCellValue('C1','0')
+                    ->setCellValue('C2','1')
+                    ->setCellValue('C3','2');
+
+                $source = ['W','R','D','A','C','F','U','I','O'];
+                $unit   = ['Pc(s)','Bottle(s)','cc','mL','Gram(s)','Head(s)','Kg(s)','Slide(s)','CBM','Pc(s)','Sheet(s)','Tube(s)','Vial(s)'];
+
+                for ($i=0; $i <count($source) ; $i++) {
+                    $sheet->setCellValue('D'.($i+1), $source[$i]);
+                }
+
+                for ($i=1; $i <10 ; $i++){
+                    $sheet->setCellValue('E'.$i,$i);
+                }
+
+                for ($i=0; $i <count($unit) ; $i++) {
+                    $sheet->setCellValue('F'.($i+1), $unit[$i]);
+                }
+
+                for ($i=1; $i <count($unit)+1 ; $i++){
+                    $sheet->setCellValue('G'.$i,$i);
+                }
+                $sheet->_parent->addNamedRange(
+                    new \PHPExcel_NamedRange(
+                        'categories', $sheet, 'A:A'
+                    )
+                );
+
+
+                $sheet->_parent->addNamedRange(
+                    new \PHPExcel_NamedRange(
+                        'appendix', $sheet, 'C1:C3'
+                    )
+                );
+
+                $sheet->_parent->addNamedRange(
+                    new \PHPExcel_NamedRange(
+                        'source', $sheet, 'D1:D9'
+                    )
+                );
+
+                $sheet->_parent->addNamedRange(
+                    new \PHPExcel_NamedRange(
+                        'unit', $sheet, 'F1:F9'
+                    )
+                );
+
+            });
+
+
 
         })->download('xlsx');
     }
@@ -119,7 +240,8 @@ class UploadMasterDataController extends Controller
     {
         if($request->hasFile('import_file')){
             Excel::load($request->file('import_file')->getRealPath(), function ($reader) {
-                foreach ($reader->toArray() as $key => $row) {
+                $activeSheet = $reader->first();
+                foreach ($activeSheet->toArray() as $key => $row) {
                     $data['species_scientific_name'] = $row['species_scientific_name'];
                     $data['species_indonesia_name'] = $row['species_indonesia_name'];
                     $data['species_general_name'] = $row['species_general_name'];
@@ -134,7 +256,7 @@ class UploadMasterDataController extends Controller
                     $data['appendix_source_id'] = $row['appendix_source_id'];
 
                     if(!empty($data)) {
-                        \DB::table('Species')->insert($data);
+                        Species::create($data);
                     }
                 }
             });
@@ -153,7 +275,7 @@ class UploadMasterDataController extends Controller
                     $data['species_category_name'] = $row['species_category_name'];
 
                     if(!empty($data)) {
-                        \DB::table('categories')->insert($data);
+                        Category::create($data);
                     }
                 }
             });
@@ -167,13 +289,14 @@ class UploadMasterDataController extends Controller
     {
         if($request->hasFile('import_file')){
             Excel::load($request->file('import_file')->getRealPath(), function ($reader) {
-                foreach ($reader->toArray() as $key => $row) {
+                $activeSheet = $reader->first();
+                foreach ($activeSheet->toArray() as $key => $row) {
                     $data['quota_amount'] = $row['quota_amount'];
                     $data['year'] = $row['year'];
                     $data['species_id'] = $row['species_id'];
 
                     if(!empty($data)) {
-                        \DB::table('species_quota')->insert($data);
+                        SpeciesQuota::create($data);
                     }
                 }
             });
