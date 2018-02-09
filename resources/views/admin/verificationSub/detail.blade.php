@@ -17,6 +17,7 @@
                             <span class="badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
                         @elseif($trade_permit->tradeStatus->status_code==300)
                             <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
+                            <small>Alasan Penolakan  : {{$trade_permit->reject_reason}}</small>
                         @else
                             <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
                         @endif
