@@ -54,6 +54,7 @@
                             <th>Nama Ilmiah Spesies</th>
                             <th>Nama Indonesia Spesies</th>
                             <th>Nama Umum Spesies</th>
+                            <th>Source</th>
                             <th>Tahun</th>
                             <th>Jumlah Kuota</th>
                             <th>Jumlah yang telah terealisasi</th>
@@ -66,7 +67,8 @@
                                 <td><i>{{ $quota->species_scientific_name}}</i> </td>
                                 <td>{{ $quota->species_indonesia_name }} </td>
                                 <td>{{ $quota->species_general_name }} </td>
-                                <td>{{  $quota->pivot->year }}</td>
+                                <td>{{ $quota->species_hs_code }}</td>
+                                <td>{{ $quota->pivot->year }}</td>
                                 <td>{{ $quota->pivot->quota_amount.' '.$quota->unit->unit_description }}</td>
                                 <td>{{ $quota->pivot->realization.' '.$quota->unit->unit_description }}</td>
                             </tr>

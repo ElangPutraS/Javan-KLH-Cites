@@ -90,7 +90,8 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <label class="control-label">Jenis Perdagangan</label>
-                                    <input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly>
+                                    <!--input type="text" name="trading_type_id" class="form-control" value="{{ old('trading_type_id', array_get($trade_permit->tradingType, 'trading_type_name')) }}" readonly-->
+                                <input type="text" name="trading_type_id" class="form-control">
                                 </div>
                                 <div class="col-sm-4">
                                     <label class="control-label">Komoditas</label>

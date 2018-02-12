@@ -50,12 +50,12 @@
                         <br><br><br>
 
                         <div class="input-group col-sm-5">
-                            <span class="input-group-addon" id="basic-year">Tanggal Divalidasi (dari)</span>
+                            <span class="input-group-addon" id="basic-year">Tanggal dibuat (dari)</span>
                             <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
                         </div>
 
                         <div class="input-group col-sm-5">
-                            <span class="input-group-addon" id="basic-year">Tanggal Divalidasi (sampai)</span>
+                            <span class="input-group-addon" id="basic-year">Tanggal dibuat (sampai)</span>
                             <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
                         </div>
 
