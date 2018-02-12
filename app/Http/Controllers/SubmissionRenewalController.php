@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Country;
+use App\Http\Requests\SubmissionRenewalRequest;
 use App\Notifications\SubmissionCreate;
 use App\Pnbp;
 use App\TradePermit;
@@ -77,7 +78,7 @@ class SubmissionRenewalController extends Controller
         return view('pelakuusaha.renewals.edit', compact('user', 'trade_permit', 'trading_types', 'purpose_types', 'ports', 'countries', 'document_type'));
     }
 
-    public function update(Request $request, $id)
+    public function update(SubmissionRenewalRequest $request, $id)
     {
         $trade_permit = TradePermit::findOrFail($id);
         if($request->get('is_renewal') == 1){

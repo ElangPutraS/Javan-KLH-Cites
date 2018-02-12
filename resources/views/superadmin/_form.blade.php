@@ -145,7 +145,7 @@
             @if(count($company)!=0)
                 <input id="npwp_number_user" type="text" class="form-control" name="npwp_number_user" value="{{ old('npwp_number_user', array_get($company->userProfile, 'npwp_number')) }}">
             @else
-                <input id="npwp_number_user" type="text" class="form-control" name="npwp_number_user" value="{{ old('address', array_get($company, 'npwp_number')) }}">
+                <input id="npwp_number_user" type="text" class="form-control" name="npwp_number_user" value="{{ old('npwp_number_user', array_get($company, 'npwp_number')) }}">
             @endif
         </div>
     </div>

@@ -26,7 +26,7 @@ class CompanyStoreRequest extends FormRequest
     {
         if(Request::input('role_name') == '2'){
             return [
-                'name'                  => 'required|string|max:255',
+                'name'                  => 'required|string|max:100',
                 'email'                 => 'required|string|email|max:255|unique:users',
                 'password'              => 'required|string|min:6',
                 'place_birth'           => 'required|string|max:100',
@@ -49,15 +49,15 @@ class CompanyStoreRequest extends FormRequest
                 'company_latitude'      => 'required',
                 'company_longitude'     => 'required',
                 'date_distribution'     => 'required',
-                'npwp_number'           => 'required|max:30',
-                'npwp_number_user'      => 'required|max:30',
+                'npwp_number'           => 'required|numeric',
+                'npwp_number_user'      => 'required|numeric',
                 'labor_total'           => 'required|max:11',
                 'investation_total'     => 'required|max:20',
                 'captivity_address'     => 'required|string',
             ];
         }else{
             return [
-                'name'                  => 'required|string|max:255',
+                'name'                  => 'required|string|max:100',
                 'email'                 => 'required|string|email|max:255|unique:users',
                 'password'              => 'required|string|min:6',
             ];
