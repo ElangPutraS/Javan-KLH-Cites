@@ -14,14 +14,14 @@
 
             <div class="card-block">
                 <form method="post" enctype="multipart/form-data" class="form-inline" id="form-search">
-                    <div class="input-group col-sm-5">
-                        <span class="input-group-addon" id="basic-year">Nama Pemilik Usaha</span>
-                        <input class="form-control" placeholder="Cari nama pemilik usaha.." type="text" name="owner_name" id="owner_name" value="@if(Request::input('owner_name')){{Request::input('owner_name')}} @endif">
-                    </div>
-
-                    <div class="input-group col-sm-5">
+                    <div class="input-group col-sm-6">
                         <span class="input-group-addon" id="basic-month">Nama Perusahaan</span>
                         <input class="form-control" type="text" placeholder="Cari nama perusahaan.." name="company_name" id="company_name" value="@if(Request::input('company_name')){{Request::input('company_name')}} @endif">
+                    </div>
+
+                    <div class="input-group col-sm-4">
+                        <span class="input-group-addon" id="basic-year">Nama Pemilik Usaha</span>
+                        <input class="form-control" placeholder="Cari nama pemilik usaha.." type="text" name="owner_name" id="owner_name" value="@if(Request::input('owner_name')){{Request::input('owner_name')}} @endif">
                     </div>
 
                     <div class="btn-group col-sm-2" role="group" aria-label="...">
@@ -29,14 +29,23 @@
                     </div>
                     <br><br><br>
 
-                    <div class="input-group col-sm-5">
+                    <div class="input-group col-sm-3">
                         <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (dari)</span>
                         <input class="form-control date-picker flatpickr-input active" placeholder="dari tanggal.." type="text" name="date_from" id="date_from" value="@if(Request::input('date_from')){{Request::input('date_from')}} @endif">
                     </div>
 
-                    <div class="input-group col-sm-5">
+                    <div class="input-group col-sm-3">
                         <span class="input-group-addon" id="basic-year">Tanggal Pendaftaran (sampai)</span>
                         <input class="form-control date-picker flatpickr-input active" placeholder="sampai tanggal.." type="text" name="date_until" id="date_until" value="@if(Request::input('date_until')){{Request::input('date_until')}} @endif">
+                    </div>
+
+                    <div class="input-group col-sm-4">
+                        <span class="input-group-addon" id="basic-year">Status</span>
+                        <select name="status" id="status" class="form-control select2">
+                            <option value="">-- semua --</option>
+                            <option value="0" @if(request()->input('status') == 0) selected @endif> Menunggu Verifikasi </option>
+                            <option value="1" @if(request()->input('status') == 1) selected @endif> Verifikasi Disetujui </option>
+                        </select>
                     </div>
 
                     <div class="btn-group col-sm-2" role="group" aria-label="...">
@@ -51,8 +60,8 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal Register</th>
-                            <th>Nama Pemilik Usaha</th>
                             <th>Nama Usaha</th>
+                            <th>Nama Pemilik Usaha</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -62,8 +71,8 @@
                         <tr>
                             <td>{{ (($companies->currentPage() - 1 ) * $companies->perPage() ) + $loop->iteration }}</td>
                             <td>{{Carbon\Carbon::parse($company->created_at)->format('d-m-Y')}}</td>
-                            <td>{{$company->owner_name}}</td>
                             <td>{{$company->company_name}}</td>
+                            <td>{{$company->owner_name}}</td>
                             <td>
                                 @if($company->company_status == 0)
                                     <span class="badge badge-warning">Menunggu Verifikasi</span>
@@ -97,8 +106,9 @@
                 var owner_name = $('#owner_name').val();
                 var date_from = $('#date_from').val();
                 var date_until = $('#date_until').val();
+                var status = $('#status').val();
 
-                location.href = '?company_name=' + company_name + '&owner_name=' + owner_name + '&date_from=' + date_from + '&date_until=' + date_until;
+                location.href = '?company_name=' + company_name + '&owner_name=' + owner_name + '&date_from=' + date_from + '&date_until=' + date_until +'&status='+ status;
             });
 
             $('#form-reset').click(function (ev) {

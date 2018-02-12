@@ -29,7 +29,7 @@
     <label class="control-label">Pilih Provinsi</label>
     <div class="row">
         <div class="col-sm-4">
-            <select name="province_id" id="province_id" class="form-control select2" onchange="getCity(this)">
+            <select name="province_id" id="province_id" class="form-control select2" required>
                 <option value="">--Pilih Provinsi--</option>
                 @foreach($provinces as $key => $province)
                         <option value="{{ $key }}" {{ $key == old('province_id', array_get($city, 'province_id')) ? 'selected' : '' }}>{{ $province }}</option>

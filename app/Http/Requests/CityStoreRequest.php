@@ -24,7 +24,7 @@ class CityStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'city_code'                  => 'required|string|max:3',
+            'city_code'                  => 'required|string|max:3|unique:cities',
             'city_name'                  => 'required|string|max:255',
             'city_name_full'             => 'required|string|max:255',
             'province_id'                => 'required',

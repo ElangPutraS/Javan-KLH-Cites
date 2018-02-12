@@ -81,7 +81,7 @@
                         <div class="form-group">
                             <label class="control-label">Deskripsi</label>
                             <div class="col-sm-14">
-                                <input type="text" name="description" class="form-control" value="{{ old('description', array_get($species, 'species_description')) }}" required readonly>
+                                <textarea type="text" name="description" class="form-control" rows="10" required readonly> {{ old('description', array_get($species, 'species_description')) }} </textarea>
                             </div>
                         </div>
 

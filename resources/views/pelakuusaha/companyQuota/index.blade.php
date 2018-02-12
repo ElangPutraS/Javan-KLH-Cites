@@ -58,6 +58,9 @@
                             <th>Tahun</th>
                             <th>Jumlah Kuota</th>
                             <th>Jumlah yang telah terealisasi</th>
+                            <th>Komoditas</th>
+                            <th>Appendiks</th>
+                            <th>Sumber Appendiks</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -71,10 +74,19 @@
                                 <td>{{ $quota->pivot->year }}</td>
                                 <td>{{ $quota->pivot->quota_amount.' '.$quota->unit->unit_description }}</td>
                                 <td>{{ $quota->pivot->realization.' '.$quota->unit->unit_description }}</td>
+                                <td>{{ $quota->speciesCategory->species_category_name }} </td>
+                                <td>
+                                    @if($quota->is_appendix!='')
+                                        {{$quota->appendixSource->appendix_source_code}}
+                                    @else
+                                        Tidak Memiliki Appendix
+                                    @endif
+                                </td>
+                                <td>{{  $quota->source->source_description }}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8"><center>Data Kosong</center></td>
+                                <td colspan="10"><center>Data Kosong</center></td>
                             </tr>
                         @endforelse
                         </tbody>
