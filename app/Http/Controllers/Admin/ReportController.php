@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\GeneralValue;
+use App\Notifications\InvoiceSubmission;
 use App\Percentage;
 use App\Species;
 use App\User;
@@ -319,7 +320,9 @@ class ReportController extends Controller
             ]
         ];
 
-        return $result = ArrayToXml::convert($tradePermit->toArray(), 'persetujuan');
+        $result = ArrayToXml::convert($tradePermit->toArray(), 'persetujuan');
+
+        return response($result, 200, ['Content-Type' => 'text/xml', 'charset' => 'UTF-8']);
     }
 
     public function printSatsln(Request $request, $id)
@@ -327,32 +330,12 @@ class ReportController extends Controller
         $user = $request->user();
         $trade_permit = TradePermit::findOrFail($id);
 
-
-        /*$trade_permit_detail = DB::table('species as s')
-
-        $trade_permit_detail = DB::table('species as s')
-
-            ->join('trade_permit_detail as t', 't.species_id', '=' ,'s.id')
-            ->join('company_quota as c', 'c.company_id', '=', 't.company_id')
-            ->join('unit as u', 'u.id', '=' ,'s.unit_id')
-            ->join('sources as so', 'so.id', '=' ,'s.source_id')
-            ->select('source_code','s.id', 'species_scientific_name', DB::raw('SUM(t.total_exported) as total_export'), 'species_description','is_appendix', 'appendix_source_id', 'unit_code', 'quota_amount', 'c.year as year')
-            ->where('t.trade_permit_id', '=', $id)
-            ->groupBy('s.id', 'species_scientific_name', 'is_appendix', 'appendix_source_id', 'unit_code', 'species_description', 'source_code', 'quota_amount', 'c.year')->get();
-
-        //dd($trade_permit_detail);
-        //dd($species);
-
-        PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
-        $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit', 'trade_permit_detail'));*/
-
         PDF::setOptions(['isPhpEnabled' => true, 'isHtml5ParserEnabled' => true]);
         $pdf = PDF::loadView('pdf.satsln', compact('user', 'trade_permit'));
 
         $pdf->setPaper('folio', 'portrait');
 
         return $pdf->stream();
-        //return view('pdf.satsln');
     }
 
     public function storeStampSatsln(Request $request)
@@ -371,6 +354,21 @@ class ReportController extends Controller
     {
         $tradePermit = TradePermit::findOrFail($request->id);
         $tradePermit->is_printed = $request->is_printed;
+
+        if($tradePermit->permit_type == 2){
+            //notifikasi tagihan email
+            $harga_blanko = GeneralValue::where('name', 'Harga Blangko')->first();
+            $company = $tradePermit->company;
+            $data_notif = [
+                'company_name' => $company->company_name,
+                'trade_permit_code' => $tradePermit->trade_permit_code,
+                'permit_type' => $tradePermit->permit_type,
+                'harga_blanko' => $harga_blanko->value,
+                'pnbp_percentage' => $tradePermit->pnbp->pnbp_percentage_amount,
+                'pnbp_subAmount' => $tradePermit->pnbp->pnbp_sub_amount,
+                'total_pnbp' => $tradePermit->pnbp->pnbp_amount];
+            $company->user->notify(new InvoiceSubmission($data_notif));
+        }
 
         if ($tradePermit->save()) {
             echo 'true';

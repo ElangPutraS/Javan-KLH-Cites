@@ -80,6 +80,8 @@
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="{{ route('profile') }}"> <i class="zmdi zmdi-account zmdi-hc-fw"></i>
                         View Profile</a>
+                    <a class="dropdown-item" href="{{ route('profile.editPassword') }}"> <i class="zmdi zmdi-lock zmdi-hc-fw"></i>
+                        Ubah Password</a>
                     <a class="dropdown-item" href="{{ route('logout') }}"
                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i
                                 class="zmdi zmdi-square-right zmdi-hc-fw"></i> Logout</a>
@@ -265,7 +267,7 @@
                                             class="zmdi zmdi-collection-item zmdi-hc-fw"></i> Satuan Spesies</a></li>
                             <li @if(Request::segment(2)=='upload') class="navigation__active" @endif><a
                                         href="{{ route('superadmin.upload') }}"><i
-                                            class="zmdi zmdi-collection-item zmdi-hc-fw"></i> Upload Data Master</a></li>
+                                            class="zmdi zmdi-file-plus zmdi-hc-fw"></i> Upload Data Master</a></li>
                         </ul>
                     </li>
                     <li class="navigation__sub @if(Request::segment(2)=='reportPnbp' || Request::segment(2)=='reportSatsln' || Request::segment(2)=='reportInvestation' || Request::segment(2)=='reportLabor' || request()->segment(2) == 'reportForeignExchange') navigation__sub--active navigation__sub--toggled @endif">

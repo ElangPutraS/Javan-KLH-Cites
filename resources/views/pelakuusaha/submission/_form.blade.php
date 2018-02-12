@@ -62,7 +62,7 @@
     <div class="col-sm-14">
         <div class="btn-group btn-group--colors" data-toggle="buttons" id="trading_type_id">
             @foreach($trading_types as $key=>$trading_type)
-                <label class="btn bg-light-blue waves-effect {{ $key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'active' : '' }}"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" {{$key == old('trading_type_id', array_get($trade_permit, 'trading_type_id')) ? 'checked' : ''}} required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
+                <label class="btn bg-light-blue waves-effect"><input type="radio" id="trading_type_id{{$key}}" name="trading_type_id" value="{{$key}}" autocomplete="off" required></label> {{$trading_type}} &nbsp;&nbsp;&nbsp;
             @endforeach
         </div>
     </div>
@@ -74,7 +74,7 @@
         <select name="category_id" id="category_id" class="form-control select2" onchange="cekSpesimen(this)" required>
             <option value="">--Pilih Komoditas--</option>
             @foreach($categories as $category)
-                <option value="{{ $category->id }}" {{ $key == old('category_id', array_get($trade_permit, 'category_id')) ? 'selected' : '' }}>{{ $category->species_category_code.' - '.$category->species_category_name }}</option>
+                <option value="{{ $category->id }}" {{ $category->id == old('category_id', array_get($trade_permit, 'category_id')) ? 'selected' : '' }}>{{ $category->species_category_code.' - '.$category->species_category_name }}</option>
             @endforeach
         </select>
     </div>
@@ -263,7 +263,7 @@
                         url: window.baseUrl + '/getDocumentType/'+trading_type_id,
                         dataType: 'json',
                         success : function(data){
-                            console.log(data);
+                            //console.log(data);
                             var form='';
                             $('#formDoc').html(form);
 
@@ -333,7 +333,7 @@
                     dataType: 'json',
                     success : function(data){
                         var element='';
-                        console.log(data);
+                        //console.log(data);
                         $('#dynamicForm').html('');
                         table.rows().remove().draw();
                         var no=0;

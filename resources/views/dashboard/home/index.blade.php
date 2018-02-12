@@ -184,6 +184,12 @@
                             @empty
                             <tr>
                                 <td colspan="7">Tidak ada data PNBP.</td>
+                                <td style="display: none;"></td>
+                                <td style="display: none;"></td>
+                                <td style="display: none;"></td>
+                                <td style="display: none;"></td>
+                                <td style="display: none;"></td>
+                                <td style="display: none;"></td>
                             </tr>
                             @endforelse
                         </tbody>

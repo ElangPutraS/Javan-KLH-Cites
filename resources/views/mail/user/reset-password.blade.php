@@ -5,23 +5,14 @@
     </div>
 
     <div class="body" style="padding:20px 100px 20px 100px;">
-        <br>Yth Bapak/Ibu dari perusahaan {{ $company['company_name'] }},<br><br>
+        <br>Anda menerima e-mail ini karena kami menerima permintaan reset password untuk akun Anda.
 
-        {{ ucwords($type) }} SATS-LN dengan detail sebagai berikut.<br>
-        <table border="0">
-            <tr>
-                <td style="padding: 3px;"> Diberikan kepada </td>
-                <td style="padding: 3px;"> : </td>
-                <td style="padding: 3px;"> {{ $trade_permit['consignee'] }} </td>
-            </tr>
-            <tr>
-                <td style="padding: 3px;"> Dibuat pada </td>
-                <td style="padding: 3px;"> : </td>
-                <td style="padding: 3px;"> {{ Carbon\Carbon::createFromFormat('Y-m-d', $trade_permit['date_submission'])->format('d-m-Y') }} </td>
-            </tr>
-        </table>
-        <center> <font size="4pt" color="red"> "Telah ditolak" </font> </center> <br>
-        Dengan alasan <b>{{ $trade_permit['reject_reason'] }}</b>, silahkan login aplikasi untuk melihat detail {{ $type }}.<br><br>
+        @component('mail::button', ['url' => url(config('app.url').route('password.reset', $token, false)) ])
+            Reset Password
+        @endcomponent
+
+        Jika Anda tidak melakukan permintaan untuk reset password, maka tidak perlu ada tindakan lebih lanjut.
+        <br><br>
 
         Hormat kami,<br>
         Administrator E-SATSLN<br>

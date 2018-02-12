@@ -13,12 +13,12 @@ class LocationController extends Controller
 {
     public function getProvince($country){
         $province=Province::where('country_id',$country)->orderBy('province_name', 'asc')->get();
-        return json_encode($province);
+        return response()->json($province->toArray());
     }
 
     public function getCity($province){
         $city=City::where('province_id', $province)->orderBy('city_name_full', 'asc')->get();
-        return json_encode($city);
+        return response()->json($city->toArray());
     }
 
     public function getSpecies($appendix_type, $category_id, $source_id){
@@ -29,14 +29,9 @@ class LocationController extends Controller
             $is_appendix='0';
         }
 
-        $species=Species::where([['is_appendix',$is_appendix],['species_category_id', $category_id], ['source_id', $source_id]])->orderBy('species_scientific_name','asc')
-            ->with('appendixSource')
-            ->with('unit')
-            ->with('speciesQuota')  
-            ->with('companyQuota')
-            ->get();
+        $species=Species::where([['is_appendix',$is_appendix],['species_category_id', $category_id], ['source_id', $source_id]])->orderBy('species_scientific_name','asc')->with(['appendixSource', 'unit', 'speciesQuota', 'companyQuota'])->get();
 
-        return json_encode($species);
+        return response()->json($species->toArray());
     }
 
     public function getDocument($id){
@@ -52,7 +47,7 @@ class LocationController extends Controller
         }
         $document_type=DocumentType::whereIn('is_permit', $data)->get();
 
-        return json_encode($document_type);
+        return response()->json($document_type->toArray());
     }
 
     public function getSpeciesComodity($comodity)
@@ -60,7 +55,7 @@ class LocationController extends Controller
         $species = Species::where('species_category_id', $comodity)->orderBy('species_scientific_name','asc')
                     ->with('unit')->get();
 
-        return json_encode($species);
+        return response()->json($species->toArray());
     }
 
     public function getKuotaNasional($species_id, $year){

@@ -25,6 +25,7 @@ class UserVerificationController extends Controller
         $owner_name     = $request->input('owner_name');
         $date_from      = $request->input('date_from');
         $date_until     = $request->input('date_until');
+        $status         = $request->input('status');
 
         $companies = Company::query();
 
@@ -45,6 +46,10 @@ class UserVerificationController extends Controller
             $companies = $companies->whereDate('created_at', '=', $date_until);
         }else if ($request->filled('date_from') && !$request->filled('date_until')){
             $companies = $companies->whereDate('created_at', '=', $date_from);
+        }
+
+        if($request->filled('status')){
+            $companies = $companies->where('company_status', $status);
         }
 
         $companies = $companies->orderBy('company_name', 'asc')->paginate(10);
