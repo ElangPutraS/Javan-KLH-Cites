@@ -97,13 +97,13 @@
                                 <td>{{ Carbon\Carbon::parse($trade_permit->valid_start)->format('d-m-Y').' sd. '.Carbon\Carbon::parse($trade_permit->valid_until)->format('d-m-Y') }}</td>
                                 <td>
                                     @if($trade_permit->tradeStatus->status_code==100)
-                                        <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                        <span class="label label-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
                                     @elseif($trade_permit->tradeStatus->status_code==200)
-                                        <span class="badge badge-success">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                        <span class="label label-success">{{ $trade_permit->tradeStatus->status_name }}</span>
                                     @elseif($trade_permit->tradeStatus->status_code==300)
-                                        <span class="badge badge-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                        <span class="label label-danger">{{ $trade_permit->tradeStatus->status_name }}</span>
                                     @else
-                                        <span class="badge badge-info">{{ $trade_permit->tradeStatus->status_name }}</span>
+                                        <span class="label label-info">{{ $trade_permit->tradeStatus->status_name }}</span>
                                     @endif
                                     <br>
                                     Tagihan :

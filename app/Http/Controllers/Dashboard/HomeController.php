@@ -24,9 +24,14 @@ class HomeController extends Controller
     		$q->where('status_code', '=', 600);
     		$q->orWhere('status_code', '=', 700);
     	})->count();
-    	$role = \App\User::whereHas('roles', function ($q) {
+    	/*$role = \App\User::whereHas('roles', function ($q) {
     		$q->where('id', '=', 2);
-    	})->count();
+    	})->count();*/
+        $role = \App\User::whereHas('roles', function ($q) {
+            $q->where('id', '=', 2);
+        })->whereHas('company', function ($q) {
+            $q->where('company_status', '=', 1);
+        })->count();
     	$pnpb = \App\Pnbp::with('tradePermit')->whereHas('tradePermit', function ($q) use ($nowDate) {
     		$q->where('date_submission', 'like', $nowDate.'-%')->orderBy('date_submission', 'desc');
     	})->get();
