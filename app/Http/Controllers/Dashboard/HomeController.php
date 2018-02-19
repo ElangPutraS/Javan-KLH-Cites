@@ -23,6 +23,7 @@ class HomeController extends Controller
     	$tradePermitAssignCheck = \App\TradePermit::whereHas('tradeStatus', function ($q) {
     		$q->where('status_code', '=', 600);
     		$q->orWhere('status_code', '=', 700);
+            $q->orWhere('status_code', '=', 200);
     	})->count();
     	/*$role = \App\User::whereHas('roles', function ($q) {
     		$q->where('id', '=', 2);

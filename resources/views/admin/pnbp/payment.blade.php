@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Form Pembuatan PNBP Permohonan SATS-LN</h2>
+                    <h2 class="card-title">Form Pembayaran PNBP Permohonan SATS-LN</h2>
                     <small class="card-subtitle">Status Permohonan :
                         @if($trade_permit->tradeStatus->status_code==100)
                             <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
