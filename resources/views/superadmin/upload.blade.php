@@ -17,7 +17,7 @@
                     <ol>
                         <li>Download form upload data master</li>
                         <li>Isi form dengan data baru</li>
-                        <li></li>
+                        <li>Copy format pada kolom pertama ke kolom yang akan diisi data</li>
                         <li>Tekan tombol choose file untuk memilih file format yang telah diisi</li>
                         <li>Tekan tombol import file</li>
                     </ol>

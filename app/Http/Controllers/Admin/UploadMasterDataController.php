@@ -241,7 +241,7 @@ class UploadMasterDataController extends Controller
         if($request->hasFile('import_file')){
             Excel::load($request->file('import_file')->getRealPath(), function ($reader) {
                 $activeSheet = $reader->first();
-                if ($reader->getTitle() == 'Form Upload Spesies'){
+                if ($reader->getTitle() == 'FormUploadSpesies'){
                 foreach ($activeSheet->toArray() as $key => $row) {
                     //dd($reader->getTitle());
                         $data['species_scientific_name'] = $row['species_scientific_name'];
@@ -262,32 +262,34 @@ class UploadMasterDataController extends Controller
                         Species::create($data);
                         return redirect()->route('superadmin.upload')->with('success','Data berhasil ditambahkan');
                     }
-                    return redirect()->route('superadmin.upload')->with('warning','Data tidak ada');
                 }
-                return redirect()->route('superadmin.upload')->with('warning','Format data salah');
+                return redirect()->route('superadmin.upload')->with('warning', 'Format data salah atau tidak ada data, Silahkan tambahkan data');
             });
         }
+        return redirect()->route('superadmin.upload');
     }
 
     public function importCategory(Request $request)
     {
+
         if($request->hasFile('import_file')){
             Excel::load($request->file('import_file')->getRealPath(), function ($reader) {
                 foreach ($reader->toArray() as $key => $row) {
-                    if ($reader->getTitle() == "Form Upload Kategori") {
+                    if ($reader->getTitle() == "FormUploadKategori") {
                         $data['species_category_code'] = $row['species_category_code'];
                         $data['species_category_name'] = $row['species_category_name'];
 
                         if (!empty($data['species_category_code'])) {
                             Category::create($data);
+                            return redirect()->route('superadmin.upload')->with('success', 'Data berhasil ditambahkan');
                         }
                     }
                 }
+                return redirect()->route('superadmin.upload')->with('warning', 'Format data salah atau tidak ada data, Silahkan tambahkan data');
             });
-            //return back()->with('warning','Format upload salah');
-        }
 
-        return back()->with('warning','Format data salah atau tidak , Silahkan tambahkan data');
+        }
+        return redirect()->route('superadmin.upload');
     }
 
     public function importQuota(Request $request)
@@ -295,25 +297,29 @@ class UploadMasterDataController extends Controller
         if($request->hasFile('import_file')){
             Excel::load($request->file('import_file')->getRealPath(), function ($reader) {
                 $activeSheet = $reader->first();
-                foreach ($activeSheet->toArray() as $key => $row) {
-                    $data['quota_amount'] = $row['quota_amount'];
-                    $data['year'] = $row['year'];
-                    $data['species_id'] = $row['species_id'];
+                if ($reader->getTitle() == "FormUploadKuota") {
+                    foreach ($activeSheet->toArray() as $key => $row) {
+                        $data['quota_amount'] = $row['quota_amount'];
+                        $data['year'] = $row['year'];
+                        $data['species_id'] = $row['species_id'];
 
-                    if(!empty($data)) {
-                        SpeciesQuota::create($data);
+                        if(!empty($data['quota_amount'])) {
+                            SpeciesQuota::create($data);
+                            return back()->with('success','Data berhasil ditambahkan');
+                        }
                     }
                 }
-            });
-            return back()->with('success','Data berhasil ditambahkan');
-        }
 
-        return back()->with('warning','Data kategori tidak ditemukan, Silahkan tambahkan data');
+                return redirect()->route('superadmin.upload')->with('warning', 'Format data salah atau tidak ada data, Silahkan tambahkan data');
+            });
+        }
+        return redirect()->route('superadmin.upload');
     }
 
 
     public function downloadCategory()
     {
+
         $categories = Category::select('species_category_name', 'id')->get()->toArray();
         Excel::create('Data Kategori Spesies', function($excel) use ($categories) {
             $excel->sheet('Data', function ($sheet) use ($categories) {
