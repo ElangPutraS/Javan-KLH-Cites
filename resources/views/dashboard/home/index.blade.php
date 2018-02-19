@@ -215,7 +215,7 @@
                     </div>
 
                     <div class="card-block">
-                        <p>{{ limit_text($value->content, 50) }}</p>
+                        <p>{{ str_replace(['<p>', '</p>'], ' ', limit_text($value->content, 50)) }}</p>
                         <p><a href="{{ url('news', $value->id) }}" style="color: #fff;" target="_blank"><small>Read more...</small></a></p>
                     </div>
 

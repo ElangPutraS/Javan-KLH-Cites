@@ -6,21 +6,38 @@
             <header class="content__title">
                 <h1>Upload Data Master</h1>
             </header>
-            @include('includes.notifications')
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Upload Kategori Species</h2>
+                    <h2 class="card-title">Panduan upload data master : </h2>
                     <small class="card-subtitle"></small>
                 </div>
 
                 <div class="card-block">
-                    <label class="control-label" for="upload">Form Kategori Species</label> <br>
+                    <ol>
+                        <li>Download form upload data master</li>
+                        <li>Isi form dengan data baru</li>
+                        <li>Copy format pada kolom pertama ke kolom yang akan diisi data</li>
+                        <li>Tekan tombol choose file untuk memilih file format yang telah diisi</li>
+                        <li>Tekan tombol import file</li>
+                    </ol>
+                </div>
+            </div>
+            @include('includes.notifications')
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Upload Kategori</h2>
+                    <small class="card-subtitle"></small>
+                </div>
+
+                <div class="card-block">
+                    <label class="control-label" for="upload">Form Kategori Spesies</label> <br>
                     <a onclick="ImportCategory()" href="{{ URL::to('admin/downloadFormCategory/xlsx') }}" name="upload"><button class="btn btn-success">Download</button></a>
                     <hr>
                     <form action="{{ URL::to('admin/importCategory') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <label for="file_category">Upload Kategori Species</label>
+                        <label for="file_category">Upload Kategori Spesies</label>
                         <br>
                         <input disabled type="file" name="import_file" id="file_category"/>
                         <button disabled class="btn btn-primary" id="import_category">Import File</button>
@@ -31,18 +48,18 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h2 class="card-title">Upload Species</h2>
+                    <h2 class="card-title">Upload Spesies</h2>
                     <small class="card-subtitle"></small>
                 </div>
 
                 <div class="card-block">
-                    <label class="control-label" for="upload">Form Species</label>
+                    <label class="control-label" for="upload">Form Spesies</label>
                     <br>
                     <a onclick="ImportSpecies()" href="{{ URL::to('admin/downloadFormSpecies/xlsx') }}"><button class="btn btn-success">Download</button></a>
                     <hr>
                     <form action="{{ URL::to('admin/importSpecies') }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-                        <label for="file_species">Upload Species</label>
+                        <label for="file_species">Upload Spesies</label>
                         <br>
                         <input disabled type="file" name="import_file" id="file_species"/>
                         <button disabled class="btn btn-primary" id="import_species">Import File</button>
@@ -54,12 +71,13 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h2 class="card-title">Upload Quota Species</h2>
+                    <h2 class="card-title">Upload Kuota</h2>
                     <small class="card-subtitle"></small>
                 </div>
 
                 <div class="card-block">
-
+                    <label class="control-label" for="upload">Form Kuota Spesies</label>
+                    <br>
                     <a onclick="ImportQuota()" href="{{ URL::to('admin/downloadFormQuota/xlsx') }}"><button class="btn btn-success">Download</button></a>
                     <hr>
                     <form action="{{ URL::to('admin/importQuota') }}" class="form-horizontal" method="post" enctype="multipart/form-data">

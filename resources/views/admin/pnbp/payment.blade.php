@@ -9,7 +9,7 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h2 class="card-title">Buat PNBP Permohonan SATS-LN</h2>
+                    <h2 class="card-title">Form Pembayaran PNBP Permohonan SATS-LN</h2>
                     <small class="card-subtitle">Status Permohonan :
                         @if($trade_permit->tradeStatus->status_code==100)
                             <span class="badge badge-warning">{{ $trade_permit->tradeStatus->status_name }}</span>
@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label">Jenis Permohonan</label>
+                            <label class="control-label">SATS-LN</label>
                             <div class="col-sm-14">
                             <!--input type="text" name="permit_type" class="form-control"
                                        value="@if($trade_permit->permit_type == 1) @if($trade_permit->period<6) Permohonan Bertahap @else Permohonan Langsung @endif @else Pembaharuan Permohonan @endif"

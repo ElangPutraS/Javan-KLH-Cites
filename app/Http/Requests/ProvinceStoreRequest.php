@@ -25,7 +25,7 @@ class ProvinceStoreRequest extends FormRequest
     {
         return [
             'country_id'        => 'required',
-            'province_code'     => 'required|string|max:4',
+            'province_code'     => 'required|string|max:4|unique:provinces,province_code',
             'province_name'     => 'required|string|max:50',
   ];
     }
