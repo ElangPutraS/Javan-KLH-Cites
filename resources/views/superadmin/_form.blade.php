@@ -31,7 +31,7 @@
                     <option value="">--Pilih Role--</option>
                     @foreach($roles as $key => $role_name)
                         @if($user == NULL)
-                            <option value="{{ $key }}">{{ $role_name }}</option>
+                            <option value="{{ $key }}" {{ $key == old('role_name', array_get($roles, 'id')) ? 'selected' : '' }}>{{ $role_name}}</option>
                         @else
                             @if($user->roles->first()->id !== 2)
                                 @if($key == 2)
