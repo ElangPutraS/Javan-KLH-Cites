@@ -71,12 +71,12 @@
             <div class="card">
 
                 <div class="card-header">
-                    <h2 class="card-title">Upload Kuota Species</h2>
+                    <h2 class="card-title">Upload Kuota</h2>
                     <small class="card-subtitle"></small>
                 </div>
 
                 <div class="card-block">
-                    <label class="control-label" for="upload">Form Kuota</label>
+                    <label class="control-label" for="upload">Form Kuota Spesies</label>
                     <br>
                     <a onclick="ImportQuota()" href="{{ URL::to('admin/downloadFormQuota/xlsx') }}"><button class="btn btn-success">Download</button></a>
                     <hr>
