@@ -1,7 +1,8 @@
 <div class="form-group">
     <label class="control-label">Pilih negara</label>
         <div class="col-sm-4">
-            <select name="country_id" id="country_id" class="form-control select2" onchange="getState(this)">
+            <!--select name="country_id" id="country_id" class="form-control select2" onchange="getState(this)"-->
+            <select name="country_id" id="country_id" class="form-control select2">
                 <option value="">--Pilih Negara--</option>
                 @foreach($countries as $key => $country)
                 	<option value="{{ $key }}" {{ $key == old('country_id', array_get($province, 'country_id')) ? 'selected' : '' }}>{{ $country }}</option>
