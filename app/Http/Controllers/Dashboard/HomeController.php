@@ -24,6 +24,10 @@ class HomeController extends Controller
     		$q->where('status_code', '=', 600);
     		$q->orWhere('status_code', '=', 700);
             $q->orWhere('status_code', '=', 200);
+            $q->orWhere(function ($r) {
+                $r->where('status_code', '=', 100);
+                $r->where('is_renewal', '>', 0);
+            });
     	})->count();
     	/*$role = \App\User::whereHas('roles', function ($q) {
     		$q->where('id', '=', 2);
